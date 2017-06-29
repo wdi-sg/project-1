@@ -1,5 +1,7 @@
-var box = document.querySelector('.box')
+var container = document.querySelector('.container')
+var boxSelector = document.querySelector('.box')
 var playerArr = []
+var randomWord = ''
 
 function randomNo (min, max) {
   min = Math.ceil(min)
@@ -7,19 +9,46 @@ function randomNo (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function addWord () {
-  box.textContent = ''
+function addBox () {
+  var boxElem = document.createElement('div')
+  boxElem.style.height = '50px'
+  boxElem.style.width = '80px'
+  boxElem.style.backgroundColor = 'pink'
+  boxElem.style.border = '1px solid black'
+  boxElem.style.top = randomNo(0,400) + 'px'
+  boxElem.style.left = randomNo(76,676) + 'px'
+  boxElem.style.position = 'absolute'
+  boxElem.style.textAlign = 'center'
+  boxElem.style.lineHeight = '50px'
+  boxElem.setAttribute('class', 'box')
+  addWord(boxElem)
+  container.appendChild(boxElem)
+}
+function addWord (appendTo) {
+  boxSelector = document.querySelector('.box')
   var wordArr = ['apple', 'people', 'dictionary', 'cloud', 'green']
-  var randomWord = wordArr[randomNo(0, 4)]
+  var initialWord = ''
+  initialCheck()
+  function initialCheck () {
+    var initialCheck = false
+    while (initialCheck === false) {
+      initialWord = wordArr[randomNo(0, 4)]
+      console.log (initialWord, randomWord)
+      if (initialWord !== randomWord) {
+        initialCheck = true
+      }
+    }
+  }
+  randomWord = initialWord
   var randomWordArr = randomWord.split('')
   for (var i = 0; i < randomWordArr.length; i++) {
     var span = document.createElement('span')
     span.setAttribute('id', i)
     span.textContent = randomWordArr[i]
-    box.appendChild(span)
+    appendTo.appendChild(span)
   }
   console.log(randomWordArr)
-  console.log(box.textContent)
+  // console.log(boxSelector.textContent)
 }
 
 function typeLetter (event) {
@@ -30,22 +59,25 @@ function typeLetter (event) {
 }
 
 function checkIfMatch () {
+  boxSelector = document.querySelector('.box')
   for (var i = 0; i < playerArr.length; i++) {
-    if (playerArr[i] === box.textContent[i]) {
+    if (playerArr[i] === boxSelector.textContent[i]) {
       var spanId = document.getElementById(i)
       if (i === playerArr.length - 1) {
         spanId.style.color = 'red'
       }
-    } else if (playerArr[i] !== box.textContent[i]) {
+    } else if (playerArr[i] !== boxSelector.textContent[i]) {
       playerArr.pop()
     }
-    if (playerArr.length === box.textContent.length) {
-      addWord()
+    if (playerArr.length === boxSelector.textContent.length) {
+      // addWord()
       playerArr = []
+      container.removeChild(boxSelector)
     }
   }
 }
 
-addWord()
+addBox()
+setInterval(addBox, 2000)
 
 document.body.addEventListener('keydown', typeLetter)
