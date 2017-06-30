@@ -4,4 +4,7 @@
   background-color: rgb(124, 254, 91);
   border: 1px solid black;
   margin: auto;
+  position: absolute;
+  left: 300px;
+  top: 100px;
 }

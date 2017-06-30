@@ -29,30 +29,22 @@ function addBox (type) {
     boxElem.style.backgroundColor = 'pink'
   }
   boxElem.style.border = '1px solid black'
-  boxElem.style.top = randomNo(8, 458) + 'px'
-  boxElem.style.left = randomNo(274, 872) + 'px'
+  boxElem.style.top = '0px'
+  boxElem.style.left = randomNo(0, 700) + 'px'
   boxElem.style.position = 'absolute'
   boxElem.style.textAlign = 'center'
   boxElem.style.lineHeight = '20px'
+  boxElem.style.transition = 'transform 5s linear'
+  boxElem.style.borderRadius = '20%'
+  boxElem.style.fontFamily = 'Arial'
   boxElem.setAttribute('class', 'box')
   addWord(boxElem)
   container.appendChild(boxElem)
 }
+
 function addWord (appendTo) {
   var wordArr = ['apple', 'people', 'dictionary', 'cloud', 'green', 'big bird']
-  var initialWord = ''
-  initialCheck()
-  function initialCheck () {
-    var initialCheck = false
-    while (initialCheck === false) {
-      initialWord = wordArr[randomNo(0, 5)]
-      console.log(initialWord, randomWord)
-      if (initialWord !== randomWord) {
-        initialCheck = true
-      }
-    }
-  }
-  randomWord = initialWord
+  var randomWord = wordArr[randomNo(0, 5)]
   var randomWordArr = randomWord.split('')
   for (var i = 0; i < randomWordArr.length; i++) {
     var span = document.createElement('span')
@@ -60,56 +52,74 @@ function addWord (appendTo) {
     span.textContent = randomWordArr[i]
     appendTo.appendChild(span)
   }
-  console.log(randomWordArr)
-  // console.log(boxSelector.textContent)
+  // setTimeout(giveBoxTransition, 5)
+  setTimeout(moveBox, 100)
+}
+
+// function giveBoxTransition() {
+//   var boxToMove = document.querySelectorAll('.box')
+//   console.log (boxToMove)
+//   boxToMove.forEach(function (elem) {
+//     elem.style.transition = 'top 5s linear'
+//   })
+// }
+
+function moveBox () {
+  var boxToMove = document.querySelectorAll('.box')
+  console.log (boxToMove)
+  boxToMove.forEach(function (elem) {
+    elem.style.transition = 'transform 5s linear'
+    elem.style.transform = 'translateY(480px)'
+    elem.addEventListener('transitionend', removeBox)
+  })
+}
+
+function removeBox () {
+  var boxToRemove = document.querySelector('.box')
+  container.removeChild(boxToRemove)
+  playerArr = []
 }
 
 function typeLetter (event) {
-  var char = String.fromCharCode(event.which)
-  if (char === 'À'){
-    playerArr.push(char)
-    checkIfMatch()
-  } else
-  playerArr.push(char.toLowerCase())
-  checkIfMatch()
+  var char = event.key
   console.log(char)
-  console.log(playerArr)
+  playerArr.push(char)
+  checkIfMatch()
+  boxSelector = document.querySelector('.box')
+  if (boxSelector) boxSelector.style.fontWeight = 'bold'
 }
 
 function checkIfMatch () {
   boxSelector = document.querySelector('.box')
-  for (var i = 0; i < playerArr.length; i++) {
-    if (playerArr[i] === boxSelector.textContent[i]) {
-      var spanId = document.getElementById(i)
-      if (i === playerArr.length - 1) {
-        spanId.style.color = 'red'
-      }
-    } else if (playerArr[i] === 'À') {
-      playerArr = []
-      container.removeChild(boxSelector)
-    } else if (playerArr[i] !== boxSelector.textContent[i]) {
-      //   if (boxSelector.style.backgroundColor === 'orange'){
-      // <-------- DIFFICULT MODE -------->
-      //     playerArr = []
-      //     for (var i = 0; i < boxSelector.textContent.length; i++) {
-      //       document.getElementById(i).style.color = 'black'
-      //     }
-      //   } else {
-      playerArr.pop()
-    }
-  }
-  if (playerArr.length !== 0) {
-    if (playerArr.length === boxSelector.textContent.length) {
-      if (boxSelector.style.backgroundColor === 'orange') {
-      // <-------- DIFFICULT MODE -------->
-        playerArr = []
-        boxSelector.style.backgroundColor = 'pink'
-        for (var i = 0; i < boxSelector.textContent.length; i++) {
-          document.getElementById(i).style.color = 'black'
+  if (!boxSelector) {
+    playerArr = []
+  } else {
+    for (var i = 0; i < playerArr.length; i++) {
+      if (playerArr[i] === boxSelector.textContent[i]) {
+        var spanId = document.getElementById(i)
+        if (i === playerArr.length - 1) {
+          spanId.style.color = 'red'
         }
-      } else {
+      } else if (playerArr[i] === '`') {
         playerArr = []
         container.removeChild(boxSelector)
+      } else if (playerArr[i] !== boxSelector.textContent[i]) {
+        playerArr.pop()
+      }
+    }
+    if (playerArr.length !== 0) {
+      if (playerArr.length === boxSelector.textContent.length) {
+        if (boxSelector.style.backgroundColor === 'orange') {
+        // <-------- DIFFICULT MODE -------->
+          playerArr = []
+          boxSelector.style.backgroundColor = 'pink'
+          for (var i = 0; i < boxSelector.textContent.length; i++) {
+            document.getElementById(i).style.color = 'black'
+          }
+        } else {
+          playerArr = []
+          container.removeChild(boxSelector)
+        }
       }
     }
   }
