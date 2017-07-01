@@ -1,12 +1,24 @@
-/*div {
+.bottombun {
   width: 200px;
   height: 100px;
   border-radius: 10px;
-  background-image: url("/assets/images/topbun.png");
+  background-image: url("/assets/images/bottombun.png");
   background-size: cover;
   position: relative;
-}*/
+}
 
+.patty {
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  background-size: cover;
+  position: relative;
+  background-image: url("/assets/images/patty.png")
+}
+
+body {
+
+}
 
 .left-content {
   width: 400px;
@@ -17,17 +29,22 @@
 }
 
 .middle-content {
-  width: 400px;
+  width: 500px;
   height: 768px;
   float: left;
-  border: 2px solid red;
-  margin: 0px 25px;
+  border: 2px solid black;
 }
 
 .right-content {
   width: 400px;
   height: 768px;
   float: left;
-  border: 2px solid blue;
-    margin: 0px 25px;
+  border: 2px solid black;
+  margin: 0px 25px;
+}
+
+.headings {
+  font-family: "Luckiest Guy";
+  font-size: 50px;
+  text-align: center;
 }
