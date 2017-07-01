@@ -6,7 +6,8 @@ var div = document.querySelector('div')
 
 body.addEventListener('click', function () {
   var newIngredient = document.createElement('div')
-  newIngredient.style.bottom = "30px"
+  newIngredient.style.marginBottom = "-70px"
   newIngredient.style.zIndex = counter
   div.prepend(newIngredient)
+  counter ++
 })
