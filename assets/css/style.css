@@ -15,6 +15,25 @@
   background-image: url("/assets/images/patty.png")
 }
 
+#cheese {
+  background-image: url("/assets/images/cheese.png")
+}
+
+#lettuce {
+  background-image: url("/assets/images/lettuce.png")
+}
+
+#onion {
+  background-image: url("/assets/images/onion.png")
+}
+
+#tomato {
+  background-image: url("/assets/images/tomato.png")
+}
+
+#topbun {
+  background-image: url("/assets/images/topbun.png")
+}
 body {
   text-align: center;
 }
