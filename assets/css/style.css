@@ -2,15 +2,12 @@ body{
   background-color: white;
   height: 400px;
   position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 div {
   width: 200px;
   height: 100px;
   border-radius: 10px;
-  /*border: 2px solid black;*/
   position: absolute;
   background-image: url("/patty.png");
   background-size: cover;
