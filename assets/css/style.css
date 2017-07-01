@@ -1,14 +1,33 @@
-body{
-  background-color: white;
-  height: 400px;
-  position: relative;
-}
-
-div {
+/*div {
   width: 200px;
   height: 100px;
   border-radius: 10px;
   background-image: url("/assets/images/topbun.png");
   background-size: cover;
   position: relative;
+}*/
+
+
+.left-content {
+  width: 400px;
+  height: 768px;
+  float: left;
+  border: 2px solid black;
+  margin: 0px 25px;
+}
+
+.middle-content {
+  width: 400px;
+  height: 768px;
+  float: left;
+  border: 2px solid red;
+  margin: 0px 25px;
+}
+
+.right-content {
+  width: 400px;
+  height: 768px;
+  float: left;
+  border: 2px solid blue;
+    margin: 0px 25px;
 }
