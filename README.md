@@ -1,11 +1,12 @@
-# Build-A-Burger
 <!---
 Read Me Contents
 -->
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Build-A-Burger
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
-
-### Overview
+###Concept
+###Game Mechanics
+###Functions
+###Credits/Sources
 
 Let's start out with something fun - **a game!**
 
