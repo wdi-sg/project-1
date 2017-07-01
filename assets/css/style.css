@@ -4,6 +4,7 @@
   border-radius: 10px;
   background-size: cover;
   position: relative;
+  margin: 0 auto;
 }
 
 #bottombun {
@@ -15,7 +16,7 @@
 }
 
 body {
-
+  text-align: center;
 }
 
 .left-content {
@@ -24,6 +25,15 @@ body {
   float: left;
   border: 2px solid black;
   margin: 0px 25px;
+}
+
+.buttons {
+
+}
+button {
+  width: 150px;
+  height: 100px;
+  margin: 10px;
 }
 
 .middle-content {
@@ -44,5 +54,4 @@ body {
 .headings {
   font-family: "Luckiest Guy";
   font-size: 50px;
-  text-align: center;
 }
