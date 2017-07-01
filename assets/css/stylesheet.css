@@ -1,0 +1,18 @@
+#container {
+  width: 600px;
+  height: 600px;
+  /*display: flex;*/
+  /*justify-content: flex-start;
+  align-items: flex-end;*/
+}
+
+.box {
+  height: 22%;
+  background-color: brown;
+  border-color: black;
+  border-style: solid;
+  display: inline-block;
+  width: 22%;
+  font-size: 50px;
+  text-align: center;
+}
