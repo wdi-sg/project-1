@@ -2,8 +2,36 @@ function gameInit () {
   var container = document.querySelector('.container')
   var boxSelector = document.querySelector('.box')
   var playerArr = []
-  var life = ''
-  var bossLife = ''
+  var life = 1000
+  var bossLife = 5000
+
+  function gameSetup (level) {
+    var lifeCounter = document.createElement('div')
+    lifeCounter.setAttribute('class', 'lifeCounter')
+    lifeCounter.style.top = '100px'
+    lifeCounter.style.left = '200px'
+    lifeCounter.style.position = 'absolute'
+    document.body.appendChild(lifeCounter)
+    var bossLifeCounter = document.createElement('div')
+    bossLifeCounter.setAttribute('class', 'bossLifeCounter')
+    bossLifeCounter.style.top = '100px'
+    bossLifeCounter.style.left = '1120px'
+    bossLifeCounter.style.position = 'absolute'
+    document.body.appendChild(bossLifeCounter)
+    setLife()
+    setBossLife()
+    chooseBox()
+  }
+
+  function setLife () {
+    var lifeCounter = document.querySelector('.lifeCounter')
+    lifeCounter.textContent = 'You: ' + life + ' hp'
+  }
+
+  function setBossLife () {
+    var bossLifeCounter = document.querySelector('.bossLifeCounter')
+    bossLifeCounter.textContent = 'Boss: ' + bossLife + ' hp'
+  }
 
   function randomNo (min, max) {
     min = Math.ceil(min)
@@ -11,17 +39,19 @@ function gameInit () {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  function choosingBox () {
+  function chooseBox () {
     var identifier = randomNo(0, 100)
     if (identifier < 21) {
-      addBox('difficult')
+      addBox('twoLayer')
     } else if (identifier < 41) {
       addBox('upsideDown')
+    } else if (identifier < 51) {
+      addBox('twoBox')
     } else {
       addBox('easy')
     }
     var time = randomNo(1000, 2500)
-    setTimeout(choosingBox, time)
+    setTimeout(chooseBox, time)
   }
 
   function addBox (type) {
@@ -30,7 +60,7 @@ function gameInit () {
     // boxElem.style.width = '80px'
     boxElem.style.padding = '5px 10px'
     boxElem.style.transition = 'top 5s linear'
-    if (type === 'difficult') {
+    if (type === 'twoLayer') {
       boxElem.style.backgroundColor = 'orange'
       boxElem.style.transition = 'top 4s linear'
       boxElem.isSecondLayer = false
@@ -51,11 +81,18 @@ function gameInit () {
     boxElem.setAttribute('class', 'box')
     addWord(boxElem, type)
     container.appendChild(boxElem)
+    if (type === 'twoBox') {
+      setTimeout(addBox, 300, 'easy')
+    }
   }
 
   function addWord (appendTo, type) {
-    var wordArr = ['apple', 'people', 'dictionary', 'cloud', 'green', 'big bird', 'car', 'orange', 'tree', 'energy']
-    var randomWord = wordArr[randomNo(0, wordArr.length - 1)]
+    var fullWordArr = words.array
+    var inGameWordArr = fullWordArr.filter(function (word) {
+      return word.length === 4
+    })
+    console.log(inGameWordArr.length)
+    var randomWord = inGameWordArr[randomNo(0, inGameWordArr.length - 1)]
     var randomWordArr = randomWord.split('')
     var innerBox = document.createElement('div')
     for (var i = 0; i < randomWordArr.length; i++) {
@@ -68,7 +105,7 @@ function gameInit () {
       innerBox.style.transform = 'rotate(180deg)'
     }
     appendTo.appendChild(innerBox)
-    setTimeout(moveBox, 100)
+    setTimeout(moveBox, 200)
   }
 
   function moveBox () {
@@ -84,6 +121,10 @@ function gameInit () {
     var boxToRemove = document.querySelector('.box')
     container.removeChild(boxToRemove)
     playerArr = []
+    if (!boxToRemove.successfulClear) {
+      life -= randomNo(45, 85)
+      setLife()
+    }// if (!document.querySelector('.box')) addBox('easy')
   }
 
   function typeLetter (event) {
@@ -111,6 +152,8 @@ function gameInit () {
         spanId.style.color = 'red'
       } else if (playerArr[playerLastChar] === '`') {
         removeBox()
+        life -= randomNo(45, 85)
+        setLife()
       } else if (playerArr[playerLastChar] !== boxSelector.textContent[playerLastChar]) {
         playerArr.pop()
       }
@@ -127,14 +170,19 @@ function gameInit () {
           document.getElementById(i).style.color = 'black'
         }
       } else {
+        boxSelector.successfulClear = true
+        bossLife -= randomNo(75, 115)
+        setBossLife()
         return true
       }
+    } else {
+      return false
     }
   }
 
-  choosingBox()
+  gameSetup()
 
   document.body.addEventListener('keydown', typeLetter)
 }
 
-gameInit()
+document.addEventListener('DOMContentLoaded', gameInit)
