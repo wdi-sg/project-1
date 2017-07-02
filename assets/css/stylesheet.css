@@ -1,0 +1,145 @@
+.container {
+  /*background-color: yellow;*/
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.topcontent {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+}
+
+.leftcontent {
+  /*border: 2px solid black;*/
+  width: inherit;
+  height:  auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.timerscore {
+  width: 31%;
+  height: center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.timer {
+  background-color: red;
+  height:120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score {
+  background-color: blue;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftmiddlecontent {
+  background-color: orange;
+  width: 60%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userinput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rightcontent {
+  background-color: green;
+  /*border: 2px solid black;*/
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bottomcontent {
+  background-color: teal;
+  /*border: 2px solid black;*/
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbun {
+  background-image: url("/assets/images/topbuns.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 72px;
+  background-size: contain;
+}
+.botbun {
+  background-image: url("/assets/images/botbuns.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 58px;
+  background-size: contain;
+  margin-left: inherit;
+}
+
+.cucumber {
+  background-image: url("/assets/images/cucumber.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 60px;
+  background-size: contain;
+  margin-left: inherit;
+}
+.meat {
+  background-image: url("/assets/images/pattys.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 88px;
+  background-size: contain;
+  margin-left: inherit;
+}
+.onion {
+  background-image: url("/assets/images/onions.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 65px;
+  background-size: contain;
+  margin-left: inherit;
+}
+.lettuce {
+  background-image: url("/assets/images/lettuces.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 88px;
+  background-size: contain;
+  margin-left: inherit;
+}
+.cheese {
+  background-image: url("/assets/images/cheeses.png");
+  background-repeat: no-repeat;
+  width: 320px;
+  height: 70px;
+  background-size: contain;
+  margin-left: inherit;
+}
