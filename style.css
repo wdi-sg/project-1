@@ -1,10 +1,10 @@
 .container {
   height: 500px;
   width: 800px;
-  background-color: rgb(124, 254, 91);
-  border: 1px solid black;
+  background-color: black;
+  border: 1px solid white;
   margin: auto;
   position: absolute;
-  left: 300px;
-  top: 100px;
+  left: 274px;
+  top: 50px;
 }
