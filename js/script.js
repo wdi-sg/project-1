@@ -1,19 +1,19 @@
 // 1. target all the elements essential for the gameplay
 // a. left arrow (jack to move when user press or click left key)
-var leftArrow = document.querySelector('leftarrow')
+var leftArrow = document.querySelector('.leftarrow')
 leftArrow.addEventListener('click', moveLeft)
 // b. right arrow (jack to move when user press or click right key)
-var rightArrow = document.querySelector('rightarrow')
+var rightArrow = document.querySelector('.rightarrow')
 rightArrow.addEventListener('click', moveRight)
 // c. timer (to show countdown of 30000ms)
-var timer = document.querySelector('countdown')
+var timer = document.querySelector('.countdown')
 // d. jack (for moving left and right)
-var jack = document.querySelector('jack')
+var jack = document.querySelector('.jack')
 // e. tree trunk (moving down)
-var trunk = document.querySelector('trunk')
+var trunk = document.querySelector('.trunk')
 // f. scoreboard (to update score)
-var topScore = document.querySelector('score')
-var currentScore = document.querySelector('currentscore')
+var topScore = document.querySelector('.score')
+var currentScore = document.querySelector('.currentscore')
 // 2. check if key is space key, left and right key
 // a. space for start game
 document.addEventListener('keyup', onKeyUp)
@@ -85,8 +85,8 @@ function displayScore () {
 var startTime = false
 function moveLeft () {
   if (gameOver === false) {
-    if (startTime===false){
-      startTime===true
+    if (startTime === false) {
+      startTime === true
       startTimer()
     }
     moveDown()
@@ -95,8 +95,8 @@ function moveLeft () {
 // c. moveRight
 function moveRight () {
   if (gameOver === false) {
-    if (startTime===false){
-      startTime===true
+    if (startTime === false) {
+      startTime === true
       startTimer()
     }
     moveDown()
@@ -110,6 +110,19 @@ function moveDown () {
   }
 }
 // e. timer running down
-function startTimer() {
+function startTimer () {
+  var timeLeft = 3000
+  var elem = document.querySelector('.countdown')
 
+  var timerId = setInterval(countdown, 1)
+
+  function countdown () {
+    if (timeLeft == 0) {
+      clearTimeout(timerId)
+      // doSomething()
+    } else {
+      elem.innerHTML = timeLeft + 'ms'
+      timeLeft--
+    }
+  }
 }
