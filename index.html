@@ -16,6 +16,8 @@
           <ul>
             <li> Use the LEFT and RIGHT arrow key to move Jack left or right.
             </li>
+            <li> Game will be over once the timer runs out or if Jack hits a branch.
+            </li>
             <li> Use the SPACE key to pause the game.
             </li>
           </ul>
@@ -27,15 +29,28 @@
             <div class='leftarrow'><-
             </div>
           </div>
-          <div class='tree'>
+          <div class='sky'>
+            <div class='mainaction'>
+              <div class='left-branch'>
+              </div>
+              <div class='right-branch'>
+              </div>
+              <div class='jack'>
+              </div>
+              <div class='trunk'>
+              </div>
+            </div>
+            <div class='grass'>
+            </div>
           </div>
           <div class='rightarrowpanel'>
-            <div class='rightarrow'>->
+            <div class='rightarrow'> ->
             </div>
           </div>
         </div>
         <div class='timer'>
-          time left: <span class='countdown'><span>
+          your score: <span class='currentscore'>0</span>
+          <p class='countingdown'>time left: <span class='countdown'><span></p>
         </div>
       </div>
       <div class='right'>
