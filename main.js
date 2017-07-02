@@ -4,33 +4,101 @@ function gameInit () {
   var playerArr = []
   var life = 1000
   var bossLife = 5000
+  var combo = 0
 
   function gameSetup (level) {
+    createLifeCounter()
+    createBossLifeCounter()
+    createComboCounter()
+    life = 1000
+    bossLife = 5000
+    combo = 0
+    setLife()
+    setBossLife()
+    chooseBox()
+  }
+
+  function createComboCounter (){
+    var comboCounter = document.createElement('div')
+    comboCounter.setAttribute('class', 'comboCounter')
+    comboCounter.style.top = '-50px'
+    comboCounter.style.left = '0px'
+    comboCounter.style.width = '800px'
+    comboCounter.style.textAlign = 'center'
+    comboCounter.style.fontSize = '30pt'
+    comboCounter.style.position = 'absolute'
+    comboCounter.style.opacity = '1'
+    container.appendChild(comboCounter)
+  }
+
+  function createLifeCounter () {
     var lifeCounter = document.createElement('div')
     lifeCounter.setAttribute('class', 'lifeCounter')
     lifeCounter.style.top = '100px'
     lifeCounter.style.left = '200px'
     lifeCounter.style.position = 'absolute'
     document.body.appendChild(lifeCounter)
+  }
+
+  function createBossLifeCounter () {
     var bossLifeCounter = document.createElement('div')
     bossLifeCounter.setAttribute('class', 'bossLifeCounter')
     bossLifeCounter.style.top = '100px'
     bossLifeCounter.style.left = '1120px'
     bossLifeCounter.style.position = 'absolute'
     document.body.appendChild(bossLifeCounter)
-    setLife()
-    setBossLife()
-    chooseBox()
   }
 
   function setLife () {
     var lifeCounter = document.querySelector('.lifeCounter')
     lifeCounter.textContent = 'You: ' + life + ' hp'
+    if (life < 1) {
+      alert ('You lose!')
+      container.innerHTML = ''
+      lifeCounter.textContent = 'You: 0 hp'
+    }
   }
 
   function setBossLife () {
     var bossLifeCounter = document.querySelector('.bossLifeCounter')
     bossLifeCounter.textContent = 'Boss: ' + bossLife + ' hp'
+    if (bossLife < 1) {
+      alert ('You win!')
+      container.innerHTML = ''
+      bossLifeCounter.textContent = 'Boss: 0 hp'
+    }
+  }
+
+  function setCombo () {
+    var comboCounter = document.querySelector('.comboCounter')
+    comboCounter.textContent = 'Combo ' + combo
+    comboCounter.style.transition = ''
+    comboCounter.style.opacity = '1'
+    setTimeout(function () {
+      comboCounter.style.opacity = '0'
+      comboCounter.style.transition = 'opacity 1s'
+    }, 300)
+    if (combo % 50 === 0 && combo !== 0) {
+      bossLife -= 1000
+      setBossLife()
+      inGameMessage('Nice!')
+    }
+  }
+
+  function inGameMessage (message) {
+    var inGameMessage = document.createElement('div')
+    inGameMessage.textContent = message
+    inGameMessage.style.fontSize = '100pt'
+    inGameMessage.style.position = 'absolute'
+    inGameMessage.style.height = '500px'
+    inGameMessage.style.width = '800px'
+    inGameMessage.style.lineHeight = '500px'
+    inGameMessage.style.textAlign = 'center'
+    inGameMessage.style.transition = 'opacity 1s'
+    container.appendChild(inGameMessage)
+    setTimeout(function () {
+      inGameMessage.style.opacity = '0'
+    }, 10)
   }
 
   function randomNo (min, max) {
@@ -40,18 +108,20 @@ function gameInit () {
   }
 
   function chooseBox () {
-    var identifier = randomNo(0, 100)
-    if (identifier < 21) {
-      addBox('twoLayer')
-    } else if (identifier < 41) {
-      addBox('upsideDown')
-    } else if (identifier < 51) {
-      addBox('twoBox')
-    } else {
-      addBox('easy')
+    if (life > 0 && bossLife > 0) {
+      var identifier = randomNo(0, 100)
+      if (identifier < 21) {
+        addBox('twoLayer')
+      } else if (identifier < 41) {
+        addBox('upsideDown')
+      } else if (identifier < 51) {
+        addBox('twoBox')
+      } else {
+        addBox('easy')
+      }
+      var time = randomNo(1000, 2000)
+      setTimeout(chooseBox, time)
     }
-    var time = randomNo(1000, 2500)
-    setTimeout(chooseBox, time)
   }
 
   function addBox (type) {
@@ -74,7 +144,7 @@ function gameInit () {
     boxElem.style.left = randomNo(0, 700) + 'px'
     boxElem.style.position = 'absolute'
     boxElem.style.textAlign = 'center'
-    boxElem.style.lineHeight = '20px'
+    // boxElem.style.lineHeight = '20px'
     // boxElem.style.transition = 'top 5s linear'
     boxElem.style.borderRadius = '50%'
     boxElem.style.fontFamily = 'Arial'
@@ -89,7 +159,7 @@ function gameInit () {
   function addWord (appendTo, type) {
     var fullWordArr = words.array
     var inGameWordArr = fullWordArr.filter(function (word) {
-      return word.length === 4
+      return word.length === 5 || word.length === 4
     })
     console.log(inGameWordArr.length)
     var randomWord = inGameWordArr[randomNo(0, inGameWordArr.length - 1)]
@@ -124,6 +194,8 @@ function gameInit () {
     if (!boxToRemove.successfulClear) {
       life -= randomNo(45, 85)
       setLife()
+      combo = 0
+      setCombo()
     }// if (!document.querySelector('.box')) addBox('easy')
   }
 
@@ -150,12 +222,18 @@ function gameInit () {
       if (playerArr[playerLastChar] === boxSelector.textContent[playerLastChar]) {
         var spanId = document.getElementById(playerLastChar)
         spanId.style.color = 'red'
+        combo += 1
+        setCombo()
       } else if (playerArr[playerLastChar] === '`') {
         removeBox()
         life -= randomNo(45, 85)
         setLife()
+        combo = 0
+        setCombo()
       } else if (playerArr[playerLastChar] !== boxSelector.textContent[playerLastChar]) {
         playerArr.pop()
+        combo = 0
+        setCombo()
       }
     }
   }
