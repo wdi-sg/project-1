@@ -1,13 +1,12 @@
 var counter = 1
 var body = document.querySelector('body')
-var anchor = document.querySelector('.anchor')
+var playArea = document.querySelector('.playArea')
 
 body.addEventListener('click', function () {
   var newIngredient = document.createElement('div')
   newIngredient.className = 'ingredients'
-  newIngredient.id = 'cheese'
-  newIngredient.style.marginBottom = "-70px"
+  newIngredient.id = 'tomato'
   newIngredient.style.zIndex = counter
-  anchor.prepend(newIngredient)
+  playArea.prepend(newIngredient)
   counter ++
 })
