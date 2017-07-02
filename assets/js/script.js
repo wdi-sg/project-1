@@ -1,19 +1,46 @@
 var loopTimer = setInterval(loop, 50)
 var numLoops = 0
-var pacman = document.querySelector('#pacman')
+
 var gameboard = document.querySelector('#gameboard')
-var pacmanSpeed = 10
+var pacman = document.querySelector('#pacman')
+var blueGhost = document.querySelector('#blueGhost')
+var orangeGhost = document.querySelector('#orangeGhost')
+var pinkGhost = document.querySelector('#pinkGhost')
+var redGhost = document.querySelector('#redGhost')
+
+pacman.style.top = '440px'
+pacman.style.left = '280px'
+pacman.style.height = '40px'
+pacman.style.width = '40px'
+
+blueGhost.style.top = '40px'
+blueGhost.style.left = '40px'
+blueGhost.style.height = '40px'
+blueGhost.style.width = '40px'
+
+orangeGhost.style.top = '40px'
+orangeGhost.style.left = '160px'
+orangeGhost.style.height = '40px'
+orangeGhost.style.width = '40px'
+
+pinkGhost.style.top = '40px'
+pinkGhost.style.left = '80px'
+pinkGhost.style.height = '40px'
+pinkGhost.style.width = '40px'
+
+redGhost.style.top = '40px'
+redGhost.style.left = '120px'
+redGhost.style.height = '40px'
+redGhost.style.width = '40px'
+
+var pacmanSpeed = 8
+var blueGhostSpeed = 10
 var walls = []
 
 var upKeyDown = false
 var downKeyDown = false
 var leftKeyDown = false
 var rightKeyDown = false
-
-pacman.style.top = '440px'
-pacman.style.left = '280px'
-pacman.style.height = '40px'
-pacman.style.width = '40px'
 
 // border
 createWall(0, 0, 600, 40)
@@ -115,42 +142,60 @@ function hitWall (character) {
   }
 }
 
-// game loop
-function loop () {
-  numLoops++
+// pacman's movement
+function pacmanMovement () {
   var originalLeft = pacman.style.left
   var originalTop = pacman.style.top
   // up key
   if (upKeyDown) {
     pacman.className = 'rotate270'
-    var pacmanY = parseInt(pacman.style.top) - pacmanSpeed
-    if (pacmanY < 0) pacmanY = 460
-    pacman.style.top = pacmanY + 'px'
+    var pacmanY = parseInt(pacman.style.top)
+    pacman.style.top = pacmanY  - pacmanSpeed + 'px'
   }
   // down key
   if (downKeyDown) {
     pacman.className = 'rotate90'
-    var pacmanY = parseInt(pacman.style.top) + pacmanSpeed
-    if (pacmanY > 460) pacmanY = 0
-    pacman.style.top = pacmanY + 'px'
+    var pacmanY = parseInt(pacman.style.top)
+    pacman.style.top = pacmanY + pacmanSpeed + 'px'
   }
   // left key
   if (leftKeyDown) {
     pacman.className = 'mirrorImage'
-    var pacmanX = parseInt(pacman.style.left) - pacmanSpeed
+    var pacmanX = parseInt(pacman.style.left)
     if (pacmanX < 0) pacmanX = 560
-    pacman.style.left = pacmanX + 'px'
+    pacman.style.left = pacmanX - pacmanSpeed + 'px'
   }
   // right key
   if (rightKeyDown) {
     pacman.className = ''
     var pacmanX = parseInt(pacman.style.left) + pacmanSpeed
     if (pacmanX > 560) pacmanX = 0
-    pacman.style.left = pacmanX + 'px'
+    pacman.style.left = pacmanX + pacmanSpeed + 'px'
   }
-  // check for collision
+  // check for collision between pacman and walls
   if (hitWall(pacman)) {
     pacman.style.left = originalLeft
     pacman.style.top = originalTop
   }
+}
+
+// blue ghost's movement
+function blueGhostMovement () {
+  var blueGhostX = parseInt(blueGhost.style.left)
+  if (blueGhostX < 0) blueGhostX = 560
+  if (blueGhostX > 560) blueGhostX = 0
+  blueGhost.style.left = blueGhostX + blueGhostSpeed + 'px'
+  if (hitWall(blueGhost)) blueGhost.style.left = blueGhostX + 'px'
+
+  // check for collision between pacman and blueGhost
+  if (collision(pacman, blueGhost)) {
+    clearInterval(loopTimer)
+  }
+}
+
+// game loop
+function loop () {
+  numLoops++
+  pacmanMovement()
+  blueGhostMovement ()
 }

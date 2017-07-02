@@ -11,9 +11,10 @@ body {
   /*border: 1px solid white;*/
 }
 
-#pacman {
+#pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
   position: absolute;
 }
+
 
 .rotate90 {
   transform: rotate(90deg);
