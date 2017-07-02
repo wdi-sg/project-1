@@ -33,55 +33,60 @@ function randomizeIngredient () {
   if (ingredient === 4) return 'cheese'
 }
 
+// target the div id's
+var d1 = document.getElementById('d1')
+var d2 = document.getElementById('d2')
+var d3 = document.getElementById('d3')
+var d4 = document.getElementById('d4')
+var d5 = document.getElementById('d5')
+var d6 = document.getElementById('d6')
+var d7 = document.getElementById('d7')
+
 // function for creating a random displayed burger level 1
 function createBurgerLv1 () {
-  document.getElementById('1').classList.add('topbun')
-  document.getElementById('2').classList.add('randomizeIngredient()')
-  document.getElementById('3').classList.add('randomizeIngredient()')
-  document.getElementById('4').classList.add('botbun')
+  d1.classList.add('topbun')
+  d2.classList.add('randomizeIngredient()')
+  d3.classList.add('randomizeIngredient()')
+  d4.classList.add('botbun')
 }
 
 // function for creating a random displayed burger level 2
 function createBurgerLv2 () {
-  document.getElementById('1').classList.add('topbun')
-  document.getElementById('2').classList.add('randomizeIngredient()')
-  document.getElementById('3').classList.add('randomizeIngredient()')
-  document.getElementById('4').classList.add('randomizeIngredient()')
-  document.getElementById('5').classList.add('botbun')
+  d1.classList.add('topbun')
+  d2.classList.add('randomizeIngredient()')
+  d3.classList.add('randomizeIngredient()')
+  d4.classList.add('randomizeIngredient()')
+  d5.classList.add('botbun')
 }
 
 // function for creating a random displayed burger level 3
 function createBurgerLv3 () {
-  document.getElementById('1').classList.add('topbun')
-  document.getElementById('2').classList.add('randomizeIngredient()')
-  document.getElementById('3').classList.add('randomizeIngredient()')
-  document.getElementById('4').classList.add('randomizeIngredient()')
-  document.getElementById('5').classList.add('randomizeIngredient()')
-  document.getElementById('6').classList.add('botbun')
+  d1.classList.add('topbun')
+  d2.classList.add('randomizeIngredient()')
+  d3.classList.add('randomizeIngredient()')
+  d4.classList.add('randomizeIngredient()')
+  d5.classList.add('randomizeIngredient()')
+  d6.classList.add('botbun')
 }
 
 // function for creating a random displayed burger level 4
 function createBurgerLv4 () {
-  document.getElementById('1').classList.add('topbun')
-  document.getElementById('2').classList.add('randomizeIngredient()')
-  document.getElementById('3').classList.add('randomizeIngredient()'); document.getElementById('4').classList.add('randomizeIngredient()')
-  document.getElementById('5').classList.add('randomizeIngredient()')
-  document.getElementById('6').classList.add('randomizeIngredient()')
-  document.getElementById('7').classList.add('botbun')
+  d1.classList.add('topbun')
+  d2.classList.add('randomizeIngredient()')
+  d3.classList.add('randomizeIngredient()'); d4.classList.add('randomizeIngredient()')
+  d5.classList.add('randomizeIngredient()')
+  d6.classList.add('randomizeIngredient()')
+  d7.classList.add('botbun')
 }
 
 function removeIngredients () {
-  var classes = ['cucumber', 'meat', 'onion', 'lettuce', 'cheese', 'topbun', 'botbun']
-  for (var i = 0; i < 7; i++) {
-    document.getElementById('i').classList.remove('classes')
-  }
-  // document.getElementById('1').classList.remove('classes')
-  // document.getElementById('2').classList.remove('classes')
-  // document.getElementById('3').classList.remove('classes')
-  // document.getElementById('4').classList.remove('classes')
-  // document.getElementById('5').classList.remove('classes')
-  // document.getElementById('6').classList.remove('classes')
-  // document.getElementById('7').classList.remove('classes')
+  d1.className = ''
+  d2.className = ''
+  d3.className = ''
+  d4.className = ''
+  d5.className = ''
+  d6.className = ''
+  d7.className = ''
 }
 
 // function for checking if ingredient picked is same as displayed burger

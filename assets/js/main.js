@@ -7,19 +7,26 @@ function init () {
   var lettuce = document.querySelector('.lettuce')
   var cheese = document.querySelector('.cheese')
 
-  cucumber.addEventListener('click', onKeyUp)
-  meat.addEventListener('keyup', onKeyUp)
-  onion.addEventListener('keyup', onKeyUp)
-  lettuce.addEventListener('keyup', onKeyUp)
-  cheese.addEventListener('keyup', onKeyUp)
+  document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
-    if (event.keycode == 81) return cucumber
-    if (event.keycode == 87) return meat
-    if (event.keycode == 69) return onion
-    if (event.keycode == 82) return lettuce
-    if (event.keycode == 84) return cheese
-    if (event.keycode == 32) return serve
-  }// closing for function onKeyUp
+    if (checkKeyCode(event.keyCode)) {
+      if (event.keyCode == 81) alert('cucumber')
+      if (event.keyCode == 87) alert('meat')
+      if (event.keyCode == 69) alert('onion')
+      if (event.keyCode == 82) alert('lettuce')
+      if (event.keyCode == 84) alert('cheese')
+      if (event.keyCode == 32) alert('serve')
+    } else {
+      alert('wrong button pressed')
+    }
+  }// closing for onKeyUp
+
+  function checkKeyCode (keycode) {
+    if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32) {
+      return true
+    }
+    return false
+  }//closing for checkKeyCode
 
 }// closing for init
