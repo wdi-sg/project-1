@@ -72,7 +72,9 @@ ul {
   margin: 150px 0px 0px 8px;
   background-color: white;
 }
-
+.rightarrowtext {
+  margin-left:26px;
+}
 .sky {
   width:60%;
   height:440px;
