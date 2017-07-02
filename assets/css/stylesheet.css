@@ -2,31 +2,13 @@ body {
   background-color: black;
 }
 
-#output {
-  position: relative;
-  background: white;
-  width: 100px;
-  height: 100px;
-  left: 200px;
-  top: 50px;
-}
-
-#output2 {
-  position: relative;
-  background: red;
-  width: 100px;
-  height: 100px;
-  left: 300px;
-  top: 50px;
-}
-
 #gameboard {
   position: relative;
   margin: 0 auto;
   width: 600px;
-  height: 500px;
+  height: 520px;
   background: black;
-  border: 1px solid white;
+  /*border: 1px solid white;*/
 }
 
 #pacman {
@@ -48,5 +30,5 @@ body {
   position: absolute;
   background-color: white;
   /*border: 4px dashed blue;*/
-  border-radius: 8px;
+  /*border-radius: 8px;*/
 }
