@@ -1,0 +1,38 @@
+body {
+  background-color: black;
+}
+
+#output {
+  background: white;
+  height: 20px;
+}
+
+#gameboard {
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+  height: 500px;
+  background: pink;
+}
+
+#pacman {
+  position: absolute;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotate270 {
+  transform: rotate(270deg);
+}
+
+.mirrorImage {
+  transform: scaleX(-1);
+}
+.wall {
+  position: absolute;
+  background-color: pink;
+  border: 4px dashed blue;
+  border-radius: 8px;
+}
