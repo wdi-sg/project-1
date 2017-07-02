@@ -3,8 +3,21 @@ body {
 }
 
 #output {
+  position: relative;
   background: white;
-  height: 20px;
+  width: 100px;
+  height: 100px;
+  left: 200px;
+  top: 50px;
+}
+
+#output2 {
+  position: relative;
+  background: red;
+  width: 100px;
+  height: 100px;
+  left: 300px;
+  top: 50px;
 }
 
 #gameboard {
@@ -12,7 +25,8 @@ body {
   margin: 0 auto;
   width: 600px;
   height: 500px;
-  background: pink;
+  background: black;
+  border: 1px solid white;
 }
 
 #pacman {
@@ -32,7 +46,7 @@ body {
 }
 .wall {
   position: absolute;
-  background-color: pink;
-  border: 4px dashed blue;
+  background-color: white;
+  /*border: 4px dashed blue;*/
   border-radius: 8px;
 }

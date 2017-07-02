@@ -2,7 +2,7 @@ var loopTimer = setInterval(loop, 50)
 var numLoops = 0
 var pacman = document.querySelector('#pacman')
 var gameboard = document.querySelector('#gameboard')
-var pacmanSpeed = 10
+var pacmanSpeed = 5
 
 var upKeyDown = false
 var downKeyDown = false
@@ -57,9 +57,19 @@ wall1.style.height = '40px'
 wall1.style.width = '200px'
 gameboard.appendChild(wall1)
 
-
+// check for collision
 function collision(a, b) {
-  return true
+  ax = parseInt(a.style.left)
+  ay = parseInt(a.style.top)
+  bx = parseInt(b.style.left)
+  by = parseInt(b.style.top)
+
+  if (ax < bx + parseInt(b.style.width) &&
+  ax + parseInt(a.style.width) > bx &&
+  ay < by + parseInt(b.style.height) &&
+  ay + parseInt(a.style.height) > by) {
+    return true
+  }
 }
 
 // document.addEventListener('keyup', function() {
@@ -75,6 +85,8 @@ function collision(a, b) {
 
 function loop () {
   numLoops++
+  var originalLeft = pacman.style.left
+  var originalTop = pacman.style.top
   // up key
   if (upKeyDown) {
     pacman.className = "rotate270"
@@ -104,5 +116,8 @@ function loop () {
     pacman.style.left = pacmanX + 'px'
   }
   // check for collision
-  if (collision(wall1, pacman)) output.innerHTML = 'collision'
+  if (collision(wall1, pacman)) {
+    pacman.style.left = originalLeft
+    pacman.style.top = originalTop
+  }
 }
