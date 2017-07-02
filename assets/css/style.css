@@ -1,0 +1,71 @@
+body {
+
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+p {
+  font-size: 20px;
+}
+
+.instructions {
+  margin: 0 auto;
+  background-color: white;
+  text-align: center;
+  width: 600px;
+  float: center;
+}
+
+.container {
+  background-color: white;
+  border: 2px solid white;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.scoreText {
+  float: left;
+}
+
+.score {
+  float: left;
+}
+
+.startButton {
+  display: inline-block;
+  position: relative;
+  float: center;
+}
+
+.timerText {
+  float: right;
+}
+
+.timer {
+  float: right;
+}
+
+.grid {
+  background-color: red;
+  border: 2px solid white;
+  width: 196px;
+  height: 196px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/*
+.odd {
+  background-color: red;
+  border: 2px solid black;
+  width: 196px;
+  height: 196px;
+  display: inline-block;
+}
+*/
