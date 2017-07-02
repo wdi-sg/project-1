@@ -2,6 +2,12 @@ body {
   text-align: center;
 }
 
+.headings {
+  font-family: "Luckiest Guy";
+  font-size: 50px;
+  margin: 10px auto;
+}
+
 .ingredients {
   width: 200px;
   height: 100px;
@@ -87,8 +93,16 @@ button {
   margin: 0px 25px;
 }
 
-.headings {
-  font-family: "Luckiest Guy";
-  font-size: 50px;
-  margin: 10px auto;
+.order {
+  width: 320px;
+  height: 470px;
+  border: 2px solid black;
+  margin: 0 auto;
+}
+
+.score {
+  width: 320px;
+  height: 180px;
+  border: 2px solid black;
+  margin: 20px auto;
 }
