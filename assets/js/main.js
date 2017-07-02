@@ -1,31 +1,25 @@
-document.addEventListener("DOMContentLoaded", init)
+document.addEventListener('DOMContentLoaded', init)
 
-function (init) {
+function init () {
   var cucumber = document.querySelector('.cucumber')
   var meat = document.querySelector('.meat')
   var onion = document.querySelector('.onion')
   var lettuce = document.querySelector('.lettuce')
-  var cheese =document.querySelector('.cheese')
+  var cheese = document.querySelector('.cheese')
 
-  cucumber.addEventListener('keyup', onKeyUp)
+  cucumber.addEventListener('click', onKeyUp)
   meat.addEventListener('keyup', onKeyUp)
   onion.addEventListener('keyup', onKeyUp)
   lettuce.addEventListener('keyup', onKeyUp)
   cheese.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
-    if (checkKeyCode(event.keyCode)) {
-    }
-
+    if (event.keycode == 81) return cucumber
+    if (event.keycode == 87) return meat
+    if (event.keycode == 69) return onion
+    if (event.keycode == 82) return lettuce
+    if (event.keycode == 84) return cheese
+    if (event.keycode == 32) return serve
   }// closing for function onKeyUp
-
-  function checkKeyCode (keycode) {
-    if (keycode === 81) return cucumber
-    if (keycode === 87) return meat
-    if (keycode === 69) return onion
-    if (keycode === 82) return lettuce
-    if (keycode === 84) return cheese
-    if (keycode === 32) return serve
-  }// closing for function checkKeyCode
 
 }// closing for init
