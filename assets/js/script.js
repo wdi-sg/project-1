@@ -20,7 +20,7 @@
 
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 var storedArr = []
-var arr = []
+var randomStr = []
 
 //Function random number generator
 function randNum (min, max) {
@@ -32,15 +32,17 @@ function randNum (min, max) {
 function randStr(){
   for(var i=0; i<10; i++){
     var letter= alphabet[randNum(1, 26)]
-    arr.push(letter)
+    randomStr.push(letter)
   }
-  return arr.join('')
+  return randomStr.join('')
 }
 //console.log(randStr())
 
 //Function checks whether user input is contained in string
 function checkInputStr(input){
-  if (randStr().includes(input)){
+  var inputSort = input.split('').sort().join('')
+  var randStrSort = randomStr.sort().join('')
+  if (randStrSort().includes(inputSort)){
     return true
   } return false
   }
@@ -82,11 +84,15 @@ function enterWord(){
 
 //Function restart
 function restart(){
-  arr = []
   storedArr = []
+  randStr = []
   randStr()
 }
 
 
-//Layout wireframing, test gameplay. study and improve word gen algorithm.
+//1 Understand code wordList.
+//2 Layout wireframing.
+//3 test gameplay.
+//4 study and improve word gen algorithm.
+
 //Additional: combo scoring system, colorchange combo, music, multilevels
