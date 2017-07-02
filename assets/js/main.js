@@ -21,7 +21,7 @@ function gameInit () {
   }
 
   function setBackground () {
-    document.body.background = 'images/levelOneBackground.jpg'
+    document.body.background = 'assets/images/levelOneBackground.jpg'
   }
 
   function createScoreToProgress () {
@@ -64,7 +64,7 @@ function gameInit () {
     lifeCounter.textContent = 'Lives'
     for (var i = 1; i <= 5; i++) {
       var heart = document.createElement('img')
-      heart.src = 'images/redheart.png'
+      heart.src = 'assets/images/redheart.png'
       heart.setAttribute('class', 'heart')
       heart.style.height = '40px'
       heart.style.width = '40px'
