@@ -94,7 +94,7 @@ function increaseScore () {
 var timeLeft = 60
 time.addEventListener('click', startGame)
 function startGame() {
-  if (time.innerText === 'Click to Start') { // ensure event only fires once.
+  if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
     generateList()
   }
