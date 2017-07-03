@@ -35,17 +35,17 @@ body {
 
 #cheese {
   background-image: url("/assets/images/cheese.png");
-  margin-bottom: -70px;
+  margin-bottom: -90px;
 }
 
 #lettuce {
   background-image: url("/assets/images/lettuce.png");
-  margin-bottom: -70px;
+  margin-bottom: -90px;
 }
 
 #onion {
   background-image: url("/assets/images/onion.png");
-  margin-bottom: -70px;
+  margin-bottom: -90px;
 }
 
 #tomato {
