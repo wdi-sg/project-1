@@ -5,6 +5,7 @@ var buttons = document.querySelectorAll('.buttons div')
 var serveButton = document.querySelector('.serveButton')
 var score = document.querySelector('.score')
 var time = document.querySelector('.time')
+var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
 
 // add event listeners to all buttons
 buttons.forEach(function (el) {
@@ -29,7 +30,6 @@ function addIngredient () {
 
 // generate random array of ingredients.
 // excluding topbun which must be the last item of every order
-var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
 function randomizer() {
   var randomNum = Math.floor(Math.random() * 5)
   return possibleIngredients[randomNum]
@@ -37,22 +37,33 @@ function randomizer() {
 
 
 function newOrder() {
-  var orderList = []
-  for (i = 0; i < level + 4; i++) {
-    orderList.push(randomizer())
+  var arr = []
+  for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
+    arr.push(randomizer())
   }
-  return orderList
+  arr.push('topbun')
+  return arr
 }
-console.log(newOrder())
 
-
+//DOM manipulation to list out ingredients needed
+ul = document.querySelector('ul')
+function generateList() {
+  var orderList = newOrder()
+  orderList.forEach(function(el) {
+    var newListItem = document.createElement('li')
+    newListItem.innerText = el
+    ul.prepend(newListItem)
+  })
+}
+generateList() //original list for level 1
 
 // serve button clears playArea of ingredients, increases score, calls for new order
 serveButton.addEventListener('click', serve)
-
+//need to clear the order list before adding new orders.
 function serve () {
   clearPlayArea()
   increaseScore()
+  generateList()
 }
 
 function clearPlayArea () {
