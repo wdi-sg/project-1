@@ -34,7 +34,18 @@ function randomizer() {
   var randomNum = Math.floor(Math.random() * 5)
   return possibleIngredients[randomNum]
 }
-console.log(randomizer())
+
+
+function newOrder() {
+  var orderList = []
+  for (i = 0; i < level + 4; i++) {
+    orderList.push(randomizer())
+  }
+  return orderList
+}
+console.log(newOrder())
+
+
 
 // serve button clears playArea of ingredients, increases score, calls for new order
 serveButton.addEventListener('click', serve)
