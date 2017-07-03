@@ -14,7 +14,7 @@ UI Objects
 - UNO button
 - Start button
 - Restart button
-- Game Instruction Box
+- Game Message Console
 
 Actions
 - Shuffle Draw Pile deck

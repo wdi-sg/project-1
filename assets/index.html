@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>UNO! (2-Player)</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+  </head>
+
+  <body>
+
+    <div class='GamePanel'>
+
+      <div class='MessageConsole'>
+        <h1>Message Console</h1>
+        <p class='MessageConsole'></p>
+      </div>
+
+
+      <div class='LeftPanel'>
+        <div class='Dealer'>
+          <h1>Dealer</h1>
+          <ul>
+
+            <!-- Draw Pile -->
+            <li class='DrawPile'>
+            </li>
+
+
+            <!-- Discard Pile -->
+            <li class='DiscardPile'>
+            </li>
+        </ul>
+        </div>
+      </div>
+
+      <div class='MiddlePanel'>
+        <div class='ComputerPlayer'>
+          <h1>Computer Player</h1>
+          <ul>
+            <!-- Computer Player's Pile -->
+            <li class='ComputerPlayerPile'>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class='RightPanel'>
+        <div class='Human Player'>
+          <h1>Human Player</h1>
+
+          <button type="button" name="StartGame">Start</button>
+          <button type="button" name="Uno">UNO!</button>
+
+
+          <ul>
+            <!-- Human Player's Pile -->
+            <li class='HumanPlayerPile'>
+            </li>
+          </ul>
+
+        </div>
+      </div> <!--RightPanel -->
+    </div> <!--GamePanel -->
+  </body>
+
+  <script src="js/main.js"></script>
+  <script src="js/uno.js"></script>
+
+</html>

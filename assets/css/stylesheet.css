@@ -1,0 +1,27 @@
+
+
+.GamePanel {
+  width: 90%;
+  margin: 0 auto; // floating in the center
+}
+
+.MessageConsole {
+
+}
+
+.LeftPanel, .MiddlePanel, .RightPanel {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.LeftPanel {
+  width: 33%;
+}
+
+.MiddlePanel {
+  width: 33%;
+}
+
+.RightPanel {
+  width: 33%;
+}
