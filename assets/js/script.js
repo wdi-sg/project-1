@@ -26,7 +26,7 @@ function addIngredient () {
    // id sets background-image url and negative margins
   newIngredient.id = whichIngredient
    // increasing z-index for overlapping look
-  ingredientCounter++ // counter starts at 0. increase before adding
+  ingredientCounter++ // counts num of added ingredients so far
   newIngredient.style.zIndex = ingredientCounter
   playArea.prepend(newIngredient)
   }
@@ -52,7 +52,7 @@ function newOrder () {
 function generateList () {
   var orderList = newOrder()
   orderList.forEach(function (el) {
-    var newListItem = document.createElement('li')
+    var newListItem = document.createElement('h3')
     newListItem.innerText = el
     order.prepend(newListItem)
   })
@@ -71,6 +71,7 @@ function serve () {
     clearList()
     generateList()
     ingredientCounter = 0
+    //reset current count to zero since ingredients have been cleared off playArea
   }
 }
 
@@ -101,7 +102,7 @@ time.addEventListener('click', function () {
 
 // callback to change timeLeft and update DOM text
 function countdown () {
-  if (timeLeft > 0) {
+  if (timeLeft >= 0) {
     time.innerText = timeLeft + ' secs'
   }
   timeLeft--

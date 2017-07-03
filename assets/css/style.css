@@ -118,6 +118,10 @@ h2 {
   margin: 0 auto;
 }
 
+h3 {
+  font-size: 20px;
+  margin: 5px auto;
+}
 .scorebox {
   width: 320px;
   height: 150px;
