@@ -1,5 +1,5 @@
 var ingredientCounter = 0 // number of ingredients already in play
-var level = 1
+var level = 1 //determines score and number of things in order list
 var playArea = document.querySelector('.playArea')
 var buttons = document.querySelectorAll('.buttons div')
 var serveButton = document.querySelector('.serveButton')
@@ -8,6 +8,7 @@ var time = document.querySelector('.time')
 var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var order = document.querySelector('.order')
 var gameStarted = false;
+
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -43,12 +44,11 @@ function newOrder () {
   for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
     arr.push(randomizer())
   }
-  arr.push('topbun')
+  arr.push('top bun')
   return arr
 }
 
 // DOM manipulation to list out ingredients needed
-
 function generateList () {
   var orderList = newOrder()
   orderList.forEach(function (el) {
@@ -62,15 +62,15 @@ function clearList () {
   order.innerHTML = ""
 }
 
-// serve button clears playArea of ingredients, increases score, calls for new order
+// serve button clears playArea, clears list, increases score, generates new orderList, reset ingredientcounter to 0.
 serveButton.addEventListener('click', serve)
-// need to clear the order list before adding new orders.
 function serve () {
-  if (gameStarted) {
+  if (gameStarted && ingredientCounter === level + 5) { //4 + 1 to account for bottombun
     clearPlayArea()
     increaseScore()
     clearList()
     generateList()
+    ingredientCounter = 0
   }
 }
 
@@ -96,7 +96,7 @@ time.addEventListener('click', function () {
   if (time.innerText === 'Click to Start') { // ensure event only fires once.
     setInterval(countdown, 1000)
   }
-  generateList() // click to start and generate first order
+  generateList() // click to start generates first order
 })
 
 // callback to change timeLeft and update DOM text
