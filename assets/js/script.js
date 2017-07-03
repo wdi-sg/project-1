@@ -7,7 +7,9 @@ var score = document.querySelector('.score')
 var time = document.querySelector('.time')
 var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var order = document.querySelector('.order')
-var gameStarted = false;
+var gameStarted = false
+var neededIngredients = []
+
 
 // add event listeners to all buttons
 buttons.forEach(function (el) {
@@ -20,15 +22,17 @@ function addIngredient () {
   if (gameStarted) {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
   whichIngredient = this.className.substring(5).toLowerCase()
-  var newIngredient = document.createElement('div')
-   // give the new element classname ingredients, which sets core css
-  newIngredient.className = 'ingredients'
-   // id sets background-image url and negative margins
-  newIngredient.id = whichIngredient
-   // increasing z-index for overlapping look
-  ingredientCounter++ // counts num of added ingredients so far
-  newIngredient.style.zIndex = ingredientCounter
-  playArea.prepend(newIngredient)
+  if (whichIngredient === neededIngredients[ingredientCounter]) {
+    var newIngredient = document.createElement('div')
+     // give the new element classname ingredients, which sets core css
+    newIngredient.className = 'ingredients'
+     // id sets background-image url and negative margins
+    newIngredient.id = whichIngredient
+     // increasing z-index for overlapping look
+    ingredientCounter++ // counts num of added ingredients so far
+    newIngredient.style.zIndex = ingredientCounter
+    playArea.prepend(newIngredient)
+  }
   }
 }
 
@@ -40,12 +44,11 @@ function randomizer () {
 }
 
 function newOrder () {
-  var arr = []
   for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
-    arr.push(randomizer())
+    neededIngredients.push(randomizer())
   }
-  arr.push('top bun')
-  return arr
+  neededIngredients.push('topbun')
+  return neededIngredients
 }
 
 // DOM manipulation to list out ingredients needed
@@ -53,13 +56,16 @@ function generateList () {
   var orderList = newOrder()
   orderList.forEach(function (el) {
     var newListItem = document.createElement('h3')
-    newListItem.innerText = el
+    if (el !== "topbun") {
+      newListItem.innerText = el
+    } else newListItem.innerText = 'top bun'
     order.prepend(newListItem)
   })
 }
 
 function clearList () {
   order.innerHTML = ""
+  neededIngredients = []
 }
 
 // serve button clears playArea, clears list, increases score, generates new orderList, reset ingredientcounter to 0.
