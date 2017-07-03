@@ -128,3 +128,13 @@ h3 {
   border: 2px solid black;
   margin: 20px auto;
 }
+
+
+.endGameOverlay {
+  position: fixed;
+  left: 460px;
+  height: 768px;
+  width: 500px;
+  border: 2px solid red;
+  background-color: gray;
+}

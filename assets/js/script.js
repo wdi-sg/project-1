@@ -10,7 +10,6 @@ var order = document.querySelector('.order')
 var gameStarted = false
 var neededIngredients = []
 
-
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -21,8 +20,8 @@ buttons.forEach(function (el) {
 function addIngredient () {
   if (gameStarted) {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
-  whichIngredient = this.className.substring(5).toLowerCase()
-  if (whichIngredient === neededIngredients[ingredientCounter]) {
+   whichIngredient = this.className.substring(5).toLowerCase()
+   if (whichIngredient === neededIngredients[ingredientCounter]) {
     var newIngredient = document.createElement('div')
      // give the new element classname ingredients, which sets core css
     newIngredient.className = 'ingredients'
@@ -81,6 +80,7 @@ function serve () {
     //reset current count to zero since ingredients have been cleared off playArea
   }
 }
+
 function clearPlayArea () {
   // queryselect only after the divs have been added. else it only consists of bottombun
   ingredients = document.querySelectorAll('.ingredients')
@@ -109,7 +109,6 @@ function startGame() {
   gameStarted = true
 }
 
-
 // callback to change timeLeft and update DOM text
 function countdown () {
   if (timeLeft >= 0) {
@@ -119,5 +118,5 @@ function countdown () {
 }
 
 function gameOver() {
-  alert("Game over")
+  alert("Game over. You scored " + (level - 1)) //-1 because initial level is already 1
 }
