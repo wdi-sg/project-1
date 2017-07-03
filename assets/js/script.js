@@ -1,4 +1,5 @@
 var counter = 1 // number of ingredients already in play
+var level = 1;
 var body = document.querySelector('body')
 var playArea = document.querySelector('.playArea')
 var buttons = document.querySelectorAll('.buttons div')
@@ -23,16 +24,30 @@ function addIngredient () {
   counter++
 }
 
-// need a click to start timer going.
+// serve button clears playArea of ingredients, increases score, calls for new order
+serveButton = document.querySelector('.serveButton')
+serveButton.addEventListener('click', serve)
+function serve() {
+  increaseScore()
+}
+
+score = document.querySelector('.score')
+function increaseScore() {
+  score.innerText = level
+  level++
+}
+
+// click to start timer
 var timeLeft = 60
 var time = document.querySelector('.time')
 
 time.addEventListener('click', function () {
-  if (time.innerText === "Click to Start") {
+  if (time.innerText === "Click to Start") { //ensure event only fires once.
     setInterval(countdown, 1000)
   }
 })
 
+//callback to change timeLeft and update DOM text
 function countdown () {
   if (timeLeft > 0) {
     time.innerText = timeLeft + ' secs'

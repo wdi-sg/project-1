@@ -9,8 +9,9 @@ h1 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 50px;
   color: green;
+  margin: 0 auto;
 }
 
 .ingredients {
@@ -71,7 +72,7 @@ h2 {
   margin: 0px 25px;
 }
 
-.serve {
+.serveButton {
   width: 320px;
   height: 100px;
   border: 2px solid black;
@@ -107,7 +108,7 @@ h2 {
   margin: 0 auto;
 }
 
-.score {
+.scorebox {
   width: 320px;
   height: 150px;
   border: 2px solid black;
