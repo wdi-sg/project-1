@@ -2,10 +2,15 @@ body {
   text-align: center;
 }
 
-.headings {
+h1 {
   font-family: "Luckiest Guy";
   font-size: 50px;
   margin: 10px auto;
+}
+
+h2 {
+  font-size: 40px;
+  color: green;
 }
 
 .ingredients {
@@ -45,7 +50,7 @@ body {
 
 #onion {
   background-image: url("/assets/images/onion.png");
-  margin-bottom: -90px;
+  margin-bottom: -70px;
 }
 
 #tomato {

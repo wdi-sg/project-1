@@ -26,14 +26,14 @@ function addIngredient () {
 // need a click to start timer going.
 var timeLeft = 60
 var time = document.querySelector('.time')
+
+time.addEventListener('click', function () {
+  setInterval(countdown, 1000)
+})
+
 function countdown () {
   if (timeLeft > 0) {
     time.innerText = timeLeft + ' secs'
   }
   timeLeft--
 }
-
-timer = document.querySelector('.timer')
-timer.addEventListener('click', function () {
-  setInterval(countdown, 1000)
-})
