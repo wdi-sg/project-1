@@ -1,0 +1,90 @@
+Game Objects
+- Draw Pile: 108 cards (In red, green, blue, yellow: 0 to 9, Draw Two, Reverse, Skip, Draw Two; XX Draw Four, XX Draw Wild)
+- Human Player's Pile
+- Computer Player's Pile
+- Discard Pile
+- Card
+
+UI Objects
+- Draw Pile
+- Human Player's Pile
+- Computer Player's Pile
+- Discard Pile
+- Card
+- UNO button
+- Start button
+- Restart button
+- Game Instruction Box
+
+Actions
+- Shuffle Draw Pile deck
+- First deal of cards to player
+- Play a card
+- Draw a card
+- Start game
+- End game (don't need to end)
+- Restart game
+- Skip (including reverse)
+- Draw Two
+- Draw Four
+- Draw Wild
+- UNO!
+- Inform win, or lose
+
+Decisions
+1) Player: what card to play? 
+2) Computer: Is card played legitimate? Card same color or number or is card wild
+3) Computer: who wins?
+4) Computer: is game over?
+5) Computer: is there UNO?
+
+Status
+- Player Turn
+- Player Pile No of Cards Left
+- Computer Player Pile No of Cards Left
+- Human Player Pile No of Cards Left
+- Top card on Discard Pile
+- Player's Selected Card
+- DoNotSwitchTurn
+
+Game Structure
+
+Starting Game
+1. Click "Start" button to start new game
+2. If game started, relabel "Start" button to "Restart" 
+3. Computer shuffles DrawPile once for the new game
+4. Computer draws topmost 7 Cards from DrawPile and deals them to ComputerPlayer
+5. Computer draws topmost 7 Cards from DrawPile and deals them to HumanPlayer
+6. ?? Computer draws topmost Card from DrawPile adds to top of DiscardPile
+7. HumanPlayer starts new game first
+8. IF PlayerTurn = HumanPlayer, ?? Human deliberates on which one Card to play and upon decision click on the Card to play (GOTO Step 10)
+9. ELSE IF PlayerTurn = ComputerPlayer, Computer calculate and play card (GOTO Step XX)
+
+Playing the Game (Human)
+10. Is played Card legitimate? 
+11. IF Card same color or number as topmost Card of DiscardPile OR or Card is Wild (Draw Four or General) THEN Card is legitimate
+12. IF legitimate Card selected by Player, remove selected Card from Player's Pile And add selected Card to top of DiscardPile AND minus one from Player Pile's No of Cards left
+13. ELSE IF no legitimate Card available for play, print 'You have no playable card; One card added!' AND remove topmost Card from DrawPile and add to Player's Pile 
+14. ELSE (illegitimate Card selected by Player) No action
+
+Playing the Game (Computer)
+15. Is there legitimate Card to play?
+16. IF there is legitimate Card to play, initialize array of playable Cards AND randomly pick one Card to play
+17. After card play, IF No of Cards left = 1 THEN Generate ProbabilityUNO
+18. IF ProbabilityUNO < 0.5 PRINT 'Computer says UNO!'
+19. IF there is no legitimate Card to play THEN print 'Computer Player has no playable card; One card added!' AND remove topmost Card from DrawPile and add to Computer Player's Pile 
+
+Handling Action Cards during Game Play
+20. Is played Card an action Card?
+21. IF Card played = Draw Two THEN Computer remove top 2 cards from Draw Pile and add them to opponent Player's Pile 
+22. ELSE IF Card played = Draw Four THEN Computer remove top 4 cards from Draw Pile AND add them to opponent Player's Pile AND LET Player play any card without constraint XX (is it still the same player's turn?)
+23. ELSE IF Card played = Skip OR Reverse THEN IF PlayerTurn = Human {Print 'Human, play another card!} ELSE {Print 'Computer, play another card!'} AND Set CanSwitchTurn = False
+24. ELSE IF Card played = Wild THEN ?? LET Player play any card without constraint
+
+Handling Game Stages
+25. Check Player's No of Cards left
+26. IF Player's No of Cards left = 1 THEN {IF Player does not click UNO button THEN XXX?} ELSE {print UNO!}
+27. IF Player's No of Cards left = 0 THEN {print 'Current Player Wins!' AND stop game} ELSE {IF CanSwitchTurn = True THEN switch PlayerTurn}
+
+
+
