@@ -7,7 +7,7 @@ var score = document.querySelector('.score')
 var time = document.querySelector('.time')
 var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var order = document.querySelector('.order')
-
+var gameStarted = false;
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -16,6 +16,7 @@ buttons.forEach(function (el) {
 // addingredient needs to check if it is the same as in order before adding
 // callback for button click which extracts classname
 function addIngredient () {
+  if (gameStarted) {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
   whichIngredient = this.className.substring(5).toLowerCase()
   var newIngredient = document.createElement('div')
@@ -27,6 +28,7 @@ function addIngredient () {
   ingredientCounter++ // counter starts at 0. increase before adding
   newIngredient.style.zIndex = ingredientCounter
   playArea.prepend(newIngredient)
+  }
 }
 
 // generate random array of ingredients.
@@ -64,10 +66,12 @@ function clearList () {
 serveButton.addEventListener('click', serve)
 // need to clear the order list before adding new orders.
 function serve () {
-  clearPlayArea()
-  increaseScore()
-  clearList()
-  // generateList()
+  if (gameStarted) {
+    clearPlayArea()
+    increaseScore()
+    clearList()
+    generateList()
+  }
 }
 
 function clearPlayArea () {
@@ -88,6 +92,7 @@ function increaseScore () {
 // click to start timer
 var timeLeft = 60
 time.addEventListener('click', function () {
+  gameStarted = true
   if (time.innerText === 'Click to Start') { // ensure event only fires once.
     setInterval(countdown, 1000)
   }
