@@ -18,7 +18,7 @@ h2 {
   width: 200px;
   height: 100px;
   background-size: cover;
-  position: relative;
+  position: absolute;
   margin: 0 auto;
 }
 
@@ -38,36 +38,34 @@ h2 {
 
 #bottombun {
   background-image: url("/assets/images/bottombun.png");
+  bottom: 30px;
 }
 
 #patty {
   background-image: url("/assets/images/patty.png");
-  margin-bottom: -70px;
 }
 
 #cheese {
   background-image: url("/assets/images/cheese.png");
-  margin-bottom: -90px;
+  margin-bottom: -20px;
 }
 
 #lettuce {
   background-image: url("/assets/images/lettuce.png");
-  margin-bottom: -90px;
+  margin-bottom: -20px;
 }
 
 #onion {
   background-image: url("/assets/images/onion.png");
-  margin-bottom: -70px;
+  margin-bottom: -20px;
 }
 
 #tomato {
   background-image: url("/assets/images/tomato.png");
-  margin-bottom: -70px;
 }
 
 #topbun {
   background-image: url("/assets/images/topbun.png");
-  margin-bottom: -70px;
 }
 
 .left-content {
@@ -130,11 +128,11 @@ h3 {
 }
 
 
-.endGameOverlay {
+/*.endGameOverlay {
   position: fixed;
   left: 460px;
   height: 768px;
   width: 500px;
   border: 2px solid red;
   background-color: gray;
-}
+}*/

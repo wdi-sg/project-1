@@ -27,6 +27,7 @@ function addIngredient () {
     newIngredient.className = 'ingredients'
      // id sets background-image url and negative margins
     newIngredient.id = whichIngredient
+    newIngredient.style.bottom = (60 + ingredientCounter * 20) + "px"
      // increasing z-index for overlapping look
     ingredientCounter++ // counts num of added ingredients so far
     newIngredient.style.zIndex = ingredientCounter
@@ -97,13 +98,13 @@ function increaseScore () {
 }
 
 // click to start timer
-var timeLeft = 10
+var timeLeft = 60
 time.addEventListener('click', startGame)
 function startGame() {
   if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
     generateList()
-    setTimeout(gameOver, 12000)
+    setTimeout(gameOver, 62000)
   }
    // click to start generates first order
   gameStarted = true
