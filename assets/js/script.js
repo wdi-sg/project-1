@@ -6,6 +6,7 @@ var serveButton = document.querySelector('.serveButton')
 var score = document.querySelector('.score')
 var time = document.querySelector('.time')
 var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
+var order = document.querySelector('.order')
 
 // add event listeners to all buttons
 buttons.forEach(function (el) {
@@ -23,20 +24,19 @@ function addIngredient () {
    // id sets background-image url and negative margins
   newIngredient.id = whichIngredient
    // increasing z-index for overlapping look
-  ingredientCounter++ //counter starts at 0. increase before adding
+  ingredientCounter++ // counter starts at 0. increase before adding
   newIngredient.style.zIndex = ingredientCounter
   playArea.prepend(newIngredient)
 }
 
 // generate random array of ingredients.
 // excluding topbun which must be the last item of every order
-function randomizer() {
+function randomizer () {
   var randomNum = Math.floor(Math.random() * 5)
   return possibleIngredients[randomNum]
 }
 
-
-function newOrder() {
+function newOrder () {
   var arr = []
   for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
     arr.push(randomizer())
@@ -45,24 +45,29 @@ function newOrder() {
   return arr
 }
 
-//DOM manipulation to list out ingredients needed
-ul = document.querySelector('ul')
-function generateList() {
+// DOM manipulation to list out ingredients needed
+
+function generateList () {
   var orderList = newOrder()
-  orderList.forEach(function(el) {
+  orderList.forEach(function (el) {
     var newListItem = document.createElement('li')
     newListItem.innerText = el
-    ul.prepend(newListItem)
+    order.prepend(newListItem)
   })
+}
+
+function clearList () {
+  order.innerHTML = ""
 }
 
 // serve button clears playArea of ingredients, increases score, calls for new order
 serveButton.addEventListener('click', serve)
-//need to clear the order list before adding new orders.
+// need to clear the order list before adding new orders.
 function serve () {
   clearPlayArea()
   increaseScore()
-  generateList()
+  clearList()
+  // generateList()
 }
 
 function clearPlayArea () {
@@ -86,7 +91,7 @@ time.addEventListener('click', function () {
   if (time.innerText === 'Click to Start') { // ensure event only fires once.
     setInterval(countdown, 1000)
   }
-  generateList() //click to start and generate first order
+  generateList() // click to start and generate first order
 })
 
 // callback to change timeLeft and update DOM text
