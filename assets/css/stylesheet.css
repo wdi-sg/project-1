@@ -1,15 +1,37 @@
+body {
+  text-align: center;
+  padding-top: 135px;
+  margin: 0 auto;
+}
+
 div {
   display: inline-block;
 }
 
+#leftPanel {
+  vertical-align: middle;
+  margin-right: 100px
+}
+
+#rightPanel {
+  padding: 100px;
+  vertical-align: middle;
+  width: 100px
+}
+
 .square {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 150px;
   background: white;
   border-style: solid;
+  border-width: thin;
   float: left;
 }
 
 br {
   clear: both
+}
+
+.time {
+  margin-bottom: 10px;
 }

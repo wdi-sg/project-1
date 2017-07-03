@@ -30,7 +30,8 @@ function tiles () {
   var squareFour = gameArray[2] + 12
   document.querySelector('#square' + squareTwo).style.background = 'black'
   document.querySelector('#square' + squareThree).style.background = 'black'
-  document.querySelector('#square' + squareFour).style.background = 'grey'
+    document.querySelector('#square' + squareFour).style.background = 'grey'
+  // document.querySelector('#square' + squareFour).style.backgroundImage = 'url("https://pbs.twimg.com/profile_images/604644048/sign051.gif")'
 }
 // ---------------------------------------------------------
 function buttons (event) {
