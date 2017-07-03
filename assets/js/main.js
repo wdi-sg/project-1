@@ -1,5 +1,6 @@
 function gameInit () {
   var container = document.querySelector('.container')
+  var innerContainer = document.querySelector('.innercontainer')
   var boxSelector = document.querySelector('.box')
   var playerArr = []
   var lives = 5
@@ -14,6 +15,7 @@ function gameInit () {
     createComboCounter()
     createLevelCounter()
     createScoreToProgress()
+    createInGameMessage()
     lives = 5
     score = 0
     combo = 0
@@ -111,7 +113,7 @@ function gameInit () {
   function setLife () {
     var lifeCounter = document.querySelector('.lifeCounter')
     if (lives < 1) {
-      container.innerHTML = ''
+      innerContainer.innerHTML = ''
       inGameMessage('Game Over!', 1000)
     }
   }
@@ -122,8 +124,11 @@ function gameInit () {
     var scoreToProgress = document.querySelector('.scoreToProgress')
     var pointsToProgress = 5000 * level - score
     scoreToProgress.textContent = pointsToProgress + ' points to next level'
-    if (score > 5000 * level) {
-      inGameMessage('Level up!', 1000)
+    if (score >= 5000 * level) {
+      if (combo % 50 !== 0) inGameMessage('Level up!', 1000)
+      else {
+        setTimeout(inGameMessage, 1010, 'Level up!', 1000)
+      }
       setLevel()
     }
   }
@@ -142,15 +147,15 @@ function gameInit () {
       }, 10)
       if (combo % 50 === 0 && combo !== 0) {
         score += 1000
-        setScore()
         inGameMessage('Nice!', 10)
+        setScore()
       }
     }
   }
 
-  function inGameMessage (message, durationInMs) {
+  function createInGameMessage () {
     var inGameMessage = document.createElement('div')
-    inGameMessage.textContent = message
+    inGameMessage.setAttribute('class', 'inGameMessage')
     inGameMessage.style.color = 'white'
     inGameMessage.style.fontSize = '100pt'
     inGameMessage.style.position = 'absolute'
@@ -158,10 +163,17 @@ function gameInit () {
     inGameMessage.style.width = '800px'
     inGameMessage.style.lineHeight = '500px'
     inGameMessage.style.textAlign = 'center'
-    inGameMessage.style.transition = 'opacity 1s'
     container.appendChild(inGameMessage)
+  }
+
+  function inGameMessage (message, durationInMs) {
+    var inGameMessage = document.querySelector('.inGameMessage')
+    inGameMessage.textContent = message
+    inGameMessage.style.opacity = '1'
+    inGameMessage.style.transition = ''
     setTimeout(function () {
       inGameMessage.style.opacity = '0'
+      inGameMessage.style.transition = 'opacity 1s'
     }, durationInMs)
   }
 
@@ -173,6 +185,14 @@ function gameInit () {
 
   function randomNoRounded (min, max) {
     return Math.round(Math.random() * (max - min) + min)
+  }
+
+  function setLevelAdjustedParameter (level, initialnum, magnitude) {
+    var num = initialnum
+    for (var i = 2; i <= level; i++) {
+      num = num - magnitude / (i - 1)
+    }
+    return num
   }
 
   function chooseBox () {
@@ -187,7 +207,7 @@ function gameInit () {
       } else {
         addBox('easy')
       }
-      var time = randomNo(setLevelAdjustedParameter(level, 1000, 200), setLevelAdjustedParameter(level, 1000, 200) + 1000)
+      var time = randomNo(setLevelAdjustedParameter(level, 1000, 150), setLevelAdjustedParameter(level, 1000, 150) + 1000)
       setTimeout(chooseBox, time)
     }
   }
@@ -200,27 +220,24 @@ function gameInit () {
   //   return boxSpawnIntervalMin
   // }
 
-  function setLevelAdjustedParameter (level, initialnum, magnitude) {
-    var num = initialnum
-    for (var i = 2; i <= level; i++) {
-      num = num - magnitude / (i - 1)
-    }
-    return num
-  }
-
   function addBox (type) {
     var boxElem = document.createElement('div')
     // boxElem.style.height = '20px'
     // boxElem.style.width = '80px'
     boxElem.style.padding = '5px 10px'
-    var boxFallTime = setLevelAdjustedParameter(level, 5, 1)
+    var boxFallTime = setLevelAdjustedParameter(level, 5, 0.8)
     console.log('top ' + boxFallTime.toString() + 's linear')
-    boxElem.style.transition = 'top ' + boxFallTime + 's linear'
+    boxElem.style.transition = 'top ' + boxFallTime + 's linear, transform ' + boxFallTime + 's linear'
+    console.log(boxElem.style.transition)
     if (type === 'twoLayer') {
       boxElem.style.backgroundColor = 'orange'
       boxElem.isSecondLayer = false
     } else if (type === 'upsideDown') {
       boxElem.style.backgroundColor = 'cyan'
+      boxElem.style.transform = 'rotate(0deg)'
+      setTimeout(function () {
+        boxElem.style.transform = 'rotate(180deg)'
+      }, 100)
     } else {
       boxElem.style.backgroundColor = 'pink'
     }
@@ -234,8 +251,9 @@ function gameInit () {
     boxElem.style.borderRadius = '50%'
     boxElem.style.fontFamily = 'Arial'
     boxElem.setAttribute('class', 'box')
+    boxElem.type = type
     addWord(boxElem, type)
-    container.appendChild(boxElem)
+    innerContainer.appendChild(boxElem)
     if (type === 'twoBox') {
       setTimeout(addBox, 300, 'easy')
     }
@@ -276,12 +294,12 @@ function gameInit () {
 
   function removeBox () {
     var boxToRemove = document.querySelector('.box')
-    container.removeChild(boxToRemove)
+    innerContainer.removeChild(boxToRemove)
     playerArr = []
     if (!boxToRemove.successfulClear) {
       loseLife()
       combo = 0
-    }// if (!document.querySelector('.box')) addBox('easy')
+    }
   }
 
   function loseLife () {
@@ -290,19 +308,21 @@ function gameInit () {
     var lifeCounter = document.querySelector('.lifeCounter')
     lifeCounter.removeChild(heartToRemove)
     var redBackground = document.createElement('div')
-    redBackground.style.height = '100%'
-    redBackground.style.width = '100%'
+    redBackground.style.height = '5000px'
+    redBackground.style.width = '5000px'
+    redBackground.style.top = '-1000px'
+    redBackground.style.left = '-1000px'
     redBackground.style.backgroundColor = 'red'
     redBackground.style.opacity = '0.5'
     redBackground.style.transition = 'opacity 0.5s'
     redBackground.style.position = 'absolute'
-    setTimeout(function() {
+    setTimeout(function () {
       redBackground.style.opacity = '0'
     }, 10)
-    setTimeout(function() {
-      document.body.removeChild(redBackground)
+    setTimeout(function () {
+      innerContainer.removeChild(redBackground)
     }, 1000)
-    document.body.appendChild(redBackground)
+    innerContainer.appendChild(redBackground)
     setLife()
   }
 
@@ -355,7 +375,8 @@ function gameInit () {
         }
       } else {
         boxSelector.successfulClear = true
-        score += randomNo(75, 115)
+        if (boxSelector.type === 'easy') score += 20 * playerArr.length
+        if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
         setScore()
         return true
       }

@@ -3,8 +3,19 @@
   width: 800px;
   background-color: black;
   border: 1px solid white;
+  margin: 100px auto;
+  position: relative;
+  /*left: 274px;
+  top: 50px;*/
+}
+
+.innercontainer {
+  height: 500px;
+  width: 800px;
+  background-color: black;
+  /*border: 1px solid white;*/
   margin: auto;
   position: absolute;
-  left: 274px;
-  top: 50px;
+  /*left: 274px;
+  top: 50px;*/
 }
