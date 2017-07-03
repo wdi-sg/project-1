@@ -6,17 +6,41 @@ function init () {
   var onion = document.querySelector('.onion')
   var lettuce = document.querySelector('.lettuce')
   var cheese = document.querySelector('.cheese')
+  var hamItem = document.querySelectorAll('.hamItem')
+  console.log(hamItem);
+  // console.log(hamItem[hamItem.length - 1]);
+  // console.log(hamItem.length - 1);
+
 
   document.addEventListener('keyup', onKeyUp)
 
+  var index = 4
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
-      if (event.keyCode == 81) alert('cucumber')
-      if (event.keyCode == 87) alert('meat')
-      if (event.keyCode == 69) alert('onion')
-      if (event.keyCode == 82) alert('lettuce')
-      if (event.keyCode == 84) alert('cheese')
-      if (event.keyCode == 32) alert('serve')
+      if (event.keyCode === 81) {
+        hamItem[index].classList.remove('hamItem')
+        hamItem[index].classList.add('cucumber')
+        index--
+      }
+      if (event.keyCode === 87) {
+        hamItem[index].classList.remove('hamItem')
+        hamItem[index].classList.add('meat')
+        index--
+        // console.log(index);
+      }
+      if (event.keyCode === 69) {
+        hamItem[hamItem.length - 1].classList.add('onion')
+        hamItem[hamItem.length - 1].classList.remove('hamItem')
+      }
+      if (event.keyCode === 82) {
+        hamItem[hamItem.length - 1].classList.add('lettuce')
+        hamItem[hamItem.length - 1].classList.remove('hamItem')
+      }
+      if (event.keyCode === 84) {
+        hamItem[hamItem.length - 1].classList.add('cheese')
+        hamItem[hamItem.length - 1].classList.remove('hamItem')
+      }
+      if (event.keyCode === 32) alert('serve')
     } else {
       alert('wrong button pressed')
     }
