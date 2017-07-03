@@ -1,18 +1,72 @@
 #container {
   width: 600px;
   height: 600px;
-  /*display: flex;*/
-  /*justify-content: flex-start;
-  align-items: flex-end;*/
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.box {
-  height: 22%;
-  background-color: brown;
+.topdown {
+  height: 24%;
   border-color: black;
   border-style: solid;
-  display: inline-block;
-  width: 22%;
-  font-size: 50px;
-  text-align: center;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.leftright {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.topleft {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.topright {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.topdown {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.downright {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+.downleft {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/pip.png') 100%;
+}
+
+.space{
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/space.png') 100%;
+}
+
+.block{
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/concrete small.png') 100%;
 }

@@ -7,28 +7,30 @@
 //logic file
 function logic () {
   console.log('logic loaded');
-  // var grid = [
-  //   [0,0,0,0]
-  //   [0,0,0,0]
-  //   [0,0,0,0]
-  //   [0,0,0,0]
-  // ]
+
+function checkValid () {
+
+}
 
 function moveTileRight (target) {
-    // what you clicked on, to be replaced by click
-    targetDiv = event.currentTarget
-    targetImg = event.target
-    var tempValue = targetImg.alt //stores value e.g. LT
-    var tempID = targetDiv.id //stores value e.g. 01
+
+    targetDiv = event.target
+    //console.log(targetDiv);
+    //targetImg = event.target
+    var tempValue = targetDiv.classList[0] //stores value e.g. LT
+    //console.log(tempValue)
+    var tempID = targetDiv.id
+    //console.log(tempID); //stores value e.g. 01
     var x = parseInt(tempID.substr(0,1))
     var y = parseInt(tempID.substr(1))
+    if (play[x][y+1] == '0'){
     play[x][y+1]  = tempValue
-    play[x][y] = 0
+    play[x][y] = '0'
     console.log(play);
     }
-    return {
-    moveTileRight: moveTileRight
+    }
+  return {
+    moveTileRight: moveTileRight,
   }
-
 
 }//end logic
