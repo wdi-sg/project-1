@@ -19,16 +19,6 @@ p {
   float: center;
 }
 
-.container {
-  background-color: white;
-  border: 2px solid white;
-  width: 600px;
-  height: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 auto;
-}
-
 .scoreText {
   float: left;
 }
@@ -51,11 +41,52 @@ p {
   float: right;
 }
 
-.grid {
+.container {
+  background-color: white;
+  border: 2px solid white;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+/* 2 x 2 grid */
+.L2Grid {
+  background-color: purple;
+  border: 2px solid white;
+  width: 296px;
+  height: 296px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 3 x 3 grid */
+.L3Grid {
   background-color: red;
   border: 2px solid white;
   width: 196px;
   height: 196px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 4 x 4 grid */
+.L4Grid {
+  background-color: green;
+  border: 2px solid white;
+  width: 146px;
+  height: 146px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 5 x 5 grid */
+.L5Grid {
+  background-color: blue;
+  border: 2px solid white;
+  width: 116px;
+  height: 116px;
   display: inline-block;
   border-radius: 10%;
 }
