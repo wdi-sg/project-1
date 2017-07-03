@@ -1,17 +1,32 @@
 html {
-  background-image: url("pictures/Sea5.jpg");
+  background: url("../pictures/Sea5.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+  position: relative;
 }
 
-#start-page {
-  display: block;
+img{
+  display: flex;
+  margin: auto;
+  padding: 40px 0;
+  align-items: center;
+  justify-content: center;
+}
+
+h1,h3{
+  text-align: center;
 }
 
 #start-button {
   background-color: blue;
   border: 1px solid black;
   border-color: black;
+  display: block;
   width: 100px;
-  text-align: center;
+  font-size: 26px;
+  margin: auto;
 }
 
 #start-button:active {
