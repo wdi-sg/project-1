@@ -1,0 +1,21 @@
+html {
+  background-image: url("pictures/Sea5.jpg");
+}
+
+#start-page {
+  display: block;
+}
+
+#start-button {
+  background-color: blue;
+  border: 1px solid black;
+  border-color: black;
+  width: 100px;
+  text-align: center;
+}
+
+#start-button:active {
+  background-color: blue;
+	border: 1px solid black;
+	transform: translateY(3px);
+}
