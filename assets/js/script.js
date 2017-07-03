@@ -55,7 +55,6 @@ function generateList() {
     ul.prepend(newListItem)
   })
 }
-generateList() //original list for level 1
 
 // serve button clears playArea of ingredients, increases score, calls for new order
 serveButton.addEventListener('click', serve)
@@ -87,6 +86,7 @@ time.addEventListener('click', function () {
   if (time.innerText === 'Click to Start') { // ensure event only fires once.
     setInterval(countdown, 1000)
   }
+  generateList() //click to start and generate first order
 })
 
 // callback to change timeLeft and update DOM text
