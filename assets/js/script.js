@@ -28,7 +28,9 @@ var timeLeft = 60
 var time = document.querySelector('.time')
 
 time.addEventListener('click', function () {
-  setInterval(countdown, 1000)
+  if (time.innerText === "Click to Start") {
+    setInterval(countdown, 1000)
+  }
 })
 
 function countdown () {
