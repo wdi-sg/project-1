@@ -1,198 +1,134 @@
-// document.addEventListener('DOMContentLoaded',init)
-//
-// function init(){
-//
-//   var topScoreRecord = document.querySelector('.score')
-//   var currentScore = document.querySelector('.currentscore')
-//   var timer = document.querySelector('.countdown')
-//   var jack = document.querySelector('.jack')
-//
-//   document.addEventListener('keyup', onKeyUp)
-//   function onKeyUp (event) {
-//     if (checkKeyCode(event.keyCode)) {
-//       if (event.keyCode === 37) {
-//         moveLeft()
-//       }
-//       if (event.keyCode === 39) {
-//         moveRight()
-//       }
-//       if (event.keyCode === 32) {
-//         restart()
-//       }
-//     }
-//   }
-//
-//   function checkKeyCode (keycode) {
-//     if (keycode === 37 || keycode === 39 || keycode === 32) {
-//       return true
-//     }
-//     return false
-//   }
-// }
-
 document.addEventListener('DOMContentLoaded', init)
 
 function init () {
-  var leftArrow = document.querySelector('.leftarrow')
-  leftArrow.addEventListener('click', moveLeft)
-
-  var rightArrow = document.querySelector('.rightarrow')
-  rightArrow.addEventListener('click', moveRight)
-
-  var timer = document.querySelector('.countdown')
-
-  var jack = document.querySelector('.jack')
-
-  var mainAction = document.querySelector('.mainaction')
-
   var topScoreRecord = document.querySelector('.score')
   var currentScore = document.querySelector('.currentscore')
+  var timer = document.querySelector('.countdown')
+  var jack = document.querySelector('.jack')
+  jack.style.left = '295px'
+  var startButton = document.querySelector('.startbutton')
+  startButton.addEventListener('click', startGame)
+  var retryButton = document.querySelector('.retrybutton')
+  retryButton.addEventListener('click', restartGame)
+  var jackNumber = 0
+  var treeNumber = 0
+  var firstTree = document.querySelector('.firsttree')
+  var secondTree = document.querySelector('.secondtree')
+  var thirdTree = document.querySelector('.thirdtree')
+  var fourthTree = document.querySelector('.fourthtree')
+  var scorecounter = 0
+  var gameOver = false
+  var timeLeft = 3000
 
   document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
-      if (event.keyCode === 37) {
-        moveLeft()
+      if (event.keyCode === 90) {
+        moveJackOne()
       }
-      if (event.keyCode === 39) {
-        moveRight()
+      if (event.keyCode === 88) {
+        moveJackTwo()
       }
-      if (event.keyCode === 32) {
-        restart()
+      if (event.keyCode === 67) {
+        moveJackThree()
+      }
+      if (event.keyCode === 86) {
+        moveJackFour()
+      }
+      if (event.keyCode === 190) {
+        chop()
       }
     }
   }
 
   function checkKeyCode (keycode) {
-    if (keycode === 37 || keycode === 39 || keycode === 32) {
+    if (keycode === 90 || keycode === 88 || keycode === 67 || keycode === 86 || keycode === 190) {
       return true
     }
     return false
+  }
+
+  function startGame () {
+    startButton.style.visibility = 'hidden'
+    retryButton.style.visibility = 'hidden'
+    startTimer()
+  }
+
+  function generateTrees () {
+    var number = randomFn(1, 4)
+    if (number === 1) {
+      firstTree.style.visibility = 'visible'
+      secondTree.style.visibility = 'hidden'
+      thirdTree.style.visibility = 'hidden'
+      fourthTree.style.visibility = 'hidden'
+      treeNumber += 1
+    }
+    if (number === 2) {
+      firstTree.style.visibility = 'hidden'
+      secondTree.style.visibility = 'visible'
+      thirdTree.style.visibility = 'hidden'
+      fourthTree.style.visibility = 'hidden'
+      treeNumber += 2
+    }
+    if (number === 3) {
+      firstTree.style.visibility = 'hidden'
+      secondTree.style.visibility = 'hidden'
+      thirdTree.style.visibility = 'visible'
+      fourthTree.style.visibility = 'hidden'
+      treeNumber += 3
+    }
+    if (number === 4) {
+      firstTree.style.visibility = 'hidden'
+      secondTree.style.visibility = 'hidden'
+      thirdTree.style.visibility = 'hidden'
+      fourthTree.style.visibility = 'visible'
+      treeNumber += 4
+    }
+  }
+
+  function moveJackOne () {
+    jack.style.left = '55px'
+    jackNumber = 1
+  }
+  function moveJackTwo () {
+    jack.style.left = '215px'
+    jackNumber = 2
+  }
+  function moveJackThree () {
+    jack.style.left = '375px'
+    jackNumber = 3
+  }
+  function moveJackFour () {
+    jack.style.left = '535px'
+    jackNumber = 4
   }
 
   function randomFn (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  var gameOver = false
-  var scorecounter = 0
-  var startTime = false
-  var timeLeft = 1000
-// var isJackAlive = true
-
-// var leftBranch = document.createElement('div')
-// leftBranch.classList.add('left-branch')
-// leftBranch.style.left = '17px'
-// var leftBranchTop = parseInt(leftBranch.style.top)
-//
-// var rightBranch = document.createElement('div')
-// rightBranch.classList.add('right-branch')
-// rightBranch.style.left = '217px'
-// var rightBranchTop = parseInt(rightBranch.style.top)
-
-  var rightBranch = document.createElement('div')
-  rightBranch.classList.add('right-branch')
-  var leftBranch = document.createElement('div')
-  leftBranch.classList.add('left-branch')
-  function createBranch () {
-    var number = randomFn(1, 2)
-    if (number === 1) {
-      mainAction.appendChild(rightBranch)
-    // if (rightBranch.style.top === '140px') {
-    //   document.addEventListener('keyup', hideRightBranch)
-    // }
-    }
-    if (number === 2) {
-      mainAction.appendChild(leftBranch)
-    // if (leftBranch.style.top === '140px') {
-    //   document.addEventListener('keyup', hideLeftBranch)
-    // }
-    }
-    moveDown()
-  }
-  function hideRightBranch () {
-    rightBranch.style.visibility = 'hidden'
-  }
-  function hideLeftBranch () {
-    leftBranch.style.visibility = 'hidden'
-  }
-// console.log(rightBranch.style.top)
-// function createBranch () {
-//   var number = randomFn(1, 2)
-//   if (number === 1) {
-//     // newBranch.classList.add('moveleft')
-//     mainAction.appendChild(leftBranch)
-//     leftBranch.style.top = '40px'
-//   }
-//   if (number === 2) {
-//     // newBranch.classList.add('moveright')
-//     mainAction.appendChild(rightBranch)
-//     rightBranch.style.top = '40px'
-//   }
-//   console.log(number)
-//   moveDown()
-// }
-
-  function moveLeft () {
+  function chop () {
     if (gameOver === false) {
-      if (startTime === false) {
-        startTime = true
-        startTimer()
+      if (jackNumber === treeNumber) {
+        scorecounter += 1
+        timeLeft += 50
+        refreshRound()
+      } else {
+        scorecounter -= 1
       }
-      createBranch()
-      jack.style.left = '597px'
-      timeLeft += 50
+      displayScore()
     }
   }
 
-  function moveRight () {
-    if (gameOver === false) {
-      if (startTime === false) {
-        startTime = true
-        startTimer()
-      }
-      createBranch()
-      jack.style.left = '717px'
-      timeLeft += 50
-    }
-  }
-
-  function moveDown () {
-    var leftBranchFromClass = document.querySelector('.left-branch')
-    var rightBranchFromClass = document.querySelector('.right-branch')
-    scorecounter += 1
-  // if (leftBranchTop === 320) {
-  //   leftBranch.style.visibility = 'hidden'
-  //     // mainAction.removeChild(leftBranch)
-  // } else if (leftBranchTop === 40 || leftBranchTop === 180) {
-  //   leftBranchTop += 140
-  //   leftBranch.style.top = leftBranchTop + 'px'
-  // } if (rightBranchTop === 320) {
-  //   rightBranch.style.visibility = 'hidden'
-  // }
-  //     // mainAction.removeChild(rightBranch)
-  // else if (rightBranchTop === 40 || rightBranchTop === 180) {
-  //   rightBranchTop += 140
-  //   rightBranch.style.top = rightBranchTop + 'px'
-  // }
-  // display()
-    if (leftBranchFromClass) {
-      console.log('leftBranchFromClass', leftBranchFromClass)
-      console.log('leftBranchFromClass.style.top', leftBranchFromClass.style)
-    } else {
-      console.log('rightBranchFromClass', rightBranchFromClass)
-      console.log('rightBranchFromClass.style.top', rightBranchFromClass.style)
-    }
-  // console.log(rightBranch)
-  }
-
-// d. display score
   function displayScore () {
     currentScore.innerHTML = scorecounter
   }
-// GameOver upon timer = 0 or if isJackAlive = false
-// Start Time
+  function refreshRound () {
+    treeNumber = 0
+    generateTrees()
+  }
+
   function startTimer () {
     var elem = timer
     var timerId = setInterval(countdown, 1)
@@ -201,30 +137,32 @@ function init () {
       if (timeLeft === -1) {
         clearTimeout(timerId)
         gameOver = true
-      // isGameOver()
+        isGameOver()
       } else {
         elem.innerHTML = timeLeft
         timeLeft--
       }
     }
+    generateTrees()
   }
-
-// function jackHitsBrunch () {
-//   if (jack.style.left === '597px') {
-//     gameOver = true
-//     isGameOver()
-//   }
-//   if (jack.style.left === '717px') {
-//     gameOver = true
-//     isGameOver()
-//   }
-// }
   function isGameOver () {
     var topScore = parseInt(topScoreRecord.innerHTML)
     if (scorecounter > topScore) {
-      setTimeout(function () { alert('NEW HIGH SCORE!') }, 500)
+      setTimeout(function () { alert('NEW HIGH SCORE!') }, 100)
       topScoreRecord.innerHTML = scorecounter
+    } else {
+      setTimeout(function () { alert('please try again') }, 100)
     }
+    retryButton.style.visibility = 'visible'
   }
-// restart game
+
+  function restartGame () {
+    timeLeft = 3000
+    treeNumber = 0
+    jackNumber = 0
+    jack.style.left = '295px'
+    scorecounter = 0
+    gameOver = false
+    startGame()
+  }
 }

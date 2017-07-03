@@ -35,6 +35,31 @@ body{
   font-size: 12px;
   margin: 0px 5px 5px 5px;
 }
+.startbutton {
+  height:30px;
+  width:100px;
+  border: 2px solid black;
+  background-color: rgba(255,255,255,0.6);
+  margin:0px auto 10px auto;
+  display:inline-block;
+}
+.startbutton:hover {
+  background-color: rgba(0,0,0,0.8);
+  color:white;
+}
+.retrybutton {
+  height:30px;
+  width:100px;
+  border: 2px solid black;
+  background-color: rgba(255,255,255,0.6);
+  margin:0px auto 10px auto;
+  display:inline-block;
+  visibility: hidden;
+}
+.retrybutton:hover {
+  background-color: rgba(0,0,0,0.8);
+  color:white;
+}
 ul {
   font-weight: 400;
   text-align: left;
@@ -49,78 +74,93 @@ ul {
   display:flex;
   flex-direction: column;
 }
-.gameplay {
-  background-color: white;
+.forest {
+  background-color: rgb(168, 252, 108);
   width:100%;
   height: 380px;
   display:flex;
-}
-.leftarrowpanel, .rightarrowpanel {
-  width: 20%;
-  height:440px;
-  background-color: lightgrey;
-}
-.leftarrow, .rightarrow {
-  height: 100px;
-  width: 100px;
-  border: 3px solid black;
-  border-radius: 50%;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 100px;
-  font-size: 60px;
-  margin: 150px 0px 0px 8px;
-  background-color: white;
-}
-.rightarrowtext {
-  margin-left:26px;
-}
-.sky {
-  width:60%;
-  height:440px;
-  display:flex;
   flex-direction: column;
-  background-color: skyblue;
 }
-.mainaction{
-  height:340px;
-  display:inline;
+.trees-area {
+  width:100%;
+  height: 320px;
   position:relative;
 }
-.left-branch, .right-branch {
-  height:20px;
-  width: 150px;
-  background-color: goldenrod;
+.firsttree, .secondtree, .thirdtree, .fourthtree{
+  background-color: chocolate;
+  height: 50px;
+  width: 50px;
   position:absolute;
+  top:115px;
+  border-radius: 50%;
+  border: 2px solid brown
 }
-.left-branch {
-  left:17px;
-  top: 140px;
+.firsttree{
+  left:55px;
 }
-.right-branch {
-  left: 217px;
-  top: 140px;
+.secondtree{
+  left:215px;
 }
-.jack{
+.thirdtree{
+  left:375px;
+}
+.fourthtree{
+  left:535px;
+}
+.innercircle {
+  height:35px;
+  width:35px;
+  border-radius: 50%;
+  border: 2px solid brown;
+  margin: 5px 0px 0px 5px
+}
+.innerinnercircle {
+  height:15px;
+  width:15px;
+  border-radius: 50%;
+  border: 2px solid brown;
+  margin: 8px 0px 0px 8px;
+}
+.jack-area {
+  background-color: rgb(6, 140, 1);
+  width:100%;
   height:60px;
-  width:30px;
-  background-color: red;
-  position:fixed;
-  left: 597px;
-  /*left: 227px;*/
-  top: 395px;
+  /*border: 1px solid black;*/
 }
-.trunk {
-  height:340px;
+.jack {
+  background-color: rgb(6, 140, 1);
   width:50px;
-  background-color:saddlebrown;
-  position:fixed;
-  left:647px;
-  top: 113px;
+  height:50px;
+  position:relative;
+  /*left: 295px;*/
+  top: 5px;
+  display: flex;
+  flex-direction: column;
 }
-.grass {
-  height:100px;
-  background-color: lawngreen;
+.jackhead {
+  width:13px;
+  height: 10px;
+  background-color: black;
+  margin: 0 auto;
+}
+.jackbody {
+  width: 20px;
+  height:25px;
+  background-color: red;
+  margin: 0 auto;
+
+}
+.jacklegs {
+  height: 15px;
+  width: 18px;
+  display:flex;
+  justify-content: space-between;
+  margin: 0 auto;
+
+}
+.leftleg, .rightleg{
+  width: 6px;
+  background-color: blue;
 }
 .timer {
   background-color: ghostwhite;
