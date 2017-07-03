@@ -1,10 +1,9 @@
-var ingredientCounter = 1 // number of ingredients already in play
+var ingredientCounter = 0 // number of ingredients already in play
 var level = 1
-var body = document.querySelector('body')
 var playArea = document.querySelector('.playArea')
 var buttons = document.querySelectorAll('.buttons div')
-serveButton = document.querySelector('.serveButton')
-score = document.querySelector('.score')
+var serveButton = document.querySelector('.serveButton')
+var score = document.querySelector('.score')
 var time = document.querySelector('.time')
 
 // add event listeners to all buttons
@@ -12,6 +11,7 @@ buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
 })
 
+// addingredient needs to check if it is the same as in order before adding
 // callback for button click which extracts classname
 function addIngredient () {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
@@ -22,13 +22,23 @@ function addIngredient () {
    // id sets background-image url and negative margins
   newIngredient.id = whichIngredient
    // increasing z-index for overlapping look
+  ingredientCounter++ //counter starts at 0. increase before adding
   newIngredient.style.zIndex = ingredientCounter
   playArea.prepend(newIngredient)
-  ingredientCounter++
 }
+
+// generate random array of ingredients.
+// excluding topbun which must be the last item of every order
+var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
+function randomizer() {
+  var randomNum = Math.floor(Math.random() * 5)
+  return possibleIngredients[randomNum]
+}
+console.log(randomizer())
 
 // serve button clears playArea of ingredients, increases score, calls for new order
 serveButton.addEventListener('click', serve)
+
 function serve () {
   clearPlayArea()
   increaseScore()
