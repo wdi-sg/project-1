@@ -10,42 +10,56 @@
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/topdown.png') 100%;
+}
+.start {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/start.png') 100%;
+}
+.end {
+  height: 24%;
+  border-color: black;
+  border-style: solid;
+  width: 24%;
+  background: url('../images/end.png') 100%;
 }
 .leftright {
   height: 24%;
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/leftright.png') 100%;
 }
-.topleft {
+.lefttop {
   height: 24%;
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/lefttop.png') 100%;
 }
 .topright {
   height: 24%;
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/topright.png') 100%;
 }
 .topdown {
   height: 24%;
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/topdown.png') 100%;
 }
 .downright {
   height: 24%;
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/pip.png') 100%;
+  background: url('../images/downright.png') 100%;
 }
 .downleft {
   height: 24%;
@@ -68,5 +82,5 @@
   border-color: black;
   border-style: solid;
   width: 24%;
-  background: url('../images/concrete small.png') 100%;
+  background: url('../images/block.png') 100%;
 }

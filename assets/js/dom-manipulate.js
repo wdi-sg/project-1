@@ -19,7 +19,12 @@ function createGrid () {
       //assigning value based on start grid
       if (start[i][j] == 'space') { allDiv.classList.add('space') }
       if (start[i][j] == 'block') { allDiv.classList.add('block') }
-      else if (start[i][j] !== 'space' && start[i][j] !== 'block') { allDiv.classList.add('topleft') }
+      if (start[i][j] == 'lefttop') { allDiv.classList.add('lefttop') }
+      if (start[i][j] == 'topright') { allDiv.classList.add('topright') }
+      if (start[i][j] == 'topdown') { allDiv.classList.add('topdown') }
+      if (start[i][j] == 'leftright') { allDiv.classList.add('leftright') }
+      if (start[i][j] == 'start') { allDiv.classList.add('start') }
+      if (start[i][j] == 'end') { allDiv.classList.add('end') }
       //allDiv.classList.add('box')
       container.appendChild(allDiv)
     }
@@ -57,10 +62,24 @@ function init () {
           if (play[i][j] == 'space') {
             imageInDiv.className = 'space'
           }
-          if (play[i][j] == 'block') {
-            imageInDiv.className = 'block'
+          if (play[i][j] == 'lefttop') {
+            imageInDiv.className = 'lefttop'
           }
-          else if (start[i][j] !== 'space' && start[i][j] !== 'block') { imageInDiv.className = 'topleft' }
+          if (play[i][j] == 'topright') {
+            imageInDiv.className = 'topright'
+          }
+          if (play[i][j] == 'topdown') {
+            imageInDiv.className = 'topdown'
+          }
+          if (play[i][j] == 'leftright') {
+            imageInDiv.className = 'leftright'
+          }
+          if (play[i][j] == 'start') {
+            imageInDiv.className = 'start'
+          }
+          if (play[i][j] == 'end') {
+            imageInDiv.className = 'end'
+          }
           k++
         }
       }

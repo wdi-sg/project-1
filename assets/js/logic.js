@@ -1,6 +1,8 @@
-// !!!! STOPPED AT HOW TO SPLIT THE FILES UP, AND CREATED A RIGHT MOVE ONLY, NEED TO ADD UP DOWN LEFT, AND CHECK IF VALID MOVE (0)
-//
-// !!! THINK ABOUT HOW TO MAKE IT AN IMAGE (can use fonts with nice curves)
+// 1. add timer, moves count
+// if timer hits 20s, restart random
+// ability to go next level, restart
+// 2. add drag drop function
+//animation for stars and ball
 //
 
 // logic file
