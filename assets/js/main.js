@@ -125,9 +125,9 @@ function gameInit () {
     var pointsToProgress = 5000 * level - score
     scoreToProgress.textContent = pointsToProgress + ' points to next level'
     if (score >= 5000 * level) {
-      if (combo % 50 !== 0) inGameMessage('Level up!', 1000)
+      if (combo % 50 !== 0) inGameMessage('Level up!', 500)
       else {
-        setTimeout(inGameMessage, 1010, 'Level up!', 1000)
+        setTimeout(inGameMessage, 1010, 'Level up!', 500)
       }
       setLevel()
     }
@@ -236,7 +236,7 @@ function gameInit () {
       boxElem.style.backgroundColor = 'cyan'
       boxElem.style.transform = 'rotate(0deg)'
       setTimeout(function () {
-        boxElem.style.transform = 'rotate(180deg)'
+        boxElem.style.transform = 'rotate(360deg)'
       }, 100)
     } else {
       boxElem.style.backgroundColor = 'pink'
@@ -250,6 +250,7 @@ function gameInit () {
     // boxElem.style.transition = 'top 5s linear'
     boxElem.style.borderRadius = '50%'
     boxElem.style.fontFamily = 'Arial'
+    boxElem.style.fontSize = '15pt'
     boxElem.setAttribute('class', 'box')
     boxElem.type = type
     addWord(boxElem, type)
@@ -287,7 +288,7 @@ function gameInit () {
     var boxToMove = document.querySelectorAll('.box')
     boxToMove.forEach(function (elem) {
       // elem.style.transition = 'top 5s linear'
-      elem.style.top = ('470px')
+      elem.style.top = ('465px')
       elem.addEventListener('transitionend', removeBox)
     })
   }
@@ -377,6 +378,7 @@ function gameInit () {
         boxSelector.successfulClear = true
         if (boxSelector.type === 'easy') score += 20 * playerArr.length
         if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
+        if (level < 4) score += 50
         setScore()
         return true
       }
