@@ -65,11 +65,12 @@ function generateList () {
 
 function clearList () {
   order.innerHTML = ""
-  neededIngredients = []
+  neededIngredients = [] //reset the array for clicks to compare against
 }
 
 // serve button clears playArea, clears list, increases score, generates new orderList, reset ingredientcounter to 0.
 serveButton.addEventListener('click', serve)
+
 function serve () {
   if (gameStarted && ingredientCounter === level + 5) { //4 + 1 to account for bottombun
     clearPlayArea()
@@ -80,7 +81,6 @@ function serve () {
     //reset current count to zero since ingredients have been cleared off playArea
   }
 }
-
 function clearPlayArea () {
   // queryselect only after the divs have been added. else it only consists of bottombun
   ingredients = document.querySelectorAll('.ingredients')
@@ -97,12 +97,13 @@ function increaseScore () {
 }
 
 // click to start timer
-var timeLeft = 60
+var timeLeft = 10
 time.addEventListener('click', startGame)
 function startGame() {
   if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
     generateList()
+    setTimeout(gameOver, 12000)
   }
    // click to start generates first order
   gameStarted = true
@@ -115,4 +116,8 @@ function countdown () {
     time.innerText = timeLeft + ' secs'
   }
   timeLeft--
+}
+
+function gameOver() {
+  alert("Game over")
 }
