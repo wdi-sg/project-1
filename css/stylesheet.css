@@ -32,7 +32,7 @@ body{
 .instructions {
   font-weight: 400;
   text-align: left;
-  font-size: 15px;
+  font-size: 12px;
   margin: 0px 5px 5px 5px;
 }
 ul {
@@ -85,36 +85,38 @@ ul {
 .mainaction{
   height:340px;
   display:inline;
+  position:relative;
 }
 .left-branch, .right-branch {
   height:20px;
   width: 150px;
   background-color: goldenrod;
-  position:relative;
-}
-.right-branch {
-  top: 180px;
-  left:17px;
+  position:absolute;
 }
 .left-branch {
-  top: 100px;
-  left: 217px
+  left:17px;
+  top: 140px;
+}
+.right-branch {
+  left: 217px;
+  top: 140px;
 }
 .jack{
   height:60px;
   width:30px;
   background-color: red;
-  position:relative;
-  left: 127px;
-  top: 240px;
+  position:fixed;
+  left: 597px;
+  /*left: 227px;*/
+  top: 395px;
 }
 .trunk {
   height:340px;
   width:50px;
   background-color:saddlebrown;
-  position:relative;
-  left:167px;
-  top: -100px;
+  position:fixed;
+  left:647px;
+  top: 113px;
 }
 .grass {
   height:100px;
@@ -155,13 +157,4 @@ a:visited {
 }
 a:hover {
   color: darkgoldenrod;
-}
-.moveright{
-
-}
-.moveleft{
-
-}
-.movedown{
-
 }
