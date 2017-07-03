@@ -2,8 +2,7 @@ div {
   display: inline-block;
 }
 
-.square0, .square1, .square2, .square3, .square4, .square5, .square6, .square7, .square8,
-.square9, .square10, .square11, .square12, .square13, .square14, .square15 {
+.square {
   width: 100px;
   height: 100px;
   background: white;

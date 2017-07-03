@@ -1,34 +1,57 @@
-var randomRowOne = randomizer (0, 3)
-var randomRowTwo = randomizer (4, 7)
-var randomRowThree = randomizer (8, 11)
-var randomRowFour = randomizer (12, 15)
-var rowOne = [randomRowOne]
-var rowTwo = [randomRowTwo]
-var rowThree = [randomRowThree]
-var rowFour = [randomRowFour]
-
+gameArray = []
+console.log(gameArray)
+// var value = 0
 
 function randomizer (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function testing() {
-  var gameRowOne = rowOne.splice(0, 1, randomizer (0, 3))
+function gameStart () {
+  gameArray.push(randomizer(1, 4), randomizer(1, 4), randomizer(1, 4), randomizer(1, 4))
 }
 
-addEventListener('click', testing)
+//Start button of the game.
+gameStart()
+console.log(gameArray)
 
-// function startingTiles () {
-  document.querySelector(".square" + rowOne[0]).style.background = 'black'
-  document.querySelector(".square" + rowTwo[0]).style.background = 'black'
-  document.querySelector(".square" + rowThree[0]).style.background = 'black'
-  document.querySelector(".square" + rowFour[0]).style.background = 'grey'
-// }
+function turn () {
+  gameArray.pop()
+  gameArray.unshift(randomizer(1, 4))
+  console.log(gameArray)
+}
 
-rowOne = [3]
-console.log(rowOne)
-console.log(rowTwo)
-console.log(rowThree)
-console.log(rowFour)
+function tiles () {
+  var allSquare = document.querySelectorAll(".square")
+  for (var i = 0; i < allSquare.length; i++) {
+    allSquare[i].style.background = 'white'
+  }
+  turn()
+  document.querySelector("#square" + gameArray[0]).style.background = 'black'
+  var squareTwo = gameArray[1] + 4
+  var squareThree = gameArray[2] + 8
+  var squareFour = gameArray[2] + 12
+  document.querySelector("#square" + squareTwo).style.background = 'black'
+  document.querySelector("#square" + squareThree).style.background = 'black'
+  document.querySelector("#square" + squareFour).style.background = 'grey'
+}
 
-// startingTiles()
+//------------------------------------------------------------------
+
+document.addEventListener ('click', tiles)
+
+//------------------------------------------------------------------
+document.addEventListener('keydown', buttons)
+
+function buttons (event) {
+  var numpad = 0
+  if (event.keyCode === 90) {
+    numpad = 9
+  } else if (event.keyCode === 88) {
+    numpad = 10
+  } else if (event.keyCode === 78) {
+    numpad = 11
+  } else if (event.keyCode === 77) {
+    numpad = 12
+  }
+  console.log(numpad)
+}
