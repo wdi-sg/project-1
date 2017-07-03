@@ -1,8 +1,36 @@
+// ######PSEUDO CODE######
+/*
+start game button and instructions
+- initialize game -
+produce grid with one abnormal tile
+set timer of 10 seconds
+if player clicks the abnormal tile, level is passed
+proceed to next level
+if player clicks the wrong tile, will not proceed to next level
+if timer runs out level fails
+- end game -
+produce final score
+*/
+// #######################
+
 var tile
+var score = 0
+var timeLeft = 30
 
-// initializes the game
+// initialize the game
 function init () {
+  // if start button is pressed, game start
+  alert('game is started')
+  // start the timer
+  gameTimer()
+  // put level 1 into empty container
+  
+}
 
+// restart function
+function restart () {
+  // clear out the grid
+  // change text of start button to Restart
 }
 
 // checks for game over
@@ -12,8 +40,27 @@ function isGameOver () {
 }
 
 // game timer
-function timer () {
-   setTimeout(function () { alert('Game Over') }, 3000)
+function gameTimer () {
+// target timer node
+  var timer = document.querySelector('.timer')
+  var timerId = setInterval(countdown, 1000)
+
+  function countdown () {
+    if (timeLeft == 0) {
+      clearTimeout(timerId)
+      alert('Game Over')
+      // isGameOver === true
+    } else {
+      timer.innerHTML = timeLeft
+      timeLeft--
+    }
+  }
+}
+
+// change level
+function changeLevel () {
+  // if tile clicked is correct
+
 }
 
 // randomize a tile position
@@ -31,6 +78,15 @@ function ranPosition () {
 
 ranPosition()
 
+// target the start node
+var startButtonTgt = document.querySelector('.startButton')
+
+// add event listener to start button
+startButtonTgt.addEventListener('click', function (elem) {
+  // init function
+  init()
+})
+
 // target the whole grid space
 var wholeGrid = document.querySelectorAll('.grid')
 
@@ -41,6 +97,12 @@ wholeGrid.forEach(function (elem) {
     if (elem.id === tile.id) {
       elem.style.backgroundColor = 'red'
       ranPosition()
+      score += 1
+      console.log(score)
+      // target the score node
+      var scoreTgt = document.querySelector('.score')
+      // update score to score node
+      scoreTgt.innerHTML = score
     }
   })
 })
@@ -48,17 +110,3 @@ wholeGrid.forEach(function (elem) {
 // delay timer for color to appear
 
 // check if correct grid is clicked
-
-// ******PSEUDO CODE******
-/*
-start game button and instructions
-- initialize game -
-produce grid with one abnormal tile
-set timer of 10 seconds
-if player clicks the abnormal tile, level is passed
-proceed to next level
-if player clicks the wrong tile, 3 seconds is deducted
-if timer runs out level fails
-- end game -
-produce final score
-*/

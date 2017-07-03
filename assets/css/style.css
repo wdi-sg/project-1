@@ -39,8 +39,8 @@ p {
 
 .startButton {
   display: inline-block;
-  position: relative;
   float: center;
+  width: 80px;
 }
 
 .timerText {
@@ -59,13 +59,3 @@ p {
   display: inline-block;
   border-radius: 10%;
 }
-
-/*
-.odd {
-  background-color: red;
-  border: 2px solid black;
-  width: 196px;
-  height: 196px;
-  display: inline-block;
-}
-*/
