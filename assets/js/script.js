@@ -33,9 +33,15 @@ function serve() {
 }
 
 
+
 function clearPlayArea() {
-  //remove all elements and readd the anchor bottom bun
-  alert('clear')
+  //queryselect only after the divs have been added. else it only consists of bottombun
+  ingredients = document.querySelectorAll('.ingredients')
+  ingredients.forEach(function(el) {
+      if (el.id !== "bottombun") { //remove everything leaving bottom div
+        el.parentNode.removeChild(el)
+      }
+    })
 }
 
 score = document.querySelector('.score')
