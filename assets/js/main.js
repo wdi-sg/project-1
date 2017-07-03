@@ -5,12 +5,14 @@ function gameInit () {
   var lives = 5
   var score = 0
   var combo = 0
+  var level = 1
 
   function gameSetup () {
     setBackground()
     createLifeCounter()
     createScoreCounter()
     createComboCounter()
+    createLevelCounter()
     createScoreToProgress()
     lives = 5
     score = 0
@@ -20,8 +22,28 @@ function gameInit () {
     chooseBox()
   }
 
+  function setLevel () {
+    level = level + 1
+    var levelCounter = document.querySelector('.levelCounter')
+    levelCounter.textContent = 'Level: ' + level
+    setScore()
+  }
+
   function setBackground () {
     document.body.background = 'assets/images/levelOneBackground.jpg'
+  }
+
+  function createLevelCounter () {
+    var levelCounter = document.createElement('div')
+    levelCounter.setAttribute('class', 'levelCounter')
+    levelCounter.style.position = 'absolute'
+    levelCounter.style.textAlign = 'center'
+    levelCounter.style.top = '-50px'
+    levelCounter.style.left = '500px'
+    levelCounter.style.width = '300px'
+    levelCounter.style.fontSize = '15pt'
+    levelCounter.textContent = 'Level: ' + level
+    container.appendChild(levelCounter)
   }
 
   function createScoreToProgress () {
@@ -98,11 +120,11 @@ function gameInit () {
     var scoreCounter = document.querySelector('.scoreCounter')
     scoreCounter.textContent = 'Score: ' + score
     var scoreToProgress = document.querySelector('.scoreToProgress')
-    var pointsToProgress = 5000 - score
+    var pointsToProgress = 5000 * level - score
     scoreToProgress.textContent = pointsToProgress + ' points to next level'
-    if (score > 5000) {
-      container.innerHTML = ''
-      inGameMessage('You Win!', 1000)
+    if (score > 5000 * level) {
+      inGameMessage('Level up!', 1000)
+      setLevel()
     }
   }
 
@@ -149,21 +171,41 @@ function gameInit () {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
+  function randomNoRounded (min, max) {
+    return Math.round(Math.random() * (max - min) + min)
+  }
+
   function chooseBox () {
-    if (lives > 0 && score < 5000) {
+    if (lives > 0) {
       var identifier = randomNo(0, 100)
-      if (identifier < 21) {
+      if (identifier < 0) {
         addBox('twoLayer')
-      } else if (identifier < 41) {
+      } else if (identifier < 11) {
         addBox('upsideDown')
-      } else if (identifier < 51) {
+      } else if (identifier < 21) {
         addBox('twoBox')
       } else {
         addBox('easy')
       }
-      var time = randomNo(1000, 2000)
+      var time = randomNo(setLevelAdjustedParameter(level, 1000, 200), setLevelAdjustedParameter(level, 1000, 200) + 1000)
       setTimeout(chooseBox, time)
     }
+  }
+
+  // function setBoxSpawnIntervalMin (level) {
+  //   var boxSpawnIntervalMin = 1000
+  //   for (var i = 2; i <= level; i++) {
+  //     boxSpawnIntervalMin = boxSpawnIntervalMin - 200 / (i - 1)
+  //   }
+  //   return boxSpawnIntervalMin
+  // }
+
+  function setLevelAdjustedParameter (level, initialnum, magnitude) {
+    var num = initialnum
+    for (var i = 2; i <= level; i++) {
+      num = num - magnitude / (i - 1)
+    }
+    return num
   }
 
   function addBox (type) {
@@ -171,7 +213,9 @@ function gameInit () {
     // boxElem.style.height = '20px'
     // boxElem.style.width = '80px'
     boxElem.style.padding = '5px 10px'
-    boxElem.style.transition = 'top 5s linear'
+    var boxFallTime = setLevelAdjustedParameter(level, 5, 1)
+    console.log('top ' + boxFallTime.toString() + 's linear')
+    boxElem.style.transition = 'top ' + boxFallTime + 's linear'
     if (type === 'twoLayer') {
       boxElem.style.backgroundColor = 'orange'
       boxElem.isSecondLayer = false
@@ -200,10 +244,12 @@ function gameInit () {
   function addWord (appendTo, type) {
     var fullWordArr = words.array
     var inGameWordArr = fullWordArr.filter(function (word) {
-      return word.length === 5 || word.length === 4
+      console.log(randomNoRounded(3 + level / 3, 4 + level / 3))
+      return word.length === randomNoRounded(3 + level / 3, 4 + level / 3)
     })
     console.log(inGameWordArr.length)
     var randomWord = inGameWordArr[randomNo(0, inGameWordArr.length - 1)]
+    console.log(randomWord.length)
     var randomWordArr = randomWord.split('')
     var innerBox = document.createElement('div')
     for (var i = 0; i < randomWordArr.length; i++) {
