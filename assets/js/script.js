@@ -1,4 +1,4 @@
-var counter = 1 // number of ingredients already in play
+var ingredientCounter = 1 // number of ingredients already in play
 var level = 1;
 var body = document.querySelector('body')
 var playArea = document.querySelector('.playArea')
@@ -19,9 +19,9 @@ function addIngredient () {
    // id sets background-image url and negative margins
   newIngredient.id = whichIngredient
    // increasing z-index for overlapping look
-  newIngredient.style.zIndex = counter
+  newIngredient.style.zIndex = ingredientCounter
   playArea.prepend(newIngredient)
-  counter++
+  ingredientCounter++
 }
 
 // serve button clears playArea of ingredients, increases score, calls for new order
@@ -29,6 +29,13 @@ serveButton = document.querySelector('.serveButton')
 serveButton.addEventListener('click', serve)
 function serve() {
   increaseScore()
+  clearPlayArea()
+}
+
+
+function clearPlayArea() {
+  //remove all elements and readd the anchor bottom bun
+  alert('clear')
 }
 
 score = document.querySelector('.score')
