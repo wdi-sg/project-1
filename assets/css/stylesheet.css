@@ -8,14 +8,13 @@ body {
   width: 600px;
   height: 520px;
   background: black;
-  /*border: 1px solid white;*/
+  z-index: -2;
 }
 
 #pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
   position: absolute;
   /*transition: top 2s linear, left 2s linear;*/
 }
-
 
 .rotate90 {
   transform: rotate(90deg);
@@ -28,9 +27,14 @@ body {
 .mirrorImage {
   transform: scaleX(-1);
 }
+
 .wall {
   position: absolute;
   background-color: white;
-  /*border: 4px dashed blue;*/
-  /*border-radius: 8px;*/
+}
+
+.food {
+  position: absolute;
+  background-color: rgb(249, 248, 199);
+  z-index: -1;
 }

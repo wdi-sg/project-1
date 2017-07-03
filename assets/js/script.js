@@ -9,10 +9,20 @@ var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
 
-blueGhost.direction = 'right'
-orangeGhost.direction = 'left'
-pinkGhost.direction = 'left'
-redGhost.direction = 'left'
+var pacmanSpeed = 10
+var ghostSpeed = 6
+var walls = []
+var foodItems = []
+
+var upKeyDown = false
+var downKeyDown = false
+var leftKeyDown = false
+var rightKeyDown = false
+
+blueGhost.direction = 'left'
+orangeGhost.direction = 'right'
+pinkGhost.direction = 'up'
+redGhost.direction = 'down'
 
 pacman.style.top = '440px'
 pacman.style.left = '280px'
@@ -39,14 +49,7 @@ redGhost.style.left = '520px'
 redGhost.style.height = '40px'
 redGhost.style.width = '40px'
 
-var pacmanSpeed = 8
-var ghostSpeed = 8
-var walls = []
 
-var upKeyDown = false
-var downKeyDown = false
-var leftKeyDown = false
-var rightKeyDown = false
 
 // border
 createWall(0, 0, 600, 40)
@@ -90,6 +93,40 @@ function createWall (left, top, width, height) {
   gameboard.appendChild(wall)
   walls.push(wall)
 }
+
+function createFood (left, top) {
+  var food = document.createElement('div')
+  food.className = 'food'
+  food.style.left = left + 'px'
+  food.style.top = top + 'px'
+  food.style.width = 12 + 'px'
+  food.style.height = 12 + 'px'
+  food.style.borderRadius = 25 + 'px'
+  gameboard.appendChild(food)
+  foodItems.push(food)
+}
+
+for (var i = 40; i < 540; i += 40) {
+  for (var j = 40; j < 480; j += 40) {
+    // for (var k = 7; k < walls.length; k++) {
+    //   if (j < parseInt(walls[k].style.left) + parseInt(walls[k].style.width) &&
+    //   j + 40 > parseInt(walls[k].style.left) &&
+    //     i < parseInt(walls[k].style.top) + parseInt(walls[k].style.height) &&
+    //     i + 40 > parseInt(walls[k].style.top)) {
+    //       var x = true
+    //     } else {
+    //     x = false
+    //     }
+    //   }
+    //   if (!x) {
+    createFood(i + 13, j + 13)
+  }
+}
+// }
+
+foodItems[76].style.display = 'none'
+foodItems[90].style.display = 'none'
+foodItems[91].style.display = 'none'
 
 // key down event listener
 document.addEventListener('keydown', function () {
@@ -163,23 +200,19 @@ function pacmanMovement () {
   var pacmanX = parseInt(pacman.style.left)
   var pacmanY = parseInt(pacman.style.top)
 
-  // up key
   if (upKeyDown) {
     pacman.className = 'rotate270'
     pacman.style.top = pacmanY - pacmanSpeed + 'px'
   }
-  // down key
   if (downKeyDown) {
     pacman.className = 'rotate90'
     pacman.style.top = pacmanY + pacmanSpeed + 'px'
   }
-  // left key
   if (leftKeyDown) {
     pacman.className = 'mirrorImage'
     if (pacmanX < 0) pacmanX = 560
     pacman.style.left = pacmanX - pacmanSpeed + 'px'
   }
-  // right key
   if (rightKeyDown) {
     pacman.className = ''
     if (pacmanX > 560) pacmanX = 0
@@ -190,6 +223,7 @@ function pacmanMovement () {
     pacman.style.left = originalLeft
     pacman.style.top = originalTop
   }
+  // check for collision between pacman and ghosts
   if (hitGhost(pacman)) {
     clearInterval(loopTimer)
   }
@@ -201,9 +235,7 @@ function ghostMovement (character) {
   var charOriginalTop = character.style.top
   var characterX = parseInt(character.style.left)
   var characterY = parseInt(character.style.top)
-  // var direction =
 
-// console.log(character.direction)
   if (character.direction === 'up') {
     character.className = 'rotate270'
     character.style.top = characterY - ghostSpeed + 'px'
@@ -214,43 +246,42 @@ function ghostMovement (character) {
   }
   if (character.direction === 'left') {
     character.className = 'mirrorImage'
-    if(characterX < 0) characterX = 560
+    if (characterX < 0) characterX = 560
     character.style.left = characterX - ghostSpeed + 'px'
   }
   if (character.direction === 'right') {
     character.className = ''
-    if(characterX > 560) characterX = 0
+    if (characterX > 560) characterX = 0
     character.style.left = characterX + ghostSpeed + 'px'
   }
-  if (hitWall(character) || hitGhost(character)) {
+  if (hitWall(character)) {
     character.style.left = charOriginalLeft
     character.style.top = charOriginalTop
-    ghostHitWallMovement(character)
+    ghostHitWallNewDir(character)
   }
 }
 
-function ghostHitWallMovement (character) {
+// find new direction when ghost hit wall
+function ghostHitWallNewDir (character) {
   var oppDirection
+  var newDirection
+
   if (character.direction === 'up') oppDirection = 'down'
   if (character.direction === 'down') oppDirection = 'up'
   if (character.direction === 'left') oppDirection = 'right'
   if (character.direction === 'right') oppDirection = 'left'
 
-  var x = false
-  while (!x) {
-    var newDirection = randomGhostDirection()
-    if (newDirection !== oppDirection && newDirection !== character.direction) {
-      character.direction = newDirection
-      x = true
-    }
-  }
-ghostMovement(character)
+  do {
+    newDirection = randomGhostDirection()
+  } while (newDirection === oppDirection)
+
+  character.direction = newDirection
 }
 
 // random ghost direction
 function randomGhostDirection () {
   var ghostDirection = ['up', 'down', 'left', 'right']
-  var direction = ghostDirection[Math.floor(Math.random() * (3 - 0 + 1) + 0)]
+  var direction = ghostDirection[Math.floor(Math.random() * (4))]
   return direction
 }
 
