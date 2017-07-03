@@ -5,7 +5,7 @@ var buttons = document.querySelectorAll('.buttons div')
 var serveButton = document.querySelector('.serveButton')
 var score = document.querySelector('.score')
 var time = document.querySelector('.time')
-var possibleIngredients = ['patty', 'tomato', 'onion', 'lettuce', 'cheese']
+var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var order = document.querySelector('.order')
 var gameStarted = false
 var neededIngredients = []
@@ -39,7 +39,7 @@ function addIngredient () {
 // generate random array of ingredients.
 // excluding topbun which must be the last item of every order
 function randomizer () {
-  var randomNum = Math.floor(Math.random() * 5)
+  var randomNum = Math.floor(Math.random() * 6)
   return possibleIngredients[randomNum]
 }
 
@@ -59,7 +59,7 @@ function generateList () {
     if (el !== "topbun") {
       newListItem.innerText = el
     } else newListItem.innerText = 'top bun'
-    order.prepend(newListItem)
+    order.appendChild(newListItem)
   })
 }
 
