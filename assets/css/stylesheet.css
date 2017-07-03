@@ -13,6 +13,7 @@ body {
 
 #pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
   position: absolute;
+  /*transition: top 2s linear, left 2s linear;*/
 }
 
 
