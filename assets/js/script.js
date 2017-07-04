@@ -46,6 +46,7 @@ function mouseFish () {
     var mainFish = document.querySelector('#main-fish')
     mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
     mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
+    mainFish.style.transition = 'top 0.05s linear, left 0.05s linear'
   })
 }
 

@@ -8,19 +8,18 @@ The aim is to make yourself big enough to be caught by fishermen.
 
 ---
 
-### Technical Requirements
+### Approach
 
-Your app must:
+Step-by-Step Process
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+* Create cover page that will disappear upon clicking start button
+* Generate fishes at intervals
+* Stop generating fishes after the 40th fish
+* Fishes must be of different sizes, different initial position, and move randomly
+* Create main fish that follows mouse
+* Keep track of collision and increase size of main fish
+* Win/Lose
+
 
 ---
 
