@@ -9,6 +9,7 @@ var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'chee
 var order = document.querySelector('.order')
 var gameStarted = false
 var neededIngredients = []
+var startGameOverlay = document.querySelector('.startGameOverlay')
 var startGameButton = document.querySelector('.startGameButton')
 // add event listeners to all buttons
 buttons.forEach(function (el) {
@@ -110,6 +111,7 @@ function startGame() {
   }
    // click to start generates first order
   gameStarted = true
+  startGameOverlay.style.height = "0px"
 }
 
 // callback to change timeLeft and update DOM text

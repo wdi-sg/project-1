@@ -11,10 +11,12 @@ h1 {
 .startGameOverlay {
   position: fixed;
   left: 464px;
-  height: 770px;
+  top: 10px;
+  height: 768px;
   width: 500px;
   background-color: white;
   z-index: 1;
+  overflow: hidden;
 }
 
 ol {
