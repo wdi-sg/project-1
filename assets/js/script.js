@@ -235,6 +235,7 @@ function pacmanMovement () {
   // check for collision between pacman and ghosts
   if (hitGhost(pacman)) {
     // clearInterval(loopTimer)
+    gameOver()
   }
 }
 
@@ -306,20 +307,33 @@ function checkScore () {
   }
 }
 
-function gameOver (totalScore) {
-  if (scoretracker.length === totalScore) {
-    // alert ('game over')
+function gameOver () {
+  if (scoretracker.length === 91) {
+    var success = document.createElement('div')
+    success.className = 'success'
+    gameboard.appendChild(success)
+    success.textContent = "CONGRATULATIONS!"
+    clearInterval(loopTimer)
+  } else {
+    var failure = document.createElement('div')
+    failure.className = 'failure'
+    gameboard.appendChild(failure)
+    failure.textContent = "TRY HARDER!"
+    clearInterval(loopTimer)
   }
+}
+
+function startNewGame () {
+  // gameboard.removeChild(success)
 }
 
 // game loop
 function loop () {
   numLoops++
   pacmanMovement()
-  checkScore(91)
-  gameOver()
-  // ghostMovement(blueGhost)
-  // ghostMovement(orangeGhost)
-  // ghostMovement(pinkGhost)
-  // ghostMovement(redGhost)
+  checkScore()
+  ghostMovement(blueGhost)
+  ghostMovement(orangeGhost)
+  ghostMovement(pinkGhost)
+  ghostMovement(redGhost)
 }

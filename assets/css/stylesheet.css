@@ -47,3 +47,31 @@ body {
   background-color: rgb(249, 248, 199);
   z-index: -1;
 }
+
+.success {
+  position: absolute;
+  background: pink;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  font: black;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.failure {
+  position: absolute;
+  background: red;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  font-family: 'Press Start 2P', cursive;
+  font: black;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
