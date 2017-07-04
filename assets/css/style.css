@@ -25,7 +25,6 @@ body {
   /*border: 1px solid white;*/
   /*margin: auto;*/
   position: absolute;
-  opacity: 1;
   /*z-index: -1;*/
   /*left: 274px;
   top: 50px;*/
@@ -55,6 +54,28 @@ body {
   z-index: 1;
 }
 
+h1 {
+  position: absolute;
+  background-color: black;
+  text-align: center;
+  /*height: 50px;*/
+  width: 300px;
+  top: 100px;
+  left: 250px;
+  z-index: 1;
+}
+
+h3 {
+  position: absolute;
+  background-color: black;
+  text-align: center;
+  font-style: italic;
+  /*height: 50px;*/
+  width: 380px;
+  top: 150px;
+  left: 210px;
+  z-index: 1;
+}
 
 button {
   color: white;
@@ -62,4 +83,8 @@ button {
 
 button:hover {
   color: rgb(115, 115, 115);
+}
+
+#instructionsSpan {
+  color: red;
 }

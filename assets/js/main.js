@@ -9,16 +9,16 @@ function gameInit () {
   var maxCombo = 0
   var level = 1
 
+  var mainMenu = document.querySelector('.mainmenu')
   var startButton = document.querySelector('.newgame')
   var instructions = document.querySelector('.instructions')
-  console.log(startButton)
 
   function gameSetup () {
     // container.style.opacity = '1'
-    // innerContainer.style.opacity = '1'
     innerContainer.style.border = '1px solid white'
-    startButton.style.display = 'none'
-    instructions.style.display = 'none'
+    // startButton.style.display = 'none'
+    // instructions.style.display = 'none'
+    mainMenu.style.display = 'none'
     createLifeCounter()
     createScoreCounter()
     createComboCounter()
@@ -37,13 +37,32 @@ function gameInit () {
 
   function showInstructions () {
     var instructions = document.createElement('div')
+    // instructions.style.top = '-500px'
     instructions.style.height = '500px'
     instructions.style.width = '800px'
     instructions.style.border = '1px solid white'
     instructions.style.backgroundColor = 'black'
     instructions.style.zIndex = '3'
-    instructions.textContent = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    instructions.style.padding = '10px'
+    instructions.style.fontSize = '15pt'
+    instructions.style.textAlign = 'justify'
+    instructions.style.transition = 'opacity 0.5s'
+    instructions.style.opacity = '0'
+    // instructions.setAttribute('class', 'instructionsWindow')
+    instructions.innerHTML = '<br>WDI 11 proudly presents to you Typing Madness!<br><br>The goal of the game is very simple: Type the words as they appear on the screen contained in oval bubbles, before the oval bubbles land on the bottom of the window! Lose all your lives and you lose the game! Try to achieve as high a score as possible!<br><br>The game gets harder and harder as you progress and only ends when you die. During the game you may encounter <span id="instructionsSpan">red</span> colored bubbles. These give extra lives to help you survive longer through the madness at the higher levels. However the words inside them are longer!<br><br>Go ahead and challenge yourself! How much of this madness can you handle??<br><br>Hint: Try to minimise your mistakes! Mistakes do not cause you to lose life but breaks your combo. Accumulating your combo increases your score faster!<br>You may also press the  `  button to skip the current box to get to the next higher box, but doing so costs you a life!'
     instructions.style.position = 'absolute'
+    createButton(instructions, close, 0, 0, 'X', '12pt', '25px')
+    createButton(instructions, areYouSureButton, '425px', '335px', 'I am ready!', '15pt', '150px')
+    function areYouSureButton () {
+      createButton(instructions, closeWindowAndStartGame, '425px', '335px', 'Are you sure?', '15pt', '150px')
+    }
+    function closeWindowAndStartGame () {
+      close(instructions)
+      gameSetup()
+    }
+    setTimeout(function (){
+      instructions.style.opacity = '1'
+    }, 10)
     container.appendChild(instructions)
   }
 
@@ -53,11 +72,6 @@ function gameInit () {
     levelCounter.textContent = 'Level: ' + level
     setScore()
   }
-
-  // function setBackground () {
-  //   document.body.background = 'assets/images/level2Background.jpg'
-  //   document.body.transition = '2s'
-  // }
 
   function createLevelCounter () {
     var levelCounter = document.createElement('div')
@@ -140,10 +154,10 @@ function gameInit () {
     gameoverWindow.style.textAlign = 'center'
     gameoverWindow.style.color = 'white'
     gameoverWindow.style.backgroundColor = 'black'
-    gameoverWindow.style.fontSize = '15pt'
-    gameoverWindow.innerHTML = '<br>Score: ' + score + '<br> Level: ' + level + '<br> Max Combo: ' + maxCombo
+    gameoverWindow.style.fontSize = '20pt'
+    gameoverWindow.innerHTML = 'Score: ' + score + '<br> Level: ' + level + '<br> Max Combo: ' + maxCombo
     createButton(gameoverWindow, restart, '115px', '150px', 'Restart', '15pt', '100px')
-    createButton(gameoverWindow, mainMenu, '150px', '100px', 'Back to Main Menu', '15pt', '200px')
+    createButton(gameoverWindow, toMainMenu, '150px', '100px', 'Back to Main Menu', '15pt', '200px')
     innerContainer.innerHTML = ''
     container.appendChild(gameoverWindow)
   }
@@ -161,15 +175,16 @@ function gameInit () {
     button.style.backgroundColor = 'black'
     // button.style.border = '1px solid black'
     button.textContent = content
-    button.addEventListener('click', callback)
+    button.addEventListener('click', function () {
+      callback(appendTo)
+    })
     appendTo.appendChild(button)
   }
 
-  function mainMenu () {
+  function toMainMenu () {
     var gameoverWindow = document.querySelector('.gameoverWindow')
     container.removeChild(gameoverWindow)
-    startButton.style.display = ''
-    instructions.style.display = ''
+    mainMenu.style.display = ''
     innerContainer.style.border = ''
   }
 
@@ -177,6 +192,10 @@ function gameInit () {
     var gameoverWindow = document.querySelector('.gameoverWindow')
     container.removeChild(gameoverWindow)
     gameSetup()
+  }
+
+  function close (windowToClose) {
+    container.removeChild(windowToClose)
   }
 
   function setLife () {
@@ -282,9 +301,9 @@ function gameInit () {
       if (identifier <= -4 + level && identifier <= 5) {
         addBox('heartBox')
       } else if (identifier <= 3 + level * 2) {
-        addBox('upsideDown')
-      } else if (identifier <= 13 + level * 2) {
         addBox('twoBox')
+      } else if (identifier <= 13 + level * 2) {
+        addBox('upsideDown')
       } else {
         addBox('easy')
       }
