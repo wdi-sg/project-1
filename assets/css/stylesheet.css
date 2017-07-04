@@ -16,6 +16,15 @@ body {
   /*transition: top 2s linear, left 2s linear;*/
 }
 
+#scoreboard {
+  position: absolute;
+  top: 520px;
+  background: black;
+  z-index: 1;
+  font-size: 20px;
+  color: white;
+}
+
 .rotate90 {
   transform: rotate(90deg);
 }
@@ -33,7 +42,7 @@ body {
   background-color: white;
 }
 
-.food {
+.dot {
   position: absolute;
   background-color: rgb(249, 248, 199);
   z-index: -1;

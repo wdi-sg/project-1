@@ -8,11 +8,14 @@ var orangeGhost = document.querySelector('#orangeGhost')
 var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
+var scoreboard = document.querySelector('#scoreboard')
 
 var pacmanSpeed = 10
 var ghostSpeed = 6
 var walls = []
-var foodItems = []
+var dots = []
+var score = 0
+var scoretracker = []
 
 var upKeyDown = false
 var downKeyDown = false
@@ -49,7 +52,17 @@ redGhost.style.left = '520px'
 redGhost.style.height = '40px'
 redGhost.style.width = '40px'
 
-
+// create wall function
+function createWall (left, top, width, height) {
+  var wall = document.createElement('div')
+  wall.className = 'wall'
+  wall.style.left = left + 'px'
+  wall.style.top = top + 'px'
+  wall.style.width = width + 'px'
+  wall.style.height = height + 'px'
+  gameboard.appendChild(wall)
+  walls.push(wall)
+}
 
 // border
 createWall(0, 0, 600, 40)
@@ -82,30 +95,20 @@ createWall(160, 360, 40, 80)
 createWall(400, 360, 40, 80)
 createWall(480, 360, 40, 80)
 
-// create wall function
-function createWall (left, top, width, height) {
-  var wall = document.createElement('div')
-  wall.className = 'wall'
-  wall.style.left = left + 'px'
-  wall.style.top = top + 'px'
-  wall.style.width = width + 'px'
-  wall.style.height = height + 'px'
-  gameboard.appendChild(wall)
-  walls.push(wall)
+// create dot for pacman function
+function createDot (left, top) {
+  var dot = document.createElement('div')
+  dot.className = 'dot'
+  dot.style.left = left + 'px'
+  dot.style.top = top + 'px'
+  dot.style.width = 8 + 'px'
+  dot.style.height = 8 + 'px'
+  dot.style.borderRadius = 5 + 'px'
+  gameboard.appendChild(dot)
+  dots.push(dot)
 }
 
-function createFood (left, top) {
-  var food = document.createElement('div')
-  food.className = 'food'
-  food.style.left = left + 'px'
-  food.style.top = top + 'px'
-  food.style.width = 12 + 'px'
-  food.style.height = 12 + 'px'
-  food.style.borderRadius = 25 + 'px'
-  gameboard.appendChild(food)
-  foodItems.push(food)
-}
-
+// create dots
 for (var i = 40; i < 540; i += 40) {
   for (var j = 40; j < 480; j += 40) {
     // for (var k = 7; k < walls.length; k++) {
@@ -119,14 +122,16 @@ for (var i = 40; i < 540; i += 40) {
     //     }
     //   }
     //   if (!x) {
-    createFood(i + 13, j + 13)
+    createDot(i + 16, j + 16)
   }
 }
 // }
 
-foodItems[76].style.display = 'none'
-foodItems[90].style.display = 'none'
-foodItems[91].style.display = 'none'
+// remove the dot at pacman's starting point and two inside 'D'
+gameboard.removeChild(dots[76])
+gameboard.removeChild(dots[90])
+gameboard.removeChild(dots[91])
+dots.splice(76, 1)
 
 // key down event listener
 document.addEventListener('keydown', function () {
@@ -173,6 +178,9 @@ function collision (a, b) {
   ay + parseInt(a.style.height) > by) {
     return true
   }
+  else {
+    return false
+  }
 }
 
 // check for collision between the wall and the character
@@ -184,10 +192,11 @@ function hitWall (character) {
   }
 }
 
+
 // check for collision between the character and the ghost
 function hitGhost (character) {
   for (var i = 0; i < ghosts.length; i++) {
-    if (collision(ghosts[i], character) && character !== ghosts[i]) {
+    if (collision(ghosts[i], character)) {
       return true
     }
   }
@@ -225,7 +234,7 @@ function pacmanMovement () {
   }
   // check for collision between pacman and ghosts
   if (hitGhost(pacman)) {
-    clearInterval(loopTimer)
+    // clearInterval(loopTimer)
   }
 }
 
@@ -285,12 +294,32 @@ function randomGhostDirection () {
   return direction
 }
 
+function checkScore () {
+  for (var i = 0; i < dots.length; i++) {
+    if (collision(dots[i], pacman)) {
+      if (!scoretracker.includes(dots[i])) {
+        dots[i].style.display = 'none'
+        scoretracker.push(dots[i])
+        scoreboard.textContent = scoretracker.length
+      }
+    }
+  }
+}
+
+function gameOver (totalScore) {
+  if (scoretracker.length === totalScore) {
+    // alert ('game over')
+  }
+}
+
 // game loop
 function loop () {
   numLoops++
   pacmanMovement()
-  ghostMovement(blueGhost)
-  ghostMovement(orangeGhost)
-  ghostMovement(pinkGhost)
-  ghostMovement(redGhost)
+  checkScore(91)
+  gameOver()
+  // ghostMovement(blueGhost)
+  // ghostMovement(orangeGhost)
+  // ghostMovement(pinkGhost)
+  // ghostMovement(redGhost)
 }
