@@ -36,6 +36,7 @@ Step-by-Step Process
 * When the mouse moves, find its new position and have the main fish follow with 0.05 transition
 
 **collisionDetection()**
+
 function isCollide(a, b) {
     var aRect = a.getBoundingClientRect();
     var bRect = b.getBoundingClientRect();
@@ -49,6 +50,7 @@ function isCollide(a, b) {
 }
 
 **startGame()**
+
 When start button is clicked, remove start items and call the functions to generate new fishes
 
 ---
@@ -56,9 +58,11 @@ When start button is clicked, remove start items and call the functions to gener
 ### Roadblocks
 
 **Defining range of fish movement**
+
 Every browser has a different size, so the max limit of the random number generated is set at window.innerHeight and window.innerWidth
 
 **Fishes tend to congregate towards the center after awhile.**
+
 https://stackoverflow.com/questions/1062902/how-random-is-javascripts-math-random
 "Given numbers between 1 and 1000.
 
@@ -71,6 +75,7 @@ and so on.
 So if you select some at random, then that vast majority of selected numbers will have the same number of digits, because the vast majority of possible values have the same number of digits."
 
 **Fishes are not a regular shape (rectangle or circle), so collision detection is not precise.**
+
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles
 
@@ -78,10 +83,16 @@ but for simplicity purposes, the fishes are assumed to be rectangles
 
 ### References
 
-* **Generating Fishes** https://stackoverflow.com/questions/35198786/javascript-create-image-element-and-randomly-place-within-div-in-html5
-* **Getting fish to follow mouse pointer** https://stackoverflow.com/questions/7143806/make-an-image-follow-mouse-pointer
+* **Generating Fishes**
+
+https://stackoverflow.com/questions/35198786/javascript-create-image-element-and-randomly-place-within-div-in-html5
+* **Getting fish to follow mouse pointer**
+
+https://stackoverflow.com/questions/7143806/make-an-image-follow-mouse-pointer
 * **Rotating Fish to follow mouse pointer**
+
 https://stackoverflow.com/questions/15653801/rotating-object-to-face-mouse-pointer-on-mousemove
 http://www.gamefromscratch.com/post/2012/11/18/GameDev-math-recipes-Rotating-to-face-a-point.aspx
 * **Collision Detection**
+
 https://stackoverflow.com/questions/2440377/javascript-collision-detection
