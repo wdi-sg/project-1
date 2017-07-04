@@ -20,8 +20,6 @@ buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
 })
 
-
-//revert to undeleted function
 // addingredient needs to check if it is the same as in order before adding
 // callback for button click which extracts classname
 function addIngredient () {
@@ -131,7 +129,6 @@ function countdown () {
 function gameOver() {
   endGameOverlay.style.height = "768px"
   endGameScore.innerText = score.innerText
-  // alert("Game over. You scored " + (level - 1)) //-1 because initial level is already 1
 }
 
 restart.addEventListener('click', function() {

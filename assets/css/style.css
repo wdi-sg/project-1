@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  background: #FFFDE5;
 }
 
 h1 {
@@ -8,15 +9,21 @@ h1 {
   margin: 10px auto;
 }
 
+h3 {
+  font-size: 20px;
+  margin: 5px auto;
+  font-family: 'Roboto';
+}
+
 .startGameOverlay {
   position: fixed;
   left: 464px;
   top: 10px;
   height: 768px;
   width: 500px;
-  background-color: white;
-  z-index: 1;
   overflow: hidden;
+  background: #FFFDE5;
+  z-index: 1;
 }
 
 ol {
@@ -42,9 +49,9 @@ li {
   top: 10px;
   height: 0px;
   width: 500px;
-  background-color: white;
   z-index: 99;
   overflow: hidden;
+  background: #FFFDE5;
 }
 
 .restart {
@@ -124,6 +131,7 @@ li {
 
 .serveButton h1 {
   margin: 35px auto;
+  font-size: 80px;
 }
 
 .timer {
@@ -155,10 +163,6 @@ li {
   margin: 0 auto;
 }
 
-h3 {
-  font-size: 20px;
-  margin: 5px auto;
-}
 
 .scorebox {
   width: 320px;
