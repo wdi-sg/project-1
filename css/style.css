@@ -1,5 +1,5 @@
 .left{
-  width: 65%;
+  width: 75%;
   float: left;
   text-align: center;
   margin: 0 auto;
@@ -7,8 +7,9 @@
 }
 
 .right{
-  width: 25%;
+  width: 20%;
   float: right;
+  padding-top: 30px;
   /*border: solid;*/
 }
 
@@ -19,9 +20,28 @@
   /*position: relative;*/
 }
 
-.starts{
+#start{
   text-align: center;
   display: inline-block;
+  padding: 10px;
+  background-color: white;
+}
+
+.inputField{
+  position: absolute;
+  right: 730px;
+  font-size: 30px;
+  text-align: center;
+/*display: flex;
+justify-content: center;*/
+}
+
+#reset{
+  display: inline-block;
+  float:right;
+  padding: 10px;
+  background-color: white;
+
 }
 
 .score, .scorer, .time, .timer{
@@ -39,6 +59,7 @@
   padding: 10px;
   width: 460px;
   float:right;
+  text-align: right;
   /*display: inline;*/
   /*width: 70%;*/
     /*align-items: flex-end;*/

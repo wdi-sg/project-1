@@ -9,6 +9,7 @@ function init() {
   var submit = document.querySelector('#submit')
   var resetto = document.querySelector('#reset')
   var input = document.querySelector('.inputField')
+  var timerField = document.querySelector('.time')
 
   start.addEventListener('click', displayStr)
   resetto.addEventListener('click', reset)
@@ -35,9 +36,11 @@ function init() {
   }
 
   function displayStr () {
+    setInterval(timerz,1000)
     randomStr = alLogic.randStr()
     randomWord.textContent = randomStr.join(' ').toUpperCase()
-    console.log(randomStr)
+    start.style.display = 'none'
+
   }
 
   // function getWord () {
@@ -56,6 +59,13 @@ function init() {
     storedArr = []
     randomStr = []
     displayStr()
+  }
+}
+
+function timerz(){
+  if(timer>0){
+    timer= timer - 1
+    document.querySelector('.time').textContent = timer + ' s'
   }
 }
 
