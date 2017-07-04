@@ -1,78 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <title></title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel='stylesheet' href='./css/style.css'>
   </head>
   <body>
 
-    <div id="header">
-       <a href="./index.html">Home</a>
-       <a href="./game.html" >Game</a>
-       <a href="./howto.html" >How To</a>
-       <a href="./results.html" >Results</a>
+    <div id='header'>
+       <a href='./index.html'>Home</a>
+       <a href='./game.html' >Game</a>
+       <a href='./howto.html' >How To</a>
+       <a href='./results.html' >Results</a>
     </div>
 
     <h1>STOCKBET</h1>
 
-    <div id="status-div">
+    <div id='status-div'>
+      <h2 id='status'></h2>
+      <hr>
     </div>
 
-    <div class="game-section" id="parameters-div">
+    <div class='game-section' id='parameters-div'>
       <h3>Game Parameters</h3>
-      <form>
-        P1 Name: <input type="text" name="p1-name"><br>
-        P2 Name: <input type="text" name="p2-name"><br>
-        Wallet Size (US$): <input type="number" name="wallet-size"><br>
-        Holding Period (minutes): <input type="number" name="holding-period"> (Note: Minimum 1 minute)<br>
-        <input type="submit">
+      <form name='paramsForm' onsubmit='initiateParams()'>    <!--[AXN: need to define this function]-->
+        P1 Name: <input type='text' name='p1Name'><br>
+        P2 Name: <input type='text' name='p2Name'><br>
+        Wallet Size (US$): <input type='number' name='walletSize'><br>
+        Holding Period (minutes): <input type='number' name='holdingPeriod'> (Note: Minimum 1 minute)<br>
+        <input type='submit'>
       </form>
       <hr>
     </div>
-    <div class="game-section player-div" id="p1-div">
+    <div class='game-section player-div' id='p1-div'>
       <h3>Player 1</h3>
-        <div class="research-area">
-          Research: <input type="text" value="TICKER">
-          <input type="button" value="Go">
+        <div class='research-area'>
+          Research: <input type='text' value='Company name'><input type='text' value='ticker'>
+          <input type='button' value='Go'>
           <br>
-          News: <textarea class="text-area news-area" rows="8" cols="80"></textarea>
+          News: <textarea class='text-area news-area' rows='8' cols='80'></textarea>
           <br>
         </div>
-        <div class="thesis-buy-area">
-          Thesis: <textarea class="text-area thesis-area" rows="8" cols="80"></textarea>
+        <div class='thesis-buy-area'>
+          Thesis: <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
           <br>
-          Buy: <input type="text" value="TICKER">
-          <input type="button" value="Enter Trade">
+          Buy: <input type='text' value='TICKER'>
+          <input type='button' value='Enter Trade'>
           <p>Note: Trade will not be executed until all players have Entered their trades and the Execute Trades button is clicked.</p>
         </div>
         <hr>
     </div>
-    <div class="game-section player-div" id="p2-div">
+    <div class='game-section player-div' id='p2-div'>
       <h3>Player 2</h3>
-        <div class="research-area">
-          Research: <input type="text" value="TICKER">
-          <input type="button" value="Go">
+        <div class='research-area'>
+          Research: <input type='text' value='TICKER'>
+          <input type='button' value='Go'>
           <br>
-          News: <textarea class="text-area news-area" rows="8" cols="80"></textarea>
+          News: <textarea class='text-area news-area' rows='8' cols='80'></textarea>
           <br>
         </div>
-        <div class="thesis-buy-area">
-          Thesis: <textarea class="text-area thesis-area" rows="8" cols="80"></textarea>
+        <div class='thesis-buy-area'>
+          Thesis: <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
           <br>
-          Buy: <input type="text" value="TICKER">
-          <input type="button" value="Enter Trade">
+          Buy: <input type='text' value='TICKER'>
+          <input type='button' value='Enter Trade'>
           <p>Note: Trade will not be executed until all players have Entered their trades and the Execute Trades button is clicked.</p>
         </div>
         <hr>
     </div>
 
-    <div id="game-section execute-div">
+    <div id='game-section execute-div'>
       <h3>Ready to Make Your Bets?</h3>
-      <button type="button" name="button">EXECUTE TRADES!</button>
+      <button type='button' name='button'>EXECUTE TRADES!</button>
     </div>
-    <!-- <script type="text/javascript" src="./scripts/callprice.js"></script> -->
-
-    </script>
+    <!-- <script type='text/javascript' src='./scripts/callprice.js'></script> -->
+    <!-- <script type='text/javascript' src='./scripts/callnews.js'></script>
+    <script type='text/javascript' src='./scripts/game.js'></script> -->
+    <script src="./scripts/bundle.js"></script>
   </body>
 </html>

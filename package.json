@@ -4,8 +4,8 @@
   "description": "<!--- Read Me Contents -->",
   "main": "index.js",
   "dependencies": {
-    "google-finance": "^0.1.9",
     "google-news": "^1.4.6",
+    "google-finance": "^0.1.9",
     "util": "^0.10.3",
     "xmlhttprequest": "^1.8.0"
   },
@@ -15,13 +15,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mmmlll/project-1.git"
+    "url": "git+https://github.com/mmmlll/p1_stockbet.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mmmlll/project-1/issues"
+    "url": "https://github.com/mmmlll/p1_stockbet/issues"
   },
-  "homepage": "https://github.com/mmmlll/project-1#readme"
+  "homepage": "https://github.com/mmmlll/p1_stockbet#readme"
 }
