@@ -17,6 +17,7 @@ produce final score
 document.addEventListener('DOMContentLoaded', function () {
   var score = 0
   var timeLeft = 30
+  var noOfRows = 2
   var ranGrid
   var wholeGrid = document.querySelectorAll('.container')
   var palette = [
@@ -58,9 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('Game Over')
     // display score
     // restart ()
-    } else {
-      return false
+  } if (noOfRows > 5){
+      alert('Game Over')
     }
+    return false
   }
 
 // game timer
@@ -80,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  var noOfRows = 2
+
 
 // grid creator; change level
   function gridCreate () {
@@ -105,12 +107,18 @@ document.addEventListener('DOMContentLoaded', function () {
       // allGrids[ranNum(0, gridId)].style.backgroundColor = palette[p][1]
     }
 
+    // add event listener to each element created
+    wholeGrid.forEach(function (elem) {
+      elem.addEventListener('click', isMatch)
+    })
+
     // randomize one tile to make odd
     ranGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')[ranNum(0, gridId - 1)]
     console.log(ranGrid)
     console.log(gridId)
     ranGrid.style.backgroundColor = palette[p - 1][1]
   }
+// end of gridCreate ()
 
 // random number btw max & min
   function ranNum (min, max) {
@@ -124,52 +132,47 @@ document.addEventListener('DOMContentLoaded', function () {
     init()
   })
 
-  // target the whole grid space
-  console.log(wholeGrid)
-// target single random grid
-// add event listener
-  wholeGrid.forEach(function (elem) {
-    elem.addEventListener('click', function () {
-      alert('clicked')
-      console.log(elem)
-      // empty out previous grid squares
-      document.querySelector('.container').innerHTML = ' '
 
-      // check if correct grid is clicked
-      // if (elem === ranGrid) {
-      //   alert('correct!')
-      // }
+// console.log(wholeGrid)
+// // add event listener
+//   wholeGrid.forEach(function (elem) {
+//     elem.addEventListener('click', function () {
+//       alert(this)
+//       console.log(wholeGrid)
+//       console.log(elem)
 
-      // target the score node
-      var scoreTgt = document.querySelector('.score')
-      // update score to score node
-      scoreTgt.innerHTML = score
-      // score += 1
-      // console.log(score)
+    function isMatch(elem) {
+      console.log('isMatch is working')
 
-      // increase the grid size if < 5x5
-      if (noOfRows < 5) {
-        noOfRows += 1
-        console.log(noOfRows)
+      console.log(this)
+      console.log(ranGrid)
+      if (this === ranGrid) {
+        console.log('matched!')
+
+        // target the score node
+        var scoreTgt = document.querySelector('.score')
+        // update score to score node
+        scoreTgt.innerHTML = score + 1
+        score += 1
+
+        // empty out previous grid squares
+        document.querySelector('.container').innerHTML = ' '
+
+        // console.log(score)
+
+        // increase the grid size if < 5x5
+        if (noOfRows < 5) {
+          noOfRows += 1
+        }
+
+        // create the new grid
+        gridCreate()
+
+    //   }
+    // })
+
       }
-      // create the new grid
-      gridCreate()
-      // }
-    })
-  })
+    // })
+  // })
+  }
 })
-
-// randomize a tile position
-// function ranTile () {
-//   var ranNum = Math.floor(Math.random() * 9)
-//   tile = document.getElementById(ranNum)
-//   console.log(ranNum)
-//   console.log(tile.id)
-//   return tile
-// }
-//
-// function ranPosition () {
-//   ranTile().style.backgroundColor = 'rgb(233, 110, 139)'
-// }
-//
-// ranPosition()
