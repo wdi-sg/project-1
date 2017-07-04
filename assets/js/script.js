@@ -18,24 +18,24 @@
 //
 // // function burgerStack () {
 //
-  // function for startgame
-  // function gamePlay () {
-  //   if (gameStart === true) {
-  //     if (counter <= 3) {
-  //       level1()
-  //     }
-  //     if (counter > 3 && counter <= 7) {
-  //       level2()
-  //     }
-  //     if (counter > 7 && counter <= 11) {
-  //       level3()
-  //     }
-  //     if (counter > 11) {
-  //       level4()
-  //     }
-  //     counter++
-  //   } else gameStart = false
-  // } // closing for gamePlay
+//   function for startgame
+//   function gamePlay () {
+//     if (gameStart === true) {
+//       if (counter <= 3) {
+//         level1()
+//       }
+//       if (counter > 3 && counter <= 7) {
+//         level2()
+//       }
+//       if (counter > 7 && counter <= 11) {
+//         level3()
+//       }
+//       if (counter > 11) {
+//         level4()
+//       }
+//       counter++
+//     } else gameStart = false
+//   } // closing for gamePlay
 //
 // // function to create randomIngredient
 //   function randomizeIngredient () {
@@ -112,15 +112,15 @@
 //   }
 //
 // function for checking if ingredient picked is same as displayed burger
-  // function checkIngredient () {
-  // // var playerInput = playerFoodInput.join('')
-  // // var randomInput = randomArray.join('')
-  //   for (var i = 0; i < playerFoodInput.length; i++) {
-  //     if (randomArray[i] == playerFoodInput[i]) {
-  //       return gamePlay()
-  //     } return wrongPress()
-  //   }
-  // }
+//   function checkIngredient () {
+//   // var playerInput = playerFoodInput.join('')
+//   // var randomInput = randomArray.join('')
+//     for (var i = 0; i < playerFoodInput.length; i++) {
+//       if (randomArray[i] == playerFoodInput[i]) {
+//         return gamePlay()
+//       } return wrongPress()
+//     }
+//   }
 //
 // // function for wrong button pressed
 //   function wrongPress () {

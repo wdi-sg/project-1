@@ -11,6 +11,7 @@
   var u5 = document.getElementById('u5')
   var u6 = document.getElementById('u6')
   var u7 = document.getElementById('u7')
+  var allUs = [u1, u2, u3, u4, u5, u6, u7]
   var hamItem = document.querySelectorAll('.hamItem')
 // generated hamburger
   var d1 = document.getElementById('d1')
@@ -20,9 +21,12 @@
   var d5 = document.getElementById('d5')
   var d6 = document.getElementById('d6')
   var d7 = document.getElementById('d7')
+  var allDs = [d1, d2, d3, d4, d5, d6, d7]
   var hamObj = document.querySelectorAll('.hamObj')
-  var gameStart = true
+  var gameStart = null
   var counter = 0
+  var timer = 10
+  var interval = null
   var start = document.querySelector('.start')
   var reset = document.querySelector('.reset')
 
@@ -60,25 +64,32 @@
       }
       if (event.keyCode === 32) {
         u1.classList.add('topbun')
-        checkIngredient()
-        counter++
+        if (checkIngredient()) {
+          counter++
+        } else {
+          resetClassPlayer()
+          resetClassDisplay()
+          gamePlay()
+          return counter--
+        }
       }
-    } else {
-      counter
-      alert('wrong button pressed')
     }
   }// closing for onKeyUp
 
   function checkIngredient () {
-    for (var i = 7; i > 2; i--) {
-      if ('d[i]'.classList === 'u[i]'.classList) {
+    // console.log(allDs);
+    for (var i = allDs.length - 2; i >= 1; i--) {
+      if (allDs[i].className === allUs[i].className) {
         setTimeout(function () {
           resetClassPlayer()
           resetClassDisplay()
           gamePlay()
-        }, 800)
+        }, 1200)
+        return true
+      } else {
+        return false
       }
-    } return true
+    }
   }
 
   function resetClassPlayer () {
@@ -166,26 +177,54 @@
 
     // function for startgame
   function gamePlay () {
-    if (gameStart === true) {
-      if (counter <= 3) {
-        level1()
-      }
-      if (counter > 3 && counter <= 7) {
-        level2()
-      }
-      if (counter > 7 && counter <= 11) {
-        level3()
-      }
-      if (counter > 11) {
-        level4()
-      }
-    } else gameStart = false
+    if (counter <= 3) {
+      level1()
+    }
+    if (counter > 3 && counter <= 7) {
+      level2()
+    }
+    if (counter > 7 && counter <= 11) {
+      level3()
+    }
+    if (counter > 11) {
+      level4()
+    }
   } // end of startgame
 
-  start.addEventListener('click', gamePlay)
+  document.addEventListener('keyup', startGame)
+  function startGame (event) {
+    if (event.keyCode === 79) {
+      gamePlay()
+      if (interval === null) {
+      interval = setInterval(time, 1000)
+    } else {
+      clearInterval(interval)
+      interval = setInterval(time, 1000)
+    }
+    }
+  }
+  document.addEventListener('keyup', resetGame)
+  function resetGame () {
+    if (event.keyCode === 80) {
+      resetClassPlayer()
+      resetClassDisplay()
+      counter = 0
+      timer = 10
+      gamePlay()
+      clearInterval(interval)
+      interval = setInterval(time, 1000)
+    }
+  }
+
+  function time () {
+    if (timer > 0) {
+      timer--
+      document.querySelector('.timer').textContent = timer
+    }
+  }
 
   function checkKeyCode (keycode) {
-    if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32) {
+    if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32 || keycode === 79 || keycode === 80) {
       return true
     }
     return false

@@ -24,7 +24,7 @@
 }
 
 .timerscore {
-  width: 41%;
+  width: 70%;
   height: center;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,10 @@
   justify-content: center;
 }
 
+.list .ul .li {
+  width: 700px;
+}
+
 .function {
   background-color: yellow;
   height: 120px;
@@ -57,8 +61,8 @@
 }
 
 .leftmiddlecontent {
-  background-color: orange;
-  width: 60%;
+  /*background-color: orange;*/
+  width: 50%;
   height: 500px;
   display: flex;
   align-items: center;
@@ -72,7 +76,7 @@
 }
 
 .rightcontent {
-  background-color: green;
+  /*background-color: green;*/
   /*border: 2px solid black;*/
   width: 40%;
   display: flex;
@@ -87,7 +91,7 @@
 }
 
 .bottomcontent {
-  background-color: teal;
+  /*background-color: teal;*/
   /*border: 2px solid black;*/
   width: 100%;
   height: 160px;
