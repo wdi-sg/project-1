@@ -55,15 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // checks for game over
   function isGameOver () {
   // if timer runs out, returns true
-    if (timeLeft == 0) {
       alert('Game Over')
-    // display score
-    // restart ()
-  } if (noOfRows > 5){
-      alert('Game Over')
-    }
-    return false
-  }
+  }   // display score
+      // restart ()
+    // }
+
 
 // game timer
   function gameTimer () {
@@ -81,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   }
-
-
 
 // grid creator; change level
   function gridCreate () {
@@ -154,16 +148,15 @@ document.addEventListener('DOMContentLoaded', function () {
         // update score to score node
         scoreTgt.innerHTML = score + 1
         score += 1
+        console.log(score)
 
         // empty out previous grid squares
         document.querySelector('.container').innerHTML = ' '
 
-        // console.log(score)
-
         // increase the grid size if < 5x5
         if (noOfRows < 5) {
           noOfRows += 1
-        }
+        } else isGameOver()
 
         // create the new grid
         gridCreate()
