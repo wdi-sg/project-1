@@ -77,27 +77,27 @@ function init () {
     if (number === 1) {
       firstTree.style.visibility = 'visible'
       treeNumber = 1
-      moveTree1Down = setInterval(move1Down, 200)
+      moveTree1Down = setInterval(move1Down, 7)
     }
     if (number === 2) {
       secondTree.style.visibility = 'visible'
       treeNumber = 2
-      moveTree2Down = setInterval(move2Down, 200)
+      moveTree2Down = setInterval(move2Down, 7)
     }
     if (number === 3) {
       thirdTree.style.visibility = 'visible'
       treeNumber = 3
-      moveTree3Down = setInterval(move3Down, 200)
+      moveTree3Down = setInterval(move3Down, 7)
     }
     if (number === 4) {
       fourthTree.style.visibility = 'visible'
       treeNumber = 4
-      moveTree4Down = setInterval(move4Down, 200)
+      moveTree4Down = setInterval(move4Down, 7)
     }
   }
   function move1Down () {
-    if (firstTreeTop <= 270) {
-      firstTreeTop += 27
+    if (firstTreeTop < 270) {
+      firstTreeTop += 2
       firstTree.style.top = firstTreeTop + 'px'
     } else {
       firstTree.style.visibility = 'hidden'
@@ -107,8 +107,8 @@ function init () {
     }
   }
   function move2Down () {
-    if (secondTreeTop <= 270) {
-      secondTreeTop += 27
+    if (secondTreeTop < 270) {
+      secondTreeTop += 2
       secondTree.style.top = secondTreeTop + 'px'
     } else {
       secondTree.style.visibility = 'hidden'
@@ -118,8 +118,8 @@ function init () {
     }
   }
   function move3Down () {
-    if (thirdTreeTop <= 270) {
-      thirdTreeTop += 27
+    if (thirdTreeTop < 270) {
+      thirdTreeTop += 2
       thirdTree.style.top = thirdTreeTop + 'px'
     } else {
       thirdTree.style.visibility = 'hidden'
@@ -130,7 +130,7 @@ function init () {
   }
   function move4Down () {
     if (fourthTreeTop < 270) {
-      fourthTreeTop += 27
+      fourthTreeTop += 2
       fourthTree.style.top = fourthTreeTop + 'px'
     } else {
       fourthTree.style.visibility = 'hidden'
@@ -185,6 +185,7 @@ function init () {
     } else {
       scorecounter -= 1
     }
+    jack.style.backgroundColor = 'orange'
     displayScore()
   }
 
@@ -214,10 +215,6 @@ function init () {
   }
   function displayScore () {
     currentScore.innerHTML = scorecounter
-    // if (scorecounter > 3) {
-    //   clearInterval(genTree)
-    //   genFasterTree = setInterval(generateTrees, 2000)
-    // }
   }
 
   function startTimer () {
@@ -239,9 +236,8 @@ function init () {
         timeLeft--
       }
     }
-    genTree = setInterval(generateTrees, 3000)
+    genTree = setInterval(generateTrees, 1000)
   }
-
   function isGameOver () {
     var topScore = parseInt(topScoreRecord.innerHTML)
     if (scorecounter > topScore) {
