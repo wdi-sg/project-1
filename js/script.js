@@ -10,7 +10,7 @@ function init () {
   startButton.addEventListener('click', startGame)
   var retryButton = document.querySelector('.retrybutton')
   retryButton.addEventListener('click', restartGame)
-  var jackNumber = 0
+  var jackNumber = -1
   var treeNumber = 0
   var firstTree = document.querySelector('.firsttree')
   firstTree.style.top = '0px'
@@ -26,17 +26,12 @@ function init () {
   var fourthTreeTop = parseInt(fourthTree.style.top)
   var scorecounter = 0
   var gameOver = true
-  var timeLeft = 10000
+  var timeLeft = 6000
   var genTree
-  var gen2ndTree
   var moveTree1Down
   var moveTree2Down
   var moveTree3Down
   var moveTree4Down
-  var moveFasterTree1Down
-  var moveFasterTree2Down
-  var moveFasterTree3Down
-  var moveFasterTree4Down
   document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
@@ -78,8 +73,7 @@ function init () {
   }
 
   function generateTrees () {
-    var number = randomFn(0, 4)
-    console.log(number)
+    var number = randomFn(1, 4)
     if (number === 1) {
       firstTree.style.visibility = 'visible'
       treeNumber = 1
@@ -163,7 +157,6 @@ function init () {
   }
 
   function chop () {
-    console.log(genTree)
     if (jackLeftPos === 55) {
       jackNumber = 1
     } else if (jackLeftPos === 215) {
@@ -199,31 +192,31 @@ function init () {
     firstTreeTop = 0
     firstTree.style.top = '0px'
     clearInterval(moveTree1Down)
+    treeNumber = 0
   }
   function refreshTwo () {
     secondTreeTop = 0
     secondTree.style.top = '0px'
     clearInterval(moveTree2Down)
+    treeNumber = 0
   }
   function refreshThree () {
     thirdTreeTop = 0
     thirdTree.style.top = '0px'
     clearInterval(moveTree3Down)
+    treeNumber = 0
   }
   function refreshFour () {
     fourthTreeTop = 0
     fourthTree.style.top = '0px'
     clearInterval(moveTree4Down)
+    treeNumber = 0
   }
   function displayScore () {
     currentScore.innerHTML = scorecounter
-    // if (scorecounter > 5) {
+    // if (scorecounter > 3) {
     //   clearInterval(genTree)
-      // genTree2 = setInterval(generateTrees, 2000)
-    //   moveFasterTree1Down = setInterval(move1Down, 200)
-    //   moveFasterTree2Down = setInterval(move2Down, 200)
-    //   moveFasterTree3Down = setInterval(move3Down, 200)
-    //   moveFasterTree4Down = setInterval(move4Down, 200)
+    //   genFasterTree = setInterval(generateTrees, 2000)
     // }
   }
 
@@ -246,8 +239,7 @@ function init () {
         timeLeft--
       }
     }
-      genTree = setInterval(generateTrees, 3000)
-    
+    genTree = setInterval(generateTrees, 3000)
   }
 
   function isGameOver () {
@@ -262,10 +254,14 @@ function init () {
   }
 
   function restartGame () {
-    timeLeft = 6000
-    treeNumber = 0
-    jackNumber = 0
     jack.style.left = '295px'
+    jackNumber = -1
+    treeNumber = 0
+    firstTree.style.top = '0px'
+    secondTree.style.top = '0px'
+    thirdTree.style.top = '0px'
+    fourthTree.style.top = '0px'
+    timeLeft = 6000
     scorecounter = 0
     startGame()
   }
