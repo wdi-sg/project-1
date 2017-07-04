@@ -20,42 +20,6 @@ buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
 })
 
-// addingredient needs to check if it is the same as in order before adding
-// callback for button click which extracts classname
-function addIngredient () {
-  if (gameStarted) {
-   // whichIngredient takes out the classnames 'cheese', 'patty' etc.
-   whichIngredient = this.className.substring(5).toLowerCase()
-   if (whichIngredient === neededIngredients[ingredientCounter]) {
-    var newIngredient = document.createElement('div')
-     // give the new element classname ingredients, which sets core css
-    newIngredient.className = 'ingredients'
-     // id sets background-image url and negative margins
-    newIngredient.id = whichIngredient
-    newIngredient.style.bottom = (60 + ingredientCounter * 20) + "px"
-     // increasing z-index for overlapping look
-    ingredientCounter++ // counts num of added ingredients so far
-    newIngredient.style.zIndex = ingredientCounter
-    playArea.prepend(newIngredient)
-  }
-  }
-}
-
-// generate random array of ingredients.
-// excluding topbun which must be the last item of every order
-function randomizer () {
-  var randomNum = Math.floor(Math.random() * 6)
-  return possibleIngredients[randomNum]
-}
-
-function newOrder () {
-  for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
-    neededIngredients.push(randomizer())
-  }
-  neededIngredients.push('topbun')
-  return neededIngredients
-}
-
 // DOM manipulation to list out ingredients needed
 function generateList () {
   var orderList = newOrder()
@@ -104,7 +68,6 @@ function increaseScore () {
 
 // click to start timer
 var timeLeft = 60
-
 startGameButton.addEventListener('click', startGame)
 
 function startGame() {
