@@ -1,5 +1,4 @@
 var loopTimer = setInterval(loop, 50)
-var numLoops = 0
 
 var gameboard = document.querySelector('#gameboard')
 var pacman = document.querySelector('#pacman')
@@ -8,24 +7,40 @@ var orangeGhost = document.querySelector('#orangeGhost')
 var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
-var scoreboard = document.querySelector('#scoreboard')
+var scores = document.querySelector('#scores')
 var success = document.querySelector('#success')
 var failure = document.querySelector('#failure')
-
-success.style.display = 'none'
-failure.style.display = 'none'
+var newGame = document.querySelector('#newGame')
 
 var pacmanSpeed = 10
 var ghostSpeed = 6
 var walls = []
 var dots = []
 var score = 0
+var lives = 3
 var scoretracker = []
 
 var upKeyDown = false
 var downKeyDown = false
 var leftKeyDown = false
 var rightKeyDown = false
+
+// var successwords = document.querySelector(#successwords)
+
+function createWall (left, top, width, height) {
+  var wall = document.createElement('div')
+  wall.className = 'wall'
+  wall.style.left = left + 'px'
+  wall.style.top = top + 'px'
+  wall.style.width = width + 'px'
+  wall.style.height = height + 'px'
+  gameboard.appendChild(wall)
+  walls.push(wall)
+}
+
+newGame.style.display = 'none'
+success.style.display = 'none'
+failure.style.display = 'none'
 
 blueGhost.direction = 'left'
 orangeGhost.direction = 'right'
@@ -197,7 +212,6 @@ function hitWall (character) {
   }
 }
 
-
 // check for collision between the character and the ghost
 function hitGhost (character) {
   for (var i = 0; i < ghosts.length; i++) {
@@ -305,11 +319,11 @@ function checkScore () {
       if (!scoretracker.includes(dots[i])) {
         dots[i].style.display = 'none'
         scoretracker.push(dots[i])
-        scoreboard.textContent = 'Score: ' + scoretracker.length + '/91'
+        scores.textContent = scoretracker.length
       }
     }
   }
-  if (scoretracker.length === 2) {
+  if (scoretracker.length === 91) {
     gameOver('win')
   }
 }
@@ -319,19 +333,45 @@ function gameOver (result) {
     success.style.display = ''
     clearInterval(loopTimer)
   } else if (result === 'lose') {
-    failure.style.display = ''
-    clearInterval(loopTimer)
+    if (lives === 0) {
+      failure.style.display = ''
+      clearInterval(loopTimer)
+    } else {
+      document.querySelector('#life'+lives).style.display = 'none'
+      lives --
+      clearInterval(loopTimer)
+      pacman.style.top = '440px'
+      pacman.style.left = '280px'
+      // loopTimer
+    }
   }
 }
 
-function startNewGame () {
-  success.style.display = 'none'
-  failure.style.display = 'none'
-}
+// function startNewGame () {
+//
+//   success.style.display = 'none'
+//   failure.style.display = 'none'
+// }
+
+// function restart () {
+//   restartButton.style.display = ''
+//   restartButton.addEventListener('click', newGame)
+// }
+//
+// function newGame () {
+//   grid = [null, null, null, null, null, null, null, null, null]
+//   player = 1
+//   restartButton.style.display = 'none'
+//   document.querySelector('.wrapper').style.opacity = 1
+//   winner.classList.remove('transform')
+//   winner.textContent = ''
+//   for (var i = 0; i < 9; i++) {
+//     box[i].innerHTML = ''
+//   }
+// }
 
 // game loop
 function loop () {
-  numLoops++
   pacmanMovement()
   checkScore()
   ghostMovement(blueGhost)
