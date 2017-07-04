@@ -13,6 +13,8 @@ var startGameOverlay = document.querySelector('.startGameOverlay')
 var startGameButton = document.querySelector('.startGameButton')
 var endGameOverlay = document.querySelector('.endGameOverlay')
 var endGameScore = document.querySelector('.endGameScore')
+var restart = document.querySelector('.restart')
+
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -130,3 +132,7 @@ function gameOver() {
   endGameScore.innerText = score.innerText
   // alert("Game over. You scored " + (level - 1)) //-1 because initial level is already 1
 }
+
+restart.addEventListener('click', function() {
+  window.location.reload()
+})

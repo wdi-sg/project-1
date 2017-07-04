@@ -30,6 +30,12 @@ li {
   margin: 20px auto;
 }
 
+.startGameButton {
+  color: green;
+  margin: 50px auto;
+  font-size: 70px;
+}
+
 .endGameOverlay {
   position: fixed;
   left: 464px;
@@ -41,7 +47,7 @@ li {
   overflow: hidden;
 }
 
-.startGameButton {
+.restart {
   color: green;
   margin: 50px auto;
   font-size: 70px;
