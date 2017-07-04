@@ -26,13 +26,17 @@ function init () {
   var fourthTreeTop = parseInt(fourthTree.style.top)
   var scorecounter = 0
   var gameOver = true
-  var timeLeft = 6000
+  var timeLeft = 10000
   var genTree
   var gen2ndTree
   var moveTree1Down
   var moveTree2Down
   var moveTree3Down
   var moveTree4Down
+  var moveFasterTree1Down
+  var moveFasterTree2Down
+  var moveFasterTree3Down
+  var moveFasterTree4Down
   document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
@@ -69,31 +73,36 @@ function init () {
     startTimer()
   }
 
+  function randomFn (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+
   function generateTrees () {
-    var number = randomFn(1, 4)
+    var number = randomFn(0, 4)
+    console.log(number)
     if (number === 1) {
       firstTree.style.visibility = 'visible'
       treeNumber = 1
-      moveTree1Down = setInterval(move1Down, 300)
+      moveTree1Down = setInterval(move1Down, 200)
     }
     if (number === 2) {
       secondTree.style.visibility = 'visible'
       treeNumber = 2
-      moveTree2Down = setInterval(move2Down, 300)
+      moveTree2Down = setInterval(move2Down, 200)
     }
     if (number === 3) {
       thirdTree.style.visibility = 'visible'
       treeNumber = 3
-      moveTree3Down = setInterval(move3Down, 300)
+      moveTree3Down = setInterval(move3Down, 200)
     }
     if (number === 4) {
       fourthTree.style.visibility = 'visible'
       treeNumber = 4
-      moveTree4Down = setInterval(move4Down, 300)
+      moveTree4Down = setInterval(move4Down, 200)
     }
   }
   function move1Down () {
-    if (firstTreeTop < 270) {
+    if (firstTreeTop <= 270) {
       firstTreeTop += 27
       firstTree.style.top = firstTreeTop + 'px'
     } else {
@@ -104,7 +113,7 @@ function init () {
     }
   }
   function move2Down () {
-    if (secondTreeTop < 270) {
+    if (secondTreeTop <= 270) {
       secondTreeTop += 27
       secondTree.style.top = secondTreeTop + 'px'
     } else {
@@ -115,7 +124,7 @@ function init () {
     }
   }
   function move3Down () {
-    if (thirdTreeTop < 270) {
+    if (thirdTreeTop <= 270) {
       thirdTreeTop += 27
       thirdTree.style.top = thirdTreeTop + 'px'
     } else {
@@ -153,11 +162,8 @@ function init () {
     }
   }
 
-  function randomFn (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-  }
-
   function chop () {
+    console.log(genTree)
     if (jackLeftPos === 55) {
       jackNumber = 1
     } else if (jackLeftPos === 215) {
@@ -167,42 +173,60 @@ function init () {
     } else if (jackLeftPos === 535) {
       jackNumber = 4
     }
-    if (gameOver === false) {
-      if (jackNumber === treeNumber) {
-        scorecounter += 1
-        timeLeft += 100
+    if (jackNumber === treeNumber) {
+      scorecounter += 1
+      timeLeft += 100
+      if (jackNumber === 1) {
         firstTree.style.visibility = 'hidden'
+        refreshOne()
+      } if (jackNumber === 2) {
         secondTree.style.visibility = 'hidden'
+        refreshTwo()
+      } if (jackNumber === 3) {
         thirdTree.style.visibility = 'hidden'
+        refreshThree()
+      } if (jackNumber === 4) {
         fourthTree.style.visibility = 'hidden'
-        clearInterval(genTree)
-        clearInterval(gen2ndTree)
-        clearInterval(moveTree1Down)
-        clearInterval(moveTree2Down)
-        clearInterval(moveTree3Down)
-        clearInterval(moveTree4Down)
-      } else {
-        scorecounter -= 1
+        refreshFour()
       }
-      displayScore()
+    } else {
+      scorecounter -= 1
     }
+    displayScore()
   }
 
+  function refreshOne () {
+    firstTreeTop = 0
+    firstTree.style.top = '0px'
+    clearInterval(moveTree1Down)
+  }
+  function refreshTwo () {
+    secondTreeTop = 0
+    secondTree.style.top = '0px'
+    clearInterval(moveTree2Down)
+  }
+  function refreshThree () {
+    thirdTreeTop = 0
+    thirdTree.style.top = '0px'
+    clearInterval(moveTree3Down)
+  }
+  function refreshFour () {
+    fourthTreeTop = 0
+    fourthTree.style.top = '0px'
+    clearInterval(moveTree4Down)
+  }
   function displayScore () {
     currentScore.innerHTML = scorecounter
-    gen2ndTree = setInterval(generateTrees, 3000)
-    refreshRound()
+    // if (scorecounter > 5) {
+    //   clearInterval(genTree)
+      // genTree2 = setInterval(generateTrees, 2000)
+    //   moveFasterTree1Down = setInterval(move1Down, 200)
+    //   moveFasterTree2Down = setInterval(move2Down, 200)
+    //   moveFasterTree3Down = setInterval(move3Down, 200)
+    //   moveFasterTree4Down = setInterval(move4Down, 200)
+    // }
   }
-  function refreshRound () {
-    firstTreeTop = 0
-    secondTreeTop = 0
-    thirdTreeTop = 0
-    fourthTreeTop = 0
-    firstTree.style.top = '0px'
-    secondTree.style.top = '0px'
-    thirdTree.style.top = '0px'
-    fourthTree.style.top = '0px'
-  }
+
   function startTimer () {
     var elem = timer
     var timerId = setInterval(countdown, 1)
@@ -211,15 +235,21 @@ function init () {
       if (timeLeft === -1) {
         clearTimeout(timerId)
         gameOver = true
+        clearInterval(genTree)
+        clearInterval(moveTree1Down)
+        clearInterval(moveTree2Down)
+        clearInterval(moveTree3Down)
+        clearInterval(moveTree4Down)
         isGameOver()
       } else {
         elem.innerHTML = timeLeft
         timeLeft--
       }
     }
-    genTree = setInterval(generateTrees, 3000)
+      genTree = setInterval(generateTrees, 3000)
+    
   }
-  
+
   function isGameOver () {
     var topScore = parseInt(topScoreRecord.innerHTML)
     if (scorecounter > topScore) {
@@ -229,14 +259,6 @@ function init () {
       setTimeout(function () { alert('please try again') }, 100)
     }
     retryButton.style.visibility = 'visible'
-    gameOver = true
-    clearInterval(genTree)
-    clearInterval(gen2ndTree)
-    clearInterval(moveTree1Down)
-    clearInterval(moveTree2Down)
-    clearInterval(moveTree3Down)
-    clearInterval(moveTree4Down)
-    refreshRound()
   }
 
   function restartGame () {
