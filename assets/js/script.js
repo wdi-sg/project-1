@@ -9,6 +9,11 @@ var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
 var scoreboard = document.querySelector('#scoreboard')
+var success = document.querySelector('#success')
+var failure = document.querySelector('#failure')
+
+success.style.display = 'none'
+failure.style.display = 'none'
 
 var pacmanSpeed = 10
 var ghostSpeed = 6
@@ -66,10 +71,10 @@ function createWall (left, top, width, height) {
 
 // border
 createWall(0, 0, 600, 40)
-createWall(0, 0, 40, 280)
-createWall(0, 280, 40, 240)
+createWall(0, 0, 40, 240)
+createWall(0, 280, 40, 200)
 createWall(0, 480, 600, 40)
-createWall(560, 0, 40, 280)
+createWall(560, 0, 40, 240)
 createWall(560, 280, 40, 240)
 // gameboard tiles
 // W
@@ -234,8 +239,7 @@ function pacmanMovement () {
   }
   // check for collision between pacman and ghosts
   if (hitGhost(pacman)) {
-    // clearInterval(loopTimer)
-    gameOver()
+    gameOver('lose')
   }
 }
 
@@ -301,30 +305,28 @@ function checkScore () {
       if (!scoretracker.includes(dots[i])) {
         dots[i].style.display = 'none'
         scoretracker.push(dots[i])
-        scoreboard.textContent = scoretracker.length
+        scoreboard.textContent = 'Score: ' + scoretracker.length + '/91'
       }
     }
   }
+  if (scoretracker.length === 2) {
+    gameOver('win')
+  }
 }
 
-function gameOver () {
-  if (scoretracker.length === 91) {
-    var success = document.createElement('div')
-    success.className = 'success'
-    gameboard.appendChild(success)
-    success.textContent = "CONGRATULATIONS!"
+function gameOver (result) {
+  if (result === 'win') {
+    success.style.display = ''
     clearInterval(loopTimer)
-  } else {
-    var failure = document.createElement('div')
-    failure.className = 'failure'
-    gameboard.appendChild(failure)
-    failure.textContent = "TRY HARDER!"
+  } else if (result === 'lose') {
+    failure.style.display = ''
     clearInterval(loopTimer)
   }
 }
 
 function startNewGame () {
-  // gameboard.removeChild(success)
+  success.style.display = 'none'
+  failure.style.display = 'none'
 }
 
 // game loop

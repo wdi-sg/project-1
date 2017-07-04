@@ -1,5 +1,6 @@
 body {
   background-color: black;
+  font-family: 'Press Start 2P', cursive;
 }
 
 #gameboard {
@@ -8,20 +9,21 @@ body {
   width: 600px;
   height: 520px;
   background: black;
-  z-index: -2;
+  z-index: -3;
 }
 
 #pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
   position: absolute;
+  z-index: 0;
   /*transition: top 2s linear, left 2s linear;*/
 }
 
 #scoreboard {
   position: absolute;
-  top: 520px;
+  top: 530px;
   background: black;
   z-index: 1;
-  font-size: 20px;
+  font-size: 10px;
   color: white;
 }
 
@@ -45,33 +47,27 @@ body {
 .dot {
   position: absolute;
   background-color: rgb(249, 248, 199);
-  z-index: -1;
+  z-index: -2;
 }
 
-.success {
+#success, #failure {
   position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  font: black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#success {
   background: pink;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  font-family: 'Press Start 2P', cursive;
-  font: black;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*display: none;*/
 }
 
-.failure {
-  position: absolute;
+#failure {
   background: red;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  font-family: 'Press Start 2P', cursive;
-  font: black;
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /*display: none;*/
 }
