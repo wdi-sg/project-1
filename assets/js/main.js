@@ -6,15 +6,19 @@ function gameInit () {
   var lives = 5
   var score = 0
   var combo = 0
+  var maxCombo = 0
   var level = 1
 
-  var startButton = document.querySelector('.startButton')
+  var startButton = document.querySelector('.newgame')
+  var instructions = document.querySelector('.instructions')
   console.log(startButton)
 
   function gameSetup () {
-    container.style.opacity = '1'
-    innerContainer.style.opacity = '1'
-    startButton.style.opacity = '0'
+    // container.style.opacity = '1'
+    // innerContainer.style.opacity = '1'
+    innerContainer.style.border = '1px solid white'
+    startButton.style.display = 'none'
+    instructions.style.display = 'none'
     createLifeCounter()
     createScoreCounter()
     createComboCounter()
@@ -24,9 +28,23 @@ function gameInit () {
     lives = 5
     score = 0
     combo = 0
+    maxCombo = 0
+    level = 1
     setLife()
     setScore()
     setTimeout(chooseBox, 1000)
+  }
+
+  function showInstructions () {
+    var instructions = document.createElement('div')
+    instructions.style.height = '500px'
+    instructions.style.width = '800px'
+    instructions.style.border = '1px solid white'
+    instructions.style.backgroundColor = 'black'
+    instructions.style.zIndex = '3'
+    instructions.textContent = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+    instructions.style.position = 'absolute'
+    container.appendChild(instructions)
   }
 
   function setLevel () {
@@ -51,7 +69,7 @@ function gameInit () {
     levelCounter.style.width = '300px'
     levelCounter.style.fontSize = '15pt'
     levelCounter.textContent = 'Level: ' + level
-    container.appendChild(levelCounter)
+    innerContainer.appendChild(levelCounter)
   }
 
   function createScoreToProgress () {
@@ -64,7 +82,7 @@ function gameInit () {
     // scoreToProgress.style.border = '1px solid black'
     scoreToProgress.style.position = 'absolute'
     scoreToProgress.style.textAlign = 'center'
-    container.appendChild(scoreToProgress)
+    innerContainer.appendChild(scoreToProgress)
   }
 
   function createComboCounter () {
@@ -77,7 +95,7 @@ function gameInit () {
     comboCounter.style.position = 'absolute'
     comboCounter.style.opacity = '1'
     comboCounter.style.color = 'white'
-    container.appendChild(comboCounter)
+    innerContainer.appendChild(comboCounter)
   }
 
   function createLifeCounter () {
@@ -95,7 +113,7 @@ function gameInit () {
     for (var i = 1; i <= 5; i++) {
       addHeart(lifeCounter)
     }
-    container.appendChild(lifeCounter)
+    innerContainer.appendChild(lifeCounter)
   }
 
   function createScoreCounter () {
@@ -107,14 +125,65 @@ function gameInit () {
     scoreCounter.style.fontSize = '30pt'
     scoreCounter.style.textAlign = 'center'
     scoreCounter.style.position = 'absolute'
-    container.appendChild(scoreCounter)
+    innerContainer.appendChild(scoreCounter)
+  }
+
+  function createGameoverWindow () {
+    var gameoverWindow = document.createElement('div')
+    gameoverWindow.setAttribute('class', 'gameoverWindow')
+    gameoverWindow.style.height = '200px'
+    gameoverWindow.style.width = '400px'
+    gameoverWindow.style.top = '150px'
+    gameoverWindow.style.left = '200px'
+    // gameoverWindow.style.border = '1px solid white'
+    gameoverWindow.style.position = 'absolute'
+    gameoverWindow.style.textAlign = 'center'
+    gameoverWindow.style.color = 'white'
+    gameoverWindow.style.backgroundColor = 'black'
+    gameoverWindow.style.fontSize = '15pt'
+    gameoverWindow.innerHTML = '<br>Score: ' + score + '<br> Level: ' + level + '<br> Max Combo: ' + maxCombo
+    createButton(gameoverWindow, restart, '115px', '150px', 'Restart', '15pt', '100px')
+    createButton(gameoverWindow, mainMenu, '150px', '100px', 'Back to Main Menu', '15pt', '200px')
+    innerContainer.innerHTML = ''
+    container.appendChild(gameoverWindow)
+  }
+
+  function createButton (appendTo, callback, top, right, content, fontsize, width) {
+    var button = document.createElement('button')
+    button.style.top = top
+    button.style.right = right
+    button.style.width = width
+    button.style.position = 'absolute'
+    button.style.margin = 'auto'
+    button.style.textAlign = 'center'
+    button.style.fontSize = fontsize
+    button.style.padding = '0px'
+    button.style.backgroundColor = 'black'
+    // button.style.border = '1px solid black'
+    button.textContent = content
+    button.addEventListener('click', callback)
+    appendTo.appendChild(button)
+  }
+
+  function mainMenu () {
+    var gameoverWindow = document.querySelector('.gameoverWindow')
+    container.removeChild(gameoverWindow)
+    startButton.style.display = ''
+    instructions.style.display = ''
+    innerContainer.style.border = ''
+  }
+
+  function restart () {
+    var gameoverWindow = document.querySelector('.gameoverWindow')
+    container.removeChild(gameoverWindow)
+    gameSetup()
   }
 
   function setLife () {
-    var lifeCounter = document.querySelector('.lifeCounter')
-    if (lives < 1) {
+    if (lives === 0) {
       innerContainer.innerHTML = ''
       inGameMessage('Game Over!', 1000)
+      setTimeout(createGameoverWindow, 2000)
     }
   }
 
@@ -140,11 +209,12 @@ function gameInit () {
         setTimeout(inGameMessage, 1010, 'Level up!', 500)
       }
       setLevel()
-      setBackground()
+      // setBackground()
     }
   }
 
   function setCombo () {
+    if (combo > maxCombo) maxCombo = combo
     if (combo >= 10) {
       var comboCounter = document.querySelector('.comboCounter')
       comboCounter.textContent = 'Combo ' + combo
@@ -156,7 +226,7 @@ function gameInit () {
         comboCounter.style.transition = 'opacity 1s, top 0.1s'
         comboCounter.style.top = '45px'
       }, 10)
-      if (combo % 50 === 0 && combo !== 0) {
+      if (combo % 50 === 0) {
         score += 1000
         inGameMessage('Nice!', 10)
         setScore()
@@ -209,7 +279,7 @@ function gameInit () {
   function chooseBox () {
     if (lives > 0) {
       var identifier = randomNo(1, 100)
-      if (identifier <= -10 + level * 2 && identifier <= 10) {
+      if (identifier <= -4 + level && identifier <= 5) {
         addBox('heartBox')
       } else if (identifier <= 3 + level * 2) {
         addBox('upsideDown')
@@ -218,8 +288,8 @@ function gameInit () {
       } else {
         addBox('easy')
       }
-      var time = randomNo(setLevelAdjustedParameter(level, 1000, 150), setLevelAdjustedParameter(level, 1000, 150) + 1000)
-      setTimeout(chooseBox, time)
+      var timeInterval = randomNo(setLevelAdjustedParameter(level, 1000, 150), setLevelAdjustedParameter(level, 1000, 150) + 1000)
+      setTimeout(chooseBox, timeInterval)
     }
   }
 
@@ -315,10 +385,10 @@ function gameInit () {
     var lifeCounter = document.querySelector('.lifeCounter')
     lifeCounter.removeChild(heartToRemove)
     var redBackground = document.createElement('div')
-    redBackground.style.height = '5000px'
-    redBackground.style.width = '5000px'
-    redBackground.style.top = '-1000px'
-    redBackground.style.left = '-1000px'
+    redBackground.style.height = '100%'
+    redBackground.style.width = '100%'
+    redBackground.style.top = '0px'
+    redBackground.style.left = '0px'
     redBackground.style.backgroundColor = 'red'
     redBackground.style.opacity = '0.5'
     redBackground.style.transition = 'opacity 0.5s'
@@ -327,9 +397,9 @@ function gameInit () {
       redBackground.style.opacity = '0'
     }, 10)
     setTimeout(function () {
-      innerContainer.removeChild(redBackground)
+      document.body.removeChild(redBackground)
     }, 1000)
-    innerContainer.appendChild(redBackground)
+    document.body.appendChild(redBackground)
     setLife()
   }
 
@@ -361,7 +431,6 @@ function gameInit () {
         setCombo()
       } else if (playerArr[playerLastChar] === '`') {
         removeBox()
-        setLife()
         combo = 0
         setCombo()
       } else if (playerArr[playerLastChar] !== boxSelector.textContent[playerLastChar]) {
@@ -379,6 +448,7 @@ function gameInit () {
       if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
       if (boxSelector.type === 'heartBox') {
         var lifeCounter = document.querySelector('.lifeCounter')
+        lives += 1
         addHeart(lifeCounter)
         inGameMessage('Extra Life!', 10)
       }
@@ -391,6 +461,7 @@ function gameInit () {
   }
 
   startButton.addEventListener('click', gameSetup)
+  instructions.addEventListener('click', showInstructions)
   document.body.addEventListener('keydown', typeLetter)
 }
 

@@ -1,11 +1,16 @@
 body {
-  background: url("../../assets/images/level1Background.jpg")
+  background: black;
+  color: white;
+}
+
+.box {
+  color: black;
 }
 
 .container {
   height: 500px;
   width: 800px;
-  border: 1px solid white;
+  /*border: 1px solid white;*/
   margin: 100px auto;
   position: relative;
   /*z-index: -3;*/
@@ -26,16 +31,35 @@ body {
   top: 50px;*/
 }
 
-.startButton {
+.newgame {
   position: absolute;
+  background-color: black;
   text-align: center;
   height: 50px;
-  width: 100px;
-  margin: 300px 350px;
+  width: 150px;
+  top: 225px;
+  left: 225px;
   border-radius: 10%;
   z-index: 1;
 }
 
-.startButton:hover {
-  background-color: rgb(161, 161, 161);
+.instructions {
+  position: absolute;
+  background-color: black;
+  text-align: center;
+  height: 50px;
+  width: 150px;
+  top: 225px;
+  left: 425px;
+  border-radius: 10%;
+  z-index: 1;
+}
+
+
+button {
+  color: white;
+}
+
+button:hover {
+  color: rgb(115, 115, 115);
 }
