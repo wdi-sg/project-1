@@ -4,6 +4,7 @@
 
 // function init () {
 // userinput hamburger
+setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
   var u1 = document.getElementById('u1')
   var u2 = document.getElementById('u2')
   var u3 = document.getElementById('u3')
@@ -23,9 +24,10 @@
   var d7 = document.getElementById('d7')
   var allDs = [d1, d2, d3, d4, d5, d6, d7]
   var hamObj = document.querySelectorAll('.hamObj')
-  var gameStart = null
+  var gameStart = false
   var counter = 0
-  var timer = 10
+  var timer = 60
+  var timeCount = document.querySelector('.timer')
   var interval = null
   var start = document.querySelector('.start')
   var reset = document.querySelector('.reset')
@@ -66,11 +68,13 @@
         u1.classList.add('topbun')
         if (checkIngredient()) {
           counter++
+          point()
         } else {
           resetClassPlayer()
           resetClassDisplay()
           gamePlay()
-          return counter--
+          counter--
+          point()
         }
       }
     }
@@ -194,6 +198,7 @@
   document.addEventListener('keyup', startGame)
   function startGame (event) {
     if (event.keyCode === 79) {
+      if (gameStart === false) {
       gamePlay()
       if (interval === null) {
       interval = setInterval(time, 1000)
@@ -202,26 +207,33 @@
       interval = setInterval(time, 1000)
     }
     }
-  }
+  }gameStart = true
+}
+
   document.addEventListener('keyup', resetGame)
   function resetGame () {
     if (event.keyCode === 80) {
       resetClassPlayer()
       resetClassDisplay()
       counter = 0
-      timer = 10
-      gamePlay()
+      timer = 60
+      timeCount.textContent = 1 +" min"
+      gameStart = false
+      point()
       clearInterval(interval)
-      interval = setInterval(time, 1000)
+      interval = null
     }
   }
 
   function time () {
     if (timer > 0) {
       timer--
-      document.querySelector('.timer').textContent = timer
+      timeCount.textContent = timer + "s"
     }
   }
+
+function point() {
+  document.querySelector('.score').innerHTML = counter + " points" }
 
   function checkKeyCode (keycode) {
     if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32 || keycode === 79 || keycode === 80) {

@@ -3,13 +3,7 @@
 // var match = false
 // var counter = 0
 // var gameOver = false
-// var score = {
-//   cucumber: 10,
-//   meat: 10,
-//   onion: 10,
-//   lettuce: 10,
-//   cheese: 10
-// }
+
 // var randomArray = [] // random food array
 // var playerFoodInput = [] // player chosen food array
 // var displayFoodInput = [] // generated food array
