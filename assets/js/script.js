@@ -10,6 +10,7 @@ function init() {
   var resetto = document.querySelector('#reset')
   var input = document.querySelector('.inputField')
   var timerField = document.querySelector('.time')
+  var typedWords = document.querySelector('ul')
 
   start.addEventListener('click', displayStr)
   resetto.addEventListener('click', reset)
@@ -21,11 +22,14 @@ function init() {
       // console.log(event)
         // check if we're clicking enter
     if (event.keyCode === 13) {
-      var testWord = input.value
+      var testWord = input.value.toLowerCase()
       //console.log(typeof(testWord))
       var testWordStr = testWord.split('')
       if (alLogic.checkInputStr(randomStr, testWordStr) && !alLogic.checkStoredArr(testWord) && alLogic.dictCheck(testWord)) {
         storedArr.push(testWord)
+        var listItem = document.createElement('li')
+         listItem.textContent = testWord
+         typedWords.appendChild(listItem)
         input.value = ''
         console.log(storedArr)
       } else {

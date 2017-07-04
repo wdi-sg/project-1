@@ -63,5 +63,8 @@ justify-content: center;*/
   /*display: inline;*/
   /*width: 70%;*/
     /*align-items: flex-end;*/
+}
 
+ul{
+  list-style: none;
 }
