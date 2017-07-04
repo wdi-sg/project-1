@@ -13,9 +13,13 @@ function init () {
   var jackNumber = 0
   var treeNumber = 0
   var firstTree = document.querySelector('.firsttree')
+  firstTree.style.top = '115px'
   var secondTree = document.querySelector('.secondtree')
+  secondTree.style.top = '115px'
   var thirdTree = document.querySelector('.thirdtree')
+  thirdTree.style.top = '115px'
   var fourthTree = document.querySelector('.fourthtree')
+  fourthTree.style.top = '115px'
   var scorecounter = 0
   var gameOver = false
   var timeLeft = 3000
@@ -57,8 +61,10 @@ function init () {
 
   function generateTrees () {
     var number = randomFn(1, 4)
+    var topPosition = randomFn(10, 250)
     if (number === 1) {
       firstTree.style.visibility = 'visible'
+      firstTree.style.top = topPosition + 'px'
       secondTree.style.visibility = 'hidden'
       thirdTree.style.visibility = 'hidden'
       fourthTree.style.visibility = 'hidden'
@@ -67,6 +73,7 @@ function init () {
     if (number === 2) {
       firstTree.style.visibility = 'hidden'
       secondTree.style.visibility = 'visible'
+      secondTree.style.top = topPosition + 'px'
       thirdTree.style.visibility = 'hidden'
       fourthTree.style.visibility = 'hidden'
       treeNumber += 2
@@ -75,6 +82,7 @@ function init () {
       firstTree.style.visibility = 'hidden'
       secondTree.style.visibility = 'hidden'
       thirdTree.style.visibility = 'visible'
+      thirdTree.style.top = topPosition + 'px'
       fourthTree.style.visibility = 'hidden'
       treeNumber += 3
     }
@@ -83,6 +91,7 @@ function init () {
       secondTree.style.visibility = 'hidden'
       thirdTree.style.visibility = 'hidden'
       fourthTree.style.visibility = 'visible'
+      fourthTree.style.top = topPosition + 'px'
       treeNumber += 4
     }
   }
