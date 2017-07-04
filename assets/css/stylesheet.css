@@ -7,7 +7,7 @@
   margin: 0;
 }
 body {
-  /*background-image: url("/assets/images/stock.jpeg");*/
+  /*background-image: url(/assets/images/stock.jpeg);*/
   background-repeat: no-repeat;
   background-position: left;
 }
@@ -64,7 +64,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(./assets/images/bgimg.jpg);
+  background-image: url(./images/bgimg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -83,7 +83,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(./assets/images/bgimg.jpg);
+  background-image: url(/images/bgimg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -106,7 +106,7 @@ body {
 }
 
 .topbun {
-  background-image: url(./assets/images/topbuns.png);
+  background-image: url(./images/topbuns.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 84px;
@@ -114,7 +114,7 @@ body {
   margin: -10px 20px;
 }
 .botbun {
-  background-image: url(./assets/images/botbuns.png);
+  background-image: url(./images/botbuns.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 75px;
@@ -123,7 +123,7 @@ body {
 }
 
 .cucumber {
-  background-image: url(./assets/images/cucumber.png);
+  background-image: url(./images/cucumber.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 55px;
@@ -133,7 +133,7 @@ body {
   align-items: flex-end;
 }
 .meat {
-  background-image: url(./assets/images/pattys.png);
+  background-image: url(./images/pattys.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 70px;
@@ -143,7 +143,7 @@ body {
   align-items: flex-end;
 }
 .onion {
-  background-image: url(./assets/images/onions.png);
+  background-image: url(./images/onions.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 58px;
@@ -153,7 +153,7 @@ body {
   align-items: flex-end;
 }
 .lettuce {
-  background-image: url(./assets/images/lettuces.png);
+  background-image: url(./images/lettuces.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 88px;
@@ -163,7 +163,7 @@ body {
   align-items: flex-end;
 }
 .cheese {
-  background-image: url(./assets/images/cheeses.png);
+  background-image: url(./images/cheeses.png);
   background-repeat: no-repeat;
   width: 180px;
   height: 70px;
