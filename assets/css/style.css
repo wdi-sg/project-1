@@ -8,10 +8,15 @@ h1 {
   margin: 10px auto;
 }
 
-h2 {
-  font-size: 50px;
-  font-family: 'Luckiest Guy';
+ol {
+  font-size: 30px;
+  font-family: 'Roboto';
   margin: 0 auto;
+  text-align: left;
+}
+
+li {
+  margin: 20px auto;
 }
 
 .ingredients {
