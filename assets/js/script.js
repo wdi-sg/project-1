@@ -15,18 +15,19 @@ produce final score
 // #########################
 
 document.addEventListener('DOMContentLoaded', function () {
-  var tile
   var score = 0
   var timeLeft = 30
+  var ranGrid
+  var wholeGrid = document.querySelectorAll('.container')
   var palette = [
     ['rgb(20, 153, 105)',
-      'rgb(25, 168, 131)'],
+      'rgb(0, 0, 0)'],
     ['rgb(235, 152, 20)',
-      'rgb(220, 160, 40)'],
+      'rgb(255, 255, 255)'],
     ['rgb(0, 117, 255)',
-      'rgb(30, 117, 220)'],
+      'rgb(0, 0, 0)'],
     ['rgb(255, 237, 0)',
-      'rgb(255, 230, 40)']
+      'rgb(255, 255, 255)']
   ]
 
   console.log(palette[3][0])
@@ -90,39 +91,31 @@ document.addEventListener('DOMContentLoaded', function () {
       for (var k = 0; k < noOfRows; k++) {
         document.querySelector('.container').innerHTML += '<div class = "L' + noOfRows + 'Grid" id = ' + gridId + '>' + (gridId++) + '</div>'
       }
+
       document.querySelector('.container').innerHTML += '</div>'
     }
+
     // grid color
-    // '.L' + noOfRows + 'Grid'
-    var allGrids = document.querySelectorAll('.L' + noOfRows + 'Grid')
-    for (var p = 0; p < noOfRows-1; p++){
-      for (var j = 0; j < gridId; j++)
-      allGrids[j].style.backgroundColor = palette[p][0]
-      // randomize one tile to make odd
+    wholeGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')
+    console.log(wholeGrid)
+    for (var p = 0; p < noOfRows - 1; p++) {
+      for (var j = 0; j < gridId; j++) {
+        wholeGrid[j].style.backgroundColor = palette[p][0]
+      }
+      // allGrids[ranNum(0, gridId)].style.backgroundColor = palette[p][1]
     }
+
+    // randomize one tile to make odd
+    ranGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')[ranNum(0, gridId - 1)]
+    console.log(ranGrid)
+    console.log(gridId)
+    ranGrid.style.backgroundColor = palette[p - 1][1]
   }
 
 // random number btw max & min
   function ranNum (min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-
-// randomize a tile position
-  // function ranTile () {
-  //   var ranNum = Math.floor(Math.random() * 9)
-  //   tile = document.getElementById(ranNum)
-  //   console.log(ranNum)
-  //   console.log(tile.id)
-  //   return tile
-  // }
-  //
-  // function ranPosition () {
-  //   ranTile().style.backgroundColor = 'rgb(233, 110, 139)'
-  // }
-  //
-  // ranPosition()
 
 // target the start node
   var startButtonTgt = document.querySelector('.startButton')
@@ -131,15 +124,29 @@ document.addEventListener('DOMContentLoaded', function () {
     init()
   })
 
-// target the whole grid space
-  var wholeGrid = document.querySelectorAll('.container')
-
+  // target the whole grid space
+  console.log(wholeGrid)
 // target single random grid
 // add event listener
   wholeGrid.forEach(function (elem) {
     elem.addEventListener('click', function () {
+      alert('clicked')
+      console.log(elem)
       // empty out previous grid squares
       document.querySelector('.container').innerHTML = ' '
+
+      // check if correct grid is clicked
+      // if (elem === ranGrid) {
+      //   alert('correct!')
+      // }
+
+      // target the score node
+      var scoreTgt = document.querySelector('.score')
+      // update score to score node
+      scoreTgt.innerHTML = score
+      // score += 1
+      // console.log(score)
+
       // increase the grid size if < 5x5
       if (noOfRows < 5) {
         noOfRows += 1
@@ -147,20 +154,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       // create the new grid
       gridCreate()
-
-      // if (elem.id === tile.id) {
-      //   elem.style.backgroundColor = 'red'
-        // ranPosition()
-
-        // score += 1
-      // target the score node
-      var scoreTgt = document.querySelector('.score')
-      // update score to score node
-      scoreTgt.innerHTML = score
-      // console.log(score)
       // }
     })
   })
 })
 
-// check if correct grid is clicked
+// randomize a tile position
+// function ranTile () {
+//   var ranNum = Math.floor(Math.random() * 9)
+//   tile = document.getElementById(ranNum)
+//   console.log(ranNum)
+//   console.log(tile.id)
+//   return tile
+// }
+//
+// function ranPosition () {
+//   ranTile().style.backgroundColor = 'rgb(233, 110, 139)'
+// }
+//
+// ranPosition()
