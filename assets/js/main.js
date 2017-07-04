@@ -8,8 +8,13 @@ function gameInit () {
   var combo = 0
   var level = 1
 
+  var startButton = document.querySelector('.startButton')
+  console.log(startButton)
+
   function gameSetup () {
-    setBackground()
+    container.style.opacity = '1'
+    innerContainer.style.opacity = '1'
+    startButton.style.opacity = '0'
     createLifeCounter()
     createScoreCounter()
     createComboCounter()
@@ -21,7 +26,7 @@ function gameInit () {
     combo = 0
     setLife()
     setScore()
-    chooseBox()
+    setTimeout(chooseBox, 1000)
   }
 
   function setLevel () {
@@ -31,9 +36,10 @@ function gameInit () {
     setScore()
   }
 
-  function setBackground () {
-    document.body.background = 'assets/images/levelOneBackground.jpg'
-  }
+  // function setBackground () {
+  //   document.body.background = 'assets/images/level2Background.jpg'
+  //   document.body.transition = '2s'
+  // }
 
   function createLevelCounter () {
     var levelCounter = document.createElement('div')
@@ -87,13 +93,7 @@ function gameInit () {
     lifeCounter.style.fontSize = '20pt'
     lifeCounter.textContent = 'Lives'
     for (var i = 1; i <= 5; i++) {
-      var heart = document.createElement('img')
-      heart.src = 'assets/images/redheart.png'
-      heart.setAttribute('class', 'heart')
-      heart.style.height = '40px'
-      heart.style.width = '40px'
-      heart.style.margin = '1px'
-      lifeCounter.appendChild(heart)
+      addHeart(lifeCounter)
     }
     container.appendChild(lifeCounter)
   }
@@ -118,6 +118,16 @@ function gameInit () {
     }
   }
 
+  function addHeart (appendTo) {
+    var heart = document.createElement('img')
+    heart.src = 'assets/images/redheart.png'
+    heart.setAttribute('class', 'heart')
+    heart.style.height = '40px'
+    heart.style.width = '40px'
+    heart.style.margin = '1px'
+    appendTo.appendChild(heart)
+  }
+
   function setScore () {
     var scoreCounter = document.querySelector('.scoreCounter')
     scoreCounter.textContent = 'Score: ' + score
@@ -130,6 +140,7 @@ function gameInit () {
         setTimeout(inGameMessage, 1010, 'Level up!', 500)
       }
       setLevel()
+      setBackground()
     }
   }
 
@@ -197,12 +208,12 @@ function gameInit () {
 
   function chooseBox () {
     if (lives > 0) {
-      var identifier = randomNo(0, 100)
-      if (identifier < 0) {
-        addBox('twoLayer')
-      } else if (identifier < 11) {
+      var identifier = randomNo(1, 100)
+      if (identifier <= -10 + level * 2 && identifier <= 10) {
+        addBox('heartBox')
+      } else if (identifier <= 3 + level * 2) {
         addBox('upsideDown')
-      } else if (identifier < 21) {
+      } else if (identifier <= 13 + level * 2) {
         addBox('twoBox')
       } else {
         addBox('easy')
@@ -211,14 +222,6 @@ function gameInit () {
       setTimeout(chooseBox, time)
     }
   }
-
-  // function setBoxSpawnIntervalMin (level) {
-  //   var boxSpawnIntervalMin = 1000
-  //   for (var i = 2; i <= level; i++) {
-  //     boxSpawnIntervalMin = boxSpawnIntervalMin - 200 / (i - 1)
-  //   }
-  //   return boxSpawnIntervalMin
-  // }
 
   function addBox (type) {
     var boxElem = document.createElement('div')
@@ -229,18 +232,6 @@ function gameInit () {
     console.log('top ' + boxFallTime.toString() + 's linear')
     boxElem.style.transition = 'top ' + boxFallTime + 's linear, transform ' + boxFallTime + 's linear'
     console.log(boxElem.style.transition)
-    if (type === 'twoLayer') {
-      boxElem.style.backgroundColor = 'orange'
-      boxElem.isSecondLayer = false
-    } else if (type === 'upsideDown') {
-      boxElem.style.backgroundColor = 'cyan'
-      boxElem.style.transform = 'rotate(0deg)'
-      setTimeout(function () {
-        boxElem.style.transform = 'rotate(360deg)'
-      }, 100)
-    } else {
-      boxElem.style.backgroundColor = 'pink'
-    }
     // boxElem.style.border = '1px solid white'
     boxElem.style.top = '0px'
     boxElem.style.left = randomNo(0, 700) + 'px'
@@ -253,6 +244,18 @@ function gameInit () {
     boxElem.style.fontSize = '15pt'
     boxElem.setAttribute('class', 'box')
     boxElem.type = type
+    if (type === 'upsideDown') {
+      boxElem.style.backgroundColor = 'cyan'
+      boxElem.style.transform = 'rotate(0deg)'
+      setTimeout(function () {
+        boxElem.style.transform = 'rotate(360deg)'
+      }, 100)
+    } else if (type === 'heartBox') {
+      boxElem.id = 'heartBox'
+      boxElem.style.backgroundColor = 'red'
+    } else {
+      boxElem.style.backgroundColor = 'pink'
+    }
     addWord(boxElem, type)
     innerContainer.appendChild(boxElem)
     if (type === 'twoBox') {
@@ -264,6 +267,9 @@ function gameInit () {
     var fullWordArr = words.array
     var inGameWordArr = fullWordArr.filter(function (word) {
       console.log(randomNoRounded(3 + level / 3, 4 + level / 3))
+      if (type === 'heartBox')
+      return word.length === randomNoRounded(6 + level / 3, 6 + level / 3)
+      else
       return word.length === randomNoRounded(3 + level / 3, 4 + level / 3)
     })
     console.log(inGameWordArr.length)
@@ -350,6 +356,7 @@ function gameInit () {
       if (playerArr[playerLastChar] === boxSelector.textContent[playerLastChar]) {
         var spanId = document.getElementById(playerLastChar)
         spanId.style.color = 'red'
+        if (boxSelector.type === 'heartBox') spanId.style.color = 'white'
         combo += 1
         setCombo()
       } else if (playerArr[playerLastChar] === '`') {
@@ -367,28 +374,23 @@ function gameInit () {
 
   function checkBoxType () {
     if (playerArr.length !== 0 && playerArr.length === boxSelector.textContent.length) {
-      if (boxSelector.isSecondLayer === false) {
-        // <-------- DIFFICULT MODE -------->
-        playerArr = []
-        boxSelector.isSecondLayer = true
-        for (var i = 0; i < boxSelector.textContent.length; i++) {
-          document.getElementById(i).style.color = 'black'
-        }
-      } else {
-        boxSelector.successfulClear = true
-        if (boxSelector.type === 'easy') score += 20 * playerArr.length
-        if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
-        if (level < 4) score += 50
-        setScore()
-        return true
+      boxSelector.successfulClear = true
+      if (boxSelector.type === 'easy' || boxSelector.type === 'twoBox') score += 20 * playerArr.length
+      if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
+      if (boxSelector.type === 'heartBox') {
+        var lifeCounter = document.querySelector('.lifeCounter')
+        addHeart(lifeCounter)
+        inGameMessage('Extra Life!', 10)
       }
+      if (level < 4) score += 50
+      setScore()
+      return true
     } else {
       return false
     }
   }
 
-  gameSetup()
-
+  startButton.addEventListener('click', gameSetup)
   document.body.addEventListener('keydown', typeLetter)
 }
 

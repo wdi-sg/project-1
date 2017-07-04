@@ -1,10 +1,14 @@
+body {
+  background: url("../../assets/images/level1Background.jpg")
+}
+
 .container {
   height: 500px;
   width: 800px;
-  background-color: black;
   border: 1px solid white;
   margin: 100px auto;
   position: relative;
+  /*z-index: -3;*/
   /*left: 274px;
   top: 50px;*/
 }
@@ -14,8 +18,24 @@
   width: 800px;
   background-color: black;
   /*border: 1px solid white;*/
-  margin: auto;
+  /*margin: auto;*/
   position: absolute;
+  opacity: 1;
+  /*z-index: -1;*/
   /*left: 274px;
   top: 50px;*/
+}
+
+.startButton {
+  position: absolute;
+  text-align: center;
+  height: 50px;
+  width: 100px;
+  margin: 300px 350px;
+  border-radius: 10%;
+  z-index: 1;
+}
+
+.startButton:hover {
+  background-color: rgb(161, 161, 161);
 }
