@@ -28,13 +28,19 @@ var vWild = 13
 var cardURL = 'URL'
 // <links to .PNG to be inserted>
 
+// Card Piles
+var DrawPile = [] // last element of array = top of pile
+var HumanPlayerPile = []
+var ComputerPlayerPile = []
+var DiscardPile = []
+
 // Generate Draw Pile consisting 100 cards : An array of Card objects
 function generateDrawPile () {
   var Deck = []
   var cardNo = 0
 
   // Generate four Zero cards (one of each color)
-  for (var cardColor = Red; cardColor<Multi; cardColor++) {
+  for (var cardColor = Red; cardColor<cWild; cardColor++) {
     Deck[cardNo] = {
         label: '',
         value: Zero,
@@ -69,7 +75,7 @@ function generateDrawPile () {
 
   // Generate 8 Wild-type cards (2 sets of DrawFour and Wild)
   for (var i = 1; i <= 2; i++) {
-    for (cardValue = DrawFour; cardValue <= Wild; cardValue++) {
+    for (cardValue = DrawFour; cardValue <= vWild; cardValue++) {
       Deck[cardNo] = {
           label: '',
           value: cardValue,
@@ -90,24 +96,51 @@ function generateDrawPile () {
   return Deck
 }
 
-function shuffleDrawPile () {
+function shuffle (Deck) {
   // Takes in array and randomize order of array
+  // Source: Fisher-Yates Shuffle, https://bost.ocks.org/mike/shuffle/
+  // Method: Recursively, swap last card with random card and then remove
+  // last card from the next random pick window
+
+    var currentIndex = Deck.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex)
+      currentIndex -= 1
+
+      // And swap it with the current element.
+      temporaryValue = Deck[currentIndex]
+      Deck[currentIndex] = Deck[randomIndex]
+      Deck[randomIndex] = temporaryValue
+    }
+
+    return Deck
 }
 
-function dealCard(noOfCards, inputDeck, outputDeck) {
-  // Removes noOfCards from inputDeck and return noOfCards in ???outputDeck
-  // is it possible to return multiple results? or how to change a specified global deck
+function dealCard(noOfCards) {
+  // Removes noOfCards from DrawPile and return those Cards as an array
+  var dealtHand = []
+  for (var i = 0; i < noOfCards; i++) {
+    dealtHand.push(DrawPile.pop())
+  }
+  return dealtHand
 }
 
 function labelCard(inputCard) {
   // Returns a string label indicating color and value of card
   var label = ''
   //for (var card = 0; card < inputDeck.length; card++) {
+// console.log(inputCard.color);
+// console.log(inputCard.value);
+
   if (inputCard.color === Red) label = 'Red'
   else if (inputCard.color === Green) label = 'Green'
   else if (inputCard.color === Blue) label = 'Blue'
   else if (inputCard.color === Yellow) label = 'Yellow'
-  else (inputCard.color === cWild) label = 'Wild'
+  else if (inputCard.color === cWild) label = 'Wild'
 
   if (inputCard.value === Zero) label = label + ' ' + 'Zero'
   else if (inputCard.value === One) label = label + ' ' + 'One'
@@ -120,16 +153,47 @@ function labelCard(inputCard) {
   else if (inputCard.value === Eight) label = label + ' ' + 'Eight'
   else if (inputCard.value === Nine) label = label + ' ' + 'Nine'
   else if (inputCard.value === DrawTwo) label = label + ' ' + 'Draw Two'
+  else if (inputCard.value === Skip) label = label + ' ' + 'Skip'
   else if (inputCard.value === DrawFour) label = label + ' ' + 'Draw Four'
-  else if (inputCard.value === vWild) label = 'Wild'
+  else label = 'Wild'
+
+  return label
 }
 
-var DrawPile = generateDrawPile()
-//console.log(DrawPile);
+
+
+DrawPile = generateDrawPile()
+
+// console.log('dp len '+DrawPile.length);
+
+// Labels each card
+for (var i = 0; i < DrawPile.length; i++) {
+
+// console.log('DP '+ labelCard(DrawPile[i]));
+// console.log('B4 '+ DrawPile[i].label);
+
+  DrawPile[i].label = labelCard(DrawPile[i])
+
+  // console.log('after '+DrawPile[i].label);
+}
+
+// console.log('98 '+DrawPile[98].label);
+// console.log('99 '+DrawPile[99].label);
+// console.log(DrawPile);
 // console.log('Drawlength '+DrawPile.length);
+
+DrawPile = shuffle(DrawPile)
+HumanPlayerPile = dealCard(7)
+ComputerPlayerPile = dealCard(7)
+console.log('dp left '+DrawPile.length);
+//console.log('human', HumanPlayerPile);
+// console.log('com', ComputerPlayerPile);
+
 // for (var i = 0; i<100; i++) { // To list out the DrawPile just generated
-//   console.log(DrawPile[i].value);
-//   console.log(DrawPile[i].color);
-//   console.log(DrawPile[i].image);
-//   console.log(i);
+// console.log('i '+i);
+  // console.log(DrawPile[i].label);
+  // console.log(DrawPile[i].value);
+  // console.log(DrawPile[i].color);
+  // console.log(DrawPile[i].image);
+  // console.log(i);
 // }

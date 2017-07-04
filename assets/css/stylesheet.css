@@ -1,7 +1,7 @@
 
 
 .GamePanel {
-  width: 90%;
+  width: 100%;
   margin: 0 auto; // floating in the center
 }
 
@@ -9,19 +9,8 @@
 
 }
 
-.LeftPanel, .MiddlePanel, .RightPanel {
+.Col1, .Col2, .Col3, .Col4 {
   display: inline-block;
   vertical-align: top;
-}
-
-.LeftPanel {
-  width: 33%;
-}
-
-.MiddlePanel {
-  width: 33%;
-}
-
-.RightPanel {
-  width: 33%;
+  width: 20%;
 }
