@@ -1,21 +1,11 @@
 //Show initial start page
-var startPage = document.getElementById("start-page");
-startPage.style.display = "block";
-document.querySelector('#start-button').addEventListener('click', startGame);
-
-//When start button is clicked, remove start page
-//Add fishes that move randomly
-function startGame () {
-  startPage.style.display = 'none'
-  setInterval(generateFish1, 3000)
-  var mainFish = document.getElementById('main-fish');
-  mainFish.style.display = 'block'
-  mainFish()
-}
+var startPage = document.getElementById('start-page')
+startPage.style.display = 'block'
+document.querySelector('#start-button').addEventListener('click', startGame)
 
 //Global Variables
-var allFishes =[]
-setInterval(moveRandomly, 1000)
+var allFishes = []
+var mainFish = document.getElementById('main-fish')
 
 //Generate random number
 function randomizer (min, max) {
@@ -27,11 +17,11 @@ function generateFish1 () {
   var imgDestination = document.querySelector('html')
   var newFish = document.createElement("img")
   newFish.src = "assets/pictures/Fish1.png"
-  newFish.style.height = randomizer(50, 150) + 'px'
-  newFish.style.width = randomizer(50, 150) + 'px'
+  newFish.style.height = randomizer(30, 200) + 'px'
+  newFish.style.width = randomizer(30, 200) + 'px'
   newFish.style.position = "absolute"
-  newFish.style.top = randomizer(0, 760) + 'px'
-  newFish.style.left = randomizer(0, 1400) + 'px'
+  newFish.style.top = randomizer(0, 920) + 'px'
+  newFish.style.left = randomizer(0, 1500) + 'px'
   imgDestination.appendChild(newFish)
   allFishes.push(newFish)
 }
@@ -39,27 +29,29 @@ function generateFish1 () {
 //Make each fish move randomly
 function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
-    allFishes[i].style.top = randomizer(100, 1000) + 'px'
-    allFishes[i].style.left = randomizer(100, 1700) + 'px'
+    allFishes[i].style.top = randomizer(0, 1000) + 'px'
+    allFishes[i].style.left = randomizer(0, 1600) + 'px'
     allFishes[i].style.transition = 'top 2s linear, left 3s linear'
   }
 }
 
-
-
 //Create fish that follows mouse
-function mainFish () {
-  document.addEventListener('mousemove', function(event){
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
+function mouseFish () {
+  document.querySelector('html').addEventListener('mousemove', function (event) {
+    var mouseX = event.clientX
+    var mouseY = event.clientY
+    var mainFish = document.querySelector('#main-fish')
+    mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
+    mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
   })
-  mainFish.x = (1400 / 2) - 100
-  mainFish.y = 760 - 100
-  var xDistance = mouse.x - mainFish.x
-  var yDistance = mouse.y - mainFish.y
-  var distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance)
-  if (distance > 1) {
-       mainFish.x += xDistance * 0.3
-       mainFish.y += yDistance * 0.3
-   }
+}
+
+//When start button is clicked, remove start page
+//Add fishes that move randomly
+function startGame () {
+  startPage.style.display = 'none'
+  setInterval(generateFish1, 500)
+  setInterval(moveRandomly, 1000)
+  mainFish.style.display = 'block'
+  mouseFish()
 }
