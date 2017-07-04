@@ -5,7 +5,6 @@ document.querySelector('#start-button').addEventListener('click', startGame)
 
 //Global Variables
 var allFishes = []
-
 var mainFish = document.getElementById('main-fish')
 
 //Generate random number
@@ -15,13 +14,13 @@ function randomizer (min, max) {
 
 //Generate fishes at random position of random sizes
 function generateFish1 () {
-  if (allFishes.length < 40){
-    var imgDestination = document.querySelector('html')
-    var newFish = document.createElement("img")
-    newFish.src = "assets/pictures/Fish1.png"
-    newFish.style.height = randomizer(30, 200) + 'px'
-    newFish.style.width = randomizer(30, 200) + 'px'
-    newFish.style.position = "absolute"
+  if (allFishes.length < 30) {
+    var imgDestination = document.querySelector('body')
+    var newFish = document.createElement('img')
+    newFish.src = 'assets/pictures/Fish1.png'
+    newFish.style.height = randomizer(10, 120) + 'px'
+    newFish.style.width = randomizer(10, 120) + 'px'
+    newFish.style.position = 'absolute'
     newFish.style.top = randomizer(0, window.innerHeight) + 'px'
     newFish.style.left = randomizer(0, window.innerWidth) + 'px'
     imgDestination.appendChild(newFish)
@@ -43,19 +42,49 @@ function mouseFish () {
   document.querySelector('html').addEventListener('mousemove', function (event) {
     var mouseX = event.clientX
     var mouseY = event.clientY
+
     var mainFish = document.querySelector('#main-fish')
-    mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
     mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
+    mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
     mainFish.style.transition = 'top 0.05s linear, left 0.05s linear'
+
+    var fishCenter = [mainFish.offsetLeft + mainFish.style.width/2, mainFish.offsetTop + mainFish.style.height/2]
+    var angle = Math.atan2(mouseX- fishCenter[0], - (mouseY- fishCenter[1]) ) * (180 / Math.PI)
+
+    mainFish.style.transform = 'rotate(' + angle + 'deg)'
   })
+}
+
+//Collision detection between main fish and generated fish
+function collisionDetection(mainFish, eachFish){
+  var mainRect = mainFish.getBoundingClientRect()
+  var eachRect = eachFish.getBoundingClientRect()
+  return !(
+    ((mainRect.top + mainRect.height) < (eachRect.top)) ||
+    (mainRect.top > (eachRect.top + eachRect.height)) ||
+    ((mainRect.left + mainRect.width) < eachRect.left) ||
+    (mainRect.left > (eachRect.left + eachRect.width))
+  )
+}
+
+//Increase size of main fish upon collision and remove other fish
+function collisionResult() {
+  for (var j = 0; j < allFishes.length; j++) {
+    if (collisionDetection(mainFish, allFishes[j])) {
+      mainFish.style.top += '5px'
+      mainFish.style.left += '5px'
+      allFishes.splice(j)
+    }
+  }
 }
 
 //When start button is clicked, remove start page
 //Add fishes that move randomly
 function startGame () {
   startPage.style.display = 'none'
-  setInterval(generateFish1, 500)
+  setInterval(generateFish1, 3000)
   setInterval(moveRandomly, 1000)
   mainFish.style.display = 'block'
   mouseFish()
+  collisionResult()
 }
