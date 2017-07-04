@@ -1,7 +1,8 @@
-gameArray = []
+var gameArray = []
 console.log(gameArray)
 var counter = 0
 var numpad = 0
+var time = 10
 
 // ---------------------------------------------------------
 function randomizer (min, max) {
@@ -30,7 +31,15 @@ function tiles () {
   var squareFour = gameArray[2] + 12
   document.querySelector('#square' + squareTwo).style.background = 'black'
   document.querySelector('#square' + squareThree).style.background = 'black'
-    document.querySelector('#square' + squareFour).style.background = 'grey'
+  document.querySelector('#square' + squareFour).style.background = 'grey'
+
+  // var test = document.querySelector('#square' + squareFour)
+  // test.style.backgroundImage = 'url("https://pbs.twimg.com/profile_images/604644048/sign051.gif")'
+  // test.style.backgroundSize = '100%'
+  // test.style.backgroundRepeat = 'no-repeat'
+  // test.style.verticalAlign = 'middle'
+  // test.style.width = '90px'
+  // test.style.height = 'auto'
   // document.querySelector('#square' + squareFour).style.backgroundImage = 'url("https://pbs.twimg.com/profile_images/604644048/sign051.gif")'
 }
 // ---------------------------------------------------------
@@ -48,35 +57,61 @@ function buttons (event) {
   // console.log(numpad)
 }
 // ---------------------------------------------------------
-gameStart()
-console.log(gameArray)
-document.querySelector('.counter').innerHTML = '0'
-
-document.addEventListener('click', tiles)
-// console.log(gameArray)
-// document.addEventListener('keydown', buttons)
-// ---------------------------------------------------------
 function restart () {
+  clearInterval(interval)
   gameArray = []
   counter = 0
+  time = 0
   var allSquare = document.querySelectorAll('.square')
   for (var i = 0; i < allSquare.length; i++) {
     allSquare[i].style.background = 'white'
   }
 }
 // ---------------------------------------------------------
+function timer () {
+  if (time > 0) {
+    time = time - 1
+    console.log(time)
+    document.querySelector('.time').innerHTML = time
+  } else {
+    // alert ('Time Over')
+  }
+}
+
+
+// setInterval(timer, 1000)
+// ---------------------------------------------------------
+gameStart()
+console.log(gameArray)
+document.querySelector('.counter').innerHTML = '0'
+
+document.addEventListener('click', function () {
+  tiles()
+  var interval = setInterval(timer, 1000)
+})
+
+// console.log(gameArray)
+// document.addEventListener('keydown', buttons)
+// ---------------------------------------------------------
 document.addEventListener('keydown', function () {
   var squareThree = gameArray[2] + 8
   buttons(event)
-  if (numpad == squareThree) {
-    tiles()
-    counter++
-    document.querySelector('.counter').innerHTML = counter
+  if (time > 0) {
+    if (numpad == squareThree) {
+      tiles()
+      counter++
+      document.querySelector('.counter').innerHTML = counter
+    } else {
+      alert('Game Over')
+      restart()
+      gameStart()
+      document.querySelector('.counter').innerHTML = '0'
+      }
   } else {
-    alert('Game Over')
+    // alert ('Time Over')
     restart()
     gameStart()
     document.querySelector('.counter').innerHTML = '0'
-  }
+    }
 })
 // ---------------------------------------------------------
