@@ -11,6 +11,8 @@ var gameStarted = false
 var neededIngredients = []
 var startGameOverlay = document.querySelector('.startGameOverlay')
 var startGameButton = document.querySelector('.startGameButton')
+var endGameOverlay = document.querySelector('.endGameOverlay')
+var endGameScore = document.querySelector('.endGameScore')
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -124,5 +126,7 @@ function countdown () {
 }
 
 function gameOver() {
-  alert("Game over. You scored " + (level - 1)) //-1 because initial level is already 1
+  endGameOverlay.style.height = "768px"
+  endGameScore.innerText = score.innerText
+  // alert("Game over. You scored " + (level - 1)) //-1 because initial level is already 1
 }
