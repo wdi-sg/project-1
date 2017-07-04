@@ -4,7 +4,8 @@
 
 // function init () {
 // userinput hamburger
-setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
+
+// setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
   var u1 = document.getElementById('u1')
   var u2 = document.getElementById('u2')
   var u3 = document.getElementById('u3')
@@ -230,6 +231,7 @@ setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
       timer--
       timeCount.textContent = timer + "s"
     }
+    if (timer === 0) alert('Time\'s Up')
   }
 
 function point() {
