@@ -1,8 +1,7 @@
 var gameArray = []
-console.log(gameArray)
 var counter = 0
 var numpad = 0
-var time = 10
+var time = 30
 
 // ---------------------------------------------------------
 function randomizer (min, max) {
@@ -16,7 +15,6 @@ function gameStart () {
 function turn () {
   gameArray.pop()
   gameArray.unshift(randomizer(1, 4))
-  // console.log(gameArray)
 }
 // ---------------------------------------------------------
 function tiles () {
@@ -54,44 +52,44 @@ function buttons (event) {
   } else if (event.keyCode === 77) {
     numpad = 12
   }
-  // console.log(numpad)
 }
 // ---------------------------------------------------------
 function restart () {
-  clearInterval(interval)
   gameArray = []
   counter = 0
-  time = 0
+  time = 30
   var allSquare = document.querySelectorAll('.square')
   for (var i = 0; i < allSquare.length; i++) {
     allSquare[i].style.background = 'white'
   }
 }
 // ---------------------------------------------------------
-function timer () {
-  if (time > 0) {
-    time = time - 1
-    console.log(time)
-    document.querySelector('.time').innerHTML = time
-  } else {
-    // alert ('Time Over')
-  }
-}
 
-
-// setInterval(timer, 1000)
 // ---------------------------------------------------------
 gameStart()
+// ---------------------------------------------------------
 console.log(gameArray)
 document.querySelector('.counter').innerHTML = '0'
-
+document.querySelector('.time').innerHTML = '30'
+// ---------------------------------------------------------
 document.addEventListener('click', function () {
   tiles()
   var interval = setInterval(timer, 1000)
+  function timer () {
+    if (time > 0) {
+      time = time - 1
+      console.log(time)
+      document.querySelector('.time').innerHTML = time
+    } else {
+      alert ('Time Over')
+      clearInterval(interval)
+      restart()
+      gameStart()
+      document.querySelector('.counter').innerHTML = '0'
+      document.querySelector('.time').innerHTML = '30'
+    }
+  }
 })
-
-// console.log(gameArray)
-// document.addEventListener('keydown', buttons)
 // ---------------------------------------------------------
 document.addEventListener('keydown', function () {
   var squareThree = gameArray[2] + 8
@@ -103,15 +101,14 @@ document.addEventListener('keydown', function () {
       document.querySelector('.counter').innerHTML = counter
     } else {
       alert('Game Over')
+      // clearInterval(interval)
       restart()
       gameStart()
       document.querySelector('.counter').innerHTML = '0'
+      document.querySelector('.time').innerHTML = '30'
+      tiles()
+      // clearInterval(interval)
       }
-  } else {
-    // alert ('Time Over')
-    restart()
-    gameStart()
-    document.querySelector('.counter').innerHTML = '0'
-    }
+  }
 })
 // ---------------------------------------------------------
