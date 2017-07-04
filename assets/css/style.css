@@ -69,7 +69,7 @@ li {
   height: 100px;
   background-size: cover;
   position: absolute;
-  left: 610px;
+  left: 150px;
 }
 
 .buttons div {
@@ -150,6 +150,7 @@ li {
   width: 500px;
   height: 768px;
   float: left;
+  position: relative;
 }
 
 .right-content {
