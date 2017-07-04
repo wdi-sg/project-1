@@ -1,11 +1,40 @@
-// when game ends, timer should stop, points should count
-// make start and end STUCK, and all other pieces are randomized
-// if timer hits 20s, restart random
+
+//TO FIX!!! change all endings to end at var S
+//TO FIX!! current starting position of TD, TR is hardcoded!!!
+//TO FIX!! take dynamic no. of moves (currenltly hardcoded at 6)
 // ability to go next level, restart
 // add drag drop function
 // animation for stars and ball
 // scrolling background?
 // if other stages needed, need to check if all combi added in code e.g. leftdown missing, downright missing
+var S = {
+  'topdown': {
+    'topright': {
+      'leftright': {
+        'lefttop': 'end',
+        'leftright': {
+          'lefttop': 'end'
+        }
+      },
+      'lefttop': 'end',
+      'end': null
+    }
+  },
+  'topright': {
+    'leftright': {
+      'lefttop': {
+        'end': null
+      },
+      'leftright': {
+        'end': null
+      }
+    },
+    'lefttop': {
+      'end': null
+    },
+    'end': null
+  }
+}
 
 // logic file
 function logic () {
@@ -13,6 +42,8 @@ function logic () {
 
   var valueArr = []
   var indexArr = []
+  var moveArr = ['topdown','topright']
+  var tempArr = ['topdown','topright']
 
   function checkValid (target) {
     if (!isNaN(moveNum)) {
@@ -29,7 +60,8 @@ function logic () {
           indexArr = []
         }
         if (valueArr[valueArr.length - 1] == 'space') {
-          return moveTile()
+          checkWin()
+          moveTile()
         }
       }
 
@@ -47,19 +79,54 @@ function logic () {
         moveNum += 1
       }
     }
+    // var moveArr = ['topdown','topright']
+    // var tempArr = ['topdown','topright']
+
+    function checkWin () {
+      var gameState = 'won'
+      var newMove = valueArr[0]
+      //console.log(newMove);
+        tempArr.push(newMove)
+        //to cater for adding on of arr lenght TO FIX
+        if (tempArr.length == 3) {
+          var test = S[tempArr[0]][tempArr[1]][tempArr[2]]
+        }
+        if (tempArr.length == 4) {
+          var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]]
+        }
+        if (tempArr.length == 5) {
+          var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]]
+        }
+        if (tempArr.length == 6) {
+          var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]][tempArr[5]]
+        }
+
+      if
+       (test) {
+        tempArr = moveArr
+        if (test == 'end'){alert('game won')}
+      }
+      else {
+        tempArr = moveArr
+        console.log('pipes not aligned')
+      }
+      //if (gameState == 'won') { alert('won') }
+    }
+    //return {checkWin: checkWin}
+
   }
 
-  function checkWin () {
-    var gameState = 'won'
-    for (var i = 0; i < start[0].length; i++) {
-      for (var j = 0; j < start[0].length; j++) {
-        if (play[i][j] !== win[i][j]) {
-          gameState = 'lost'
-        }
-      }
-    }
-    if (gameState == 'won') alert('won')
-  }
+  // function checkWin () {
+  //   var gameState = 'won'
+  //   for (var i = 0; i < start[0].length; i++) {
+  //     for (var j = 0; j < start[0].length; j++) {
+  //       if (play[i][j] !== win[i][j]) {
+  //         gameState = 'lost'
+  //       }
+  //     }
+  //   }
+  //   if (gameState == 'won') alert('won')
+  // }
 
   function randomize () {
     // Recursive function to create random array
@@ -92,14 +159,16 @@ function logic () {
         }
         l++
       }
-      console.log (start)
+      console.log(start)
     }
     return genRandIndex()
   } // end randomize
 
+
+
   return {
     checkValid: checkValid,
-    checkWin: checkWin,
+    //checkWin: checkWin,
     randomize: randomize
   }
 }// end logic

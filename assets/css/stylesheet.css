@@ -97,7 +97,7 @@ p{
       width: 24%;
       background: url('../images/topdown.png') 100%;
     }
-    .downright {
+    /*.downright {
       height: 24%;
       border-color: black;
       border-style: solid;
@@ -110,7 +110,7 @@ p{
       border-style: solid;
       width: 24%;
       background: url('../images/pip.png') 100%;
-    }
+    }*/
 
     .space{
       height: 24%;

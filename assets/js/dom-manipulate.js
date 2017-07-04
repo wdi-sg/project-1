@@ -55,12 +55,12 @@ function init () {
   console.log(aDiv)
   aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkValid) })
   aDiv.forEach(function (e) { e.addEventListener('click', updateGrid) })
-  aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkWin) })
+  // aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkValid().checkWin) })
   aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
 
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
-  document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
+  //document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
   document.getElementById('startBtn').addEventListener('click', updateGrid)
 
   //
