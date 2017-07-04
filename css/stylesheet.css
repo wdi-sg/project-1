@@ -124,31 +124,16 @@ ul {
   background-color: rgb(6, 140, 1);
   width:640px;
   height:60px;
-
-  /*display: flex;
-  justify-content: space-between;*/
-}
-.position1,.position2,.position3,.position4,.position5,.position6,.position7 {
-  background-color: white;
-  width: 50px;
-  height:50px;
-}
-.position1{
-  margin-left: 55px;
-}
-.position7{
-  margin-right: 55px;
 }
 
 .jack {
-  background-color: red;
+  background-color: rgb(6, 140, 1);
   width:45px;
   height:45px;
   left:295px;
   position: relative;
 }
-
-/*.jackhead {
+.jackhead {
   width:13px;
   height: 10px;
   background-color: black;
@@ -172,7 +157,7 @@ ul {
 .leftleg, .rightleg{
   width: 6px;
   background-color: blue;
-}*/
+}
 .timer {
   background-color: ghostwhite;
   width: 100%;
