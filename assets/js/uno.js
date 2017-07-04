@@ -182,18 +182,35 @@ for (var i = 0; i < DrawPile.length; i++) {
 // console.log(DrawPile);
 // console.log('Drawlength '+DrawPile.length);
 
-DrawPile = shuffle(DrawPile)
-HumanPlayerPile = dealCard(7)
-ComputerPlayerPile = dealCard(7)
-console.log('dp left '+DrawPile.length);
+// DrawPile = shuffle(DrawPile)
+
+// console.log('dp left '+DrawPile.length);
 //console.log('human', HumanPlayerPile);
 // console.log('com', ComputerPlayerPile);
 
 // for (var i = 0; i<100; i++) { // To list out the DrawPile just generated
 // console.log('i '+i);
   // console.log(DrawPile[i].label);
-  // console.log(DrawPile[i].value);
-  // console.log(DrawPile[i].color);
-  // console.log(DrawPile[i].image);
-  // console.log(i);
+//   console.log(DrawPile[i].value);
+//   console.log(DrawPile[i].color);
+//   console.log(DrawPile[i].image);
+// }
+
+// HumanPlayerPile = dealCard(7)
+// ComputerPlayerPile = dealCard(7)
+
+// for (var i = 0; i<7; i++) { // To list out the HumanPlayerPile just dealt
+//   console.log('i '+i);
+//   console.log(HumanPlayerPile[i].label);
+  // console.log(HumanPlayerPile[i].value);
+  // console.log(HumanPlayerPile[i].color);
+  // console.log(HumanPlayerPile[i].image);
+// }
+
+// for (var i = 0; i<7; i++) { // To list out the HumanPlayerPile just dealt
+//   console.log('i '+i);
+//   console.log(ComputerPlayerPile[i].label);
+  // console.log(HumanPlayerPile[i].value);
+  // console.log(HumanPlayerPile[i].color);
+  // console.log(HumanPlayerPile[i].image);
 // }
