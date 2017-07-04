@@ -131,6 +131,8 @@ function countdown () {
 function gameOver () {
   endGameOverlay.style.height = '768px'
   endGameScore.innerText = score.innerText
+  endGameScore.style.fontSize = '300px'
+  endGameScore.style.marginTop = '100px'
 }
 
 restart.addEventListener('click', function () {

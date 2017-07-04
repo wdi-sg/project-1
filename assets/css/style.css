@@ -47,7 +47,6 @@ li {
   font-size: 72px;
 }
 
-
 .endGameOverlay {
   position: fixed;
   left: 464px;
@@ -62,7 +61,6 @@ li {
 
 .restart {
   color: green;
-  margin: 50px auto;
   font-size: 70px;
 }
 .restart:hover {
@@ -126,7 +124,6 @@ li {
 .left-content {
   width: 400px;
   height: 100%;
-  /*float: left;*/
   display: inline-block;
   border: 2px solid black;
   margin: 0px 25px;
@@ -155,7 +152,6 @@ li {
 .middle-content {
   width: 500px;
   height: 768px;
-  /*float: left;*/
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -164,7 +160,6 @@ li {
 .right-content {
   width: 400px;
   height: 100%;
-  /*float: left;*/
   border: 2px solid black;
   margin: 0px 25px;
   background: #FFFACE;
