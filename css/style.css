@@ -1,0 +1,46 @@
+.left{
+  width: 65%;
+  float: left;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.right{
+  width: 25%;
+  float: right;
+  /*border: solid;*/
+}
+
+.rand{
+  border: solid;
+  padding: 50px;
+  clear: both;
+  /*position: relative;*/
+}
+
+.starts{
+  text-align: center;
+  display: inline-block;
+}
+
+.score, .scorer, .time, .timer{
+  display: inline-block;
+  padding: 10px;
+  text-align: right;
+}
+
+.timerscore {
+  /*position: absolute;*/
+  /*width:150px;*/
+  /*display: flex;
+  justify-content: space-around;
+  align-items: flex-end;*/
+  padding: 10px;
+  width: 460px;
+  float:right;
+  /*display: inline;*/
+  /*width: 70%;*/
+    /*align-items: flex-end;*/
+
+}
