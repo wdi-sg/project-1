@@ -58,11 +58,14 @@ function init () {
   aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkWin) })
   aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
 
-  // add event listsener to start
+  // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
   document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
   document.getElementById('startBtn').addEventListener('click', updateGrid)
-  // })
+
+  //
+
+
 
     // Update tiles
   function updateGrid () {
@@ -106,13 +109,18 @@ function init () {
 
   function startTimer () {
     moveNum = 0
-    seconds = 0
+    seconds = 31
     setInterval(showTimer, 1000)
 
     function showTimer () {
-      if (seconds < 11) {
+      if (seconds > -3) {
+        seconds--}
+      if (seconds > -1) {
         document.getElementById('timer').textContent = seconds + ' seconds'
-        seconds++
+      }
+      if (seconds == -1) {
+        logicFile.randomize()
+        updateGrid()
       }
     }
   }

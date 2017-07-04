@@ -3,12 +3,15 @@ body{
   background-image: url('http://www.1explore.net/gamedesign3/assets/scrollingBackground.png');
   background-size: cover;
   margin: 0px;
-
   text-align: center;
 }
 
 h1{
   line-height: 200px;
+}
+
+p{
+  font-size: 30px;
 }
 
 #grand {
