@@ -112,15 +112,15 @@
 //   }
 //
 // function for checking if ingredient picked is same as displayed burger
-  function checkIngredient () {
-  // var playerInput = playerFoodInput.join('')
-  // var randomInput = randomArray.join('')
-    for (var i = 0; i < playerFoodInput.length; i++) {
-      if (randomArray[i] == playerFoodInput[i]) {
-        return gamePlay()
-      } return wrongPress()
-    }
-  }
+  // function checkIngredient () {
+  // // var playerInput = playerFoodInput.join('')
+  // // var randomInput = randomArray.join('')
+  //   for (var i = 0; i < playerFoodInput.length; i++) {
+  //     if (randomArray[i] == playerFoodInput[i]) {
+  //       return gamePlay()
+  //     } return wrongPress()
+  //   }
+  // }
 //
 // // function for wrong button pressed
 //   function wrongPress () {

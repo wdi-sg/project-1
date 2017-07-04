@@ -60,21 +60,26 @@
       }
       if (event.keyCode === 32) {
         u1.classList.add('topbun')
-        if (checkIngredient) {
-          setTimeout(function () {
-            resetClassPlayer()
-            resetClassDisplay()
-          }, 800)
-          gamePlay()
-        } else {
-          resetClassPlayer()
-          resetClassDisplay()
-          // gamePlay()
-        }
-        alert('wrong button pressed')
+        checkIngredient()
+        counter++
       }
+    } else {
+      counter
+      alert('wrong button pressed')
     }
   }// closing for onKeyUp
+
+  function checkIngredient () {
+    for (var i = 7; i > 2; i--) {
+      if ('d[i]'.classList === 'u[i]'.classList) {
+        setTimeout(function () {
+          resetClassPlayer()
+          resetClassDisplay()
+          gamePlay()
+        }, 800)
+      }
+    } return true
+  }
 
   function resetClassPlayer () {
     u1.classList.remove('topbun')
@@ -124,7 +129,6 @@
   }
 
   function resetClassDisplay () {
-    d1.classList.remove('topbun')
     d2.classList = 'hamObj'
     d3.classList = 'hamObj'
     d4.classList = 'hamObj'
@@ -175,19 +179,10 @@
       if (counter > 11) {
         level4()
       }
-      counter++
     } else gameStart = false
   } // end of startgame
 
-  function checkIngredient () {
-    for (var i = 7; i > 2; i--) {
-      if ('d[i]'.classList === 'u[i]'.classList) {
-        return true
-      }
-    }
-  }
-
-  start.addEventListener('click', level1)
+  start.addEventListener('click', gamePlay)
 
   function checkKeyCode (keycode) {
     if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32) {
