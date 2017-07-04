@@ -27,6 +27,9 @@ function addIngredient () {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
     whichIngredient = this.className.substring(5).toLowerCase()
     if (whichIngredient === neededIngredients[ingredientCounter]) {
+      //add strikethrough to list item
+      var h3 = document.querySelectorAll('h3')
+      h3[ingredientCounter].style.textDecoration = 'line-through'
       var newIngredient = document.createElement('div')
      // give the new element classname ingredients, which sets core css
       newIngredient.className = 'ingredients'
