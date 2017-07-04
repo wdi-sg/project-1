@@ -42,6 +42,10 @@ li {
   margin: 50px auto;
   font-size: 70px;
 }
+.startGameButton:hover {
+  font-size: 72px;
+}
+
 
 .endGameOverlay {
   position: fixed;
@@ -120,6 +124,7 @@ li {
   float: left;
   border: 2px solid black;
   margin: 0px 25px;
+  background: #FFFACE;
 }
 
 .serveButton {
@@ -145,7 +150,6 @@ li {
   width: 500px;
   height: 768px;
   float: left;
-  border: 2px solid black;
 }
 
 .right-content {
@@ -154,6 +158,7 @@ li {
   float: left;
   border: 2px solid black;
   margin: 0px 25px;
+  background: #FFFACE;
 }
 
 .order {
