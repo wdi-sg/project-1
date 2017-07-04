@@ -1,5 +1,6 @@
-// var loopTimer = setInterval(loop, 50)
-
+var loopTimer
+var newGame = document.querySelector('#newGame')
+var pacmanTitle = document.querySelector('#pacmanTitle')
 var gameboard = document.querySelector('#gameboard')
 var pacman = document.querySelector('#pacman')
 var blueGhost = document.querySelector('#blueGhost')
@@ -8,20 +9,15 @@ var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
 var scores = document.querySelector('#scores')
+var scoreboard = document.querySelector('#scoreboard')
 var win = document.querySelector('#win')
 var lose = document.querySelector('#lose')
-var newGame = document.querySelector('#newGame')
-var pacmanTitle = document.querySelector('#pacmanTitle')
-
-pacmanTitle.addEventListener('click', function(){alert('start game')})
-scoreboard.style.display = 'none'
-document.querySelector('#lifetracker').style.display = 'none'
+var startButton = document.querySelector('.startButton')
 
 var pacmanSpeed = 8
 var ghostSpeed = 8
 var walls = []
 var dots = []
-var score = 0
 var lives = 3
 var scoretracker = []
 
@@ -30,21 +26,12 @@ var downKeyDown = false
 var leftKeyDown = false
 var rightKeyDown = false
 
-var winMessage = document.querySelector('#winMessage')
+pacmanTitle.addEventListener('click', startGame)
+startButton.addEventListener('click', startGame)
 
-
-function createWall (left, top, width, height) {
-  var wall = document.createElement('div')
-  wall.className = 'wall'
-  wall.style.left = left + 'px'
-  wall.style.top = top + 'px'
-  wall.style.width = width + 'px'
-  wall.style.height = height + 'px'
-  gameboard.appendChild(wall)
-  walls.push(wall)
-}
-
-newGame.style.display = ''
+scoreboard.style.display = 'none'
+document.querySelector('#lifetracker').style.display = 'none'
+startButton.style.display = 'none'
 win.style.display = 'none'
 lose.style.display = 'none'
 
@@ -203,8 +190,7 @@ function collision (a, b) {
   ay < by + parseInt(b.style.height) &&
   ay + parseInt(a.style.height) > by) {
     return true
-  }
-  else {
+  } else {
     return false
   }
 }
@@ -329,7 +315,7 @@ function checkScore () {
       }
     }
   }
-  if (scoretracker.length === 2) {
+  if (scoretracker.length === 92) {
     gameOver('win')
   }
 }
@@ -337,16 +323,17 @@ function checkScore () {
 function gameOver (result) {
   if (result === 'win') {
     win.style.display = ''
-    // winMessage.classList.add('transform')
     clearInterval(loopTimer)
+    startButton.style.display = ''
   } else if (result === 'lose') {
     if (lives === 1) {
       document.querySelector('#life' + lives).style.display = 'none'
       lose.style.display = ''
       clearInterval(loopTimer)
+      startButton.style.display = ''
     } else {
       document.querySelector('#life' + lives).style.display = 'none'
-      lives --
+      lives--
       clearInterval(loopTimer)
       pacman.style.top = '440px'
       pacman.style.left = '280px'
@@ -364,36 +351,47 @@ function gameOver (result) {
       downKeyDown = false
       leftKeyDown = false
       rightKeyDown = false
-
-      var startButton = document.createElement('button')
-
     }
   }
 }
 
-// function startNewGame () {
-//
-//   win.style.display = 'none'
-//   lose.style.display = 'none'
+function startGame () {
+  startButton.style.display = 'none'
+  newGame.style.display = 'none'
+  win.style.display = 'none'
+  lose.style.display = 'none'
+  scoreboard.style.display = ''
+  scores.textContent = ''
 
-// }
+  document.querySelector('#lifetracker').style.display = ''
+  document.querySelector('#life1').style.display = ''
+  document.querySelector('#life2').style.display = ''
+  document.querySelector('#life3').style.display = ''
 
-// function restart () {
-//   restartButton.style.display = ''
-//   restartButton.addEventListener('click', newGame)
-// }
-//
-// function newGame () {
-//   grid = [null, null, null, null, null, null, null, null, null]
-//   player = 1
-//   restartButton.style.display = 'none'
-//   document.querySelector('.wrapper').style.opacity = 1
-//   winner.classList.remove('transform')
-//   winner.textContent = ''
-//   for (var i = 0; i < 9; i++) {
-//     box[i].innerHTML = ''
-//   }
-// }
+  scoretracker = []
+  lives = 3
+
+  pacman.style.top = '440px'
+  pacman.style.left = '280px'
+  blueGhost.style.top = '40px'
+  blueGhost.style.left = '40px'
+  orangeGhost.style.top = '40px'
+  orangeGhost.style.left = '520px'
+  pinkGhost.style.top = '440px'
+  pinkGhost.style.left = '40px'
+  redGhost.style.top = '440px'
+  redGhost.style.left = '520px'
+
+  upKeyDown = false
+  downKeyDown = false
+  leftKeyDown = false
+  rightKeyDown = false
+
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].style.display = ''
+  }
+  loopTimer = setInterval(loop, 50)
+}
 
 // game loop
 function loop () {
