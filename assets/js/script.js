@@ -9,7 +9,7 @@ var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'chee
 var order = document.querySelector('.order')
 var gameStarted = false
 var neededIngredients = []
-
+var startGameButton = document.querySelector('.startGameButton')
 // add event listeners to all buttons
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -99,7 +99,9 @@ function increaseScore () {
 
 // click to start timer
 var timeLeft = 60
-time.addEventListener('click', startGame)
+
+startGameButton.addEventListener('click', startGame)
+
 function startGame() {
   if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
@@ -112,10 +114,11 @@ function startGame() {
 
 // callback to change timeLeft and update DOM text
 function countdown () {
+  timeLeft--
   if (timeLeft >= 0) {
     time.innerText = timeLeft + ' secs'
   }
-  timeLeft--
+
 }
 
 function gameOver() {

@@ -8,6 +8,15 @@ h1 {
   margin: 10px auto;
 }
 
+.startGameOverlay {
+  position: fixed;
+  left: 464px;
+  height: 770px;
+  width: 500px;
+  background-color: white;
+  z-index: 1;
+}
+
 ol {
   font-size: 30px;
   font-family: 'Roboto';
@@ -17,6 +26,12 @@ ol {
 
 li {
   margin: 20px auto;
+}
+
+.startGameButton {
+  color: green;
+  margin: 50px auto;
+  font-size: 70px;
 }
 
 .ingredients {
@@ -131,13 +146,4 @@ h3 {
   height: 150px;
   border: 2px solid black;
   margin: 20px auto;
-}
-
-.startGameOverlay {
-  position: fixed;
-  left: 464px;
-  height: 770px;
-  width: 500px;
-  background-color: gray;
-  z-index: 1;
 }
