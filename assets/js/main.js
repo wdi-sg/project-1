@@ -105,14 +105,14 @@ function increaseScore () {
 }
 
 // click to start timer
-var timeLeft = 60
+var timeLeft = 90
 startGameButton.addEventListener('click', startGame)
 
 function startGame() {
   if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
     generateList()
-    setTimeout(gameOver, 62000)
+    setTimeout(gameOver, 92000)
   }
    // click to start generates first order
   gameStarted = true
