@@ -1,86 +1,124 @@
+
+body{
+  background: url('https://cms-assets.tutsplus.com/uploads/users/587/posts/22986/final_image/fantasy-game-background-0.jpg') 100%;
+  margin: 0px;
+  text-align: center;
+}
+
+h1{
+  line-height: 200px;
+}
+
+#grand {
+  display: flex;
+}
+
+#leftcol{
+  background-color: rgba(255,218,185,0.8);
+  width: 300px;
+  height: 800px;
+}
+
+  #startBtn{
+    border-color: green;
+    border-style: solid;
+    margin: 10px;
+  }
+#rightcol{
+  background-color: rgba(255,218,185,0.8);;
+  width: 300px;
+  height: 800px;
+  margin-right: 0px;
+}
+  #timer + img{
+      width: 20%;
+      height: 20%
+  }
+
 #container {
   width: 600px;
   height: 600px;
+  margin: 50px 120px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.topdown {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/topdown.png') 100%;
-}
-.start {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/start.png') 100%;
-}
-.end {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/end.png') 100%;
-}
-.leftright {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/leftright.png') 100%;
-}
-.lefttop {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/lefttop.png') 100%;
-}
-.topright {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/topright.png') 100%;
-}
-.topdown {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/topdown.png') 100%;
-}
-.downright {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/downright.png') 100%;
-}
-.downleft {
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/pip.png') 100%;
-}
+    .topdown {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topdown.png') 100%;
+    }
+    .start {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/start.png') 100%;
+    }
+    .end {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/end.png') 100%;
+    }
+    .leftright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/leftright.png') 100%;
+    }
+    .lefttop {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/lefttop.png') 100%;
+    }
+    .topright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topright.png') 100%;
+    }
+    .topdown {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topdown.png') 100%;
+    }
+    .downright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/downright.png') 100%;
+    }
+    .downleft {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/pip.png') 100%;
+    }
 
-.space{
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/space.png') 100%;
-}
+    .space{
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/space.png') 100%;
+    }
 
-.block{
-  height: 24%;
-  border-color: black;
-  border-style: solid;
-  width: 24%;
-  background: url('../images/block.png') 100%;
-}
+    .block{
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/block.png') 100%;
+    }

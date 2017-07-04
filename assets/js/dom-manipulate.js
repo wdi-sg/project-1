@@ -50,12 +50,15 @@ function init () {
   console.log('init loaded')
     // put global variables here
 
-    // add event listerner to each div, and to startGame
-  var aDiv = document.querySelector('div')
-  aDiv.addEventListener('click', logicFile.checkValid)
-  aDiv.addEventListener('click', updateGrid)
-  aDiv.addEventListener('click', logicFile.checkWin)
-  aDiv.addEventListener('click', showMoves)
+    // add event listerner to each div in game
+  var aDiv = document.querySelectorAll('#container div')
+  console.log(aDiv)
+  aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkValid) })
+  aDiv.forEach(function (e) { e.addEventListener('click', updateGrid) })
+  aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkWin) })
+  aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
+
+  // add event listsener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
   // })
 
@@ -67,9 +70,8 @@ function init () {
     while (k < 17) {
       for (var i = 0; i < start[0].length; i++) {
         for (var j = 0; j < start.length; j++) {
-          var query = 'div:nth-child(' + k + ')'
+          var query = '#container div:nth-child(' + k + ')'
           var imageInDiv = document.querySelector(query)
-          // console.log(imageInDiv);
           if (play[i][j] == 'space') {
             imageInDiv.className = 'space'
           }

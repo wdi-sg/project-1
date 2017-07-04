@@ -1,4 +1,4 @@
-// add timer, moves count
+// when game ends, timer should stop, points should count
 // make start and end STUCK, and all other pieces are randomized
 // if timer hits 20s, restart random
 // ability to go next level, restart
@@ -21,21 +21,16 @@ function logic () {
     valueArr.push(tempValue)
     indexArr.push(tempID)
 
-    console.log(valueArr)
-    console.log(indexArr)
     if (valueArr.length == 2) {
         // console.log(valueArr.pop() == 'space');
       if (valueArr[valueArr.length - 1] !== 'space') {
         valueArr = []
         indexArr = []
-        console.log('click on something with spaces')
       }
       if (valueArr[valueArr.length - 1] == 'space') {
-        console.log('able to move')
         return moveTile()
       }
-    } else if (valueArr.length == 1) { console.log('click on something else') }
-  }
+    }
 
     function moveTile () {
       // to get index of first click
@@ -49,9 +44,9 @@ function logic () {
       valueArr = []
       indexArr = []
       moveNum+=1
-      console.log(moveNum)
     }
   }
+}
 
   function checkWin () {
     var gameState = 'won'
