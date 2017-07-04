@@ -8,22 +8,28 @@
   </head>
 
   <body>
-    <div id="gameboard">
+    <div id='newGame'>
+      P<img id='blueGhostTitle' src='assets/images/blueGhostTitle.png'>C
+      <input type='image' id='pacmanTitle' src='assets/images/pacmanTitle.png'>
+      M<img id='orangeGhostTitle' src='assets/images/orangeGhostTitle.png'>N
+    </div>
+
+    <div id='gameboard'>
       <img id='pacman' src='assets/images/pacman.png'>
       <img id='blueGhost' src='assets/images/ghost-blue.png'>
       <img id='orangeGhost' src='assets/images/ghost-orange.png'>
       <img id='pinkGhost' src='assets/images/ghost-pink.png'>
       <img id='redGhost' src='assets/images/ghost-red.png'>
-      <div id='newGame'>PAC-MAN</div>
-      <div id='success'><span id='successwords'>CONGRATULATIONS!</span></div>
-      <div id='failure'>TRY HARDER!</div>
-      <div id='scoreboard'>Score: <span id='scores'></span>/91</div>
-      <div>
+      <div id='win'><span id='winMessage'>CONGRATULATIONS!</span></div>
+      <div id='lose'><span id='loseMessage'>TRY HARDER!</span></div>
+      <div id='scoreboard'>Score: <span id='scores'></span>/92</div>
+      <div id="lifetracker">
         <img class='life' id='life1' src='assets/images/pacman.png'>
         <img class='life' id='life2' src='assets/images/pacman.png'>
         <img class='life' id='life3' src='assets/images/pacman.png'>
       </div>
     </div>
+    
     <script src="assets/js/script.js" charset="utf-8"></script>
   </body>
 

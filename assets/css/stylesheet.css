@@ -1,11 +1,43 @@
 body {
   background-color: black;
   font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+}
+
+#newGame {
+  position: absolute;
+  z-index: 0;
+  width: 660px;
+  height: 520px;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+#pacmanTitle {
+  height: 150px;
+  width: 150px;
+  border: none;
+  outline:none;
+}
+
+#pacmanTitle:active {
+  transform: translateY(5px);
+}
+
+#blueGhostTitle, #orangeGhostTitle {
+  height: 55px;
+  width: 55px;
+  transform: rotate(25deg);
 }
 
 #gameboard {
   position: relative;
-  margin: 0 auto;
+  margin:0 auto;
   width: 600px;
   height: 520px;
   background: black;
@@ -15,7 +47,6 @@ body {
 #pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
   position: absolute;
   z-index: 0;
-  /*transition: top 2s linear, left 2s linear;*/
 }
 
 .rotate90 {
@@ -43,7 +74,7 @@ body {
 
 #scoreboard {
   position: absolute;
-  top: 537px;
+  top: 538px;
   background: black;
   z-index: 0;
   font-size: 11px;
@@ -64,20 +95,9 @@ body {
   width: 25px;
 }
 
-#newGame {
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 100%;
-  color: white;
-  font-size: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: blue;
-}
 
-#success, #failure {
+
+#win, #lose {
   position: absolute;
   z-index: -1;
   height: 100%;
@@ -89,10 +109,33 @@ body {
   align-items: center;
 }
 
-#success {
+#win {
   background: pink;
 }
 
-#failure {
+#lose {
   background: red;
+}
+
+#winMessage {
+  transition: 3s ease-in-out;
+}
+
+.transform {
+  transform: scale(3) translateY(5px);
+}
+
+
+
+#title {
+  position: absolute;
+  /*z-index: 1;*/
+  /*height: 100%;
+  width: 100%;*/
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background: black;*/
 }

@@ -1,4 +1,4 @@
-var loopTimer = setInterval(loop, 50)
+// var loopTimer = setInterval(loop, 50)
 
 var gameboard = document.querySelector('#gameboard')
 var pacman = document.querySelector('#pacman')
@@ -8,12 +8,17 @@ var pinkGhost = document.querySelector('#pinkGhost')
 var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
 var scores = document.querySelector('#scores')
-var success = document.querySelector('#success')
-var failure = document.querySelector('#failure')
+var win = document.querySelector('#win')
+var lose = document.querySelector('#lose')
 var newGame = document.querySelector('#newGame')
+var pacmanTitle = document.querySelector('#pacmanTitle')
 
-var pacmanSpeed = 10
-var ghostSpeed = 6
+pacmanTitle.addEventListener('click', function(){alert('start game')})
+scoreboard.style.display = 'none'
+document.querySelector('#lifetracker').style.display = 'none'
+
+var pacmanSpeed = 8
+var ghostSpeed = 8
 var walls = []
 var dots = []
 var score = 0
@@ -25,7 +30,8 @@ var downKeyDown = false
 var leftKeyDown = false
 var rightKeyDown = false
 
-// var successwords = document.querySelector(#successwords)
+var winMessage = document.querySelector('#winMessage')
+
 
 function createWall (left, top, width, height) {
   var wall = document.createElement('div')
@@ -38,9 +44,9 @@ function createWall (left, top, width, height) {
   walls.push(wall)
 }
 
-newGame.style.display = 'none'
-success.style.display = 'none'
-failure.style.display = 'none'
+newGame.style.display = ''
+win.style.display = 'none'
+lose.style.display = 'none'
 
 blueGhost.direction = 'left'
 orangeGhost.direction = 'right'
@@ -86,10 +92,10 @@ function createWall (left, top, width, height) {
 
 // border
 createWall(0, 0, 600, 40)
-createWall(0, 0, 40, 240)
+createWall(0, 0, 40, 280)
 createWall(0, 280, 40, 200)
 createWall(0, 480, 600, 40)
-createWall(560, 0, 40, 240)
+createWall(560, 0, 40, 280)
 createWall(560, 280, 40, 240)
 // gameboard tiles
 // W
@@ -109,7 +115,7 @@ createWall(240, 280, 40, 160)
 createWall(320, 280, 40, 160)
 // others
 createWall(40, 280, 160, 40)
-createWall(400, 280, 160, 40)
+createWall(400, 280, 120, 40)
 createWall(80, 360, 40, 80)
 createWall(160, 360, 40, 80)
 createWall(400, 360, 40, 80)
@@ -319,38 +325,57 @@ function checkScore () {
       if (!scoretracker.includes(dots[i])) {
         dots[i].style.display = 'none'
         scoretracker.push(dots[i])
-        scores.textContent = scoretracker.length
+        scores.textContent = scoretracker.length + '/92'
       }
     }
   }
-  if (scoretracker.length === 91) {
+  if (scoretracker.length === 2) {
     gameOver('win')
   }
 }
 
 function gameOver (result) {
   if (result === 'win') {
-    success.style.display = ''
+    win.style.display = ''
+    // winMessage.classList.add('transform')
     clearInterval(loopTimer)
   } else if (result === 'lose') {
-    if (lives === 0) {
-      failure.style.display = ''
+    if (lives === 1) {
+      document.querySelector('#life' + lives).style.display = 'none'
+      lose.style.display = ''
       clearInterval(loopTimer)
     } else {
-      document.querySelector('#life'+lives).style.display = 'none'
+      document.querySelector('#life' + lives).style.display = 'none'
       lives --
       clearInterval(loopTimer)
       pacman.style.top = '440px'
       pacman.style.left = '280px'
-      // loopTimer
+      blueGhost.style.top = '40px'
+      blueGhost.style.left = '40px'
+      orangeGhost.style.top = '40px'
+      orangeGhost.style.left = '520px'
+      pinkGhost.style.top = '440px'
+      pinkGhost.style.left = '40px'
+      redGhost.style.top = '440px'
+      redGhost.style.left = '520px'
+
+      loopTimer = setInterval(loop, 50)
+      upKeyDown = false
+      downKeyDown = false
+      leftKeyDown = false
+      rightKeyDown = false
+
+      var startButton = document.createElement('button')
+
     }
   }
 }
 
 // function startNewGame () {
 //
-//   success.style.display = 'none'
-//   failure.style.display = 'none'
+//   win.style.display = 'none'
+//   lose.style.display = 'none'
+
 // }
 
 // function restart () {
