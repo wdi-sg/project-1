@@ -1,6 +1,7 @@
 body {
   text-align: center;
   background: #FFFDE5;
+  width: 100%;
 }
 
 h1 {
@@ -19,7 +20,7 @@ h3 {
   position: fixed;
   left: 464px;
   top: 10px;
-  height: 768px;
+  height: 100%;
   width: 500px;
   overflow: hidden;
   background: #FFFDE5;
@@ -56,12 +57,16 @@ li {
   z-index: 99;
   overflow: hidden;
   background: #FFFDE5;
+  vertical-align: top;
 }
 
 .restart {
   color: green;
   margin: 50px auto;
   font-size: 70px;
+}
+.restart:hover {
+  font-size: 72px;
 }
 
 .ingredients {
@@ -120,8 +125,9 @@ li {
 
 .left-content {
   width: 400px;
-  height: 768px;
-  float: left;
+  height: 100%;
+  /*float: left;*/
+  display: inline-block;
   border: 2px solid black;
   margin: 0px 25px;
   background: #FFFACE;
@@ -149,17 +155,20 @@ li {
 .middle-content {
   width: 500px;
   height: 768px;
-  float: left;
+  /*float: left;*/
   position: relative;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .right-content {
   width: 400px;
-  height: 768px;
-  float: left;
+  height: 100%;
+  /*float: left;*/
   border: 2px solid black;
   margin: 0px 25px;
   background: #FFFACE;
+  display: inline-block;
 }
 
 .order {
