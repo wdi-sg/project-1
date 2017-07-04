@@ -60,6 +60,8 @@ function init () {
 
   // add event listsener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
+  document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
+  document.getElementById('startBtn').addEventListener('click', updateGrid)
   // })
 
     // Update tiles

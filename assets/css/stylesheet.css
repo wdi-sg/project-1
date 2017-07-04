@@ -1,7 +1,9 @@
 
 body{
-  background: url('https://cms-assets.tutsplus.com/uploads/users/587/posts/22986/final_image/fantasy-game-background-0.jpg') 100%;
+  background-image: url('http://www.1explore.net/gamedesign3/assets/scrollingBackground.png');
+  background-size: cover;
   margin: 0px;
+
   text-align: center;
 }
 
@@ -16,7 +18,7 @@ h1{
 #leftcol{
   background-color: rgba(255,218,185,0.8);
   width: 300px;
-  height: 800px;
+  height: 854px;
 }
 
   #startBtn{
@@ -27,7 +29,7 @@ h1{
 #rightcol{
   background-color: rgba(255,218,185,0.8);;
   width: 300px;
-  height: 800px;
+  height: 854px;
   margin-right: 0px;
 }
   #timer + img{
@@ -38,7 +40,7 @@ h1{
 #container {
   width: 600px;
   height: 600px;
-  margin: 50px 120px;
+  margin: auto 120px;
   display: flex;
   flex-wrap: wrap;
 }
