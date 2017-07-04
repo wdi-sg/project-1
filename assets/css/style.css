@@ -145,7 +145,6 @@ li {
 .timer {
   width: 320px;
   height: 150px;
-  border: 2px solid black;
   margin: 20px auto;
 }
 
@@ -177,6 +176,5 @@ li {
 .scorebox {
   width: 320px;
   height: 150px;
-  border: 2px solid black;
   margin: 20px auto;
 }
