@@ -5,6 +5,7 @@ document.querySelector('#start-button').addEventListener('click', startGame)
 
 //Global Variables
 var allFishes = []
+
 var mainFish = document.getElementById('main-fish')
 
 //Generate random number
@@ -14,23 +15,25 @@ function randomizer (min, max) {
 
 //Generate fishes at random position of random sizes
 function generateFish1 () {
-  var imgDestination = document.querySelector('html')
-  var newFish = document.createElement("img")
-  newFish.src = "assets/pictures/Fish1.png"
-  newFish.style.height = randomizer(30, 200) + 'px'
-  newFish.style.width = randomizer(30, 200) + 'px'
-  newFish.style.position = "absolute"
-  newFish.style.top = randomizer(0, 920) + 'px'
-  newFish.style.left = randomizer(0, 1500) + 'px'
-  imgDestination.appendChild(newFish)
-  allFishes.push(newFish)
+  if (allFishes.length < 40){
+    var imgDestination = document.querySelector('html')
+    var newFish = document.createElement("img")
+    newFish.src = "assets/pictures/Fish1.png"
+    newFish.style.height = randomizer(30, 200) + 'px'
+    newFish.style.width = randomizer(30, 200) + 'px'
+    newFish.style.position = "absolute"
+    newFish.style.top = randomizer(0, window.innerHeight) + 'px'
+    newFish.style.left = randomizer(0, window.innerWidth) + 'px'
+    imgDestination.appendChild(newFish)
+    allFishes.push(newFish)
+  }
 }
 
 //Make each fish move randomly
 function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
-    allFishes[i].style.top = randomizer(0, 1000) + 'px'
-    allFishes[i].style.left = randomizer(0, 1600) + 'px'
+    allFishes[i].style.top = randomizer(0, window.innerHeight) + 'px'
+    allFishes[i].style.left = randomizer(0, window.innerWidth) + 'px'
     allFishes[i].style.transition = 'top 2s linear, left 3s linear'
   }
 }
