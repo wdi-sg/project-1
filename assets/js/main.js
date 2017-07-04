@@ -113,7 +113,7 @@ function startGame () {
   if (!gameStarted) { // ensure event only fires once.
     setInterval(countdown, 1000)
     generateList()
-    setTimeout(gameOver, 12000)
+    setTimeout(gameOver, 10000)
   }
    // click to start generates first order
   gameStarted = true
