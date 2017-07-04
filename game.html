@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
 
@@ -19,17 +19,60 @@
     <div id="status-div">
     </div>
 
-    <div id="parameters-div">
+    <div class="game-section" id="parameters-div">
+      <h3>Game Parameters</h3>
+      <form>
+        P1 Name: <input type="text" name="p1-name"><br>
+        P2 Name: <input type="text" name="p2-name"><br>
+        Wallet Size (US$): <input type="number" name="wallet-size"><br>
+        Holding Period (minutes): <input type="number" name="holding-period"> (Note: Minimum 1 minute)<br>
+        <input type="submit">
+      </form>
+      <hr>
+    </div>
+    <div class="game-section player-div" id="p1-div">
+      <h3>Player 1</h3>
+        <div class="research-area">
+          Research: <input type="text" value="TICKER">
+          <input type="button" value="Go">
+          <br>
+          News: <textarea class="text-area news-area" rows="8" cols="80"></textarea>
+          <br>
+        </div>
+        <div class="thesis-buy-area">
+          Thesis: <textarea class="text-area thesis-area" rows="8" cols="80"></textarea>
+          <br>
+          Buy: <input type="text" value="TICKER">
+          <input type="button" value="Enter Trade">
+          <p>Note: Trade will not be executed until all players have Entered their trades and the Execute Trades button is clicked.</p>
+        </div>
+        <hr>
+    </div>
+    <div class="game-section player-div" id="p2-div">
+      <h3>Player 2</h3>
+        <div class="research-area">
+          Research: <input type="text" value="TICKER">
+          <input type="button" value="Go">
+          <br>
+          News: <textarea class="text-area news-area" rows="8" cols="80"></textarea>
+          <br>
+        </div>
+        <div class="thesis-buy-area">
+          Thesis: <textarea class="text-area thesis-area" rows="8" cols="80"></textarea>
+          <br>
+          Buy: <input type="text" value="TICKER">
+          <input type="button" value="Enter Trade">
+          <p>Note: Trade will not be executed until all players have Entered their trades and the Execute Trades button is clicked.</p>
+        </div>
+        <hr>
     </div>
 
-    <div class="player-div" id="p1-div">
+    <div id="game-section execute-div">
+      <h3>Ready to Make Your Bets?</h3>
+      <button type="button" name="button">EXECUTE TRADES!</button>
     </div>
+    <!-- <script type="text/javascript" src="./scripts/callprice.js"></script> -->
 
-    <div class="player-div" id="p2-div">
-    </div>
-
-    <div id="execute-div">
-    </div>
-    <script type="text/javascript" src="./scripts/callprice.js"></script>
+    </script>
   </body>
 </html>
