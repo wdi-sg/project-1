@@ -21,33 +21,29 @@ function init () {
   var fourthTree = document.querySelector('.fourthtree')
   fourthTree.style.top = '115px'
   var scorecounter = 0
-  var gameOver = false
+  var gameOver = true
   var timeLeft = 3000
 
   document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
-      if (event.keyCode === 90) {
-        moveJackOne()
+      if (event.keyCode === 37) {
+        moveLeft()
+      }
+      if (event.keyCode === 39) {
+        moveRight()
       }
       if (event.keyCode === 88) {
-        moveJackTwo()
-      }
-      if (event.keyCode === 67) {
-        moveJackThree()
-      }
-      if (event.keyCode === 86) {
-        moveJackFour()
-      }
-      if (event.keyCode === 190) {
-        chop()
+        if (gameOver === false) {
+          chop()
+        }
       }
     }
   }
 
   function checkKeyCode (keycode) {
-    if (keycode === 90 || keycode === 88 || keycode === 67 || keycode === 86 || keycode === 190) {
+    if (keycode === 37 || keycode === 39 || keycode === 88) {
       return true
     }
     return false
@@ -56,6 +52,7 @@ function init () {
   function startGame () {
     startButton.style.visibility = 'hidden'
     retryButton.style.visibility = 'hidden'
+    gameOver = false
     startTimer()
   }
 
@@ -96,21 +93,28 @@ function init () {
     }
   }
 
-  function moveJackOne () {
-    jack.style.left = '55px'
+  var jackLeftPos = parseInt(jack.style.left)
+  if (jackLeftPos === 55) {
     jackNumber = 1
-  }
-  function moveJackTwo () {
-    jack.style.left = '215px'
+  } else if (jackLeftPos === 215) {
     jackNumber = 2
-  }
-  function moveJackThree () {
-    jack.style.left = '375px'
+  } else if (jackLeftPos === 375) {
     jackNumber = 3
-  }
-  function moveJackFour () {
-    jack.style.left = '535px'
+  } else if (jackLeftPos === 535) {
     jackNumber = 4
+  }
+
+  function moveLeft () {
+    if (jackLeftPos > 15 && jackLeftPos <= 575) {
+      jackLeftPos -= 40
+      jack.style.left = jackLeftPos + 'px'
+    }
+  }
+  function moveRight () {
+    if (jackLeftPos >= 15 && jackLeftPos < 575) {
+      jackLeftPos += 40
+      jack.style.left = jackLeftPos + 'px'
+    }
   }
 
   function randomFn (min, max) {
@@ -118,6 +122,15 @@ function init () {
   }
 
   function chop () {
+    if (jackLeftPos === 55) {
+      jackNumber = 1
+    } else if (jackLeftPos === 215) {
+      jackNumber = 2
+    } else if (jackLeftPos === 375) {
+      jackNumber = 3
+    } else if (jackLeftPos === 535) {
+      jackNumber = 4
+    }
     if (gameOver === false) {
       if (jackNumber === treeNumber) {
         scorecounter += 1
@@ -163,6 +176,7 @@ function init () {
       setTimeout(function () { alert('please try again') }, 100)
     }
     retryButton.style.visibility = 'visible'
+    gameOver = true
   }
 
   function restartGame () {
@@ -171,7 +185,6 @@ function init () {
     jackNumber = 0
     jack.style.left = '295px'
     scorecounter = 0
-    gameOver = false
     startGame()
   }
 }
