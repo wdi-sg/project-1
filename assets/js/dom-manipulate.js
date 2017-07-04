@@ -4,11 +4,20 @@ document.addEventListener('DOMContentLoaded', init)
 var start = [
   ['start', 'block', 'block', 'block'],
   ['topdown', 'space', 'leftright', 'end'],
-  ['topright', 'space', 'space', 'block'],
+  ['topright', 'block', 'space', 'space'],
   ['space', 'leftright', 'space', 'lefttop']
 ]
 
+var win = [
+  ['start', 'block', 'block', 'block'],
+  ['topdown', 'block', 'space', 'end'],
+  ['topright', 'leftright', 'leftright', 'lefttop'],
+  ['space', 'space', 'space', 'space']
+]
+
 var play = start
+
+var moveNum = 'Game not started'
 
 function createGrid () {
   var container = document.querySelector('#container')
@@ -16,7 +25,7 @@ function createGrid () {
     for (var j = 0; j < start.length; j++) {
       var allDiv = document.createElement('div')
       allDiv.id = [i] + [j] // assigning id based on natural index
-      //assigning value based on start grid
+      // assigning value based on start grid
       if (start[i][j] == 'space') { allDiv.classList.add('space') }
       if (start[i][j] == 'block') { allDiv.classList.add('block') }
       if (start[i][j] == 'lefttop') { allDiv.classList.add('lefttop') }
@@ -25,7 +34,7 @@ function createGrid () {
       if (start[i][j] == 'leftright') { allDiv.classList.add('leftright') }
       if (start[i][j] == 'start') { allDiv.classList.add('start') }
       if (start[i][j] == 'end') { allDiv.classList.add('end') }
-      //allDiv.classList.add('box')
+      // allDiv.classList.add('box')
       container.appendChild(allDiv)
     }
   }
@@ -41,11 +50,13 @@ function init () {
   console.log('init loaded')
     // put global variables here
 
-    // add event listerner to each div
-  //var allDiv = document.querySelectorAll('div')
+    // add event listerner to each div, and to startGame
   var aDiv = document.querySelector('div')
   aDiv.addEventListener('click', logicFile.checkValid)
   aDiv.addEventListener('click', updateGrid)
+  aDiv.addEventListener('click', logicFile.checkWin)
+  aDiv.addEventListener('click', showMoves)
+  document.getElementById('startBtn').addEventListener('click', startTimer)
   // })
 
     // Update tiles
@@ -58,9 +69,12 @@ function init () {
         for (var j = 0; j < start.length; j++) {
           var query = 'div:nth-child(' + k + ')'
           var imageInDiv = document.querySelector(query)
-          //console.log(imageInDiv);
+          // console.log(imageInDiv);
           if (play[i][j] == 'space') {
             imageInDiv.className = 'space'
+          }
+          if (play[i][j] == 'block') {
+            imageInDiv.className = 'block'
           }
           if (play[i][j] == 'lefttop') {
             imageInDiv.className = 'lefttop'
@@ -86,8 +100,26 @@ function init () {
     }
   }
 
+  function startTimer () {
+    moveNum = 0
+    seconds = 0
+    setInterval(showTimer, 1000)
+
+    function showTimer () {
+      if (seconds < 11) {
+        document.getElementById('timer').textContent = seconds + ' seconds'
+        seconds++
+      }
+    }
+  }
+
+  function showMoves () {
+    document.getElementById('moves').textContent = moveNum
+  }
 
   return {
     updateGrid: updateGrid,
+    showMoves: showMoves,
+    startTimer: startTimer
   }
 } // init ends here

@@ -1,9 +1,10 @@
-// 1. add timer, moves count
+// add timer, moves count
+// make start and end STUCK, and all other pieces are randomized
 // if timer hits 20s, restart random
 // ability to go next level, restart
-// 2. add drag drop function
-//animation for stars and ball
-//
+// add drag drop function
+// animation for stars and ball
+// if other stages needed, need to check if all combi added in code e.g. leftdown missing, downright missing
 
 // logic file
 function logic () {
@@ -13,6 +14,7 @@ function logic () {
   var indexArr = []
 
   function checkValid (target) {
+  if (!isNaN(moveNum)) {
     targetDiv = event.target
     var tempValue = targetDiv.classList[0]
     var tempID = targetDiv.id
@@ -30,11 +32,12 @@ function logic () {
       }
       if (valueArr[valueArr.length - 1] == 'space') {
         console.log('able to move')
-        return moveTileRight()
+        return moveTile()
       }
     } else if (valueArr.length == 1) { console.log('click on something else') }
+  }
 
-    function moveTileRight () {
+    function moveTile () {
       // to get index of first click
       var x = parseInt(indexArr[0].substr(0, 1))
       var y = parseInt(indexArr[0].substr(1))
@@ -45,11 +48,25 @@ function logic () {
       play[x][y] = 'space'
       valueArr = []
       indexArr = []
-      console.log(play)
+      moveNum+=1
+      console.log(moveNum)
     }
   }
+
+  function checkWin () {
+    var gameState = 'won'
+    for (var i = 0; i < start[0].length; i++) {
+      for (var j = 0; j < start[0].length; j++) {
+        if (play[i][j] !== win[i][j]) {
+          gameState = 'lost'
+        }
+      }
+    }
+    if (gameState == 'won') alert('won')
+  }
+
   return {
-    checkValid: checkValid
-    // moveTileRight: moveTileRight
+    checkValid: checkValid,
+    checkWin: checkWin,
   }
 }// end logic
