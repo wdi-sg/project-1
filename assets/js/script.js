@@ -1,6 +1,4 @@
 // Show initial start page
-var startPage = document.getElementById('start-page')
-startPage.style.display = 'block'
 document.querySelector('#start-button').addEventListener('click', startGame)
 
 // Global Variables
@@ -18,8 +16,7 @@ function generateFish1 () {
     var imgDestination = document.querySelector('body')
     var newFish = document.createElement('img')
     newFish.src = 'assets/pictures/Fish1.png'
-    newFish.style.height = randomizer(10, 120) + 'px'
-    newFish.style.width = randomizer(10, 120) + 'px'
+    newFish.style.height = randomizer(20, 120) + 'px'
     newFish.style.position = 'absolute'
     newFish.style.top = randomizer(0, window.innerHeight) + 'px'
     newFish.style.left = randomizer(0, window.innerWidth) + 'px'
@@ -50,11 +47,11 @@ function mouseFish () {
     var mainFish = document.querySelector('#main-fish')
     mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
     mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
-    mainFish.style.transition = 'top 0.2s linear, left 0.2s linear'
+    mainFish.style.transition = 'top 0.1s linear, left 0.1s linear'
 
     // Make fish rotate to face mouse
-    var fishMouth = [ mainFish.offsetLeft, mainFish.offsetTop + mainFish.style.height / 3 ]
-    var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (360 / Math.PI)
+    var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
+    var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
 
     mainFish.style.transform = 'rotate(' + angle + 'deg)'
   })
@@ -70,7 +67,7 @@ function collisionDetection (mainFish, eachFish) {
   else {return false}
 }
 
-// Increase size of main fish upon collision and remove other fish
+// Change size of main fish upon collision and remove other fish
 function collisionResult (mainFish, eachFish) {
   if (collisionDetection(mainFish, eachFish)) {
     if ((mainFish.offsetWidth * mainFish.offsetHeight) > (eachFish.offsetWidth * eachFish.offsetHeight)) {
@@ -93,9 +90,40 @@ function collisionResult (mainFish, eachFish) {
 // When start button is clicked, remove start page
 // Add fishes that move randomly
 function startGame () {
+  var startPage = document.getElementById('start-page')
   startPage.style.display = 'none'
-  setInterval(generateFish1, 3000)
-  setInterval(moveRandomly, 1000)
+  var generating = setInterval(generateFish1, 2000)
+  var moving = setInterval(moveRandomly, 1000)
   mainFish.style.display = 'block'
   mouseFish()
+  var over = setInterval(gameOver, 1000)
+  //If main fish is too small or too big, end game
+  function gameOver() {
+    if (mainFish.offsetHeight <= 30) {
+      clearInterval(generating)
+      clearInterval(moving)
+      clearInterval(over)
+      mainFish.style.display = 'none'
+      var sadPage = document.getElementById('sad-page')
+      sadPage.style.display = 'block'
+      
+      document.querySelector('#replay-button').addEventListener('click', function () {
+        sadPage.style.display = 'none'
+        startPage.style.display = 'block'
+      })
+    }
+    else if (mainFish.offsetHeight >= 100) {
+      clearInterval(generating)
+      clearInterval(moving)
+      clearInterval(over)
+      mainFish.style.display = 'none'
+      var happyPage = document.getElementById('happy-page')
+      happyPage.style.display = 'block'
+
+      document.querySelector('#replay-button').addEventListener('click', function () {
+        happyPage.style.display = 'none'
+        startPage.style.display = 'block'
+      })
+    }
+  }
 }

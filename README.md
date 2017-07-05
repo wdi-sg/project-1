@@ -27,7 +27,7 @@ Step-by-Step Process
 ### Functions
 
 **generateFish1()**
-* Generate fish of random size (height & width)
+* Generate fish of random height (the width will follow proportionately)
 * Place new fish at random position (top & left)
 * Push new fish to allFishes array
 
