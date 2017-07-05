@@ -41,6 +41,7 @@ var DiscardPile = []
 ///////////////////////
 var Computer = 0
 var Human = 1
+var Discard = 2 //refers to DiscardPile
 var whichPlayerTurn = Human // Human (= 1) starts first; Computer = 0
 var HumanNoOfCardsLeft = null
 var ComputerNoOfCardsLeft = null
@@ -118,7 +119,7 @@ function shuffle (Deck) {
   // Method: Recursively, swap last card with random card and then remove
   // last card from the next random pick window
 
-    var currentIndex = Deck.length, temporaryValue, randomIndex;
+    var currentIndex = Deck.length, temporaryValue, randomIndex
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -178,8 +179,6 @@ function labelCard(inputCard) {
 
 function isPlayableCard(player, index) {
   if (player === Human) {
-    console.log(index);
-    console.log(HumanPlayerPile[index]);
     if (HumanPlayerPile[index].color === DiscardPile[0].color ||
         HumanPlayerPile[index].value === DiscardPile[0].value ||
         HumanPlayerPile[index].value === DrawFour ||
@@ -192,7 +191,21 @@ function isPlayableCard(player, index) {
   return false
 }
 
+function discardCard (whichPile, whichCard) {
+  if (whichPile === Human) {
+    var discardedCard = HumanPlayerPile.splice(whichCard, 1)
+    return discardedCard
+  } else if (whichPile === Computer) {
+    //return ComputerPlayerPile.splice(whichCard, 1)
+  } else if (whichPile === Discard) {
+    var discardedCard = DiscardPile.splice(whichCard, 1)
 
+    // console.log('discarded card'+ discardedCard[0].label)
+    // console.log('discardPile after discarding 1 '+ DiscardPile[0].label);
+
+    return // no need to return
+  }
+}
 
 // console.log('dp len '+DrawPile.length);
 
