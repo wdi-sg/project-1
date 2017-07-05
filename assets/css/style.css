@@ -114,3 +114,43 @@ footer {
   display: inline-block;
   border-radius: 10%;
 }
+
+/* 6 x 6 grid */
+.L6Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 96px;
+  height: 96px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 7 x 7 grid */
+.L7Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 81.7px;
+  height: 81.7px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 8 x 8 grid */
+.L8Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 71px;
+  height: 71px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 9 x 9 grid */
+.L9Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 62.6px;
+  height: 62.6px;
+  display: inline-block;
+  border-radius: 10%;
+}

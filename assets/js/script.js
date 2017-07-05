@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', function () {
     ['rgb(255, 237, 0)',
       'rgb(255, 220, 0)'],
     ['rgb(50, 150, 255)',
-      'rgb(40, 170, 235)']
+      'rgb(40, 170, 235)'],
+    ['rgb(40, 40, 40)',
+      'rgb(0, 0, 0)'],
+    ['rgb(160, 255, 0)',
+      'rgb(156, 255, 78)'],
+    ['rgb(252, 76, 76)',
+      'rgb(255, 59, 59)'],
+    ['rgb(255, 105, 208)',
+      'rgb(255, 101, 230)']
   ]
   // console.log(palette[3][0])
 
@@ -58,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.container').innerHTML = ' '
     var endMsg = document.createElement('h3')
     document.querySelector('.container').appendChild(endMsg)
-    endMsg.textContent = 'Game Over. Thanks for playing!' + 'You scored a ' + score + '/4 in ' + (30 - timeLeft -1) + ' seconds.'
+    endMsg.textContent = 'Game Over. Thanks for playing!' + 'You scored a ' + score + '/8 in ' + (30 - timeLeft - 1) + ' seconds.'
 
     // document.querySelector('.container').style.textAlign = 'center'
   }
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-// grid creator; change level
+// ##### grid creator; change level #####
   function gridCreate () {
     var gridId = 0
     for (var i = 0; i < noOfRows; i++) {
@@ -96,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // grid color
     wholeGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')
-    console.log(wholeGrid)
+    // console.log(wholeGrid)
     for (var p = 0; p < noOfRows - 1; p++) {
       for (var j = 0; j < gridId; j++) {
         wholeGrid[j].style.backgroundColor = palette[p][0]
@@ -114,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log(gridId)
     ranGrid.style.backgroundColor = palette[p - 1][1]
   }
-// end of gridCreate()
+// ##### End of gridCreate() #####
 
 // random number btw max & min
   function ranNum (min, max) {
@@ -126,17 +134,16 @@ document.addEventListener('DOMContentLoaded', function () {
     // console.log(this)
     // console.log(ranGrid)
     if (this === ranGrid) {
-      console.log('matched!')
+      // console.log('matched!')
 
       // target the score node
       var scoreTgt = document.querySelector('.score')
       // update score to score node
       scoreTgt.innerHTML = score + 1
       score += 1
-      console.log(score)
 
-      // increase the grid size if < 5x5
-      if (noOfRows < 5) {
+      // increase the grid size
+      if (noOfRows < 9) {
         noOfRows += 1
       } else {
         isGameOver = true
@@ -153,4 +160,5 @@ document.addEventListener('DOMContentLoaded', function () {
   var startButtonTgt = document.querySelector('.startButton')
   // add event listener to start button
   startButtonTgt.addEventListener('click', init)
+
 }) // ##### END of DOMContentLoaded #####
