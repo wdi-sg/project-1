@@ -54,15 +54,23 @@ body {
   z-index: 1;
 }
 
-h1 {
+#title {
   position: absolute;
+  display: block;
   background-color: black;
-  text-align: center;
-  /*height: 50px;*/
-  width: 300px;
-  top: 100px;
+  /*text-align: center;*/
+  font-size: 25pt;
+  top: 120px;
   left: 250px;
   z-index: 1;
+  border-right: 5px solid white;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    border-color: transparent;
+  }
 }
 
 h3 {
@@ -71,9 +79,9 @@ h3 {
   text-align: center;
   font-style: italic;
   /*height: 50px;*/
-  width: 380px;
+  width: 420px;
   top: 150px;
-  left: 210px;
+  left: 190px;
   z-index: 1;
 }
 
