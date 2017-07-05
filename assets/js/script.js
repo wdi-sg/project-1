@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', init)
 
 function init() {
   var alLogic = alphabetLogic()
-
+  var interval = null
   var randomWord = document.querySelector('.rand')
   var start = document.querySelector('#start')
   var submit = document.querySelector('#submit')
@@ -40,7 +40,7 @@ function init() {
   }
 
   function displayStr () {
-    setInterval(timerz,1000)
+    interval = setInterval(timerz,1000)
     randomStr = alLogic.randStr()
     randomWord.textContent = randomStr.join(' ').toUpperCase()
     start.style.display = 'none'
@@ -61,6 +61,7 @@ function init() {
   function reset () {
     storedArr = []
     randomStr = []
+    clearInterval(interval)
     displayStr()
   }
 }
