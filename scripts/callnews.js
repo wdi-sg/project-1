@@ -1,8 +1,26 @@
-// google-news package. Copied from: https://www.npmjs.com/package/google-news
+// Due to cross origin issues with the google-news npm, this is the workaround
+// using a JSON file with news for HSBC, ticker 0005
 
-console.log(getNews('HSBC', '0005'))
+var fakeNews = require('../misc-ref/fakenews.json')
+
+function getNews () {
+  var newsRelatedData = fakeNews.feed.entry
+  var noOfStories = newsRelatedData.length
+  var selectedNewsData = []
+  for (i=0; i<noOfStories; i++) {
+    var storyObject = {}
+    storyObject.title = newsRelatedData[i].title.__text
+    storyObject.datePublished = newsRelatedData[i].updated
+    storyObject.storyUrl = newsRelatedData[i].id
+    selectedNewsData.push(storyObject)
+  }
+  return selectedNewsData
+  }
+
+module.exports.getNews = getNews
 
 // Below works on node (save it!!)... but fails on browser.
+// this uses the google-news package. Code copied from: https://www.npmjs.com/package/google-news
 
 // function getNews (coyName, coyTicker) {
 //   var GoogleNews, googleNews, track,
@@ -22,8 +40,9 @@ console.log(getNews('HSBC', '0005'))
 //     })
 //   })
 // }
-//
+// console.log(getNews('HSBC', '0005'))
 // module.exports.getNews = getNews
+
 
 // google-finance package. Google news with a ticker. Copied from:
 //  https://github.com/pilwon/node-google-finance/blob/master/examples/callback/company-news-single.js
