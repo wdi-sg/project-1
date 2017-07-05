@@ -1,21 +1,3 @@
-var ingredientCounter = 0 // number of ingredients already in play
-var level = 1 // determines score and number of things in order list
-var gameStarted = false // prevents clicking before timer starts
-var neededIngredients = []
-var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
-
-var playArea = document.querySelector('.playArea')
-var buttons = document.querySelectorAll('.buttons div')
-var serveButton = document.querySelector('.serveButton')
-var score = document.querySelector('.score')
-var time = document.querySelector('.time')
-var order = document.querySelector('.order')
-var startGameOverlay = document.querySelector('.startGameOverlay')
-var startGameButton = document.querySelector('.startGameButton')
-var endGameOverlay = document.querySelector('.endGameOverlay')
-var endGameScore = document.querySelector('.endGameScore')
-var restart = document.querySelector('.restart')
-
 // add event listeners to all ingredients
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
@@ -27,7 +9,7 @@ function addIngredient () {
   if (gameStarted) {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
     whichIngredient = this.className.substring(5).toLowerCase()
-    if (whichIngredient === neededIngredients[ingredientCounter]) {
+    if (checkForMatch()) {
       // add strikethrough to list item
       var h3 = document.querySelectorAll('h3')
       h3[ingredientCounter].style.textDecoration = 'line-through'
@@ -43,21 +25,6 @@ function addIngredient () {
       playArea.prepend(newIngredient)
     }
   }
-}
-
-// generate random array of ingredients.
-// excluding topbun which must be the last item of every order
-function randomizer () {
-  var randomNum = Math.floor(Math.random() * 6)
-  return possibleIngredients[randomNum]
-}
-
-function newOrder () {
-  for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
-    neededIngredients.push(randomizer())
-  }
-  neededIngredients.push('topbun')
-  return neededIngredients
 }
 
 // DOM manipulation to list out ingredients needed
@@ -114,10 +81,9 @@ startGameButton.addEventListener('click', startGame)
 function startGame () {
   if (!gameStarted) { // ensure setInterval only fires once
     setInterval(countdown, 1000)
-    generateList()
+    generateList() // click to start generates first order
     setTimeout(gameOver, 90000) // cause endGameOverlay to appear
   }
-   // click to start generates first order
   gameStarted = true
   startGameOverlay.style.height = '0px' // collapse overlay
 }
