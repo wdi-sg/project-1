@@ -22,7 +22,7 @@ Layout
 !["Game Layout"](https://github.com/rebeccatay92/project-1/blob/master/screenshot.png)
 !["Start Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/startGameOverlay.png)
 !["End Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/endGameOverlay.png)
-
+<img src="endGameOverlay.png" alt="End Game Overlay" style="width: 200px; height: 400px"/>
 Functions
 ---
 
