@@ -100,6 +100,7 @@ function moveBlock (elem) {
       if(collision()) {
         area.removeChild(elem)
         alert('IMPALED!')
+        alert = function( ) {}
       } else {
         console.log('jumped over')
       }
