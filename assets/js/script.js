@@ -35,6 +35,7 @@ function init () {
   var player1Score = 0
   var player2Score = 0
   var playerTurn = 1
+  var gameOver = false
 
   // all fns
   function showQuestionAndChoices (qIndex) {
@@ -53,10 +54,13 @@ function init () {
 
       if (player1Score > player2Score) {
         alert('Game Over, Player 1 Wins!')
+        return gameOver = true
       } else if (player2Score > player1Score) {
         alert('Game Over, PLayer 2 Wins!')
+        return gameOver = true
       } else if (player1Score === player2Score) {
         alert('its a tie!')
+        return gameOver = true
       }
     }
   }
@@ -104,12 +108,39 @@ function init () {
         choicesClicker(turnKeeper(questionNum))
         questionNum++
         showQuestionAndChoices(questionNum)
+        restartButton()
         turnKeeper(questionNum)
         activateChoices()
       })
     }
   }
-  function restart() {
+
+
+  function restartButton() {
+    // var restartSelect = document.querySelector('button')
+    if (gameOver === true) {
+      var restartButton = document.createElement('button')
+      restartButton.innerText = 'Restart?'
+      document.body.appendChild(restartButton)
+      document.querySelector('button').addEventListener('click', function restartGame() {
+            questionNum = 0
+            gameOver = false
+            player1Score = 0
+            player2Score = 0
+            playerTurn = 1
+            showQuestionAndChoices(questionNum)
+            activateChoices()
+            document.body.removeChild(restartButton)
+
+
+
+
+          })
+    }
+
+
+
+
 
   }
 
