@@ -1,12 +1,5 @@
 
-// TO FIX!! current starting position of TD, TR is hardcoded!!!
-// TO FIX!! take dynamic no. of moves (currenltly hardcoded at 6)
-// IF FIXED, unrandomize start button random at dom62
-// ability to go next level, restart
-// add drag drop function
-// animation for stars and ball
-// scrolling background?
-// if other stages needed, need to check if all combi added in code e.g. leftdown missing, downright missing
+
 var S = {
   'topdown': {
     'topright': {
@@ -19,6 +12,7 @@ var S = {
       'lefttop': 'end'
     }
   },
+  'lefttop': 'end',
   'topright': {
     'leftright': {
       'lefttop': 'end',
@@ -43,11 +37,10 @@ function logic () {
       targetDiv = event.target
       var tempValue = targetDiv.classList[0]
       var tempID = targetDiv.id
-      valueArr.push(tempValue)
-      indexArr.push(tempID)
-
+      if (Boolean(tempValue)===true){
+        valueArr.push(tempValue)}
+      if (Boolean(tempValue)===true){indexArr.push(tempID)}
       if (valueArr.length == 2) {
-        // console.log(valueArr.pop() == 'space');
         if (valueArr[valueArr.length - 1] !== 'space') {
           valueArr = []
           indexArr = []
@@ -60,52 +53,111 @@ function logic () {
 
       function moveTile () {
       // to get index of first click
-        var x = parseInt(indexArr[0].substr(0, 1))
-        var y = parseInt(indexArr[0].substr(1))
+        var x1 = parseInt(indexArr[0].substr(0, 1))
+        var y1 = parseInt(indexArr[0].substr(1))
       // to get index of second click
         var x2 = parseInt(indexArr[1].substr(0, 1))
         var y2 = parseInt(indexArr[1].substr(1))
         play[x2][y2] = valueArr[0]
-        play[x][y] = 'space'
+        play[x1][y1] = 'space'
         valueArr = []
         indexArr = []
         moveNum += 1
       }
     }
-
+    // populates unrecorded moves around x
+    var count = 0
+    var match = ''
+    var state = true
+    var xRight = ''
+    var xLeft = ''
+    var xTop = ''
+    var xDown = ''
     function popUnrecordedMoves (x) {
-      var x = start
+      if (state && count <2) {
       for (var i = 0; i < start[0].length; i++) {
         for (var j = 0; j < start.length; j++) {
-          if (x[i][j] == 'start') {
-            if (start[i][j + 1]) { var xRight = start[i][j + 1] }
-            //if (start[i][j - 1]) { var xLeft = start[i][j - 1] }
-            //if (start[- 1][j]) {var xTop = start[i - 1][j]}
-            if (start[i + 1][j]) {var xDown = start[i + 1][j]}
+          if (start[i][j] == x) {
+            if (j !== 3) { xRight = start[i][j + 1] }
+            if (j !== 0) { xLeft = start[i][j - 1] }
+            if (i !== 0) { xTop = start[i - 1][j] }
+            if (i !== 3) { xDown = start[i + 1][j] }
           }
         }
       }
-        // if not undefined, test each one
-        tempArr.push(xDown)
-        if (S[tempArr[0]]) {
-          moveArr.push(xDown)
+      // console.log(xRight)
+      // console.log(xLeft)
+      // console.log(xTop)
+      // console.log(xDown)
+
+    chkTile(xRight)
+    chkTile(xLeft)
+    chkTile(xDown)
+    chkTile(xTop)
+
+    state = false
+    if (match === 'pipe match') {state = true}
+    //console.log(count);
+    count++
+    return popUnrecordedMoves(xDown)
+  }
+
+      //recursively check next
+      // if (chkTile(xDown)) {console.log('loop ran?')
+      //   return popUnrecordedMoves(xDown)}
+      //
+      // if (chkTile(xRight)==true) {
+      //   console.log('loopshouldrun')
+      //   popUnrecordedMoves(xRight)}
+      // if (chkTile(xLeft)==true) {
+      //   console.log('loopshouldrun')
+      //   popUnrecordedMoves(xLeft)}
+      // if (chkTile(xTop)==true) {
+      //   console.log('loopshouldrun')
+      // popUnrecordedMoves(xTop)}
+      // if (chkTile(xDown)==true) {console.log('loopshouldrun');popUnrecordedMoves(xDown)}
+
+      function chkTile (t) {
+        tempArr.push(t)
+        if (tempArr.length == 1) {
+          if (S[tempArr[0]]) {
+            moveArr.push(t)
+            tempArr.push(t)
+            match = 'pipe match'
+
+          }
+        }
+        if (tempArr.length == 2) {
+          if (S[tempArr[0]][tempArr[1]]) {
+            moveArr.push(t)
+            tempArr.push(t)
+            match = 'pipe match'
+
+          }
+        }
+        if (tempArr.length == 3) {
+          if (S[tempArr[0]][tempArr[1]][tempArr[2]]) {
+            moveArr.push(t)
+            tempArr.push(t)
+            match = 'pipe match'
+
+          }
+        }
+        if (tempArr.length == 4) {
+          if (S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]]) {
+            moveArr.push(t)
+            tempArr.push(t)
+            match = 'pipe match'
+          }
         }
         else {
-          tempArr = moveArr
-          console.log('pipe not aligned');}
-
-        tempArr.push(xRight)
-        if (S[tempArr[0]][tempArr[1]]) {
-          moveArr.push(xRight)
+          tempArr.pop()
         }
-        else {
-          tempArr = moveArr
-          console.log('pipe not aligned');}
+      } //end checkTile
 
-      console.log(moveArr)
-      console.log(tempArr);
       // needs to recursively return popUnrecordedMoves(based on next coz)
-    }
+    } //end popUnrecordedMoves
+
 
     function checkPipesConnect () {
       var gameState = 'won'
@@ -113,10 +165,12 @@ function logic () {
       // console.log(newMove);
       tempArr.push(newMove)
         // to cater for adding on of arr lenght TO FIX
-        console.log(tempArr);
+      if (tempArr.length == 1) {
+        var test = S[tempArr[0]]
+      }
       if (tempArr.length == 2) {
-          var test = S[tempArr[0]][tempArr[1]]
-        }
+        var test = S[tempArr[0]][tempArr[1]]
+      }
       if (tempArr.length == 3) {
         var test = S[tempArr[0]][tempArr[1]][tempArr[2]]
       }
@@ -129,21 +183,21 @@ function logic () {
       if (tempArr.length == 6) {
         var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]][tempArr[5]]
       }
-      //if true, moveArr takes it in
+      // if true, moveArr takes it in
       if
        (test) {
         moveArr.push(newMove)
+        console.log('moveArr' + moveArr);
         if (test == 'end') { alert('game won') }
       }
-      //if false temp removes it
+      // if false temp removes it
       else {
         tempArr.pop()
-        console.log('tempArr'+ tempArr);
         console.log('pipes not aligned')
       }
-    }
+    } //ends checkPipesConnect
     return {popUnrecordedMoves: popUnrecordedMoves}
-  }
+  } //ends checkMoveIntoSpace
 
   function randomize () {
     // Recursive function to create random array

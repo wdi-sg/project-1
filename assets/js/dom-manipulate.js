@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', init)
 
 // global var, accessible by both logic and dom?
+//will be randomized when start hit start button
 var start = [
   ['start', 'block', 'block', 'block'],
   ['topdown', 'space', 'leftright', 'end'],
@@ -8,6 +9,7 @@ var start = [
   ['space', 'leftright', 'space', 'lefttop']
 ]
 
+//win is to know what starting pieces to take, and if needed, hardcoded winning combi
 var win = [
   ['start', 'block', 'block', 'block'],
   ['topdown', 'block', 'space', 'end'],
@@ -15,6 +17,7 @@ var win = [
   ['space', 'space', 'space', 'space']
 ]
 
+//play is updated to allow updateGrid to work
 var play = start
 
 var moveNum = 'Game not started'
@@ -59,8 +62,8 @@ function init () {
 
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
-  document.getElementById('startBtn').addEventListener('click', logicFile.checkMoveIntoSpace().startPos)
   document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
+  document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('start') })
   document.getElementById('startBtn').addEventListener('click', updateGrid)
 
   //
@@ -69,7 +72,6 @@ function init () {
 
     // Update tiles
   function updateGrid () {
-      // console.log(play);
       // console.log(allDiv);
     var k = 1
     while (k < 17) {
@@ -109,7 +111,7 @@ function init () {
 
   function startTimer () {
     moveNum = 0
-    seconds = 61
+    seconds = 31
     setInterval(showTimer, 1000)
 
     function showTimer () {
