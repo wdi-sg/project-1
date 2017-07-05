@@ -7,11 +7,12 @@ Live Site
 ---
 https://rebeccatay92.github.io/project-1/
 
-Concept
+Concept & Game Mechanics
 ---
-
-Game Mechanics
----
+Attempting to clone a Burger Maker game (http://demonisblack.com/code/burgermaker/game/) using vanilla JS.
+Players are given a limited time to create burgers according to a list.
+Players will click on the correct ingredients to add them to the burger.
+The game ends when time runs out.
 
 Functions
 ---
