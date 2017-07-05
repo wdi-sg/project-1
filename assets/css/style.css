@@ -96,35 +96,35 @@ li {
 }
 
 #bottombun {
-  background-image: url("../images/bottombun.png");
+  background-image: url("../images/bottombun.PNG");
   bottom: 30px;
 }
 
 #patty {
-  background-image: url("../images/patty.png");
+  background-image: url("../images/patty.PNG");
 }
 
 #cheese {
-  background-image: url("../images/cheese.png");
+  background-image: url("../images/cheese.PNG");
   margin-bottom: -10px;
 }
 
 #lettuce {
-  background-image: url("../images/lettuce.png");
+  background-image: url("../images/lettuce.PNG");
   margin-bottom: -10px;
 }
 
 #onion {
-  background-image: url("../images/onion.png");
+  background-image: url("../images/onion.PNG");
   margin-bottom: -10px;
 }
 
 #tomato {
-  background-image: url("../images/tomato.png");
+  background-image: url("../images/tomato.PNG");
 }
 
 #topbun {
-  background-image: url("../images/topbun.png");
+  background-image: url("../images/topbun.PNG");
 }
 
 .left-content {
