@@ -367,9 +367,6 @@ module.exports.getNews = getNews
 // });
 
 },{"../misc-ref/fakenews.json":1}],3:[function(require,module,exports){
-// HOW TO I RUN CALLNEWS.JS? Do i need to do module.exports + require (https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file)
-// , or do i just need to load up the callnews.js file in the html, before this game.js file?
-// var callnews = require('./callnews.js')    // error returned. need browserify
 
 var callnews = require('./callnews.js')
 
@@ -391,7 +388,6 @@ function init () {
     parameters.walletSize = form.walletSize.value
     parameters.holdingPeriod = form.holdingPeriod.value
     status = 'Parameters submitted, P1 playing'
-    console.log(parameters.holdingPeriod)
   }
 
   // this will stop the form to submit
@@ -420,7 +416,7 @@ function init () {
   }
 
   // add event listener to Select Ticker button. When this button is clicked, grab
-  // ticker entered, and add note to say it's P2 turn to play
+  // ticker entered, and add text prompt for next step
 
   var selectTickerBtns = document.querySelectorAll('.thesis-buy-area input[type="button"]')
   for (var i = 0; i < selectTickerBtns.length; i++) {
@@ -457,6 +453,7 @@ function init () {
     }
   }
 
+// When Execute Trades button is clicked, determine and display the winner
   var executeTradesBtn = document.querySelector('#execute-div button')
   executeTradesBtn.addEventListener('click', determineWinner)
 
@@ -496,11 +493,16 @@ function init () {
     player2Data.wallet = wallet
     // console.log(player2Data)
 
-    var winner = (player1Data.wallet > player2Data.wallet) ? 'Player 1' : 'Player 2'
-    console.log(winner)
-
-    window.location.href = '../results.html'
-
+    console.log(parameters)
+    console.log(parameters.p1Name)
+    console.log(parameters.holdingPeriod)
+    var winner = (player1Data.wallet > player2Data.wallet) ? parameters.p1Name : parameters.p2Name
+    var whoWonP = document.querySelector('#who-won')
+    whoWonP.textContent = winner + "won!"
+    var roiP = document.querySelector('#roi')
+    roiP.textContent = parameters.p1name + ' achieved a return on investment of ' + player1Data.roi + ', while ' + parameters.p2name + ' achieved a return on investment of ' + player2Data.roi
+    var walletP = document.querySelector('#wallet')
+    walletP.textContent = 'At the end of the holding period, ' + parameters.p1name + ' had $' + player1Data.wallet + 'in his/her wallet, while ' + parameters.p2name + ' had $' + player2Data.wallet + 'in his/her wallet.'
   }
 
   function getPrice(ticker) {
