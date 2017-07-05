@@ -20,14 +20,14 @@ function init () {
     parameters.p1Name = form.p1Name.value
     parameters.p2Name = form.p2Name.value
     parameters.walletSize = form.walletSize.value
-    parameters.holdingPeriod = form.holdingPeriod
+    parameters.holdingPeriod = form.holdingPeriod.value
     status = 'Parameters submitted, P1 playing'
-    console.log(parameters)
+    console.log(parameters.holdingPeriod)
   }
 
   // this will stop the form to submit
   form.addEventListener('submit', function (e) {
-    // e.preventDefault()
+    e.preventDefault()
     initiateParams()
   })
 
@@ -88,17 +88,60 @@ function init () {
     }
   }
 
-  // var executeTradesBtn = document.querySelector('#execute-div input[type="button"]')
-  // executeTradesBtn.addEventListener('click', determineWinner)
-  //
-  // function determineWinner (event) {
-  //
-  // }
+  var executeTradesBtn = document.querySelector('#execute-div button')
+  executeTradesBtn.addEventListener('click', determineWinner)
 
-  // function Player (thesis, ticker, entryPrice, exitPrice, roi) {
-  //   this.thesis = thesis
-  //   this.ticker = ticker
-  //   this.entryPrice = entryPrice
-  //   this.exitPrice = exitPrice
-  // }
+  var winner = ''
+  function determineWinner (event) {
+    // For P1
+    var priceData = getPrice(player1Data.ticker)
+    var companyName = priceData.dataset.name
+    player1Data.companyName = companyName
+    var startPrice = priceData.dataset.data[parameters.holdingPeriod][1]
+    player1Data.startPrice = startPrice
+    var endPrice = priceData.dataset.data[0][1]
+    player1Data.endPrice = endPrice
+    var startPriceDate = priceData.dataset.data[parameters.holdingPeriod][0]
+    player1Data.startPriceDate = startPriceDate
+    var endPriceDate = priceData.dataset.data[0][0]
+    player1Data.endPriceDate = endPriceDate
+    var roi = endPrice/startPrice-1
+    player1Data.roi = roi
+    var wallet = (1 + roi) * parameters.walletSize
+    player1Data.wallet = wallet
+    // console.log(player1Data)
+
+    // For P2
+    var priceData = getPrice(player2Data.ticker)
+    var startPrice = priceData.dataset.data[parameters.holdingPeriod][1]
+    player2Data.startPrice = startPrice
+    var endPrice = priceData.dataset.data[0][1]
+    player2Data.endPrice = endPrice
+    var startPriceDate = priceData.dataset.data[parameters.holdingPeriod][0]
+    player2Data.startPriceDate = startPriceDate
+    var endPriceDate = priceData.dataset.data[0][0]
+    player2Data.endPriceDate = endPriceDate
+    var roi = endPrice/startPrice-1
+    player2Data.roi = roi
+    var wallet = (1 + roi) * parameters.walletSize
+    player2Data.wallet = wallet
+    // console.log(player2Data)
+
+    var winner = (player1Data.wallet > player2Data.wallet) ? 'Player 1' : 'Player 2'
+    window.location.href = '../results.html'
+  }
+
+  function getPrice(ticker) {
+    var req = new XMLHttpRequest()
+    var stockUrl = 'https://www.quandl.com/api/v3/datasets/HKEX/' + ticker + '.json?2&api_key=1VqFiTXxySMhKgkyNfPp'
+    req.open('GET', stockUrl, false)
+    req.send(null)
+    // console.log(req.status)
+    var dataObj = JSON.parse(req.responseText)
+    return dataObj
+    // console.log(dataObj.dataset.newest_available_date)
+    // var responseObject = JSON.parse(req.responseText)
+    // var company_id = responseObject['company_id']
+    // console.log(company_id)
+  }
 }
