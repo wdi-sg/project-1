@@ -71,29 +71,100 @@ function init () {
   function randomFn (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-
   function generateTrees () {
     var number = randomFn(1, 4)
+    console.log('random number is ' + number)
     if (number === 1) {
       firstTree.style.visibility = 'visible'
       treeNumber = 1
-      moveTree1Down = setInterval(move1Down, 7)
+      checkLevel()
     }
     if (number === 2) {
       secondTree.style.visibility = 'visible'
       treeNumber = 2
-      moveTree2Down = setInterval(move2Down, 7)
+      checkLevel()
     }
     if (number === 3) {
       thirdTree.style.visibility = 'visible'
       treeNumber = 3
-      moveTree3Down = setInterval(move3Down, 7)
+      checkLevel()
     }
     if (number === 4) {
       fourthTree.style.visibility = 'visible'
       treeNumber = 4
-      moveTree4Down = setInterval(move4Down, 7)
+      checkLevel()
     }
+  }
+  function checkLevel () {
+    if (scorecounter <= 3) {
+      levelOne()
+    } else if (scorecounter <= 7) {
+      levelTwo()
+    } else if (scorecounter <= 11) {
+      levelThree()
+    } else if (scorecounter <= 13) {
+      levelFour()
+    } else if (scorecounter <= 17) {
+      levelFive()
+    } else {
+      levelInfinite()
+    }
+  }
+  function levelOne () {
+    moveTree1Down = setInterval(move1Down, 22)
+    moveTree2Down = setInterval(move2Down, 22)
+    moveTree3Down = setInterval(move3Down, 22)
+    moveTree4Down = setInterval(move4Down, 22)
+  }
+  function levelTwo () {
+    clearInterval(moveTree1Down)
+    moveTree1Down = setInterval(move1Down, 18)
+    clearInterval(moveTree2Down)
+    moveTree2Down = setInterval(move2Down, 18)
+    clearInterval(moveTree3Down)
+    moveTree3Down = setInterval(move3Down, 18)
+    clearInterval(moveTree4Down)
+    moveTree4Down = setInterval(move4Down, 18)
+  }
+  function levelThree () {
+    clearInterval(moveTree1Down)
+    moveTree1Down = setInterval(move1Down, 14)
+    clearInterval(moveTree2Down)
+    moveTree2Down = setInterval(move2Down, 14)
+    clearInterval(moveTree3Down)
+    moveTree3Down = setInterval(move3Down, 14)
+    clearInterval(moveTree4Down)
+    moveTree4Down = setInterval(move4Down, 14)
+  }
+  function levelFour () {
+    clearInterval(moveTree1Down)
+    moveTree1Down = setInterval(move1Down, 11)
+    clearInterval(moveTree2Down)
+    moveTree2Down = setInterval(move2Down, 11)
+    clearInterval(moveTree3Down)
+    moveTree3Down = setInterval(move3Down, 11)
+    clearInterval(moveTree4Down)
+    moveTree4Down = setInterval(move4Down, 11)
+  }
+  function levelFive () {
+    clearInterval(moveTree1Down)
+    moveTree1Down = setInterval(move1Down, 7)
+    clearInterval(moveTree2Down)
+    moveTree2Down = setInterval(move2Down, 7)
+    clearInterval(moveTree3Down)
+    moveTree3Down = setInterval(move3Down, 7)
+    clearInterval(moveTree4Down)
+    moveTree4Down = setInterval(move4Down, 7)
+  }
+  function levelInfinite () {
+    clearInterval(moveTree1Down)
+    moveTree1Down = setInterval(move1Down, 3)
+    clearInterval(moveTree2Down)
+    moveTree2Down = setInterval(move2Down, 3)
+    clearInterval(moveTree3Down)
+    moveTree3Down = setInterval(move3Down, 3)
+    clearInterval(moveTree4Down)
+    moveTree4Down = setInterval(move4Down, 3)
   }
   function move1Down () {
     if (firstTreeTop < 270) {
@@ -146,6 +217,7 @@ function init () {
     if (jackLeftPos > 55 && jackLeftPos <= 535) {
       jackLeftPos -= 80
       jack.style.left = jackLeftPos + 'px'
+      checkJackPos()
     }
   }
 
@@ -153,10 +225,11 @@ function init () {
     if (jackLeftPos >= 55 && jackLeftPos < 535) {
       jackLeftPos += 80
       jack.style.left = jackLeftPos + 'px'
+      checkJackPos()
     }
   }
 
-  function chop () {
+  function checkJackPos () {
     if (jackLeftPos === 55) {
       jackNumber = 1
     } else if (jackLeftPos === 215) {
@@ -165,56 +238,58 @@ function init () {
       jackNumber = 3
     } else if (jackLeftPos === 535) {
       jackNumber = 4
+    } else {
+      jackNumber = -1
     }
+    console.log(jackNumber)
+  }
+  function chop () {
     if (jackNumber === treeNumber) {
       scorecounter += 1
-      timeLeft += 100
+      timeLeft += 500
       if (jackNumber === 1) {
-        firstTree.style.visibility = 'hidden'
         refreshOne()
       } if (jackNumber === 2) {
-        secondTree.style.visibility = 'hidden'
         refreshTwo()
       } if (jackNumber === 3) {
-        thirdTree.style.visibility = 'hidden'
         refreshThree()
       } if (jackNumber === 4) {
-        fourthTree.style.visibility = 'hidden'
         refreshFour()
       }
-    } else {
-      scorecounter -= 1
     }
-    jack.style.backgroundColor = 'orange'
+    setTimeout(colorChanger, 1000)
     displayScore()
   }
-
+  function colorChanger () {
+    jack.style.backgroundColor = 'orange'
+  }
   function refreshOne () {
+    firstTree.style.visibility = 'hidden'
     firstTreeTop = 0
     firstTree.style.top = '0px'
     clearInterval(moveTree1Down)
     treeNumber = 0
   }
   function refreshTwo () {
+    secondTree.style.visibility = 'hidden'
     secondTreeTop = 0
     secondTree.style.top = '0px'
     clearInterval(moveTree2Down)
     treeNumber = 0
   }
   function refreshThree () {
+    thirdTree.style.visibility = 'hidden'
     thirdTreeTop = 0
     thirdTree.style.top = '0px'
     clearInterval(moveTree3Down)
     treeNumber = 0
   }
   function refreshFour () {
+    fourthTree.style.visibility = 'hidden'
     fourthTreeTop = 0
     fourthTree.style.top = '0px'
     clearInterval(moveTree4Down)
     treeNumber = 0
-  }
-  function displayScore () {
-    currentScore.innerHTML = scorecounter
   }
 
   function startTimer () {
@@ -236,7 +311,26 @@ function init () {
         timeLeft--
       }
     }
-    genTree = setInterval(generateTrees, 1000)
+    genTree = setInterval(generateTrees, 3000)
+  }
+  function displayScore () {
+    currentScore.innerHTML = scorecounter
+    if (scorecounter === 6) {
+      clearInterval(genTree)
+      genTree = setInterval(generateTrees, 2500)
+    } if (scorecounter === 10) {
+      clearInterval(genTree)
+      genTree = setInterval(generateTrees, 2000)
+    } if (scorecounter === 14) {
+      clearInterval(genTree)
+      genTree = setInterval(generateTrees, 1500)
+    } if (scorecounter === 18) {
+      clearInterval(genTree)
+      genTree = setInterval(generateTrees, 1000)
+    } if (scorecounter === 22) {
+      clearInterval(genTree)
+      genTree = setInterval(generateTrees, 500)
+    }
   }
   function isGameOver () {
     var topScore = parseInt(topScoreRecord.innerHTML)
