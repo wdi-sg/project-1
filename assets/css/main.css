@@ -1,27 +1,27 @@
 #red {
   background-color: red;
-  height: 1000px;
+  height: 300px;
   width: 24%;
   display: inline-block;
 }
 
 #green {
   background-color: green;
-  height: 1000px;
+  height: 300px;
   width: 24%;
   display: inline-block;
 }
 
 #blue {
   background-color: blue;
-  height: 1000px;
+  height: 300px;
   width: 24%;
   display: inline-block;
 }
 
 #yellow {
   background-color: yellow;
-  height: 1000px;
+  height: 300px;
   width: 24%;
   display: inline-block;
 }
@@ -31,4 +31,16 @@
   height: 1000px;
   width: 100px;
   display: inline-block;
+}
+
+/*h1 {
+  text-align: center;
+}
+
+button {
+  display: block;
+}*/
+
+#words {
+  text-align: center;
 }

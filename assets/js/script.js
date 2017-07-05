@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', init);
 var startButton = document.querySelector('#button');
 var body = document.querySelector('body');
 var allbuttons = document.querySelectorAll('button');
+var h1 = document.querySelector('h1');
+var h2 = document.querySelector('h2');
+var h3 = document.querySelector('h3');
+var levelNumber = 1;
 function init () {
   var keys = document.querySelectorAll('.colors div');
   // var level1 = ["red", "blue", "green", "yellow"];
@@ -46,14 +50,43 @@ function init () {
     //   changeColorBlack();
     // }
     console.log(keyedColors);
+    console.log(level);
     // for(var i = 0; i < keyedColors.length; i++ )
     if (checkNotEqual()) {
-      alert('try again');
+      // alert('try again');
+      h1.innerHTML = "GAME OVAH!";
+      // generateRandomSequence();
       keyedColors = [];
+      level = [];
+      colors = ["red", "blue", "green", "yellow"];
+      levelNumber = 1;
+      h2.innerHTML = "";
+      h3.innerHTML = "";
+
+      var restart = document.createElement('button');
+      var restartText = document.createTextNode("Restart");
+      restart.appendChild(restartText);
+      document.body.appendChild(restart);
+      restart.addEventListener('click', function () {
+        generateRandomSequence();
+        // removeStartButton();
+        body.removeChild(restart);
+        h1.innerHTML = "";
+        h2.innerHTML = "Level";
+        h3.innerHTML = "1";
+      });
+return; //why did it work after writing this?
     }
     // console.log(level1);
     if (checkEqual()) {
-      alert('good job');
+      levelNumber += 1;
+      var levelNumberString = levelNumber.toString();
+      console.log(levelNumber);
+      // alert('good job');
+      h1.innerHTML = 'Good Job!';
+      h2.innerHTML = 'Level';
+      h3.innerHTML = levelNumberString;
+      h1.style.fontcolor = "yellow";
       // var newColor = document.createElement('div');
       // colorClass.appendChild(newColor);
       // newColor.id = 'black';
@@ -66,9 +99,6 @@ function init () {
       keyedColors = [];
       generateRandomSequence();
       console.log(level);
-
-
-
     }
   }
   // if (checkEqual()) { //difference between checkEqual and checkEqual(), shouldnt if function run all the time?
