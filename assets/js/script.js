@@ -44,7 +44,6 @@ function init() {
     randomStr = alLogic.randStr()
     randomWord.textContent = randomStr.join(' ').toUpperCase()
     start.style.display = 'none'
-
   }
 
   // function getWord () {
@@ -70,6 +69,10 @@ function timerz(){
   if(timer>0){
     timer= timer - 1
     document.querySelector('.time').textContent = timer + ' s'
+  }
+  else{
+    document.querySelector('.combo').textContent = 'GAME OVER!'
+    randomStr= []
   }
 }
 

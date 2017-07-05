@@ -9,7 +9,9 @@
 .right{
   width: 20%;
   float: right;
-  padding-top: 30px;
+  font-size: 15px;
+  text-transform: uppercase;
+
   /*border: solid;*/
 }
 
@@ -48,6 +50,7 @@ justify-content: center;*/
   display: inline-block;
   padding: 10px;
   text-align: right;
+  font-size: 20px;
 }
 
 .timerscore {
@@ -67,4 +70,15 @@ justify-content: center;*/
 
 ul{
   list-style: none;
+}
+
+.combo{
+  font-size: 30px;
+  height:40px;
+}
+
+.topScore{
+  font-size: 25px;
+  border-style: ridge;
+  text-align: center;
 }
