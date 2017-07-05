@@ -32,7 +32,7 @@
   var interval = null
   var start = document.querySelector('.start')
   var reset = document.querySelector('.reset')
-  var userInput = document.querySelector('.userinput')
+  var shake = document.querySelectorAll('.shake')
 
   document.addEventListener('keyup', onKeyUp)
   var index = 4
@@ -66,7 +66,7 @@
         index--
       }
       if (event.keyCode === 32) {
-        // u.classList.add('topbun')
+        u1.classList.add('topbun')
         if (checkIngredient()) {
           setTimeout(function () {
             resetNow()
@@ -75,7 +75,6 @@
           counter = counter + 10
           point()
         } else {
-          // u1.u2.classList.add('shake-hard')
           setTimeout(function () {
             resetNow()
             gamePlay()
