@@ -36,12 +36,12 @@ document.addEventListener('keyup', function (event) {
 
 function jump () {
   circle.style.top = 200 + 'px'
-  circle.style.backgroundImage = "url('../../assets/img/skatejump2.png')"
+  circle.style.backgroundImage = "url('../../../assets/img/skatejump2.png')"
   canJump = false
 }
 function drop () {
   circle.style.top = 520 + 'px'
-  circle.style.backgroundImage = "url('../../assets/img/skating.gif')"
+  circle.style.backgroundImage = "url('../../../assets/img/skating.gif')"
 }
 
 function canJump () {
@@ -100,7 +100,7 @@ function moveBlock (elem) {
       if(collision()) {
         area.removeChild(elem)
         alert('IMPALED!')
-        alert = function( ) {}
+        // alert = function( ) {}
       } else {
         console.log('jumped over')
       }
