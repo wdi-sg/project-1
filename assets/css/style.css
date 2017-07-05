@@ -80,7 +80,6 @@ li {
   height: 100px;
   margin: 10px 5px;
   display: inline-block;
-  /*border: 2px solid black;*/
   font-size: 40px;
   border-radius: 10%;
 }
@@ -147,6 +146,17 @@ li {
 .serveButton h1 {
   margin: 35px auto;
   font-size: 80px;
+  color: green;
+  animation: neon 1.5s linear infinite alternate;
+}
+
+@keyframes neon {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000, 0 0 100px #ff0000, 0 0 150px #ff0000;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0000, 0 0 35px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 75px #ff0000;
+  }
 }
 
 .timer {
