@@ -1,21 +1,22 @@
 var ingredientCounter = 0 // number of ingredients already in play
 var level = 1 // determines score and number of things in order list
+var gameStarted = false // prevents clicking before timer starts
+var neededIngredients = []
+var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
+
 var playArea = document.querySelector('.playArea')
 var buttons = document.querySelectorAll('.buttons div')
 var serveButton = document.querySelector('.serveButton')
 var score = document.querySelector('.score')
 var time = document.querySelector('.time')
-var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var order = document.querySelector('.order')
-var gameStarted = false
-var neededIngredients = []
 var startGameOverlay = document.querySelector('.startGameOverlay')
 var startGameButton = document.querySelector('.startGameButton')
 var endGameOverlay = document.querySelector('.endGameOverlay')
 var endGameScore = document.querySelector('.endGameScore')
 var restart = document.querySelector('.restart')
 
-// add event listeners to all buttons
+// add event listeners to all ingredients
 buttons.forEach(function (el) {
   el.addEventListener('click', addIngredient)
 })
@@ -36,8 +37,8 @@ function addIngredient () {
      // id sets background-image url and negative margins
       newIngredient.id = whichIngredient
       newIngredient.style.bottom = (60 + ingredientCounter * 20) + 'px'
-     // increasing z-index for overlapping look
       ingredientCounter++ // counts num of added ingredients so far
+      // increasing z-index for overlapping look
       newIngredient.style.zIndex = ingredientCounter
       playArea.prepend(newIngredient)
     }
@@ -76,7 +77,8 @@ function clearList () {
   neededIngredients = [] // reset the array for clicks to compare against
 }
 
-// serve button clears playArea, clears list, increases score, generates new orderList, reset ingredientcounter to 0.
+// serve button clears playArea, clears list, increases score
+// generates new orderList, reset ingredientcounter to 0.
 serveButton.addEventListener('click', serve)
 
 function serve () {
@@ -110,14 +112,14 @@ var timeLeft = 90
 startGameButton.addEventListener('click', startGame)
 
 function startGame () {
-  if (!gameStarted) { // ensure event only fires once.
+  if (!gameStarted) { // ensure setInterval only fires once
     setInterval(countdown, 1000)
     generateList()
-    setTimeout(gameOver, 90000)
+    setTimeout(gameOver, 90000) //cause endGameOverlay to appear
   }
    // click to start generates first order
   gameStarted = true
-  startGameOverlay.style.height = '0px'
+  startGameOverlay.style.height = '0px' //collapse overlay
 }
 
 // callback to change timeLeft and update DOM text
@@ -129,7 +131,7 @@ function countdown () {
 }
 
 function gameOver () {
-  endGameOverlay.style.height = '768px'
+  endGameOverlay.style.height = '768px' //expand originally collapsed overlay
   endGameScore.innerText = score.innerText
   endGameScore.style.fontSize = '300px'
   endGameScore.style.marginTop = '100px'

@@ -147,17 +147,17 @@ li {
   margin: 35px auto;
   font-size: 80px;
   color: green;
-  animation: neon 1.5s linear infinite alternate;
+  /*animation: neon 1.5s linear infinite alternate;*/
 }
 
-@keyframes neon {
+/*@keyframes neon {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000, 0 0 100px #ff0000, 0 0 150px #ff0000;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #2bff00, 0 0 70px #2bff00, 0 0 80px #2bff00, 0 0 100px #2bff00, 0 0 150px #2bff00;
   }
   to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff0000, 0 0 35px #ff0000, 0 0 40px #ff0000, 0 0 50px #ff0000, 0 0 75px #ff0000;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2bff00, 0 0 35px #2bff00, 0 0 40px #2bff00, 0 0 50px #2bff00, 0 0 75px #2bff00;
   }
-}
+}*/
 
 .timer {
   width: 320px;
