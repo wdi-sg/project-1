@@ -32,6 +32,7 @@
   var interval = null
   var start = document.querySelector('.start')
   var reset = document.querySelector('.reset')
+  var userInput = document.querySelector('.userinput')
 
   document.addEventListener('keyup', onKeyUp)
   var index = 4
@@ -42,13 +43,12 @@
         hamItem[index].classList.remove('hamItem')
         hamItem[index].classList.add('cucumber')
         index--
-        console.log(index)
+        // if (checkIngredient() === false )
       }
       if (event.keyCode === 87) {
         hamItem[index].classList.remove('hamItem')
         hamItem[index].classList.add('meat')
         index--
-        // console.log(index);
       }
       if (event.keyCode === 69) {
         hamItem[index].classList.add('onion')
@@ -68,15 +68,19 @@
       if (event.keyCode === 32) {
         u1.classList.add('topbun')
         if (checkIngredient()) {
-          counter++
-          point()
-        } else {
           setTimeout(function () {
-            resetClassPlayer()
-            resetClassDisplay()
+            resetNow()
             gamePlay()
           }, 1200)
-          counter--
+          counter = counter + 10
+          point()
+        } else {
+          // u1.u2.classList.add('shake-hard')
+          setTimeout(function () {
+            resetNow()
+            gamePlay()
+          }, 1200)
+          counter = counter - 10
           point()
         }
       }
@@ -84,20 +88,32 @@
   }// closing for onKeyUp
 
   function checkIngredient () {
-    // console.log(allDs);
     for (var i = allDs.length - 2; i >= 1; i--) {
-      if (allDs[i].className === allUs[i].className) {
-        setTimeout(function () {
-          resetClassPlayer()
-          resetClassDisplay()
-          gamePlay()
-        }, 1200)
-        return true
-      } else {
+      if (allDs[i].className.substr(0, 3) !== allUs[i].className.substr(0, 3)) {
         return false
       }
-    }
+    } return true
   }
+
+  // function checkIngredient () {
+  //   // if (allDs.length !== allUs.length) return false
+  //   for (var i = allDs.length; i > 0; i--) {
+  //     // if (counter <= 3) // check last 2
+  //     // if (counter > 3 && counter <= 7) // check last 3
+  //     // if (counter > 7 && counter <= 11) // check last 4
+  //     // if (counter > 11) // check last 5
+  //
+  //     if (allDs[i].className !== allUs[i].className) {
+  //       return false
+  //     } else {
+  //       setTimeout(function () {
+  //         resetClassPlayer()
+  //         resetClassDisplay()
+  //         gamePlay()
+  //       }, 1200)
+  //     }
+  //   } return true
+  // }
 
   function resetClassPlayer () {
     u1.classList.remove('topbun')
@@ -184,16 +200,16 @@
 
     // function for startgame
   function gamePlay () {
-    if (counter <= 3) {
+    if (counter <= 30) {
       level1()
     }
-    if (counter > 3 && counter <= 7) {
+    if (counter > 30 && counter <= 70) {
       level2()
     }
-    if (counter > 7 && counter <= 11) {
+    if (counter > 70 && counter <= 110) {
       level3()
     }
-    if (counter > 11) {
+    if (counter > 110) {
       level4()
     }
   } // end of startgame
@@ -203,6 +219,7 @@
     if (event.keyCode === 79) {
       if (gameStart === false) {
         gamePlay()
+        point()
         if (interval === null) {
           interval = setInterval(time, 1000)
         } else {
@@ -214,10 +231,15 @@
   }
 
   document.addEventListener('keyup', resetGame)
+
+  function resetNow () {
+    resetClassPlayer()
+    resetClassDisplay()
+  }
+
   function resetGame () {
     if (event.keyCode === 80) {
-      resetClassPlayer()
-      resetClassDisplay()
+      resetNow()
       counter = 0
       timer = 60
       timeCount.textContent = 1 + ' min'
@@ -233,7 +255,11 @@
       timer--
       timeCount.textContent = timer + 's'
     }
-    if (timer === 0) alert('Time\'s Up')
+    if (timer === 0) {
+      alert('Time\'s Up')
+      timer = 60
+
+    }
   }
 
   function point () {
