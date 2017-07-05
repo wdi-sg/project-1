@@ -96,12 +96,12 @@ li {
 }
 
 #bottombun {
-  background-image: url("./assets/images/bottombun.png");
+  background-image: url("../assets/images/bottombun.png");
   bottom: 30px;
 }
 
 #patty {
-  background-image: url("./assets/images/patty.png");
+  background-image: url("../assets/images/patty.png");
 }
 
 #cheese {
