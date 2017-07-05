@@ -72,10 +72,11 @@ Functions
 
 Extensions / Unsolved Issues
 ---
-1. Maximum length of order is 16 ingredients. Enable automatic scrolling downward if order exceeds height of the order list?
-2. Switch from fixed pixel values for width/height to % to allow resizing of window
-3. Use opacity % instead of height:0px to collapse/expand overlay panels.
-4. Onion does not stack as nicely compared to other ingredients. Tweak positioning or negative margins.
+1. Randomizing ingredients sometimes causes 3/4 of the same to stack together. Replace array[el] is element is repeated too many times?
+2. Maximum length of order is 16 ingredients. Enable automatic scrolling downward if order exceeds height of the order list?
+3. Switch from fixed pixel values for width/height to % to allow resizing of window
+4. Use opacity % instead of height:0px to collapse/expand overlay panels.
+5. Onion does not stack as nicely compared to other ingredients. Tweak positioning or negative margins.
 
 Coded With
 ---
