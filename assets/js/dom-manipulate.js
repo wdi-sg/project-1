@@ -53,14 +53,14 @@ function init () {
     // add event listerner to each div in game
   var aDiv = document.querySelectorAll('#container div')
   console.log(aDiv)
-  aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkValid) })
+  aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkMoveIntoSpace) })
   aDiv.forEach(function (e) { e.addEventListener('click', updateGrid) })
-  // aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkValid().checkWin) })
   aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
 
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
-  //document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
+  document.getElementById('startBtn').addEventListener('click', logicFile.checkMoveIntoSpace().startPos)
+  document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
   document.getElementById('startBtn').addEventListener('click', updateGrid)
 
   //
@@ -109,7 +109,7 @@ function init () {
 
   function startTimer () {
     moveNum = 0
-    seconds = 31
+    seconds = 61
     setInterval(showTimer, 1000)
 
     function showTimer () {
