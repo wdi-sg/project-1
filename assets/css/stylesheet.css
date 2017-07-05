@@ -39,7 +39,7 @@ body {
   left: 1600px;
   transition: left 2s;
   overflow: hidden;
-background-image: url("/../assets/img/spikeD.png");
+background-image: url("assets/img/spikeD.png");
 background-repeat: no-repeat;
 background-size: contain;
 background-position: bottom;
