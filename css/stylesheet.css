@@ -1,3 +1,8 @@
+.gameTitle {
+  position: absolute;
+  left: 50%;
+  top: 30px;
+}
 .container {
   /*background-color: yellow;*/
   width: 100%;
@@ -22,11 +27,14 @@ body {
 
 .leftcontent {
   /*border: 2px solid black;*/
-  width: 40%;
-  height:  auto;
+  width: 20%;
+  height:  30%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  left: 50px;
+  top: 160px;
 }
 
 .timerscore {
@@ -59,7 +67,7 @@ body {
 
 .leftmiddlecontent {
   /*background-color: orange;*/
-  width: 50%;
+  width: 60%;
   height: 500px;
   display: flex;
   align-items: center;
@@ -79,11 +87,11 @@ body {
 .rightcontent {
   /*background-color: green;*/
   /*border: 2px solid black;*/
-  width: 50%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(/images/bgimg.jpg);
+  background-image: url(./images/bgimg.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

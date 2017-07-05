@@ -71,9 +71,11 @@
           counter++
           point()
         } else {
-          resetClassPlayer()
-          resetClassDisplay()
-          gamePlay()
+          setTimeout(function () {
+            resetClassPlayer()
+            resetClassDisplay()
+            gamePlay()
+          }, 1200)
           counter--
           point()
         }
@@ -200,16 +202,16 @@
   function startGame (event) {
     if (event.keyCode === 79) {
       if (gameStart === false) {
-      gamePlay()
-      if (interval === null) {
-      interval = setInterval(time, 1000)
-    } else {
-      clearInterval(interval)
-      interval = setInterval(time, 1000)
-    }
-    }
-  }gameStart = true
-}
+        gamePlay()
+        if (interval === null) {
+          interval = setInterval(time, 1000)
+        } else {
+          clearInterval(interval)
+          interval = setInterval(time, 1000)
+        }
+      }
+    }gameStart = true
+  }
 
   document.addEventListener('keyup', resetGame)
   function resetGame () {
@@ -218,7 +220,7 @@
       resetClassDisplay()
       counter = 0
       timer = 60
-      timeCount.textContent = 1 +" min"
+      timeCount.textContent = 1 + ' min'
       gameStart = false
       point()
       clearInterval(interval)
@@ -229,13 +231,14 @@
   function time () {
     if (timer > 0) {
       timer--
-      timeCount.textContent = timer + "s"
+      timeCount.textContent = timer + 's'
     }
     if (timer === 0) alert('Time\'s Up')
   }
 
-function point() {
-  document.querySelector('.score').innerHTML = counter + " points" }
+  function point () {
+    document.querySelector('.score').innerHTML = counter + ' points'
+  }
 
   function checkKeyCode (keycode) {
     if (keycode === 81 || keycode === 87 || keycode === 69 || keycode === 82 || keycode === 84 || keycode === 32 || keycode === 79 || keycode === 80) {
