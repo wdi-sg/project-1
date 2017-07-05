@@ -18,6 +18,10 @@ function init () {
   var win = document.querySelector('#win')
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
+  var intervalTimer = function () {
+    loopTimer = setInterval(loop, 50)
+    interval.style.display = 'none'
+  }
 
   var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
   var pacmanSpeed = 8
@@ -32,7 +36,15 @@ function init () {
   var leftKeyDown = false
   var rightKeyDown = false
 
-  pacmanTitle.addEventListener('click', startGame)
+  pacmanTitle.addEventListener('click', function () {
+    var instructionsTimer = function () {
+      instructions.style.display = 'none'
+      startGame()
+    }
+    newGame.style.display = 'none'
+    instructions.style.display = ''
+    setTimeout(instructionsTimer, 3000)
+  })
   startButton.addEventListener('click', startGame)
 
   instructions.style.display = 'none'
@@ -343,6 +355,8 @@ function init () {
         lives--
         clearInterval(loopTimer)
         interval.style.display = ''
+        interval.textContent = 'GET READY!'
+        interval.style.background = 'rgb(134, 231, 196)'
         pacman.style.top = '440px'
         pacman.style.left = '280px'
         blueGhost.style.top = '40px'
@@ -357,59 +371,50 @@ function init () {
         downKeyDown = false
         leftKeyDown = false
         rightKeyDown = false
-        var intervalTimer = function () {
-          loopTimer = setInterval(loop, 50)
-          interval.style.display = 'none'
-        }
-        setTimeout(intervalTimer, 1300)
+        setTimeout(intervalTimer, 1200)
       }
     }
   }
 
   // start new game
   function startGame () {
-    var startGameTimeout = function () {
-      instructions.style.display = 'none'
-      win.style.display = 'none'
-      lose.style.display = 'none'
-      scoreboard.style.display = ''
-      scores.textContent = ''
-      lifetracker.style.display = ''
-      document.querySelector('#life1').style.display = ''
-      document.querySelector('#life2').style.display = ''
-      document.querySelector('#life3').style.display = ''
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].style.display = ''
-      }
-
-      scoretracker = []
-      lives = 3
-
-      upKeyDown = false
-      downKeyDown = false
-      leftKeyDown = false
-      rightKeyDown = false
-
-      pacman.style.top = '440px'
-      pacman.style.left = '280px'
-      blueGhost.style.top = '40px'
-      blueGhost.style.left = '40px'
-      orangeGhost.style.top = '40px'
-      orangeGhost.style.left = '520px'
-      pinkGhost.style.top = '440px'
-      pinkGhost.style.left = '40px'
-      redGhost.style.top = '440px'
-      redGhost.style.left = '520px'
-
-      loopTimer = setInterval(loop, 50)
+    interval.style.display = ''
+    interval.textContent = 'READY?'
+    interval.style.background = 'rgb(153, 222, 238)'
+    instructions.style.display = 'none'
+    win.style.display = 'none'
+    lose.style.display = 'none'
+    startButton.style.display = 'none'
+    scoreboard.style.display = ''
+    scores.textContent = ''
+    lifetracker.style.display = ''
+    document.querySelector('#life1').style.display = ''
+    document.querySelector('#life2').style.display = ''
+    document.querySelector('#life3').style.display = ''
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].style.display = ''
     }
 
-    newGame.style.display = 'none'
-    instructions.style.display = ''
-    startButton.style.display = 'none'
-    scoreboard.style.display = 'none'
-    lifetracker.style.display = 'none'
-    setTimeout(startGameTimeout, 3000)
+    scoretracker = []
+    lives = 3
+
+    upKeyDown = false
+    downKeyDown = false
+    leftKeyDown = false
+    rightKeyDown = false
+
+    pacman.style.top = '440px'
+    pacman.style.left = '280px'
+    blueGhost.style.top = '40px'
+    blueGhost.style.left = '40px'
+    orangeGhost.style.top = '40px'
+    orangeGhost.style.left = '520px'
+    pinkGhost.style.top = '440px'
+    pinkGhost.style.left = '40px'
+    redGhost.style.top = '440px'
+    redGhost.style.left = '520px'
+
+    setTimeout(intervalTimer, 1200)
   }
 
   // game loop

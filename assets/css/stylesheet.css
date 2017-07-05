@@ -161,10 +161,6 @@ body {
   background: red;
 }
 
-#interval {
-  background: rgb(134, 231, 196);
-}
-
 .startButton {
   position: absolute;
   height: 30px;
