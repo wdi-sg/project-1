@@ -22,10 +22,10 @@ h1{
   font-family: 'palatino'
 }
 
-h3{
+p{
   text-align: center;
   font-size: 22px;
-  font-family: 'palatino'
+  font-family: 'georgia'
 }
 
 #start-button {
@@ -36,7 +36,7 @@ h3{
   width: 100px;
   font-size: 24px;
   margin: auto;
-  font-family: 'palatino'
+  font-family: 'georgia'
 }
 
 #start-button:active {
@@ -47,7 +47,7 @@ h3{
 
 #main-fish{
   display: none;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   position: relative;
 }

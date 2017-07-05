@@ -57,8 +57,6 @@ function mouseFish () {
     var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (360 / Math.PI)
 
     mainFish.style.transform = 'rotate(' + angle + 'deg)'
-
-    collisionResult(mainFish, allFishes[0])
   })
 }
 
@@ -72,22 +70,22 @@ function collisionDetection (mainFish, eachFish) {
   else {return false}
 }
 
-
-
 // Increase size of main fish upon collision and remove other fish
 function collisionResult (mainFish, eachFish) {
   if (collisionDetection(mainFish, eachFish)) {
-    console.log(mainFish.offsetWidth * mainFish.offsetHeight)
-    console.log(eachFish.offsetWidth * eachFish.offsetHeight)
     if ((mainFish.offsetWidth * mainFish.offsetHeight) > (eachFish.offsetWidth * eachFish.offsetHeight)) {
-      mainFish.style.top += '5px'
-      mainFish.style.left += '5px'
-      // allFishes.splice(eachFish)
-      console.log(mainFish.style.top)
-    } else if ((mainFish.offsetWidth * mainFish.offsetHeight) < (eachFish.offsetWidth * eachFish.offsetHeight)) {
-      mainFish.style.top -= '5px'
-      mainFish.style.left -= '5px'
-      // allFishes.splice(eachFish)
+      mainFish.style.height = (mainFish.offsetHeight + 5) + 'px'
+      mainFish.style.width = (mainFish.offsetWidth + 5) + 'px'
+
+      allFishes.splice(allFishes.indexOf(eachFish), 1)
+      eachFish.remove()
+    }
+    else if ((mainFish.offsetWidth * mainFish.offsetHeight) < (eachFish.offsetWidth * eachFish.offsetHeight)) {
+      mainFish.style.height = (mainFish.offsetHeight - 5) + 'px'
+      mainFish.style.width = (mainFish.offsetWidth - 5) + 'px'
+
+      allFishes.splice(allFishes.indexOf(eachFish), 1)
+      eachFish.remove()
     }
   }
 }
@@ -96,9 +94,8 @@ function collisionResult (mainFish, eachFish) {
 // Add fishes that move randomly
 function startGame () {
   startPage.style.display = 'none'
-  generateFish1()
-  // setInterval(generateFish1, 3000)
-  // setInterval(moveRandomly, 1000)
+  setInterval(generateFish1, 3000)
+  setInterval(moveRandomly, 1000)
   mainFish.style.display = 'block'
   mouseFish()
 }
