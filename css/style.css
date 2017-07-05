@@ -1,0 +1,17 @@
+
+h1:first-of-type {
+  top: 500px;
+  text-align: center;
+}
+
+div#header {
+  text-align: center;
+}
+
+/*.game-section, .results-in {
+  display: none;
+}*/
+
+.text-area {
+  display: block;
+}
