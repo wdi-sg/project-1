@@ -18,6 +18,9 @@ Future Development Notes:
 2. Allow round robbing function (Like how though...)
 3. Increase question library and change structure to allow replayability (i.e. questions do not repeat on consecutive playthroughs)
 
+
+Play the game: https://evilernie1985.github.io/project-1/
+
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 
 ### Overview
