@@ -28,7 +28,7 @@ function addIngredient () {
    // whichIngredient takes out the classnames 'cheese', 'patty' etc.
     whichIngredient = this.className.substring(5).toLowerCase()
     if (whichIngredient === neededIngredients[ingredientCounter]) {
-      //add strikethrough to list item
+      // add strikethrough to list item
       var h3 = document.querySelectorAll('h3')
       h3[ingredientCounter].style.textDecoration = 'line-through'
       var newIngredient = document.createElement('div')
@@ -115,11 +115,11 @@ function startGame () {
   if (!gameStarted) { // ensure setInterval only fires once
     setInterval(countdown, 1000)
     generateList()
-    setTimeout(gameOver, 90000) //cause endGameOverlay to appear
+    setTimeout(gameOver, 90000) // cause endGameOverlay to appear
   }
    // click to start generates first order
   gameStarted = true
-  startGameOverlay.style.height = '0px' //collapse overlay
+  startGameOverlay.style.height = '0px' // collapse overlay
 }
 
 // callback to change timeLeft and update DOM text
@@ -131,7 +131,7 @@ function countdown () {
 }
 
 function gameOver () {
-  endGameOverlay.style.height = '768px' //expand originally collapsed overlay
+  endGameOverlay.style.height = '768px' // expand originally collapsed overlay
   endGameScore.innerText = score.innerText
   endGameScore.style.fontSize = '300px'
   endGameScore.style.marginTop = '100px'
