@@ -216,7 +216,7 @@ function gameInit () {
     if (lives === 0) {
       innerContainer.innerHTML = ''
       var audio = document.createElement('audio')
-      audio.src = '/assets/audio/gameover.wav'
+      audio.src = '../assets/audio/gameover.wav'
       audio.autoplay = true
       container.appendChild(audio)
       inGameMessage('Game Over!', 1000)
@@ -500,7 +500,7 @@ function gameInit () {
         addHeart(lifeCounter)
         inGameMessage('Extra Life!', 10)
         var audio = document.createElement('audio')
-        audio.src = '/assets/audio/extralife.wav'
+        audio.src = '../assets/audio/extralife.wav'
         audio.autoplay = true
         container.appendChild(audio)
       }
