@@ -77,6 +77,11 @@ body {
   background: black;
 }
 
+.redText {
+  color: red;
+  font-weight: bold;
+}
+
 #gameboard {
   position: relative;
   margin: 0 auto;

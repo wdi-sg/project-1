@@ -11,14 +11,15 @@ function init () {
   var orangeGhost = document.querySelector('#orangeGhost')
   var pinkGhost = document.querySelector('#pinkGhost')
   var redGhost = document.querySelector('#redGhost')
-  var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
-  var scores = document.querySelector('#scores')
   var scoreboard = document.querySelector('#scoreboard')
+  var scores = document.querySelector('#scores')
+  var lifetracker = document.querySelector('#lifetracker')
   var interval = document.querySelector('#interval')
   var win = document.querySelector('#win')
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
 
+  var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
   var pacmanSpeed = 8
   var ghostSpeed = 8
   var walls = []
@@ -36,7 +37,7 @@ function init () {
 
   instructions.style.display = 'none'
   scoreboard.style.display = 'none'
-  document.querySelector('#lifetracker').style.display = 'none'
+  lifetracker.style.display = 'none'
   startButton.style.display = 'none'
   interval.style.display = 'none'
   win.style.display = 'none'
@@ -72,7 +73,7 @@ function init () {
   redGhost.style.height = '40px'
   redGhost.style.width = '40px'
 
-  // create wall function
+  // function to create walls for gameboard
   function createWall (left, top, width, height) {
     var wall = document.createElement('div')
     wall.className = 'wall'
@@ -84,7 +85,7 @@ function init () {
     walls.push(wall)
   }
 
-  // border
+  // gameboard borders
   createWall(0, 0, 600, 40)
   createWall(0, 0, 40, 280)
   createWall(0, 280, 40, 200)
@@ -115,7 +116,7 @@ function init () {
   createWall(400, 360, 40, 80)
   createWall(480, 360, 40, 80)
 
-  // create dot for pacman function
+  // function to create dots for gameboard
   function createDot (left, top) {
     var dot = document.createElement('div')
     dot.className = 'dot'
@@ -131,21 +132,9 @@ function init () {
   // create dots
   for (var i = 40; i < 540; i += 40) {
     for (var j = 40; j < 480; j += 40) {
-      // for (var k = 7; k < walls.length; k++) {
-      //   if (j < parseInt(walls[k].style.left) + parseInt(walls[k].style.width) &&
-      //   j + 40 > parseInt(walls[k].style.left) &&
-      //     i < parseInt(walls[k].style.top) + parseInt(walls[k].style.height) &&
-      //     i + 40 > parseInt(walls[k].style.top)) {
-      //       var x = true
-      //     } else {
-      //     x = false
-      //     }
-      //   }
-      //   if (!x) {
       createDot(i + 16, j + 16)
     }
   }
-  // }
 
   // remove the dot at pacman's starting point and two inside 'D'
   gameboard.removeChild(dots[76])
@@ -340,19 +329,20 @@ function init () {
   // game over
   function gameOver (result) {
     if (result === 'win') {
-      win.style.display = ''
       clearInterval(loopTimer)
+      win.style.display = ''
       startButton.style.display = ''
     } else if (result === 'lose') {
       if (lives === 1) {
-        document.querySelector('#life' + lives).style.display = 'none'
-        lose.style.display = ''
         clearInterval(loopTimer)
+        document.querySelector('#life1').style.display = 'none'
+        lose.style.display = ''
         startButton.style.display = ''
       } else {
         document.querySelector('#life' + lives).style.display = 'none'
         lives--
         clearInterval(loopTimer)
+        interval.style.display = ''
         pacman.style.top = '440px'
         pacman.style.left = '280px'
         blueGhost.style.top = '40px'
@@ -367,32 +357,38 @@ function init () {
         downKeyDown = false
         leftKeyDown = false
         rightKeyDown = false
-        interval.style.display = ''
-        var playthis = function () {
+        var intervalTimer = function () {
           loopTimer = setInterval(loop, 50)
           interval.style.display = 'none'
         }
-        setTimeout(playthis, 1000)
+        setTimeout(intervalTimer, 1300)
       }
     }
   }
 
   // start new game
   function startGame () {
-    var afterTimeout = function () {
+    var startGameTimeout = function () {
       instructions.style.display = 'none'
       win.style.display = 'none'
       lose.style.display = 'none'
       scoreboard.style.display = ''
       scores.textContent = ''
-
-      document.querySelector('#lifetracker').style.display = ''
+      lifetracker.style.display = ''
       document.querySelector('#life1').style.display = ''
       document.querySelector('#life2').style.display = ''
       document.querySelector('#life3').style.display = ''
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].style.display = ''
+      }
 
       scoretracker = []
       lives = 3
+
+      upKeyDown = false
+      downKeyDown = false
+      leftKeyDown = false
+      rightKeyDown = false
 
       pacman.style.top = '440px'
       pacman.style.left = '280px'
@@ -405,22 +401,15 @@ function init () {
       redGhost.style.top = '440px'
       redGhost.style.left = '520px'
 
-      upKeyDown = false
-      downKeyDown = false
-      leftKeyDown = false
-      rightKeyDown = false
-
-      for (var i = 0; i < dots.length; i++) {
-        dots[i].style.display = ''
-      }
       loopTimer = setInterval(loop, 50)
     }
+
     newGame.style.display = 'none'
+    instructions.style.display = ''
     startButton.style.display = 'none'
     scoreboard.style.display = 'none'
-    document.querySelector('#lifetracker').style.display = 'none'
-    instructions.style.display = ''
-    setTimeout(afterTimeout, 4500)
+    lifetracker.style.display = 'none'
+    setTimeout(startGameTimeout, 3000)
   }
 
   // game loop
