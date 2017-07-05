@@ -255,18 +255,22 @@ function init () {
   }
 
   function moveJackOne () {
+    jack.style.backgroundImage ='url(../images/Iron-Man.png)'
     jack.style.left = '55px'
     jackNumber = 1
   }
   function moveJackTwo () {
+    jack.style.backgroundImage ='url(../images/Iron-Man.png)'
     jack.style.left = '215px'
     jackNumber = 2
   }
   function moveJackThree () {
+    jack.style.backgroundImage ='url(../images/Iron-Man.png)'
     jack.style.left = '375px'
     jackNumber = 3
   }
   function moveJackFour () {
+    jack.style.backgroundImage ='url(../images/Iron-Man.png)'
     jack.style.left = '535px'
     jackNumber = 4
   }
@@ -300,6 +304,7 @@ function init () {
     } if (jackNumber === 4) {
       fourthFire.style.opacity = '1.0'
     }
+    jack.style.backgroundImage ='url(../images/ironmanshooting.png)'
     setTimeout(colorChanger, 100)
     displayScore()
   }
