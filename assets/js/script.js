@@ -36,12 +36,12 @@ document.addEventListener('keyup', function (event) {
 
 function jump () {
   circle.style.top = 200 + 'px'
-  circle.style.backgroundImage = "url('skatejump2.png')"
+  circle.style.backgroundImage = "url(skatejump2.png)"
   canJump = false
 }
 function drop () {
   circle.style.top = 520 + 'px'
-  circle.style.backgroundImage = "url('skating.gif')"
+  circle.style.backgroundImage = "url(skating.gif)"
 }
 
 function canJump () {
