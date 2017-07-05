@@ -1,5 +1,5 @@
 body {
-
+  height: 680px;
 }
 
 h1 {
@@ -7,10 +7,34 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  width: 600px;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px;
+}
+
 p {
   font-size: 20px;
 }
 
+.gameInfo {
+  font-size: 20px;
+}
+
+footer {
+  text-align: center;
+}
+
+.createdBy {
+  margin: 0 auto
+}
+
+.inspired {
+  margin: 0 auto
+
+}
 .instructions {
   margin: 0 auto;
   background-color: white;

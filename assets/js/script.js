@@ -23,39 +23,44 @@ document.addEventListener('DOMContentLoaded', function () {
   var wholeGrid = document.querySelectorAll('.container')
   var palette = [
     ['rgb(20, 153, 105)',
-      'rgb(0, 0, 0)'],
+      'rgb(20, 120, 90)'],
     ['rgb(235, 152, 20)',
-      'rgb(255, 255, 255)'],
-    ['rgb(0, 117, 255)',
-      'rgb(0, 0, 0)'],
+      'rgb(235, 120, 0)'],
     ['rgb(255, 237, 0)',
-      'rgb(255, 255, 255)']
+      'rgb(255, 220, 0)'],
+    ['rgb(50, 150, 255)',
+      'rgb(40, 170, 235)']
   ]
-
-  console.log(palette[3][0])
+  // console.log(palette[3][0])
 
 // initialize the game
   function init () {
   // if start button is pressed, game start
+    wholeGrid.innerHTML = ' '
   // start the timer
-  gameTimer()
+    gameTimer()
   // put level 1 into empty container
-  gridCreate()
-  isGameOver = false
+    gridCreate()
+    isGameOver = false
   // remove start button and add restart button
-  startButtonTgt.textContent = 'Restart'
+    startButtonTgt.textContent = 'Restart'
   // disable init() on clicking start button
-  startButtonTgt.removeEventListener('click', init)
-  startButtonTgt.addEventListener('click', function() {
-    location.reload()
-  })
+    startButtonTgt.removeEventListener('click', init)
+    startButtonTgt.addEventListener('click', function () {
+      location.reload()
+    })
   }
 
 // check for game over
   function gameOver () {
     isGameOver = true
   // clear the grid if game is over
-    document.querySelector('.container').textContent = 'Game Over! Thanks for playing!' + 'You scored a ' + score + '/4.'
+    document.querySelector('.container').innerHTML = ' '
+    var endMsg = document.createElement('h3')
+    document.querySelector('.container').appendChild(endMsg)
+    endMsg.textContent = 'Game Over. Thanks for playing!' + 'You scored a ' + score + '/4 in ' + (30 - timeLeft -1) + ' seconds.'
+
+    // document.querySelector('.container').style.textAlign = 'center'
   }
 
 // game timer
@@ -82,7 +87,8 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.container').innerHTML += '<div class = "row">'
 
       for (var k = 0; k < noOfRows; k++) {
-        document.querySelector('.container').innerHTML += '<div class = "L' + noOfRows + 'Grid" id = ' + gridId + '>' + (gridId++) + '</div>'
+        document.querySelector('.container').innerHTML += '<div class = "L' + noOfRows + 'Grid" id = ' + gridId + '>' + '</div>'
+        gridId++
       }
 
       document.querySelector('.container').innerHTML += '</div>'
@@ -147,5 +153,4 @@ document.addEventListener('DOMContentLoaded', function () {
   var startButtonTgt = document.querySelector('.startButton')
   // add event listener to start button
   startButtonTgt.addEventListener('click', init)
-
 }) // ##### END of DOMContentLoaded #####
