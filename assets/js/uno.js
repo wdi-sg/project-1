@@ -197,6 +197,8 @@ function discardCard (whichPile, whichCard) {
     return discardedCard
   } else if (whichPile === Computer) {
     //return ComputerPlayerPile.splice(whichCard, 1)
+    var discardedCard = ComputerPlayerPile.splice(whichCard, 1)
+    return discardedCard
   } else if (whichPile === Discard) {
     var discardedCard = DiscardPile.splice(whichCard, 1)
 
@@ -228,7 +230,9 @@ function hasPlayablePile(player) {
       if ((card.color === DiscardPile[0].color) || (card.value === DiscardPile[0].value)) {test = true}
     })
   } else if (player === Computer) {
-    // do nothing for now, as this will be calculated by computer playturn function
+    ComputerPlayerPile.forEach(function (card) {
+      if ((card.color === DiscardPile[0].color) || (card.value === DiscardPile[0].value)) {test = true}
+    })
   }
   return test
 }

@@ -17,65 +17,70 @@ var GameMessage = document.querySelector('.GameMessage')
 /////////////////////////////
 
 function startGame () {
-  DrawPile = shuffle(DrawPile)
+  if (GameStarted === false) {
+    DrawPile = shuffle(DrawPile)
 
-  // while ((DrawPile[DrawPile.length-1].value === vWild) || (DrawPile[DrawPile.length-1].value === DrawFour)) {
-  //   //ensures no Wild or Wild DrawFour for starting card in DiscardPile
-  //   DrawPile = shuffle(DrawPile)
-  // }
+    // while ((DrawPile[DrawPile.length-1].value === vWild) || (DrawPile[DrawPile.length-1].value === DrawFour)) {
+    //   //ensures no Wild or Wild DrawFour for starting card in DiscardPile
+    //   DrawPile = shuffle(DrawPile)
+    // }
 
-  DiscardPile = dealCard(1)
-  HumanPlayerPile = dealCard(7)
-  ComputerPlayerPile = dealCard(7)
+    DiscardPile = dealCard(1)
+    HumanPlayerPile = dealCard(7)
+    ComputerPlayerPile = dealCard(7)
 
 
-  // Presents Human Player's Pile
-  HumanPlayerPile.forEach(function (card, index) {
-        var listCard = document.createElement('li')
-        listCard.innerHTML = '<a id="hp'+index+'" href="#">'+card.label+'</a>'  //let listed card be clickable
-        listHumanPlayerPile.appendChild(listCard)
-        HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
-        //console.log('x '+index);
-        //console.log(HumanPlayerCardsArr);
-        HumanPlayerCardsArr[index].onclick = function (e) {
-          var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
-          if (humanPlayed && (DoNotSwitchTurn === false)) {
-            playCard(Computer,null)
-          } else {
-            //GameMessage.innerHTML = 'Human Player, awaiting your play...'
+    // Presents Human Player's Pile
+    HumanPlayerPile.forEach(function (card, index) {
+          var listCard = document.createElement('li')
+          listCard.innerHTML = '<a id="hp'+index+'" href="#">'+card.label+'</a>'  //let listed card be clickable
+          listHumanPlayerPile.appendChild(listCard)
+          HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
+          //console.log('x '+index);
+          //console.log(HumanPlayerCardsArr);
+          HumanPlayerCardsArr[index].onclick = function (e) {
+            var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
+            if (humanPlayed && (DoNotSwitchTurn === false)) {
+              var computerPlayed = playCard(Computer,null)
+
+              ??? WHY COMPUTER KEEPS PLAYING?
+
+            } else {
+              //GameMessage.innerHTML = 'Human Player, awaiting your play...'
+            }
+            return false
           }
-          return false
-        }
-      })
+        })
 
-  // Presents Computer Player's Pile
-  ComputerPlayerPile.forEach(function (card) {
-        var listCard = document.createElement('li')
-        listCard.textContent = card.label
-        listComputerPlayerPile.appendChild(listCard)
-      })
+    // Presents Computer Player's Pile
+    ComputerPlayerPile.forEach(function (card) {
+          var listCard = document.createElement('li')
+          listCard.textContent = card.label
+          listComputerPlayerPile.appendChild(listCard)
+        })
 
-  // Presents opening card from Draw Pile
-  DiscardPile.forEach(function (card) {
-        var listCard = document.createElement('li')
-        listCard.textContent = card.label
-        listDiscardPile.appendChild(listCard)
-      })
+    // Presents opening card from Draw Pile
+    DiscardPile.forEach(function (card) {
+          var listCard = document.createElement('li')
+          listCard.textContent = card.label
+          listDiscardPile.appendChild(listCard)
+        })
 
-  // unlist intial DrawPile
-  while (listDrawPile.hasChildNodes()) {
-    listDrawPile.removeChild(listDrawPile.firstChild);
+    // unlist intial DrawPile
+    while (listDrawPile.hasChildNodes()) {
+      listDrawPile.removeChild(listDrawPile.firstChild);
+    }
+
+    // relist shuffled DrawPile with dealt & opening cards removed
+    DrawPile.forEach(function (card) {
+          var listCard = document.createElement('li')
+          listCard.textContent = card.label
+          listDrawPile.appendChild(listCard)
+        })
+
+    GameStarted = true
+    GameMessage.innerHTML = 'Human Player, awaiting your play...'
   }
-
-  // relist shuffled DrawPile with dealt & opening cards removed
-  DrawPile.forEach(function (card) {
-        var listCard = document.createElement('li')
-        listCard.textContent = card.label
-        listDrawPile.appendChild(listCard)
-      })
-
-  GameStarted = true
-  GameMessage.innerHTML = 'Human Player, awaiting your play...'
 } // end of startGame
 
 function resetGame () {
@@ -89,15 +94,17 @@ function clearPileUX (whichPile) {
       listHumanPlayerPile.removeChild(listHumanPlayerPile.firstChild)
     }
   } else if (whichPile === Computer) {
-
+    while (listComputerPlayerPile.hasChildNodes()) {
+      listComputerPlayerPile.removeChild(listComputerPlayerPile.firstChild)
+    }
   } else if (whichPile === Discard) {
-      while (listDiscardPile.hasChildNodes()) {
-        listDiscardPile.removeChild(listDiscardPile.firstChild)
-      }
+    while (listDiscardPile.hasChildNodes()) {
+      listDiscardPile.removeChild(listDiscardPile.firstChild)
+    }
   } else if (whichPile === Draw) {
-      while (listDrawPile.hasChildNodes()) {
-        listDrawPile.removeChild(listDrawPile.firstChild)
-      }
+    while (listDrawPile.hasChildNodes()) {
+      listDrawPile.removeChild(listDrawPile.firstChild)
+    }
   }
 }
 
@@ -109,12 +116,22 @@ function displayPileUX (whichPile) {
           listHumanPlayerPile.appendChild(listCard)
           HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
           HumanPlayerCardsArr[index].onclick = function (e) {
-            playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
+            var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
+            if (humanPlayed && (DoNotSwitchTurn === false)) {
+              var computerPlayed = playCard(Computer,null)
+              // if computerPlayed = true
+            } else {
+              //GameMessage.innerHTML = 'Human Player, awaiting your play...'
+            }
             return false
           }
         })
   } else if (whichPile === Computer) {
-
+    ComputerPlayerPile.forEach(function (card) {
+          var listCard = document.createElement('li')
+          listCard.textContent = card.label
+          listComputerPlayerPile.appendChild(listCard)
+        })
   } else if (whichPile === Discard) {
     //console.log('hello');
     DiscardPile.forEach(function (card) {
@@ -154,7 +171,39 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: index
       return !played
     }
   } else if (whichPlayerTurn === Computer) {
-    console.log('computer turn now...');
+    GameMessage.innerHTML = 'Awaiting Computer Player play...'
+
+    if (hasPlayablePile(Computer)) {
+
+      window.setInterval(function () {
+        // Simplified strategy for computer to play first playable card
+        var card = 0
+
+          while ((ComputerPlayerPile[card].value !== DiscardPile[0].value) && (ComputerPlayerPile[card].color !== DiscardPile[0].color)) {
+            card += 1 // Search for first card with same color or value
+          }
+          DiscardPile.push(discardCard(Computer, card)[0]) // discard card from ComputerPlayerPile & push it to DiscardPile
+          discardCard(Discard,0) // remove old card in DiscardPile
+          clearPileUX(Computer)
+          displayPileUX(Computer)
+          clearPileUX(Discard)
+          displayPileUX(Discard)
+          if (DiscardPile[0].value === Skip) {
+            DoNotSwitchTurn = true
+          } else {
+            console.log('xxxx')
+            whichPlayerTurn = Human
+            DoNotSwitchTurn = false
+          }
+      }, 3000)
+      return played
+    } else {
+      // drawCard(Computer)
+      console.log('nothing to play');
+      return !played
+    }
+
+
   }
 }
 
