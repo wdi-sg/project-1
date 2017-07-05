@@ -144,8 +144,10 @@ li {
 
 .timer {
   width: 320px;
-  height: 150px;
+  height: 120px;
   margin: 20px auto;
+  border: 2px solid black;
+  padding-top: 30px;
 }
 
 .middle-content {
@@ -172,9 +174,10 @@ li {
   margin: 0 auto;
 }
 
-
 .scorebox {
   width: 320px;
-  height: 150px;
+  height: 120px;
   margin: 20px auto;
+  border: 2px solid black;
+  padding-top: 30px;
 }
