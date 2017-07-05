@@ -6,6 +6,8 @@ Eating smaller fish will make you bigger,
 and bumping into bigger fish will make you smaller.
 Make yourself the biggest fish in the sea!
 
+Link: http://dreamz89.github.io/project-1
+
 ---
 
 ### Approach
@@ -49,6 +51,7 @@ if (rect1.x < rect2.x + rect2.width &&
 * When collision is detected (true)
 * If area of main fish > area of other fish, increase size of main fish
 * If area of main fish < area of other fish, decrease size of main fish
+* Remove other fish both from the array and the DOM.
 
 **startGame()**
 
@@ -70,7 +73,7 @@ A workaround can be if the sea is divided into sections with some fish in each.
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles.
-One problem encountered is that 'style.top' returns a string while 'offsetTop' returns a number.
+One problem encountered during coding was that 'style.top' returns a string while 'offsetTop' returns a number.
 
 ---
 
