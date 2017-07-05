@@ -22,9 +22,53 @@ Layout
 !["Game Layout"](https://github.com/rebeccatay92/project-1/blob/master/screenshot.png)
 !["Start Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/startGameOverlay.png)
 !["End Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/endGameOverlay.png)
+
 Functions
 ---
+**startGame ()**
+..*Starts countdown()
+..*Starts timeout for gameOver()
+..*Sets value for gameStarted to true
 
+**countdown ()**
+..*Counts down from timeLeft of 90
+..*Updates text in timer
+
+**gameOver ()**
+..*Expands initially hidden endGameOverlay
+..*Allows for restart by reloading page
+
+**randomizer ()**
+..*Picks a random ingredient out of an array of possible ingredients
+
+**newOrder ()**
+..*Uses the randomizer to create an array of random ingredients
+..*Length of array increases as level increases
+..*Adds the top bun to the last position
+
+**generateList ()**
+..*Calls newOrder() to create a new array of ingredients
+..*Generates text in orderList matching that of newOrder()
+
+**checkForMatch ()**
+..*Checks if clicked ingredient matches the current ingredient needed
+
+**serve ()**
+..*Clears the playArea of ingredients
+..*Clears the orderList of text
+..*Increase score by 1, increases level by 1
+..*Reset ingredientCounter
+..*Call generateList() to generate a new level
+
+**clearPlayArea ()**
+..*Removes all ingredients from playArea
+
+**clearList ()**
+..*Removes text from orderList
+
+**increaseScore ()**
+..*Increases text of scoreBox by 1
+..*Increases level by 1
 
 Extensions / Unsolved Issues
 ---

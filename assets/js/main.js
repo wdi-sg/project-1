@@ -84,12 +84,6 @@ function init() {
     }
   }
 
-  // empties the orderList of text
-  function clearList () {
-    order.innerHTML = ''
-    neededIngredients = [] // reset the array for clicks to compare against
-  }
-
   // empties playArea of ingredients
   function clearPlayArea () {
     // queryselect only after the divs have been added. else it only consists of bottombun
@@ -101,6 +95,12 @@ function init() {
     })
   }
 
+  // empties the orderList of text
+  function clearList () {
+    order.innerHTML = ''
+    neededIngredients = [] // reset the array for clicks to compare against
+  }
+  
   // changes text in scorebox
   // increase level by 1
   function increaseScore () {
