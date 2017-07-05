@@ -387,6 +387,7 @@ function init () {
       setTimeout(function () { alert('please try again') }, 100)
     }
     retryButton.style.visibility = 'visible'
+    timer.innerHTML = '0'
   }
 
   function restartGame () {
