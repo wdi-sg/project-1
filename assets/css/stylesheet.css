@@ -4,6 +4,7 @@ div{
   width: 100px;
   height: 10px;
   top: 500px;
+  bottom: 600px;
   left: 600px;
   background-color: rgb(26, 50, 208);
   display: inline-block;
