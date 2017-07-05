@@ -237,7 +237,7 @@
   }
 
   function point () {
-    document.querySelector('.score').innerHTML = counter + ' points'
+    document.querySelector('.current').innerHTML = counter + ' points'
   }
 
   function checkKeyCode (keycode) {

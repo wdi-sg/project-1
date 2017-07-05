@@ -51,6 +51,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid black;
 }
 
 .score {
@@ -59,6 +60,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.top {
+  padding: 20px;
+}
+.current {
+  padding: 20px;
 }
 
 .list .ul {
