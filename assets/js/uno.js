@@ -1,4 +1,6 @@
+////////////////////////
 // Card Property
+///////////////////////
 
 // Color
 var Red = 0
@@ -34,7 +36,21 @@ var HumanPlayerPile = []
 var ComputerPlayerPile = []
 var DiscardPile = []
 
-// Generate Draw Pile consisting 100 cards : An array of Card objects
+////////////////////////
+// Game Status Property
+///////////////////////
+var Computer = 0
+var Human = 1
+var whichPlayerTurn = Human // Human (= 1) starts first; Computer = 0
+var HumanNoOfCardsLeft = null
+var ComputerNoOfCardsLeft = null
+var DoNotSwitchTurn = false // True when these cards played: Skip, DrawTwo or DrawFour
+
+////////////////////////
+// Game Play Functions
+///////////////////////
+
+// Generate unshuffled Draw Pile consisting 100 cards : An array of Card objects
 function generateDrawPile () {
   var Deck = []
   var cardNo = 0
@@ -160,9 +176,23 @@ function labelCard(inputCard) {
   return label
 }
 
+function isPlayableCard(player, index) {
+  if (player === Human) {
+    console.log(index);
+    console.log(HumanPlayerPile[index]);
+    if (HumanPlayerPile[index].color === DiscardPile[0].color ||
+        HumanPlayerPile[index].value === DiscardPile[0].value ||
+        HumanPlayerPile[index].value === DrawFour ||
+        HumanPlayerPile[index].value === vWild) {
+          return true
+        }
+  } else if (player === Computer) {
+    // do nothing for now, as this will be calculated by computer playturn function
+  }
+  return false
+}
 
 
-DrawPile = generateDrawPile()
 
 // console.log('dp len '+DrawPile.length);
 
