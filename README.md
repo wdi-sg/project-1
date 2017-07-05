@@ -38,5 +38,4 @@ Vector art obtained from FreePik (www.freepik.com)
 
 
 ### Necessary Deliverables
-* A **link to your hosted working game** in the URL section of your GitHub repo
 * **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
