@@ -2,16 +2,15 @@ function gameInit () {
   var container = document.querySelector('.container')
   var innerContainer = document.querySelector('.innercontainer')
   var boxSelector = document.querySelector('.box')
+  var mainMenu = document.querySelector('.mainmenu')
+  var startButton = document.querySelector('.newgame')
+  var instructions = document.querySelector('.instructions')
   var playerArr = []
   var lives = 5
   var score = 0
   var combo = 0
   var maxCombo = 0
   var level = 1
-
-  var mainMenu = document.querySelector('.mainmenu')
-  var startButton = document.querySelector('.newgame')
-  var instructions = document.querySelector('.instructions')
 
   function gameSetup () {
     // container.style.opacity = '1'
@@ -33,6 +32,21 @@ function gameInit () {
     setLife()
     setScore()
     setTimeout(chooseBox, 1000)
+  }
+
+  function addTitle () {
+    var titleBox = document.createElement('div')
+    titleBox.setAttribute('id','title')
+    var title = ['T','Y','P','I','N','G',' ','M','A','D','N','E','S','S']
+    mainMenu.appendChild(titleBox)
+    function typeTitle () {
+      var letter = document.createElement('span')
+      letter.textContent = title[0]
+      title.shift()
+      titleBox.appendChild(letter)
+      setTimeout(typeTitle, 200)
+    }
+    setTimeout(typeTitle, 100)
   }
 
   function showInstructions () {
@@ -60,7 +74,7 @@ function gameInit () {
       close(instructions)
       gameSetup()
     }
-    setTimeout(function (){
+    setTimeout(function () {
       instructions.style.opacity = '1'
     }, 10)
     container.appendChild(instructions)
@@ -201,6 +215,10 @@ function gameInit () {
   function setLife () {
     if (lives === 0) {
       innerContainer.innerHTML = ''
+      var audio = document.createElement('audio')
+      audio.src = '/assets/audio/gameover.wav'
+      audio.autoplay = true
+      container.appendChild(audio)
       inGameMessage('Game Over!', 1000)
       setTimeout(createGameoverWindow, 2000)
     }
@@ -228,7 +246,6 @@ function gameInit () {
         setTimeout(inGameMessage, 1010, 'Level up!', 500)
       }
       setLevel()
-      // setBackground()
     }
   }
 
@@ -341,7 +358,15 @@ function gameInit () {
       }, 100)
     } else if (type === 'heartBox') {
       boxElem.id = 'heartBox'
-      boxElem.style.backgroundColor = 'red'
+      boxElem.style.background = 'url(\'assets/images/redheart.png\''
+      boxElem.style.borderRadius = ''
+      boxElem.style.backgroundSize = 'cover'
+      // boxElem.style.backgroundSize = '100%'
+      boxElem.style.width = '75px'
+      boxElem.style.height = '71px'
+      boxElem.style.backgroundRepeat = 'no-repeat'
+      boxElem.style.backgroundPosition = 'center center'
+      boxElem.style.fontSize = '12pt'
     } else {
       boxElem.style.backgroundColor = 'pink'
     }
@@ -356,10 +381,11 @@ function gameInit () {
     var fullWordArr = words.array
     var inGameWordArr = fullWordArr.filter(function (word) {
       console.log(randomNoRounded(3 + level / 3, 4 + level / 3))
-      if (type === 'heartBox')
-      return word.length === randomNoRounded(6 + level / 3, 6 + level / 3)
-      else
-      return word.length === randomNoRounded(3 + level / 3, 4 + level / 3)
+      if (type === 'heartBox') {
+        return word.length === randomNoRounded(6 + level / 3, 6 + level / 3)
+      } else {
+        return word.length === randomNoRounded(3 + level / 3, 4 + level / 3)
+      }
     })
     console.log(inGameWordArr.length)
     var randomWord = inGameWordArr[randomNo(0, inGameWordArr.length - 1)]
@@ -374,6 +400,8 @@ function gameInit () {
     }
     if (type === 'upsideDown') {
       innerBox.style.transform = 'rotate(180deg)'
+    } else if (type === 'heartBox') {
+      innerBox.style.margin = '15px 0 0 0'
     }
     appendTo.appendChild(innerBox)
     setTimeout(moveBox, 200)
@@ -384,6 +412,7 @@ function gameInit () {
     boxToMove.forEach(function (elem) {
       // elem.style.transition = 'top 5s linear'
       elem.style.top = ('465px')
+      if (elem.type === 'heartBox') elem.style.top = ('425px')
       elem.addEventListener('transitionend', removeBox)
     })
   }
@@ -470,6 +499,10 @@ function gameInit () {
         lives += 1
         addHeart(lifeCounter)
         inGameMessage('Extra Life!', 10)
+        var audio = document.createElement('audio')
+        audio.src = '/assets/audio/extralife.wav'
+        audio.autoplay = true
+        container.appendChild(audio)
       }
       if (level < 4) score += 50
       setScore()
@@ -479,6 +512,7 @@ function gameInit () {
     }
   }
 
+  addTitle()
   startButton.addEventListener('click', gameSetup)
   instructions.addEventListener('click', showInstructions)
   document.body.addEventListener('keydown', typeLetter)
