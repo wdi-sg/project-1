@@ -23,16 +23,44 @@ body {
   width: 150px;
   border: none;
   outline: none;
+  padding: 10px;
 }
 
 #pacmanTitle:active {
   transform: translateY(5px);
 }
 
-#blueGhostTitle, #orangeGhostTitle {
+#blueGhostTitle {
+  position: relative;
   height: 55px;
   width: 55px;
-  transform: rotate(25deg);
+  animation: ghostMovement 5s ease-in-out 1;
+}
+
+@keyframes ghostMovement {
+  0%    {top: 0px; left: 0px;}
+  20%   {top: 50px; left: 0px;}
+  40%   {top: 50px; left: -110px;}
+  60%   {top: -60px; left: -110px;}
+  80%   {top: -60px; left: 0px;}
+  100%  {top: 0px; left: 0px;}
+}
+
+#orangeGhostTitle {
+  position: relative;
+  height: 55px;
+  width: 55px;
+  transform: scaleX(-1);
+  animation: ghostMovement2 5s ease-in-out 1;
+}
+
+@keyframes ghostMovement2 {
+  0%    {top: 0px; left: 0px;}
+  20%   {top: 50px; left: 0px;}
+  40%   {top: 50px; left: 110px;}
+  60%   {top: -60px; left: 110px;}
+  80%   {top: -60px; left: 0px;}
+  100%  {top: 0px; left: 0px;}
 }
 
 #instructions {
@@ -42,7 +70,7 @@ body {
   height: 520px;
   color: white;
   font-family: 'VT323', monospace;
-  font-size: 25px;
+  font-size: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
