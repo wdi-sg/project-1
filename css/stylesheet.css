@@ -141,8 +141,6 @@ ul {
   height:40px;
   width: 40px;
   position:absolute;
-  transition-timing-function: ease-out;
-  transition: 0.1s;
   opacity: 0;
   margin-top:-20px;
 }
