@@ -77,6 +77,13 @@ Extensions / Unsolved Issues
 3. Use opacity % instead of height:0px to collapse/expand overlay panels.
 4. Onion does not stack as nicely compared to other ingredients. Tweak positioning or negative margins.
 
+Coded With
+---
+HTML
+CSS
+Javascript
+
+
 Sources
 ---
 Vector art obtained from FreePik (www.freepik.com)
