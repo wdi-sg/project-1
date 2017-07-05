@@ -8,14 +8,17 @@ body{
 .header {
   text-align:center;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 30px;
   padding: 20px 0px 20px 0px;
   letter-spacing: 20px;
-  color: red;
-  margin: 0px 10px 0px 10px;
+  color: rgb(246,27,27);
+  margin: 20px 10px 0px 10px;
+}
+.gold{
+  color: rgb(190,186,70)
 }
 .blue{
-  color:blue;
+  color:rgb(139,211,251);
 }
 .main {
   display: flex;
@@ -87,6 +90,7 @@ ul {
   height:440px;
   display:flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 .forest {
   width:100%;
@@ -120,14 +124,19 @@ ul {
 .firingzone{
   width: 640px;
   height: 20px;
-  background-color: black;
   position:relative;
 }
 .firstfire, .secondfire, .thirdfire, .fourthfire {
-  background-color: white;
-  height:20px;
-  width: 50px;
+  background-image: url(../images/fireball.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  height:40px;
+  width: 40px;
   position:absolute;
+  transition-timing-function: ease-out;
+  transition: 0.1s;
+  opacity: 0;
+  margin-top:-20px;
 }
 .firstfire {
   left: 55px;
@@ -142,7 +151,6 @@ ul {
   left:535px;
 }
 .jack-area {
-  background-color: rgba(255,255,255,0.4);
   width:640px;
   height:60px;
 }
@@ -161,6 +169,7 @@ ul {
   height: 60px;
   text-align: center;
   font-size: 20px;
+  line-height: 35px;
   border-top: 2px solid black;
 }
 .countingdown {
@@ -178,7 +187,7 @@ ul {
 footer{
   text-align: center;
   letter-spacing: 3px;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 10px;
   color:palegoldenrod;
 }

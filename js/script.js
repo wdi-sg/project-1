@@ -33,6 +33,10 @@ function init () {
   var moveTree3Down
   var moveTree4Down
   var randomNum = 0
+  var firstFire = document.querySelector('.firstfire')
+  var secondFire = document.querySelector('.secondfire')
+  var thirdFire = document.querySelector('.thirdfire')
+  var fourthFire = document.querySelector('.fourthfire')
   document.addEventListener('keyup', onKeyUp)
 
   function onKeyUp (event) {
@@ -203,7 +207,7 @@ function init () {
     } else if (treeNumber === 4) {
       clearInterval(moveTree4Down)
       moveTree4Down = setInterval(move4Down, 6)
-}
+    }
   }
   function move1Down () {
     if (firstTreeTop < 270) {
@@ -271,10 +275,10 @@ function init () {
     if ((jackNumber === 1 && firstTree.style.visibility === 'visible') || (jackNumber === 2 && secondTree.style.visibility === 'visible') || (jackNumber === 3 && thirdTree.style.visibility === 'visible') || (jackNumber === 4 && fourthTree.style.visibility === 'visible')) {
       scorecounter += 1
       if (scorecounter < 10) {
-      timeLeft += 300
-    } else {
-      timeLeft += 200
-    }
+        timeLeft += 300
+      } else {
+        timeLeft += 200
+      }
       if (jackNumber === 1) {
         refreshOne()
       } if (jackNumber === 2) {
@@ -287,10 +291,23 @@ function init () {
     } else {
       timeLeft -= 300
     }
-    setTimeout(colorChanger, 1000)
+    if (jackNumber === 1) {
+      firstFire.style.opacity = '1.0'
+    } if (jackNumber === 2) {
+      secondFire.style.opacity = '1.0'
+    } if (jackNumber === 3) {
+      thirdFire.style.opacity = '1.0'
+    } if (jackNumber === 4) {
+      fourthFire.style.opacity = '1.0'
+    }
+    setTimeout(colorChanger, 100)
     displayScore()
   }
   function colorChanger () {
+    firstFire.style.opacity = '0'
+    secondFire.style.opacity = '0'
+    thirdFire.style.opacity = '0'
+    fourthFire.style.opacity = '0'
   }
   function refreshOne () {
     firstTree.style.visibility = 'hidden'
