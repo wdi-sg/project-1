@@ -10,6 +10,20 @@ div{
   display: inline-block;
 }
 
+.gameOver{
+  top: 400px;
+  z-index: 1;
+  visibility: hidden;
+  width: 600px;
+  height: 120px;
+  background-color: white;
+  left: 580px;
+  text-align: center;
+  font-size: 90px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
 .sky{
   margin: 0;
   left: 0;

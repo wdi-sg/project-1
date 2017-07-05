@@ -14,20 +14,15 @@ document.addEventListener('DOMContentLoaded', init)
 // }
 
 function init () {
-  var speed = 1.02
-  var counter = 0
+  var speed = 1
   var gameOver = false
+  var counter = 0
   var spaceship = document.querySelector('.ship')
-
-// just to tell me the coordinates of the mouse
-  // document.addEventListener('mousemove', function () {
-  //   console.log('X coordinate' + event.clientX + 'Y coordinate' + event.clientY)
-  // })
 
 // sets rate of wall spawn
   setInterval(function () {
     fall(spawnWalls(), speed, collision)
-  }, 4000)
+  }, 2000)
 
 // if keyup, then ship resets to normal position
   document.addEventListener('keyup', function () {
@@ -40,12 +35,12 @@ function init () {
     if (event.keyCode === 37) {
       spaceship.id = 'spaceshipleft'
       for (var i = 0; i < currentWalls.length; i++) {
-        wallsMove(currentWalls[i], -30)
+        wallsMove(currentWalls[i], 10)
       }
     } else if (event.keyCode === 39) {
       spaceship.id = 'spaceshipright'
       for (var i = 0; i < currentWalls.length; i++) {
-        wallsMove(currentWalls[i], 30)
+        wallsMove(currentWalls[i], -10)
       }
     }
   })
@@ -70,44 +65,17 @@ function wallsMove (element, speed) {
   // coordinate 0,0 is at (875, 381)
   var XAxis = element.getBoundingClientRect().left
   var YAxis = element.getBoundingClientRect().top
-  var angle = findAngles(element)
-  var id = parseInt(element.id)
   var wallCSS = element.style
 
-  if (angle > 0) {
-    if (id < 1021 && (id + 100) > 1021) {
-      wallCSS.left = (XAxis + 0.7 /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
-    } else if (id < 948 && (id + 146) > 948) {
-      wallCSS.left = (XAxis + 0.3 /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
-    } else {
-      wallCSS.left = (XAxis + 3 /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
-    }
-  } else {
-    if (id > 800) {
-      wallCSS.left = (XAxis - 1 /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
-    } else if (id > 656 && (id - 100) < 656) {
-      wallCSS.left = (XAxis - 1 /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
-    } else {
-      wallCSS.left = ((XAxis - 5) /* speed */) + 'px'
-      wallCSS.top = ((XAxis - id) * angle) + 500 /* speed */ + 'px'
-    }
-  }
-}
-
-function findAngles (element) {
-  return 120 / (parseInt(element.id) - 875)
+  wallCSS.left = XAxis - 1 + speed + 'px'
+  wallCSS.top = YAxis + 2 + 'px'
 }
 
   // causes walls to expand
 function fall (element, speed, afunction) {
   setInterval(function () {
     if (afunction()) {
-      console.log('dead')
+      gameOver()
     }
     var adjWidth = element.offsetWidth
     var adjHeight = element.offsetHeight
@@ -125,16 +93,24 @@ function fall (element, speed, afunction) {
 function spawnWalls () {
   var newWall = document.createElement('div')
   newWall.classList.add('wall')
-  // newWall.style.left = (Math.random() * 1200 + 100) + 'px'
-  // newWall.style.width = (Math.random() * 200 + 50) + 'px'
-  newWall.style.left = ((Math.random()) * 1700) + 1 + 'px'
-  newWall.style.width = 100 + 'px'
+  newWall.style.left = (Math.random() * 1700) + 'px'
+  newWall.style.width = (Math.random() * 100 + 50) + 'px'
   newWall.id = newWall.style.left
-  // newWall.style.height = '1px' // uncomment after
+  newWall.style.height = '1px'
   document.body.appendChild(newWall)
   return newWall
 }
 
 function startGame () {
 
+}
+
+function gameOver () {
+  var ship = document.querySelector('.ship')
+  ship.style.display = 'none'
+  var gameOver = document.createElement('div')
+  gameOver.classList.add('gameOver')
+  gameOver.style.visibility = 'visible'
+  gameOver.innerHTML = 'GAME OVER'
+  document.body.appendChild(gameOver)
 }
