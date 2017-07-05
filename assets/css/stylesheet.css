@@ -48,7 +48,7 @@ ol{
 #container {
   width: 600px;
   height: 600px;
-  margin: auto 120px;
+  margin: auto auto;
   display: flex;
   flex-wrap: wrap;
 }

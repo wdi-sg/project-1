@@ -2,18 +2,26 @@ document.addEventListener('DOMContentLoaded', init)
 
 // global var, accessible by both logic and dom?
 //will be randomized when start hit start button
-var start = [
+var start2 = [
   ['start', 'block', 'block', 'block'],
   ['topdown', 'space', 'leftright', 'end'],
   ['topright', 'block', 'space', 'space'],
   ['space', 'leftright', 'space', 'lefttop']
 ]
 
+//to play with to check recursive function
+var start = [
+  ['start', 'block', 'block', 'block'],
+  ['space', 'topdown', 'leftright', 'end'],
+  ['block', 'topright', 'space', 'space'],
+  ['space', 'leftright', 'space', 'lefttop']
+]
+
 //win is to know what starting pieces to take, and if needed, hardcoded winning combi
 var win = [
-  ['start', 'block', 'block', 'block'],
-  ['topdown', 'block', 'space', 'end'],
-  ['topright', 'leftright', 'leftright', 'lefttop'],
+  ['space', 'block', 'block', 'block'],
+  ['block', 'topdown', 'topright', 'block'],
+  ['space', 'leftright', 'leftright', 'lefttop'],
   ['space', 'space', 'space', 'space']
 ]
 
@@ -21,6 +29,8 @@ var win = [
 var play = start
 
 var moveNum = 'Game not started'
+
+
 
 function createGrid () {
   var container = document.querySelector('#container')
@@ -63,8 +73,11 @@ function init () {
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
   document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
-  document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('start') })
+  //document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('X0Y0') })
   document.getElementById('startBtn').addEventListener('click', updateGrid)
+
+  document.getElementById('testBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('X0Y0')
+})
 
   //
 
@@ -121,8 +134,8 @@ function init () {
         document.getElementById('timer').textContent = seconds + ' seconds'
       }
       if (seconds == -1) {
-        logicFile.randomize()
-        updateGrid()
+        //logicFile.randomize()
+        //updateGrid()
       }
     }
   }
