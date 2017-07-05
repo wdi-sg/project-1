@@ -36,12 +36,12 @@ document.addEventListener('keyup', function (event) {
 
 function jump () {
   circle.style.top = 200 + 'px'
-  circle.style.backgroundImage = "url('https://github.com/karl-x/project-1/blob/master/assets/img/skating.gif')"
+  circle.style.backgroundImage = "url('https://github.com/karl-x/project-1/blob/master/assets/img/skatejump2.png')"
   canJump = false
 }
 function drop () {
   circle.style.top = 520 + 'px'
-  circle.style.backgroundImage = "url('https://github.com/karl-x/project-1/blob/master/assets/img/skatejump2.png')"
+  circle.style.backgroundImage = "url('https://github.com/karl-x/project-1/blob/master/assets/img/skating.gif')"
 }
 
 function canJump () {
@@ -106,7 +106,7 @@ function moveBlock (elem) {
       }
       elem.style.display = ''
         elem.style.left = (elem.getBoundingClientRect().left-315) - 10 + 'px'}
-    },500)
+    },800)
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<Medium>>>>>>>>>>>>>>>>>>
