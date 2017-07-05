@@ -10,6 +10,7 @@ var startButton = document.querySelector('.StartGame')
 var resetButton = document.querySelector('.ResetGame')
 var drawCardButton = document.querySelector('.DrawCard')
 var HumanPlayerCardsArr = [] // Will be defined at startGame()
+var GameMessage = document.querySelector('.GameMessage')
 
 /////////////////////////////
 // Functions for game action events
@@ -17,10 +18,12 @@ var HumanPlayerCardsArr = [] // Will be defined at startGame()
 
 function startGame () {
   DrawPile = shuffle(DrawPile)
-  while ((DrawPile[DrawPile.length-1].value === vWild) || (DrawPile[DrawPile.length-1].value === DrawFour)) {
-    //ensures no Wild or Wild DrawFour for starting card in DiscardPile
-    DrawPile = shuffle(DrawPile)
-  }
+
+  // while ((DrawPile[DrawPile.length-1].value === vWild) || (DrawPile[DrawPile.length-1].value === DrawFour)) {
+  //   //ensures no Wild or Wild DrawFour for starting card in DiscardPile
+  //   DrawPile = shuffle(DrawPile)
+  // }
+
   DiscardPile = dealCard(1)
   HumanPlayerPile = dealCard(7)
   ComputerPlayerPile = dealCard(7)
@@ -35,7 +38,12 @@ function startGame () {
         //console.log('x '+index);
         //console.log(HumanPlayerCardsArr);
         HumanPlayerCardsArr[index].onclick = function (e) {
-          playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
+          var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
+          if (humanPlayed && (DoNotSwitchTurn === false)) {
+            playCard(Computer,null)
+          } else {
+            //GameMessage.innerHTML = 'Human Player, awaiting your play...'
+          }
           return false
         }
       })
@@ -67,6 +75,7 @@ function startGame () {
       })
 
   GameStarted = true
+  GameMessage.innerHTML = 'Human Player, awaiting your play...'
 } // end of startGame
 
 function resetGame () {
@@ -123,6 +132,7 @@ function displayPileUX (whichPile) {
 }
 
 function playCard (player, index) { // player: 0=computer, 1=human; index: index of player pile
+  var played = true
   if (whichPlayerTurn === Human) {  // ensures human player cannot play when computer still calculating moves
     if (isPlayableCard(player, index)) {
       //alert('Can play this')
@@ -132,15 +142,24 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: index
       displayPileUX(Human)
       clearPileUX(Discard)
       displayPileUX(Discard)
-      whichPlayerTurn = Computer
-      // if special situation (skip, draw two, draw four, wild) {}
-    } else alert ('Cannot play this card!') // to revert to no action if card not playable
+      if (DiscardPile[0].value === Skip) {
+        DoNotSwitchTurn = true
+      } else {
+        whichPlayerTurn = Computer
+        DoNotSwitchTurn = false
+      }
+      return played
+    } else {
+      alert ('Cannot play this card!') // to revert to no action if card not playable
+      return !played
+    }
   } else if (whichPlayerTurn === Computer) {
-
+    console.log('computer turn now...');
   }
 }
 
 function drawCard (player) {
+  console.log('player: '+player)
   if (hasPlayablePile(player)) {
     alert('You have playable card(s). No need to draw.')
   } else {
@@ -181,3 +200,7 @@ DrawPile.forEach(function (card) {
 startButton.addEventListener('click', startGame)
 resetButton.addEventListener('click', resetGame)
 drawCardButton.addEventListener('click', clickDrawCardButton)
+
+// while (whichPlayerTurn === Computer) {
+//   GameMessage.innerHTML = 'Awaiting Computer Player play...'
+// }

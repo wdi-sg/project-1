@@ -7,7 +7,7 @@ var Red = 0
 var Green = 1
 var Blue = 2
 var Yellow = 3
-var cWild = 4
+// var cWild = 4
 
 // Value
 var Zero = 0
@@ -22,9 +22,9 @@ var Eight = 8
 var Nine = 9
 var DrawTwo = 10
 var Skip = 11
-var DrawFour = 12
-var vWild = 13
-  // Remove Reverse Card since same as Skip
+// var DrawFour = 12
+// var vWild = 13
+  // Removed Reverse Card since same as Skip
 
 // Card Image
 var cardURL = 'URL'
@@ -59,7 +59,7 @@ function generateDrawPile () {
   var cardNo = 0
 
   // Generate four Zero cards (one of each color)
-  for (var cardColor = Red; cardColor<cWild; cardColor++) {
+  for (var cardColor = Red; cardColor<=Yellow; cardColor++) {
     Deck[cardNo] = {
         label: '',
         value: Zero,
@@ -70,8 +70,8 @@ function generateDrawPile () {
   }
 
   // Generate One to DrawTwo cards (2 sets of each color)
-  for (var cardValue = One; cardValue<DrawFour; cardValue++) {
-    for (var cardColor = Red; cardColor<cWild; cardColor++) {
+  for (var cardValue = One; cardValue<=Skip; cardValue++) {
+    for (var cardColor = Red; cardColor<=Yellow; cardColor++) {
       Deck[cardNo] = {
           label: '',
           value: cardValue,
@@ -92,26 +92,26 @@ function generateDrawPile () {
 
 //console.log('xx'+cardNo);
 
-  // Generate 8 Wild-type cards (2 sets of DrawFour and Wild)
-  for (var i = 1; i <= 2; i++) {
-    for (cardValue = DrawFour; cardValue <= vWild; cardValue++) {
-      Deck[cardNo] = {
-          label: '',
-          value: cardValue,
-          color: cWild,
-          image: cardURL
-        }
-      cardNo += 1
-      Deck[cardNo] = {
-          label: '',
-          value: cardValue,
-          color: cWild,
-          image: cardURL
-        }
-      cardNo += 1
-    }
-  }
-  // console.log(cardNo); // to remove
+  // Generate 8 Wild-type cards (2 sets of DrawFour and Wild) REMOVED WILD & DRAWFOUR FOR SIMPLIFICATION
+  // for (var i = 1; i <= 2; i++) {
+  //   for (cardValue = DrawFour; cardValue <= vWild; cardValue++) {
+  //     Deck[cardNo] = {
+  //         label: '',
+  //         value: cardValue,
+  //         color: cWild,
+  //         image: cardURL
+  //       }
+  //     cardNo += 1
+  //     Deck[cardNo] = {
+  //         label: '',
+  //         value: cardValue,
+  //         color: cWild,
+  //         image: cardURL
+  //       }
+  //     cardNo += 1
+  //   }
+  // }
+
   return Deck
 }
 
@@ -180,11 +180,9 @@ function labelCard(inputCard) {
 }
 
 function isPlayableCard(player, index) {
+  //var test = false
   if (player === Human) {
-    if (HumanPlayerPile[index].color === DiscardPile[0].color ||
-        HumanPlayerPile[index].value === DiscardPile[0].value ||
-        HumanPlayerPile[index].value === DrawFour ||
-        HumanPlayerPile[index].value === vWild) {
+    if ((HumanPlayerPile[index].color === DiscardPile[0].color) || (HumanPlayerPile[index].value === DiscardPile[0].value))  {
           return true
         }
   } else if (player === Computer) {
@@ -224,8 +222,15 @@ for (var i = 0; i < DrawPile.length; i++) {
 
 function hasPlayablePile(player) {
   // checks if player has at least one card that could be played; returns true if yes
-
-  return true
+  var test = false
+  if (player === Human) {
+    HumanPlayerPile.forEach(function (card) {
+      if ((card.color === DiscardPile[0].color) || (card.value === DiscardPile[0].value)) {test = true}
+    })
+  } else if (player === Computer) {
+    // do nothing for now, as this will be calculated by computer playturn function
+  }
+  return test
 }
 
 

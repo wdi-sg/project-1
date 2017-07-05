@@ -2,20 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>UNO! for 2</title>
+    <title>Simplified UNO! for 2</title>
     <link rel="stylesheet" href="css/stylesheet.css">
   </head>
 
   <body>
-    <h1>UNO! for 2</h1>
+    <h1>Simplified UNO! for 2</h1>
 
-    <p>Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. To reset game, click 'Reset' button and then 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p>
+    <p>Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. The 'Reset' button stops game and clears all players' and discard piles. To restart, click the 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p>
 
     <div class='GamePanel'>
 
       <div class='MessageConsole'>
-        <!-- <h1>Message Console</h1> -->
-        <p class='MessageConsole'></p>
+        <h2 class='MessageConsole'>Message Console: </h2>
+        <p class='GameMessage'>Awaiting game start...</p>
       </div>
 
 
@@ -62,7 +62,7 @@
 
           </ul>
       </div>
-
+    </div>
   </body>
 
   <script src="js/uno.js"></script>
