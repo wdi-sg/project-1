@@ -291,7 +291,6 @@ function init () {
     displayScore()
   }
   function colorChanger () {
-    jack.style.backgroundColor = 'orange'
   }
   function refreshOne () {
     firstTree.style.visibility = 'hidden'
