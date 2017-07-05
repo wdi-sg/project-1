@@ -4,6 +4,7 @@ function init () {
   var loopTimer
   var newGame = document.querySelector('#newGame')
   var pacmanTitle = document.querySelector('#pacmanTitle')
+  var instructions = document.querySelector('#instructions')
   var gameboard = document.querySelector('#gameboard')
   var pacman = document.querySelector('#pacman')
   var blueGhost = document.querySelector('#blueGhost')
@@ -33,6 +34,7 @@ function init () {
   pacmanTitle.addEventListener('click', startGame)
   startButton.addEventListener('click', startGame)
 
+  instructions.style.display = 'none'
   scoreboard.style.display = 'none'
   document.querySelector('#lifetracker').style.display = 'none'
   startButton.style.display = 'none'
@@ -377,41 +379,48 @@ function init () {
 
   // start new game
   function startGame () {
-    startButton.style.display = 'none'
-    newGame.style.display = 'none'
-    win.style.display = 'none'
-    lose.style.display = 'none'
-    scoreboard.style.display = ''
-    scores.textContent = ''
+    var afterTimeout = function () {
+      instructions.style.display = 'none'
+      win.style.display = 'none'
+      lose.style.display = 'none'
+      scoreboard.style.display = ''
+      scores.textContent = ''
 
-    document.querySelector('#lifetracker').style.display = ''
-    document.querySelector('#life1').style.display = ''
-    document.querySelector('#life2').style.display = ''
-    document.querySelector('#life3').style.display = ''
+      document.querySelector('#lifetracker').style.display = ''
+      document.querySelector('#life1').style.display = ''
+      document.querySelector('#life2').style.display = ''
+      document.querySelector('#life3').style.display = ''
 
-    scoretracker = []
-    lives = 3
+      scoretracker = []
+      lives = 3
 
-    pacman.style.top = '440px'
-    pacman.style.left = '280px'
-    blueGhost.style.top = '40px'
-    blueGhost.style.left = '40px'
-    orangeGhost.style.top = '40px'
-    orangeGhost.style.left = '520px'
-    pinkGhost.style.top = '440px'
-    pinkGhost.style.left = '40px'
-    redGhost.style.top = '440px'
-    redGhost.style.left = '520px'
+      pacman.style.top = '440px'
+      pacman.style.left = '280px'
+      blueGhost.style.top = '40px'
+      blueGhost.style.left = '40px'
+      orangeGhost.style.top = '40px'
+      orangeGhost.style.left = '520px'
+      pinkGhost.style.top = '440px'
+      pinkGhost.style.left = '40px'
+      redGhost.style.top = '440px'
+      redGhost.style.left = '520px'
 
-    upKeyDown = false
-    downKeyDown = false
-    leftKeyDown = false
-    rightKeyDown = false
+      upKeyDown = false
+      downKeyDown = false
+      leftKeyDown = false
+      rightKeyDown = false
 
-    for (var i = 0; i < dots.length; i++) {
-      dots[i].style.display = ''
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].style.display = ''
+      }
+      loopTimer = setInterval(loop, 50)
     }
-    loopTimer = setInterval(loop, 50)
+    newGame.style.display = 'none'
+    startButton.style.display = 'none'
+    scoreboard.style.display = 'none'
+    document.querySelector('#lifetracker').style.display = 'none'
+    instructions.style.display = ''
+    setTimeout(afterTimeout, 4500)
   }
 
   // game loop

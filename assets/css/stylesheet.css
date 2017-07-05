@@ -35,6 +35,20 @@ body {
   transform: rotate(25deg);
 }
 
+#instructions {
+  position: absolute;
+  z-index: 1;
+  width: 600px;
+  height: 520px;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
 #gameboard {
   position: relative;
   margin: 0 auto;

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Pac-Man</title>
     <link rel="stylesheet" href="assets/css/stylesheet.css">
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
   </head>
 
   <body>
@@ -13,14 +13,20 @@
       <input type='image' id='pacmanTitle' src='assets/images/pacmanTitle.png'>
       M<img id='orangeGhostTitle' src='assets/images/orangeGhostTitle.png'>N
     </div>
-
+    <div id='instructions'>
+      Instructions:</br>
+      Use the arrow keys to move Pac-Man around the maze.</br>
+      Complete the level by eating all the dots.</br>
+      Avoid the ghosts! If they catch you, you will lose a life.</br>
+      You only have 3 lives. Be careful...</br>
+    </div>
     <div id='gameboard'>
       <img id='pacman' src='assets/images/pacman.png'>
       <img id='blueGhost' src='assets/images/ghost-blue.png'>
       <img id='orangeGhost' src='assets/images/ghost-orange.png'>
       <img id='pinkGhost' src='assets/images/ghost-pink.png'>
       <img id='redGhost' src='assets/images/ghost-red.png'>
-      <div id='interval'><span id='intervalMessage'>ARE YOU READY?</span></div>
+      <div id='interval'><span id='intervalMessage'>GET READY!</span></div>
       <div id='win'><span id='winMessage'>CONGRATULATIONS!</span></div>
       <div id='lose'><span id='loseMessage'>TRY HARDER!</span></div>
       <div id='scoreboard'>Score: <span id='scores'></span></div>
