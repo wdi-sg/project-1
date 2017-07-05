@@ -2,6 +2,7 @@
   position: absolute;
   left: 50%;
   top: 30px;
+  z-index: 1;
 }
 .container {
   /*background-color: yellow;*/
@@ -12,9 +13,14 @@
   margin: 0;
 }
 body {
-  /*background-image: url(/assets/images/stock.jpeg);*/
-  background-repeat: no-repeat;
-  background-position: left;
+}
+
+.imgBorder {
+  padding: 15px 15px 0;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
 }
 
 .topcontent {
@@ -96,7 +102,7 @@ body {
 .rightcontent {
   /*background-color: green;*/
   /*border: 2px solid black;*/
-  width: 60%;
+  width: 25.5%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +119,7 @@ body {
 }
 
 .bottomcontent {
-  /*background-color: teal;*/
+  /*background-color: black;*/
   /*border: 2px solid black;*/
   width: 100%;
   height: 160px;

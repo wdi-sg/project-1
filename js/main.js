@@ -29,10 +29,11 @@
   var counter = 0
   var timer = 60
   var timeCount = document.querySelector('.timer')
+  var inputShake = document.querySelector('.userinput')
   var interval = null
-  var start = document.querySelector('.start')
-  var reset = document.querySelector('.reset')
-  var shake = document.querySelectorAll('.shake')
+  // var start = document.querySelector('.start')
+  // var reset = document.querySelector('.reset')
+  // var shake = document.querySelectorAll('.shake')
 
   document.addEventListener('keyup', onKeyUp)
   var index = 4
@@ -71,14 +72,16 @@
           setTimeout(function () {
             resetNow()
             gamePlay()
-          }, 1200)
+          }, 1000)
           counter = counter + 10
           point()
         } else {
+          inputShake.classList.add('shake-hard', 'shake-constant')
           setTimeout(function () {
             resetNow()
             gamePlay()
-          }, 1200)
+            inputShake.classList.remove('shake-hard', 'shake-constant')
+          }, 1000)
           counter = counter - 10
           point()
         }
