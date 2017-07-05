@@ -1,7 +1,22 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+Project 1: "Are You Smarter Than An Nth Grader?" Quiz Game
+
+"Are You Smarter Than An Nth Grader" is a 2-player, competitive quiz game that tests each player's knowledge across a variety of subjects encompassed in the K-12 education system common to the US, Canada and other countries.
+
+Players take turns to answer the quiz questions, with Player 1 starting the game by default. Each correct answer adds one point to the respective player's score, and play continues until the last question, question 12, is answered.
+
+Subsequently, both player's scores are compared, and the player with the higher score is pronounced the winner! Both players having the same score results in a tie.
+
+A restart button is then generated which allows the game to be restarted.
+
+Languages Used
+1. HTML
+2. CSS
+3. Javascript
+
+Future Development Notes:
+1. Add a countdown timer for each round
+2. Allow round robbing function (Like how though...)
+3. Increase question library and change structure to allow replayability (i.e. questions do not repeat on consecutive playthroughs)
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 
@@ -21,7 +36,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +82,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---
