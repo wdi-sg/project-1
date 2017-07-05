@@ -37,17 +37,11 @@ Step-by-Step Process
 
 **collisionDetection()**
 
-function isCollide(a, b) {
-    var aRect = a.getBoundingClientRect();
-    var bRect = b.getBoundingClientRect();
-
-    return !(
-        ((aRect.top + aRect.height) < (bRect.top)) ||
-        (aRect.top > (bRect.top + bRect.height)) ||
-        ((aRect.left + aRect.width) < bRect.left) ||
-        (aRect.left > (bRect.left + bRect.width))
-    );
-}
+if (rect1.x < rect2.x + rect2.width &&
+   rect1.x + rect1.width > rect2.x &&
+   rect1.y < rect2.y + rect2.height &&
+   rect1.height + rect1.y > rect2.y)
+    // collision detected!
 
 **startGame()**
 
@@ -74,10 +68,13 @@ and so on.
 
 So if you select some at random, then that vast majority of selected numbers will have the same number of digits, because the vast majority of possible values have the same number of digits."
 
+A workaround can be if the sea is divided into sections with some fish in each.
+
 **Fishes are not a regular shape (rectangle or circle), so collision detection is not precise.**
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
-but for simplicity purposes, the fishes are assumed to be rectangles
+but for simplicity purposes, the fishes are assumed to be rectangles.
+One problem encountered is that 'style.top' returns a string while 'offsetTop' returns a number
 
 ---
 
@@ -92,7 +89,6 @@ https://stackoverflow.com/questions/7143806/make-an-image-follow-mouse-pointer
 * **Rotating Fish to follow mouse pointer**
 
 https://stackoverflow.com/questions/15653801/rotating-object-to-face-mouse-pointer-on-mousemove
-http://www.gamefromscratch.com/post/2012/11/18/GameDev-math-recipes-Rotating-to-face-a-point.aspx
 * **Collision Detection**
 
-https://stackoverflow.com/questions/2440377/javascript-collision-detection
+https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
