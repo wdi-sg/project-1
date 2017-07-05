@@ -4,7 +4,7 @@ var weight = [84966, 20720, 45388, 33844, 111607, 18121, 24705, 30034, 75448, 19
 
 var storedArr = []
 var randomStr = []
-var timer = 120
+var timer = 90
 var score = 0
 var hiScore = 0
 var counter = 3
