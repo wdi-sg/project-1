@@ -215,6 +215,10 @@ function gameInit () {
   function setLife () {
     if (lives === 0) {
       innerContainer.innerHTML = ''
+      var audio = document.createElement('audio')
+      audio.src = '/assets/audio/gameover.wav'
+      audio.autoplay = true
+      container.appendChild(audio)
       inGameMessage('Game Over!', 1000)
       setTimeout(createGameoverWindow, 2000)
     }
@@ -354,7 +358,15 @@ function gameInit () {
       }, 100)
     } else if (type === 'heartBox') {
       boxElem.id = 'heartBox'
-      boxElem.style.backgroundColor = 'red'
+      boxElem.style.background = 'url(\'assets/images/redheart.png\''
+      boxElem.style.borderRadius = ''
+      boxElem.style.backgroundSize = 'cover'
+      // boxElem.style.backgroundSize = '100%'
+      boxElem.style.width = '75px'
+      boxElem.style.height = '71px'
+      boxElem.style.backgroundRepeat = 'no-repeat'
+      boxElem.style.backgroundPosition = 'center center'
+      boxElem.style.fontSize = '12pt'
     } else {
       boxElem.style.backgroundColor = 'pink'
     }
@@ -388,6 +400,8 @@ function gameInit () {
     }
     if (type === 'upsideDown') {
       innerBox.style.transform = 'rotate(180deg)'
+    } else if (type === 'heartBox') {
+      innerBox.style.margin = '15px 0 0 0'
     }
     appendTo.appendChild(innerBox)
     setTimeout(moveBox, 200)
@@ -398,6 +412,7 @@ function gameInit () {
     boxToMove.forEach(function (elem) {
       // elem.style.transition = 'top 5s linear'
       elem.style.top = ('465px')
+      if (elem.type === 'heartBox') elem.style.top = ('425px')
       elem.addEventListener('transitionend', removeBox)
     })
   }
@@ -484,6 +499,10 @@ function gameInit () {
         lives += 1
         addHeart(lifeCounter)
         inGameMessage('Extra Life!', 10)
+        var audio = document.createElement('audio')
+        audio.src = '/assets/audio/extralife.wav'
+        audio.autoplay = true
+        container.appendChild(audio)
       }
       if (level < 4) score += 50
       setScore()
