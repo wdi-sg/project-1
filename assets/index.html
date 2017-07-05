@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>UNO! (2-Player)</title>
+    <title>UNO! for 2</title>
     <link rel="stylesheet" href="css/stylesheet.css">
   </head>
 
   <body>
     <h1>UNO! for 2</h1>
 
-    <p>Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. To restart game, click 'Restart' button and then 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p>
+    <p>Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. To reset game, click 'Reset' button and then 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p>
 
     <div class='GamePanel'>
 
@@ -21,6 +21,9 @@
 
       <div class='Col1'>
         <h2>Draw Pile</h2>
+
+        <button type="button" class="DrawCard">Draw Card</button>
+
           <ul class='DrawPile'>
 
             <!-- Draw Pile -->
@@ -50,7 +53,7 @@
           <h2>Human Player</h2>
 
           <button type="button" class="StartGame">Start</button>
-          <button type="button" class="RestartGame">Restart</button>
+          <button type="button" class="ResetGame">Reset</button>
           <button type="button" class="ShoutUno">UNO!</button>
 
           <ul class='HumanPlayerPile'>

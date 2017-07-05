@@ -1,5 +1,5 @@
 Game Objects
-- Draw Pile: 108 cards (In red, green, blue, yellow: 0 to 9, Draw Two, Reverse, Skip, Draw Two; XX Draw Four, XX Draw Wild)
+- Draw Pile: 108 cards (In red, green, blue, yellow: 0 to 9, Draw Two, Skip, Draw Two; XX Draw Four, XX Draw Wild)
 - Human Player's Pile
 - Computer Player's Pile
 - Discard Pile

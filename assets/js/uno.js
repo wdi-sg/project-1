@@ -42,9 +42,11 @@ var DiscardPile = []
 var Computer = 0
 var Human = 1
 var Discard = 2 //refers to DiscardPile
+var Draw = 3 // refers to DrawPile
 var whichPlayerTurn = Human // Human (= 1) starts first; Computer = 0
 var HumanNoOfCardsLeft = null
 var ComputerNoOfCardsLeft = null
+var GameStarted = false
 var DoNotSwitchTurn = false // True when these cards played: Skip, DrawTwo or DrawFour
 
 ////////////////////////
@@ -203,7 +205,12 @@ function discardCard (whichPile, whichCard) {
     // console.log('discarded card'+ discardedCard[0].label)
     // console.log('discardPile after discarding 1 '+ DiscardPile[0].label);
 
-    return // no need to return
+    return // no need to return anything
+  } else if (whichPile === Draw) {
+    var discardedCard = []
+    discardedCard[0] = DrawPile.pop()
+    //console.log('dc ' +discardedCard.label);
+    return discardedCard
   }
 }
 
@@ -211,15 +218,21 @@ function discardCard (whichPile, whichCard) {
 
 // Labels each card
 for (var i = 0; i < DrawPile.length; i++) {
-
-// console.log('DP '+ labelCard(DrawPile[i]));
-// console.log('B4 '+ DrawPile[i].label);
-
   DrawPile[i].label = labelCard(DrawPile[i])
-
-  // console.log('after '+DrawPile[i].label);
 }
 
+
+function hasPlayablePile(player) {
+  // checks if player has at least one card that could be played; returns true if yes
+
+  return true
+}
+
+
+
+
+////////////////////////////////////////////////
+// Debugging code
 // console.log('98 '+DrawPile[98].label);
 // console.log('99 '+DrawPile[99].label);
 // console.log(DrawPile);
