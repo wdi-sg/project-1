@@ -10,6 +10,7 @@ var redGhost = document.querySelector('#redGhost')
 var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
 var scores = document.querySelector('#scores')
 var scoreboard = document.querySelector('#scoreboard')
+var interval = document.querySelector('#interval')
 var win = document.querySelector('#win')
 var lose = document.querySelector('#lose')
 var startButton = document.querySelector('.startButton')
@@ -32,6 +33,7 @@ startButton.addEventListener('click', startGame)
 scoreboard.style.display = 'none'
 document.querySelector('#lifetracker').style.display = 'none'
 startButton.style.display = 'none'
+interval.style.display = 'none'
 win.style.display = 'none'
 lose.style.display = 'none'
 
@@ -345,12 +347,16 @@ function gameOver (result) {
       pinkGhost.style.left = '40px'
       redGhost.style.top = '440px'
       redGhost.style.left = '520px'
-
-      loopTimer = setInterval(loop, 50)
       upKeyDown = false
       downKeyDown = false
       leftKeyDown = false
       rightKeyDown = false
+      interval.style.display = ''
+      var playthis = function () {
+        loopTimer = setInterval(loop, 50)
+        interval.style.display ='none'
+      }
+      setTimeout (playthis, 1000)
     }
   }
 }

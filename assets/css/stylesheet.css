@@ -94,7 +94,7 @@ body {
   width: 25px;
 }
 
-#win, #lose {
+#win, #lose, #interval {
   position: absolute;
   z-index: -1;
   height: 100%;
@@ -114,17 +114,21 @@ body {
   background: red;
 }
 
+#interval {
+  background: rgb(134, 231, 196);
+}
+
 .startButton {
   position: absolute;
   height: 30px;
   width: 140px;
   top: 530px;
   left: 230px;
-  background: #D24D57;
+  background: white;
   font-family: 'Press Start 2P', cursive;
   font-size: 12px;
-  color: white;
-  border: 2px dotted white;
+  color: black;
+  border: 2px dotted black;
   border-radius: 15px;
   outline: none;
   z-index: 0;
@@ -132,6 +136,8 @@ body {
 
 .startButton:hover {
 	background: black;
+  border: 2px dotted white;
+  color: white;
 	opacity: 1;
 }
 
