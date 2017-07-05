@@ -106,7 +106,7 @@ function moveBlock (elem) {
       }
       elem.style.display = ''
         elem.style.left = (elem.getBoundingClientRect().left-315) - 10 + 'px'}
-    },800)
+    },00)
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<Medium>>>>>>>>>>>>>>>>>>
