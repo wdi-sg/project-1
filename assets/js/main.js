@@ -1,10 +1,11 @@
 var gameArray = []
 var counter = 0
 var numpad = 0
-var time = 30
+var startpad = 0
+var time = 10
 
 document.querySelector('.counter').innerHTML = '0'
-document.querySelector('.time').innerHTML = '30'
+document.querySelector('.time').innerHTML = '10'
 
 // ---------------------------------------------------------
 function randomizer (min, max) {
@@ -12,7 +13,7 @@ function randomizer (min, max) {
 }
 // ---------------------------------------------------------
 function gameStart () {
-  gameArray.push(randomizer(1, 4), randomizer(1, 4), randomizer(1, 4), randomizer(1, 4))
+  gameArray.push(randomizer(1, 4), randomizer(1, 4), randomizer(1, 4))
 }
 // ---------------------------------------------------------
 function turn () {
@@ -55,36 +56,51 @@ function buttons (event) {
   } else if (event.keyCode === 77) {
     numpad = 12
   } else if (event.keyCode === 32) {
-    numpad = 1
+    startpad = 1
   }
 }
 // ---------------------------------------------------------
 function restart () {
   gameArray = []
   counter = 0
-  time = 30
+  time = 10
+  fired = false
   var allSquare = document.querySelectorAll('.square')
   for (var i = 0; i < allSquare.length; i++) {
     allSquare[i].style.background = 'white'
   }
 }
 // ---------------------------------------------------------
+var fired = false
+
 function timer () {
   if (time > 0) {
     time = time - 1
-    console.log(time)
+    // console.log(time)
     document.querySelector('.time').innerHTML = time
+  } else if (time = 0) {
+    alert('Time Over')
+    restart()
+    clearInterval(interval)
   }
 }
-// ---------------------------------------------------------
+
 function interval () {
-    if (fired = true) {
-      setInterval(timer, 1000)
+  if (fired = true) {
+    setInterval(timer, 1000)
   }
 }
+
+function intervalTimer () {
+  if (!fired && startpad === 1) {
+    fired = true
+    interval()
+    gameStart()
+      // tiles()
+    }
+  }
 // ---------------------------------------------------------
-gameStart()
-// ---------------------------------------------------------
+// gameStart()
 console.log(gameArray)
 // ---------------------------------------------------------
 // document.addEventListener('click', function () {
@@ -126,13 +142,24 @@ console.log(gameArray)
 //   }
 // })
 // ---------------------------------------------------------
-var fired = false
+function scoring () {
+  var squareThree = gameArray[2] + 8
+  if (event.keyCode === 90 || event.keyCode === 88 || event.keyCode === 78 || event.keyCode === 77) {
+    if (numpad == squareThree) {
+      counter++
+      document.querySelector('.counter').innerHTML = counter
+    }
+  }
+}
+// ---------------------------------------------------------
 
-document.addEventListener('keyup', function() {
-  fired = false
-})
-
-document.addEventListener('keydown', function () {
+document.addEventListener('keydown', function (event) {
+  var squareThree = gameArray[2] + 8
   buttons(event)
-  interval ()
+  intervalTimer()
+  tiles()
+  scoring(event)
+  console.log(numpad)
+  console.log(squareThree)
+  console.log(event.keyCode)
 })
