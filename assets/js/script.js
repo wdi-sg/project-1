@@ -1,6 +1,18 @@
 // DOM MANIPULATIONS
 document.addEventListener('DOMContentLoaded', init)
 
+// create element object. This will hold all the properties including a function that can detect ratio of change required. To get speed, all you have to do is access the property
+// var element = {
+//   position: '',
+//   width: '',
+//   classname: '',
+//   speed: '',
+//   increaseSpeed: function() {
+//     return this.speed + 100
+//   },
+//   factor:
+// }
+
 function init () {
   var speed = 1.02
   var counter = 0
@@ -14,8 +26,8 @@ function init () {
 
 // sets rate of wall spawn
   setInterval(function () {
-    fall(spawnWalls(), speed, spaceship.id)
-  }, 1000)
+    fall(spawnWalls(), speed, collision)
+  }, 4000)
 
 // if keyup, then ship resets to normal position
   document.addEventListener('keyup', function () {
@@ -36,15 +48,19 @@ function init () {
         wallsMove(currentWalls[i], 30)
       }
     }
-    collision()
   })
 
   function collision () {
     var walls = document.querySelectorAll('.wall')
     for (var i = 0; i < walls.length; i++) {
-      if ((walls[i].getBoundingClientRect().left + 300) > spaceship.getBoundingClientRect().left && (walls[i].getBoundingClientRect().bottom > (spaceship.getBoundingClientRect().top + 25))) {
-        alert('ayy')
+      if (spaceship.getBoundingClientRect().left < (walls[i].getBoundingClientRect().left + walls[i].offsetWidth) &&
+         (spaceship.getBoundingClientRect().left + spaceship.offsetWidth) > walls[i].getBoundingClientRect().left &&
+     (spaceship.getBoundingClientRect().bottom) < walls[i].getBoundingClientRect().bottom + walls[i].offsetHeight &&
+   spaceship.offsetHeight + (spaceship.getBoundingClientRect().bottom) > walls[i].getBoundingClientRect().bottom) {
+        console.log('dead')
+        return true
       }
+      return false
     }
   }
 }
@@ -57,11 +73,7 @@ function wallsMove (element, speed) {
   var angle = findAngles(element)
   var id = parseInt(element.id)
   var wallCSS = element.style
-  // console.log('top' + element.style.top)
-  // console.log('bottom' + element.style.top)
-  // console.log('angle' + angle)
-  // console.log(YAxis)
-  // console.log(angle)
+
   if (angle > 0) {
     if (id < 1021 && (id + 100) > 1021) {
       wallCSS.left = (XAxis + 0.7 /* speed */) + 'px'
@@ -75,7 +87,7 @@ function wallsMove (element, speed) {
     }
   } else {
     if (id > 800) {
-      wallCSS.left = (XAxis - 0.1 /* speed */) + 'px'
+      wallCSS.left = (XAxis - 1 /* speed */) + 'px'
       wallCSS.top = ((XAxis - id) * angle) + 500 + 'px'
     } else if (id > 656 && (id - 100) < 656) {
       wallCSS.left = (XAxis - 1 /* speed */) + 'px'
@@ -91,39 +103,12 @@ function findAngles (element) {
   return 120 / (parseInt(element.id) - 875)
 }
 
-// function perspective () {
-//   var angle = {
-//     square1: -24, // 0 to 73
-//     square2: -23, // 73 to 146
-//     square3: -22, // 146 to 219
-//     square4: -21, // 219 to 292
-//     square5: -20, // 292 to 365
-//     square6: -19, // 365 to 438
-//     square7: -18, // 438 to 511
-//     square8: -12, // 511 to 584
-//     square9: -7, // 584 to 657
-//     square10: -1.93, // 657 to 730
-//     square11: -1.4, // 730 to 803 //centerleft
-//     square12: -1.1, // 803 to 876 //centerright
-//     square13: -12, // 876 to 949
-//     square14: -11, // 949 to 1022
-//     square15: -10,
-//     square16: -9,
-//     square17: -8,
-//     square18: -7,
-//     square19: -6,
-//     square20:
-//     square21:
-//     square22:
-//     square23: 0, //
-//     square24: -25 // 0 to 146
-//   }
-// // make a for loop, 73 is a prime number, so every 73
-// }
-
   // causes walls to expand
-function fall (element, speed) {
+function fall (element, speed, afunction) {
   setInterval(function () {
+    if (afunction()) {
+      console.log('dead')
+    }
     var adjWidth = element.offsetWidth
     var adjHeight = element.offsetHeight
     if (element.getBoundingClientRect().top < 900) {
@@ -142,7 +127,7 @@ function spawnWalls () {
   newWall.classList.add('wall')
   // newWall.style.left = (Math.random() * 1200 + 100) + 'px'
   // newWall.style.width = (Math.random() * 200 + 50) + 'px'
-  newWall.style.left = ((Math.random()) * 800) + 1 + 'px'
+  newWall.style.left = ((Math.random()) * 1700) + 1 + 'px'
   newWall.style.width = 100 + 'px'
   newWall.id = newWall.style.left
   // newWall.style.height = '1px' // uncomment after
