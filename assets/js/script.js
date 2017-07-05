@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init () {
-
   var loopTimer
   var newGame = document.querySelector('#newGame')
   var pacmanTitle = document.querySelector('#pacmanTitle')
@@ -153,7 +152,7 @@ function init () {
   dots.splice(76, 1)
 
   // key down event listener
-  document.addEventListener('keydown', function () {
+  document.addEventListener('keydown', function (event) {
     // up key
     if (event.keyCode === 38) {
       upKeyDown = true
@@ -228,20 +227,25 @@ function init () {
 
     if (upKeyDown) {
       pacman.className = 'rotate270'
+      pacman.style.left = Math.round(pacmanX / 40) * 40 + 'px'
       pacman.style.top = pacmanY - pacmanSpeed + 'px'
     }
+
     if (downKeyDown) {
       pacman.className = 'rotate90'
+      pacman.style.left = Math.round(pacmanX / 40) * 40 + 'px'
       pacman.style.top = pacmanY + pacmanSpeed + 'px'
     }
     if (leftKeyDown) {
       pacman.className = 'mirrorImage'
       if (pacmanX < 0) pacmanX = 560
+      pacman.style.top = Math.round(pacmanY / 40) * 40 + 'px'
       pacman.style.left = pacmanX - pacmanSpeed + 'px'
     }
     if (rightKeyDown) {
       pacman.className = ''
       if (pacmanX > 560) pacmanX = 0
+      pacman.style.top = Math.round(pacmanY / 40) * 40 + 'px'
       pacman.style.left = pacmanX + pacmanSpeed + 'px'
     }
     // check for collision between pacman and walls
@@ -264,20 +268,24 @@ function init () {
 
     if (character.direction === 'up') {
       character.className = 'rotate270'
+      character.style.left = Math.round(characterX / 40) * 40 + 'px'
       character.style.top = characterY - ghostSpeed + 'px'
     }
     if (character.direction === 'down') {
       character.className = 'rotate90'
+      character.style.left = Math.round(characterX / 40) * 40 + 'px'
       character.style.top = characterY + ghostSpeed + 'px'
     }
     if (character.direction === 'left') {
       character.className = 'mirrorImage'
       if (characterX < 0) characterX = 560
+      character.style.top = Math.round(characterY / 40) * 40 + 'px'
       character.style.left = characterX - ghostSpeed + 'px'
     }
     if (character.direction === 'right') {
       character.className = ''
       if (characterX > 560) characterX = 0
+      character.style.top = Math.round(characterY / 40) * 40 + 'px'
       character.style.left = characterX + ghostSpeed + 'px'
     }
     if (hitWall(character)) {
@@ -311,6 +319,7 @@ function init () {
     return direction
   }
 
+  // check score
   function checkScore () {
     for (var i = 0; i < dots.length; i++) {
       if (collision(dots[i], pacman)) {
@@ -326,6 +335,7 @@ function init () {
     }
   }
 
+  // game over
   function gameOver (result) {
     if (result === 'win') {
       win.style.display = ''
@@ -358,13 +368,14 @@ function init () {
         interval.style.display = ''
         var playthis = function () {
           loopTimer = setInterval(loop, 50)
-          interval.style.display ='none'
+          interval.style.display = 'none'
         }
-        setTimeout (playthis, 1000)
+        setTimeout(playthis, 1000)
       }
     }
   }
 
+  // start new game
   function startGame () {
     startButton.style.display = 'none'
     newGame.style.display = 'none'
