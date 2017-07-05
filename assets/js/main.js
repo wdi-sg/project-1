@@ -91,7 +91,6 @@ function clearPileUX (whichPile) {
 }
 
 
-
 function displayPileUX (whichPile) {
   if (whichPile === Human) {
     HumanPlayerPile.forEach(function (card, index) {
