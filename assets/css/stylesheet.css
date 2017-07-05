@@ -20,7 +20,7 @@ body {
   left: 100px;
   transition: top 0.1s, left 0.8s;
   float: left;
-  background-image: url("/../assets/img/skating.gif");
+  background-image: url("assets/img/skating.gif");
   background-repeat: no-repeat;
   background-size: contain;
 
@@ -57,7 +57,7 @@ background-position: bottom;
   /*position: cover;*/
   width: 1290px;
   height: 810px;
-  background-image: url("/../assets/img/game-background.jpg");
+  background-image: url("assets/img/game-background.jpg");
   background-repeat: no-repeat;
   background-size: contain;
 
