@@ -80,8 +80,15 @@ li {
   height: 100px;
   margin: 10px 5px;
   display: inline-block;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   font-size: 40px;
+  border-radius: 10%;
+}
+
+.buttons div:hover {
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
 }
 
 .buttons img {
