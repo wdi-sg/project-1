@@ -13,6 +13,8 @@ function addMove (event) {
   elem.classList.add('move')
 }
 
+
+
 var circle = document.querySelector('.circle')
 
 // =========================== Controls: ==================================
@@ -34,12 +36,12 @@ document.addEventListener('keyup', function (event) {
 
 function jump () {
   circle.style.top = 200 + 'px'
-  circle.style.backgroundImage = "url('../assets/img/skatejump2.png')"
+  circle.style.backgroundImage = "url('../../assets/img/skatejump2.png')"
   canJump = false
 }
 function drop () {
   circle.style.top = 520 + 'px'
-  circle.style.backgroundImage = "url('../assets/img/skating.gif')"
+  circle.style.backgroundImage = "url('../../assets/img/skating.gif')"
 }
 
 function canJump () {
@@ -51,100 +53,63 @@ function canJump () {
 // =========================== Blocks: ==================================
 var isGameOver = false
 
-function lost () {
-alert('bang')
-}
-
-
 function collision () {
   var rabbit = document.querySelector('.circle')
   var obstacle = document.querySelector('.circle2')
 
   var circle = rabbit.getBoundingClientRect()
   var circle2 = obstacle.getBoundingClientRect()
-  // console.log(circle2.left);
 
-  // if (rabbit.getBoundingClientRect().top > 510 ) {
-  //   console.log(rabbit)
-  // }
-
-  if (circle.left > circle2.left  &&
-    circle.bottom > circle2.top
-    // circle.right > circle2.right ||
-    // circle.top > 510
-    // circle.bottom > circle2.top
-    // circle.bottom < circle2.bottom ||
-    // circle.right > circle2.left ||
-    // circle.bottom > circle2.top
-  ) {
-    alert('bang')
-    isGameOver = true
-    alert = function() {}
-
+  if (circle.right > circle2.left
+    && circle.bottom > circle2.top
+    && circle.left < circle2.right) {
+    return true
+  } else {
+    return false
   }
-
-}
-if (!isGameOver) {
-  setInterval(collision, 210)
-
 }
 
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<Easy>>>>>>>>>>>>>>>>>>
+// function churnColors () {
+//   return random(9, arrColors.length - 1)
+// }
 
-// setInterval(function () {
-//   createBlock()
-//   moveBlock()
-// },1000)
-setInterval(createBlock, 200)
-setInterval(moveBlock, 300)
-setInterval(removeBlock, 3000)
-
+setInterval(function () {
+  moveBlock(createBlock())
+},1800)
 
 var area = document.querySelector('.playarea')
 
 function createBlock () {
   var blocks = document.createElement('div')
   blocks.className = 'circle2'
+  // blocks.style.display = 'none'
   area.appendChild(blocks)
+  blocks.style.left = 1200 + 'px'
+  return blocks
 }
 
-function removeBlock () {
-    var elem = document.querySelector('.circle2')
-    if (elem.getBoundingClientRect().left = -500 + 'px') {
-    area.removeChild(elem)
-  }
-}
 
-function moveBlock () {
-  var elem = document.querySelector('.circle2')
-  elem.style.left = -500 + 'px'
-  elem.style.transition = 'left ' + 4 + 's'
+
+function moveBlock (elem) {
+  setInterval(function(){
+    if (elem.getBoundingClientRect().left-315 === -10) {
+      area.removeChild(elem)
+    } else {
+      if(collision()) {
+        area.removeChild(elem)
+        alert('IMPALED!')
+      } else {
+        console.log('jumped over')
+      }
+      elem.style.display = ''
+        elem.style.left = (elem.getBoundingClientRect().left-315) - 10 + 'px'}
+    },20)
 }
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<Medium>>>>>>>>>>>>>>>>>>
 
-// setInterval(createBlock, 10)
-// setInterval(move, 11)
-// setInterval(remove, 1500)
-//
-// var area = document.querySelector('.playarea')
-//
-// function createBlock () {
-//   var blocks = document.createElement('div')
-//   blocks.className = 'circle2'
-//   area.appendChild(blocks)
-// }
-//
-// function remove () {
-//   var elem = document.querySelector('.circle2')
-//   area.removeChild(elem)
-// }
-//
-// function move () {
-//   var elem = document.querySelector('.circle2')
-//   elem.style.left = -500 +'px'
-// }
 
 // =========================== Timer: ==================================
 setInterval(countTimer, 200)
@@ -153,14 +118,10 @@ function countTimer () {
    ++score
    var currentTime = document.querySelector('#timer')
    currentTime.innerHTML = 'Score: ' + score;
-
-  //  if (score % 10 === 0) {
-  //    createBlock ()
-  //    setTimeout(moveBlock, 500)
 }
 
 // ==========================
 
-function randomizer (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+function random (min, max) {
+  return (Math.floor(Math.random() * (max - min + 1)) + min)*100
 }

@@ -1,24 +1,13 @@
-/*div {
-  display: inline-block;
-  transition: top 0.3s, left 0.8s;
-}*/
-
-body {
-  width: 1290px;
-  height: 810px;
-}
 
 .circle {
-  /*display: inline-block;*/
+
   width: 120px;
   height: 120px;
-  /*background-color: rgb(7, 187, 193);*/
-  /*transition: top 0.2s, left 0.2s;*/
   border-radius: 5px;
   position: absolute;
   top: 520px;
   left: 100px;
-  transition: top 0.1s, left 0.8s;
+  transition: top 0.6s, left 0.8s;
   float: left;
   background-image: url("../img/skating.gif");
   background-repeat: no-repeat;
@@ -29,15 +18,11 @@ body {
   display: inline-block;
   width: 50px;
   height: 115px;
-  /*background-color: purple;*/
-  /*transition: top 0.2s, left 0.2s;*/
-  top: 0;
-  left: 0;
+
   border-radius: 0px;
   position: absolute;
   top: 520px;
-  left: 1600px;
-  transition: left 2s;
+
   overflow: hidden;
 background-image: url("../img/spikeD.png");
 background-repeat: no-repeat;
@@ -54,7 +39,8 @@ background-position: bottom;
 
 .playarea {
   boder: 10px solid green;
-  /*position: cover;*/
+  position: relative;
+  margin: 0 auto;
   width: 1290px;
   height: 810px;
   background-image: url("../img/game-background.jpg");
