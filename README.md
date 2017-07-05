@@ -19,7 +19,7 @@ The game ends when time runs out.
 
 Layout
 ---
-
+![alt text](https://github.com/rebeccatay92/project-1/blob/master/screenshot.png "Game Layout")
 
 Functions
 ---
