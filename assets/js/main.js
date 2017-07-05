@@ -3,6 +3,9 @@ var counter = 0
 var numpad = 0
 var time = 30
 
+document.querySelector('.counter').innerHTML = '0'
+document.querySelector('.time').innerHTML = '30'
+
 // ---------------------------------------------------------
 function randomizer (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -51,6 +54,8 @@ function buttons (event) {
     numpad = 11
   } else if (event.keyCode === 77) {
     numpad = 12
+  } else if (event.keyCode === 32) {
+    numpad = 1
   }
 }
 // ---------------------------------------------------------
@@ -64,51 +69,70 @@ function restart () {
   }
 }
 // ---------------------------------------------------------
-
+function timer () {
+  if (time > 0) {
+    time = time - 1
+    console.log(time)
+    document.querySelector('.time').innerHTML = time
+  }
+}
+// ---------------------------------------------------------
+function interval () {
+    if (fired = true) {
+      setInterval(timer, 1000)
+  }
+}
 // ---------------------------------------------------------
 gameStart()
 // ---------------------------------------------------------
 console.log(gameArray)
-document.querySelector('.counter').innerHTML = '0'
-document.querySelector('.time').innerHTML = '30'
 // ---------------------------------------------------------
-document.addEventListener('click', function () {
-  tiles()
-  var interval = setInterval(timer, 1000)
-  function timer () {
-    if (time > 0) {
-      time = time - 1
-      console.log(time)
-      document.querySelector('.time').innerHTML = time
-    } else {
-      alert ('Time Over')
-      clearInterval(interval)
-      restart()
-      gameStart()
-      document.querySelector('.counter').innerHTML = '0'
-      document.querySelector('.time').innerHTML = '30'
-    }
-  }
+// document.addEventListener('click', function () {
+//   tiles()
+//   var interval = setInterval(timer, 1000)
+//   function timer () {
+//     if (time > 0) {
+//       time = time - 1
+//       console.log(time)
+//       document.querySelector('.time').innerHTML = time
+//     } else {
+//       alert ('Time Over')
+//       clearInterval(interval)
+//       restart()
+//       gameStart()
+//       document.querySelector('.counter').innerHTML = '0'
+//       document.querySelector('.time').innerHTML = '30'
+//     }
+//   }
+// })
+// ---------------------------------------------------------
+// document.addEventListener('keydown', function () {
+//   var squareThree = gameArray[2] + 8
+//   buttons(event)
+//   if (time > 0) {
+//     if (numpad == squareThree) {
+//       tiles()
+//       counter++
+//       document.querySelector('.counter').innerHTML = counter
+//     } else {
+//       alert('Game Over')
+//       // clearInterval(interval)
+//       restart()
+//       gameStart()
+//       document.querySelector('.counter').innerHTML = '0'
+//       document.querySelector('.time').innerHTML = '30'
+//       tiles()
+//       }
+//   }
+// })
+// ---------------------------------------------------------
+var fired = false
+
+document.addEventListener('keyup', function() {
+  fired = false
 })
-// ---------------------------------------------------------
+
 document.addEventListener('keydown', function () {
-  var squareThree = gameArray[2] + 8
   buttons(event)
-  if (time > 0) {
-    if (numpad == squareThree) {
-      tiles()
-      counter++
-      document.querySelector('.counter').innerHTML = counter
-    } else {
-      alert('Game Over')
-      // clearInterval(interval)
-      restart()
-      gameStart()
-      document.querySelector('.counter').innerHTML = '0'
-      document.querySelector('.time').innerHTML = '30'
-      tiles()
-      // clearInterval(interval)
-      }
-  }
+  interval ()
 })
-// ---------------------------------------------------------
