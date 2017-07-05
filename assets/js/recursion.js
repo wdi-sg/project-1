@@ -1,79 +1,136 @@
 var colors = ["red", "blue", "green", "yellow"];
-var level1 = [];
-// var keyedColors = [];
+var level = [];
+var keyedColors = [];
 function getRandomIntInclusive() {
   min = Math.ceil(0);
-  max = Math.floor(level1.length);
-  return Math.floor(Math.random() * (level1.length)); //The maximum is inclusive and the minimum is inclusive
+  max = Math.floor(colors.length);
+  return Math.floor(Math.random() * (colors.length));
 }
-
+function removeStartButton () {
+  body.removeChild(startButton);
+}
 function generateRandomSequence () {
 for (i = 0; i < colors.length; i++) {
-  level1.push(colors[getRandomIntInclusive()]);
+  level.push(colors[getRandomIntInclusive()]); //The maximum is inclusive and the minimum is inclusive
 }
-  if (level1[0] === 'red') {
-    setTimeout(changeColorRed, 0);
-  } else if (level1[0] === 'green') {
-    setTimeout(changeColorGreen, 0);
-  } else if (level1[0] === 'blue') {
-    setTimeout(changeColorBlue, 0);
-  } else if (level1[0] === 'yellow') {
-    setTimeout(changeColorYellow, 0);
-  }
 
-  if (level1[1] === 'red') {
+// console.log(keys)
+// //loop this level ARRAYS
+// for() {
+//   var targetedColor = document.querySelector('#' + level[i])
+//
+// }
+  if (level[0] === 'red') {
     setTimeout(changeColorRed, 500);
-  } else if (level1[1] === 'green') {
+  } else if (level[0] === 'green') {
     setTimeout(changeColorGreen, 500);
-  } else if (level1[1] === 'blue') {
+  } else if (level[0] === 'blue') {
     setTimeout(changeColorBlue, 500);
-  } else if (level1[1] === 'yellow') {
+  } else if (level[0] === 'yellow') {
     setTimeout(changeColorYellow, 500);
   }
 
-  if (level1[2] === 'red') {
+  if (level[1] === 'red') {
     setTimeout(changeColorRed, 1000);
-  } else if (level1[2] === 'green') {
+  } else if (level[1] === 'green') {
     setTimeout(changeColorGreen, 1000);
-  } else if (level1[2] === 'blue') {
+  } else if (level[1] === 'blue') {
     setTimeout(changeColorBlue, 1000);
-  } else if (level1[2] === 'yellow') {
+  } else if (level[1] === 'yellow') {
     setTimeout(changeColorYellow, 1000);
   }
 
-  if (level1[3] === 'red') {
+  if (level[2] === 'red') {
     setTimeout(changeColorRed, 1500);
-  } else if (level1[3] === 'green') {
+  } else if (level[2] === 'green') {
     setTimeout(changeColorGreen, 1500);
-  } else if (level1[3] === 'blue') {
+  } else if (level[2] === 'blue') {
     setTimeout(changeColorBlue, 1500);
-  } else if (level1[3] === 'yellow') {
+  } else if (level[2] === 'yellow') {
     setTimeout(changeColorYellow, 1500);
+  }
+
+  if (level[3] === 'red') {
+    setTimeout(changeColorRed, 2000);
+  } else if (level[3] === 'green') {
+    setTimeout(changeColorGreen, 2000);
+  } else if (level[3] === 'blue') {
+    setTimeout(changeColorBlue, 2000);
+  } else if (level[3] === 'yellow') {
+    setTimeout(changeColorYellow, 2000);
+  }
+
+  if (level[4] === 'red') {
+    setTimeout(changeColorRed, 2500);
+  } else if (level[4] === 'green') {
+    setTimeout(changeColorGreen, 2500);
+  } else if (level[4] === 'blue') {
+    setTimeout(changeColorBlue, 2500);
+  } else if (level[4] === 'yellow') {
+    setTimeout(changeColorYellow, 2500);
+  }
+
+  if (level[5] === 'red') {
+    setTimeout(changeColorRed, 3000);
+  } else if (level[5] === 'green') {
+    setTimeout(changeColorGreen, 3000);
+  } else if (level[5] === 'blue') {
+    setTimeout(changeColorBlue, 3000);
+  } else if (level[5] === 'yellow') {
+    setTimeout(changeColorYellow, 3000);
+  }
+
+  if (level[6] === 'red') {
+    setTimeout(changeColorRed, 3500);
+  } else if (level[6] === 'green') {
+    setTimeout(changeColorGreen, 3500);
+  } else if (level[6] === 'blue') {
+    setTimeout(changeColorBlue, 3500);
+  } else if (level[6] === 'yellow') {
+    setTimeout(changeColorYellow, 3500);
+  }
+
+  if (level[6] === 'red') {
+    setTimeout(changeColorRed, 4000);
+  } else if (level[6] === 'green') {
+    setTimeout(changeColorGreen, 4000);
+  } else if (level[6] === 'blue') {
+    setTimeout(changeColorBlue, 4000);
+  } else if (level[6] === 'yellow') {
+    setTimeout(changeColorYellow, 4000);
+  }
+
+  if (level[7] === 'red') {
+    setTimeout(changeColorRed, 4500);
+  } else if (level[7] === 'green') {
+    setTimeout(changeColorGreen, 4500);
+  } else if (level[7] === 'blue') {
+    setTimeout(changeColorBlue, 4500);
+  } else if (level[7] === 'yellow') {
+    setTimeout(changeColorYellow, 4500);
   }
 }
 
 function checkEqual () {
-  if (keyedColors.length !== level1.length) {
+  if (keyedColors.length !== level.length) {
     return false;
   }
   for (i = 0; i < keyedColors.length; i++) {
-    if (keyedColors[i] !== level1[i]) {
+    if (keyedColors[i] !== level[i]) {
       return false;
     }
-    return true;
   }
+  return true;
 }
+
 function checkNotEqual () {
-for (i = 0; i < keyedColors.length - 1; i++ ) {
-  if (keyedColors[i] !== level1[i]) {
+for (i = 0; i < keyedColors.length; i++ ) {
+  if (keyedColors[i] !== level[i]) {
     return true;
     }
   }
 }
 
-
-
-generateRandomSequence();
-console.log(keyedColors);
-console.log(level1);
-console.log(checkEqual());
+// console.log(keyedColors);
+// console.log(level);
+// console.log(checkEqual());
