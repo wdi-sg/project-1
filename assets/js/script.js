@@ -2,26 +2,70 @@ document.addEventListener('DOMContentLoaded', init)
 
 function init () {
   var questionOne = {
-    question: 'Which is the fastest growing religion in the world?',
-    choices: ['Islam', 'Christianity', 'Buddhism', 'Judaism'],
+    question: '1st Grade Physics: A conventional round doorknob is an example of which simple machine?',
+    choices: ['Lever', 'Pulley', 'Inclined Plane', 'Wheel and Axle'],
     correctAns: 0
   }
   var questionTwo = {
-    question: 'Which is the most popular type of pet in the world?',
-    choices: ['Dogs', 'Hamsters', 'Cats', 'Fish'],
+    question: '2nd Grade English: Which word is a compound word?',
+    choices: ['Sheep', 'Pumpkins', 'Popcorn', 'Babies'],
     correctAns: 2
   }
   var questionThree = {
-    question: 'What is the term for a decorative image drawn on the skin with a needle?',
-    choices: ['Freckle', 'Fresco', 'Tattoo', 'Regrettable'],
+    question: '3rd Grade World History: Roman gladiators fought in the' ,
+    choices: ['Parthenon', 'aqueducts', 'Colosseum', 'streets'],
     correctAns: 2
   }
   var questionFour = {
-    question: ' This is question four',
-    choices: ['answer 1', 'answer 2', 'answer 3', 'answer 4'],
+    question: '4th Grade Art: Colors opposite each other on the color wheel such as red and green are called:',
+    choices: ['Neutral', 'Complementary', 'Primary', 'Analogous'],
     correctAns: 1
   }
-  var allQuestions = [questionOne, questionTwo, questionThree, questionFour]
+
+  var questionFive = {
+    question:'5th Grade Math: John\'s teacher asked him to draw a quadrilateral with all congruent sides. What could he draw?',
+    choices:['A rectangle or a rhombus', 'A rectangle or a square', 'A square or a rhombus', 'A trapezoid or a kite'],
+    correctAns: 3
+  }
+
+  var questionSix = {
+    question:'6th Grade Literature: There was one a man from Peru,\nWho dreamed of eating his shoe,\nHe awoke one night in a fright\nIn the middle of the night,\nAnd found that his dream had come true.\n What type of poem is this?',
+    choices:['Couplet', 'Limerick', 'Haiku', 'Acrostic'],
+    correctAns: 1
+  }
+
+  var questionSeven = {
+    question:'7th Grade Geography: Which of the following is NOT a continent?',
+    choices:['Central America', 'Africa', 'North America', 'Europe'],
+    correctAns: 0
+  }
+  var questionEight = {
+    question:'8th Grade Biology: Which of the following is considered to be smallest in size?',
+    choices:['Virus', ' Bacterium', 'Lymphocyte', 'Red blood cell'],
+    correctAns: 0
+  }
+  var questionNine = {
+    question:'9th Grade English: If, standing alone on the back doorstep, Tom allowed himself to weep tears, they were tears of anger. - Tom\'s Midnight Garden.\nIn the quote above, what do the words "standing alone on the back doorstep" represent?',
+    choices:['noun phrase', 'verb phraes', 'infinitive phrase', 'participle phrase'],
+    correctAns: 3
+  }
+  var questionTen = {
+    question:'10th Grade World History: What is a Ziggurat?',
+    choices:['a small animal', 'a temple', 'a small city', 'a marketplace'],
+    correctAns: 1
+  }
+  var questionEleven = {
+    question:'11th Grade Chemistry: The First Law of Thermodynamics is another version of the law of what?',
+    choices:['conservation of entrophy', 'enthalpy', 'conservation of energy', 'perpetual motion'],
+    correctAns: 2
+  }
+  var questionTwelve = {
+    question:'12th Grade Music: Who composed the 1812 Overture?',
+    choices:['Tchaikovsky', 'Bach', 'Vivaldi', 'Walton'],
+    correctAns: 0
+  }
+
+  var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen, questionEleven, questionTwelve]
 
   // all the dom selections
   var questionDisplay = document.querySelector('h1')
@@ -39,9 +83,7 @@ function init () {
 
   // all fns
   function showQuestionAndChoices (qIndex) {
-
-
-    if (qIndex <= 3) {
+    if (qIndex <= 11) {
       questionDisplay.textContent = allQuestions[qIndex].question
       ansDisplay.innerHTML = ''
 
@@ -51,7 +93,6 @@ function init () {
         ansDisplay.appendChild(newLi)
       }
     } else {
-
       if (player1Score > player2Score) {
         alert('Game Over, Player 1 Wins!')
         return gameOver = true
@@ -64,7 +105,6 @@ function init () {
       }
     }
   }
-
 
   function turnKeeper (questionNum) {
     // console.log(qIndex);
@@ -115,38 +155,25 @@ function init () {
     }
   }
 
-
-  function restartButton() {
+  function restartButton () {
     // var restartSelect = document.querySelector('button')
     if (gameOver === true) {
       var restartButton = document.createElement('button')
       restartButton.innerText = 'Restart?'
       document.body.appendChild(restartButton)
-      document.querySelector('button').addEventListener('click', function restartGame() {
-            questionNum = 0
-            gameOver = false
-            player1Score = 0
-            player2Score = 0
-            playerTurn = 1
-            showQuestionAndChoices(questionNum)
-            activateChoices()
-            document.body.removeChild(restartButton)
-
-
-
-
-          })
+      document.querySelector('button').addEventListener('click', function restartGame () {
+        questionNum = 0
+        gameOver = false
+        player1Score = 0
+        player2Score = 0
+        playerTurn = 1
+        showQuestionAndChoices(questionNum)
+        activateChoices()
+        document.body.removeChild(restartButton)
+      })
     }
-
-
-
-
-
   }
 
-    // To do list:
-    // Create function to check when game ends + determine who wins
-    // Create reset button to restart game
 
   // start at qn 1
   showQuestionAndChoices(questionNum)
