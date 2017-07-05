@@ -3,6 +3,9 @@ var level = 1 // determines score and number of things in order list
 var gameStarted = false // prevents clicking before timer starts
 var neededIngredients = []
 var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
+var timeLeft = 90
+
+/* --------------------------------------------- */
 
 var playArea = document.querySelector('.playArea')
 var buttons = document.querySelectorAll('.buttons div')
@@ -16,14 +19,16 @@ var endGameOverlay = document.querySelector('.endGameOverlay')
 var endGameScore = document.querySelector('.endGameScore')
 var restart = document.querySelector('.restart')
 
+/* --------------------------------------------- */
 
-// generate random array of ingredients.
-// excluding topbun which must be the last item of every order
+// generate random ingredient
 function randomizer () {
   var randomNum = Math.floor(Math.random() * 6)
   return possibleIngredients[randomNum]
 }
 
+// uses randomizer to create array of ingredients
+// increasing levels increase length of array
 function newOrder () {
   for (i = 0; i < level + 4; i++) { // base number of ingredients at lvl 1 is 4.
     neededIngredients.push(randomizer())
@@ -32,6 +37,7 @@ function newOrder () {
   return neededIngredients
 }
 
-function checkForMatch() {
+// check if current click matches needed ingredient
+function checkForMatch () {
   return (whichIngredient === neededIngredients[ingredientCounter])
 }
