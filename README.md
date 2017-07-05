@@ -19,7 +19,9 @@ The game ends when time runs out.
 
 Layout
 ---
-![alt text](https://github.com/rebeccatay92/project-1/blob/master/screenshot.png "Game Layout")
+!["Game Layout"](https://github.com/rebeccatay92/project-1/blob/master/screenshot.png)
+!["Start Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/startGameOverlay.png)
+!["End Game Overlay"](https://github.com/rebeccatay92/project-1/blob/master/endGameOverlay.png)
 
 Functions
 ---
@@ -35,7 +37,3 @@ Extensions / Unsolved Issues
 Sources
 ---
 Vector art obtained from FreePik (www.freepik.com)
-
-
-### Necessary Deliverables
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
