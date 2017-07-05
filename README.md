@@ -9,13 +9,12 @@ Game Mechanics
 ---
 Functions
 ---
+Extensions / Unsolved Issues
+---
 Credits/Sources
 ---
 https://rebeccatay92.github.io/project-1/
 
 ### Necessary Deliverables
-
-* A **working game, built by you**, hosted somewhere on the internet
 * A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
 * **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
