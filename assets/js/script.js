@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var timeLeft = 30
   var noOfRows = 2
   var ranGrid
+  var isGameOver = false
   var wholeGrid = document.querySelectorAll('.container')
   var palette = [
     ['rgb(20, 153, 105)',
@@ -36,30 +37,26 @@ document.addEventListener('DOMContentLoaded', function () {
 // initialize the game
   function init () {
   // if start button is pressed, game start
-    alert('game is started')
   // start the timer
-    gameTimer()
+  gameTimer()
   // put level 1 into empty container
-    gridCreate()
+  gridCreate()
+  isGameOver = false
+  // remove start button and add restart button
+  startButtonTgt.textContent = 'Restart'
+  // disable init() on clicking start button
+  startButtonTgt.removeEventListener('click', init)
+  startButtonTgt.addEventListener('click', function() {
+    location.reload()
+  })
   }
 
-// restart function
-  function restart () {
-    timeLeft = 30
-    init()
-    score = 0
-  // clear out the grid
-  // change text of start button to Restart
+// check for game over
+  function gameOver () {
+    isGameOver = true
+  // clear the grid if game is over
+    document.querySelector('.container').textContent = 'Game Over! Thanks for playing!' + 'You scored a ' + score + '/4.'
   }
-
-// checks for game over
-  function isGameOver () {
-  // if timer runs out, returns true
-      alert('Game Over')
-  }   // display score
-      // restart ()
-    // }
-
 
 // game timer
   function gameTimer () {
@@ -68,9 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var timerId = setInterval(countdown, 1000)
 
     function countdown () {
-      if (timeLeft == 0) {
+      if (timeLeft < 0 || isGameOver === true) {
         clearTimeout(timerId)
-        isGameOver()
+        gameOver()
       } else {
         timer.innerHTML = timeLeft
         timeLeft--
@@ -98,7 +95,6 @@ document.addEventListener('DOMContentLoaded', function () {
       for (var j = 0; j < gridId; j++) {
         wholeGrid[j].style.backgroundColor = palette[p][0]
       }
-      // allGrids[ranNum(0, gridId)].style.backgroundColor = palette[p][1]
     }
 
     // add event listener to each element created
@@ -108,64 +104,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // randomize one tile to make odd
     ranGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')[ranNum(0, gridId - 1)]
-    console.log(ranGrid)
-    console.log(gridId)
+    // console.log(ranGrid)
+    // console.log(gridId)
     ranGrid.style.backgroundColor = palette[p - 1][1]
   }
-// end of gridCreate ()
+// end of gridCreate()
 
 // random number btw max & min
   function ranNum (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-// target the start node
-  var startButtonTgt = document.querySelector('.startButton')
-// add event listener to start button
-  startButtonTgt.addEventListener('click', function () {
-    init()
-  })
+  function isMatch (elem) {
+    // console.log('isMatch is working')
+    // console.log(this)
+    // console.log(ranGrid)
+    if (this === ranGrid) {
+      console.log('matched!')
 
+      // target the score node
+      var scoreTgt = document.querySelector('.score')
+      // update score to score node
+      scoreTgt.innerHTML = score + 1
+      score += 1
+      console.log(score)
 
-// console.log(wholeGrid)
-// // add event listener
-//   wholeGrid.forEach(function (elem) {
-//     elem.addEventListener('click', function () {
-//       alert(this)
-//       console.log(wholeGrid)
-//       console.log(elem)
-
-    function isMatch(elem) {
-      console.log('isMatch is working')
-
-      console.log(this)
-      console.log(ranGrid)
-      if (this === ranGrid) {
-        console.log('matched!')
-
-        // target the score node
-        var scoreTgt = document.querySelector('.score')
-        // update score to score node
-        scoreTgt.innerHTML = score + 1
-        score += 1
-        console.log(score)
-
-        // empty out previous grid squares
-        document.querySelector('.container').innerHTML = ' '
-
-        // increase the grid size if < 5x5
-        if (noOfRows < 5) {
-          noOfRows += 1
-        } else isGameOver()
-
-        // create the new grid
-        gridCreate()
-
-    //   }
-    // })
-
+      // increase the grid size if < 5x5
+      if (noOfRows < 5) {
+        noOfRows += 1
+      } else {
+        isGameOver = true
+        return
       }
-    // })
-  // })
-  }
-})
+      // empty out previous grid squares
+      document.querySelector('.container').innerHTML = ' '
+      // create the new grid
+      gridCreate()
+    }
+  } // ##### END of isMatch() #####
+
+  // target the start node
+  var startButtonTgt = document.querySelector('.startButton')
+  // add event listener to start button
+  startButtonTgt.addEventListener('click', init)
+
+}) // ##### END of DOMContentLoaded #####
