@@ -66,7 +66,7 @@
         index--
       }
       if (event.keyCode === 32) {
-        u1.classList.add('topbun')
+        // u.classList.add('topbun')
         if (checkIngredient()) {
           setTimeout(function () {
             resetNow()
