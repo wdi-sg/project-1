@@ -14,11 +14,8 @@ function gameInit () {
   var maxCombo = 0
   var level = 1
 
-  function gameSetup () {
-    // container.style.opacity = '1'
+  function gameStart () {
     innerContainer.style.border = '1px solid white'
-    // startButton.style.display = 'none'
-    // instructions.style.display = 'none'
     mainMenu.style.display = 'none'
     createLifeCounter()
     createScoreCounter()
@@ -31,22 +28,23 @@ function gameInit () {
     combo = 0
     maxCombo = 0
     level = 1
-    setLife()
     setScore()
     setTimeout(chooseBox, 1000)
   }
 
   function addTitle () {
     var titleBox = document.createElement('div')
-    titleBox.setAttribute('id','title')
+    titleBox.setAttribute('id', 'title')
     var title = ['T','Y','P','I','N','G',' ','M','A','D','N','E','S','S']
     mainMenu.appendChild(titleBox)
     function typeTitle () {
-      var letter = document.createElement('span')
-      letter.textContent = title[0]
-      title.shift()
-      titleBox.appendChild(letter)
-      setTimeout(typeTitle, 200)
+      if (title !== []) {
+        var letter = document.createElement('span')
+        letter.textContent = title[0]
+        title.shift()
+        titleBox.appendChild(letter)
+        setTimeout(typeTitle, 200)
+      }
     }
     setTimeout(typeTitle, 100)
   }
@@ -62,7 +60,7 @@ function gameInit () {
     }
     function closeWindowAndStartGame () {
       close(instructions)
-      gameSetup()
+      gameStart()
     }
     setTimeout(function () {
       instructions.style.opacity = '1'
@@ -141,14 +139,14 @@ function gameInit () {
 
   function restart (windowToClose) {
     close(windowToClose)
-    gameSetup()
+    gameStart()
   }
 
   function close (windowToClose) {
     container.removeChild(windowToClose)
   }
 
-  function setLife () {
+  function checkGameOver () {
     if (lives === 0) {
       innerContainer.innerHTML = ''
       var audio = document.createElement('audio')
@@ -341,48 +339,49 @@ function gameInit () {
       document.body.removeChild(redBackground)
     }, 1000)
     document.body.appendChild(redBackground)
-    setLife()
+    checkGameOver()
   }
 
   function typeLetter (event) {
-    var char = event.key
-    console.log(char)
-    playerArr.push(char)
-    checkIfMatch()
     boxSelector = document.querySelector('.box')
-    if (boxSelector) boxSelector.style.fontWeight = 'bold'
-  }
-
-  function checkIfMatch () {
-    boxSelector = document.querySelector('.box')
-    checkIfWordMatch()
-    if (checkBoxType()) removeBox()
-  }
-
-  function checkIfWordMatch () {
-    if (!boxSelector) {
-      playerArr = []
-    } else {
-      var playerLastChar = playerArr.length - 1
-      if (playerArr[playerLastChar] === boxSelector.textContent[playerLastChar]) {
-        var spanId = document.getElementById(playerLastChar)
-        spanId.style.color = 'red'
-        if (boxSelector.type === 'heartBox') spanId.style.color = 'white'
-        combo += 1
-        setCombo()
-      } else if (playerArr[playerLastChar] === '`') {
-        removeBox()
-        combo = 0
-        setCombo()
-      } else if (playerArr[playerLastChar] !== boxSelector.textContent[playerLastChar]) {
-        playerArr.pop()
-        combo = 0
-        setCombo()
-      }
+    if (boxSelector) {
+      var char = event.key
+      playerArr.push(char)
+      console.log(playerArr)
+      if (DoesWordMatch()) removeBox()
+      boxSelector.style.fontWeight = 'bold'
     }
   }
 
-  function checkBoxType () {
+  function DoesWordMatch () {
+    if (DoesLetterMatch() && isWordFullyTyped()) return true
+    else return false
+  }
+
+  function DoesLetterMatch () {
+    var lastLetter = playerArr.length - 1
+    var playerArrLastChar = playerArr[lastLetter]
+    if (playerArrLastChar === boxSelector.textContent[lastLetter]) {
+      var spanId = document.getElementById(lastLetter)
+      spanId.style.color = 'red'
+      if (boxSelector.type === 'heartBox')spanId.style.color = 'white'
+      combo += 1
+      setCombo()
+      return true
+    } else if (playerArrLastChar === '`') {
+      removeBox()
+      combo = 0
+      setCombo()
+      return false
+    } else if (playerArrLastChar !== boxSelector.textContent[lastLetter]) {
+      playerArr.pop()
+      combo = 0
+      setCombo()
+      return false
+    }
+  }
+
+  function isWordFullyTyped () {
     if (playerArr.length !== 0 && playerArr.length === boxSelector.textContent.length) {
       boxSelector.successfulClear = true
       if (boxSelector.type === 'easy' || boxSelector.type === 'twoBox') score += 20 * playerArr.length
@@ -406,7 +405,7 @@ function gameInit () {
   }
 
   addTitle()
-  startButton.addEventListener('click', gameSetup)
+  startButton.addEventListener('click', gameStart)
   instructions.addEventListener('click', showInstructions)
   document.body.addEventListener('keydown', typeLetter)
 }

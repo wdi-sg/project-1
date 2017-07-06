@@ -1,96 +1,113 @@
-# Project Name (Start editing here)
+<!-- # Project 1 - Typing Madness -->
 <!---
 Read Me Contents
 -->
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Typing Madness
 
-### Overview
 
-Let's start out with something fun - **a game!**
+### Game Interface
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+<img src="assets/images/ss_playarea.PNG">
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+
+
+---
+### Instructions
+
+* Type the words as they appear on the screen contained in oval bubbles, before the oval bubbles land on the bottom of the window!
+
+* You lose a live when one bubble lands on the bottom. Lose all your lives and you lose the game!
+
+* During the game you may encounter words contained in red hearts. These give extra lives to help you survive longer at the higher levels. However the words inside them are longer!
 
 
 ---
 
-### Technical Requirements
+### Gameplay Mechanics
 
-Your app must:
+#### Main Logic
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+<img src="assets/images/ss_logic.png" width="500px">
 
----
+#### Bubble Movement
 
-### Necessary Deliverables
+* Bubbles are created at random time intervals and random positions along the top of the screen, using the Math.random() native function.
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+* The 'falling down' effect is caused by applying a transition to each bubble.
 
----
+* Using the 'transitionend' event, the game is able to detect the moment the bubble reaches the bottom of the screen.
 
-### Suggested Ways to Get Started
+#### Word Database
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+* A list with the 1000 most common English words was downloaded from Github ( [link](https://gist.github.com/deekayen/4148741) ) and arranged in an array, saved under words.js file. It is accessed by a function in the main js file which randomly adds a word from this array to the bubbles.
+
+#### Level Design
+
+* The game was designed to have unlimited levels (i.e. The game gets progressively harder until the player loses the game.)
+
+* As the level increases, the speed of the bubbles increases, bubbles generate faster and the words in the bubble get longer.
 
 ---
 
-### Potential Project Ideas
+### Variables and Functions
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+* **playerArr**: Represents the array where key values (i.e. letter name on the key) are pushed in when the player presses a key on the keyboard.
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+* **typeLetter()**: This function is called whenever the player presses a key on the keyboard. It updates playerArr and then calls the logic part of the code to check if the letter matches the corresponding letter in the bubble.
+
+* **gameStart()**: Starts the game: Creates all the in game interfaces and starts the generation of bubbles.
+
+* **checkGameOver()**: Ends the game if there are no lives left.
+
+* **chooseBox()**: Generates a random number to determine the type of bubble being generated (easy, upside down, extra life or two in a row).
+
+* **addWord()**: Generates a random word from the word database and appends it into the bubble.
+
+* **addBox()**: Appends the bubble into the game interface.
+
+* **moveBox()**: Moves the bubble from the top of the game interface to the bottom.
+
+#### Logic
+
+```
+function DoesWordMatch () {
+  if (DoesLetterMatch() && isWordFullyTyped()) return true
+  else return false
+}
+```
+
+* **DoesWordMatch()**: Returns true if the word is fully typed and matches the word in the bubble.  
+
+* **DoesLetterMatch()**: Returns true if the letter typed matches the corresponding letter in the bubble.
+
+* **isWordFullyTyped()**: Returns true if the size of the playerArr is equal to the length of the word in the bubble.
+
 
 ---
 
-### Useful Resources
+### Game Elements
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+**Easy Bubble**
+
+<img src="assets/images/ss_normalbox.png">
+
+**Upside Down Bubble**
+
+<img src="assets/images/ss_upsidedownbox.png">
+
+**Extra Life Bubble/Heart**
+
+<img src="assets/images/ss_extralifebox.png">
+
+**Gameover Window**
+
+<img src="assets/images/ss_gameoverwindow.png">
 
 ---
 
-### Project Feedback + Evaluation
+#### Technologies Used
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+* HTML5
+* CSS3
+* Javascript
