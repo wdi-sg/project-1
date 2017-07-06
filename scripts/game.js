@@ -162,8 +162,13 @@ function init () {
 
   function sendEmail (event) {
     console.log('sending email')
-    window.location.href = 'mailto:user@example.com'
+    var subject = 'Stockbet game' + parameters.p1Name + ' vs ' + parameters.p2Name
+    var body = winner + ' won. Here is a summary of the parameters and trades. Parameters: ' + parameters + 'Trades: (TBU)'
+    window.location.href = 'mailto:user@example.com?subject=[ ]$body=[ ]' // Cannot open on my laptop
   }
+  // <a href="mailto:email@address.com?subject=Hello world&body=Line one%0DLine two">Email me</a>
 
   // At end of game, restart game
+  var sendResultsBtn = document.querySelector('#next-steps button[name="send-button"]')
+  sendResultsBtn.addEventListener('click', sendEmail)
 }
