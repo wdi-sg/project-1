@@ -29,8 +29,9 @@ https://ddanielnp.github.io/project-1/
 
 ### **HTML**
 ![](./css/images/layout.jpg)
+* **Semantic markup** for HTML and CSS (adhere to best practices)
 
-* Each boxes are a `div` element for easy DOM manipulation.
+* Each boxes are in a `div` element for flexible DOM manipulation.
 
 * **7 child divs** each for the various parts of the burger in the **userinput div** and the **displayburger div**
 
@@ -49,14 +50,37 @@ https://ddanielnp.github.io/project-1/
 
 ### **Javascript** for **DOM manipulation**
 
-* **Semantic markup** for HTML and CSS (adhere to best practices)
+* `document.addEventListener` on 'keyup' of **Q** , **W** , **E** , **R** , **T** buttons plays manipulates the `div` classList to add the image to **userinput**, as well as to play a squish().  
 
-* `document.addEventListener` on 'keyup' of **Q** , **W** , **E** , **R** , **T** buttons plays a sound() and manipulates the `div` classList to add the image to **userinput**.  
-
-* `Math.random` used to randomize the creation of ingredients in the function```randomizeIngredient()```.
+* `document.addEventListener` on 'keyup' of **spacebar** runs the function `checkIngredient()`
 
 * **userinput** and **displayburger** has 7`divs` each. The 7`divs` were stored in an array so that the class could be manipulated to be compared in the function```checkIngredient()```.
+```
+userinput                               displayburger
+<div id="u6" class="hamItem"></div>     <div id="d6" class="hamObj"></div>
+```
+
+* **Math.random** used to randomize the creation of an ingredient in the function```randomizeIngredient()```.
+
+* function`level1()` calls `randomizeIngredient()` twice
+* function `level2()` calls `randomizeIngredient()` thrice, and so on..
+
+* `resetClassPlayer()`  `resetClassDisplay()` Used to clear the added classes of ingredients to the divs.
+
 ---
+### **Future Developments**
+* Onions are a bit of a nuisance.
+
+* Some sort of CSS can be displayed to show that you have selected the ingredient.
+
+* Choosing a wrong ingredient does not let you do anything to
+
+* Creating a correct continous combination for `> 5 turns` could let you add more time for playability, as well as combo points.
+
+* More levels, more ingredients...
+
+* Mute squish option
+
 ### Useful Resources
 
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
