@@ -67,7 +67,7 @@ function init () {
     var playerData = {}
     var buyThisTicker = event.target.previousElementSibling.value
     playerData.ticker = buyThisTicker
-    var thesis = event.target.previousElementSibling.previousElementSibling.value
+    var thesis = event.target.previousElementSibling.previousElementSibling.previousElementSibling.value
     playerData.thesis = thesis
     playersDataArr.push(playerData)
 
