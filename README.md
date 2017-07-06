@@ -2,7 +2,7 @@
 ---
 ##Gameplay - Instructions
 
-[How to play](images/forREADME1.png)
+![How to play](images/forREADME1.png)
 
 ---
 ## Game mechanics and logic
