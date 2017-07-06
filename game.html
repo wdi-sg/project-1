@@ -9,7 +9,7 @@
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="Michelle's Stockbet Game" />
     <meta property="og:description"   content="Practice your stock betting skills!" />
-    <meta property="og:image"         content="https://github.com/mmmlll/p1_stockbet/blob/master/images/smiling-cat.jpg" />
+    <meta property="og:image"         content="https://s-media-cache-ak0.pinimg.com/736x/1d/83/e0/1d83e0f607b7b1de607fff558a573b6c--cat-smile-smile-smile.jpg" />
   </head>
   <body>
 
@@ -29,27 +29,27 @@
     <div class='game-section' id='parameters-div'>
       <h3>Game Parameters</h3>
       <form name='paramsForm'>
-        P1 Name: <input type='text' name='p1Name'><br>
-        P2 Name: <input type='text' name='p2Name'><br>
-        Wallet Size ($): <input type='number' name='walletSize'><br>
-        Holding Period (trading days): <input type='number' name='holdingPeriod'> (Note: Min 1 day)<br>
+        <label>P1 Name: </label> <input type='text' name='p1Name'><br>
+        <label>P2 Name: </label> <input type='text' name='p2Name'><br>
+        <label>Wallet Size ($):</label> <input type='number' name='walletSize'><br>
+        <label>Holding Period (trading days): </label> <input type='number' name='holdingPeriod'><br>
         <input type='submit' id='submit-parameters'>
       </form>
       <hr>
-      Note: For a full list of tickers, you may refer to <a href="./tickersHKEX.html" target="_blank">this page.</a>
+      <p>Note: For a full list of tickers, you may refer to <a href="./tickersHKEX.html" target="_blank">this page.</a></p>
     </div>
     <div class='game-section player-div' id='p1-div'>
       <h3>Player 1</h3>
         <div class='research-area'>
-          Research: <input type='text' value='Company name'><input type='text' value='ticker'>
+          <label>Research: </label> <input type='text' placeholder='COMPANY NAME'><input type='text' placeholder='TICKER'>
           <input type='button' value='Go'>
           <br>
-          News Results (dummy): <div class='news-area'></div>
+          <label>News Results (dummy): </label> <div class='news-area'></div>
           <br>
         </div>
         <div class='thesis-buy-area'>
-          Thesis (optional): <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
-          Buy: <input type='text' value='TICKER'>
+          <label>Thesis (optional): </label> <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
+          <label>Buy: </label> <input type='text' placeholder='TICKER'>
           <input type='button' value='Select Ticker'>
           <p></p>
         </div>
@@ -58,15 +58,15 @@
     <div class='game-section player-div' id='p2-div'>
       <h3>Player 2</h3>
         <div class='research-area'>
-          Research: <input type='text' value='Company name'><input type='text' value='ticker'>
+          <label>Research: </label> <input type='text' placeholder='COMPANY NAME'><input type='text' placeholder='TICKER'>
           <input type='button' value='Go'>
           <br>
-          News Results (dummy): <div class='news-area'></div>
+          <label>News Results (dummy): </label> <div class='news-area'></div>
           <br>
         </div>
         <div class='thesis-buy-area'>
-          Thesis (optional): <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
-          Buy: <input type='text' value='TICKER'>
+          <label>Thesis (optional): </label> <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
+          <label>Buy: </label> <input type='text' placeholder='TICKER'>
           <input type='button' value='Select Ticker'>
           <p></p>
         </div>

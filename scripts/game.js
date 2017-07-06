@@ -146,7 +146,7 @@ function init () {
 
   function sendEmail (event) {
     var subject = 'Stockbet game: ' + parameters.p1Name + ' vs ' + parameters.p2Name
-    var body = winner + ' won. Here is a summary of the parameters and trades. Parameters: ' + parameters + 'Trades: (TBU)'
+    var body = winner + ' won. Here is a summary of the parameters and trades. Parameters: ' + JSON.stringify(parameters) + 'Player 1: ' + JSON.stringify(playersDataArr[0]) + 'Player 2: ' + JSON.stringify(playersDataArr[1])
     window.location.href = 'mailto:user@example.com?subject=' + subject + '&body=' + body // Cannot open on my laptop
   }
 
