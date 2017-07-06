@@ -11,7 +11,7 @@
 
 2. Research stocks by entering ticker names. For now, only stocks on the Hong Kong stock exchange are available. Once you enter a valid ticker, the text area below will display recent news related to the ticker.
 
-_(Note to game evaluator: news data not available from within browser due to cross origin issues; the data pulled instead comes from a dummy data in JSON format.)_
+> _(Note to game evaluator: news data not available from within browser due to cross origin issues; the data pulled instead comes from a dummy data in JSON format.)_
 
 3. Based on your research, write up your investment thesis to help you improve over time (optional). Then, enter the ticker of the stock you want to purchase, and click Select Ticker.
 
