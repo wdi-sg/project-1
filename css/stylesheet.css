@@ -1,11 +1,14 @@
+body {
+ background: url('http://i.imgur.com/h9mdeQN.jpg');
+}
 
 .circle {
   width: 80px;
   height: 80px;
   border-radius: 5px;
   position: absolute;
-  top: 110px;
-  left: 150px;
+  /*top: 110px;
+  left: 150px;*/
   transition: top 0.6s, left 0.8s;
   float: left;
   background-image: url('../img/skating.gif');
@@ -15,22 +18,39 @@
 
 .circle2 {
   display: inline-block;
-  width: 50px;
-  height: 80px;
-
+  width: 20px;
+  height: 40px;
   border-radius: 0px;
   position: absolute;
-  top: 110px;
+  /*top: 150px;*/
   overflow: hidden;
-background-image: url('../img/spikeD.png');
-background-repeat: no-repeat;
-background-size: contain;
-background-position: bottom;
+  background-image: url('../img/spikeD.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
 }
 
 #timer {
-  font-size: 60px;
-  float: left;
+  font-size: 32px;
+  text-align: left;
+  margin-left: 10px;
+  font-family: 'Monoton', cursive;
+  animation: neon1 1s ease-in-out infinite alternate;
+  color: #fff;
+}
+
+#timer:hover {
+  color: #FF1177;
+  animation: none;
+}
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px rgba(255,255,255,0.7), 0 0 20px rgba(255,255,255,0.7), 0 0 30px rgba(255,255,255,0.7), 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 5px rgba(255,255,255,0.7), 0 0 10px rgba(255,255,255,0.7), 0 0 15px rgba(255,255,255,0.7), 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
 }
 
 
@@ -39,13 +59,14 @@ background-position: bottom;
   position: relative;
   margin: 0 auto;
   width: 80%;
-  height: 600px;
+  height: 217px;
   background-image: url('../img/150.gif');
   background-repeat: no-repeat;
   background-size: contain;
   margin-top: 7%;
   min-width: 1000px;
   max-width: 1000px;
+  animation: neon1 1s ease-in-out infinite alternate;
 }
 
 
