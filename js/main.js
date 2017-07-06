@@ -31,9 +31,6 @@
   var timeCount = document.querySelector('.timer')
   var inputShake = document.querySelector('.userinput')
   var interval = null
-  // var start = document.querySelector('.start')
-  // var reset = document.querySelector('.reset')
-  // var shake = document.querySelectorAll('.shake')
 
   document.addEventListener('keyup', onKeyUp)
   var index = 4
@@ -96,26 +93,6 @@
       }
     } return true
   }
-
-  // function checkIngredient () {
-  //   // if (allDs.length !== allUs.length) return false
-  //   for (var i = allDs.length; i > 0; i--) {
-  //     // if (counter <= 3) // check last 2
-  //     // if (counter > 3 && counter <= 7) // check last 3
-  //     // if (counter > 7 && counter <= 11) // check last 4
-  //     // if (counter > 11) // check last 5
-  //
-  //     if (allDs[i].className !== allUs[i].className) {
-  //       return false
-  //     } else {
-  //       setTimeout(function () {
-  //         resetClassPlayer()
-  //         resetClassDisplay()
-  //         gamePlay()
-  //       }, 1200)
-  //     }
-  //   } return true
-  // }
 
   function resetClassPlayer () {
     u1.classList.remove('topbun')
@@ -233,7 +210,6 @@
   }
 
   document.addEventListener('keyup', resetGame)
-
   function resetNow () {
     resetClassPlayer()
     resetClassDisplay()
@@ -260,7 +236,6 @@
     if (timer === 0) {
       alert('Time\'s Up')
       timer = 60
-
     }
   }
 
