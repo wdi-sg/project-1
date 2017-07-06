@@ -118,7 +118,7 @@ function gameModeEasy () {
 // Obstacle Creation & Movement:
   setInterval(function () {
     moveSpikes(createSpikes())
-  }, 1600)
+  }, 1200)
 
   function createSpikes () {
     var spikes = document.createElement('div')
@@ -186,7 +186,7 @@ function gameModeHard () {
   // Obstacle Creation & Movement:
   setInterval(function () {
     moveSpikes(createSpikes())
-  }, 1700)
+  }, 1400)
 
   function createSpikes () {
     var spikes = document.createElement('div')
@@ -214,7 +214,7 @@ function gameModeHard () {
 
         elem.style.left = spikesLeft - 10 + 'px'
       }
-    }, 7)
+    }, 9)
   }
 
 // Detecting Collision:
@@ -260,7 +260,7 @@ function gameModeHard () {
 
 // 2. Functions:
   function jump () {
-    rabbit.style.top = 30 + 'px'
+    rabbit.style.top = 28 + 'px'
     rabbit.style.backgroundImage = "url('img/skatejump2.png')"
     canJump = false
     rabbit.style.transition = 'linear'
@@ -270,6 +270,7 @@ function gameModeHard () {
     rabbit.style.top = 110 + 'px'
     rabbit.style.backgroundImage = "url('img/skating.gif')"
     rabbit.style.transition = 'linear'
+    canJump = true
   }
 
 // 3. Keyboard Targeting:
