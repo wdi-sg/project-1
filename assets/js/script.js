@@ -22,7 +22,7 @@ document.addEventListener('keydown', function (event) {
   if (event.keyCode === 38) {
     if (canJump) {
       jump()
-      setTimeout(function(){}, 1000)
+      //setTimeout(function(){}, 1000)
       canJump = false
     } else if (!canJump) {
       drop()
