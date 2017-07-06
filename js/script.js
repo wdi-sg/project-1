@@ -118,7 +118,7 @@ function gameModeEasy () {
 // Obstacle Creation & Movement:
   setInterval(function () {
     moveSpikes(createSpikes())
-  }, 1900)
+  }, 1600)
 
   function createSpikes () {
     var spikes = document.createElement('div')
@@ -146,7 +146,7 @@ function gameModeEasy () {
 
         elem.style.left = spikesLeft - 10 + 'px'
       }
-    }, 18)
+    }, 17)
   }
 
 // Detecting Collision:
