@@ -133,7 +133,7 @@ function init () {
 
   function getPrice (ticker) {
     var req = new XMLHttpRequest()
-    var stockUrl = 'https://www.quandl.com/api/v3/datasets/HKEX/' + ticker + '.json?2&api_key=1VqFiTXxySMhKgkyNfPp'
+    var stockUrl = 'https://www.quandl.com/api/v3/datasets/HKEX/' + ticker + '.json?2&api_key=HTYeSsV7GoNrvp-mJZRx'
     req.open('GET', stockUrl, false)
     req.send(null)
     var dataObj = JSON.parse(req.responseText)

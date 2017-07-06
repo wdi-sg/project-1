@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title></title>
+    <link rel='stylesheet' href='../css/style.css'>
+    <!-- Facebook sharing. More info: https://developers.facebook.com/docs/sharing/webmasters -->
+    <meta property="og:url"           content="https://mmmlll.github.io/p1_stockbet" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Michelle's Stockbet Game" />
+    <meta property="og:description"   content="Practice your stock betting skills!" />
+    <meta property="og:image"         content="https://s-media-cache-ak0.pinimg.com/736x/1d/83/e0/1d83e0f607b7b1de607fff558a573b6c--cat-smile-smile-smile.jpg" />
+  </head>
+  <body>
+
+    <div id='header'>
+       <a href='./index.html'>Home</a>
+       <a href='./game.html' >Game</a>
+       <a href='./howto.html' >How To</a>
+    </div>
+
+    <h1>STOCKBET</h1>
+
+    <div id='status-div'>
+      <h2 id='status'></h2>
+      <hr>
+    </div>
+
+    <div class='game-section' id='parameters-div'>
+      <h3>Game Parameters</h3>
+      <form name='paramsForm'>
+        <label>P1 Name: </label> <input type='text' name='p1Name'><br>
+        <label>P2 Name: </label> <input type='text' name='p2Name'><br>
+        <label>Wallet Size ($):</label> <input type='number' name='walletSize'><br>
+        <label>Holding Period (trading days): </label> <input type='number' name='holdingPeriod'><br>
+        <input type='submit' id='submit-parameters'>
+      </form>
+      <hr>
+      <p>Note: For a full list of tickers, you may refer to <a href="./tickersHKEX.html" target="_blank">this page.</a></p>
+    </div>
+    <div class='game-section player-div' id='p1-div'>
+      <h3>Player 1</h3>
+        <div class='research-area'>
+          <label>Research: </label> <input type='text' placeholder='COMPANY NAME'><input type='text' placeholder='TICKER'>
+          <input type='button' value='Go'>
+          <br>
+          <label>News Results (dummy): </label> <div class='news-area'></div>
+          <br>
+        </div>
+        <div class='thesis-buy-area'>
+          <label>Thesis (optional): </label> <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
+          <label>Buy: </label> <input type='text' placeholder='TICKER'>
+          <input type='button' value='Select Ticker'>
+          <p></p>
+        </div>
+        <hr>
+    </div>
+    <div class='game-section player-div' id='p2-div'>
+      <h3>Player 2</h3>
+        <div class='research-area'>
+          <label>Research: </label> <input type='text' placeholder='COMPANY NAME'><input type='text' placeholder='TICKER'>
+          <input type='button' value='Go'>
+          <br>
+          <label>News Results (dummy): </label> <div class='news-area'></div>
+          <br>
+        </div>
+        <div class='thesis-buy-area'>
+          <label>Thesis (optional): </label> <textarea class='text-area thesis-area' rows='8' cols='80'></textarea>
+          <label>Buy: </label> <input type='text' placeholder='TICKER'>
+          <input type='button' value='Select Ticker'>
+          <p></p>
+        </div>
+        <hr>
+    </div>
+
+    <div class='game-section' id='execute-div'>
+      <h3>Ready to Make Your Bets?</h3>
+      <p>This is a summary of your bets: </p>
+      <button type='button' name='button'>EXECUTE TRADES!</button>
+      <hr>
+    </div>
+
+    <h1>Results</h1 >
+
+    <div class='results-in' id='results'>
+      <p id='who-won'></p>
+      <p id='roi'></p>
+      <p id='wallet'></p>
+    </div>
+
+    <div id='next-steps'>
+      <button type='button' name='send-button'>Save/Send Results</button>  <!--[AXN: determine how to get results]-->
+      <button type='button' name='restart-button'>Restart Game</button>
+    </div>
+
+    <!-- <script src="../scripts/game.js"></script> -->
+    <script src="./bundle-democrossorigin.js"></script>
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Your send button code -->
+  <div class="fb-send"
+    data-href="https://mmmlll.github.io/p1_stockbet"
+    data-layout="button_count">
+  </div>
+
+  </body>
+</html>
