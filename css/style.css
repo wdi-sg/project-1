@@ -60,7 +60,7 @@ input[type=text], input[type=number] {
     font-size:14px;
 }
 
-input[type=submit], input[type=button] {
+input[type=submit], input[type=button], button {
     width: 75%;
     background-color: #5D2E46;
     color: #E8D6CB;
@@ -74,4 +74,8 @@ input[type=submit], input[type=button] {
 
 input[type=submit]:hover, input[type=button]:hover {
     background-color: #D0ADA7;
+}
+
+.research-area {
+  display: inline-block;
 }
