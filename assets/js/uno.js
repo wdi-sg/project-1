@@ -69,8 +69,8 @@ function generateDrawPile () {
     cardNo += 1
   }
 
-  // Generate One to DrawTwo cards (2 sets of each color)
-  for (var cardValue = One; cardValue<=Skip; cardValue++) {
+  // Generate One to Nine cards (2 sets of each color)
+  for (var cardValue = One; cardValue<=Nine; cardValue++) {
     for (var cardColor = Red; cardColor<=Yellow; cardColor++) {
       Deck[cardNo] = {
           label: '',
