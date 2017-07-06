@@ -1,46 +1,92 @@
 // DOM MANIPULATIONS
 document.addEventListener('DOMContentLoaded', init)
 
-// create element object. This will hold all the properties including a function that can detect ratio of change required. To get speed, all you have to do is access the property
-// var element = {
-//   position: '',
-//   width: '',
-//   classname: '',
-//   speed: '',
-//   increaseSpeed: function() {
-//     return this.speed + 100
-//   },
-//   factor:
-// }
-
 function init () {
-  var speed = 1
-  var gameOver = false
-  var counter = 0
+  var body = document.querySelector('body')
+  var monitor = document.querySelector('.monitor')
+  var leftMargin = monitor.getBoundingClientRect().left - body.getBoundingClientRect().left
+  var speed = 2
+  var spawnRate = 2000
+  var score = 0
   var spaceship = document.querySelector('.ship')
+  var sideDivRight = document.querySelector('.sideDivRight')
+  var sideDivLeft = document.querySelector('.sideDivLeft')
+  var submitButton = document.querySelector('#submitButton')
+  var searchField = document.querySelector('#searchField')
+  var playAgain = document.querySelector('.playAgain')
+  var scoreDiv = document.querySelector('.score')
+  var highscore = document.querySelector('.highScores')
+  var gameOver = document.querySelector('.gameOver')
+
+  playAgain.addEventListener('click', function () {
+    startNewGame()
+    var walls = document.querySelectorAll('.wall')
+    for (var i = 0; i < walls.length; i++) {
+      walls[i].parentNode.removeChild(walls[i])
+    }
+  })
+
+  submitButton.addEventListener('click', function () {
+    var li = document.createElement('li')
+    var ul = document.querySelector('ul')
+    li.textContent = searchField.value + ': ' + (score - 1) + ' points'
+    ul.appendChild(li)
+  })
+
+  sideDivRight.style.left = leftMargin + monitor.offsetWidth + 'px'
+  sideDivRight.style.width = leftMargin + 'px'
+  sideDivRight.style.height = '100%'
+
+  sideDivLeft.style.left = 0
+  sideDivLeft.style.width = leftMargin + 'px'
+  sideDivLeft.style.height = '100%'
 
 // sets rate of wall spawn
-  setInterval(function () {
-    fall(spawnWalls(), speed, collision)
-  }, 2000)
+
+  function loop () {
+    if ((score > 1) && (score % 10 === 0)) {
+      clearInterval(myTimer)
+      spawnRate = spawnRate - 400
+      myTimer = setInterval(loop, spawnRate)
+      speed += 1
+    }
+    if (spaceship.style.display !== 'none') {
+      var scoreDiv = document.querySelector('.score')
+      scoreDiv.setAttribute('style', 'white-space: pre;')
+      scoreDiv.textContent = 'Score' + '\r\n' + score
+      ++score
+    }
+    fall(spawnWalls(leftMargin), speed, collision, displayGameOver)
+  }
+
+  var myTimer = setInterval(loop, spawnRate)
 
 // if keyup, then ship resets to normal position
   document.addEventListener('keyup', function () {
     spaceship.id = ''
   })
 
+// just to see mouse coordinates
+  document.addEventListener('click', function (e) {
+    var posX = e.clientX
+    var posY = e.clientY
+    console.log(posX + ' and ' + posY)
+  })
+
 // if keydown, then ship tilts left or right. Also walls move to give a sense of turning
-  document.addEventListener('keydown', function () {
+  document.addEventListener('keydown', function (e) {
     var currentWalls = document.querySelectorAll('.wall')
     if (event.keyCode === 37) {
+      e.preventDefault()
       spaceship.id = 'spaceshipleft'
       for (var i = 0; i < currentWalls.length; i++) {
-        wallsMove(currentWalls[i], 10)
+        wallsX(currentWalls[i], -5)
       }
     } else if (event.keyCode === 39) {
+      e.preventDefault()
       spaceship.id = 'spaceshipright'
       for (var i = 0; i < currentWalls.length; i++) {
-        wallsMove(currentWalls[i], -10)
+        wallsX(currentWalls[i], 5)
       }
     }
   })
@@ -52,36 +98,63 @@ function init () {
          (spaceship.getBoundingClientRect().left + spaceship.offsetWidth) > walls[i].getBoundingClientRect().left &&
      (spaceship.getBoundingClientRect().bottom) < walls[i].getBoundingClientRect().bottom + walls[i].offsetHeight &&
    spaceship.offsetHeight + (spaceship.getBoundingClientRect().bottom) > walls[i].getBoundingClientRect().bottom) {
-        console.log('dead')
         return true
       }
       return false
     }
   }
+
+  // GAME MECHANICS--------------------------------------------------------
+
+  function startNewGame () {
+    gameOver.style.visibility = 'hidden'
+    highscore.style.visibility = 'hidden'
+    spaceship.style.display = ''
+    playAgain.style.visibility = 'hidden'
+    clearInterval(myTimer)
+    spawnRate = 2000
+    myTimer = setInterval(loop, spawnRate)
+    score = 0
+    speed = 2
+    scoreDiv.setAttribute('style', 'white-space: pre;')
+    scoreDiv.textContent = 'Score' + '\r\n' + score
+  }
+
+  function displayGameOver () {
+    spaceship.style.display = 'none'
+    gameOver.style.visibility = 'visible'
+    highscore.style.visibility = 'visible'
+    playAgain.style.visibility = 'visible'
+  }
 }
 
-// function that makes walls move. Takes a wall item and a speed as arguments
-function wallsMove (element, speed) {
-  // coordinate 0,0 is at (875, 381)
-  var XAxis = element.getBoundingClientRect().left
-  var YAxis = element.getBoundingClientRect().top
-  var wallCSS = element.style
-
-  wallCSS.left = XAxis - 1 + speed + 'px'
-  wallCSS.top = YAxis + 2 + 'px'
+// creates new walls--------------------------------------------------------
+function spawnWalls (leftMargin) {
+  var newWall = document.createElement('div')
+  var monitor = document.querySelector('.monitor')
+  var right = monitor.getBoundingClientRect().right
+  var ground = document.querySelector('.ground')
+  newWall.classList.add('wall')
+  newWall.style.width = '10px'
+  newWall.style.height = '1px'
+  // (Math.random() * (max-min) + min) + 'px'. Adjusts spawn when dimensiosn adjust
+  newWall.style.left = (Math.random() * right - leftMargin) + leftMargin + 'px'
+  ground.appendChild(newWall)
+  return newWall
 }
 
-  // causes walls to expand
-function fall (element, speed, afunction) {
+// causes walls to expand
+function fall (element, speed, collision, displayGameOver) {
   setInterval(function () {
-    if (afunction()) {
-      gameOver()
+    var monitor = document.querySelector('.monitor')
+    if (collision()) {
+      displayGameOver()
     }
-    var adjWidth = element.offsetWidth
-    var adjHeight = element.offsetHeight
-    if (element.getBoundingClientRect().top < 900) {
-      element.style.width = (adjWidth + 2.2) + 'px'
-      element.style.height = (adjHeight + 0.47) + 'px'
+    if (element.getBoundingClientRect().bottom < monitor.getBoundingClientRect().bottom) {
+      var adjWidth = element.offsetWidth
+      var adjHeight = element.offsetHeight
+      element.style.width = (adjWidth + 2) + 'px'
+      element.style.height = (adjHeight + 1) + 'px'
       wallsMove(element, speed)
     } else {
       element.parentElement.removeChild(element)
@@ -89,28 +162,19 @@ function fall (element, speed, afunction) {
   }, 30)
 }
 
-// creates new walls
-function spawnWalls () {
-  var newWall = document.createElement('div')
-  newWall.classList.add('wall')
-  newWall.style.left = (Math.random() * 1700) + 'px'
-  newWall.style.width = (Math.random() * 100 + 50) + 'px'
-  newWall.id = newWall.style.left
-  newWall.style.height = '1px'
-  document.body.appendChild(newWall)
-  return newWall
+// function that makes walls move. Takes a wall item and a speed as arguments
+function wallsMove (element, speed) {
+  var ground = document.querySelector('.ground')
+  var boundingClientTop = element.getBoundingClientRect().top
+  var boundingClientTopGround = ground.getBoundingClientRect().top
+  var top = (boundingClientTop - boundingClientTopGround)
+  element.style.top = (top + speed) + 'px'
+  wallsX(element, 0)
 }
 
-function startGame () {
-
-}
-
-function gameOver () {
-  var ship = document.querySelector('.ship')
-  ship.style.display = 'none'
-  var gameOver = document.createElement('div')
-  gameOver.classList.add('gameOver')
-  gameOver.style.visibility = 'visible'
-  gameOver.innerHTML = 'GAME OVER'
-  document.body.appendChild(gameOver)
+function wallsX (element, speed) {
+  var monitor = document.querySelector('.monitor')
+  var leftMargin = monitor.getBoundingClientRect().left
+  var center = element.getBoundingClientRect().left - leftMargin
+  element.style.left = (center - 1 - speed) + 'px'
 }

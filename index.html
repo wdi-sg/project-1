@@ -6,10 +6,24 @@
     <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
   </head>
   <body>
-    <div class="gameOver"><p>GAME OVER!</p></div>
-    <div class="sky"></div>
-    <img src="images/spaceship_back.png" class="ship">
-    <img src="images/tron_floor.png" id="ground">
+    <div class="sideDivRight"></div>
+    <div class="sideDivLeft"></div>
+    <div class="monitor">
+      <div class="score">Score</div>
+      <div class="gameOver">
+        <p>GAME OVER!</p>
+        <input type="text" id='searchField' name="search" value="">
+        <input type="submit" id='submitButton' value="Enter name">
+        <div class="playAgain">Play Again</div>
+      </div>
+      <div class="highScores">
+        <ul><span>Highscores</span></ul>
+      </div>
+      <div class="sky"></div>
+      <img src="images/spaceship_back.png" class="ship">
+      <img src="images/movingfloor.gif" id="tron">
+      <div class="ground"></div>
+    </div>
     <script src="assets/js/script.js" charset="utf-8"></script>
   </body>
  </html>
