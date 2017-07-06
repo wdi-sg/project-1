@@ -108,6 +108,8 @@ function clearFish() {
 function startGame () {
   var startPage = document.getElementById('start-page')
   startPage.style.display = 'none'
+  var generating = setInterval(generateFish1, 2000)
+  var moving = setInterval(moveRandomly, 2000)
   mainFish.style.display = 'block'
   mouseFish()
   var generating = setInterval(generateFish1, 2500)
