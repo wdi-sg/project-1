@@ -26,7 +26,7 @@ var Skip = 11
 // var vWild = 13
   // Removed Reverse Card since same as Skip
 
-// Card Image
+// Card Image UNUSED
 var cardURL = 'URL'
 // <links to .PNG to be inserted>
 
@@ -64,11 +64,11 @@ function generateDrawPile () {
         label: '',
         value: Zero,
         color: cardColor,
-        image: cardURL
+        image: 'graphics/'+cardColor+'0.png'
       }
     cardNo += 1
   }
-
+  //console.log(Deck[1].image);
   // Generate One to Nine cards (2 sets of each color)
   for (var cardValue = One; cardValue<=Nine; cardValue++) {
     for (var cardColor = Red; cardColor<=Yellow; cardColor++) {
@@ -76,16 +76,18 @@ function generateDrawPile () {
           label: '',
           value: cardValue,
           color: cardColor,
-          image: cardURL
+          image: 'graphics/'+cardColor+cardValue+'.png'
         }
+//console.log(Deck[cardNo].image);
       cardNo += 1
 
       Deck[cardNo] = { // Second set of same color
           label: '',
           value: cardValue,
           color: cardColor,
-          image: cardURL
+          image: 'graphics/'+cardColor+cardValue+'.png'
         }
+//console.log(Deck[cardNo].image);
       cardNo += 1
     }
   }
@@ -253,13 +255,13 @@ function hasPlayablePile(player) {
 //console.log('human', HumanPlayerPile);
 // console.log('com', ComputerPlayerPile);
 
-// for (var i = 0; i<100; i++) { // To list out the DrawPile just generated
-// console.log('i '+i);
-  // console.log(DrawPile[i].label);
-//   console.log(DrawPile[i].value);
-//   console.log(DrawPile[i].color);
-//   console.log(DrawPile[i].image);
-// }
+for (var i = 0; i<DrawPile.length; i++) { // To list out the DrawPile just generated
+  console.log('i '+i);
+  console.log(DrawPile[i].label);
+  console.log(DrawPile[i].value);
+  console.log(DrawPile[i].color);
+  console.log(DrawPile[i].image);
+}
 
 // HumanPlayerPile = dealCard(7)
 // ComputerPlayerPile = dealCard(7)
