@@ -369,7 +369,7 @@ function init () {
     audio.volume = 0.3
 
     // conditions to score point, + time and - time
-    if ((tonyNumber === 1 && firstAsteroid.style.visibility === 'visible') || (tonyNumber === 2 && secondAsteroid.style.visibility === 'visible') || (tonyNumber === 3 && thirdAsteroid.style.visibility === 'visible') || (tonyNumber === 4 && fourthAsteroid.style.visibility === 'visible')) {
+    if (((tonyNumber === 1 && firstAsteroid.style.visibility === 'visible') || (tonyNumber === 2 && secondAsteroid.style.visibility === 'visible') || (tonyNumber === 3 && thirdAsteroid.style.visibility === 'visible') || (tonyNumber === 4 && fourthAsteroid.style.visibility === 'visible')) && gameOver === false) {
       scorecounter += 1
       if (scorecounter < 10) {
         timeLeft += 300
