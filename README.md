@@ -34,7 +34,7 @@ https://yangtheng.github.io/project-1
 
 #### Main Logic
 
-<img src="assets/images/ss_logic.png" width="500px">
+<img src="assets/images/ss_logic.PNG" width="500px">
 
 #### Bubble Movement
 
@@ -96,19 +96,19 @@ function DoesWordMatch () {
 
 **Easy Bubble**
 
-<img src="assets/images/ss_normalbox.png">
+<img src="assets/images/ss_normalbox.PNG">
 
 **Upside Down Bubble**
 
-<img src="assets/images/ss_upsidedownbox.png">
+<img src="assets/images/ss_upsidedownbox.PNG">
 
 **Extra Life Bubble/Heart**
 
-<img src="assets/images/ss_extralifebox.png">
+<img src="assets/images/ss_extralifebox.PNG">
 
 **Gameover Window**
 
-<img src="assets/images/ss_gameoverwindow.png">
+<img src="assets/images/ss_gameoverwindow.PNG">
 
 ---
 
