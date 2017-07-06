@@ -30,7 +30,7 @@ function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
     allFishes[i].style.top = randomizer(0, window.innerHeight) + 'px'
     allFishes[i].style.left = randomizer(0, window.innerWidth) + 'px'
-    allFishes[i].style.transition = 'top 2s linear, left 3s linear'
+    allFishes[i].style.transition = 'top 2s linear, left 2s linear'
 
     collisionResult(mainFish, allFishes[i])
   }
@@ -93,7 +93,7 @@ function startGame () {
   var startPage = document.getElementById('start-page')
   startPage.style.display = 'none'
   var generating = setInterval(generateFish1, 2000)
-  var moving = setInterval(moveRandomly, 1000)
+  var moving = setInterval(moveRandomly, 2000)
   mainFish.style.display = 'block'
   mouseFish()
   var over = setInterval(gameOver, 1000)
@@ -106,7 +106,7 @@ function startGame () {
       mainFish.style.display = 'none'
       var sadPage = document.getElementById('sad-page')
       sadPage.style.display = 'block'
-      
+
       document.querySelector('#replay-button').addEventListener('click', function () {
         sadPage.style.display = 'none'
         startPage.style.display = 'block'
