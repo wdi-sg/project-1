@@ -11,7 +11,7 @@ Instructions:
 
 URL:
 
-* **[Pac-Man _simplified version_](https://shumin13.github.io/project-1/)**
+* **[Pac-Man _(A Simplified Version_](https://shumin13.github.io/project-1/)**
 
 ---
 
