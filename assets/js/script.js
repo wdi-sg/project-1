@@ -11,6 +11,8 @@ function init () {
   var timerField = document.querySelector('.time')
   var typedWords = document.querySelector('ul')
   var scoreKeep = document.querySelector('.score')
+  var music = document.querySelector('#myMusic')
+  var arrTime = []
 
   start.addEventListener('click', displayStr)
   resetto.addEventListener('click', reset)
@@ -35,7 +37,8 @@ function init () {
         scoreKeep.textContent = score
       } else {
         input.value = ''
-        console.log('input field vibrate')
+        input.classList.add("shake-hard" , "shake-constant")
+        setTimeout(function(){input.classList.remove("shake-hard" , "shake-constant")},200)
       }
     }
   }
@@ -48,21 +51,20 @@ function init () {
   }
 
   function displayStr () {
+    playAudio()
     interval = setInterval(timerz, 1000)
     randomStr = alLogic.randStr()
     randomWord.textContent = randomStr.join(' ').toUpperCase()
     start.style.display = 'none'
   }
 
-  // function displayStr () {
-  //   storedArr = []
-  //   randomStr = []
-  //   clearInterval(interval)
-  //   interval = setInterval(timerz, 1000)
-  //   randomStr = alLogic.randStr()
-  //   randomWord.textContent = randomStr.join(' ').toUpperCase()
-  //   start.textContent = 'Restart'
-  // }
+  function playAudio() {
+    music.play();
+}
+
+function pauseAudio() {
+    music.pause();
+}
 
 
   function reset () {
@@ -83,16 +85,11 @@ function init () {
       document.querySelector('.time').textContent = timer + ' s'
     } else {
       document.querySelector('.combo').textContent = 'GAME OVER!'
+      document.querySelector('.combo').style.color = 'red'
       randomStr = []
-      if (score > hiScore) {
-        hiScore = score
-        document.querySelector('#highest').textContent = hiScore
-      }
+      music.pause()
     }
   }
 
+
 }
-
-
-
-// checkInputStr(input) && !checkStoredArr(input) && dictCheck(input)

@@ -32,7 +32,7 @@ function alphabetLogic() {
         randomStr.push(letter)
       }
       return randomStr
-    }
+     }
   }
 
   // Function checks whether user input is contained in string
@@ -74,7 +74,6 @@ function alphabetLogic() {
   }
 
 
-
   return {
     randomLoop: randomLoop,
     randStr: randStr,
@@ -86,16 +85,10 @@ function alphabetLogic() {
 }
 
 
-// Function timer
-
-// Function score
-
-// function anagram
-
 // 1 Understand code wordList.
 // 2 timer
 // 3 Layout wireframing.
 // 4 test gameplay.
 // 5 study and improve word gen algorithm.
 
-// Additional: combo scoring system, colorchange combo, music, multilevels
+// Additional: combo scoring system, colorchange combo, music

@@ -11,6 +11,7 @@ font-family: 'Spectral', serif;
 }
 
 .right{
+  padding-top: 20px;
   width: 25%;
   float: right;
   font-size: 15px;
