@@ -2,10 +2,10 @@
 
 ### Gameplay
 
-> Move your mouse around to bump into other fishes.
-> Eating smaller fish will make you bigger,
-> and bumping into bigger fish will make you smaller.
-> Make yourself the biggest fish in the sea!
+<addr> Move your mouse around to bump into other fishes.
+<addr> Eating smaller fish will make you bigger,
+<addr> and bumping into bigger fish will make you smaller.
+<addr> Make yourself the biggest fish in the sea!
 
 Link: http://dreamz89.github.io/project-1
 
@@ -44,11 +44,11 @@ Step-by-Step Process
 
 **collisionDetection()**
 
->if (rect1.x < rect2.x + rect2.width &&
->   rect1.x + rect1.width > rect2.x &&
->   rect1.y < rect2.y + rect2.height &&
->   rect1.height + rect1.y > rect2.y)
->    // collision detected!
+<addr>if (rect1.x < rect2.x + rect2.width &&
+<addr>   rect1.x + rect1.width > rect2.x &&
+<addr>   rect1.y < rect2.y + rect2.height &&
+<addr>   rect1.height + rect1.y > rect2.y)
+<addr>    // collision detected!
 
 **collisionResult**
 
@@ -80,7 +80,7 @@ Fixed by increasing interval of calling fish movement, and changing the fish tra
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles.
->Collision detection was improved by setting the interval to detect every 100ms.
+<addr> Collision detection was improved by setting the interval to detect every 100ms.
 
 ---
 
