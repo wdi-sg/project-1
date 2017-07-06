@@ -103,7 +103,7 @@ ul {
   height: 320px;
   position:relative;
 }
-.firsttree, .secondtree, .thirdtree, .fourthtree{
+.firstasteroid, .secondasteroid, .thirdasteroid, .fourthasteroid{
   background-image: url(../images/asteroid.png);
   height: 50px;
   width: 50px;
@@ -117,16 +117,16 @@ ul {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
 }
-.firsttree{
+.firstasteroid{
   left:55px;
 }
-.secondtree{
+.secondasteroid{
   left:215px;
 }
-.thirdtree{
+.thirdasteroid{
   left:375px;
 }
-.fourthtree{
+.fourthasteroid{
   left:535px;
 }
 .firingzone{

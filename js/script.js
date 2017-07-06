@@ -11,27 +11,27 @@ function init () {
   var retryButton = document.querySelector('.retrybutton')
   retryButton.addEventListener('click', restartGame)
   var tonyNumber = -1
-  var treeNumber = 0
-  var firstTree = document.querySelector('.firsttree')
-  firstTree.style.top = '0px'
-  var firstTreeTop = parseInt(firstTree.style.top)
-  var secondTree = document.querySelector('.secondtree')
-  secondTree.style.top = '0px'
-  var secondTreeTop = parseInt(secondTree.style.top)
-  var thirdTree = document.querySelector('.thirdtree')
-  thirdTree.style.top = '0px'
-  var thirdTreeTop = parseInt(thirdTree.style.top)
-  var fourthTree = document.querySelector('.fourthtree')
-  fourthTree.style.top = '0px'
-  var fourthTreeTop = parseInt(fourthTree.style.top)
+  var asteroidNumber = 0
+  var firstAsteroid = document.querySelector('.firstasteroid')
+  firstAsteroid.style.top = '0px'
+  var firstAsteroidTop = parseInt(firstAsteroid.style.top)
+  var secondAsteroid = document.querySelector('.secondasteroid')
+  secondAsteroid.style.top = '0px'
+  var secondAsteroidTop = parseInt(secondAsteroid.style.top)
+  var thirdAsteroid = document.querySelector('.thirdasteroid')
+  thirdAsteroid.style.top = '0px'
+  var thirdAsteroidTop = parseInt(thirdAsteroid.style.top)
+  var fourthAsteroid = document.querySelector('.fourthasteroid')
+  fourthAsteroid.style.top = '0px'
+  var fourthAsteroidTop = parseInt(fourthAsteroid.style.top)
   var scorecounter = 0
   var gameOver = true
   var timeLeft = 6000
-  var genTree
-  var moveTree1Down
-  var moveTree2Down
-  var moveTree3Down
-  var moveTree4Down
+  var genAsteroid
+  var moveAsteroid1Down
+  var moveAsteroid2Down
+  var moveAsteroid3Down
+  var moveAsteroid4Down
   var randomNum = 0
   var firstFire = document.querySelector('.firstfire')
   var secondFire = document.querySelector('.secondfire')
@@ -83,10 +83,10 @@ function init () {
     startButton.style.visibility = 'hidden'
     retryButton.style.visibility = 'hidden'
     gameOver = false
-    firstTree.style.visibility = 'hidden'
-    secondTree.style.visibility = 'hidden'
-    thirdTree.style.visibility = 'hidden'
-    fourthTree.style.visibility = 'hidden'
+    firstAsteroid.style.visibility = 'hidden'
+    secondAsteroid.style.visibility = 'hidden'
+    thirdAsteroid.style.visibility = 'hidden'
+    fourthAsteroid.style.visibility = 'hidden'
     timeLeft = 6000
     startTimer()
   }
@@ -98,23 +98,23 @@ function init () {
     var number = randomFn(1, 4)
     if (number !== randomNum) {
       if (number === 1) {
-        firstTree.style.visibility = 'visible'
-        treeNumber = 1
+        firstAsteroid.style.visibility = 'visible'
+        asteroidNumber = 1
         checkLevel()
       }
       if (number === 2) {
-        secondTree.style.visibility = 'visible'
-        treeNumber = 2
+        secondAsteroid.style.visibility = 'visible'
+        asteroidNumber = 2
         checkLevel()
       }
       if (number === 3) {
-        thirdTree.style.visibility = 'visible'
-        treeNumber = 3
+        thirdAsteroid.style.visibility = 'visible'
+        asteroidNumber = 3
         checkLevel()
       }
       if (number === 4) {
-        fourthTree.style.visibility = 'visible'
-        treeNumber = 4
+        fourthAsteroid.style.visibility = 'visible'
+        asteroidNumber = 4
         checkLevel()
       }
       randomNum = number
@@ -138,133 +138,133 @@ function init () {
     }
   }
   function levelOne () {
-    if (treeNumber === 1) {
-      moveTree1Down = setInterval(move1Down, 40)
-    } else if (treeNumber === 2) {
-      moveTree2Down = setInterval(move2Down, 40)
-    } else if (treeNumber === 3) {
-      moveTree3Down = setInterval(move3Down, 40)
-    } else if (treeNumber === 4) {
-      moveTree4Down = setInterval(move4Down, 40)
+    if (asteroidNumber === 1) {
+      moveAsteroid1Down = setInterval(move1Down, 40)
+    } else if (asteroidNumber === 2) {
+      moveAsteroid2Down = setInterval(move2Down, 40)
+    } else if (asteroidNumber === 3) {
+      moveAsteroid3Down = setInterval(move3Down, 40)
+    } else if (asteroidNumber === 4) {
+      moveAsteroid4Down = setInterval(move4Down, 40)
     }
   }
   function levelTwo () {
-    if (treeNumber === 1) {
-      clearInterval(moveTree1Down)
-      moveTree1Down = setInterval(move1Down, 30)
-    } else if (treeNumber === 2) {
-      clearInterval(moveTree2Down)
-      moveTree2Down = setInterval(move2Down, 30)
-    } else if (treeNumber === 3) {
-      clearInterval(moveTree3Down)
-      moveTree3Down = setInterval(move3Down, 30)
-    } else if (treeNumber === 4) {
-      clearInterval(moveTree4Down)
-      moveTree4Down = setInterval(move4Down, 30)
+    if (asteroidNumber === 1) {
+      clearInterval(moveAsteroid1Down)
+      moveAsteroid1Down = setInterval(move1Down, 30)
+    } else if (asteroidNumber === 2) {
+      clearInterval(moveAsteroid2Down)
+      moveAsteroid2Down = setInterval(move2Down, 30)
+    } else if (asteroidNumber === 3) {
+      clearInterval(moveAsteroid3Down)
+      moveAsteroid3Down = setInterval(move3Down, 30)
+    } else if (asteroidNumber === 4) {
+      clearInterval(moveAsteroid4Down)
+      moveAsteroid4Down = setInterval(move4Down, 30)
     }
   }
   function levelThree () {
-    if (treeNumber === 1) {
-      clearInterval(moveTree1Down)
-      moveTree1Down = setInterval(move1Down, 20)
-    } else if (treeNumber === 2) {
-      clearInterval(moveTree2Down)
-      moveTree2Down = setInterval(move2Down, 20)
-    } else if (treeNumber === 3) {
-      clearInterval(moveTree3Down)
-      moveTree3Down = setInterval(move3Down, 20)
-    } else if (treeNumber === 4) {
-      clearInterval(moveTree4Down)
-      moveTree4Down = setInterval(move4Down, 20)
+    if (asteroidNumber === 1) {
+      clearInterval(moveAsteroid1Down)
+      moveAsteroid1Down = setInterval(move1Down, 20)
+    } else if (asteroidNumber === 2) {
+      clearInterval(moveAsteroid2Down)
+      moveAsteroid2Down = setInterval(move2Down, 20)
+    } else if (asteroidNumber === 3) {
+      clearInterval(moveAsteroid3Down)
+      moveAsteroid3Down = setInterval(move3Down, 20)
+    } else if (asteroidNumber === 4) {
+      clearInterval(moveAsteroid4Down)
+      moveAsteroid4Down = setInterval(move4Down, 20)
     }
   }
   function levelFour () {
-    if (treeNumber === 1) {
-      clearInterval(moveTree1Down)
-      moveTree1Down = setInterval(move1Down, 15)
-    } else if (treeNumber === 2) {
-      clearInterval(moveTree2Down)
-      moveTree2Down = setInterval(move2Down, 15)
-    } else if (treeNumber === 3) {
-      clearInterval(moveTree3Down)
-      moveTree3Down = setInterval(move3Down, 15)
-    } else if (treeNumber === 4) {
-      clearInterval(moveTree4Down)
-      moveTree4Down = setInterval(move4Down, 15)
+    if (asteroidNumber === 1) {
+      clearInterval(moveAsteroid1Down)
+      moveAsteroid1Down = setInterval(move1Down, 15)
+    } else if (asteroidNumber === 2) {
+      clearInterval(moveAsteroid2Down)
+      moveAsteroid2Down = setInterval(move2Down, 15)
+    } else if (asteroidNumber === 3) {
+      clearInterval(moveAsteroid3Down)
+      moveAsteroid3Down = setInterval(move3Down, 15)
+    } else if (asteroidNumber === 4) {
+      clearInterval(moveAsteroid4Down)
+      moveAsteroid4Down = setInterval(move4Down, 15)
     }
   }
   function levelFive () {
-    if (treeNumber === 1) {
-      clearInterval(moveTree1Down)
-      moveTree1Down = setInterval(move1Down, 10)
-    } else if (treeNumber === 2) {
-      clearInterval(moveTree2Down)
-      moveTree2Down = setInterval(move2Down, 10)
-    } else if (treeNumber === 3) {
-      clearInterval(moveTree3Down)
-      moveTree3Down = setInterval(move3Down, 10)
-    } else if (treeNumber === 4) {
-      clearInterval(moveTree4Down)
-      moveTree4Down = setInterval(move4Down, 10)
+    if (asteroidNumber === 1) {
+      clearInterval(moveAsteroid1Down)
+      moveAsteroid1Down = setInterval(move1Down, 10)
+    } else if (asteroidNumber === 2) {
+      clearInterval(moveAsteroid2Down)
+      moveAsteroid2Down = setInterval(move2Down, 10)
+    } else if (asteroidNumber === 3) {
+      clearInterval(moveAsteroid3Down)
+      moveAsteroid3Down = setInterval(move3Down, 10)
+    } else if (asteroidNumber === 4) {
+      clearInterval(moveAsteroid4Down)
+      moveAsteroid4Down = setInterval(move4Down, 10)
     }
   }
   function levelInfinite () {
-    if (treeNumber === 1) {
-      clearInterval(moveTree1Down)
-      moveTree1Down = setInterval(move1Down, 6)
-    } else if (treeNumber === 2) {
-      clearInterval(moveTree2Down)
-      moveTree2Down = setInterval(move2Down, 6)
-    } else if (treeNumber === 3) {
-      clearInterval(moveTree3Down)
-      moveTree3Down = setInterval(move3Down, 6)
-    } else if (treeNumber === 4) {
-      clearInterval(moveTree4Down)
-      moveTree4Down = setInterval(move4Down, 6)
+    if (asteroidNumber === 1) {
+      clearInterval(moveAsteroid1Down)
+      moveAsteroid1Down = setInterval(move1Down, 6)
+    } else if (asteroidNumber === 2) {
+      clearInterval(moveAsteroid2Down)
+      moveAsteroid2Down = setInterval(move2Down, 6)
+    } else if (asteroidNumber === 3) {
+      clearInterval(moveAsteroid3Down)
+      moveAsteroid3Down = setInterval(move3Down, 6)
+    } else if (asteroidNumber === 4) {
+      clearInterval(moveAsteroid4Down)
+      moveAsteroid4Down = setInterval(move4Down, 6)
     }
   }
   function move1Down () {
-    if (firstTreeTop < 270) {
-      firstTreeTop += 2
-      firstTree.style.top = firstTreeTop + 'px'
+    if (firstAsteroidTop < 270) {
+      firstAsteroidTop += 2
+      firstAsteroid.style.top = firstAsteroidTop + 'px'
     } else {
-      firstTree.style.visibility = 'hidden'
-      firstTreeTop = 0
-      firstTree.style.top = '0px'
-      clearInterval(moveTree1Down)
+      firstAsteroid.style.visibility = 'hidden'
+      firstAsteroidTop = 0
+      firstAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid1Down)
     }
   }
   function move2Down () {
-    if (secondTreeTop < 270) {
-      secondTreeTop += 2
-      secondTree.style.top = secondTreeTop + 'px'
+    if (secondAsteroidTop < 270) {
+      secondAsteroidTop += 2
+      secondAsteroid.style.top = secondAsteroidTop + 'px'
     } else {
-      secondTree.style.visibility = 'hidden'
-      secondTreeTop = 0
-      secondTree.style.top = '0px'
-      clearInterval(moveTree2Down)
+      secondAsteroid.style.visibility = 'hidden'
+      secondAsteroidTop = 0
+      secondAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid2Down)
     }
   }
   function move3Down () {
-    if (thirdTreeTop < 270) {
-      thirdTreeTop += 2
-      thirdTree.style.top = thirdTreeTop + 'px'
+    if (thirdAsteroidTop < 270) {
+      thirdAsteroidTop += 2
+      thirdAsteroid.style.top = thirdAsteroidTop + 'px'
     } else {
-      thirdTree.style.visibility = 'hidden'
-      thirdTreeTop = 0
-      thirdTree.style.top = '0px'
-      clearInterval(moveTree3Down)
+      thirdAsteroid.style.visibility = 'hidden'
+      thirdAsteroidTop = 0
+      thirdAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid3Down)
     }
   }
   function move4Down () {
-    if (fourthTreeTop < 270) {
-      fourthTreeTop += 2
-      fourthTree.style.top = fourthTreeTop + 'px'
+    if (fourthAsteroidTop < 270) {
+      fourthAsteroidTop += 2
+      fourthAsteroid.style.top = fourthAsteroidTop + 'px'
     } else {
-      fourthTree.style.visibility = 'hidden'
-      fourthTreeTop = 0
-      fourthTree.style.top = '0px'
-      clearInterval(moveTree4Down)
+      fourthAsteroid.style.visibility = 'hidden'
+      fourthAsteroidTop = 0
+      fourthAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid4Down)
     }
   }
 
@@ -306,7 +306,7 @@ function init () {
     audio.autoplay = true
     tony.appendChild(audio)
     audio.volume = 0.3
-    if ((tonyNumber === 1 && firstTree.style.visibility === 'visible') || (tonyNumber === 2 && secondTree.style.visibility === 'visible') || (tonyNumber === 3 && thirdTree.style.visibility === 'visible') || (tonyNumber === 4 && fourthTree.style.visibility === 'visible')) {
+    if ((tonyNumber === 1 && firstAsteroid.style.visibility === 'visible') || (tonyNumber === 2 && secondAsteroid.style.visibility === 'visible') || (tonyNumber === 3 && thirdAsteroid.style.visibility === 'visible') || (tonyNumber === 4 && fourthAsteroid.style.visibility === 'visible')) {
       scorecounter += 1
       if (scorecounter < 10) {
         timeLeft += 300
@@ -354,32 +354,32 @@ function init () {
     fourthFire.style.opacity = '0'
   }
   function refreshOne () {
-    firstTree.style.visibility = 'hidden'
-    firstTreeTop = 0
-    firstTree.style.top = '0px'
-    clearInterval(moveTree1Down)
-    treeNumber = 0
+    firstAsteroid.style.visibility = 'hidden'
+    firstAsteroidTop = 0
+    firstAsteroid.style.top = '0px'
+    clearInterval(moveAsteroid1Down)
+    asteroidNumber = 0
   }
   function refreshTwo () {
-    secondTree.style.visibility = 'hidden'
-    secondTreeTop = 0
-    secondTree.style.top = '0px'
-    clearInterval(moveTree2Down)
-    treeNumber = 0
+    secondAsteroid.style.visibility = 'hidden'
+    secondAsteroidTop = 0
+    secondAsteroid.style.top = '0px'
+    clearInterval(moveAsteroid2Down)
+    asteroidNumber = 0
   }
   function refreshThree () {
-    thirdTree.style.visibility = 'hidden'
-    thirdTreeTop = 0
-    thirdTree.style.top = '0px'
-    clearInterval(moveTree3Down)
-    treeNumber = 0
+    thirdAsteroid.style.visibility = 'hidden'
+    thirdAsteroidTop = 0
+    thirdAsteroid.style.top = '0px'
+    clearInterval(moveAsteroid3Down)
+    asteroidNumber = 0
   }
   function refreshFour () {
-    fourthTree.style.visibility = 'hidden'
-    fourthTreeTop = 0
-    fourthTree.style.top = '0px'
-    clearInterval(moveTree4Down)
-    treeNumber = 0
+    fourthAsteroid.style.visibility = 'hidden'
+    fourthAsteroidTop = 0
+    fourthAsteroid.style.top = '0px'
+    clearInterval(moveAsteroid4Down)
+    asteroidNumber = 0
   }
 
   function startTimer () {
@@ -390,36 +390,36 @@ function init () {
       if (timeLeft < 0) {
         clearTimeout(timerId)
         gameOver = true
-        clearInterval(genTree)
-        clearInterval(moveTree1Down)
-        clearInterval(moveTree2Down)
-        clearInterval(moveTree3Down)
-        clearInterval(moveTree4Down)
+        clearInterval(genAsteroid)
+        clearInterval(moveAsteroid1Down)
+        clearInterval(moveAsteroid2Down)
+        clearInterval(moveAsteroid3Down)
+        clearInterval(moveAsteroid4Down)
         isGameOver()
       } else {
         elem.innerHTML = timeLeft
         timeLeft--
       }
     }
-    genTree = setInterval(generateAsteroids, 3000)
+    genAsteroid = setInterval(generateAsteroids, 3000)
   }
   function displayScore () {
     currentScore.innerHTML = scorecounter
     if (scorecounter === 3) {
-      clearInterval(genTree)
-      genTree = setInterval(generateAsteroids, 2200)
+      clearInterval(genAsteroid)
+      genAsteroid = setInterval(generateAsteroids, 2200)
     } if (scorecounter === 6) {
-      clearInterval(genTree)
-      genTree = setInterval(generateAsteroids, 1500)
+      clearInterval(genAsteroid)
+      genAsteroid = setInterval(generateAsteroids, 1500)
     } if (scorecounter === 9) {
-      clearInterval(genTree)
-      genTree = setInterval(generateAsteroids, 1125)
+      clearInterval(genAsteroid)
+      genAsteroid = setInterval(generateAsteroids, 1125)
     } if (scorecounter === 12) {
-      clearInterval(genTree)
-      genTree = setInterval(generateAsteroids, 750)
+      clearInterval(genAsteroid)
+      genAsteroid = setInterval(generateAsteroids, 750)
     } if (scorecounter === 15) {
-      clearInterval(genTree)
-      genTree = setInterval(generateAsteroids, 450)
+      clearInterval(genAsteroid)
+      genAsteroid = setInterval(generateAsteroids, 450)
     }
   }
   function isGameOver () {
@@ -442,15 +442,15 @@ function init () {
   function restartGame () {
     tony.style.left = '295px'
     tonyNumber = -1
-    treeNumber = 0
-    firstTree.style.top = '0px'
-    firstTreeTop = 0
-    secondTree.style.top = '0px'
-    secondTreeTop = 0
-    thirdTree.style.top = '0px'
-    thirdTreeTop = 0
-    fourthTree.style.top = '0px'
-    fourthTreeTop = 0
+    asteroidNumber = 0
+    firstAsteroid.style.top = '0px'
+    firstAsteroidTop = 0
+    secondAsteroid.style.top = '0px'
+    secondAsteroidTop = 0
+    thirdAsteroid.style.top = '0px'
+    thirdAsteroidTop = 0
+    fourthAsteroid.style.top = '0px'
+    fourthAsteroidTop = 0
     scorecounter = 0
     currentScore.innerHTML = scorecounter
     tony.style.backgroundImage = "url('images/Iron-Man.png')"
