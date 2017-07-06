@@ -53,6 +53,12 @@ Functions
 **checkForMatch ()**
 * Checks if clicked ingredient matches the current ingredient needed
 
+**addIngredient ()**
+* On button click, extract ingredient id from click
+* checkForMatch ()
+* If matched, update orderList text with strikethrough
+* If matched, add ingredient to playArea
+
 **serve ()**
 * Clears the playArea of ingredients
 * Clears the orderList of text
