@@ -1,0 +1,11 @@
+# Node Modules #
+############
+/node_modules/
+
+# Specific Folders #
+######################
+/untracked/
+
+# OS generated files #
+######################
+.DS_Store

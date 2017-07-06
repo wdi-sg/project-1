@@ -9,7 +9,6 @@ function init () {
   var player = 1
   var winner = ''
 
-
   var status = 'Not Started'
   var statusLine = document.body.querySelector('#status')
   statusLine.textContent = 'Game Status: ' + status
