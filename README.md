@@ -17,8 +17,8 @@ URL:
 
 ### Gameboard
 
-First Draft:
-* <img src="assets/images/gameboard-first-draft.png" height="400">
+First Draft: <br />
+<img src="assets/images/gameboard-first-draft.png" height="400">
 
 ---
 
