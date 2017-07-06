@@ -3,23 +3,23 @@ var S = {
   'topdown': {
     'topright': {
       'leftright': {
-        'lefttop': {'end' : 'win'},
+        'lefttop': {'end': 'win'},
         'leftright': {
-          'lefttop': {'end' : 'win'}
+          'lefttop': {'end': 'win'}
         }
       },
-      'lefttop': {'end' : 'win'}
+      'lefttop': {'end': 'win'}
     }
   },
   'lefttop': 'end',
   'topright': {
     'leftright': {
-      'lefttop': {'end' : 'win'},
+      'lefttop': {'end': 'win'},
       'leftright': {
-        'lefttop': {'end' : 'win'}
+        'lefttop': {'end': 'win'}
       }
     },
-    'lefttop': {'end' : 'win'}
+    'lefttop': {'end': 'win'}
   }
 }
 // logic file
@@ -36,16 +36,17 @@ function logic () {
       targetDiv = event.target
       var tempValue = targetDiv.classList[0]
       var tempID = targetDiv.id
-      if (Boolean(tempValue)===true){
-        valueArr.push(tempValue)}
-      if (Boolean(tempValue)===true){indexArr.push(tempID)}
+      if (Boolean(tempValue) === true) {
+        valueArr.push(tempValue)
+      }
+      if (Boolean(tempValue) === true) { indexArr.push(tempID) }
       if (valueArr.length == 2) {
-        if (valueArr[valueArr.length - 1] !== 'space') {
+        if (valueArr[valueArr.length - 1] !== 'space' || valueArr[0] == 'start') {
           valueArr = []
           indexArr = []
         }
-        if (valueArr[valueArr.length - 1] == 'space') {
-          //checkPipesConnect()
+        if (valueArr[valueArr.length - 1] == 'space' && valueArr[0]!== 'start') {
+          setTimeout(function(){checkTileSeqFromS('X0Y0')},1000)
           moveTile()
         }
       }
@@ -68,165 +69,113 @@ function logic () {
     // populates unrecorded moves around x
     var count = 0
     var state = true
-    function popUnrecordedMoves (x) {
+    function checkTileSeqFromS (x) {
       var match = ''
       var xRightVal = ''
       var xLeftVal = ''
       var xTopVal = ''
       var xDownVal = ''
-      if (state && count <2) {
-        var tempX = parseInt(x.substr(1,2))
-        var tempY = parseInt(x.substr(3,4))
-            if (tempY !== 3) { xRightVal = 'R' + start[tempX][tempY + 1] }
-            if (tempY !== 0) { xLeftVal = 'L' + start[tempX][tempY - 1] }
-            if (tempX !== 0) { xTopVal = 'T' + start[tempX - 1][tempY] }
-            if (tempX !== 3) { xDownVal = 'D' + start[tempX + 1][tempY] }
-            //index
-            if (tempY !== 3) {xRightInd = 'X' + tempX + 'Y' + parseInt(tempY + 1) }
-            if (tempY !== 0) {xLeftInd = 'X' + tempX + 'Y' + + parseInt(tempY - 1) }
-            if (tempX !== 0) {xTopInd = 'X' + parseInt(tempX - 1) + 'Y' + tempY }
-            if (tempX !== 3) {xDownInd = 'X' + parseInt(tempX + 1) + 'Y' + tempY }
+      if (state && count < 2) {
+        var tempX = parseInt(x.substr(1, 2))
+        var tempY = parseInt(x.substr(3, 4))
+        if (tempY !== 3) { xRightVal = 'R' + start[tempX][tempY + 1] }
+        if (tempY !== 0) { xLeftVal = 'L' + start[tempX][tempY - 1] }
+        if (tempX !== 0) { xTopVal = 'T' + start[tempX - 1][tempY] }
+        if (tempX !== 3) { xDownVal = 'D' + start[tempX + 1][tempY] }
+            // index
+        if (tempY !== 3) { xRightInd = 'X' + tempX + 'Y' + parseInt(tempY + 1) }
+        if (tempY !== 0) { xLeftInd = 'X' + tempX + 'Y' + +parseInt(tempY - 1) }
+        if (tempX !== 0) { xTopInd = 'X' + parseInt(tempX - 1) + 'Y' + tempY }
+        if (tempX !== 3) { xDownInd = 'X' + parseInt(tempX + 1) + 'Y' + tempY }
 
-      console.log('x is ' + tempX + tempY);
-      console.log('right ' + xRightVal)
-      console.log('left ' + xLeftVal)
-      console.log('top ' + xTopVal)
-      console.log('down ' + xDownVal)
+        console.log('x is ' + tempX + tempY)
+        console.log('right ' + xRightVal)
+        console.log('left ' + xLeftVal)
+        console.log('top ' + xTopVal)
+        console.log('down ' + xDownVal)
 
-    if (xRightVal) {chkTile(xRightVal)}
-    if (xLeftVal) {chkTile(xLeftVal)}
-    if (xDownVal) {chkTile(xDownVal)}
-    if (xTopVal) {chkTile(xTopVal)}
-    //console.log('checkTileRan' + x + moveArr);
-    //console.log('checkTileRan' + x + tempArr);
-    state = false
-    console.log(match);
-    var directionMatch = match.substr(0,1)
-    //match = 'pipe match'
-    if (match.substr(-10) === 'pipe match') {
-      state = true
-      direction(directionMatch)
+        if (xRightVal) { chkTile(xRightVal) }
+        if (xLeftVal) { chkTile(xLeftVal) }
+        if (xDownVal) { chkTile(xDownVal) }
+        if (xTopVal) { chkTile(xTopVal) }
+    // console.log('checkTileRan' + x + moveArr);
+    // console.log('checkTileRan' + x + tempArr);
+        state = false
+        console.log(match)
+        var directionMatch = match.substr(0, 1)
+    // match = 'pipe match'
+        if (match.substr(-10) === 'pipe match') {
+          state = true
+          direction(directionMatch)
+        }
+        console.log(count)
+        count++
+    // recursively check for next
+        function direction (d) {
+          if (d == 'D') {
+            return checkTileSeqFromS(xDownInd)
+          }
+          if (d == 'R') {
+            return checkTileSeqFromS(xRightInd)
+          }
+          if (d == 'T') {
+            return checkTileSeqFromS(xTopInd)
+          }
+          if (d == 'L') {
+            return checkTileSeqFromS(xLeftInd)
+          }
+        }
+    // checkTileSeqFromS(xDownInd)
+    // checkTileSeqFromS(xRightInd)
       }
-    console.log(count);
-    count++
-      function direction (d) {
-        if (d=='D') {
-          return popUnrecordedMoves(xDownInd)
-        }
-        if (d=='R') {
-          return popUnrecordedMoves(xRightInd)
-        }
-        if (d=='T') {
-          return popUnrecordedMoves(xTopInd)
-        }
-        if (d=='L') {
-          return popUnrecordedMoves(xLeftInd)
-        }
-      }
-    // popUnrecordedMoves(xDownInd)
-    // popUnrecordedMoves(xRightInd)
-  }
-
-      //recursively check next
-      // if (chkTile(xDown)) {console.log('loop ran?')
-      //   return popUnrecordedMoves(xDown)}
-      //
-      // if (chkTile(xRight)==true) {
-      //   console.log('loopshouldrun')
-      //   popUnrecordedMoves(xRight)}
-      // if (chkTile(xLeft)==true) {
-      //   console.log('loopshouldrun')
-      //   popUnrecordedMoves(xLeft)}
-      // if (chkTile(xTop)==true) {
-      //   console.log('loopshouldrun')
-      // popUnrecordedMoves(xTop)}
-      // if (chkTile(xDown)==true) {console.log('loopshouldrun');popUnrecordedMoves(xDown)}
 
       function chkTile (dt) {
         var t = dt.substr(1)
-        console.log(t=='');
-        if(!t==''){tempArr.push(t)}
-        console.log('chktileran' + tempArr);
+        if (!t == '') { tempArr.push(t) }
+        console.log('tempArr' + tempArr)
 
-        // if (tempArr.length == 1) {
-        //   var test = S[tempArr[0]]
-        // }
-        // if (tempArr.length == 2) {
-        //   var test = S[tempArr[0]][tempArr[1]]
-        // }
-        // if (tempArr.length == 3) {
-        //   var test = S[tempArr[0]][tempArr[1]][tempArr[2]]
-        // }
-        // if (tempArr.length == 4) {
-        //   var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]]
-        // }
-        // if (tempArr.length == 5) {
-        //   var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]]
-        // }
-        // if (tempArr.length == 6) {
-        //   var test = S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]][tempArr[5]]
-        // }
-        // if (test == 'win') { alert('game won') }
-        // if (test) {
-        //   moveArr.push(t)
-        //   tempArr.push(t)
-        //   match = dt + 'pipe match'
-        // }
         if (tempArr.length == 1) {
           if (S[tempArr[0]]) {
-            console.log('step1');
             moveArr.push(t)
-            console.log(t);
-            if (Boolean(tempArr)){tempArr.push(t)}
+            if (tempArr) { tempArr.push(t) }
             match = dt + 'pipe match'
           }
-
-        }
-        else if (tempArr.length == 2) {
-          console.log('step2');
+        } else if (tempArr.length == 2) {
           if (S[tempArr[0]][tempArr[1]]) {
             moveArr.push(t)
-            console.log(t);
-            if (Boolean(tempArr)){tempArr.push(t)}
+            if (tempArr) { tempArr.push(t) }
             match = dt + 'pipe match'
           }
-        }
-        else if (tempArr.length == 3) {
-          console.log(tempArr.length);
-          console.log(tempArr[2]);
+        } else if (tempArr.length == 3) {
           if (S[tempArr[0]][tempArr[1]][tempArr[2]]) {
             moveArr.push(t)
-            if (Boolean(tempArr)){tempArr.push(t)}
+            if (tempArr) { tempArr.push(t) }
             match = dt + 'pipe match'
           }
-        }
-        else if (tempArr.length == 4) {
-          console.log(S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]]);
+        } else if (tempArr.length == 4) {
           if (S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]]) {
             moveArr.push(t)
             tempArr.push(t)
             match = dt + 'pipe match'
           }
-        }
-        else if (tempArr.length == 5) {
+        } else if (tempArr.length == 5) {
           if (S[tempArr[0]][tempArr[1]][tempArr[2]][tempArr[3]][tempArr[4]]) {
             moveArr.push(t)
             tempArr.push(t)
             match = dt + 'pipe match'
           }
         }
-        if (tempArr.includes('end')) {alert ('won')}
-        else {
+        if (tempArr.includes('end')) { alert('won') } else {
           tempArr.pop()
         }
-      } //end checkTile
-
-      // needs to recursively return popUnrecordedMoves(based on next coz)
-      console.log(moveArr);
+      } // end checkTile
+      console.log(moveArr)
       moveArr = []
       tempArr = []
-    } //end popUnrecordedMoves
+    } // end checkTileSeqFromS
 
+    return {checkTileSeqFromS: checkTileSeqFromS}
+  }   // ends checkMoveIntoSpace
 
     // function checkPipesConnect () {
     //   var gameState = 'won'
@@ -265,8 +214,6 @@ function logic () {
     //     console.log('pipes not aligned')
     //   }
     // } //ends //checkPipesConnect
-    return {popUnrecordedMoves: popUnrecordedMoves}
-  } //ends checkMoveIntoSpace
 
   function randomize () {
     // Recursive function to create random array
@@ -299,9 +246,9 @@ function logic () {
         }
         l++
       }
-      start[0][0]='start'
-      start[1][3]='end'
-      console.log(start)
+      start[0][0] = 'start'
+      start[1][3] = 'end'
+      // console.log(start)
     }
     return genRandIndex()
   } // end randomize

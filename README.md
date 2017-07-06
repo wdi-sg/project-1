@@ -48,9 +48,14 @@ var S = {
 - randomize function creates 2d arrays with values from 0 to 3, then assigns pieces to their index based on combination of the arrays
 
 3. algorithm to check win
-- checkPipesConnect uses object S (above) to find out if moves are valid and stores it
-- if object returns 'end', player has won
-- function popUnrecordedMoves (populate unrecorded moves) is meant to check if there are pipes already connected without player making explicit moves (e.g. upon randomize, starting pipe is already linked to topdown), and add that to the moves made
+- function checkTileSeqFromS checks whether the tiles are connected correctly from start tile (fixed at 00) till the end and alerts win.
+  1. chkTile function references the object S (above) to find out if moves are valid. The main function checkTileSeqFromS will call chkTile on its left, right, top down tile.
+  2. If one of the 4 tiles matches, it needs to run recurisvely to check if the second connected tile has valid connections to its 4 sides and so on until it reaches the end.
+  3. The function needs to know if the connecting tile is on the left, top, botton or right of this current tile and go in that direction. Function direction does that and calls back checkTileSeqFromS and passes the direction as an argument.
+  4. Function loop breaks when object S returns undefined and is triggered at every tile moved.
+  5. Function also checks if object returns 'end' meaning player has won.
+
+
 
 # Technologies used
 - HTML, CSS, JS

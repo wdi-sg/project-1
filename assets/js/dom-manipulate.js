@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', init)
 
 // global var, accessible by both logic and dom?
-//will be randomized when start hit start button
+// will be randomized when start hit start button
 var start2 = [
   ['start', 'block', 'block', 'block'],
   ['topdown', 'space', 'leftright', 'end'],
@@ -9,7 +9,7 @@ var start2 = [
   ['space', 'leftright', 'space', 'lefttop']
 ]
 
-//to play with to check recursive function
+// to play with to check recursive function
 var start = [
   ['start', 'block', 'block', 'block'],
   ['space', 'topdown', 'leftright', 'end'],
@@ -17,7 +17,7 @@ var start = [
   ['space', 'leftright', 'space', 'lefttop']
 ]
 
-//win is to know what starting pieces to take, and if needed, hardcoded winning combi
+// win is to know what starting pieces to take, and if needed, hardcoded winning combi
 var win = [
   ['space', 'block', 'block', 'block'],
   ['block', 'topdown', 'topright', 'block'],
@@ -25,12 +25,10 @@ var win = [
   ['space', 'space', 'space', 'space']
 ]
 
-//play is updated to allow updateGrid to work
+// play is updated to allow updateGrid to work
 var play = start
 
 var moveNum = 'Game not started'
-
-
 
 function createGrid () {
   var container = document.querySelector('#container')
@@ -73,15 +71,14 @@ function init () {
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
   document.getElementById('startBtn').addEventListener('click', logicFile.randomize)
-  //document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('X0Y0') })
+  // document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0') })
   document.getElementById('startBtn').addEventListener('click', updateGrid)
 
-  document.getElementById('testBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().popUnrecordedMoves('X0Y0')
-})
+  // document.getElementById('testBtn').addEventListener('click', function () {
+  //   logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0')
+  // })
 
   //
-
-
 
     // Update tiles
   function updateGrid () {
@@ -129,13 +126,14 @@ function init () {
 
     function showTimer () {
       if (seconds > -3) {
-        seconds--}
+        seconds--
+      }
       if (seconds > -1) {
         document.getElementById('timer').textContent = seconds + ' seconds'
       }
       if (seconds == -1) {
-        //logicFile.randomize()
-        //updateGrid()
+        // logicFile.randomize()
+        // updateGrid()
       }
     }
   }
