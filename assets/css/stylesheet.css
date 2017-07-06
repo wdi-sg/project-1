@@ -1,0 +1,199 @@
+.wall{
+  position: absolute;
+  background-color: rgb(0, 212, 233);
+  z-index: 4;
+  top: -10%;
+  background: url('../../images/tron_wall.jpg');
+  background-size: contain;
+  border-radius: 20px;
+}
+
+.start{
+  position: absolute;
+  width: 70%;
+  bottom: 20%;
+  height: 50%;
+  background-color: black;
+  z-index: 8;
+  opacity: 1;
+  transition: all 2s;
+  font-family: monospace;
+  font-size: 3.3vw;
+  color: white;
+}
+
+.startLeave{
+  opacity: 0;
+  visibility: hidden;
+}
+
+.highScores{
+  position: absolute;
+  visibility: hidden;
+  display: inline-block;
+  background-color: white;
+  left: 70%;
+  width: 28%;
+  top: 10%;
+  height: 80%;
+  z-index: 5;
+}
+
+.ground{
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  z-index: 3;
+}
+
+span{
+  position: relative;
+  text-decoration: underline;
+  font-family: monospace;
+  left: 20%;
+  font-size: 2vw;
+  margin: 0;
+}
+
+
+#searchField{
+  position: absolute;
+  top: 60%;
+  width: 60%;
+  height: 10%;
+}
+#submitButton{
+  position: absolute;
+  top: 80%;
+  width: 20%;
+  height: 15%;
+}
+
+ul{
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+  list-style:none;
+}
+
+li{
+  margin: .5vw;
+  font-size: 1vw;
+}
+
+.gameOver{
+  position: relative;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  width: 35%;
+  height: 15%;
+  top: 30%;
+  background-color: white;
+  z-index: 3;
+  text-align: center;
+  font-family: monospace;
+}
+
+.score{
+  position: absolute;
+  display: inline-block;
+  top: 5%;
+  left: 5%;
+  width: 15%;
+  height: 10%;
+  z-index: 3;
+  color: white;
+  font-family: monospace;
+  font-size: 2vw;
+}
+
+p{
+  text-align: center;
+  position: relative;
+  top: -20%;
+  width: 80%;
+  height: 100%;
+  font-size: 1.8vw;
+}
+
+body{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.sideDivRight{
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  z-index: 4;
+}
+
+.sideDivLeft{
+  display: inline-block;
+  position: absolute;
+  background-color: white;
+  z-index: 4;
+}
+
+.monitor{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 95%;
+  height: 90%;
+}
+
+.sky{
+  position: absolute;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+.playAgain{
+  position: absolute;
+  visibility: hidden;
+  top: 120%;
+  width: 30%;
+  height: 20%;
+  font-family: monospace;
+  color: black;
+  border-radius: 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+#tron{
+  position: relative;
+  top: -15%;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ship{
+  position: absolute;
+  bottom: 40px;
+  left: 45%;
+  height: 8%;
+  width: 12%;
+  z-index: 2;
+  transition: .6s;
+
+}
+
+#spaceshipleft{
+  transform: rotate(-30deg);
+}
+
+#spaceshipright{
+  transform: rotate(30deg);
+}
