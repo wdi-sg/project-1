@@ -18,14 +18,27 @@ function init () {
   var win = document.querySelector('#win')
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
+
+  var pacmanStartAudio = document.createElement('audio')
+  pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
+  var pacmanChompAudio = document.createElement('audio')
+  pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
+  var pacmanDeathAudio = document.createElement('audio')
+  pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
+  var pacmanWinAudio = document.createElement('audio')
+  pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
+
+  pacmanChompAudio.playbackRate = 2
+
   var intervalTimer = function () {
     loopTimer = setInterval(loop, 50)
+    // pacmanGhostAudio.play()
     interval.style.display = 'none'
   }
 
   var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
   var pacmanSpeed = 8
-  var ghostSpeed = 8
+  var ghostSpeed = 9
   var walls = []
   var dots = []
   var lives = 3
@@ -56,7 +69,7 @@ function init () {
   lose.style.display = 'none'
 
   blueGhost.direction = 'left'
-  orangeGhost.direction = 'right'
+  orangeGhost.direction = 'left'
   pinkGhost.direction = 'up'
   redGhost.direction = 'down'
 
@@ -258,6 +271,8 @@ function init () {
     }
     // check for collision between pacman and ghosts
     if (hitGhost(pacman)) {
+      pacmanDeathAudio.play()
+      clearInterval(loopTimer)
       gameOver('lose')
     }
   }
@@ -327,6 +342,7 @@ function init () {
     for (var i = 0; i < dots.length; i++) {
       if (collision(dots[i], pacman)) {
         if (!scoretracker.includes(dots[i])) {
+          pacmanChompAudio.play()
           dots[i].style.display = 'none'
           scoretracker.push(dots[i])
           scores.textContent = scoretracker.length + '/92'
@@ -344,6 +360,7 @@ function init () {
       clearInterval(loopTimer)
       win.style.display = ''
       startButton.style.display = ''
+        pacmanWinAudio.play()
     } else if (result === 'lose') {
       if (lives === 1) {
         clearInterval(loopTimer)
@@ -354,30 +371,38 @@ function init () {
         document.querySelector('#life' + lives).style.display = 'none'
         lives--
         clearInterval(loopTimer)
-        interval.style.display = ''
-        interval.textContent = 'GET READY!'
-        interval.style.background = 'rgb(134, 231, 196)'
-        pacman.style.top = '440px'
-        pacman.style.left = '280px'
-        blueGhost.style.top = '40px'
-        blueGhost.style.left = '40px'
-        orangeGhost.style.top = '40px'
-        orangeGhost.style.left = '520px'
-        pinkGhost.style.top = '440px'
-        pinkGhost.style.left = '40px'
-        redGhost.style.top = '440px'
-        redGhost.style.left = '520px'
-        upKeyDown = false
-        downKeyDown = false
-        leftKeyDown = false
-        rightKeyDown = false
-        setTimeout(intervalTimer, 1200)
+        setTimeout(function () {
+          pause()
+          interval.textContent = 'GET READY!'
+          interval.style.background = 'rgb(134, 231, 196)'
+          pacman.style.top = '440px'
+          pacman.style.left = '280px'
+          blueGhost.style.top = '40px'
+          blueGhost.style.left = '40px'
+          orangeGhost.style.top = '40px'
+          orangeGhost.style.left = '520px'
+          pinkGhost.style.top = '440px'
+          pinkGhost.style.left = '40px'
+          redGhost.style.top = '440px'
+          redGhost.style.left = '520px'
+        }, 1550)
       }
     }
   }
 
+  var pause = function () {
+    interval.style.display = ''
+
+    upKeyDown = false
+    downKeyDown = false
+    leftKeyDown = false
+    rightKeyDown = false
+    setTimeout(intervalTimer, 900)
+  }
+
   // start new game
   function startGame () {
+    pacmanStartAudio.play()
     interval.style.display = ''
     interval.textContent = 'READY?'
     interval.style.background = 'rgb(153, 222, 238)'
@@ -394,15 +419,6 @@ function init () {
     for (var i = 0; i < dots.length; i++) {
       dots[i].style.display = ''
     }
-
-    scoretracker = []
-    lives = 3
-
-    upKeyDown = false
-    downKeyDown = false
-    leftKeyDown = false
-    rightKeyDown = false
-
     pacman.style.top = '440px'
     pacman.style.left = '280px'
     blueGhost.style.top = '40px'
@@ -413,8 +429,9 @@ function init () {
     pinkGhost.style.left = '40px'
     redGhost.style.top = '440px'
     redGhost.style.left = '520px'
-
-    setTimeout(intervalTimer, 1200)
+    scoretracker = []
+    lives = 3
+    setTimeout(pause, 3350)
   }
 
   // game loop

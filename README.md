@@ -1,6 +1,6 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Simple Pac-Man
 
-This game is inspired by the iconic video game, PAC-MAN.
+**This game is inspired by the iconic video game, PAC-MAN.**
 
 ## How to play?
 
@@ -61,7 +61,7 @@ This game is inspired by the iconic video game, PAC-MAN.
 * Reset all variables
 
 
-## To Be Resolved
+## To Be Implemented
 
 * Ghost AI
 
@@ -76,4 +76,5 @@ This game is inspired by the iconic video game, PAC-MAN.
 ## Acknowledgements
 
 * [MDN Game Development - Collision Detection](https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection)
+http://www.classicgaming.cc/classics/pac-man/sounds
 * [A* Search Algorithm](https://en.wikipedia.org/wiki/A%2a_search_algorithm)
