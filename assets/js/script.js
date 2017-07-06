@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', init)
 function init () {
   var alLogic = alphabetLogic()
   var interval = null
+  var interval2 = null
   var randomWord = document.querySelector('.rand')
   var start = document.querySelector('#start')
   var resetto = document.querySelector('#reset')
@@ -50,20 +51,18 @@ function init () {
           scoreKeep.textContent = score
           document.querySelector('.combo').textContent= 'COMBO!!!!'
           document.querySelector('.combo').style.color = 'red'
-
+          clearInterval(interval2)
+          interval2 = setInterval(changeColor,500)
         }
         else {
+          clearInterval(interval2)
           pauseAudio(musicCombo)
           playAudio(music)
           scoreAdd(testWord)
           scoreKeep.textContent = score
+          document.body.style.backgroundColor= 'white'
+          document.querySelector('.combo').textContent= ''
         }
-
-        // pauseAudio(musicCombo)
-        // playAudio(music)
-        // scoreAdd(testWord)
-        // combo(arrTime)
-        // noCombo(arrTime)
 
       } else {
         input.value = ''
@@ -72,6 +71,20 @@ function init () {
       }
     }
   }
+
+  function changeColor(){
+  document.body.style.backgroundColor = 'rgb(' + randomNo() + ',' + randomNo()+',' + randomNo()+')'
+}
+
+function colorWhite(){
+  document.body.style.backgroundColor = 'white'
+}
+
+  function randomNo(){
+    return Math.floor(Math.random()*255)
+  }
+
+  console.log(randomNo())
 
   function scoreAdd (testWord) {
     var wordLength = testWord.length
@@ -95,6 +108,13 @@ function init () {
     start.style.display = 'none'
   }
 
+  function displayStr2 () {
+    // interval = setInterval(timerz, 1000)
+    randomStr = alLogic.randStr()
+    randomWord.textContent = randomStr.join(' ').toUpperCase()
+    start.style.display = 'none'
+  }
+
   function playAudio(sound) {
     sound.play();
 }
@@ -108,8 +128,8 @@ function pauseAudio(sound) {
     if(counter>0){
     storedArr = []
     randomStr = []
-    clearInterval(interval)
-    displayStr()
+    // clearInterval(interval)
+    displayStr2()
     counter = counter - 1
     document.querySelector('#lives').textContent = counter
   }
@@ -122,35 +142,12 @@ function pauseAudio(sound) {
       document.querySelector('.time').textContent = timer + ' s'
     } else {
       document.querySelector('.combo').textContent = 'GAME OVER!'
-      document.querySelector('.combo').style.color = 'red'
+      document.querySelector('.combo').style.color = 'rgb(220,20,60)'
       randomStr = []
       pauseAudio(music)
       pauseAudio(musicCombo)
-
+      colorWhite()
     }
   }
-
-//   function combo(array){
-//     var n = array.length
-//     if((array[n-1]-array[n-2])< 4 && array[n-2]-array[n-3]< 4){
-//       pauseAudio(music)
-//       playAudio(musicCombo)
-//       scoreComboAdd(testWord)
-//     return true}
-//     scoreAdd(testWord)
-//     return false
-// }
-//
-//
-//
-//   function noCombo(array){
-//     var n = array.length
-//     if((array[n-1]-array[n-2])> 5 && array[n-2]-array[n-3]> 5){
-//       pauseAudio(musicCombo)
-//       playAudio(music)
-//       scoreAdd(testWord)
-//     }
-//   }
-
 
 }
