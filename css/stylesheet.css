@@ -92,13 +92,13 @@ ul {
   flex-direction: column;
   margin-top: 20px;
 }
-.forest {
+.battleground {
   width:100%;
   height: 380px;
   display:flex;
   flex-direction: column;
 }
-.trees-area {
+.asteroids-area {
   width:100%;
   height: 320px;
   position:relative;
@@ -156,11 +156,11 @@ ul {
 .fourthfire {
   left:535px;
 }
-.jack-area {
+.tony-area {
   width:640px;
   height:60px;
 }
-.jack {
+.tony {
   background-image: url(../images/Iron-Man.png);
   width:57px;
   height:57px;

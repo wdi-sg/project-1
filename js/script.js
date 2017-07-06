@@ -4,13 +4,13 @@ function init () {
   var topScoreRecord = document.querySelector('.score')
   var currentScore = document.querySelector('.currentscore')
   var timer = document.querySelector('.countdown')
-  var jack = document.querySelector('.jack')
-  jack.style.left = '295px'
+  var tony = document.querySelector('.tony')
+  tony.style.left = '295px'
   var startButton = document.querySelector('.startbutton')
   startButton.addEventListener('click', startGame)
   var retryButton = document.querySelector('.retrybutton')
   retryButton.addEventListener('click', restartGame)
-  var jackNumber = -1
+  var tonyNumber = -1
   var treeNumber = 0
   var firstTree = document.querySelector('.firsttree')
   firstTree.style.top = '0px'
@@ -43,23 +43,23 @@ function init () {
   var audio = document.createElement('audio')
   audio.src = 'audio/Ironmantheme.mp3'
   audio.autoplay = true
-  jack.appendChild(audio)
+  tony.appendChild(audio)
   audio.volume=0.4
   audio.loop=true
 
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
       if (event.keyCode === 90) {
-        moveJackOne()
+        moveTonyOne()
       }
       if (event.keyCode === 88) {
-        moveJackTwo()
+        moveTonyTwo()
       }
       if (event.keyCode === 67) {
-        moveJackThree()
+        moveTonyThree()
       }
       if (event.keyCode === 86) {
-        moveJackFour()
+        moveTonyFour()
       }
       if (event.keyCode === 190) {
         chop()
@@ -79,7 +79,7 @@ function init () {
     audio.src = 'audio/start.wav'
     audio.autoplay = true
     audio.volume =0.6
-    jack.appendChild(audio)
+    tony.appendChild(audio)
     startButton.style.visibility = 'hidden'
     retryButton.style.visibility = 'hidden'
     gameOver = false
@@ -94,7 +94,7 @@ function init () {
   function randomFn (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
-  function generateTrees () {
+  function generateAsteroids () {
     var number = randomFn(1, 4)
     if (number !== randomNum) {
       if (number === 1) {
@@ -119,7 +119,7 @@ function init () {
       }
       randomNum = number
     } else {
-      generateTrees()
+      generateAsteroids()
     }
   }
   function checkLevel () {
@@ -272,31 +272,31 @@ function init () {
     var audio = document.createElement('audio')
     audio.src = 'audio/Fly.wav'
     audio.autoplay = true
-    jack.appendChild(audio)
+    tony.appendChild(audio)
     audio.volume = 0.1
   }
-  function moveJackOne () {
-    jack.style.backgroundImage = "url('images/Iron-Man.png')"
-    jack.style.left = '55px'
-    jackNumber = 1
+  function moveTonyOne () {
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
+    tony.style.left = '55px'
+    tonyNumber = 1
     playSound()
   }
-  function moveJackTwo () {
-    jack.style.backgroundImage = "url('images/Iron-Man.png')"
-    jack.style.left = '215px'
-    jackNumber = 2
+  function moveTonyTwo () {
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
+    tony.style.left = '215px'
+    tonyNumber = 2
     playSound()
   }
-  function moveJackThree () {
-    jack.style.backgroundImage = "url('images/Iron-Man.png')"
-    jack.style.left = '375px'
-    jackNumber = 3
+  function moveTonyThree () {
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
+    tony.style.left = '375px'
+    tonyNumber = 3
     playSound()
   }
-  function moveJackFour () {
-    jack.style.backgroundImage = "url('images/Iron-Man.png')"
-    jack.style.left = '535px'
-    jackNumber = 4
+  function moveTonyFour () {
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
+    tony.style.left = '535px'
+    tonyNumber = 4
     playSound()
   }
 
@@ -304,22 +304,22 @@ function init () {
     var audio = document.createElement('audio')
     audio.src = 'audio/shoot.wav'
     audio.autoplay = true
-    jack.appendChild(audio)
+    tony.appendChild(audio)
     audio.volume = 0.3
-    if ((jackNumber === 1 && firstTree.style.visibility === 'visible') || (jackNumber === 2 && secondTree.style.visibility === 'visible') || (jackNumber === 3 && thirdTree.style.visibility === 'visible') || (jackNumber === 4 && fourthTree.style.visibility === 'visible')) {
+    if ((tonyNumber === 1 && firstTree.style.visibility === 'visible') || (tonyNumber === 2 && secondTree.style.visibility === 'visible') || (tonyNumber === 3 && thirdTree.style.visibility === 'visible') || (tonyNumber === 4 && fourthTree.style.visibility === 'visible')) {
       scorecounter += 1
       if (scorecounter < 10) {
         timeLeft += 300
       } else {
         timeLeft += 200
       }
-      if (jackNumber === 1) {
+      if (tonyNumber === 1) {
         refreshOne()
-      } if (jackNumber === 2) {
+      } if (tonyNumber === 2) {
         refreshTwo()
-      } if (jackNumber === 3) {
+      } if (tonyNumber === 3) {
         refreshThree()
-      } if (jackNumber === 4) {
+      } if (tonyNumber === 4) {
         refreshFour()
       }
       hit.style.opacity = '1.0'
@@ -329,16 +329,16 @@ function init () {
       hit.style.opacity = '0'
       miss.style.opacity = '1.0'
     }
-    if (jackNumber === 1) {
+    if (tonyNumber === 1) {
       firstFire.style.opacity = '1.0'
-    } if (jackNumber === 2) {
+    } if (tonyNumber === 2) {
       secondFire.style.opacity = '1.0'
-    } if (jackNumber === 3) {
+    } if (tonyNumber === 3) {
       thirdFire.style.opacity = '1.0'
-    } if (jackNumber === 4) {
+    } if (tonyNumber === 4) {
       fourthFire.style.opacity = '1.0'
     }
-    jack.style.backgroundImage = "url('images/ironmanshooting.png')"
+    tony.style.backgroundImage = "url('images/ironmanshooting.png')"
     setTimeout(colorChanger, 100)
     displayScore()
     setTimeout(disappearHitMiss,500)
@@ -401,25 +401,25 @@ function init () {
         timeLeft--
       }
     }
-    genTree = setInterval(generateTrees, 3000)
+    genTree = setInterval(generateAsteroids, 3000)
   }
   function displayScore () {
     currentScore.innerHTML = scorecounter
     if (scorecounter === 3) {
       clearInterval(genTree)
-      genTree = setInterval(generateTrees, 2200)
+      genTree = setInterval(generateAsteroids, 2200)
     } if (scorecounter === 6) {
       clearInterval(genTree)
-      genTree = setInterval(generateTrees, 1500)
+      genTree = setInterval(generateAsteroids, 1500)
     } if (scorecounter === 9) {
       clearInterval(genTree)
-      genTree = setInterval(generateTrees, 1125)
+      genTree = setInterval(generateAsteroids, 1125)
     } if (scorecounter === 12) {
       clearInterval(genTree)
-      genTree = setInterval(generateTrees, 750)
+      genTree = setInterval(generateAsteroids, 750)
     } if (scorecounter === 15) {
       clearInterval(genTree)
-      genTree = setInterval(generateTrees, 450)
+      genTree = setInterval(generateAsteroids, 450)
     }
   }
   function isGameOver () {
@@ -435,13 +435,13 @@ function init () {
     var audio = document.createElement('audio')
     audio.src = 'audio/gameend.wav'
     audio.autoplay = true
-    jack.appendChild(audio)
+    tony.appendChild(audio)
     audio.volume=0.5
   }
 
   function restartGame () {
-    jack.style.left = '295px'
-    jackNumber = -1
+    tony.style.left = '295px'
+    tonyNumber = -1
     treeNumber = 0
     firstTree.style.top = '0px'
     firstTreeTop = 0
@@ -453,7 +453,7 @@ function init () {
     fourthTreeTop = 0
     scorecounter = 0
     currentScore.innerHTML = scorecounter
-    jack.style.backgroundImage = "url('images/Iron-Man.png')"
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
     startGame()
   }
 }
