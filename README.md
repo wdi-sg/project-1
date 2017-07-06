@@ -1,18 +1,69 @@
-# Project Name (Start editing here)
+# LeeBrian's Project 1
 <!---
 Read Me Contents
 -->
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: IronMan Academy
+
+https://bleetdh.github.io/project-1/
+---
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+This is a 1 player, 8 bit game inspired by old school **Alien** arcade game and Marvel hero **IronMan**.
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+![](images/alien-readme.jpeg) ![](images/ironman-readme.png)
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+Unlike the conventional Alien game whereby the position of the shooter is flexible, the positions of IronMan are fixed in 4 positions.
 
+---
+
+### Game Instructions ###
+* Use the **'Z'**, **'X'**, **'C'** and **'V'** key to move Ironman into position 1 to 4 respectively. (Use your left hand's fingers, including your pinky!)
+
+* Use the **'.'** key to start firing at the asteroids!
+
+* +1 point and time for shooting the right target, - time for shooting blanks.
+
+* Click the 'Start' button to start!
+
+---
+
+
+### Improvements to make ###
+
+* Instead of giving every asteroids and fires in each column a different element, should have used **createElement** and **appendChild** to different column upon generation of random number.
+
+* Should have used more callback functions to call for repetitive functions.
+
+![](images/badexample1-readme.png)
+
+![](images/badexample2-readme.png)
+
+![](images/badexample3-readme.png)
+
+
+* This could reduce my javascript by ALOT!
+
+---
+
+### Future Development ###
+* Collision of 'FIRE' and 'ASTEROIDS'
+
+* Decoy 'ASTEROIDS' that will decrease points and time.
+
+* More levels of difficulty
+
+---
+
+### Acknowledgement##
+* Prima Aulia (my Awesome WDI Instructor!)
+
+* Shimei (my very patient TA)
+
+* WDI 11 classmates!
+
+* GOOGLE!
 
 ---
 
@@ -21,7 +72,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -52,22 +103,12 @@ Your app must:
 
 ---
 
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
 ### Useful Resources
 
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---
