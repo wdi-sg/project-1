@@ -67,12 +67,13 @@ if (rect1.x < rect2.x + rect2.width &&
 
 **Fishes tend to congregate towards the center after awhile.**
 
-A workaround can be if the sea is divided into sections with some fish in each.
+Fixed by increasing interval of calling fish movement, and changing the fish transition instead.
 
 **Fishes are not a regular shape (rectangle or circle), so collision detection is not precise.**
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles.
+Collision detection was improved by setting the interval to detect every 100ms.
 
 ---
 
