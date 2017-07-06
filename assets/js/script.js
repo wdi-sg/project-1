@@ -53,10 +53,10 @@ function mouseFish () {
     mainFish.style.transition = 'top 0.05s linear, left 0.05s linear'
 
     // Make fish rotate to face mouse
-    // var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
-    // var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
-    //
-    // mainFish.style.transform = 'rotate(' + angle + 'deg)'
+    var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
+    var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
+
+    mainFish.style.transform = 'rotate(' + angle + 'deg)'
   })
 }
 
