@@ -27,6 +27,7 @@
   var hamObj = document.querySelectorAll('.hamObj')
   var gameStart = false
   var counter = 0
+  var highScore = 0
   var timer = 60
   var timeCount = document.querySelector('.timer')
   var inputShake = document.querySelector('.userinput')
@@ -235,12 +236,20 @@
     }
     if (timer === 0) {
       alert('Time\'s Up')
+      updateHighScore()
       timer = 60
     }
   }
 
   function point () {
     document.querySelector('.current').innerHTML = counter + ' points'
+  }
+
+  function updateHighScore () {
+    if (counter > highScore) {
+      highScore = counter
+    }
+    document.querySelector('.top').innerHTML = highScore + ' points'
   }
 
   function checkKeyCode (keycode) {
