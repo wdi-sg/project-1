@@ -7,7 +7,7 @@ function getNews () {
   var newsRelatedData = fakeNews.feed.entry
   var noOfStories = newsRelatedData.length
   var selectedNewsData = []
-  for (i=0; i<noOfStories; i++) {
+  for (var i = 0; i < noOfStories; i++) {
     var storyObject = {}
     storyObject.title = newsRelatedData[i].title.__text
     storyObject.datePublished = newsRelatedData[i].updated

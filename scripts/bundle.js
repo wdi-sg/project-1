@@ -299,7 +299,7 @@ function getNews () {
   var newsRelatedData = fakeNews.feed.entry
   var noOfStories = newsRelatedData.length
   var selectedNewsData = []
-  for (i=0; i<noOfStories; i++) {
+  for (var i = 0; i < noOfStories; i++) {
     var storyObject = {}
     storyObject.title = newsRelatedData[i].title.__text
     storyObject.datePublished = newsRelatedData[i].updated
@@ -378,13 +378,12 @@ function init () {
   var player = 1
   var winner = ''
 
-
   var status = 'Not Started'
   var statusLine = document.body.querySelector('#status')
   statusLine.textContent = 'Game Status: ' + status
 
-  // create an object to store the parameters submitted by players. This function
-  // is called when the form is submitted
+  /* When the form's submit button is clicked, create an object to store the
+  parameters submitted by players. */
   var form = document.querySelector('form')
 
   function initiateParams () {
@@ -407,15 +406,15 @@ function init () {
     initiateParams()
   })
 
-  // add event listener to research button. When this button is clicked, grab
-  // and return news (fakenews.json used as json source)
+  /* Add event listener to research button. When this button is clicked, grab
+  and display news (fakenews.json used as json source). */
   var researchGoBtns = document.querySelectorAll('.research-area input[type="button"]')
   for (var i = 0; i < researchGoBtns.length; i++) {
     researchGoBtns[i].addEventListener('click', displayNews)
   }
 
   function displayNews (event) {
-    var newsData = callnews.getNews()
+    newsData = callnews.getNews()
     var noOfStories = newsData.length
     for (i = 0; i < noOfStories; i++) {
       var p = document.createElement('p')
@@ -425,8 +424,9 @@ function init () {
     }
   }
 
-  // add event listener to Select Ticker button. When this button is clicked, grab
-  // ticker entered, and add text prompt for next step
+  /* Add event listener to both Select Ticker buttons. When an instance of
+  this button is clicked, grab the ticker entered, populate the player data
+  array, and add text prompt for next step. */
   var selectTickerBtns = document.querySelectorAll('.thesis-buy-area input[type="button"]')
   for (var i = 0; i < selectTickerBtns.length; i++) {
     selectTickerBtns[i].addEventListener('click', createPlayerData)
@@ -439,7 +439,6 @@ function init () {
     var thesis = event.target.previousElementSibling.previousElementSibling.value
     playerData.thesis = thesis
     playersDataArr.push(playerData)
-    console.log(playersDataArr)
 
     var promptText = event.target.nextElementSibling
     if (player === 1) {
@@ -460,16 +459,14 @@ function init () {
       p.appendChild(p1text)
       p.appendChild(p2text)
     }
-
-    // push playerData object into playersData array
   }
 
-// When Execute Trades button is clicked, determine and display the winner
+// When Execute Trades button is clicked, determine winner and display results.
   var executeTradesBtn = document.querySelector('#execute-div button')
   executeTradesBtn.addEventListener('click', determineWinner)
 
   function determineWinner (event) {
-    for (i=0; i<playersDataArr.length; i++) {
+    for (var i = 0; i < playersDataArr.length; i++) {
       var priceData = getPrice(playersDataArr[i].ticker)
       var companyName = priceData.dataset.name
       playersDataArr[i].companyName = companyName
@@ -494,11 +491,10 @@ function init () {
     var whoWonP = document.querySelector('#who-won')
     whoWonP.textContent = winner + ' won!'
     var roiP = document.querySelector('#roi')
-    roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + playersDataArr[0].roi + ', while ' + parameters.p2Name + ' achieved a return on investment of ' + playersDataArr[1].roi
-    var walletP = document.querySelector('#wallet')
-    walletP.textContent = 'At the end of the holding period, ' + parameters.p1Name + ' had $' + playersDataArr[0].wallet + 'in his/her wallet, while ' + parameters.p2Name + ' had $' + playersDataArr[1].wallet + 'in his/her wallet.'
+    roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + Number(Math.round(playersDataArr[0].roi + 'e4') + 'e-4') * 100 + '%, while ' + parameters.p2Name + ' achieved a return on investment of ' + Number(Math.round(playersDataArr[1].roi + 'e4') + 'e-4') * 100 + '%.'
 
-    console.log(playersDataArr)
+    var walletP = document.querySelector('#wallet')
+    walletP.textContent = 'At the end of the holding period, ' + parameters.p1Name + ' had $' + Number(Math.round(playersDataArr[0].wallet + 'e4') + 'e-4') + 'in his/her wallet, while ' + parameters.p2Name + ' had $' + Number(Math.round(playersDataArr[1].wallet + 'e4') + 'e-4') + 'in his/her wallet.'
   }
 
   function getPrice (ticker) {
@@ -506,12 +502,11 @@ function init () {
     var stockUrl = 'https://www.quandl.com/api/v3/datasets/HKEX/' + ticker + '.json?2&api_key=1VqFiTXxySMhKgkyNfPp'
     req.open('GET', stockUrl, false)
     req.send(null)
-    // console.log(req.status)
     var dataObj = JSON.parse(req.responseText)
     return dataObj
   }
 
-  // At end of game, send results
+  // At end of game, allow player to send results.
   var sendResultsBtn = document.querySelector('#next-steps button[name="send-button"]')
   sendResultsBtn.addEventListener('click', sendEmail)
 
@@ -521,12 +516,12 @@ function init () {
     window.location.href = 'mailto:user@example.com?subject=' + subject + '&body=' + body // Cannot open on my laptop
   }
 
-  // At end of game, restart game
+  // At end of game, allow player to restart game.
   var restartBtn = document.querySelector('#next-steps button[name="restart-button"]')
   restartBtn.addEventListener('click', restart)
   function restart (event) {
     window.location.reload()
-   }
+  }
 }
 
 },{"./callnews.js":2}]},{},[3]);
