@@ -37,7 +37,15 @@ function init () {
   var secondFire = document.querySelector('.secondfire')
   var thirdFire = document.querySelector('.thirdfire')
   var fourthFire = document.querySelector('.fourthfire')
+  var hit = document.querySelector('.hit')
+  var miss = document.querySelector('.miss')
   document.addEventListener('keyup', onKeyUp)
+  var audio = document.createElement('audio')
+  audio.src = 'audio/Ironmantheme.mp3'
+  audio.autoplay = true
+  jack.appendChild(audio)
+  audio.volume=0.4
+  audio.loop=true
 
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
@@ -67,6 +75,11 @@ function init () {
   }
 
   function startGame () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/start.wav'
+    audio.autoplay = true
+    audio.volume =0.6
+    jack.appendChild(audio)
     startButton.style.visibility = 'hidden'
     retryButton.style.visibility = 'hidden'
     gameOver = false
@@ -74,6 +87,7 @@ function init () {
     secondTree.style.visibility = 'hidden'
     thirdTree.style.visibility = 'hidden'
     fourthTree.style.visibility = 'hidden'
+    timeLeft = 6000
     startTimer()
   }
 
@@ -254,28 +268,44 @@ function init () {
     }
   }
 
+  function playSound(){
+    var audio = document.createElement('audio')
+    audio.src = 'audio/Fly.wav'
+    audio.autoplay = true
+    jack.appendChild(audio)
+    audio.volume = 0.1
+  }
   function moveJackOne () {
     jack.style.backgroundImage = "url('images/Iron-Man.png')"
     jack.style.left = '55px'
     jackNumber = 1
+    playSound()
   }
   function moveJackTwo () {
     jack.style.backgroundImage = "url('images/Iron-Man.png')"
     jack.style.left = '215px'
     jackNumber = 2
+    playSound()
   }
   function moveJackThree () {
     jack.style.backgroundImage = "url('images/Iron-Man.png')"
     jack.style.left = '375px'
     jackNumber = 3
+    playSound()
   }
   function moveJackFour () {
     jack.style.backgroundImage = "url('images/Iron-Man.png')"
     jack.style.left = '535px'
     jackNumber = 4
+    playSound()
   }
 
   function chop () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/shoot.wav'
+    audio.autoplay = true
+    jack.appendChild(audio)
+    audio.volume = 0.3
     if ((jackNumber === 1 && firstTree.style.visibility === 'visible') || (jackNumber === 2 && secondTree.style.visibility === 'visible') || (jackNumber === 3 && thirdTree.style.visibility === 'visible') || (jackNumber === 4 && fourthTree.style.visibility === 'visible')) {
       scorecounter += 1
       if (scorecounter < 10) {
@@ -292,8 +322,12 @@ function init () {
       } if (jackNumber === 4) {
         refreshFour()
       }
+      hit.style.opacity = '1.0'
+      miss.style.opacity='0'
     } else {
       timeLeft -= 300
+      hit.style.opacity = '0'
+      miss.style.opacity = '1.0'
     }
     if (jackNumber === 1) {
       firstFire.style.opacity = '1.0'
@@ -307,6 +341,11 @@ function init () {
     jack.style.backgroundImage = "url('images/ironmanshooting.png')"
     setTimeout(colorChanger, 100)
     displayScore()
+    setTimeout(disappearHitMiss,500)
+  }
+  function disappearHitMiss() {
+    miss.style.opacity='0'
+    hit.style.opacity = '0'
   }
   function colorChanger () {
     firstFire.style.opacity = '0'
@@ -393,6 +432,11 @@ function init () {
     }
     retryButton.style.visibility = 'visible'
     timer.innerHTML = '0'
+    var audio = document.createElement('audio')
+    audio.src = 'audio/gameend.wav'
+    audio.autoplay = true
+    jack.appendChild(audio)
+    audio.volume=0.5
   }
 
   function restartGame () {
@@ -407,7 +451,6 @@ function init () {
     thirdTreeTop = 0
     fourthTree.style.top = '0px'
     fourthTreeTop = 0
-    timeLeft = 6000
     scorecounter = 0
     currentScore.innerHTML = scorecounter
     jack.style.backgroundImage = "url('images/Iron-Man.png')"
