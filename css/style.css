@@ -31,6 +31,10 @@ h3{
   color:#E8D6CB;
 }
 
+li{
+  color:#E8D6CB;
+}
+
 .form{
     border-radius: 5px;
     background-color: #FFFFFF;
@@ -74,6 +78,21 @@ input[type=submit], input[type=button], button {
 
 input[type=submit]:hover, input[type=button]:hover {
     background-color: #D0ADA7;
+}
+
+button[name='howto-button'], button[name='game-button'] {
+  width: 75%;
+  background-color: #CEBBC9;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:16px;
+}
+
+button[name='howto-button']:hover, button[name='game-button']:hover {
+  background-color: #847996;
 }
 
 .research-area {
