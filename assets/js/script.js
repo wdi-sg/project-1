@@ -12,11 +12,14 @@ function init () {
   var typedWords = document.querySelector('ul')
   var scoreKeep = document.querySelector('.score')
   var music = document.querySelector('#myMusic')
+  var musicCombo= document.querySelector('#myMusic2')
+
+
   var arrTime = []
 
   start.addEventListener('click', displayStr)
   resetto.addEventListener('click', reset)
-  // submit.addEventListener('click', getWord)
+
 
   input.addEventListener('keydown', keyDown)
 
@@ -25,7 +28,6 @@ function init () {
         // check if we're clicking enter
     if (event.keyCode === 13) {
       var testWord = input.value.toLowerCase()
-      // console.log(typeof(testWord))
       var testWordStr = testWord.split('')
       if (alLogic.checkInputStr(randomStr, testWordStr) && !alLogic.checkStoredArr(testWord) && alLogic.dictCheck(testWord)) {
         storedArr.push(testWord)
@@ -33,8 +35,36 @@ function init () {
         listItem.textContent = testWord
         typedWords.appendChild(listItem)
         input.value = ''
-        scoreAdd(testWord)
-        scoreKeep.textContent = score
+
+        // scoreAdd(testWord)
+        // scoreKeep.textContent = score
+
+        arrTime.push(timer)
+        console.log(arrTime)
+        var n = arrTime.length
+
+        if((arrTime[n-2]-arrTime[n-1])<5 && arrTime[n-3]-arrTime[n-2]<5){
+          pauseAudio(music)
+          playAudio(musicCombo)
+          scoreComboAdd(testWord)
+          scoreKeep.textContent = score
+          document.querySelector('.combo').textContent= 'COMBO!!!!'
+          document.querySelector('.combo').style.color = 'red'
+
+        }
+        else {
+          pauseAudio(musicCombo)
+          playAudio(music)
+          scoreAdd(testWord)
+          scoreKeep.textContent = score
+        }
+
+        // pauseAudio(musicCombo)
+        // playAudio(music)
+        // scoreAdd(testWord)
+        // combo(arrTime)
+        // noCombo(arrTime)
+
       } else {
         input.value = ''
         input.classList.add("shake-hard" , "shake-constant")
@@ -50,20 +80,27 @@ function init () {
     return score
   }
 
+  function scoreComboAdd (testWord) {
+    var wordLength = testWord.length
+    var award = wordLength * wordLength * wordLength * 10
+    score = score + award
+    return score
+  }
+
   function displayStr () {
-    playAudio()
+    playAudio(music)
     interval = setInterval(timerz, 1000)
     randomStr = alLogic.randStr()
     randomWord.textContent = randomStr.join(' ').toUpperCase()
     start.style.display = 'none'
   }
 
-  function playAudio() {
-    music.play();
+  function playAudio(sound) {
+    sound.play();
 }
 
-function pauseAudio() {
-    music.pause();
+function pauseAudio(sound) {
+    sound.pause();
 }
 
 
@@ -87,9 +124,33 @@ function pauseAudio() {
       document.querySelector('.combo').textContent = 'GAME OVER!'
       document.querySelector('.combo').style.color = 'red'
       randomStr = []
-      music.pause()
+      pauseAudio(music)
+      pauseAudio(musicCombo)
+
     }
   }
+
+//   function combo(array){
+//     var n = array.length
+//     if((array[n-1]-array[n-2])< 4 && array[n-2]-array[n-3]< 4){
+//       pauseAudio(music)
+//       playAudio(musicCombo)
+//       scoreComboAdd(testWord)
+//     return true}
+//     scoreAdd(testWord)
+//     return false
+// }
+//
+//
+//
+//   function noCombo(array){
+//     var n = array.length
+//     if((array[n-1]-array[n-2])> 5 && array[n-2]-array[n-3]> 5){
+//       pauseAudio(musicCombo)
+//       playAudio(music)
+//       scoreAdd(testWord)
+//     }
+//   }
 
 
 }
