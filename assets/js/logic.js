@@ -167,7 +167,6 @@ function logic () {
           //alert('won')
           winNum+=1
           init().showWin()
-          showTimer().stopTimer
           //startTimer()
         }
           else {
@@ -222,6 +221,7 @@ function logic () {
 
   function randomize () {
     // Recursive function to create random array
+
     function rand (min, max, arr) {
       min = Math.ceil(min)
       max = Math.floor(max)
@@ -252,8 +252,15 @@ function logic () {
         l++
       }
       start[0][0] = 'start'
-      start[1][3] = 'end'
+      start[rando(0,3)][3] = 'end'
       // console.log(start)
+    }
+
+    function rando (min, max) {
+      min = Math.ceil(min)
+      max = Math.floor(max)
+      randomNo = Math.floor(Math.random() * (max - min))
+      return randomNo
     }
     return genRandIndex()
   } // end randomize

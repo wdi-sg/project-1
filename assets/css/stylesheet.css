@@ -1,13 +1,28 @@
+@font-face {
+    font-family: pipeFont;
+    src: url(../images/SketchPipes.ttf);
+    /*font-family: lumberFont;
+    src: url(../images/Lumberjack-Regular.otf);*/
+}
+
+@font-face {
+    font-family: lumberFont;
+    src: url(../images/Lumberjack-Regular.otf);
+}
+
 
 body{
   background-image: url('http://www.1explore.net/gamedesign3/assets/scrollingBackground.png');
   background-size: cover;
   margin: 0px;
   text-align: center;
+  font-family: pipeFont;
+  font-size: 25px;
+
 }
 
 h1{
-  line-height: 100px;
+  line-height: 80px;
 }
 
 p{
@@ -15,22 +30,45 @@ p{
 }
 
 ol{
-  font-size: 20px;
+  font-size: 24px;
   text-align: left;
+  font-family: lumberFont;
+
+}
+
+
+
+.score > img {
+  width: 100px;
+  height: 100px;
+  /*left: -100px;
+  top: -500px;
+  position: absolute;*/
+
+}
+
+.life > img {
+  width: 50px;
+  height: 50px
 }
 
 .score{
   /*opacity: 0;*/
   transition: left 2s, top 2s;
-  background-color: white;
+  background-color: rgba(50,50,50,0.9);
   display: inline-block;
   position: absolute;
-  left: -100px;
-  top: -500px;
+  color: #FFDD1B;
+  border: 1px solid #FFDD1B;
+  border-radius: 4px;
+  font-family: lumberFont;
+  font-size: 20px;
   /*left: 500px;
   top: 200px;*/
-  height: 200px;
+  height: 250px;
   width: 400px;
+  left: -100px;
+  top: -500px;
 }
 
 #grand {
@@ -44,10 +82,41 @@ ol{
 }
 
   #startBtn{
-    border-color: green;
-    border-style: solid;
-    margin: 10px;
+    /*left: 600px;
+    top: 100px;
+    position: absolute;
+    padding: 100px;
+    text-align: left;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: orange;
+    border-color: red;
+    border-style: solid;*/
   }
+
+  .move{
+    left: 600px;
+    top: 100px;
+    position: absolute;
+    padding: 100px;
+    text-align: left;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: orange;
+    border-color: red;
+    border-style: solid;
+  }
+
+  .moveAfter{
+    left: -100px;
+    top: -200px;
+    position: absolute;
+  }
+
+
+
 #rightcol{
   background-color: rgba(255,218,185,0.8);;
   width: 300px;
@@ -56,8 +125,18 @@ ol{
 }
   #timer + img{
       width: 20%;
-      height: 20%
+      height: 20%;
   }
+
+  #timer{
+    font-family: lumberFont;
+    font-size: 60px;
+    padding-top: 1px;
+    margin-top: 1px;
+    margin-bottom: 100px;
+  }
+
+
 
 #container {
   width: 600px;
@@ -148,7 +227,6 @@ ol{
     }
 
     .glow {
-    transition: background 10s;
     border: 1px solid #FFDD1B;
 
     -webkit-border-radius: 4px;
@@ -158,6 +236,10 @@ ol{
     -webkit-box-shadow: 2px 2px 4px #FF9900;
        -moz-box-shadow: 2px 2px 4px #FF9900;
             box-shadow: 2px 2px 4px #FF9900;
+          }
+
+  .background {
+    transition: background 10s;
 
       background: rgba(76,76,76,1);
 

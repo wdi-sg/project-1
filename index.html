@@ -11,19 +11,24 @@
 
 <body>
 
-    <h1 class='score'>SCORE
-    <p id='scoreNum'>0</p>
+    <h1 class='score'>
+      <img src = 'assets/images/StarMario.png'>
+      <img src = 'assets/images/StarMario.png'>
+      <img src = 'assets/images/StarMario.png'>
+      <p id='scoreNum'>0</p>
     </h1>
+
+    <div id='startBtn' class='move'>
+      <h1>START</h1>
+    </div>
 
   <div id='grand'>
     <div id='leftcol'>
-      <div id='startBtn'>
-        <h1>START</h1>
-      </div>
 
-      <div id='testBtn'>
+
+      <!-- <div id='testBtn'>
         <h1>test</h1>
-      </div>
+      </div> -->
 
       <div id='level'>
         <h1>Instructions</h1>
@@ -40,11 +45,6 @@
           <li>Once timer is up, tiles are randomized and you have
           to start all over.</li>
 
-          <li>Each move is recorded (the lesser moves made to
-          solve, the better).</li>
-
-          <li>Levels reduce the time given to solve puzzle, and
-          lesser space to move.</li>
         </ol>
       </div>
     </div>
@@ -54,15 +54,20 @@
     <div id='container'></div>
 
     <div id='rightcol'>
-      <h1>TIMER</h1>
-      <p id='timer'>Hit the START button to begin</p>
+      <h1>COUNT
+        DOWN</h1>
+      <p id='timer'>0</p>
       <!-- <img src='assets/images/timer.png'> -->
 
-      <h1>WIN COUNTER</h1>
-      <p id='win'>0</p>
+      <!-- <h1>WIN COUNTER</h1>
+      <p id='win'>0</p> -->
 
-      <h1>LIVES</h1>
-      <p id='life'>3</p>
+      <h1 class='life'>LIVES <br>
+        <img src = 'assets/images/heart.png'>
+        <img src = 'assets/images/heart.png'>
+        <img src = 'assets/images/heart.png'>
+      <p id='life'></p>
+      </h1>
 
 
     </div><script src="assets/js/logic.js" charset="utf-8" type=
