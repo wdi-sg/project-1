@@ -10,26 +10,26 @@ var yellowKey = document.querySelector('#yellow');
 // }
 
 function changeColorRed () {
-  redKey.style.backgroundColor = 'salmon';
-  // redSound.play();
+  redKey.style.backgroundColor = 'darkred';
+  redSound.play();
   setTimeout(reutrnColorRed, 400);
 }
 
 function changeColorGreen () {
   greenKey.style.backgroundColor = 'lightgreen';
-  // redSound.play();
+  redSound.play();
   setTimeout(reutrnColorGreen, 400);
 }
 
 function changeColorBlue () {
-  blueKey.style.backgroundColor = 'lightblue';
-  // redSound.play();
+  blueKey.style.backgroundColor = 'blue';
+  redSound.play();
   setTimeout(reutrnColorBlue, 400);
 }
 
 function changeColorYellow () {
-  yellowKey.style.backgroundColor = 'khaki';
-  // redSound.play();
+  yellowKey.style.backgroundColor = 'gold';
+  redSound.play();
   setTimeout(reutrnColorYellow, 400);
 }
 
@@ -45,11 +45,11 @@ function reutrnColorRed () {
 }
 
 function reutrnColorGreen () {
-  greenKey.style.backgroundColor = 'green';
+  greenKey.style.backgroundColor = 'Chartreuse';
 }
 
 function reutrnColorBlue () {
-  blueKey.style.backgroundColor = 'blue';
+  blueKey.style.backgroundColor = 'cyan';
 }
 
 function reutrnColorYellow () {

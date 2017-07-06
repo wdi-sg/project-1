@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', init);
 var startButton = document.querySelector('#button');
 var body = document.querySelector('body');
-var allbuttons = document.querySelectorAll('button');
+var allButtons = document.querySelectorAll('button');
 var h1 = document.querySelector('h1');
 var h2 = document.querySelector('h2');
 var h3 = document.querySelector('h3');
@@ -20,28 +20,36 @@ function init () {
   // console.log(redKey)
   var startButton = document.querySelector('#button');
   startButton.addEventListener ('click', function () {
-    generateRandomSequence();
+    setTimeout(generateRandomSequence, 2000);
     removeStartButton();
+    h2.innerHTML="Level";
+    h3.innerHTML="1";
   });
+
+  function returnTrue () {
+    return true;
+  }
 
   keys.forEach( function (div) {
     var keyColor = div.id;
     document.addEventListener ('keydown', pushButton);
     // console.log(div.id);
   });
+
+
   function pushButton (e) {
     var keyCode = e.keyCode;
-    if(keyCode === 82 || keyCode === 84 || keyCode === 89 || keyCode === 85) {
-    if (keyCode === 82) {
+    if(keyCode === 71 || keyCode === 74 || keyCode === 72 || keyCode === 75) {
+    if (keyCode === 75) {
       changeColorRed();
       keyedColors.push("red");
-    } else if (keyCode === 84) {
+    } else if (keyCode === 71) {
       changeColorGreen();
       keyedColors.push("green");
-    } else if (keyCode === 89) {
+    } else if (keyCode === 72) {
       changeColorBlue();
       keyedColors.push("blue");
-    } else if (keyCode === 85) {
+    } else if (keyCode === 74) {
       changeColorYellow();
       keyedColors.push("yellow");
     }
@@ -62,8 +70,17 @@ function init () {
       levelNumber = 1;
       h2.innerHTML = "";
       h3.innerHTML = "";
-
+      //
+      allButtons = document.querySelectorAll('button');
+      console.log(allButtons.length);
+      if (allButtons.length === 1) {
+        h1.innerHTML = 'CMON, YOU HAVENT EVEN PRESSED THE START BUTTON YET';
+        h2.innerHTML = '';
+        h3.innerHTML = '';
+      }
+      if (allButtons.length === 0) {
       var restart = document.createElement('button');
+
       var restartText = document.createTextNode("Restart");
       restart.appendChild(restartText);
       document.body.appendChild(restart);
@@ -74,7 +91,7 @@ function init () {
         h1.innerHTML = "";
         h2.innerHTML = "Level";
         h3.innerHTML = "1";
-      });
+      });}
 return; //why did it work after writing this?
     }
     // console.log(level1);
@@ -97,10 +114,11 @@ return; //why did it work after writing this?
       // console.log(level);
       level = [];
       keyedColors = [];
-      generateRandomSequence();
-      console.log(level);
+      setTimeout(generateRandomSequence, 2000);
+      console.log(level.length);
     }
   }
+
   // if (checkEqual()) { //difference between checkEqual and checkEqual(), shouldnt if function run all the time?
   //   alert('Good  Job!');
   //   alert('Ready for next round?');
