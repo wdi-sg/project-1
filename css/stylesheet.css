@@ -2,7 +2,7 @@ body {
  background: url('http://i.imgur.com/h9mdeQN.jpg');
 }
 
-.circle {
+.rabbit {
   width: 80px;
   height: 80px;
   border-radius: 5px;
@@ -14,17 +14,18 @@ body {
   background-image: url('../img/skating.gif');
   background-repeat: no-repeat;
   background-size: contain;
+
 }
 
-.circle2 {
+.spikes {
   display: inline-block;
-  width: 20px;
-  height: 40px;
+  /*width: 20px;
+  height: 40px;*/
   border-radius: 0px;
   position: absolute;
   /*top: 150px;*/
   overflow: hidden;
-  background-image: url('../img/spikeD.png');
+  /*background-image: url('../img/spikeD.png');*/
   background-repeat: no-repeat;
   background-size: contain;
   background-position: bottom;
@@ -66,21 +67,43 @@ body {
   margin-top: 7%;
   min-width: 1000px;
   max-width: 1000px;
-  animation: neon1 1s ease-in-out infinite alternate;
-}
-
-
-.expanded {
-  width: 100%;
-  height: 300px;
-  background-color: black
-}
-
-.move {
-  position: relative;
-  top: 40px;
 }
 
 h1 {
   font: 580px;
+}
+
+.splashscreen {
+  font-family: 'Bungee Shade', cursive;
+  text-decoration-color: white;
+  line-height: 30px;
+}
+
+
+#buttonE {
+  border-radius: 3px;
+  border-color: green;
+  color: white;
+  background-color: green;
+  background-position: 0% 0%;
+  width: 120px;
+  height: 10;
+}
+
+#buttonH {
+  border-radius: 3px;
+  border-color: red;
+  color: white;
+  background-color: red;
+  background-position: 0% 0%;
+  width: 120px;
+}
+
+
+#pause, #restart {
+  background-color: rgba(0,0,0,0);
+  border-color: rgba(0,0,0,0);
+  color: #ff00de;
+  font-size:16px;
+  outline: none;
 }

@@ -5,23 +5,29 @@
     <title>Bouncy Bunny</title>
     <link rel="stylesheet" href="css/stylesheet.css">
     <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
   </head>
   <body>
 
-  <div class='playarea'>
+  <div class='playarea' >
     <br />
-    <div class="welcome">
-			<div class="welcome_content"><center>
-          <h1>BOUNCY BUNNY</h1>
-          Bouncy Bunny loves skating! Help him get across the terrain, press the <strong>Up Arrow</strong> to jump over the obstacles!
-          <br />
-          <br />
-			  <button class="button" type="button">START GAME</button></center>
-			  </div>
-		</div>
-      <div class="circle"></div>
+      <div class="welcome">
+  			<div class="splashscreen"><center>
+        <h1>BOUNCY BUNNY</h1>
+        Bouncy Bunny loves skating! Help to get him across the terrain!
+        <br />Press the <strong>Up Arrow</strong> to jump over obstacles!
+        <br />
+
+  			<button id="buttonE" class="button" type="button">[E]asy</button>
+        <button id="buttonH" class="button" type="button">[H]ard</button>
+          			 </div>
+		  </div>
+      <div class="rabbit"></div>
+
+
       <div id="timer"></div>
-      <div class="controls"></div>
+      <button id="pause"><strong>[P]ause</strong></button><button id="restart"><strong>[R]estart</strong></button>
+
   </div>
     <script src="js/script.js" charset="utf-8"></script>
   </body>

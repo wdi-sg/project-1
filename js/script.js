@@ -1,5 +1,4 @@
 
-
 function init () {
   var allDivs = document.querySelectorAll('div')
 
@@ -12,153 +11,280 @@ function addMove (event) {
   var elem = event.target
   elem.classList.add('move')
 }
+// =======================================================
 
+// Global Variables:
+var pauseButton = document.querySelector('#pause')
+var restartButton = document.querySelector('#restart')
+var body = document.querySelector('body')
+var rabbit = document.querySelector('.rabbit')
+var playArea = document.querySelector('.playarea')
+var easySelected = document.querySelector('#buttonE')
+var hardSelected = document.querySelector('#buttonH')
 
+// Global Declarations:
+rabbit.style.left = '150px'
+rabbit.style.top = '110px'
+rabbit.style.right = '230px'
+rabbit.style.bottom = '190px'
 
-var circle = document.querySelector('.circle')
-circle.style.left = '150px'
-circle.style.top = '110px'
-circle.style.right = '230px'
-circle.style.bottom = '190px'
-
-function startGame () {
-
-// =========================== Controls: ==================================
+// Start Game:
+easySelected.addEventListener('click', initiateEasyMode)
 document.addEventListener('keydown', function (event) {
-  if (event.keyCode === 38) {
-    if (canJump) {
-      jump()
-      //setTimeout(function(){}, 1000)
-      canJump = false
-    } else if (!canJump) {
-      drop()
-    }
+  if (event.keyCode === 69) {
+    initiateEasyMode()
+    initiateEasyMode = false
+    initiateHardMode = false
   }
 })
 
-document.addEventListener('keyup', function (event) {
-  drop ()
-  canJump = true
+hardSelected.addEventListener('click', initiateHardMode)
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 72) {
+    initiateHardMode()
+    initiateHardMode = false
+    initiateEasyMode = false
+  }
 })
 
-function jump () {
-  circle.style.top = 20 + 'px'
-  circle.style.backgroundImage = "url('img/skatejump2.png')"
-  canJump = false
-}
-function drop () {
-  circle.style.top = 110 + 'px'
-  circle.style.backgroundImage = "url('img/skating.gif')"
-}
-
-function canJump () {
-  if (circle.getBoundingClientRect().top < 110) {
-    return false
-  }
-}
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<Easy>>>>>>>>>>>>>>>>>>
-
-// function random (min, max) {
-//   return (Math.floor(Math.random() * (max - min + 1)) + min)
-// }
-//
-// var array = [800,1400,1800,2000,3000,2500]
-// var rand = array[Math.floor(Math.random() * array.length-1)]
-
-setInterval(function () {
-  moveBlock(createBlock())
-},3200)
-
-var area = document.querySelector('.playarea')
-
-function createBlock () {
-  var blocks = document.createElement('div')
-  blocks.className = 'circle2'
-  area.appendChild(blocks)
-  blocks.style.left = 950 + 'px'
-  blocks.style.top = 150 + 'px'
-  return blocks
-}
-
-
-
-function moveBlock (elem) {
-  setInterval(function(){
-    if (elem.style.left === '30px') {
-      area.removeChild(elem)
-      console.log('REMOVEDDDDDDDDD');
-    } else {
-      if (collision()) {
-        // area.removeChild(elem)
-        alert('IMPALED!')
-        // alert = function( ) {}
-      } else {
-        console.log(elem.style.left + 'this is it')
-      }
-      var blocksLeft = parseInt(elem.style.left)
-
-      elem.style.left = blocksLeft - 10 + 'px'
-    }
-  }, 30)
-}
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<Medium>>>>>>>>>>>>>>>>>>
-
-// =========================== Blocks: ==================================
-function collision () {
-  //var rabbit = document.querySelector('.circle')
-  var obstacle = document.querySelector('.circle2')
-
-
-  var rL = parseInt(circle.style.left)
-  var rR = parseInt(circle.style.left) + 80
-  var rT = parseInt(circle.style.top)
-  var rB = parseInt(circle.style.top) + 80
-
-  var oL = parseInt(obstacle.style.left)
-  var oR = parseInt(obstacle.style.left) + 20
-  var oT = parseInt(obstacle.style.top)
-  var oB = parseInt(obstacle.style.top) + 40
-
-  console.log(oL + 'spikeleft')
-    console.log(oT + 'spiketop')
-        console.log(oR + 'spikeright')
-
-        console.log(rB + 'rabbottom')
-          console.log(rR + 'rabright')
-              console.log(rL + 'rableft')
-
-  if (rR > oL &&
-      rB > oT &&
-      rL < oR) {
-    return true
-  } else {
-    return false
-  }
-}
-// =========================== Timer: ==================================
-setInterval(countTimer, 200)
-var score = 0
-function countTimer () {
-   ++score
-   var currentTime = document.querySelector('#timer')
-   currentTime.innerHTML = 'Score: ' + score;
-}
-
-// ==========================
-
-
-// }
-//
-//
-}
-var button = document.querySelector('.button')
-button.addEventListener('click', remove)
-
-//
-function remove() {
+function initiateEasyMode () {
   var start = document.querySelector('.welcome')
   start.style.display = 'none'
-  startGame()
+  pauseButton.style.display = ''
+  restartButton.style.display = ''
+  gameModeEasy()
 }
+
+function initiateHardMode () {
+  var start = document.querySelector('.welcome')
+  start.style.display = 'none'
+  pauseButton.style.display = ''
+  restartButton.style.display = ''
+  gameModeHard()
+}
+
+// Pause Game:
+pauseButton.style.display = 'none'
+pauseButton.addEventListener('click', function () {
+  blur()
+  setTimeout(pause, 100)
+})
+
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 80) {
+    blur()
+    setTimeout(pause, 100)
+  }
+})
+
+function rePause () {
+  pause()
+}
+
+function blur () {
+  body.style.filter = 'blur(1.8px)'
+}
+
+function undoBlur () {
+  body.style.filter = 'blur(0px)'
+}
+
+function pause () {
+  var pause = confirm("Game Paused! Click 'OK' to continue game")
+
+  if (pause == false) {
+    rePause()
+  } else {
+    undoBlur()
+  }
+}
+// Pause Game:
+restartButton.style.display = 'none'
+restartButton.addEventListener('click', function () {
+  location.reload()
+})
+
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 82) {
+    location.reload()
+  }
+})
+function restart () {
+  location.reload()
+}
+
+//  Game Difficulty - EASY: ==============================
+function gameModeEasy () {
+// Obstacle Creation & Movement:
+  setInterval(function () {
+    moveSpikes(createSpikes())
+  }, 1900)
+
+  function createSpikes () {
+    var spikes = document.createElement('div')
+    spikes.className = 'spikes'
+    spikes.style.backgroundImage = "url('img/spikeeasy.png')"
+    spikes.style.width = 20 + 'px'
+    spikes.style.height = 40 + 'px'
+    playArea.appendChild(spikes)
+    spikes.style.left = 950 + 'px'
+    spikes.style.top = 150 + 'px'
+    return spikes
+  }
+
+  function moveSpikes (elem) {
+    setInterval(function () {
+      if (elem.style.left === '0px') {
+        playArea.removeChild(elem)
+      } else {
+        if (collision()) {
+          playArea.removeChild(elem)
+          setTimeout(alert('IMPALED!'), 800)
+        } else {
+        }
+        var spikesLeft = parseInt(elem.style.left)
+
+        elem.style.left = spikesLeft - 10 + 'px'
+      }
+    }, 18)
+  }
+
+// Detecting Collision:
+  function collision () {
+    var spikes = document.querySelector('.spikes')
+
+    var rL = parseInt(rabbit.style.left)
+    var rR = parseInt(rabbit.style.left) + 80
+    var rT = parseInt(rabbit.style.top)
+    var rB = parseInt(rabbit.style.top) + 80
+
+    var sL = parseInt(spikes.style.left)
+    var sR = parseInt(spikes.style.left) + 20
+    var sT = parseInt(spikes.style.top)
+    var sB = parseInt(spikes.style.top) + 40
+
+    if (rR > sL &&
+        rB > sT &&
+        rL < sR) {
+      return true
+    } else {
+      return false
+    }
+  }
+//  Timer:
+  setInterval(Timer, 200)
+  var score = 0
+  function Timer () {
+    ++score
+    var currentScore = document.querySelector('#timer')
+    currentScore.innerHTML = 'Score: ' + score
+  }
+}
+
+//  Game Difficulty - MEDIUM: ==============================
+function gameModeHard () {
+  // Obstacle Creation & Movement:
+  setInterval(function () {
+    moveSpikes(createSpikes())
+  }, 1700)
+
+  function createSpikes () {
+    var spikes = document.createElement('div')
+    spikes.className = 'spikes'
+    spikes.style.backgroundImage = "url('img/spikemedium.png')"
+    spikes.style.width = 60 + 'px'
+    spikes.style.height = 40 + 'px'
+    playArea.appendChild(spikes)
+    spikes.style.left = 950 + 'px'
+    spikes.style.top = 150 + 'px'
+    return spikes
+  }
+
+  function moveSpikes (elem) {
+    setInterval(function () {
+      if (elem.style.left === '0px') {
+        playArea.removeChild(elem)
+      } else {
+        if (collision()) {
+          playArea.removeChild(elem)
+          setTimeout(alert('IMPALED!'), 1000)
+        } else {
+        }
+        var spikesLeft = parseInt(elem.style.left)
+
+        elem.style.left = spikesLeft - 10 + 'px'
+      }
+    }, 8)
+  }
+
+// Detecting Collision:
+  function collision () {
+    var spikes = document.querySelector('.spikes')
+
+    var rL = parseInt(rabbit.style.left)
+    var rR = parseInt(rabbit.style.left) + 80
+    var rT = parseInt(rabbit.style.top)
+    var rB = parseInt(rabbit.style.top) + 80
+
+    var sL = parseInt(spikes.style.left)
+    var sR = parseInt(spikes.style.left) + 60
+    var sT = parseInt(spikes.style.top)
+    var sB = parseInt(spikes.style.top) + 40
+
+    if (rR > sL &&
+        rB > sT &&
+        rL < sR) {
+      return true
+    } else {
+      return false
+    }
+  }
+  //  Timer:
+  setInterval(Timer, 200)
+  var score = 0
+  function Timer () {
+    ++score
+    var currentScore = document.querySelector('#timer')
+    currentScore.innerHTML = 'Score: ' + score
+  }
+}
+
+// Character Controls:
+
+// 1. Limitations:
+  function canJump () {
+    if (parseInt(rabbit.style.top) < 110) {
+      return false
+    }
+  }
+
+// 2. Functions:
+  function jump () {
+    rabbit.style.top = 30 + 'px'
+    rabbit.style.backgroundImage = "url('img/skatejump2.png')"
+    canJump = false
+    rabbit.style.transition = 'linear'
+  }
+
+  function drop () {
+    rabbit.style.top = 110 + 'px'
+    rabbit.style.backgroundImage = "url('img/skating.gif')"
+    rabbit.style.transition = 'linear'
+  }
+
+// 3. Keyboard Targeting:
+  document.addEventListener('keydown', function (event) {
+    if (event.keyCode === 38) {
+      if (canJump) {
+        jump()
+        canJump = false
+      } else if (!canJump) {
+        drop()
+      }
+    }
+  })
+
+  document.addEventListener('keyup', function (event) {
+    drop()
+    canJump = true
+  })
