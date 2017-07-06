@@ -16,7 +16,7 @@ produce final score
 
 document.addEventListener('DOMContentLoaded', function () {
   var score = 0
-  var timeLeft = 60
+  var timeLeft = 59
   var noOfRows = 2
   var ranGrid
   var isGameOver = false
