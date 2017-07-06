@@ -18,11 +18,11 @@ Step-by-Step Process
 * Create cover page that will disappear upon clicking start button
 * Generate fishes at intervals [Stop generating fishes after the 30th fish]
 * Fishes must be of different sizes, different initial position, and move randomly
-* Create main fish that follows mouse
-* Detect collision
+* Create main fish that follows mouse [And rotate too]
+* Detect collision of main fish with blue fishes
 * Increase/Decrease size of main fish when colliding, and make other fish disappear
-* Win if bigger than 100x100px, because the biggest other fish is 120x120px
-* Lose if less than 30x30px, because the smallest other fish is 20x20px
+* Win if bigger than 100x100px, because the biggest blue fish is 120x120px
+* Lose if less than 30x30px, because the smallest blue fish is 20x20px
 
 ---
 
@@ -55,9 +55,14 @@ if (rect1.x < rect2.x + rect2.width &&
 * If area of main fish < area of other fish, decrease size of main fish
 * Remove other fish both from the array and the DOM.
 
+**clearFish()**
+* Reset fish array to null
+* Clear blue fishes from DOM screen
+
 **startGame()**
 
 * When start button is clicked, remove start items and call the functions to generate new fishes.
+* Call collision result every 500ms.
 * Includes gameOver function, where if mainFish reaches 30x30px, clear fish generation and show game over page. If mainFish reaches 100x100px, clear fish generation and show winning page.
 * Click replay button to go back to start page
 

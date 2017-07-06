@@ -98,7 +98,7 @@ function clearFish() {
   var imgDestination = document.querySelector('body')
   var allFishDom = imgDestination.querySelectorAll('.newFish')
 
-  allFishDom.forEach(function(image){
+  allFishDom.forEach(function (image) {
     image.remove()
   })
 }
@@ -108,15 +108,13 @@ function clearFish() {
 function startGame () {
   var startPage = document.getElementById('start-page')
   startPage.style.display = 'none'
-  var generating = setInterval(generateFish1, 2000)
-  var moving = setInterval(moveRandomly, 2000)
   mainFish.style.display = 'block'
   mouseFish()
   var generating = setInterval(generateFish1, 2500)
   var moving = setInterval(moveRandomly, 1500)
-  var collision = setInterval(function(){
+  var collision = setInterval(function () {
     for (var i = 0; i < allFishes.length; i++) {
-      collisionResult(mainFish,allFishes[i])
+      collisionResult(mainFish, allFishes[i])
     }
   }, 100)
 
