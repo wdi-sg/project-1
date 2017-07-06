@@ -51,24 +51,12 @@ function gameInit () {
 
   function showInstructions () {
     var instructions = document.createElement('div')
-    // instructions.style.top = '-500px'
-    instructions.style.height = '500px'
-    instructions.style.width = '800px'
-    instructions.style.border = '1px solid white'
-    instructions.style.backgroundColor = 'black'
-    instructions.style.zIndex = '3'
-    instructions.style.padding = '10px'
-    instructions.style.fontSize = '15pt'
-    instructions.style.textAlign = 'justify'
-    instructions.style.transition = 'opacity 0.5s'
-    instructions.style.opacity = '0'
-    // instructions.setAttribute('class', 'instructionsWindow')
-    instructions.innerHTML = '<br>WDI 11 proudly presents to you Typing Madness!<br><br>The goal of the game is very simple: Type the words as they appear on the screen contained in oval bubbles, before the oval bubbles land on the bottom of the window! Lose all your lives and you lose the game! Try to achieve as high a score as possible!<br><br>The game gets harder and harder as you progress and only ends when you die. During the game you may encounter <span id="instructionsSpan">red</span> colored bubbles. These give extra lives to help you survive longer through the madness at the higher levels. However the words inside them are longer!<br><br>Go ahead and challenge yourself! How much of this madness can you handle??<br><br>Hint: Try to minimise your mistakes! Mistakes do not cause you to lose life but breaks your combo. Accumulating your combo increases your score faster!<br>You may also press the  `  button to skip the current box to get to the next higher box, but doing so costs you a life!'
-    instructions.style.position = 'absolute'
-    createButton(instructions, close, 0, 0, 'X', '12pt', '25px')
-    createButton(instructions, areYouSureButton, '425px', '335px', 'I am ready!', '15pt', '150px')
+    instructions.setAttribute('id', 'instructionsWindow')
+    instructions.innerHTML = '<br>WDI 11 proudly presents to you Typing Madness!<br><br>The goal of the game is very simple: Type the words as they appear on the screen contained in oval bubbles, before the oval bubbles land on the bottom of the window! Lose all your lives and you lose the game! Try to achieve as high a score as possible!<br><br>The game gets harder and harder as you progress and only ends when you die. During the game you may encounter <span id="instructionsSpan">red</span> hearts. These give extra lives to help you survive longer through the madness at the higher levels. However the words inside them are longer!<br><br>Go ahead and challenge yourself! How much of this madness can you handle??<br><br>Hint: Try to minimise your mistakes! Mistakes do not cause you to lose life but breaks your combo. Accumulating your combo increases your score faster!<br>You may also press the  `  button to skip the current box to get to the next higher box, but doing so costs you a life!'
+    createButton(instructions, close, 'closeButton', 'X')
+    createButton(instructions, areYouSureButton, 'areYouSureButton', 'I am ready!')
     function areYouSureButton () {
-      createButton(instructions, closeWindowAndStartGame, '425px', '335px', 'Are you sure?', '15pt', '150px')
+      createButton(instructions, closeWindowAndStartGame, 'closeInstructionsButton', 'Are you sure?')
     }
     function closeWindowAndStartGame () {
       close(instructions)
@@ -82,61 +70,33 @@ function gameInit () {
 
   function setLevel () {
     level = level + 1
-    var levelCounter = document.querySelector('.levelCounter')
+    var levelCounter = document.querySelector('#levelCounter')
     levelCounter.textContent = 'Level: ' + level
     setScore()
   }
 
   function createLevelCounter () {
     var levelCounter = document.createElement('div')
-    levelCounter.setAttribute('class', 'levelCounter')
-    levelCounter.style.position = 'absolute'
-    levelCounter.style.textAlign = 'center'
-    levelCounter.style.top = '-50px'
-    levelCounter.style.left = '500px'
-    levelCounter.style.width = '300px'
-    levelCounter.style.fontSize = '15pt'
+    levelCounter.setAttribute('id', 'levelCounter')
     levelCounter.textContent = 'Level: ' + level
     innerContainer.appendChild(levelCounter)
   }
 
   function createScoreToProgress () {
     var scoreToProgress = document.createElement('div')
-    scoreToProgress.setAttribute('class', 'scoreToProgress')
-    scoreToProgress.style.top = '-30px'
-    scoreToProgress.style.width = '300px'
-    scoreToProgress.style.left = '500px'
-    scoreToProgress.style.fontSize = '15pt'
-    // scoreToProgress.style.border = '1px solid black'
-    scoreToProgress.style.position = 'absolute'
-    scoreToProgress.style.textAlign = 'center'
+    scoreToProgress.setAttribute('id', 'scoreToProgress')
     innerContainer.appendChild(scoreToProgress)
   }
 
   function createComboCounter () {
     var comboCounter = document.createElement('div')
-    comboCounter.setAttribute('class', 'comboCounter')
-    comboCounter.style.left = '0px'
-    comboCounter.style.width = '800px'
-    comboCounter.style.textAlign = 'center'
-    comboCounter.style.fontSize = '30pt'
-    comboCounter.style.position = 'absolute'
-    comboCounter.style.opacity = '1'
-    comboCounter.style.color = 'white'
+    comboCounter.setAttribute('id', 'comboCounter')
     innerContainer.appendChild(comboCounter)
   }
 
   function createLifeCounter () {
     var lifeCounter = document.createElement('div')
-    lifeCounter.setAttribute('class', 'lifeCounter')
-    lifeCounter.style.top = '0px'
-    lifeCounter.style.left = '-100px'
-    lifeCounter.style.position = 'absolute'
-    lifeCounter.style.height = '500px'
-    lifeCounter.style.width = '60px'
-    lifeCounter.style.textAlign = 'center'
-    // lifeCounter.style.border = '1px solid black'
-    lifeCounter.style.fontSize = '20pt'
+    lifeCounter.setAttribute('id', 'lifeCounter')
     lifeCounter.textContent = 'Lives'
     for (var i = 1; i <= 5; i++) {
       addHeart(lifeCounter)
@@ -146,48 +106,24 @@ function gameInit () {
 
   function createScoreCounter () {
     var scoreCounter = document.createElement('div')
-    scoreCounter.setAttribute('class', 'scoreCounter')
-    scoreCounter.style.top = '-50px'
-    scoreCounter.style.left = '0px'
-    scoreCounter.style.width = '600px'
-    scoreCounter.style.fontSize = '30pt'
-    scoreCounter.style.textAlign = 'center'
-    scoreCounter.style.position = 'absolute'
+    scoreCounter.setAttribute('id', 'scoreCounter')
     innerContainer.appendChild(scoreCounter)
   }
 
   function createGameoverWindow () {
     var gameoverWindow = document.createElement('div')
-    gameoverWindow.setAttribute('class', 'gameoverWindow')
-    gameoverWindow.style.height = '200px'
-    gameoverWindow.style.width = '400px'
-    gameoverWindow.style.top = '150px'
-    gameoverWindow.style.left = '200px'
-    // gameoverWindow.style.border = '1px solid white'
-    gameoverWindow.style.position = 'absolute'
-    gameoverWindow.style.textAlign = 'center'
-    gameoverWindow.style.color = 'white'
-    gameoverWindow.style.backgroundColor = 'black'
-    gameoverWindow.style.fontSize = '20pt'
+    gameoverWindow.setAttribute('id', 'gameoverWindow')
     gameoverWindow.innerHTML = 'Score: ' + score + '<br> Level: ' + level + '<br> Max Combo: ' + maxCombo
-    createButton(gameoverWindow, restart, '115px', '150px', 'Restart', '15pt', '100px')
-    createButton(gameoverWindow, toMainMenu, '150px', '100px', 'Back to Main Menu', '15pt', '200px')
+    createButton(gameoverWindow, restart, 'restartButton', 'Restart')
+    createButton(gameoverWindow, toMainMenu, 'toGameMenuButton', 'Back to Main Menu')
     innerContainer.innerHTML = ''
     container.appendChild(gameoverWindow)
   }
 
-  function createButton (appendTo, callback, top, right, content, fontsize, width) {
+  function createButton (appendTo, callback, id, content) {
     var button = document.createElement('button')
-    button.style.top = top
-    button.style.right = right
-    button.style.width = width
-    button.style.position = 'absolute'
-    button.style.margin = 'auto'
-    button.style.textAlign = 'center'
-    button.style.fontSize = fontsize
-    button.style.padding = '0px'
-    button.style.backgroundColor = 'black'
-    // button.style.border = '1px solid black'
+    button.setAttribute('class', 'gameoverButton')
+    button.setAttribute('id', id)
     button.textContent = content
     button.addEventListener('click', function () {
       callback(appendTo)
@@ -195,16 +131,14 @@ function gameInit () {
     appendTo.appendChild(button)
   }
 
-  function toMainMenu () {
-    var gameoverWindow = document.querySelector('.gameoverWindow')
-    container.removeChild(gameoverWindow)
+  function toMainMenu (windowToClose) {
+    close(windowToClose)
     mainMenu.style.display = ''
     innerContainer.style.border = ''
   }
 
-  function restart () {
-    var gameoverWindow = document.querySelector('.gameoverWindow')
-    container.removeChild(gameoverWindow)
+  function restart (windowToClose) {
+    close(windowToClose)
     gameSetup()
   }
 
@@ -216,7 +150,7 @@ function gameInit () {
     if (lives === 0) {
       innerContainer.innerHTML = ''
       var audio = document.createElement('audio')
-      audio.src = '../audio/gameover.wav'
+      audio.src = 'assets/audio/gameover.wav'
       audio.autoplay = true
       container.appendChild(audio)
       inGameMessage('Game Over!', 1000)
@@ -228,16 +162,13 @@ function gameInit () {
     var heart = document.createElement('img')
     heart.src = 'assets/images/redheart.png'
     heart.setAttribute('class', 'heart')
-    heart.style.height = '40px'
-    heart.style.width = '40px'
-    heart.style.margin = '1px'
     appendTo.appendChild(heart)
   }
 
   function setScore () {
-    var scoreCounter = document.querySelector('.scoreCounter')
+    var scoreCounter = document.querySelector('#scoreCounter')
     scoreCounter.textContent = 'Score: ' + score
-    var scoreToProgress = document.querySelector('.scoreToProgress')
+    var scoreToProgress = document.querySelector('#scoreToProgress')
     var pointsToProgress = 5000 * level - score
     scoreToProgress.textContent = pointsToProgress + ' points to next level'
     if (score >= 5000 * level) {
@@ -252,7 +183,7 @@ function gameInit () {
   function setCombo () {
     if (combo > maxCombo) maxCombo = combo
     if (combo >= 10) {
-      var comboCounter = document.querySelector('.comboCounter')
+      var comboCounter = document.querySelector('#comboCounter')
       comboCounter.textContent = 'Combo ' + combo
       comboCounter.style.top = '50px'
       comboCounter.style.transition = ''
@@ -272,19 +203,12 @@ function gameInit () {
 
   function createInGameMessage () {
     var inGameMessage = document.createElement('div')
-    inGameMessage.setAttribute('class', 'inGameMessage')
-    inGameMessage.style.color = 'white'
-    inGameMessage.style.fontSize = '100pt'
-    inGameMessage.style.position = 'absolute'
-    inGameMessage.style.height = '500px'
-    inGameMessage.style.width = '800px'
-    inGameMessage.style.lineHeight = '500px'
-    inGameMessage.style.textAlign = 'center'
+    inGameMessage.setAttribute('id', 'inGameMessage')
     container.appendChild(inGameMessage)
   }
 
   function inGameMessage (message, durationInMs) {
-    var inGameMessage = document.querySelector('.inGameMessage')
+    var inGameMessage = document.querySelector('#inGameMessage')
     inGameMessage.textContent = message
     inGameMessage.style.opacity = '1'
     inGameMessage.style.transition = ''
@@ -331,44 +255,17 @@ function gameInit () {
 
   function addBox (type) {
     var boxElem = document.createElement('div')
-    // boxElem.style.height = '20px'
-    // boxElem.style.width = '80px'
-    boxElem.style.padding = '5px 10px'
     var boxFallTime = setLevelAdjustedParameter(level, 5, 0.8)
-    console.log('top ' + boxFallTime.toString() + 's linear')
     boxElem.style.transition = 'top ' + boxFallTime + 's linear, transform ' + boxFallTime + 's linear'
-    console.log(boxElem.style.transition)
-    // boxElem.style.border = '1px solid white'
-    boxElem.style.top = '0px'
-    boxElem.style.left = randomNo(0, 700) + 'px'
-    boxElem.style.position = 'absolute'
-    boxElem.style.textAlign = 'center'
-    // boxElem.style.lineHeight = '20px'
-    // boxElem.style.transition = 'top 5s linear'
-    boxElem.style.borderRadius = '50%'
-    boxElem.style.fontFamily = 'Arial'
-    boxElem.style.fontSize = '15pt'
-    boxElem.setAttribute('class', 'box')
     boxElem.type = type
+    boxElem.setAttribute('id', type)
+    boxElem.setAttribute('class', 'box')
+    boxElem.style.left = randomNo(0, 700) + 'px'
     if (type === 'upsideDown') {
-      boxElem.style.backgroundColor = 'cyan'
       boxElem.style.transform = 'rotate(0deg)'
       setTimeout(function () {
         boxElem.style.transform = 'rotate(360deg)'
       }, 100)
-    } else if (type === 'heartBox') {
-      boxElem.id = 'heartBox'
-      boxElem.style.background = 'url(\'assets/images/redheart.png\''
-      boxElem.style.borderRadius = ''
-      boxElem.style.backgroundSize = 'cover'
-      // boxElem.style.backgroundSize = '100%'
-      boxElem.style.width = '75px'
-      boxElem.style.height = '71px'
-      boxElem.style.backgroundRepeat = 'no-repeat'
-      boxElem.style.backgroundPosition = 'center center'
-      boxElem.style.fontSize = '12pt'
-    } else {
-      boxElem.style.backgroundColor = 'pink'
     }
     addWord(boxElem, type)
     innerContainer.appendChild(boxElem)
@@ -380,16 +277,17 @@ function gameInit () {
   function addWord (appendTo, type) {
     var fullWordArr = words.array
     var inGameWordArr = fullWordArr.filter(function (word) {
-      console.log(randomNoRounded(3 + level / 3, 4 + level / 3))
-      if (type === 'heartBox') {
+      if (type === 'heartBox' && level >= 15) {
+        return word.length === 11
+      } else if (type === 'heartBox') {
         return word.length === randomNoRounded(6 + level / 3, 6 + level / 3)
+      } else if (level >= 21) {
+        return word.length === 11
       } else {
         return word.length === randomNoRounded(3 + level / 3, 4 + level / 3)
       }
     })
-    console.log(inGameWordArr.length)
     var randomWord = inGameWordArr[randomNo(0, inGameWordArr.length - 1)]
-    console.log(randomWord.length)
     var randomWordArr = randomWord.split('')
     var innerBox = document.createElement('div')
     for (var i = 0; i < randomWordArr.length; i++) {
@@ -430,17 +328,10 @@ function gameInit () {
   function loseLife () {
     lives -= 1
     var heartToRemove = document.querySelector('.heart')
-    var lifeCounter = document.querySelector('.lifeCounter')
+    var lifeCounter = document.querySelector('#lifeCounter')
     lifeCounter.removeChild(heartToRemove)
     var redBackground = document.createElement('div')
-    redBackground.style.height = '100%'
-    redBackground.style.width = '100%'
-    redBackground.style.top = '0px'
-    redBackground.style.left = '0px'
-    redBackground.style.backgroundColor = 'red'
-    redBackground.style.opacity = '0.5'
-    redBackground.style.transition = 'opacity 0.5s'
-    redBackground.style.position = 'absolute'
+    redBackground.setAttribute('id', 'redBackground')
     setTimeout(function () {
       redBackground.style.opacity = '0'
     }, 10)
@@ -495,12 +386,12 @@ function gameInit () {
       if (boxSelector.type === 'easy' || boxSelector.type === 'twoBox') score += 20 * playerArr.length
       if (boxSelector.type === 'upsideDown') score += 30 * playerArr.length
       if (boxSelector.type === 'heartBox') {
-        var lifeCounter = document.querySelector('.lifeCounter')
+        var lifeCounter = document.querySelector('#lifeCounter')
         lives += 1
         addHeart(lifeCounter)
         inGameMessage('Extra Life!', 10)
         var audio = document.createElement('audio')
-        audio.src = '../audio/extralife.wav'
+        audio.src = 'assets/audio/extralife.wav'
         audio.autoplay = true
         container.appendChild(audio)
       }
