@@ -22,10 +22,6 @@
   color: white;
 }
 
-h6{
-
-}
-
 .startLeave{
   opacity: 0;
   visibility: hidden;
@@ -40,7 +36,7 @@ h6{
   width: 28%;
   top: 10%;
   height: 80%;
-  z-index: 3;
+  z-index: 5;
 }
 
 .ground{

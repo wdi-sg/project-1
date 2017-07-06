@@ -92,13 +92,6 @@ function init () {
       scoreDiv.textContent = 'Score' + '\r\n' + score
     })
 
-// just to see mouse coordinates
-    document.addEventListener('click', function (e) {
-      var posX = e.clientX
-      var posY = e.clientY
-      console.log(posX + ' and ' + posY)
-    })
-
 // if keydown, then ship tilts left or right. Also walls move to give a sense of turning
     document.addEventListener('keydown', function (e) {
       var currentWalls = document.querySelectorAll('.wall')
@@ -106,7 +99,7 @@ function init () {
         e.preventDefault()
         spaceship.id = 'spaceshipleft'
         for (var i = 0; i < currentWalls.length; i++) {
-          wallsX(currentWalls[i], -5)
+          wallsX(currentWalls[i], -7)
         }
       } else if (event.keyCode === 39) {
         e.preventDefault()
