@@ -52,7 +52,7 @@ function init () {
         clearInterval(myTimer)
         spawnRate = spawnRate * 0.8
         myTimer = setInterval(loop, spawnRate)
-        // speed += 1
+        speed += 1
       }
       if (spaceship.style.display !== 'none') {
         var scoreDiv = document.querySelector('.score')
