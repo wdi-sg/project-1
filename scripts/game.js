@@ -122,7 +122,10 @@ function init () {
     var whoWonP = document.querySelector('#who-won')
     whoWonP.textContent = winner + ' won!'
     var roiP = document.querySelector('#roi')
-    roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + Number(Math.round(playersDataArr[0].roi + 'e4') + 'e-4') * 100 + '%, while ' + parameters.p2Name + ' achieved a return on investment of ' + Number(Math.round(playersDataArr[1].roi + 'e4') + 'e-4') * 100 + '%.'
+
+    var p1RoundedRoi = Number(Math.round(playersDataArr[0].roi + 'e4') + 'e-4') * 100
+    var p2RoundedRoi = Number(Math.round(playersDataArr[1].roi + 'e4') + 'e-4') * 100
+    roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + p1RoundedRoi + '%, while ' + parameters.p2Name + ' achieved a return on investment of ' + p2RoundedRoi + '%.'
 
     var walletP = document.querySelector('#wallet')
     walletP.textContent = 'At the end of the holding period, ' + parameters.p1Name + ' had $' + Number(Math.round(playersDataArr[0].wallet + 'e4') + 'e-4') + ' in his/her wallet, while ' + parameters.p2Name + ' had $' + Number(Math.round(playersDataArr[1].wallet + 'e4') + 'e-4') + ' in his/her wallet.'

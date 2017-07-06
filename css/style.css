@@ -1,12 +1,18 @@
 
-h1:first-of-type {
+body {
+  /*color: white;*/
+  font-family: Helvetica;
+  /*background-color: #a07178*/
+}
+
+/*h1:first-of-type {
   top: 500px;
   text-align: center;
 }
 
 div#header {
   text-align: center;
-}
+}*/
 
 /*.game-section, .results-in {
   display: none;

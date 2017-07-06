@@ -15,20 +15,19 @@
 
     <h1>STOCKBET</h1>
     <h2>How To Play</h2>
+    <p>This game helps you practice your stock betting skills. Assuming that you invested in a stock a specific number of trading days ago, and sold it today, how much money would you have made?</p>
     <ol>
-      <li>Set the parameters of the game: your wallet size (the amount each person has to invest), and your holding period (the time you would wait to see results of your trade, in minutes).</li>
-      <li>Research stocks by entering ticker names. For now, only stocks on the XXX exchange are available. Once you enter a valid ticker, the text area below will display recent news related to the ticker.</li> <!-- [AXN] add url for where to find tickers. Update this line -->
-      <li>Enter the ticker of the stock you want to purchase, and click Enter.</li>
-      <li>The second player will repeat steps 2 and 3 above.</li>
-      <li>Once both players have entered their stock pickcs, you will be directed to the Results page, where you can skim through investment literature.</li>
-      <li>When your holding period has lapsed, the results section of the Results page will display the result of the betting game.</li>
-    </ol>
+      <li>Set the parameters of the game: your wallet size (the amount each person has to invest), and your holding period (number of trading days before today).</li><br>
+      <li>Research stocks by entering ticker names. For now, only stocks on the Hong Kong stock exchange are available. Once you enter a valid ticker, the text area below will display recent news related to the ticker. <br><i>(Note to game evaluator: news data not available from within browser due to cross origin issues; the data pulled instead comes from a dummy data in JSON format.)</i></li><br>
+      <li>Enter the ticker of the stock you want to purchase, and click Select Ticker.</li><br>
+      <li>The second player will repeat steps 2 and 3 above.</li><br>
+      <li>Once both players have entered their stock pickcs, the Results will show at the bottom of the page.</li>
+    </ol><br><hr>
 
     <p>Limitations and Other Notes:</p>
     <ol>
-      <li>For this release of the game, only stocks on the Hong Kong Stock Exchange will be available for lookup.</li>
-      <li>The market must be open. Otherwise, there will be no movement in prices and hence no winner. Please see here for market open hours: hkex.com.hk/eng/market/sec_tradinfo/tradcal/tradcal_1.htm</li>
-      <li>To test the game, some stocks to try are (stock code: company name): 00005: HSBC HOLDINGS | 00700:	TENCENT | 02318: PING AN | 00175: GEELY AUTO | 01299: AIA | 03333: EVERGRANDE. To double check the prices you can visit: google.com/finance.</li>
+      <li>For this release of the game, only stocks on the Hong Kong Stock Exchange will be available for lookup. You can refer to this <a href="./tickersHKEX.html" target="_blank">full list of stock tickers.</a></li><br>
+      <li>To test the game, you can input: Wallet $1000, Holding Period 3 (days), Player 1 ticker 00005 (HSBC), Player 2 ticker 02318 (Ping An Insurance). To double check that prices are drawn correctly, you can visit: google.com/finance.</li>
     </ol>
 
     <input type="button" class="play-button" onclick="location.href='./game.html';" value="Play!" />
