@@ -5,7 +5,7 @@ function init () {
   var body = document.querySelector('body')
   var monitor = document.querySelector('.monitor')
   var leftMargin = monitor.getBoundingClientRect().left - body.getBoundingClientRect().left
-  var speed = 3
+  var speed = 2
   var spawnRate = 2000
   var score = 0
   var spaceship = document.querySelector('.ship')
