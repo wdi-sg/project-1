@@ -1,17 +1,14 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init () {
+  // target display of scores and timer
   var topScoreRecord = document.querySelector('.score')
   var currentScore = document.querySelector('.currentscore')
   var timer = document.querySelector('.countdown')
+
+  // target tony and asteroids, along with starting position
   var tony = document.querySelector('.tony')
   tony.style.left = '295px'
-  var startButton = document.querySelector('.startbutton')
-  startButton.addEventListener('click', startGame)
-  var retryButton = document.querySelector('.retrybutton')
-  retryButton.addEventListener('click', restartGame)
-  var tonyNumber = -1
-  var asteroidNumber = 0
   var firstAsteroid = document.querySelector('.firstasteroid')
   firstAsteroid.style.top = '0px'
   var firstAsteroidTop = parseInt(firstAsteroid.style.top)
@@ -24,29 +21,105 @@ function init () {
   var fourthAsteroid = document.querySelector('.fourthasteroid')
   fourthAsteroid.style.top = '0px'
   var fourthAsteroidTop = parseInt(fourthAsteroid.style.top)
+
+  // inital condition for game
+  var tonyNumber = -1
+  var asteroidNumber = 0
   var scorecounter = 0
   var gameOver = true
   var timeLeft = 6000
+  var randomNum = 0
+
+  // for asteroids movement when using setInterval and clearInterval
   var genAsteroid
   var moveAsteroid1Down
   var moveAsteroid2Down
   var moveAsteroid3Down
   var moveAsteroid4Down
-  var randomNum = 0
+
+  // to target fires
   var firstFire = document.querySelector('.firstfire')
   var secondFire = document.querySelector('.secondfire')
   var thirdFire = document.querySelector('.thirdfire')
   var fourthFire = document.querySelector('.fourthfire')
+
+  // to target HIT and MISS
   var hit = document.querySelector('.hit')
   var miss = document.querySelector('.miss')
-  document.addEventListener('keyup', onKeyUp)
+
+  // to play music once page load
   var audio = document.createElement('audio')
   audio.src = 'audio/Ironmantheme.mp3'
   audio.autoplay = true
   tony.appendChild(audio)
-  audio.volume=0.4
-  audio.loop=true
+  audio.volume = 0.4
+  audio.loop = true
 
+  // to start game, start timer and restart game
+  var startButton = document.querySelector('.startbutton')
+  startButton.addEventListener('click', startGame)
+  var retryButton = document.querySelector('.retrybutton')
+  retryButton.addEventListener('click', restartGame)
+
+  function startGame () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/start.wav'
+    audio.autoplay = true
+    audio.volume = 0.6
+    tony.appendChild(audio)
+    startButton.style.visibility = 'hidden'
+    retryButton.style.visibility = 'hidden'
+    gameOver = false
+    firstAsteroid.style.visibility = 'hidden'
+    secondAsteroid.style.visibility = 'hidden'
+    thirdAsteroid.style.visibility = 'hidden'
+    fourthAsteroid.style.visibility = 'hidden'
+    timeLeft = 6000
+    startTimer()
+  }
+
+  function startTimer () {
+    var elem = timer
+    var timerId = setInterval(countdown, 1)
+
+    function countdown () {
+      if (timeLeft < 0) {
+        clearTimeout(timerId)
+        gameOver = true
+        clearInterval(genAsteroid)
+        clearInterval(moveAsteroid1Down)
+        clearInterval(moveAsteroid2Down)
+        clearInterval(moveAsteroid3Down)
+        clearInterval(moveAsteroid4Down)
+        isGameOver()
+      } else {
+        elem.innerHTML = timeLeft
+        timeLeft--
+      }
+    }
+    genAsteroid = setInterval(generateAsteroids, 3000)
+  }
+
+  function restartGame () {
+    tony.style.left = '295px'
+    tonyNumber = -1
+    asteroidNumber = 0
+    firstAsteroid.style.top = '0px'
+    firstAsteroidTop = 0
+    secondAsteroid.style.top = '0px'
+    secondAsteroidTop = 0
+    thirdAsteroid.style.top = '0px'
+    thirdAsteroidTop = 0
+    fourthAsteroid.style.top = '0px'
+    fourthAsteroidTop = 0
+    scorecounter = 0
+    currentScore.innerHTML = scorecounter
+    tony.style.backgroundImage = "url('images/Iron-Man.png')"
+    startGame()
+  }
+
+  // functions to call for z,x,c,v and . key events
+  document.addEventListener('keyup', onKeyUp)
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
       if (event.keyCode === 90) {
@@ -62,7 +135,7 @@ function init () {
         moveTonyFour()
       }
       if (event.keyCode === 190) {
-        chop()
+        shoot()
       }
     }
   }
@@ -74,54 +147,84 @@ function init () {
     return false
   }
 
-  function startGame () {
-    var audio = document.createElement('audio')
-    audio.src = 'audio/start.wav'
-    audio.autoplay = true
-    audio.volume =0.6
-    tony.appendChild(audio)
-    startButton.style.visibility = 'hidden'
-    retryButton.style.visibility = 'hidden'
-    gameOver = false
-    firstAsteroid.style.visibility = 'hidden'
-    secondAsteroid.style.visibility = 'hidden'
-    thirdAsteroid.style.visibility = 'hidden'
-    fourthAsteroid.style.visibility = 'hidden'
-    timeLeft = 6000
-    startTimer()
-  }
-
+  // functions to generate asteroids
   function randomFn (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
   function generateAsteroids () {
     var number = randomFn(1, 4)
+    // positions of asteroids generated, only 1 asteroid will appear at each "column"
     if (number !== randomNum) {
       if (number === 1) {
         firstAsteroid.style.visibility = 'visible'
         asteroidNumber = 1
-        checkLevel()
       }
       if (number === 2) {
         secondAsteroid.style.visibility = 'visible'
         asteroidNumber = 2
-        checkLevel()
       }
       if (number === 3) {
         thirdAsteroid.style.visibility = 'visible'
         asteroidNumber = 3
-        checkLevel()
       }
       if (number === 4) {
         fourthAsteroid.style.visibility = 'visible'
         asteroidNumber = 4
-        checkLevel()
       }
+      checkLevel()
       randomNum = number
     } else {
       generateAsteroids()
     }
   }
+
+  // asteroids movement functions
+  function move1Down () {
+    if (firstAsteroidTop < 270) {
+      firstAsteroidTop += 2
+      firstAsteroid.style.top = firstAsteroidTop + 'px'
+    } else {
+      firstAsteroid.style.visibility = 'hidden'
+      firstAsteroidTop = 0
+      firstAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid1Down)
+    }
+  }
+  function move2Down () {
+    if (secondAsteroidTop < 270) {
+      secondAsteroidTop += 2
+      secondAsteroid.style.top = secondAsteroidTop + 'px'
+    } else {
+      secondAsteroid.style.visibility = 'hidden'
+      secondAsteroidTop = 0
+      secondAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid2Down)
+    }
+  }
+  function move3Down () {
+    if (thirdAsteroidTop < 270) {
+      thirdAsteroidTop += 2
+      thirdAsteroid.style.top = thirdAsteroidTop + 'px'
+    } else {
+      thirdAsteroid.style.visibility = 'hidden'
+      thirdAsteroidTop = 0
+      thirdAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid3Down)
+    }
+  }
+  function move4Down () {
+    if (fourthAsteroidTop < 270) {
+      fourthAsteroidTop += 2
+      fourthAsteroid.style.top = fourthAsteroidTop + 'px'
+    } else {
+      fourthAsteroid.style.visibility = 'hidden'
+      fourthAsteroidTop = 0
+      fourthAsteroid.style.top = '0px'
+      clearInterval(moveAsteroid4Down)
+    }
+  }
+
+  // function to check level and then difficulty
   function checkLevel () {
     if (scorecounter <= 3) {
       levelOne()
@@ -223,58 +326,8 @@ function init () {
       moveAsteroid4Down = setInterval(move4Down, 6)
     }
   }
-  function move1Down () {
-    if (firstAsteroidTop < 270) {
-      firstAsteroidTop += 2
-      firstAsteroid.style.top = firstAsteroidTop + 'px'
-    } else {
-      firstAsteroid.style.visibility = 'hidden'
-      firstAsteroidTop = 0
-      firstAsteroid.style.top = '0px'
-      clearInterval(moveAsteroid1Down)
-    }
-  }
-  function move2Down () {
-    if (secondAsteroidTop < 270) {
-      secondAsteroidTop += 2
-      secondAsteroid.style.top = secondAsteroidTop + 'px'
-    } else {
-      secondAsteroid.style.visibility = 'hidden'
-      secondAsteroidTop = 0
-      secondAsteroid.style.top = '0px'
-      clearInterval(moveAsteroid2Down)
-    }
-  }
-  function move3Down () {
-    if (thirdAsteroidTop < 270) {
-      thirdAsteroidTop += 2
-      thirdAsteroid.style.top = thirdAsteroidTop + 'px'
-    } else {
-      thirdAsteroid.style.visibility = 'hidden'
-      thirdAsteroidTop = 0
-      thirdAsteroid.style.top = '0px'
-      clearInterval(moveAsteroid3Down)
-    }
-  }
-  function move4Down () {
-    if (fourthAsteroidTop < 270) {
-      fourthAsteroidTop += 2
-      fourthAsteroid.style.top = fourthAsteroidTop + 'px'
-    } else {
-      fourthAsteroid.style.visibility = 'hidden'
-      fourthAsteroidTop = 0
-      fourthAsteroid.style.top = '0px'
-      clearInterval(moveAsteroid4Down)
-    }
-  }
 
-  function playSound(){
-    var audio = document.createElement('audio')
-    audio.src = 'audio/Fly.wav'
-    audio.autoplay = true
-    tony.appendChild(audio)
-    audio.volume = 0.1
-  }
+  // functions to move tony to position on z,x,c,v key (wtith sound)
   function moveTonyOne () {
     tony.style.backgroundImage = "url('images/Iron-Man.png')"
     tony.style.left = '55px'
@@ -299,13 +352,23 @@ function init () {
     tonyNumber = 4
     playSound()
   }
+  function playSound () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/Fly.wav'
+    audio.autoplay = true
+    tony.appendChild(audio)
+    audio.volume = 0.1
+  }
 
-  function chop () {
+  // function that happened on . key
+  function shoot () {
     var audio = document.createElement('audio')
     audio.src = 'audio/shoot.wav'
     audio.autoplay = true
     tony.appendChild(audio)
     audio.volume = 0.3
+
+    // conditions to score point, + time and - time
     if ((tonyNumber === 1 && firstAsteroid.style.visibility === 'visible') || (tonyNumber === 2 && secondAsteroid.style.visibility === 'visible') || (tonyNumber === 3 && thirdAsteroid.style.visibility === 'visible') || (tonyNumber === 4 && fourthAsteroid.style.visibility === 'visible')) {
       scorecounter += 1
       if (scorecounter < 10) {
@@ -313,6 +376,7 @@ function init () {
       } else {
         timeLeft += 200
       }
+      // asteroids to disappear upon shooting correctly
       if (tonyNumber === 1) {
         refreshOne()
       } if (tonyNumber === 2) {
@@ -322,13 +386,17 @@ function init () {
       } if (tonyNumber === 4) {
         refreshFour()
       }
+
+      // conditions to make HIT MISS appear/ disappear
       hit.style.opacity = '1.0'
-      miss.style.opacity='0'
+      miss.style.opacity = '0'
     } else {
       timeLeft -= 300
       hit.style.opacity = '0'
       miss.style.opacity = '1.0'
     }
+
+    // to make fires appear
     if (tonyNumber === 1) {
       firstFire.style.opacity = '1.0'
     } if (tonyNumber === 2) {
@@ -339,20 +407,28 @@ function init () {
       fourthFire.style.opacity = '1.0'
     }
     tony.style.backgroundImage = "url('images/ironmanshooting.png')"
-    setTimeout(colorChanger, 100)
+
+    // setTimeout to make HIT MISS and fires disappear
+    setTimeout(fireDisappear, 100)
+    setTimeout(disappearHitMiss, 500)
     displayScore()
-    setTimeout(disappearHitMiss,500)
   }
-  function disappearHitMiss() {
-    miss.style.opacity='0'
+
+  // function to make HIT MISS disappear
+  function disappearHitMiss () {
+    miss.style.opacity = '0'
     hit.style.opacity = '0'
   }
-  function colorChanger () {
+
+  // function to make fire disappear
+  function fireDisappear () {
     firstFire.style.opacity = '0'
     secondFire.style.opacity = '0'
     thirdFire.style.opacity = '0'
     fourthFire.style.opacity = '0'
   }
+
+  // functions to make asteroids disappear
   function refreshOne () {
     firstAsteroid.style.visibility = 'hidden'
     firstAsteroidTop = 0
@@ -381,28 +457,7 @@ function init () {
     clearInterval(moveAsteroid4Down)
     asteroidNumber = 0
   }
-
-  function startTimer () {
-    var elem = timer
-    var timerId = setInterval(countdown, 1)
-
-    function countdown () {
-      if (timeLeft < 0) {
-        clearTimeout(timerId)
-        gameOver = true
-        clearInterval(genAsteroid)
-        clearInterval(moveAsteroid1Down)
-        clearInterval(moveAsteroid2Down)
-        clearInterval(moveAsteroid3Down)
-        clearInterval(moveAsteroid4Down)
-        isGameOver()
-      } else {
-        elem.innerHTML = timeLeft
-        timeLeft--
-      }
-    }
-    genAsteroid = setInterval(generateAsteroids, 3000)
-  }
+  // functions to display score and generate asteroids at different intervals
   function displayScore () {
     currentScore.innerHTML = scorecounter
     if (scorecounter === 3) {
@@ -422,38 +477,24 @@ function init () {
       genAsteroid = setInterval(generateAsteroids, 450)
     }
   }
+
+  // gameover function
   function isGameOver () {
     var topScore = parseInt(topScoreRecord.innerHTML)
+    // check for high score
     if (scorecounter > topScore) {
       setTimeout(function () { alert('NEW HIGH SCORE!') }, 100)
       topScoreRecord.innerHTML = scorecounter
     } else {
       setTimeout(function () { alert('please try again') }, 100)
     }
+    // conditions when gameover
     retryButton.style.visibility = 'visible'
     timer.innerHTML = '0'
     var audio = document.createElement('audio')
     audio.src = 'audio/gameend.wav'
     audio.autoplay = true
     tony.appendChild(audio)
-    audio.volume=0.5
-  }
-
-  function restartGame () {
-    tony.style.left = '295px'
-    tonyNumber = -1
-    asteroidNumber = 0
-    firstAsteroid.style.top = '0px'
-    firstAsteroidTop = 0
-    secondAsteroid.style.top = '0px'
-    secondAsteroidTop = 0
-    thirdAsteroid.style.top = '0px'
-    thirdAsteroidTop = 0
-    fourthAsteroid.style.top = '0px'
-    fourthAsteroidTop = 0
-    scorecounter = 0
-    currentScore.innerHTML = scorecounter
-    tony.style.backgroundImage = "url('images/Iron-Man.png')"
-    startGame()
+    audio.volume = 0.5
   }
 }
