@@ -16,19 +16,19 @@ This game is inspired by the iconic video game, PAC-MAN.
 * **[Simple Pac-Man](https://shumin13.github.io/project-1/)**
 
 
-## Wireframes
+## Gameboard
 
 #### Draft:
 <img src="assets/images/gameboard-first-draft.png" height="400">
 
 #### Final:
-<img src="assets/images/gameboard-final.png" height="400" border="4">
+<img src="assets/images/gameboard-final.png" height="400">
 
 
 ## Game Logic
 
 #### createWall (left, top, width, height)
-* Create wall on the gameboard
+* Create walls on the gameboard
 
 #### createDot (left, top)
 * Create dots on the gameboard
