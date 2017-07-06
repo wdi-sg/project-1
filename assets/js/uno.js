@@ -44,10 +44,11 @@ var Human = 1
 var Discard = 2 //refers to DiscardPile
 var Draw = 3 // refers to DrawPile
 var whichPlayerTurn = Human // Human (= 1) starts first; Computer = 0
-var HumanNoOfCardsLeft = null
-var ComputerNoOfCardsLeft = null
 var GameStarted = false
-var DoNotSwitchTurn = false // True when these cards played: Skip, DrawTwo or DrawFour
+
+//var DoNotSwitchTurn = false // True when these cards played: Skip, DrawTwo or DrawFour
+// var HumanNoOfCardsLeft = null
+// var ComputerNoOfCardsLeft = null
 
 ////////////////////////
 // Game Play Functions
@@ -255,13 +256,13 @@ function hasPlayablePile(player) {
 //console.log('human', HumanPlayerPile);
 // console.log('com', ComputerPlayerPile);
 
-for (var i = 0; i<DrawPile.length; i++) { // To list out the DrawPile just generated
-  console.log('i '+i);
-  console.log(DrawPile[i].label);
-  console.log(DrawPile[i].value);
-  console.log(DrawPile[i].color);
-  console.log(DrawPile[i].image);
-}
+// for (var i = 0; i<DrawPile.length; i++) { // To list out the DrawPile just generated
+//   console.log('i '+i);
+//   console.log(DrawPile[i].label);
+//   console.log(DrawPile[i].value);
+//   console.log(DrawPile[i].color);
+//   console.log(DrawPile[i].image);
+// }
 
 // HumanPlayerPile = dealCard(7)
 // ComputerPlayerPile = dealCard(7)

@@ -1,4 +1,4 @@
-# Project Name (Start editing here)
+# Simplified UNO! for 2
 <!---
 Read Me Contents
 -->
@@ -7,21 +7,109 @@ Read Me Contents
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+This is a simplified version of the classic card game UNO!. It allows only two players: a human player and the computer player. The players are dealt a deck of cards each and take turn to discard their cards one-by-one according to rules regarding card colors and values. During gameplay if none of a player's cards on hand comply with rules for discard, the player has to draw an additional card from the Draw Pile as penalty. The first player to discard her or his entire deck wins.   
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+---
+### Overview of Game Elements
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+**Game Objects**
+
+* Draw Pile: The initial deck of 76 cards.  
+* Human Player's Pile: An initial deck of 7 cards dealt from shuffled Draw Pile.
+* Computer Player's Pile: An initial deck of 7 cards dealt from shuffled Draw Pile.
+* Discard Pile: One initial card dealt from shuffled Draw Pile. Last played card of each turn is stacked on top on Discard Pile.
+* Card: Colors - red, green, blue, yellow; Values - 0 to 9
+
+**UI Objects**
+
+* Draw Pile: A PNG image of a covered UNO stack
+* Human Player's Pile: Revealed UNO card PNG images
+* Computer Player's Pile: Covered UNO card PNG images
+* Discard Pile: Last played, revealed UNO card PNG image
+* Start button: To begin game play
+* Reset button: To stop game and clear UI objects from page
+* Draw Card button: For human player to draw a card from Draw Pile
+* Game Message Console: To indicate player's turn and game status (i.e. win, UNO!)
+
+**Game Actions**
+
+* Create a card
+* Create a Draw Pile
+* Shuffle the Draw Pile
+* Deal X number of cards from Draw Pile to player
+* Select a card to play
+* Draw a card from Draw Pile
+* Start a game
+* Reset game
+* UNO!
+* Inform win or lose
+
+**Game Decisions**
+
+* Computer: Is card played legitimate? Card same color or number or is card wild
+* Computer: who wins?
+* Computer: is game over?
+* Computer: is there UNO?
+
+**Game Status**
+
+* Has Game Started?
+* Whose turn currently?
+* Has a card been played by Human/Computer successfully?
+* Computer Player Pile No of Cards Left
+* Human Player Pile No of Cards Left
 
 
 ---
+### Game Flow
+
+1. Item 1
+1. Item 2
+1. Item 3
+   1. Item 3a
+   1. Item 3b
+
+**Starting Game**
+
+1. Generate an array of card objects as Draw Pile
+1. Add click listeners to buttons: Start, Reset, & Draw Card
+1. IF "Start" button clicked THEN:
+    1. Proceed if game not yet started
+    1. Shuffle Draw Pile
+    1. Deal 1 Card to Discard Pile
+    1. Deal 7 Cards from Draw Pile to Human Player
+    1. Deal 7 Cards from Draw Pile to Computer Player
+    1. Display Human Player's cards on Game Page
+    1. Add click listeners to Human Player's individual cards on Game Page
+    1. Display Computer Player's cards on Game Page
+    1. Display Discard Pile card on Game Page
+    1. Print "Awaiting Human Player move" on Game Page
+1. IF "Reset" button clicked THEN ()
+1. IF "Draw Card" button clicked THEN:
+    1. Proceed if game has started and turn belongs to Human Player
+    1. Draw a card from Draw Pile and deal to Human Player
+    1. Switch turn to Computer Player
+    1. Computer Player plays
+    1. Switch turn back to Human Player
+1. d
+1. d
+
+2. If game started, relabel "Start" button to "Restart"
+3. Computer shuffles DrawPile once for the new game
+4. Computer draws topmost 7 Cards from DrawPile and deals them to ComputerPlayer
+5. Computer draws topmost 7 Cards from DrawPile and deals them to HumanPlayer
+6. ?? Computer draws topmost Card from DrawPile adds to top of DiscardPile
+7. HumanPlayer starts new game first
+8. IF PlayerTurn = HumanPlayer, ?? Human deliberates on which one Card to play and upon decision click on the Card to play (GOTO Step 10)
+9. ELSE IF PlayerTurn = ComputerPlayer, Computer calculate and play card (GOTO Step XX)
+
 
 ### Technical Requirements
 
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +155,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---

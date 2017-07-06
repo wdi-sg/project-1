@@ -2,12 +2,14 @@ h1 {
   text-align: center;
   font-family: 'Londrina Shadow', cursive;
   font-size: 54px;
+  letter-spacing: 5px;
 }
 
 h2 {
   text-align: center;
-  font-family: 'Londrina Shadow', cursive;
-  font-size: 28px;
+  font-family: 'Londrina Solid', cursive;
+  font-size: 32px;
+  letter-spacing: 5px;
 }
 
 p.Intro {
