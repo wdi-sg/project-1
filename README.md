@@ -2,6 +2,7 @@
 
 ### Gameplay
 
+Move your mouse around to bump into other fishes.
 Eating smaller fish will make you bigger,
 and bumping into bigger fish will make you smaller.
 Make yourself the biggest fish in the sea!
@@ -17,10 +18,11 @@ Step-by-Step Process
 * Create cover page that will disappear upon clicking start button
 * Generate fishes at intervals [Stop generating fishes after the 30th fish]
 * Fishes must be of different sizes, different initial position, and move randomly
-* Create main fish that follows mouse [Rotate fish to follow mouse]
+* Create main fish that follows mouse
 * Detect collision
 * Increase/Decrease size of main fish when colliding, and make other fish disappear
-* Win/Lose
+* Win if bigger than 100*100px, because the biggest other fish is 120*120px
+* Lose if less than 30*30px, because the smallest other fish is 20*20px
 
 ---
 
@@ -55,15 +57,13 @@ if (rect1.x < rect2.x + rect2.width &&
 
 **startGame()**
 
-When start button is clicked, remove start items and call the functions to generate new fishes
+* When start button is clicked, remove start items and call the functions to generate new fishes.
+* Includes gameOver function, where if mainFish reaches 30*30px, clear fish generation and show game over page. If mainFish reaches 100*100px, clear fish generation and show winning page.
+* Click replay button to go back to start page
 
 ---
 
 ### Roadblocks
-
-**Defining range of fish movement**
-
-Every browser has a different size, so the max limit of the random number generated is set at window.innerHeight and window.innerWidth
 
 **Fishes tend to congregate towards the center after awhile.**
 
@@ -73,7 +73,6 @@ A workaround can be if the sea is divided into sections with some fish in each.
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles.
-One problem encountered during coding was that 'style.top' returns a string while 'offsetTop' returns a number.
 
 ---
 

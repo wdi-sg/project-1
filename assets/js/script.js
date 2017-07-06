@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', init)
+
+function init() {
+
 // Show initial start page
 document.querySelector('#start-button').addEventListener('click', startGame)
 
@@ -16,6 +20,7 @@ function generateFish1 () {
     var imgDestination = document.querySelector('body')
     var newFish = document.createElement('img')
     newFish.src = 'assets/pictures/Fish1.png'
+    newFish.className = 'newFish'
     newFish.style.height = randomizer(20, 120) + 'px'
     newFish.style.position = 'absolute'
     newFish.style.top = randomizer(0, window.innerHeight) + 'px'
@@ -30,9 +35,7 @@ function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
     allFishes[i].style.top = randomizer(0, window.innerHeight) + 'px'
     allFishes[i].style.left = randomizer(0, window.innerWidth) + 'px'
-    allFishes[i].style.transition = 'top 2s linear, left 3s linear'
-
-    collisionResult(mainFish, allFishes[i])
+    allFishes[i].style.transition = 'top 1.5s linear, left 1.5s linear'
   }
 }
 
@@ -47,13 +50,13 @@ function mouseFish () {
     var mainFish = document.querySelector('#main-fish')
     mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
     mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
-    mainFish.style.transition = 'top 0.1s linear, left 0.1s linear'
+    mainFish.style.transition = 'top 0.05s linear, left 0.05s linear'
 
     // Make fish rotate to face mouse
-    var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
-    var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
-
-    mainFish.style.transform = 'rotate(' + angle + 'deg)'
+    // var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
+    // var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
+    //
+    // mainFish.style.transform = 'rotate(' + angle + 'deg)'
   })
 }
 
@@ -87,43 +90,71 @@ function collisionResult (mainFish, eachFish) {
   }
 }
 
+//Remove the new fishes from screen after game over
+function clearFish() {
+  // remove allFishes from array
+  allFishes = []
+  // remove all fish elements from the dom
+  var imgDestination = document.querySelector('body')
+  var allFishDom = imgDestination.querySelectorAll('.newFish')
+
+  allFishDom.forEach(function(image){
+    image.remove()
+  })
+}
+
 // When start button is clicked, remove start page
 // Add fishes that move randomly
 function startGame () {
   var startPage = document.getElementById('start-page')
   startPage.style.display = 'none'
-  var generating = setInterval(generateFish1, 2000)
-  var moving = setInterval(moveRandomly, 1000)
   mainFish.style.display = 'block'
   mouseFish()
-  var over = setInterval(gameOver, 1000)
+  var generating = setInterval(generateFish1, 2500)
+  var moving = setInterval(moveRandomly, 1500)
+  var collision = setInterval(function(){
+    for (var i = 0; i < allFishes.length; i++) {
+      collisionResult(mainFish,allFishes[i])
+    }
+  }, 100)
+
+  var over = setInterval(gameOver, 500)
   //If main fish is too small or too big, end game
   function gameOver() {
     if (mainFish.offsetHeight <= 30) {
       clearInterval(generating)
       clearInterval(moving)
+      clearInterval(collision)
       clearInterval(over)
       mainFish.style.display = 'none'
+      clearFish()
       var sadPage = document.getElementById('sad-page')
       sadPage.style.display = 'block'
-      
-      document.querySelector('#replay-button').addEventListener('click', function () {
+
+      document.querySelector('#sreplay-button').addEventListener('click', function () {
         sadPage.style.display = 'none'
         startPage.style.display = 'block'
+        mainFish.style.height = '60px'
+        mainFish.style.width = '60px'
       })
     }
     else if (mainFish.offsetHeight >= 100) {
       clearInterval(generating)
       clearInterval(moving)
+      clearInterval(collision)
       clearInterval(over)
       mainFish.style.display = 'none'
+      clearFish()
       var happyPage = document.getElementById('happy-page')
       happyPage.style.display = 'block'
 
-      document.querySelector('#replay-button').addEventListener('click', function () {
+      document.querySelector('#hreplay-button').addEventListener('click', function () {
         happyPage.style.display = 'none'
         startPage.style.display = 'block'
+        mainFish.style.height = '60px'
+        mainFish.style.width = '60px'
       })
     }
   }
+}
 }
