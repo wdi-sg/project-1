@@ -15,7 +15,7 @@ Languages Used
 
 Future Development Notes:
 1. Add a countdown timer for each round
-2. Allow round robbing function (Like how though...)
+2. Allow round robbing function (Like how though?)
 3. Increase question library and change structure to allow replayability (i.e. questions do not repeat on consecutive playthroughs)
 
 

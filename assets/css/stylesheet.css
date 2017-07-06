@@ -1,60 +1,86 @@
+body {
+
+  text-align: center;
+  align-items: center;
+  height:1000px;
+
+
+}
+
+.container {
+  background:url("/assets/images/School-Chalkboard-Backgrounds.jpg") no-repeat;
+  background-size: cover;
+  /*min-width: 600px;
+  max-width: 1500px;*/
+  text-align: center;
+  height: 100%;
+  /*position: relative;*/
+
+}
 #gameTitle {
   text-align: center;
   font-size: 40px;
   color: white;
-  padding-top: 100px;
+  border: 6px solid white;
+  border-radius: 20px;
+
 }
 
 h2{
-  text-align: center;
-  color: white;
-  padding-top: 50px;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 35px;
+  color: red;
+
 }
 
 #Question {
-  text-align: center;
-  font-size: 30px;
+  /*text-align: center;*/
+  font-family: 'Schoolbell', cursive;
+  font-size: 40px;
   color: white;
-  padding-top: 60px;
+  /*padding-top: 60px;*/
 }
 
+/*.choices {
+  text-align: left;
+}*/
 
-ul{
-  text-align: center;
+ol{
+
   color: white;
   font-size: 22px;
+  padding-top: 15px;
+  font-family: 'Schoolbell', cursive;
+  font-size: 30px;
+  list-style-position: inside;
+  display: inline-block;
+  margin: 0 auto;
+
 }
 
 li {
-  display: block;
   text-align: center;
-  font-size: 25px;
-  padding-top: 15px;
-
 
 }
 
-
-
 #player1Score {
   text-align: left;
-  color: white;
+  color: red;
   font-size: 28px;
-  padding-top: 100px;
-  padding-left: 120px;
+  /*padding-top: 50px;
+  padding-left: 120px;*/
 }
 
 #player2Score {
   text-align: left;
-  color: white;
+  color: red;
   font-size: 28px;
-  padding-top: 30px;
-  padding-left: 120px;
+  /*padding-top: 30px;
+  padding-left: 120px;*/
 }
-body {
-  background:url("https://www.pixelstalk.net/wp-content/uploads/wallpapers/School-Chalkboard-Backgrounds.jpg");
-  background-size: cover;
 
-  /*max-width: :600px;*/
-
+button {
+  background-color: red;
+  font-size: 26px;
+  margin: 0 auto;
 }

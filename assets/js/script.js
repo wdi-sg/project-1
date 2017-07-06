@@ -13,7 +13,7 @@ function init () {
   }
   var questionThree = {
     question: '3rd Grade World History: Roman gladiators fought in the' ,
-    choices: ['Parthenon', 'aqueducts', 'Colosseum', 'streets'],
+    choices: ['Parthenon', 'Aqueducts', 'Colosseum', 'Streets'],
     correctAns: 2
   }
   var questionFour = {
@@ -24,7 +24,7 @@ function init () {
 
   var questionFive = {
     question:'5th Grade Math: John\'s teacher asked him to draw a quadrilateral with all congruent sides. What could he draw?',
-    choices:['A rectangle or a rhombus', 'A rectangle or a square', 'A square or a rhombus', 'A trapezoid or a kite'],
+    choices:['A Rectangle or a Rhombus', 'A Rectangle or a Square', 'A Square or a Rhombus', 'A Trapezoid or a Kite'],
     correctAns: 3
   }
 
@@ -41,22 +41,22 @@ function init () {
   }
   var questionEight = {
     question:'8th Grade Biology: Which of the following is considered to be smallest in size?',
-    choices:['Virus', ' Bacterium', 'Lymphocyte', 'Red blood cell'],
+    choices:['1) Virus', '2) Bacterium', '3) Lymphocyte', '4) Red Blood Cell'],
     correctAns: 0
   }
   var questionNine = {
     question:'9th Grade English: If, standing alone on the back doorstep, Tom allowed himself to weep tears, they were tears of anger. - Tom\'s Midnight Garden.\nIn the quote above, what do the words "standing alone on the back doorstep" represent?',
-    choices:['noun phrase', 'verb phraes', 'infinitive phrase', 'participle phrase'],
+    choices:['1) Noun Phrase', '2) Verb Phrase', '3) Infinitive Phrase', '4) Participle Phrase'],
     correctAns: 3
   }
   var questionTen = {
     question:'10th Grade World History: What is a Ziggurat?',
-    choices:['a small animal', 'a temple', 'a small city', 'a marketplace'],
+    choices:['A Small Animal', 'A Temple', 'A Small City', 'A Marketplace'],
     correctAns: 1
   }
   var questionEleven = {
     question:'11th Grade Chemistry: The First Law of Thermodynamics is another version of the law of what?',
-    choices:['conservation of entrophy', 'enthalpy', 'conservation of energy', 'perpetual motion'],
+    choices:['Conservation of Entrophy', 'Enthalpy', 'Conservation of Energy', 'Perpetual Motion'],
     correctAns: 2
   }
   var questionTwelve = {
@@ -69,7 +69,7 @@ function init () {
 
   // all the dom selections
   var questionDisplay = document.querySelector('#Question')
-  var ansDisplay = document.querySelector('ul')
+  var ansDisplay = document.querySelector('ol')
   var turnDisplay = document.querySelector('h2')
   var p1ScoreDisplay = document.querySelector('#player1Score')
   var p2ScoreDisplay = document.querySelector('#player2Score')
@@ -100,7 +100,7 @@ function init () {
         alert('Game Over, PLayer 2 Wins!')
         return gameOver = true
       } else if (player1Score === player2Score) {
-        alert('its a tie!')
+        alert('It\'s a Tie!')
         return gameOver = true
       }
     }
@@ -110,10 +110,10 @@ function init () {
     // console.log(qIndex);
     if (questionNum % 2 === 0) {
       playerTurn = 1
-      turnDisplay.innerText = 'Player 1 is playing'
+      turnDisplay.innerText = 'Player 1 is Playing'
     } else {
       playerTurn = 2
-      turnDisplay.innerText = 'Player 2 is playing'
+      turnDisplay.innerText = 'Player 2 is Playing'
     }
 
     return playerTurn
