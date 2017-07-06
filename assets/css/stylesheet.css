@@ -25,6 +25,7 @@ div {
   background: white;
   border-style: solid;
   border-width: thin;
+  border-color: blue;
   float: left;
 }
 
@@ -34,4 +35,11 @@ br {
 
 .time {
   margin-bottom: 10px;
+}
+
+canvas {
+		display: block;
+		left: 0;
+		position: absolute;
+		top: 0;
 }
