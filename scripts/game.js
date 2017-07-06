@@ -164,7 +164,7 @@ function init () {
     console.log('sending email')
     var subject = 'Stockbet game' + parameters.p1Name + ' vs ' + parameters.p2Name
     var body = winner + ' won. Here is a summary of the parameters and trades. Parameters: ' + parameters + 'Trades: (TBU)'
-    window.location.href = 'mailto:user@example.com?subject=[ ]$body=[ ]' // Cannot open on my laptop
+    window.location.href = 'mailto:user@example.com?subject=' + subject + '&body=' + body // Cannot open on my laptop
   }
   // <a href="mailto:email@address.com?subject=Hello world&body=Line one%0DLine two">Email me</a>
 
