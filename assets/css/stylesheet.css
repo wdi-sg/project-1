@@ -1,0 +1,91 @@
+html {
+  background: url("https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Download-Chalkboard-Pictures.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  background-size: cover;
+}
+
+audio {
+  display:none;
+}
+
+body {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
+
+#gameTitle {
+  font-size: 60px;
+  color: #e0dbd1;
+  border: 6px solid #e0dbd1;
+  border-radius: 20px;
+  margin: 20px 50px;
+
+}
+
+h2{
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 35px;
+  color: red;
+  margin: 135px 0 0 0;
+
+}
+
+#Question {
+  font-family: 'Schoolbell', cursive;
+  font-size: 40px;
+  color: #e0dbd1;
+  margin: 120px 0 0 0;
+  padding: 0 100px 0 100px
+
+}
+
+/*.choices {
+  text-align: center;
+}*/
+
+ol{
+
+  color: #e0dbd1;
+  font-size: 22px;
+  padding-top: 15px;
+  font-family: 'Schoolbell', cursive;
+  font-size: 30px;
+  list-style-position: inside;
+
+}
+
+li {
+  text-align: center;
+}
+
+#player1Score {
+  font-family: 'Nothing You Could Do', cursive;
+  text-align: left;
+  color: red;
+  font-size: 30px;
+  padding-top: 50px;
+  padding-left: 120px;
+}
+
+#player2Score {
+  font-family: 'Nothing You Could Do', cursive;
+  text-align: left;
+  color: red;
+  font-size: 30px;
+  padding-top: 30px;
+  padding-left: 115px;
+}
+
+button {
+  background-color: red;
+  font-size: 28px;
+  margin: 0 auto;
+}

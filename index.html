@@ -2,10 +2,46 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Are You Smarter Than An nth Grader?</title>
+    <link href"https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nothing+You+Could+Do|Schoolbell" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/stylesheet.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <audio controls autoplay="true" loop>
+      <source src="/assets/sounds/Jeopardy-theme-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+      </audio>
+    <div class="container">
+
+    </div>
+
+      <h1 id ='gameTitle'>Are You Smarter Than An Nth Grader: The Quiz</h1>
+
+      <h2>Player 1's turn</h2>
+
+      <h1 id='Question'></h1>
+
+      <div class='choices'>
+        <ol>
+        </ol>
+      </div>
+
+      <div id="player1Score">
+      PLAYER 1:
+      <span id="player1Score">0</span>
+      </div>
+
+      <div id="player2Score">
+      PLAYER 2:
+      <span id="player2Score">0</span>
+      </div>
+
+
+
+    </div>
+
+    <script src="assets/js/script.js" charset="utf-8"></script>
+
   </body>
 </html>
