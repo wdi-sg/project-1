@@ -20,33 +20,9 @@ function startGame () {
   if (GameStarted === false) {
     DrawPile = shuffle(DrawPile)
 
-    // while ((DrawPile[DrawPile.length-1].value === vWild) || (DrawPile[DrawPile.length-1].value === DrawFour)) {
-    //   //ensures no Wild or Wild DrawFour for starting card in DiscardPile
-    //   DrawPile = shuffle(DrawPile)
-    // }
-
     DiscardPile = dealCard(1)
     HumanPlayerPile = dealCard(7)
     ComputerPlayerPile = dealCard(7)
-
-
-    // Presents Human Player's Pile AS A LIST FOR DEVELOPMENT PURPOSE
-    // HumanPlayerPile.forEach(function (card, index) {
-    //       var listCard = document.createElement('li')
-    //       listCard.innerHTML = '<a id="hp'+index+'" href="#">'+card.label+'</a>'  //let listed card be clickable
-    //       listHumanPlayerPile.appendChild(listCard)
-    //       HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
-    //       HumanPlayerCardsArr[index].onclick = function (e) {
-    //         var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
-    //         if (humanPlayed && (DoNotSwitchTurn === false)) {
-    //           var computerPlayed = playCard(Computer,null)
-    //
-    //         } else {
-    //           //GameMessage.innerHTML = 'Human Player, awaiting your play...'
-    //         }
-    //         return false
-    //       }
-    //     })
 
     // Presents Human Player's Pile AS A LIST OF CLICKABLE CARD IMAGES
     HumanPlayerPile.forEach(function (card, index) {
@@ -60,16 +36,12 @@ function startGame () {
           HumanPlayerCardsArr[index].onclick = function (e) {
             if (whichPlayerTurn === Human) {
               // ensures human player's click does not activate play if computer is still calculating playing
-              console.log('a');
               var humanDiscardSuccessful = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
               if (humanDiscardSuccessful) {  // let Computer play only if Human has completed discarding a valid card
                 whichPlayerTurn = Computer
-                console.log('b');
                 var computerDiscardSuccessful = playCard(Computer,null)
-                console.log('c');
                 if (computerDiscardSuccessful) {
                   whichPlayerTurn = Human
-                  console.log('d');
                 }
               }
             }
@@ -81,7 +53,7 @@ function startGame () {
     // Presents Computer Player's Pile AS A LIST
     ComputerPlayerPile.forEach(function (card) {
           var listCard = document.createElement('li')
-          listCard.textContent = card.label
+          listCard.textContent = 'Card'
           listComputerPlayerPile.appendChild(listCard)
         })
 
@@ -91,19 +63,6 @@ function startGame () {
           listCard.textContent = card.label
           listDiscardPile.appendChild(listCard)
         })
-
-    // unlist intial DrawPile
-    // while (listDrawPile.hasChildNodes()) {
-    //   listDrawPile.removeChild(listDrawPile.firstChild);
-    // }
-
-    // DISPLAY DRAWPILE AS A LIST FOR DEVELOPMENT PURPOSE
-    // relist shuffled DrawPile with dealt & opening cards removed
-    // DrawPile.forEach(function (card) {
-    //       var listCard = document.createElement('li')
-    //       listCard.textContent = card.label
-    //       listDrawPile.appendChild(listCard)
-    //     })
 
     GameStarted = true
 
@@ -142,16 +101,10 @@ function displayPileUX (whichPile) {
   if (whichPile === Human) {
     HumanPlayerPile.forEach(function (card, index) {
 
-          // displays pile as list
-          // var listCard = document.createElement('li')
-          // listCard.innerHTML = '<a id="hp'+index+'" href="#">'+card.label+'</a>'  //let listed card be clickable
-          // listHumanPlayerPile.appendChild(listCard)
-
           var img = document.createElement('img')
           img.src = card.image
           img.id = 'hp'+index
           listHumanPlayerPile.appendChild(img)
-
 
           HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
           HumanPlayerCardsArr[index].onclick = function (e) {
@@ -170,33 +123,23 @@ function displayPileUX (whichPile) {
                 }
               }
             }
-
-            // var humanPlayed = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
-            // if (humanPlayed && (DoNotSwitchTurn === false)) {
-            //   var computerPlayed = playCard(Computer,null)
-            //   // if computerPlayed = true
-            // } else {
-            //   //GameMessage.innerHTML = 'Human Player, awaiting your play...'
-            // }
-
             return false
           }
         })
   } else if (whichPile === Computer) {
     ComputerPlayerPile.forEach(function (computerPlayerCard) {
           var listCard = document.createElement('li')
-          listCard.textContent = computerPlayerCard.label
+          listCard.textContent = 'Card'
           console.log('commputerpile '+computerPlayerCard.label);
           listComputerPlayerPile.appendChild(listCard)
         })
   } else if (whichPile === Discard) {
-    //console.log('hello');
     DiscardPile.forEach(function (DiscardPileCard) {
           var listCard = document.createElement('li')
           listCard.textContent = DiscardPileCard.label
           listDiscardPile.appendChild(listCard)
         })
-  } else if (whichPile === Draw) {
+  } else if (whichPile === Draw) { // this section is not in use; displaying only stack PNG image
     DrawPile.forEach(function (DrawPileCard) {
           var listCard = document.createElement('li')
           listCard.textContent = DrawPileCard.label
@@ -236,7 +179,6 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
     }, 500)
 
     if (isPlayableCard(player, index)) {
-      //alert('Can play this')
       DiscardPile.push(discardCard(Human, index)[0]) // discard card from HumanPlayerPile & push it to DiscardPile
       discardCard(Discard,0) // remove old card in DiscardPile
       clearPileUX(Human)
@@ -302,46 +244,23 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
       window.setTimeout(function () { // Computer completed turn so set Game Message back to message for Human player
         GameMessage.innerHTML = 'Human Player, awaiting your play...'
       }, 3000)
-
-      // window.setTimeout(function () {
-      //   GameMessage.innerHTML = 'Computer has no card to play...Draws one...'
-      //   drawCard(Computer)
-      // }, 3000)
-
-      console.log('nothing to play');
-
-      // window.setTimeout(function () {
-      //   GameMessage.innerHTML = 'Human Player, awaiting your play...' // switches to Human turn
-      //   whichPlayerTurn = Human
-      //   DoNotSwitchTurn = false
-      // }, 6000)
-
     }
   return played
   }
 }
 
 function drawCard (player) {
-  //console.log('player: '+player)
   if (hasPlayablePile(player) && (player === Human)) {
     alert('You have playable card(s). No need to draw.')
   } else {
     if (player === Human) {
-      //console.log('at drawCard '+discardCard(Draw, null).label);
       HumanPlayerPile.push(discardCard(Draw, null)[0])
       clearPileUX(Human)
       displayPileUX(Human)
-      //clearPileUX(Draw)
-      //displayPileUX(Draw)
-      console.log('drawCard human');
-
     } else if (player === Computer) {
       ComputerPlayerPile.push(discardCard(Draw, null)[0])
       clearPileUX(Computer)
       displayPileUX(Computer)
-      //clearPileUX(Draw)
-      //displayPileUX(Draw)
-      console.log('drawCard computer');
     }
  }
 }
@@ -366,12 +285,6 @@ DrawPile = generateDrawPile()
 for (var i = 0; i < DrawPile.length; i++) {
   DrawPile[i].label = labelCard(DrawPile[i])
 }
-
-// DrawPile.forEach(function (card) {
-//       var listCard = document.createElement('li')
-//       listCard.textContent = card.label
-//       listDrawPile.appendChild(listCard)
-//     })
 
 startButton.addEventListener('click', startGame)
 resetButton.addEventListener('click', resetGame)

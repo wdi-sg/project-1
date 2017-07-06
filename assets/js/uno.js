@@ -24,11 +24,6 @@ var DrawTwo = 10
 var Skip = 11
 // var DrawFour = 12
 // var vWild = 13
-  // Removed Reverse Card since same as Skip
-
-// Card Image UNUSED
-var cardURL = 'URL'
-// <links to .PNG to be inserted>
 
 // Card Piles
 var DrawPile = [] // last element of array = top of pile
@@ -45,10 +40,6 @@ var Discard = 2 //refers to DiscardPile
 var Draw = 3 // refers to DrawPile
 var whichPlayerTurn = Human // Human (= 1) starts first; Computer = 0
 var GameStarted = false
-
-//var DoNotSwitchTurn = false // True when these cards played: Skip, DrawTwo or DrawFour
-// var HumanNoOfCardsLeft = null
-// var ComputerNoOfCardsLeft = null
 
 ////////////////////////
 // Game Play Functions
@@ -69,7 +60,7 @@ function generateDrawPile () {
       }
     cardNo += 1
   }
-  //console.log(Deck[1].image);
+
   // Generate One to Nine cards (2 sets of each color)
   for (var cardValue = One; cardValue<=Nine; cardValue++) {
     for (var cardColor = Red; cardColor<=Yellow; cardColor++) {
@@ -79,7 +70,6 @@ function generateDrawPile () {
           color: cardColor,
           image: 'graphics/'+cardColor+cardValue+'.png'
         }
-//console.log(Deck[cardNo].image);
       cardNo += 1
 
       Deck[cardNo] = { // Second set of same color
@@ -88,33 +78,9 @@ function generateDrawPile () {
           color: cardColor,
           image: 'graphics/'+cardColor+cardValue+'.png'
         }
-//console.log(Deck[cardNo].image);
       cardNo += 1
     }
   }
-
-//console.log('xx'+cardNo);
-
-  // Generate 8 Wild-type cards (2 sets of DrawFour and Wild) REMOVED WILD & DRAWFOUR FOR SIMPLIFICATION
-  // for (var i = 1; i <= 2; i++) {
-  //   for (cardValue = DrawFour; cardValue <= vWild; cardValue++) {
-  //     Deck[cardNo] = {
-  //         label: '',
-  //         value: cardValue,
-  //         color: cWild,
-  //         image: cardURL
-  //       }
-  //     cardNo += 1
-  //     Deck[cardNo] = {
-  //         label: '',
-  //         value: cardValue,
-  //         color: cWild,
-  //         image: cardURL
-  //       }
-  //     cardNo += 1
-  //   }
-  // }
-
   return Deck
 }
 
@@ -154,9 +120,6 @@ function dealCard(noOfCards) {
 function labelCard(inputCard) {
   // Returns a string label indicating color and value of card
   var label = ''
-  //for (var card = 0; card < inputDeck.length; card++) {
-// console.log(inputCard.color);
-// console.log(inputCard.value);
 
   if (inputCard.color === Red) label = 'Red'
   else if (inputCard.color === Green) label = 'Green'
@@ -188,8 +151,6 @@ function isPlayableCard(player, index) {
     if ((HumanPlayerPile[index].color === DiscardPile[0].color) || (HumanPlayerPile[index].value === DiscardPile[0].value))  {
           return true
         }
-  } else if (player === Computer) {
-    // do nothing for now, as this will be calculated by computer playturn function
   }
   return false
 }
@@ -205,19 +166,13 @@ function discardCard (whichPile, whichCard) {
   } else if (whichPile === Discard) {
     var discardedCard = DiscardPile.splice(whichCard, 1)
 
-    // console.log('discarded card'+ discardedCard[0].label)
-    // console.log('discardPile after discarding 1 '+ DiscardPile[0].label);
-
     return // no need to return anything
   } else if (whichPile === Draw) {
     var discardedCard = []
     discardedCard[0] = DrawPile.pop()
-    //console.log('dc ' +discardedCard.label);
     return discardedCard
   }
 }
-
-// console.log('dp len '+DrawPile.length);
 
 // Labels each card
 for (var i = 0; i < DrawPile.length; i++) {
@@ -239,46 +194,3 @@ function hasPlayablePile(player) {
   }
   return test
 }
-
-
-
-
-////////////////////////////////////////////////
-// Debugging code
-// console.log('98 '+DrawPile[98].label);
-// console.log('99 '+DrawPile[99].label);
-// console.log(DrawPile);
-// console.log('Drawlength '+DrawPile.length);
-
-// DrawPile = shuffle(DrawPile)
-
-// console.log('dp left '+DrawPile.length);
-//console.log('human', HumanPlayerPile);
-// console.log('com', ComputerPlayerPile);
-
-// for (var i = 0; i<DrawPile.length; i++) { // To list out the DrawPile just generated
-//   console.log('i '+i);
-//   console.log(DrawPile[i].label);
-//   console.log(DrawPile[i].value);
-//   console.log(DrawPile[i].color);
-//   console.log(DrawPile[i].image);
-// }
-
-// HumanPlayerPile = dealCard(7)
-// ComputerPlayerPile = dealCard(7)
-
-// for (var i = 0; i<7; i++) { // To list out the HumanPlayerPile just dealt
-//   console.log('i '+i);
-//   console.log(HumanPlayerPile[i].label);
-  // console.log(HumanPlayerPile[i].value);
-  // console.log(HumanPlayerPile[i].color);
-  // console.log(HumanPlayerPile[i].image);
-// }
-
-// for (var i = 0; i<7; i++) { // To list out the HumanPlayerPile just dealt
-//   console.log('i '+i);
-//   console.log(ComputerPlayerPile[i].label);
-  // console.log(HumanPlayerPile[i].value);
-  // console.log(HumanPlayerPile[i].color);
-  // console.log(HumanPlayerPile[i].image);
-// }
