@@ -18,7 +18,8 @@ URL:
 ### Gameboard
 
 First Draft:
-![](assets/images/gameboard-first-draft.png | width=100)
+![gameboard]
+<img src="assets/images/gameboard-first-draft.png" width="50" height="50">
 
 ---
 
