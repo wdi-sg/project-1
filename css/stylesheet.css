@@ -76,9 +76,36 @@ h1 {
 .splashscreen {
   font-family: 'Bungee Shade', cursive;
   text-decoration-color: white;
-  line-height: 30px;
+  line-height: 25px;
 }
 
+.splashscreen2 {
+  font-family: 'Bungee Shade', cursive;
+  text-decoration-color: white;
+  line-height: 12px;
+}
+.exit {
+  height: 170px;
+}
+
+h2 {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 18px;
+}
+
+#arrow{
+  font-size: 30px;
+  font-weight: bold;
+}
+#restartbtn {
+  border-radius: 3px;
+  border-color: green;
+  color: white;
+  background-color: green;
+  background-position: 0% 0%;
+  width: 120px;
+  height: 10;
+}
 
 #buttonE {
   border-radius: 3px;
@@ -106,4 +133,10 @@ h1 {
   color: #ff00de;
   font-size:16px;
   outline: none;
+}
+
+img {
+  text-align: center;
+  height: 100px;
+
 }

@@ -15,18 +15,22 @@ function addMove (event) {
 
 // Global Variables:
 var pauseButton = document.querySelector('#pause')
-var restartButton = document.querySelector('#restart')
+var restartLink = document.querySelector('#restart')
+var restartButton = document.querySelector('#restartbtn')
 var body = document.querySelector('body')
 var rabbit = document.querySelector('.rabbit')
 var playArea = document.querySelector('.playarea')
 var easySelected = document.querySelector('#buttonE')
 var hardSelected = document.querySelector('#buttonH')
+var gameOver = document.querySelector('.exit')
+var currentScore = document.querySelector('#timer')
 
 // Global Declarations:
 rabbit.style.left = '150px'
 rabbit.style.top = '110px'
 rabbit.style.right = '230px'
 rabbit.style.bottom = '190px'
+gameOver.style.display = 'none'
 
 // Start Game:
 easySelected.addEventListener('click', initiateEasyMode)
@@ -51,7 +55,7 @@ function initiateEasyMode () {
   var start = document.querySelector('.welcome')
   start.style.display = 'none'
   pauseButton.style.display = ''
-  restartButton.style.display = ''
+  restartLink.style.display = ''
   gameModeEasy()
 }
 
@@ -59,7 +63,7 @@ function initiateHardMode () {
   var start = document.querySelector('.welcome')
   start.style.display = 'none'
   pauseButton.style.display = ''
-  restartButton.style.display = ''
+  restartLink.style.display = ''
   gameModeHard()
 }
 
@@ -98,8 +102,12 @@ function pause () {
     undoBlur()
   }
 }
-// Pause Game:
-restartButton.style.display = 'none'
+// Restart Game:
+restartLink.style.display = 'none'
+restartLink.addEventListener('click', function () {
+  location.reload()
+})
+
 restartButton.addEventListener('click', function () {
   location.reload()
 })
@@ -112,6 +120,7 @@ document.addEventListener('keydown', function (event) {
 function restart () {
   location.reload()
 }
+
 
 //  Game Difficulty - EASY: ==============================
 function gameModeEasy () {
@@ -139,7 +148,11 @@ function gameModeEasy () {
       } else {
         if (collision()) {
           playArea.removeChild(elem)
-          setTimeout(alert('IMPALED!'), 1200)
+          gameOver.style.display = ''
+          pauseButton.style.display = 'none'
+          restartLink.style.display = 'none'
+          currentScore.style.display = 'none'
+          rabbit.style.display = 'none'
         } else {
         }
         var spikesLeft = parseInt(elem.style.left)
@@ -181,7 +194,7 @@ function gameModeEasy () {
   }
 }
 
-//  Game Difficulty - MEDIUM: ==============================
+//  Game Difficulty - HARD: ==============================
 function gameModeHard () {
   // Obstacle Creation & Movement:
   setInterval(function () {
@@ -203,11 +216,16 @@ function gameModeHard () {
   function moveSpikes (elem) {
     setInterval(function () {
       if (elem.style.left === '0px') {
+
         playArea.removeChild(elem)
       } else {
         if (collision()) {
           playArea.removeChild(elem)
-          setTimeout(alert('IMPALED!'), 1200)
+          gameOver.style.display = ''
+          pauseButton.style.display = 'none'
+          restartLink.style.display = 'none'
+          currentScore.style.display = 'none'
+          rabbit.style.display = 'none'
         } else {
         }
         var spikesLeft = parseInt(elem.style.left)
@@ -259,31 +277,42 @@ function gameModeHard () {
   }
 
 // 2. Functions:
-  function jump () {
-    rabbit.style.top = 28 + 'px'
-    rabbit.style.backgroundImage = "url('img/skatejump2.png')"
-    canJump = false
-    rabbit.style.transition = 'linear'
-  }
+function jump () {
+  rabbit.style.top = 28 + 'px'
+  rabbit.style.backgroundImage = "url('img/skatejump2.png')"
+  canJump = false
+  rabbit.style.transition = 'linear'
+}
 
-  function drop () {
-    rabbit.style.top = 110 + 'px'
-    rabbit.style.backgroundImage = "url('img/skating.gif')"
-    rabbit.style.transition = 'linear'
-    canJump = true
-  }
+function drop () {
+  rabbit.style.top = 110 + 'px'
+  rabbit.style.backgroundImage = "url('img/skating.gif')"
+  rabbit.style.transition = 'linear'
+  canJump = true
+}
 
 // 3. Keyboard Targeting:
-  document.addEventListener('keydown', function (event) {
-    if (event.keyCode === 38) {
-      if (canJump) {
-        jump()
-        canJump = false
-      } else if (!canJump) {
-        drop()
-      }
+document.addEventListener('keydown', function (event) {
+  if (event.keyCode === 38) {
+    if (canJump) {
+      jump()
+      canJump = false
+    } else if (!canJump) {
+      drop()
     }
-  })
+  }
+})
+
+// 4. Mouse Targeting:
+rabbit.addEventListener('click', function () {
+  if (canJump) {
+    jump()
+    setTimeout(drop, 400)
+    canJump = false
+  } else if (!canJump) {
+    drop()
+  }
+})
 
   document.addEventListener('keyup', function (event) {
     drop()
