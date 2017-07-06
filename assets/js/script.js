@@ -13,6 +13,8 @@ function init () {
   var redGhost = document.querySelector('#redGhost')
   var scoreboard = document.querySelector('#scoreboard')
   var scores = document.querySelector('#scores')
+  var levelboard = document.querySelector('#levelboard')
+  var level = document.querySelector('#level')
   var lifetracker = document.querySelector('#lifetracker')
   var interval = document.querySelector('#interval')
   var win = document.querySelector('#win')
@@ -23,6 +25,7 @@ function init () {
   var dots = []
   var lives = 3
   var scoretracker = []
+  var currentLevel = 1
   var pacmanSpeed = 8
   var ghostSpeed = 9
 
@@ -50,6 +53,7 @@ function init () {
   win.style.display = 'none'
   lose.style.display = 'none'
   scoreboard.style.display = 'none'
+  levelboard.style.display = 'none'
   lifetracker.style.display = 'none'
   startButton.style.display = 'none'
 
@@ -370,11 +374,13 @@ function init () {
   function nextLevel () {
     pacmanSpeed++
     ghostSpeed++
+    currentLevel++
     win.style.display = 'none'
     interval.style.display = ''
     interval.textContent = 'NEXT LEVEL!'
     interval.style.background = 'rgb(221, 193, 223)'
     scores.textContent = ''
+    level.textContent = currentLevel
     scoretracker = []
     for (var i = 0; i < dots.length; i++) {
       dots[i].style.display = ''
@@ -427,6 +433,9 @@ function init () {
     startButton.style.display = 'none'
     scoreboard.style.display = ''
     scores.textContent = ''
+    levelboard.style.display = ''
+    currentLevel = 1
+    level.textContent = currentLevel
     lifetracker.style.display = ''
     document.querySelector('#life1').style.display = ''
     document.querySelector('#life2').style.display = ''
@@ -436,6 +445,8 @@ function init () {
     }
     scoretracker = []
     lives = 3
+    pacmanSpeed = 8
+    ghostSpeed = 9
     defaultPosition()
     setTimeout(defaultSetting, 3350)
   }

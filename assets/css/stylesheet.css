@@ -119,9 +119,19 @@ body {
   z-index: -2;
 }
 
+#levelboard {
+  position: absolute;
+  top: 540px;
+  background: black;
+  z-index: 0;
+  font-size: 11px;
+  color: white;
+}
+
 #scoreboard {
   position: absolute;
-  top: 538px;
+  top: 540px;
+  left: 220px;
   background: black;
   z-index: 0;
   font-size: 11px;
@@ -130,7 +140,7 @@ body {
 
 #lifetracker {
   position: absolute;
-  top: 530px;
+  top: 532px;
   left: 525px;
   z-index: 0;
   display: flex;
@@ -166,7 +176,7 @@ body {
   height: 30px;
   width: 140px;
   top: 530px;
-  left: 230px;
+  left: 460px;
   background: white;
   font-family: 'Press Start 2P', cursive;
   font-size: 12px;
