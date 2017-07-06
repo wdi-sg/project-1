@@ -1,34 +1,41 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# General Assembly Singapore Web Development Immersive 11
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Burger Stack-it
+---
+### INSTRUCTIONS
 
-### Overview
+ **The game -**
+https://ddanielnp.github.io/project-1/
 
-Let's start out with something fun - **a game!**
+1. To start the game, Press the **O** button. This will start the timer countdown of **60s**
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+2. The game can be reset by the **P** button
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+3. **Q** , **W** , **E** , **R** , **T** buttons to add each ingredients
 
+3. A stack of two ingredients will be randomized at the start, with increasing difficulty
+
+4. **10 points** for a completed burger, **-10 points** for a wrong combination
+
+5. The burger should be stacked in order from **bottom up**
+
+6. **Onions** are quite hidden, so look at it carefully
+
+7. **Spacebar** serves the Burger
 
 ---
 
-### Technical Requirements
+### Requirements Achieved
 
-Your app must:
+* **Single player** game with a score system that suggests challenge
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
+* **Design logic for winning** & **visually display scores**
+
 * **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+
+* **Javascript** for **DOM manipulation**
+
+* **Semantic markup** for HTML and CSS (adhere to best practices)
 
 ---
 
@@ -52,22 +59,12 @@ Your app must:
 
 ---
 
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
 ### Useful Resources
 
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---

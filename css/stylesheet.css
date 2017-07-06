@@ -73,6 +73,7 @@ li {
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  border-radius: 30px;
 }
 
 .score {
@@ -83,6 +84,7 @@ li {
   justify-content: center;
   flex-direction: column;
   border: 1px solid black;
+  border-radius: 30px;
 }
 .top {
   padding: 20px;
@@ -116,7 +118,7 @@ li {
 
 .rightcontent {
   /*background-color: green;*/
-  /*border: 2px solid black;*/
+  border: 2px solid black;
   width: 25.5%;
   display: flex;
   align-items: center;
@@ -209,6 +211,10 @@ li {
   margin: -25px 20px -35px 20px;
   display: flex;
   align-items: flex-end;
+}
+
+.correct {
+  background-image: url('./images/correct.png');
 }
 
 #u1, #d1 {

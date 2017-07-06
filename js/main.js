@@ -1,9 +1,6 @@
-// document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', init)
 
-// var bs = burgerStack()
-
-// function init () {
-// userinput hamburger
+function init () {
 
 // setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
   var u1 = document.getElementById('u1')
@@ -258,4 +255,4 @@
     }
     return false
   }// closing for checkKeyCode
-// }// closing for init
+}// closing for init
