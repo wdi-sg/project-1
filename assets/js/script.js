@@ -68,7 +68,7 @@ function init () {
   var allQuestions = [questionOne, questionTwo, questionThree, questionFour, questionFive, questionSix, questionSeven, questionEight, questionNine, questionTen, questionEleven, questionTwelve]
 
   // all the dom selections
-  var questionDisplay = document.querySelector('h1')
+  var questionDisplay = document.querySelector('#Question')
   var ansDisplay = document.querySelector('ul')
   var turnDisplay = document.querySelector('h2')
   var p1ScoreDisplay = document.querySelector('#player1Score')

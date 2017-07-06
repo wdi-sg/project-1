@@ -1,18 +1,60 @@
-body {
-  background-image:url("https://www.pixelstalk.net/wp-content/uploads/wallpapers/School-Chalkboard-Backgrounds.jpg");
-  max-width: :600px;
-
+#gameTitle {
+  text-align: center;
+  font-size: 40px;
+  color: white;
+  padding-top: 100px;
 }
 
-/*h1 {
+h2{
   text-align: center;
-  margin: auto;
+  color: white;
+  padding-top: 50px;
 }
 
-h2 {
+#Question {
   text-align: center;
+  font-size: 30px;
+  color: white;
+  padding-top: 60px;
+}
+
+
+ul{
+  text-align: center;
+  color: white;
+  font-size: 22px;
 }
 
 li {
+  display: block;
   text-align: center;
-}*/
+  font-size: 25px;
+  padding-top: 15px;
+
+
+}
+
+
+
+#player1Score {
+  text-align: left;
+  color: white;
+  font-size: 28px;
+  padding-top: 100px;
+  padding-left: 120px;
+}
+
+#player2Score {
+  text-align: left;
+  color: white;
+  font-size: 28px;
+  padding-top: 30px;
+  padding-left: 120px;
+}
+body {
+  background:url("https://www.pixelstalk.net/wp-content/uploads/wallpapers/School-Chalkboard-Backgrounds.jpg");
+  background-size: cover;
+
+  /*max-width: :600px;*/
+
+}
