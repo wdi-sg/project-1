@@ -4,14 +4,14 @@
 
 Instructions:
 
-* Use the **arrow keys** to move Pac-Man around the maze.
+* Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: to move Pac-Man around the maze. 
 * Complete the level by eating all the dots.
 * **Avoid the ghosts!** If they catch you, you will lose a life.
 * You only have **3 lives**. Be careful...
 
 URL:
 
-* **[Pac-Man _(A Simplified Version_](https://shumin13.github.io/project-1/)**
+* **[Pac-Man _(A Simplified Version)_](https://shumin13.github.io/project-1/)**
 
 ---
 
