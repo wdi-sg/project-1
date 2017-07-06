@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', gameInit)
+
 function gameInit () {
   var container = document.querySelector('.container')
   var innerContainer = document.querySelector('.innercontainer')
@@ -408,5 +410,3 @@ function gameInit () {
   instructions.addEventListener('click', showInstructions)
   document.body.addEventListener('keydown', typeLetter)
 }
-
-document.addEventListener('DOMContentLoaded', gameInit)

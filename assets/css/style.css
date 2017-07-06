@@ -251,7 +251,7 @@ button:hover {
 }
 
 #upsideDown {
-  background-color = cyan;
+  background-color : rgb(0, 255, 224);
 }
 
 #redBackground {
