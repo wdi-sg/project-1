@@ -18,7 +18,7 @@ URL:
 ### Gameboard
 
 First Draft:
-![gameboard] (assets/images/blueGhostTitle.png)
+![gameboard](assets/images/blueGhostTitle.png)
 
 ---
 
