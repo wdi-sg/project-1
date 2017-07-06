@@ -1,0 +1,61 @@
+#red {
+  background-color: red;
+  height: 300px;
+  width: 24%;
+  display: inline-block;
+  border-radius: 100px
+  /*border-style: solid;*/
+  /*border-color: white;*/
+  /*border: 200px*/
+
+}
+
+#green {
+  background-color: Chartreuse;
+  height: 300px;
+  width: 24%;
+  display: inline-block;
+  border-radius: 100px
+}
+
+#blue {
+  background-color: Cyan;
+  height: 300px;
+  width: 24%;
+  display: inline-block;
+  border-radius: 100px
+}
+
+#yellow {
+  background-color: yellow;
+  height: 300px;
+  width: 24%;
+  display: inline-block;
+  border-radius: 100px
+}
+
+
+
+/*button {
+  display: block;
+}*/
+
+#words {
+  text-align: center;
+  color: white;
+}
+
+.colors {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  background-image: url('https://newevolutiondesigns.com/images/freebies/retro-wallpaper-1.jpg');
+  background-position: center;
+  /*background-color: black;*/
+  /*background-size: 1500px 800px;*/
+  background-repeat: no-repeat;
+
+}
