@@ -5,7 +5,7 @@ function init () {
   var body = document.querySelector('body')
   var monitor = document.querySelector('.monitor')
   var leftMargin = monitor.getBoundingClientRect().left - body.getBoundingClientRect().left
-  var speed = 2
+  var speed = 3
   var spawnRate = 2000
   var score = 0
   var spaceship = document.querySelector('.ship')
@@ -49,10 +49,10 @@ function init () {
 // sets rate of wall spawn
     function loop () {
       if ((score > 1) && (score % 10 === 0)) {
-        // clearInterval(myTimer)
+        clearInterval(myTimer)
         spawnRate = spawnRate * 0.8
-        // myTimer = setInterval(loop, spawnRate)
-        speed += 1
+        myTimer = setInterval(loop, spawnRate)
+        // speed += 1
       }
       if (spaceship.style.display !== 'none') {
         var scoreDiv = document.querySelector('.score')
