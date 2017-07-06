@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return Math.floor(Math.random() * (max - min + 1)) + min
   }
 
-  function isMatch (elem) {
+  function isMatch () {
     // console.log('isMatch is working')
     // console.log(this)
     // console.log(ranGrid)
@@ -190,10 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
     audio.volume = 0.4
   }
 
-  function endGameImage (){
+  function endGameImage () {
     var elem = document.createElement('img')
     elem.setAttribute('src', 'images/fireworks2.gif')
-    elem.setAttribute("width", "600")
+    elem.setAttribute('width', '600')
+    elem.setAttribute('height', '400')
     document.querySelector('.container').appendChild(elem)
   }
 
