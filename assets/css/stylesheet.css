@@ -1,35 +1,42 @@
 body {
   text-align: center;
-  padding-top: 135px;
-  margin: 0 auto;
   background-image: url("https://templated.co/items/demos/visualize/images/bg.jpg");
   background-size: 100%;
   font-family: 'Shadows Into Light', cursive;
+  margin: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-div {
-  display: inline-block;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #leftPanel {
+  min-width: auto;
+}
+
+#centerPanel {
   vertical-align: middle;
-  margin-right: 100px
+  width: 400px;
+  min-width: 400px;
 }
 
 #rightPanel {
-  padding: 100px;
-  vertical-align: middle;
-  width: 100px
+  align-items: center;
+  min-width: auto;
 }
 
 .square {
   width: 90px;
   height: 150px;
-  /*background: white;*/
-  /*border-style: solid;*/
   border-width: thin;
   border-color: blue;
   float: left;
+  color: white
 }
 
 #square1, #square2, #square3, #square5, #square6, #square7, #square9, #square10, #square11, #square13, #square14, #square15 {
@@ -41,10 +48,6 @@ div {
   background-color: rgba(255, 255,255, .2);
 }
 
-br {
-  clear: both
-}
-
 .time {
   margin-bottom: 10px;
 }
@@ -54,14 +57,18 @@ br {
   color: white;
 }
 
-canvas {
-		display: block;
-		left: 0;
-		position: absolute;
-		top: 0;
+.cat {
+  width: 300px;
+  height: 300px;
+  background-image: url("https://media.giphy.com/media/A9dZqpVpbLsju/giphy.gif");
+  background-size: 100%;
 }
 
-.cat {
-  background-image: url("https://media.giphy.com/media/7JJT5EWjhqUnK/giphy.gif");
+.instructions {
+  align-items: right;
+  width: 300px;
+  height: 200px;
+  background-image: url("http://i.imgur.com/3bK5d78.png");
   background-size: 100%;
+  background-repeat: no-repeat;
 }
