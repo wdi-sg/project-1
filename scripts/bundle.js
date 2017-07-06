@@ -531,11 +531,12 @@ function init () {
 
   function sendEmail (event) {
     console.log('sending email')
-    var win = window.open('mailto:user@example.com', 'emailWindow')
-    if (win && win.open && !win.closed) win.close()
+    window.location.href = 'mailto:user@example.com' // Cannot open on my laptop
   }
 
   // At end of game, restart game
+  var sendResultsBtn = document.querySelector('#next-steps button[name="send-button"]')
+  sendResultsBtn.addEventListener('click', sendEmail)
 }
 
 },{"./callnews.js":2}]},{},[3]);
