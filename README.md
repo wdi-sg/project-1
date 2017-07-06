@@ -21,8 +21,8 @@ Step-by-Step Process
 * Create main fish that follows mouse
 * Detect collision
 * Increase/Decrease size of main fish when colliding, and make other fish disappear
-* Win if bigger than 100*100px, because the biggest other fish is 120*120px
-* Lose if less than 30*30px, because the smallest other fish is 20*20px
+* Win if bigger than 100x100px, because the biggest other fish is 120x120px
+* Lose if less than 30x30px, because the smallest other fish is 20x20px
 
 ---
 
@@ -58,7 +58,7 @@ if (rect1.x < rect2.x + rect2.width &&
 **startGame()**
 
 * When start button is clicked, remove start items and call the functions to generate new fishes.
-* Includes gameOver function, where if mainFish reaches 30*30px, clear fish generation and show game over page. If mainFish reaches 100*100px, clear fish generation and show winning page.
+* Includes gameOver function, where if mainFish reaches 30x30px, clear fish generation and show game over page. If mainFish reaches 100x100px, clear fish generation and show winning page.
 * Click replay button to go back to start page
 
 ---
