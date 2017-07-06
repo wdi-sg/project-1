@@ -49,7 +49,7 @@ https://github.com/JackolanternIR/WordList-JS
 
 ### Possible Improvements
 
-Method 3 is theoretically not foolproof as the user will not know when all combinations of a certain string has been exhausted, as well as the small amount of times when they land up with all consonants (good luck with that!).
+Method 3 is theoretically not foolproof as the user will not know when all combinations of a certain string have been exhausted, as well as the small amount of times when they land up with all consonants (good luck with that!).
 
 I tried to mitigate these with a 90 sec game **(BLITZ MODE ON!)** as well as a regeneration function and of course, a generous amount of letters!
 
