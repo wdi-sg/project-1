@@ -1,14 +1,31 @@
-h1, h2 {
+h1 {
   text-align: center;
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 54px;
 }
 
-p {
+h2 {
   text-align: center;
+  font-family: 'Londrina Shadow', cursive;
+  font-size: 28px;
 }
+
+p.Intro {
+  text-align: center;
+  font-family: helvetica, sans-serif;
+}
+
+p.GameMessage {
+  text-align: center;
+  font-family: helvetica, sans-serif;
+  font-size: 48px;
+}
+
 
 .GamePanel {
   width: 100%;
-  margin: 0 auto; // floating in the center
+  margin: 0 auto;
+  text-align: center;
 }
 
 .MessageConsole {
@@ -19,4 +36,18 @@ p {
   display: inline-block;
   vertical-align: top;
   width: 20%;
+  min-height: 1200px;
+
+}
+
+.Col1, .Col3 {
+  background-color:#d9d9d9;
+}
+
+.Col2, .Col4 {
+  background-color:#f2f2f2;
+}
+
+img {
+  align-content: center;
 }

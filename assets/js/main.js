@@ -157,11 +157,11 @@ function shoutUNO () {
 
 function shoutWin (winner) {
   if (winner === Human) {
-    var winplayer = 'Human Player'
+    var winPlayer = 'Human Player'
   } else {
-    var winplayer = 'Computer Player'
+    var winPlayer = 'Computer Player'
   }
-  GameMessage.innerHTML = winplay+', you WIN!'
+  GameMessage.innerHTML = winPlayer+', you WIN!'
   window.setTimeout(function () {
     GameMessage.innerHTML = 'Resetting game...'
   }, 5000)

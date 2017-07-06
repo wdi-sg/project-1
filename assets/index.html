@@ -3,26 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>Simplified UNO! for 2</title>
+    <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow" rel="stylesheet">
     <link rel="stylesheet" href="css/stylesheet.css">
+
   </head>
 
   <body>
     <h1>Simplified UNO! for 2</h1>
 
-    <p>Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. The 'Reset' button stops game and clears all players' and discard piles. To restart, click the 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p>
+    <!-- <p class="Intro">Human player, please click 'Start' to begin game. When game starts, look at the card in the Discard Pile and play by clicking on a playable card. If a playable card is played, it will be removed from the player's pile and replace the Discard Pile. The 'Reset' button stops game and clears all players' and discard piles. To restart, click the 'Start' button. Note: Currently the game only checks whether player has played a playable card. The 'UNO!' button and the rest of game logic is still being developed. During game play, the Computer Player's pile is currently revealed to facilitate development.</p> -->
 
     <div class='GamePanel'>
 
       <div class='MessageConsole'>
-        <h2 class='MessageConsole'>Message Console: </h2>
-        <p class='GameMessage'>Awaiting game start...</p>
+        <h2 class='MessageConsole'> </h2>
+        <!-- Message Console: -->
+        <p class="GameMessage">Awaiting game start...</p>
       </div>
 
 
       <div class='Col1'>
         <h2>Draw Pile</h2>
 
-        <button type="button" class="DrawCard">Draw Card</button>
+        <p><button type="button" class="DrawCard">Draw Card</button></p>
+
+        <img src="/graphics/DrawPile.png" alt="DrawPile" height="145" width="172">
 
           <ul class='DrawPile'>
 
@@ -52,9 +57,11 @@
       <div class='Col4'>
           <h2>Human Player</h2>
 
-          <button type="button" class="StartGame">Start</button>
-          <button type="button" class="ResetGame">Reset</button>
-          <button type="button" class="ShoutUno">UNO!</button>
+          <p>
+            <button type="button" class="StartGame">Start</button>
+            <button type="button" class="ResetGame">Reset</button>
+            <!-- <button type="button" class="ShoutUno">UNO!</button> -->
+          </p>
 
           <ul class='HumanPlayerPile'>
 
