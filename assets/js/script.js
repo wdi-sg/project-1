@@ -50,9 +50,9 @@ function init () {
     function loop () {
       if ((score > 1) && (score % 10 === 0)) {
         // clearInterval(myTimer)
-        // spawnRate = spawnRate * 0.8
+        spawnRate = spawnRate * 0.8
         // myTimer = setInterval(loop, spawnRate)
-        // speed += 1
+        speed += 1
       }
       if (spaceship.style.display !== 'none') {
         var scoreDiv = document.querySelector('.score')
