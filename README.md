@@ -15,7 +15,6 @@ This game is inspired by the iconic video game, PAC-MAN.
 
 * **[Simple Pac-Man](https://shumin13.github.io/project-1/)**
 
----
 
 ## Wireframes
 
@@ -23,9 +22,8 @@ This game is inspired by the iconic video game, PAC-MAN.
 <img src="assets/images/gameboard-first-draft.png" height="400">
 
 #### Final:
-<img src="assets/images/gameboard-final.png" height="400" border="1">
+<img src="assets/images/gameboard-final.png" height="400" border="4">
 
----
 
 ## Game Logic
 
@@ -62,13 +60,11 @@ This game is inspired by the iconic video game, PAC-MAN.
 * Start new game
 * Reset all variables
 
----
 
 ## To Be Resolved
 
 * Ghost AI
 
----
 
 ## Built With
 
@@ -76,7 +72,6 @@ This game is inspired by the iconic video game, PAC-MAN.
 * CSS3
 * Javascript
 
----
 
 ## Acknowledgements
 
