@@ -1,12 +1,12 @@
-body{
+body {
   width: 100%;
-  height:100%;
+  height: 100%;
   margin: 0 auto;
   font-family: 'Press Start 2P', cursive;
   background: url(../images/backgroundforgame.jpg) center;
 }
 .header {
-  text-align:center;
+  text-align: center;
   font-weight: 700;
   font-size: 30px;
   padding: 20px 0px 20px 0px;
@@ -14,11 +14,11 @@ body{
   color: rgb(246,27,27);
   margin: 20px 10px 0px 10px;
 }
-.gold{
+.gold {
   color: rgb(190,186,70)
 }
-.blue{
-  color:rgb(139,211,251);
+.blue {
+  color: rgb(139,211,251);
 }
 .main {
   display: flex;
@@ -27,15 +27,15 @@ body{
   font-size: 20px;
   padding: 10px 10px 10px 10px;
 }
-.left{
+.left {
   border: 2px solid black;
-  width:25%;
+  width: 25%;
   min-width: 320px;
   text-align: center;
   height: 50%;
   background-color: rgba(255, 255, 255, 0.6)
 }
-.instructionhead{
+.instructionhead {
   text-decoration: underline;
   margin-top: 10px;
 }
@@ -53,28 +53,28 @@ body{
   font-size: 15px;
   border: 2px solid black;
   background-color: rgba(255,255,255,0.6);
-  margin:0px auto 10px auto;
-  display:inline-block;
+  margin: 0px auto 10px auto;
+  display: inline-block;
   padding-top: 8px;
 }
 .startbutton:hover {
   background-color: rgba(0,0,0,0.8);
-  color:white;
+  color: white;
 }
 .retrybutton {
-  height:30px;
-  width:120px;
-  padding-top:8px;
-  font-size:15px;
+  height: 30px;
+  width: 120px;
+  padding-top: 8px;
+  font-size: 15px;
   border: 2px solid black;
   background-color: rgba(255,255,255,0.6);
-  margin:0px auto 10px auto;
-  display:inline-block;
+  margin: 0px auto 10px auto;
+  display: inline-block;
   visibility: hidden;
 }
 .retrybutton:hover {
   background-color: rgba(0,0,0,0.8);
-  color:white;
+  color: white;
 }
 ul {
   font-weight: 400;
@@ -87,27 +87,27 @@ ul {
   border: 2px solid black;
   width: 50%;
   min-width: 640px;
-  height:440px;
-  display:flex;
+  height: 440px;
+  display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 .battleground {
-  width:100%;
+  width: 100%;
   height: 380px;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 .asteroids-area {
-  width:100%;
+  width: 100%;
   height: 320px;
-  position:relative;
+  position: relative;
 }
-.firstasteroid, .secondasteroid, .thirdasteroid, .fourthasteroid{
+.firstasteroid, .secondasteroid, .thirdasteroid, .fourthasteroid {
   background-image: url(../images/asteroid.png);
   height: 50px;
   width: 50px;
-  position:absolute;
+  position: absolute;
   animation-name: rotate;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -117,54 +117,54 @@ ul {
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
 }
-.firstasteroid{
-  left:55px;
+.firstasteroid {
+  left: 55px;
 }
-.secondasteroid{
-  left:215px;
+.secondasteroid {
+  left: 215px;
 }
-.thirdasteroid{
-  left:375px;
+.thirdasteroid {
+  left: 375px;
 }
-.fourthasteroid{
-  left:535px;
+.fourthasteroid {
+  left: 535px;
 }
-.firingzone{
+.firingzone {
   width: 640px;
   height: 20px;
-  position:relative;
+  position: relative;
 }
 .firstfire, .secondfire, .thirdfire, .fourthfire {
   background-image: url(../images/fireball.png);
   background-repeat: no-repeat;
   background-position: center;
-  height:40px;
+  height: 40px;
   width: 40px;
-  position:absolute;
+  position: absolute;
   opacity: 0;
-  margin-top:-20px;
+  margin-top: -20px;
 }
 .firstfire {
   left: 55px;
 }
-.secondfire{
-  left:215px;
+.secondfire {
+  left: 215px;
 }
-.thirdfire{
-  left:375px;
+.thirdfire {
+  left: 375px;
 }
 .fourthfire {
-  left:535px;
+  left: 535px;
 }
 .tony-area {
   width:640px;
-  height:60px;
+  height: 60px;
 }
 .tony {
   background-image: url(../images/Iron-Man.png);
-  width:57px;
-  height:57px;
-  left:295px;
+  width: 57px;
+  height: 57px;
+  left: 295px;
   margin-top: 3px;
   position: relative;
 }
@@ -185,32 +185,32 @@ ul {
   display:flex;
   flex-direction: column;
 }
-.right{
+.right {
   border: 2px solid black;
   width: 20%;
-  min-width:256px;
+  min-width: 256px;
   margin-right: 0;
   text-align: center;
   height: 100px;
   background-color: rgba(255, 255, 255, 0.6)
 }
-.hit{
-  margin-top:20px;
-  color:green;
-  font-size:40px;
+.hit {
+  margin-top: 20px;
+  color: green;
+  font-size: 40px;
   opacity: 0;
 }
-.miss{
-  color:red;
+.miss {
+  color: red;
   font-size: 40px;
-  opacity:0;
+  opacity: 0;
 }
-footer{
+footer {
   text-align: center;
   letter-spacing: 3px;
   margin-top: 10px;
   font-size: 10px;
-  color:palegoldenrod;
+  color: palegoldenrod;
 }
 a {
   transition: 1s;
