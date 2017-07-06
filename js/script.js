@@ -98,7 +98,7 @@ function createBlock () {
 
 function moveBlock (elem) {
   setInterval(function(){
-    if (elem.getBoundingClientRect().left-399 === 1000) {
+    if (elem.getBoundingClientRect().left-259 === 1000) {
       area.removeChild(elem)
     } else {
       if(collision()) {
@@ -108,7 +108,7 @@ function moveBlock (elem) {
       } else {
         console.log('jumped over')
       }
-        elem.style.left = (elem.getBoundingClientRect().left-399) - 10 + 'px'}
+        elem.style.left = (elem.getBoundingClientRect().left-259) - 10 + 'px'}
     },200)
 }
 
