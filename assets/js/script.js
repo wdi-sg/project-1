@@ -18,13 +18,15 @@ function init () {
   var highscore = document.querySelector('.highScores')
   var gameOver = document.querySelector('.gameOver')
 
-  playAgain.addEventListener('click', function () {
-    startNewGame()
-    var walls = document.querySelectorAll('.wall')
-    for (var i = 0; i < walls.length; i++) {
-      walls[i].parentNode.removeChild(walls[i])
-    }
-  })
+  function beginning () {
+    var start = document.createElement('div')
+    var audio = document.querySelector('audio')
+    audio.play()
+    start.classList.add('start')
+    monitor.appendChild(start)
+    start.textContent = 'Welcome to Collision! Use the left and right arrow keys to navigate your ship, avoiding the blocks and getting as many points as possible. This box will disappear in ten seconds. Good luck!'
+  }
+  beginning()
 
   submitButton.addEventListener('click', function () {
     var li = document.createElement('li')
@@ -41,84 +43,95 @@ function init () {
   sideDivLeft.style.width = leftMargin + 'px'
   sideDivLeft.style.height = '100%'
 
+  setTimeout(function () {
+    var startDiv = document.querySelector('.start')
+    startDiv.classList.add('startLeave')
 // sets rate of wall spawn
-
-  function loop () {
-    if ((score > 1) && (score % 10 === 0)) {
-      clearInterval(myTimer)
-      spawnRate = spawnRate - 400
-      myTimer = setInterval(loop, spawnRate)
-      speed += 1
+    function loop () {
+      if ((score > 1) && (score % 10 === 0)) {
+        clearInterval(myTimer)
+        spawnRate = spawnRate * 0.8
+        myTimer = setInterval(loop, spawnRate)
+        speed += 1
+      }
+      if (spaceship.style.display !== 'none') {
+        var scoreDiv = document.querySelector('.score')
+        scoreDiv.setAttribute('style', 'white-space: pre;')
+        scoreDiv.textContent = 'Score' + '\r\n' + score
+        ++score
+      }
+      fall(spawnWalls(leftMargin), speed, collision, displayGameOver)
     }
-    if (spaceship.style.display !== 'none') {
-      var scoreDiv = document.querySelector('.score')
-      scoreDiv.setAttribute('style', 'white-space: pre;')
-      scoreDiv.textContent = 'Score' + '\r\n' + score
-      ++score
-    }
-    fall(spawnWalls(leftMargin), speed, collision, displayGameOver)
-  }
 
-  var myTimer = setInterval(loop, spawnRate)
+    var myTimer = setInterval(loop, spawnRate)
 
 // if keyup, then ship resets to normal position
-  document.addEventListener('keyup', function () {
-    spaceship.id = ''
-  })
+    document.addEventListener('keyup', function () {
+      spaceship.id = ''
+    })
+
+    playAgain.addEventListener('click', function () {
+      var walls = document.querySelectorAll('.wall')
+      for (var i = 0; i < walls.length; i++) {
+        walls[i].parentNode.removeChild(walls[i])
+      }
+      gameOver.style.visibility = 'hidden'
+      highscore.style.visibility = 'hidden'
+      spaceship.style.display = ''
+      playAgain.style.visibility = 'hidden'
+      clearInterval(myTimer)
+      spawnRate = 2000
+      myTimer = setInterval(loop, spawnRate)
+      score = 0
+      speed = 2
+      var audio = document.querySelector('audio')
+      audio.pause()
+      audio.currentTime = 0
+      audio.play()
+      scoreDiv.setAttribute('style', 'white-space: pre;')
+      scoreDiv.textContent = 'Score' + '\r\n' + score
+    })
 
 // just to see mouse coordinates
-  document.addEventListener('click', function (e) {
-    var posX = e.clientX
-    var posY = e.clientY
-    console.log(posX + ' and ' + posY)
-  })
+    document.addEventListener('click', function (e) {
+      var posX = e.clientX
+      var posY = e.clientY
+      console.log(posX + ' and ' + posY)
+    })
 
 // if keydown, then ship tilts left or right. Also walls move to give a sense of turning
-  document.addEventListener('keydown', function (e) {
-    var currentWalls = document.querySelectorAll('.wall')
-    if (event.keyCode === 37) {
-      e.preventDefault()
-      spaceship.id = 'spaceshipleft'
-      for (var i = 0; i < currentWalls.length; i++) {
-        wallsX(currentWalls[i], -5)
+    document.addEventListener('keydown', function (e) {
+      var currentWalls = document.querySelectorAll('.wall')
+      if (event.keyCode === 37) {
+        e.preventDefault()
+        spaceship.id = 'spaceshipleft'
+        for (var i = 0; i < currentWalls.length; i++) {
+          wallsX(currentWalls[i], -5)
+        }
+      } else if (event.keyCode === 39) {
+        e.preventDefault()
+        spaceship.id = 'spaceshipright'
+        for (var i = 0; i < currentWalls.length; i++) {
+          wallsX(currentWalls[i], 5)
+        }
       }
-    } else if (event.keyCode === 39) {
-      e.preventDefault()
-      spaceship.id = 'spaceshipright'
-      for (var i = 0; i < currentWalls.length; i++) {
-        wallsX(currentWalls[i], 5)
-      }
-    }
-  })
+    })
 
-  function collision () {
-    var walls = document.querySelectorAll('.wall')
-    for (var i = 0; i < walls.length; i++) {
-      if (spaceship.getBoundingClientRect().left < (walls[i].getBoundingClientRect().left + walls[i].offsetWidth) &&
+    function collision () {
+      var walls = document.querySelectorAll('.wall')
+      for (var i = 0; i < walls.length; i++) {
+        if (spaceship.getBoundingClientRect().left < (walls[i].getBoundingClientRect().left + walls[i].offsetWidth) &&
          (spaceship.getBoundingClientRect().left + spaceship.offsetWidth) > walls[i].getBoundingClientRect().left &&
      (spaceship.getBoundingClientRect().bottom) < walls[i].getBoundingClientRect().bottom + walls[i].offsetHeight &&
    spaceship.offsetHeight + (spaceship.getBoundingClientRect().bottom) > walls[i].getBoundingClientRect().bottom) {
-        return true
+          return true
+        }
+        return false
       }
-      return false
     }
-  }
+  }, 10000)
 
   // GAME MECHANICS--------------------------------------------------------
-
-  function startNewGame () {
-    gameOver.style.visibility = 'hidden'
-    highscore.style.visibility = 'hidden'
-    spaceship.style.display = ''
-    playAgain.style.visibility = 'hidden'
-    clearInterval(myTimer)
-    spawnRate = 2000
-    myTimer = setInterval(loop, spawnRate)
-    score = 0
-    speed = 2
-    scoreDiv.setAttribute('style', 'white-space: pre;')
-    scoreDiv.textContent = 'Score' + '\r\n' + score
-  }
 
   function displayGameOver () {
     spaceship.style.display = 'none'

@@ -8,6 +8,29 @@
   border-radius: 20px;
 }
 
+.start{
+  position: absolute;
+  width: 70%;
+  bottom: 20%;
+  height: 50%;
+  background-color: black;
+  z-index: 8;
+  opacity: 1;
+  transition: all 2s;
+  font-family: monospace;
+  font-size: 3.3vw;
+  color: white;
+}
+
+h6{
+
+}
+
+.startLeave{
+  opacity: 0;
+  visibility: hidden;
+}
+
 .highScores{
   position: absolute;
   visibility: hidden;
