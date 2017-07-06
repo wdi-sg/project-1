@@ -2,17 +2,19 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 
 
-### var gameTitle = 'nine'
+### nineString.
 https://merejarvis.github.io/project-1/
 
 
-A wordgame where the player must form as many words as he can in 90 seconds from a random string of 9 letters.
+A game where players must form as many words as they can in 90 seconds from a random string of 9 letters.
 
-The player can choose to regenerate the random string **twice** during the game.
+Players can choose to regenerate the random string **twice** during the game.
 
 Hit **'Enter'** key to submit words.
 
-If you are fast enough
+Be fast enough and get into **COMBO!** mode where your points are multiplied!
+
+Current top score > 12000! (can't remember exactly!)
 
 
 
@@ -73,8 +75,7 @@ Music: http://www.bensound.com
 ---
 
 
-what game does
-flowchart
+
 
 process in generating random biased string
 process to test a word, improvements
