@@ -1,10 +1,21 @@
 body {
-  height: 680px;
+    height: 680px;
+    /*background-size: stretch;
+    background-position: center;*/
+    background-color: rgb(255, 238, 218)
 }
 
 h1 {
   margin: 0 auto;
   text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 60px;
+}
+
+h2 {
+  margin: 0 auto;
+  font-family: 'Viga', sans-serif;
+  font-size: 30px;
 }
 
 h3 {
@@ -12,32 +23,39 @@ h3 {
   display: block;
   text-align: center;
   margin: 0 auto;
-  padding: 50px;
+  padding: 20px 50px 0px 50px;
+  font-family: 'Viga', sans-serif;
+  font-size: 50px;
 }
 
 p {
   font-size: 20px;
+  font-family: 'Viga', sans-serif;
+  margin: 12px auto;
 }
 
 .gameInfo {
   font-size: 20px;
+  margin: 5px 0;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 footer {
   text-align: center;
+  color: black;
 }
 
 .createdBy {
-  margin: 0 auto
+  margin: 0 auto;
+  font-size: 18px;
 }
 
 .inspired {
-  margin: 0 auto
-
+  margin: 0 auto;
+  font-size: 18px;
 }
 .instructions {
   margin: 0 auto;
-  background-color: white;
   text-align: center;
   width: 600px;
   float: center;
@@ -45,16 +63,28 @@ footer {
 
 .scoreText {
   float: left;
+
 }
 
 .score {
   float: left;
+  margin: 0 5px;
 }
 
 .startButton {
   display: inline-block;
   float: center;
   width: 80px;
+  height: 25px;
+  background-color: green;
+  color: white;
+  font-family: 'Viga', sans-serif;
+  font-size: 15px;
+  border-radius: 10%;
+}
+
+.startButton:hover {
+  background-color: rgb(64, 218, 60);
 }
 
 .timerText {
@@ -63,16 +93,16 @@ footer {
 
 .timer {
   float: right;
+  margin: 0 5px;
 }
 
 .container {
-  background-color: white;
-  border: 2px solid white;
   width: 600px;
   height: 600px;
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
+  border-radius: 5%;
 }
 
 /* 2 x 2 grid */
@@ -151,6 +181,26 @@ footer {
   border: 2px solid white;
   width: 62.6px;
   height: 62.6px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 10 x 10 grid */
+.L10Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 56px;
+  height: 56px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 11 x 11 grid */
+.L11Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 50.54px;
+  height: 50.54px;
   display: inline-block;
   border-radius: 10%;
 }

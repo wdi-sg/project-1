@@ -16,7 +16,7 @@ produce final score
 
 document.addEventListener('DOMContentLoaded', function () {
   var score = 0
-  var timeLeft = 30
+  var timeLeft = 60
   var noOfRows = 2
   var ranGrid
   var isGameOver = false
@@ -27,17 +27,27 @@ document.addEventListener('DOMContentLoaded', function () {
     ['rgb(235, 152, 20)',
       'rgb(235, 135, 20)'],
     ['rgb(255, 237, 0)',
-      'rgb(255, 220, 0)'],
+      'rgb(255, 225, 0)'],
     ['rgb(50, 150, 255)',
       'rgb(40, 160, 235)'],
     ['rgb(40, 40, 40)',
       'rgb(0, 0, 0)'],
-    ['rgb(160, 255, 0)',
-      'rgb(120, 255, 90)'],
+    ['rgb(150, 255, 0)',
+      'rgb(130, 255, 90)'],
     ['rgb(252, 76, 76)',
       'rgb(255, 59, 59)'],
     ['rgb(255, 105, 208)',
-      'rgb(255, 101, 230)']
+      'rgb(255, 101, 230)'],
+    ['rgb(160, 249, 232)',
+      'rgb(180, 240, 232)'],
+    ['rgb(136, 15, 244)',
+      'rgb(140, 58, 218)'],
+    ['rgb(140, 170, 204)',
+      'rgb(150, 170, 214)'],
+    ['rgb(126, 16, 71)',
+      'rgb(106, 16, 60)'],
+    ['rgb(255, 250, 129)',
+      'rgb(255, 240, 115)']
   ]
   // console.log(palette[3][0])
 
@@ -64,10 +74,12 @@ document.addEventListener('DOMContentLoaded', function () {
     isGameOver = true
   // clear the grid if game is over
     document.querySelector('.container').innerHTML = ' '
+    document.querySelector('.container').style.backgroundColor = ''
     var endMsg = document.createElement('h3')
     document.querySelector('.container').appendChild(endMsg)
-    endMsg.textContent = 'Game Over. Thanks for playing!' + 'You scored a ' + score + '/8 in ' + (30 - timeLeft - 1) + ' seconds.'
-
+    endMsg.textContent = 'Thanks for playing!' + '\n' + 'You scored ' + score + '/10 in ' + (60 - timeLeft - 1) + ' seconds.'
+    endGameSound()
+    endGameImage()
     // document.querySelector('.container').style.textAlign = 'center'
   }
 
@@ -90,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ##### grid creator; change level #####
   function gridCreate () {
+    document.querySelector('.container').style.backgroundColor = 'white'
     var gridId = 0
     for (var i = 0; i < noOfRows; i++) {
       document.querySelector('.container').innerHTML += '<div class = "row">'
@@ -101,12 +114,17 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelector('.container').innerHTML += '</div>'
     }
 
-    // grid color
+    // color the grid
     wholeGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')
+
+    // randomly choose color and remove from palette array
+    var ranChosenCol = palette.splice(ranNum(0, palette.length - 1), 1)
+    // console.log(ranChosenCol)
+
     // console.log(wholeGrid)
     for (var p = 0; p < noOfRows - 1; p++) {
       for (var j = 0; j < gridId; j++) {
-        wholeGrid[j].style.backgroundColor = palette[p][0]
+        wholeGrid[j].style.backgroundColor = ranChosenCol[0][0]
       }
     }
     // add event listener to each element created
@@ -117,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ranGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')[ranNum(0, gridId - 1)]
     // console.log(ranGrid)
     // console.log(gridId)
-    ranGrid.style.backgroundColor = palette[p - 1][1]
+    ranGrid.style.backgroundColor = ranChosenCol[0][1]
   }
 // ##### End of gridCreate() #####
 
@@ -140,23 +158,47 @@ document.addEventListener('DOMContentLoaded', function () {
       score += 1
 
       // increase the grid size
-      if (noOfRows < 9) {
+      if (noOfRows < 11) {
         noOfRows += 1
       } else {
         isGameOver = true
         return
       }
-
       // empty out previous grid squares
       document.querySelector('.container').innerHTML = ' '
       // create the new grid
       gridCreate()
+    } else {
+      wrongSound()
     }
   } // ##### END of isMatch() #####
+
+// audio:
+  function wrongSound () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/error2.mp3'
+    audio.autoplay = true
+    document.querySelector('.container').appendChild(audio)
+    audio.volume = 0.4
+  }
+
+  function endGameSound () {
+    var audio = document.createElement('audio')
+    audio.src = 'audio/finale1.mp3'
+    audio.autoplay = true
+    document.querySelector('.container').appendChild(audio)
+    audio.volume = 0.4
+  }
+
+  function endGameImage (){
+    var elem = document.createElement('img')
+    elem.setAttribute('src', 'images/fireworks2.gif')
+    elem.setAttribute("width", "600")
+    document.querySelector('.container').appendChild(elem)
+  }
 
   // target the start node
   var startButtonTgt = document.querySelector('.startButton')
   // add event listener to start button
   startButtonTgt.addEventListener('click', init)
-
 }) // ##### END of DOMContentLoaded #####
