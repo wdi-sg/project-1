@@ -21,7 +21,7 @@ function generateFish1 () {
     var newFish = document.createElement('img')
     newFish.src = 'assets/pictures/Fish1.png'
     newFish.className = 'newFish'
-    newFish.style.height = randomizer(20, 120) + 'px'
+    newFish.style.height = randomizer(20, 110) + 'px'
     newFish.style.position = 'absolute'
     newFish.style.top = randomizer(0, window.innerHeight) + 'px'
     newFish.style.left = randomizer(0, window.innerWidth) + 'px'
@@ -35,7 +35,7 @@ function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
     allFishes[i].style.top = randomizer(0, window.innerHeight) + 'px'
     allFishes[i].style.left = randomizer(0, window.innerWidth) + 'px'
-    allFishes[i].style.transition = 'top 1.5s linear, left 1.5s linear'
+    allFishes[i].style.transition = 'top 1s linear, left 1s linear'
   }
 }
 

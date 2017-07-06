@@ -21,7 +21,7 @@ Step-by-Step Process
 * Create main fish that follows mouse [And rotate too]
 * Detect collision of main fish with blue fishes
 * Increase/Decrease size of main fish when colliding, and make other fish disappear
-* Win if bigger than 100x100px, because the biggest blue fish is 120x120px
+* Win if bigger than 100x100px, because the biggest blue fish is 110x110px
 * Lose if less than 30x30px, because the smallest blue fish is 20x20px
 
 ---
