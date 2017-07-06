@@ -423,11 +423,18 @@ function init () {
     selectTickerBtns[i].addEventListener('click', createPlayerData)
   }
 
+  var playersData = []
+
   var player = 1
   var player1Data = {}
   var player2Data = {}
+
+  var playerData = {}
+
   function createPlayerData (event) {
     if (player === 1) {
+      playerData.id = 1
+
       var buyThisTicker = event.target.previousElementSibling.value
       player1Data.ticker = buyThisTicker
       var thesis = event.target.previousElementSibling.previousElementSibling.value
@@ -451,6 +458,8 @@ function init () {
       p.appendChild(p2text)
       player = 3    // imagine player 3 is the program, and it is now running to determine winner
     }
+
+    // push playerData object into playersData array
   }
 
 // When Execute Trades button is clicked, determine and display the winner
@@ -471,7 +480,7 @@ function init () {
     player1Data.startPriceDate = startPriceDate
     var endPriceDate = priceData.dataset.data[0][0]
     player1Data.endPriceDate = endPriceDate
-    var roi = endPrice/startPrice-1
+    var roi = endPrice / startPrice - 1
     player1Data.roi = roi
     var wallet = (1 + roi) * parameters.walletSize
     player1Data.wallet = wallet
@@ -487,25 +496,22 @@ function init () {
     player2Data.startPriceDate = startPriceDate
     var endPriceDate = priceData.dataset.data[0][0]
     player2Data.endPriceDate = endPriceDate
-    var roi = endPrice/startPrice-1
+    var roi = endPrice / startPrice - 1
     player2Data.roi = roi
     var wallet = (1 + roi) * parameters.walletSize
     player2Data.wallet = wallet
     // console.log(player2Data)
 
-    console.log(parameters)
-    console.log(parameters.p1Name)
-    console.log(parameters.holdingPeriod)
     var winner = (player1Data.wallet > player2Data.wallet) ? parameters.p1Name : parameters.p2Name
     var whoWonP = document.querySelector('#who-won')
-    whoWonP.textContent = winner + "won!"
+    whoWonP.textContent = winner + ' won!'
     var roiP = document.querySelector('#roi')
-    roiP.textContent = parameters.p1name + ' achieved a return on investment of ' + player1Data.roi + ', while ' + parameters.p2name + ' achieved a return on investment of ' + player2Data.roi
+    roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + player1Data.roi + ', while ' + parameters.p2Name + ' achieved a return on investment of ' + player2Data.roi
     var walletP = document.querySelector('#wallet')
-    walletP.textContent = 'At the end of the holding period, ' + parameters.p1name + ' had $' + player1Data.wallet + 'in his/her wallet, while ' + parameters.p2name + ' had $' + player2Data.wallet + 'in his/her wallet.'
+    walletP.textContent = 'At the end of the holding period, ' + parameters.p1Name + ' had $' + player1Data.wallet + 'in his/her wallet, while ' + parameters.p2Name + ' had $' + player2Data.wallet + 'in his/her wallet.'
   }
 
-  function getPrice(ticker) {
+  function getPrice (ticker) {
     var req = new XMLHttpRequest()
     var stockUrl = 'https://www.quandl.com/api/v3/datasets/HKEX/' + ticker + '.json?2&api_key=1VqFiTXxySMhKgkyNfPp'
     req.open('GET', stockUrl, false)
@@ -518,6 +524,18 @@ function init () {
     // var company_id = responseObject['company_id']
     // console.log(company_id)
   }
+
+  // At end of game, send results
+  var sendResultsBtn = document.querySelector('#next-steps button[name="send-button"]')
+  sendResultsBtn.addEventListener('click', sendEmail)
+
+  function sendEmail (event) {
+    console.log('sending email')
+    var win = window.open('mailto:user@example.com', 'emailWindow')
+    if (win && win.open && !win.closed) win.close()
+  }
+
+  // At end of game, restart game
 }
 
 },{"./callnews.js":2}]},{},[3]);
