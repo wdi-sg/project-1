@@ -40,9 +40,11 @@ h2{
 
 #Question {
   font-family: 'Schoolbell', cursive;
-  font-size: 32px;
+  font-size: 40px;
   color: #e0dbd1;
   margin: 120px 0 0 0;
+  padding: 0 100px 0 100px
+
 }
 
 /*.choices {
@@ -79,11 +81,11 @@ li {
   color: red;
   font-size: 30px;
   padding-top: 30px;
-  padding-left: 120px;
+  padding-left: 115px;
 }
 
 button {
   background-color: red;
-  font-size: 26px;
+  font-size: 28px;
   margin: 0 auto;
 }
