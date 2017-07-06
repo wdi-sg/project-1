@@ -3,6 +3,13 @@ var callnews = require('./callnews.js')
 document.addEventListener('DOMContentLoaded', init)
 
 function init () {
+  var parameters = {}
+  var newsData = {}
+  var playersDataArr = []
+  var player = 1
+  var winner = ''
+
+
   var status = 'Not Started'
   var statusLine = document.body.querySelector('#status')
   statusLine.textContent = 'Game Status: ' + status
@@ -11,7 +18,6 @@ function init () {
   // is called when the form is submitted
   var form = document.querySelector('form')
 
-  var parameters = {}
   function initiateParams () {
     parameters.p1Name = form.p1Name.value
     parameters.p2Name = form.p2Name.value
@@ -39,7 +45,6 @@ function init () {
     researchGoBtns[i].addEventListener('click', displayNews)
   }
 
-  var newsData = {}
   function displayNews (event) {
     var newsData = callnews.getNews()
     var noOfStories = newsData.length
@@ -53,14 +58,10 @@ function init () {
 
   // add event listener to Select Ticker button. When this button is clicked, grab
   // ticker entered, and add text prompt for next step
-
   var selectTickerBtns = document.querySelectorAll('.thesis-buy-area input[type="button"]')
   for (var i = 0; i < selectTickerBtns.length; i++) {
     selectTickerBtns[i].addEventListener('click', createPlayerData)
   }
-
-  var playersDataArr = []
-  var player = 1
 
   function createPlayerData (event) {
     var playerData = {}
@@ -98,7 +99,6 @@ function init () {
   var executeTradesBtn = document.querySelector('#execute-div button')
   executeTradesBtn.addEventListener('click', determineWinner)
 
-  var winner = ''
   function determineWinner (event) {
     for (i=0; i<playersDataArr.length; i++) {
       var priceData = getPrice(playersDataArr[i].ticker)
@@ -118,40 +118,6 @@ function init () {
       playersDataArr[i].wallet = wallet
     }
 
-    // // For P1
-    // var priceData = getPrice(player1Data.ticker)
-    // var companyName = priceData.dataset.name
-    // player1Data.companyName = companyName
-    // var startPrice = priceData.dataset.data[parameters.holdingPeriod][1]
-    // player1Data.startPrice = startPrice
-    // var endPrice = priceData.dataset.data[0][1]
-    // player1Data.endPrice = endPrice
-    // var startPriceDate = priceData.dataset.data[parameters.holdingPeriod][0]
-    // player1Data.startPriceDate = startPriceDate
-    // var endPriceDate = priceData.dataset.data[0][0]
-    // player1Data.endPriceDate = endPriceDate
-    // var roi = endPrice / startPrice - 1
-    // player1Data.roi = roi
-    // var wallet = (1 + roi) * parameters.walletSize
-    // player1Data.wallet = wallet
-    // // console.log(player1Data)
-    //
-    // // For P2
-    // var priceData = getPrice(player2Data.ticker)
-    // var startPrice = priceData.dataset.data[parameters.holdingPeriod][1]
-    // player2Data.startPrice = startPrice
-    // var endPrice = priceData.dataset.data[0][1]
-    // player2Data.endPrice = endPrice
-    // var startPriceDate = priceData.dataset.data[parameters.holdingPeriod][0]
-    // player2Data.startPriceDate = startPriceDate
-    // var endPriceDate = priceData.dataset.data[0][0]
-    // player2Data.endPriceDate = endPriceDate
-    // var roi = endPrice / startPrice - 1
-    // player2Data.roi = roi
-    // var wallet = (1 + roi) * parameters.walletSize
-    // player2Data.wallet = wallet
-    // // console.log(player2Data)
-
     status = 'Results in! See bottom of page.'
     statusLine.textContent = 'Game Status: ' + status
 
@@ -162,6 +128,8 @@ function init () {
     roiP.textContent = parameters.p1Name + ' achieved a return on investment of ' + playersDataArr[0].roi + ', while ' + parameters.p2Name + ' achieved a return on investment of ' + playersDataArr[1].roi
     var walletP = document.querySelector('#wallet')
     walletP.textContent = 'At the end of the holding period, ' + parameters.p1Name + ' had $' + playersDataArr[0].wallet + 'in his/her wallet, while ' + parameters.p2Name + ' had $' + playersDataArr[1].wallet + 'in his/her wallet.'
+
+    console.log(playersDataArr)
   }
 
   function getPrice (ticker) {
@@ -172,10 +140,6 @@ function init () {
     // console.log(req.status)
     var dataObj = JSON.parse(req.responseText)
     return dataObj
-    // console.log(dataObj.dataset.newest_available_date)
-    // var responseObject = JSON.parse(req.responseText)
-    // var company_id = responseObject['company_id']
-    // console.log(company_id)
   }
 
   // At end of game, send results
