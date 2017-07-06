@@ -8,10 +8,8 @@ body {
 }
 
 .container {
-  background:url("/assets/images/School-Chalkboard-Backgrounds.jpg") no-repeat;
+  background:url("https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Download-Chalkboard-Pictures.jpg") no-repeat;
   background-size: cover;
-  /*min-width: 600px;
-  max-width: 1500px;*/
   text-align: center;
   height: 100%;
   /*position: relative;*/
