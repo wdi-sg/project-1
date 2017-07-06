@@ -2,8 +2,6 @@
 
 This game is inspired by the iconic video game, PAC-MAN.
 
----
-
 ## How to play?
 
 #### Instructions:
@@ -25,7 +23,7 @@ This game is inspired by the iconic video game, PAC-MAN.
 <img src="assets/images/gameboard-first-draft.png" height="400">
 
 #### Final:
-<img src="assets/images/gameboard-final.png" height="400">
+<img src="assets/images/gameboard-final.png" height="400" border="1">
 
 ---
 
@@ -38,10 +36,10 @@ This game is inspired by the iconic video game, PAC-MAN.
 * Create dots on the gameboard
 
 #### hitWall (character)
-* Check if the character (Pac-Man, ghost) hit the wall (collision function)
+* Check if the character (Pac-Man, ghost) hit the wall _(collision function)_
 
 #### hitGhost ()
-* Check if Pac-Man hit the ghost (collision function)
+* Check if Pac-Man hit the ghost _(collision function)_
 
 #### pacmanMovement ()
 * Pac-Man will change direction when the arrow key is pressed
@@ -51,7 +49,7 @@ This game is inspired by the iconic video game, PAC-MAN.
 
 #### ghostMovement ()
 * Ghost will move in a default direction
-* If ghost hit a wall, he will move in a new random direction (ghostHitWallNewDir function and randomGhostDirection function)
+* If ghost hit a wall, he will move in a new random direction _(ghostHitWallNewDir function) (randomGhostDirection function)_
 
 #### checkScore ()
 * Keep track of the score based on the number of dots eaten by Pac-Man
