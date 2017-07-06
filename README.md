@@ -1,28 +1,35 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Pac-Man
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Simple Pac-Man
 
-### How to play?
+This game is inspired by the iconic video game, PAC-MAN.
+
+---
+
+## How to play?
 
 #### Instructions:
 
 * Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: to move Pac-Man around the maze.
 * Complete the level by eating all the dots.
 * **Avoid the ghosts!** If they catch you, you will lose a life.
-* You only have **3 lives**. Be careful...
+* You only have **3 lives**. Be careful!
 
 #### URL:
 
-* **[Pac-Man _(Simplified Version)_](https://shumin13.github.io/project-1/)**
+* **[Simple Pac-Man](https://shumin13.github.io/project-1/)**
 
 ---
 
-### Wireframes
+## Wireframes
 
 #### Draft:
 <img src="assets/images/gameboard-first-draft.png" height="400">
 
+#### Final:
+<img src="assets/images/gameboard-final.png" height="400">
+
 ---
 
-### Game Logic
+## Game Logic
 
 #### createWall (left, top, width, height)
 * Create wall on the gameboard
@@ -30,37 +37,42 @@
 #### createDot (left, top)
 * Create dots on the gameboard
 
-#### collision (a, b)
-* Detect if there is collision between a and b
-
 #### hitWall (character)
-* Check if the character (pacman, ghost) hit the wall
+* Check if the character (Pac-Man, ghost) hit the wall (collision function)
 
 #### hitGhost ()
-* Check if pacman hit the ghost
+* Check if Pac-Man hit the ghost (collision function)
 
 #### pacmanMovement ()
-* Movement direction depends on the arrow key pressed
-* The keydown event is fired when a key is pressed down.
+* Pac-Man will change direction when the arrow key is pressed
+* Pac-Man's position is rounded to the nearest multiple of 40 (size of each 'grid') at every turn
+* If Pac-Man hits a wall, he will stop
+* If Pac-Man hits a ghost, check for game over
 
 #### ghostMovement ()
-* Movement direction depends on the arrow key pressed
-
-#### ghostHitWallNewDir ()
-#### randomGhostDirection ()
+* Ghost will move in a default direction
+* If ghost hit a wall, he will move in a new random direction (ghostHitWallNewDir function and randomGhostDirection function)
 
 #### checkScore ()
+* Keep track of the score based on the number of dots eaten by Pac-Man
+* If all the dots have been eaten, check for game over
+
 #### gameOver ()
+* Display screen depends on the result (win, lose, lives > 1)
+
 #### startGame ()
-#### loop ()
+* Start new game
+* Reset all variables
 
 ---
 
-### Unsolved Problems
+## To Be Resolved
+
+* Ghost AI
 
 ---
 
-### Built With
+## Built With
 
 * HTML5
 * CSS3
@@ -68,20 +80,7 @@
 
 ---
 
-### Acknowledgements
+## Acknowledgements
 
-* **[MDN Game Development - Collision Detection](https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection)**
-
----
-
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-
----
-
-### Project Feedback + Evaluation
-
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+* [MDN Game Development - Collision Detection](https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection)
+* [A* Search Algorithm](https://en.wikipedia.org/wiki/A%2a_search_algorithm)
