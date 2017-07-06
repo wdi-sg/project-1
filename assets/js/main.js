@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', init)
 
-function init() {
+function init () {
   // add event listeners to all ingredients
   buttons.forEach(function (el) {
     el.addEventListener('click', addIngredient)
@@ -50,7 +50,7 @@ function init() {
   // updates orderList for the current ingredient (strikethrough)
   // updates playArea with the added ingredient
   function addIngredient () {
-    if (gameStarted) {
+    if (gameStarted && !isGameOver) {
      // whichIngredient takes out the classnames 'cheese', 'patty' etc.
       whichIngredient = this.className.substring(5).toLowerCase()
       if (checkForMatch()) {
@@ -74,7 +74,7 @@ function init() {
   // serve button clears playArea, clears list, increases score
   // generates new level, reset ingredientcounter to 0.
   function serve () {
-    if (gameStarted && ingredientCounter === level + 5) { // 4 + 1 to account for bottombun
+    if (gameStarted && !isGameOver && ingredientCounter === level + 5) { // 4 + 1 to account for bottombun
       clearPlayArea()
       clearList()
       increaseScore()
@@ -100,7 +100,7 @@ function init() {
     order.innerHTML = ''
     neededIngredients = [] // reset the array for clicks to compare against
   }
-  
+
   // changes text in scorebox
   // increase level by 1
   function increaseScore () {
@@ -110,10 +110,10 @@ function init() {
 
   // expand originally collapsed overlay
   function gameOver () {
+    isGameOver = true
     endGameOverlay.style.height = '768px'
     endGameScore.innerText = score.innerText
     endGameScore.style.fontSize = '300px'
     endGameScore.style.marginTop = '100px'
   }
-
 } // close init

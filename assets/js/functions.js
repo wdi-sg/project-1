@@ -1,6 +1,7 @@
 var ingredientCounter = 0 // number of ingredients already in play
 var level = 1 // determines score and number of things in order list
 var gameStarted = false // prevents clicking before timer starts
+var isGameOver = false
 var neededIngredients = []
 var possibleIngredients = ['patty', 'patty', 'tomato', 'onion', 'lettuce', 'cheese']
 var timeLeft = 90

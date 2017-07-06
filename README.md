@@ -54,7 +54,7 @@ Functions
 * Checks if clicked ingredient matches the current ingredient needed
 
 **addIngredient ()**
-* On button click, extract ingredient id from click
+* On button click, extract ingredient class
 * checkForMatch ()
 * If matched, update orderList text with strikethrough
 * If matched, add ingredient to playArea
@@ -78,7 +78,7 @@ Functions
 
 Extensions / Unsolved Issues
 ---
-1. Randomizing ingredients sometimes causes 3/4 of the same to stack together. Replace array[el] fs element is repeated too many times?
+1. Randomizing ingredients sometimes causes 3/4 of the same to stack together. Replace array[el] if element is repeated too many times?
 2. Maximum length of order is 16 ingredients. Enable automatic scrolling downward if order exceeds height of the order list?
 3. Switch from fixed pixel values for width/height to % to allow resizing of window
 4. Use opacity % instead of height:0px to collapse/expand overlay panels.
