@@ -1,4 +1,4 @@
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Pac-Man _(A Simplified Version)_
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Pac-Man
 
 ### How to play?
 
@@ -7,11 +7,11 @@ Instructions:
 * Use the **arrow keys** to move Pac-Man around the maze.
 * Complete the level by eating all the dots.
 * **Avoid the ghosts!** If they catch you, you will lose a life.
-* You only have **3 lives**.
+* You only have **3 lives**. Be careful...
 
 URL:
 
-* **[Pac-Man By Shumin](https://shumin13.github.io/project-1/)**
+* **[Pac-Man _simplified version_](https://shumin13.github.io/project-1/)**
 
 ---
 
