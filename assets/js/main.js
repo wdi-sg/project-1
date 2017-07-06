@@ -17,6 +17,7 @@ function gameInit () {
   function gameStart () {
     innerContainer.style.border = '1px solid white'
     mainMenu.style.display = 'none'
+    document.body.addEventListener('keydown', typeLetter)
     createLifeCounter()
     createScoreCounter()
     createComboCounter()
@@ -153,6 +154,7 @@ function gameInit () {
       audio.src = 'assets/audio/gameover.wav'
       audio.autoplay = true
       container.appendChild(audio)
+      document.body.removeEventListener('keydown', typeLetter)
       inGameMessage('Game Over!', 1000)
       setTimeout(createGameoverWindow, 2000)
     }
@@ -407,5 +409,4 @@ function gameInit () {
   addTitle()
   startButton.addEventListener('click', gameStart)
   instructions.addEventListener('click', showInstructions)
-  document.body.addEventListener('keydown', typeLetter)
 }
