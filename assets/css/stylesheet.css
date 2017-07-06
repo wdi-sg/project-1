@@ -61,7 +61,7 @@ ol{
   color: #FFDD1B;
   border: 1px solid #FFDD1B;
   border-radius: 4px;
-  font-family: lumberFont;
+  font-family: monospace;
   font-size: 20px;
   /*left: 500px;
   top: 200px;*/
@@ -82,34 +82,37 @@ ol{
 }
 
   #startBtn{
-    /*left: 600px;
-    top: 100px;
-    position: absolute;
-    padding: 100px;
-    text-align: left;
+    background-color: orange;
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    border-color: red;
+    border-style: solid;
+
+    height: 200px;
+    width: 200px;
+    left: 600px;
+    top: 200px;
+    position: absolute;
+    font-size: 40px;
+    vertical-align:middle;
+    line-height: 200px;
+  }
+
+  .move{
+    /*left: 600px;
+    top: 200px;
+    position: absolute;
+    cursor: pointer;
+    /*padding: 100px;*/
+    /*text-align: left;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
     background-color: orange;
     border-color: red;
     border-style: solid;*/
   }
 
-  .move{
-    left: 600px;
-    top: 100px;
-    position: absolute;
-    padding: 100px;
-    text-align: left;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    background-color: orange;
-    border-color: red;
-    border-style: solid;
-  }
-
-  .moveAfter{
+  #moveAfter{
     left: -100px;
     top: -200px;
     position: absolute;

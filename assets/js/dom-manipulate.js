@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', init)
 
 // global var, accessible by both logic and dom?
 // will be randomized when start hit start button
-var start2 = [
-  ['start', 'block', 'block', 'block'],
-  ['topdown', 'space', 'leftright', 'end'],
-  ['topright', 'block', 'space', 'space'],
-  ['space', 'leftright', 'space', 'lefttop']
-]
+// var start2 = [
+//   ['start', 'block', 'block', 'block'],
+//   ['topdown', 'space', 'leftright', 'end'],
+//   ['topright', 'block', 'space', 'space'],
+//   ['space', 'leftright', 'space', 'lefttop']
+// ]
 
 // to play with to check recursive function
 var start = [
@@ -76,14 +76,17 @@ function init () {
     )})
 
   // add event listener to start
-  var startBtn = document.getElementById('startBtn')
+  // var startBtn = document.getElementById('startBtn')
+  // startBtn.addEventListener('click', startTimer)
+  // startBtn.addEventListener('click', logicFile.randomize)
+  // startBtn.addEventListener('click', updateGrid)
+  // startBtn.addEventListener('click', function(){event.target.id = 'moveAfter'})
+
+  var startBtn = document.querySelector('.moveAfter')
   startBtn.addEventListener('click', startTimer)
   startBtn.addEventListener('click', logicFile.randomize)
   startBtn.addEventListener('click', updateGrid)
-  startBtn.addEventListener('click', function(){event.target.className = 'moveAfter'})
-
-
-
+  startBtn.addEventListener('click', function(){event.target.id = 'moveAfter'})
 
   //document.getElementById('testBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0') })
 
