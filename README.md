@@ -3,12 +3,15 @@
 https://thecodingdog.github.io/project-1/
 
 # User stories
-1. Hit the start button which starts a 60 seconds countdown.
+1. Hit the start button which starts a 30 seconds countdown.
 2. Objective is to connect starting pipe to ending pipe.
 3. Move tiles by clicking on tile and empty space
 Once timer is up, tiles are randomized and you have to start all over.
 
-![alt text](assets/images/start.png?raw=true)
+![alt text](assets/images/start.png?raw=true 'start')
+![alt text](assets/images/end.png?raw=true 'end')
+![alt text](assets/images/topdown.png?raw=true 'topdown')
+![alt text](assets/images/leftright.png?raw=true 'leftright')
 
 # Object
 1. As every piece can only be connected to 1 - 3 valid pieces, I attempted to use a linked object to check validity of moves.
@@ -40,7 +43,7 @@ var S = {
 }
 
 # Functions
-#. DOM manipulate file
+# DOM manipulate file
 # createGrid()
 - creates 16 div and fetches images based on random start position
 # init()
