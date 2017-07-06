@@ -6,7 +6,6 @@ var time = 30
 
 document.querySelector('.counter').innerHTML = '0'
 document.querySelector('.time').innerHTML = '30'
-
 // ---------------------------------------------------------
 function randomizer (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -24,7 +23,7 @@ function turn () {
 function tiles () {
   var allSquare = document.querySelectorAll('.square')
   for (var i = 0; i < allSquare.length; i++) {
-    allSquare[i].style.background = 'white'
+    allSquare[i].style.background = ''
   }
   turn()
   // document.querySelector('#square' + gameArray[0]).style.background = 'purple'
@@ -63,8 +62,9 @@ function tiles () {
   squareThreeStyle.style.backgroundPosition = 'center'
 
 
+
   var squareFourStyle = document.querySelector('#square' + squareFour)
-  squareFourStyle.style.backgroundImage = 'url("http://orig04.deviantart.net/7d15/f/2016/366/c/0/cat_head_png__by_madcatmd-datnw9e.png")'
+  squareFourStyle.style.backgroundImage = 'url(http://i.imgur.com/VdsltIo.png?1)'
   squareFourStyle.style.backgroundSize = '100%'
   squareFourStyle.style.backgroundRepeat = 'no-repeat'
   squareFourStyle.style.backgroundPosition = 'center'
@@ -92,7 +92,7 @@ function restart () {
   fired = false
   var allSquare = document.querySelectorAll('.square')
   for (var i = 0; i < allSquare.length; i++) {
-    allSquare[i].style.background = 'white'
+    allSquare[i].style.background = ''
   document.querySelector('.counter').innerHTML = '0'
   document.querySelector('.time').innerHTML = '30'
   }
@@ -109,7 +109,7 @@ function timer () {
     alert('Time Over')
     restart()
     clearInterval(test)
-    tiles()
+    // tiles()
   }
 }
 

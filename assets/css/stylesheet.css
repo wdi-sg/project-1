@@ -2,6 +2,9 @@ body {
   text-align: center;
   padding-top: 135px;
   margin: 0 auto;
+  background-image: url("https://templated.co/items/demos/visualize/images/bg.jpg");
+  background-size: 100%;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 div {
@@ -22,11 +25,20 @@ div {
 .square {
   width: 90px;
   height: 150px;
-  background: white;
-  border-style: solid;
+  /*background: white;*/
+  /*border-style: solid;*/
   border-width: thin;
   border-color: blue;
   float: left;
+}
+
+#square1, #square2, #square3, #square5, #square6, #square7, #square9, #square10, #square11, #square13, #square14, #square15 {
+  border-right-style: solid;
+  border-color: white;
+}
+
+#square9, #square10, #square11, #square12 {
+  background-color: rgba(255, 255,255, .2);
 }
 
 br {
@@ -37,9 +49,19 @@ br {
   margin-bottom: 10px;
 }
 
+.time, .timeText, .counter, .counterText {
+  font-size: 50px;
+  color: white;
+}
+
 canvas {
 		display: block;
 		left: 0;
 		position: absolute;
 		top: 0;
+}
+
+.cat {
+  background-image: url("https://media.giphy.com/media/7JJT5EWjhqUnK/giphy.gif");
+  background-size: 100%;
 }
