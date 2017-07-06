@@ -34,7 +34,7 @@ body {
   position: relative;
   height: 55px;
   width: 55px;
-  animation: ghostMovement 5s ease-in-out 1;
+  animation: ghostMovement 5s ease-in-out 1s 1;
 }
 
 @keyframes ghostMovement {
@@ -51,7 +51,7 @@ body {
   height: 55px;
   width: 55px;
   transform: scaleX(-1);
-  animation: ghostMovement2 5s ease-in-out 1;
+  animation: ghostMovement2 5s ease-in-out 1s 1;
 }
 
 @keyframes ghostMovement2 {
