@@ -23,17 +23,17 @@ document.addEventListener('DOMContentLoaded', function () {
   var wholeGrid = document.querySelectorAll('.container')
   var palette = [
     ['rgb(20, 153, 105)',
-      'rgb(20, 120, 90)'],
+      'rgb(20, 140, 95)'],
     ['rgb(235, 152, 20)',
-      'rgb(235, 120, 0)'],
+      'rgb(235, 135, 20)'],
     ['rgb(255, 237, 0)',
       'rgb(255, 220, 0)'],
     ['rgb(50, 150, 255)',
-      'rgb(40, 170, 235)'],
+      'rgb(40, 160, 235)'],
     ['rgb(40, 40, 40)',
       'rgb(0, 0, 0)'],
     ['rgb(160, 255, 0)',
-      'rgb(156, 255, 78)'],
+      'rgb(120, 255, 90)'],
     ['rgb(252, 76, 76)',
       'rgb(255, 59, 59)'],
     ['rgb(255, 105, 208)',
@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.container').innerHTML += '<div class = "L' + noOfRows + 'Grid" id = ' + gridId + '>' + '</div>'
         gridId++
       }
-
       document.querySelector('.container').innerHTML += '</div>'
     }
 
@@ -110,12 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
         wholeGrid[j].style.backgroundColor = palette[p][0]
       }
     }
-
     // add event listener to each element created
     wholeGrid.forEach(function (elem) {
       elem.addEventListener('click', isMatch)
     })
-
     // randomize one tile to make odd
     ranGrid = document.querySelectorAll('.L' + noOfRows + 'Grid')[ranNum(0, gridId - 1)]
     // console.log(ranGrid)
@@ -149,6 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
         isGameOver = true
         return
       }
+
       // empty out previous grid squares
       document.querySelector('.container').innerHTML = ' '
       // create the new grid
