@@ -75,13 +75,16 @@ function startGame () {
         })
 
     GameStarted = true
-    GameMessage.innerHTML = 'Human Player, awaiting your play...'
+
+    window.setTimeout(function () {
+      GameMessage.innerHTML = 'Human Player, awaiting your play...'
+    }, 500)
   }
 } // end of startGame
 
 function resetGame () {
-  window.location.reload(true)
   GameStarted = false
+  window.location.reload(true)
 }
 
 function clearPileUX (whichPile) {
@@ -144,10 +147,34 @@ function displayPileUX (whichPile) {
   }
 }
 
+function shoutUNO () {
+  var temp = GameMessage.innerHTML
+  GameMessage.innerHTML = 'UNO!'
+  window.setTimeout(function () {
+    GameMessage.innerHTML = temp
+  }, 3000)
+}
+
+function shoutWin (winner) {
+  if (winner === Human) {
+    var winplayer = 'Human Player'
+  } else {
+    var winplayer = 'Computer Player'
+  }
+  GameMessage.innerHTML = winplay+', you WIN!'
+  window.setTimeout(function () {
+    GameMessage.innerHTML = 'Resetting game...'
+  }, 5000)
+}
+
 function playCard (player, index) { // player: 0=computer, 1=human; index: card index of player pile
   var played = true
   if (whichPlayerTurn === Human) {  // ensures human player cannot play when computer still calculating moves
-    GameMessage.innerHTML = 'Human Player, awaiting your play...'
+
+    window.setTimeout(function () {
+      GameMessage.innerHTML = 'Human Player, awaiting your play...'
+    }, 5000)
+
     if (isPlayableCard(player, index)) {
       //alert('Can play this')
       DiscardPile.push(discardCard(Human, index)[0]) // discard card from HumanPlayerPile & push it to DiscardPile
@@ -156,6 +183,12 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
       displayPileUX(Human)
       clearPileUX(Discard)
       displayPileUX(Discard)
+      if (HumanPlayerPile.length === 1) {
+        shoutUNO()
+      } else if (HumanPlayerPile.length === 0) {
+        shoutWin(Human)
+        resetGame()
+      }
       if (DiscardPile[0].value === Skip) {
         DoNotSwitchTurn = true
       } else {
@@ -168,7 +201,10 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
       return !played
     }
   } else if (whichPlayerTurn === Computer) {
-    GameMessage.innerHTML = 'Awaiting Computer Player play...'
+
+    window.setTimeout(function () {
+      GameMessage.innerHTML = 'Awaiting Computer Player play...'
+    }, 3000)
 
     if (hasPlayablePile(Computer)) {
 
@@ -196,13 +232,22 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
           displayPileUX(Computer)
           clearPileUX(Discard)
           displayPileUX(Discard)
+          if (ComputerPlayerPile.length === 1) {
+            shoutUNO()
+          } else if (ComputerPlayerPile.length === 0) {
+            shoutWin(Computer)
+            resetGame()
+          }
           if (DiscardPile[0].value === Skip) {
             DoNotSwitchTurn = true
           } else {
             console.log('xxxx')
             whichPlayerTurn = Human
             DoNotSwitchTurn = false
-            GameMessage.innerHTML = 'Human Player, awaiting your play...'
+            window.setTimeout(function () {
+              GameMessage.innerHTML = 'Human Player, awaiting your play...'
+              drawCard(Computer)
+            }, 3000)
           }
         }
       }, 3000)
@@ -218,7 +263,6 @@ function playCard (player, index) { // player: 0=computer, 1=human; index: card 
         GameMessage.innerHTML = 'Human Player, awaiting your play...' // switches to Human turn
         whichPlayerTurn = Human
         DoNotSwitchTurn = false
-        // need this? playCard(Human, null)
       }, 6000)
 
 
@@ -277,7 +321,3 @@ DrawPile.forEach(function (card) {
 startButton.addEventListener('click', startGame)
 resetButton.addEventListener('click', resetGame)
 drawCardButton.addEventListener('click', clickDrawCardButton)
-
-// while (whichPlayerTurn === Computer) {
-//   GameMessage.innerHTML = 'Awaiting Computer Player play...'
-// }
