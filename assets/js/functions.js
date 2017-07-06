@@ -7,7 +7,7 @@ var randomStr = []
 var timer = 90
 var score = 0
 var hiScore = 0
-var counter = 3
+var counter = 2
 
 
 
