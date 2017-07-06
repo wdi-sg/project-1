@@ -1,96 +1,86 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# Project Name - Connect the Pipe
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+https://thecodingdog.github.io/project-1/
 
-### Overview
+# User stories
+1. Hit the start button which starts a 30 seconds countdown.
+2. Objective is to connect starting pipe to ending pipe.
+3. Move tiles by clicking on tile and empty space
+Once timer is up, tiles are randomized and you have to start all over.
 
-Let's start out with something fun - **a game!**
+![alt text](assets/images/start.png?raw=true 'start')
+![alt text](assets/images/end.png?raw=true 'end')
+![alt text](assets/images/topdown.png?raw=true 'topdown')
+![alt text](assets/images/leftright.png?raw=true 'leftright')
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+# Object
+1. As every piece can only be connected to 1 - 3 valid pieces, I attempted to use a linked object to check validity of moves.
+e.g. a horizontal straight pipe (leftright) can be linked to another leftright pipe or a curved lefttop which in turn can only be linked to a vertical straight pipe (topdown) and so on.
+2. If checking against object returns undefined, that move should not be recorded
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+var S = {
+  'topdown': {
+    'topright': {
+      'leftright': {
+        'lefttop': 'end',
+        'leftright': {
+          'lefttop': 'end'
+        }
+      },
+      'lefttop': 'end'
+    }
+  },
+  'lefttop': 'end',
+  'topright': {
+    'leftright': {
+      'lefttop': 'end',
+      'leftright': {
+        'lefttop': 'end'
+      }
+    },
+    'lefttop': 'end'
+  }
+}
 
+# Functions
+# DOM manipulate file
+# createGrid()
+- creates 16 div and fetches images based on random start position
+# init()
+- adds event listener to each tile
+- adds event listener to start button to randomize tile
+- adds event listener to start button to start timer
+- updateGrid() refreshes the tile pictures based on randomized play grid
 
----
+# Logic file
+# checkMoveIntoSpace()
+- checks based on 2 clicks to update play grid if valid move
+- if valid, triggers moveTile() and checkTileSeqFromS()
 
-### Technical Requirements
+# moveTile()
+- obtains the value of tile clicked on, and updates it in play grid
 
-Your app must:
+# checkTileSeqFromS()
+- checks whether the tiles are connected correctly from start tile (fixed at 00) till the end
+- starting from start tile, collect index and values of 4 connecting tiles
+- trigger chkTile () on all 4 tiles to its left, right, above, and below to check if they are able to join
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+#chkTile()
+- references the object S (above) to find out if tiles are a valid join.
+- if chkTile is true, go back to checkTileSeqFromS
+- recursive check based on the second connected tile and so on until chkTile is false
+- checks if object returns 'end' meaning player has won.
 
----
+#direction()
+- to find out if the connecting tile is on the left, top, botton or right of this current tile - use this to call back checkTileSeqFromS and pass the direction as an argument.
 
-### Necessary Deliverables
+#randomize()
+- creates 2d arrays with values from 0 to 3, then assigns pieces to their index based on combination of the arrays e.g. start[0][0]
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+# Technologies used
+- HTML, CSS, JS
 
----
-
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
-
----
-
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
-### Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
-
----
-
-### Project Feedback + Evaluation
-
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+# Problems to resolve
+1. sometimes false winners appear
+2. should allow drag and drop usage
+3. shouldn't be able to fly thru blocks

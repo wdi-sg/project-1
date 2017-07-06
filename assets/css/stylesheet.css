@@ -1,0 +1,255 @@
+@font-face {
+    font-family: pipeFont;
+    src: url(../images/SketchPipes.ttf);
+    /*font-family: lumberFont;
+    src: url(../images/Lumberjack-Regular.otf);*/
+}
+
+@font-face {
+    font-family: lumberFont;
+    src: url(../images/Lumberjack-Regular.otf);
+}
+
+
+body{
+  background-image: url('http://www.1explore.net/gamedesign3/assets/scrollingBackground.png');
+  background-size: cover;
+  margin: 0px;
+  text-align: center;
+  font-family: pipeFont;
+  font-size: 25px;
+
+}
+
+h1{
+  line-height: 80px;
+}
+
+p{
+  font-size: 20px;
+}
+
+ol{
+  font-size: 24px;
+  text-align: left;
+  font-family: lumberFont;
+
+}
+
+
+
+.score > img {
+  width: 100px;
+  height: 100px;
+  /*left: -100px;
+  top: -500px;
+  position: absolute;*/
+
+}
+
+.life > img {
+  width: 50px;
+  height: 50px
+}
+
+.score{
+  /*opacity: 0;*/
+  transition: left 2s, top 2s;
+  background-color: rgba(50,50,50,0.9);
+  display: inline-block;
+  position: absolute;
+  color: #FFDD1B;
+  border: 1px solid #FFDD1B;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 20px;
+  /*left: 500px;
+  top: 200px;*/
+  height: 250px;
+  width: 400px;
+  left: -100px;
+  top: -500px;
+}
+
+#grand {
+  display: flex;
+}
+
+#leftcol{
+  background-color: rgba(255,218,185,0.8);
+  width: 300px;
+  height: 854px;
+}
+
+  #startBtn{
+    background-color: orange;
+    border-radius: 50%;
+    border-color: red;
+    border-style: solid;
+
+    height: 200px;
+    width: 200px;
+    left: 600px;
+    top: 200px;
+    position: absolute;
+    font-size: 40px;
+    vertical-align:middle;
+    line-height: 200px;
+  }
+
+  .move{
+    /*left: 600px;
+    top: 200px;
+    position: absolute;
+    cursor: pointer;
+    /*padding: 100px;*/
+    /*text-align: left;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background-color: orange;
+    border-color: red;
+    border-style: solid;*/
+  }
+
+  #moveAfter{
+    left: -100px;
+    top: -200px;
+    position: absolute;
+  }
+
+
+
+#rightcol{
+  background-color: rgba(255,218,185,0.8);;
+  width: 300px;
+  height: 854px;
+  margin-right: 0px;
+}
+  #timer + img{
+      width: 20%;
+      height: 20%;
+  }
+
+  #timer{
+    font-family: lumberFont;
+    font-size: 60px;
+    padding-top: 1px;
+    margin-top: 1px;
+    margin-bottom: 100px;
+  }
+
+
+
+#container {
+  width: 600px;
+  height: 600px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+    .topdown {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topdown.png') 100%;
+    }
+    .start {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/start.png') 100%;
+    }
+    .end {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/end.png') 100%;
+    }
+    .leftright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/leftright.png') 100%;
+    }
+    .lefttop {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/lefttop.png') 100%;
+    }
+    .topright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topright.png') 100%;
+    }
+    .topdown {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/topdown.png') 100%;
+    }
+    /*.downright {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/downright.png') 100%;
+    }
+    .downleft {
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/pip.png') 100%;
+    }*/
+
+    .space{
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/space.png') 100%;
+    }
+
+    .block{
+      height: 24%;
+      border-color: black;
+      border-style: solid;
+      width: 24%;
+      background: url('../images/block.png') 100%;
+    }
+
+    .glow {
+    border: 1px solid #FFDD1B;
+
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+
+    -webkit-box-shadow: 2px 2px 4px #FF9900;
+       -moz-box-shadow: 2px 2px 4px #FF9900;
+            box-shadow: 2px 2px 4px #FF9900;
+          }
+
+  .background {
+    transition: background 10s;
+
+      background: rgba(76,76,76,1);
+
+  background: -webkit-linear-gradient(left, rgba(76,76,76,1) , rgba(50,50,50,1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, rgba(76,76,76,1), rgba(50,50,50,1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, rgba(76,76,76,1), rgba(50,50,50,1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, rgba(76,76,76,1) , rgba(50,50,50,1)); /* Standard syntax */
+}
+
+}

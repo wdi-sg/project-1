@@ -1,11 +1,86 @@
 <!DOCTYPE html>
+
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+
+  <title>Connect the Pipes</title>
+  <link rel="stylesheet" href="assets/css/stylesheet.css" type=
+  "text/css">
+</head>
+
+<body>
+
+    <h1 class='score'>
+      <img src = 'assets/images/StarMario.png'>
+      <img src = 'assets/images/StarMario.png'>
+      <img src = 'assets/images/StarMario.png'>
+      <p id='scoreNum'>0</p>
+    </h1>
+
+    <div id='startBtn' class='moveAfter'>
+      <!-- <h1 id='startBtn'> -->
+        START
+      <!-- </h1>
+      <p>click to start</p> -->
+    </div>
+
+  <div id='grand'>
+    <div id='leftcol'>
+
+
+      <!-- <div id='testBtn'>
+        <h1>test</h1>
+      </div> -->
+
+      <div id='level'>
+        <h1>Instructions</h1>
+
+        <ol>
+          <li>Hit the start button which starts a 30 seconds
+          countdown.</li><br>
+
+          <li>Objective is to connect starting pipe to ending pipe (dark background).</li><br>
+
+          <li>Move tiles by clicking on tile and empty space</li><br>
+
+          <li>Once timer is up, tiles are randomized and you'll have
+          to start all over !</li>
+
+        </ol>
+      </div>
+    </div>
+
+
+
+    <div id='container'></div>
+
+    <div id='rightcol'>
+      <h1>COUNT
+        DOWN</h1>
+      <p id='timer'>0</p>
+      <!-- <img src='assets/images/timer.png'> -->
+
+      <!-- <h1>WIN COUNTER</h1>
+      <p id='win'>0</p> -->
+
+      <h1 class='life'>LIVES <br>
+        <img src = 'assets/images/heart.png'>
+        <img src = 'assets/images/heart.png'>
+        <img src = 'assets/images/heart.png'>
+      <p id='life'></p>
+      </h1>
+
+
+    </div><script src="assets/js/logic.js" charset="utf-8" type=
+    "text/javascript">
+</script> <script src="assets/js/dom-manipulate.js" charset="utf-8"
+    type="text/javascript">
+</script>
+
+    <div>
+      <img src=''>
+    </div>
+  </div>
+</body>
 </html>
