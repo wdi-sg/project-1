@@ -46,7 +46,7 @@ function logic () {
           indexArr = []
         }
         if (valueArr[valueArr.length - 1] == 'space' && valueArr[0]!== 'start') {
-          setTimeout(function(){checkTileSeqFromS('X0Y0')},1000)
+          setTimeout(function(){checkTileSeqFromS('X0Y0')},500)
           moveTile()
         }
       }
@@ -125,8 +125,6 @@ function logic () {
             return checkTileSeqFromS(xLeftInd)
           }
         }
-    // checkTileSeqFromS(xDownInd)
-    // checkTileSeqFromS(xRightInd)
       }
 
       function chkTile (dt) {
@@ -165,7 +163,14 @@ function logic () {
             match = dt + 'pipe match'
           }
         }
-        if (tempArr.includes('end')) { alert('won') } else {
+        if (tempArr.includes('end')) {
+          //alert('won')
+          winNum+=1
+          init().showWin()
+          showTimer().stopTimer
+          //startTimer()
+        }
+          else {
           tempArr.pop()
         }
       } // end checkTile

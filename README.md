@@ -1,4 +1,7 @@
 # Project Name - Connect the Pipe
+
+https://thecodingdog.github.io/project-1/
+
 # User stories
 1. Hit the start button which starts a 60 seconds countdown.
 2. Objective is to connect starting pipe (orange dot) to ending pipe (red dot).
@@ -62,8 +65,3 @@ var S = {
 
 # BUGS
 1. timer should not activate upon multiple clicking of 'start'
-2. winning algo has many problems
-  - code moves assuming player clicks on pipe, then space
-  - false win & false lose: code reads a sequence of moves made to determine win, but moves may not be in sequence though pipe is connected
-  - code detects pieces connected to start and adds to moveArr, but not recursively.
-  - code doesn't detect pieces that happen to match unless pieces have been moved

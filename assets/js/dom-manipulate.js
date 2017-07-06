@@ -28,7 +28,10 @@ var win = [
 // play is updated to allow updateGrid to work
 var play = start
 
-var moveNum = 'Game not started'
+var winNum = 0
+var lifeNum = 3
+var score = 0
+var moveNum = ''
 
 function createGrid () {
   var container = document.querySelector('#container')
@@ -66,7 +69,7 @@ function init () {
   console.log(aDiv)
   aDiv.forEach(function (e) { e.addEventListener('click', logicFile.checkMoveIntoSpace) })
   aDiv.forEach(function (e) { e.addEventListener('click', updateGrid) })
-  aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
+  // aDiv.forEach(function (e) { e.addEventListener('click', showMoves) })
 
   // add event listener to start
   document.getElementById('startBtn').addEventListener('click', startTimer)
@@ -74,9 +77,10 @@ function init () {
   // document.getElementById('startBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0') })
   document.getElementById('startBtn').addEventListener('click', updateGrid)
 
-  // document.getElementById('testBtn').addEventListener('click', function () {
-  //   logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0')
-  // })
+
+
+  //document.getElementById('testBtn').addEventListener('click', showTimer().stopTimer)
+  document.getElementById('testBtn').addEventListener('click', function() { logicFile.checkMoveIntoSpace().checkTileSeqFromS('X0Y0') })
 
   //
 
@@ -119,12 +123,14 @@ function init () {
     }
   }
 
+  var seconds = 61
+
   function startTimer () {
     moveNum = 0
-    seconds = 31
     setInterval(showTimer, 1000)
+  }
 
-    function showTimer () {
+  function showTimer () {
       if (seconds > -3) {
         seconds--
       }
@@ -132,19 +138,68 @@ function init () {
         document.getElementById('timer').textContent = seconds + ' seconds'
       }
       if (seconds == -1) {
-        // logicFile.randomize()
-        // updateGrid()
+        logicFile.randomize()
+        updateGrid()
       }
+
+
+  function stopTimer() {
+      console.log('stopped at seconds?'+ seconds);
+      document.getElementById('timer').textContent = 'won'
+      clearTimeout(setInterval(showTimer, 1000));
+    }
+    return {stopTimer: stopTimer}
+  }
+
+
+
+  function showWin () {
+    showTimer().stopTimer
+    //winNum - this only works if new level accumulates your win, not relevant for 1 level
+    console.log(winNum);
+    document.getElementById('win').textContent = winNum
+    //show score based on seconds taken
+    if (seconds<10) {score = 10000}
+    else if (seconds<20) {score = 20000}
+    else if (seconds<40) {score = 30000}
+    console.log(score);
+    document.getElementById('scoreNum').textContent = score
+    var scoreClass = document.querySelectorAll('.score')
+    scoreClass.forEach(function(e){
+      e.style.left=500+'px'
+      e.style.top=200+'px'
+      })
+    //reload page if user wants to replay
+    setTimeout(reload,5000)
+    //brighten border, and fade out
+    aDiv.forEach(function (e) {e.classList.add('glow')})
+
+    // { e.style.border-color='yellow'})
+
+  }
+
+  function reload() {
+    var playAgain = confirm('do you want to play again?')
+    if (playAgain) {
+      window.location.reload(true)
+      logicFile.randomize()
+      updateGrid()
     }
   }
 
-  function showMoves () {
-    document.getElementById('moves').textContent = moveNum
+
+  function showLives () {
+    document.getElementById('life').textContent = lifeNum
   }
+
+
 
   return {
     updateGrid: updateGrid,
-    showMoves: showMoves,
-    startTimer: startTimer
+    showWin: showWin,
+    showLives: showLives,
+    startTimer: startTimer,
+    showTimer: showTimer,
+    //stopTimer: stopTimer
   }
 } // init ends here
