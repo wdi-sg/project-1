@@ -19,35 +19,19 @@ function init () {
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
 
-  // audio files
-  var pacmanChompAudio = document.createElement('audio')
-  pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
-  pacmanChompAudio.playbackRate = 2
-  var pacmanStartAudio = document.createElement('audio')
-  pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
-  var pacmanDeathAudio = document.createElement('audio')
-  pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
-  var pacmanWinAudio = document.createElement('audio')
-  pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
-
-  var intervalTimer = function () {
-    loopTimer = setInterval(loop, 50)
-    interval.style.display = 'none'
-  }
-
-  var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
-  var pacmanSpeed = 8
-  var ghostSpeed = 9
   var walls = []
   var dots = []
   var lives = 3
   var scoretracker = []
+  var pacmanSpeed = 8
+  var ghostSpeed = 9
 
   var upKeyDown = false
   var downKeyDown = false
   var leftKeyDown = false
   var rightKeyDown = false
 
+  // attach click event to pacmanTitle
   pacmanTitle.addEventListener('click', function () {
     newGame.style.display = 'none'
     instructions.style.display = ''
@@ -55,20 +39,22 @@ function init () {
       instructions.style.display = 'none'
       startGame()
     }
-    setTimeout(instructionsTimer, 3000)
+    setTimeout(instructionsTimer, 4500)
   })
+
+  // attach click event to startButton
   startButton.addEventListener('click', startGame)
 
   instructions.style.display = 'none'
-  scoreboard.style.display = 'none'
-  lifetracker.style.display = 'none'
-  startButton.style.display = 'none'
   interval.style.display = 'none'
   win.style.display = 'none'
   lose.style.display = 'none'
+  scoreboard.style.display = 'none'
+  lifetracker.style.display = 'none'
+  startButton.style.display = 'none'
 
   blueGhost.direction = 'left'
-  orangeGhost.direction = 'left'
+  orangeGhost.direction = 'right'
   pinkGhost.direction = 'up'
   redGhost.direction = 'down'
 
@@ -226,6 +212,7 @@ function init () {
 
   // check for collision between the character and the ghost
   function hitGhost (character) {
+    var ghosts = [blueGhost, orangeGhost, pinkGhost, redGhost]
     for (var i = 0; i < ghosts.length; i++) {
       if (collision(ghosts[i], character)) {
         return true
@@ -270,6 +257,8 @@ function init () {
     }
     // check for collision between pacman and ghosts
     if (hitGhost(pacman)) {
+      var pacmanDeathAudio = document.createElement('audio')
+      pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
       pacmanDeathAudio.play()
       clearInterval(loopTimer)
       gameOver('lose')
@@ -316,16 +305,13 @@ function init () {
   function ghostHitWallNewDir (character) {
     var oppDirection
     var newDirection
-
     if (character.direction === 'up') oppDirection = 'down'
     if (character.direction === 'down') oppDirection = 'up'
     if (character.direction === 'left') oppDirection = 'right'
     if (character.direction === 'right') oppDirection = 'left'
-
     do {
       newDirection = randomGhostDirection()
     } while (newDirection === oppDirection)
-
     character.direction = newDirection
   }
 
@@ -341,6 +327,9 @@ function init () {
     for (var i = 0; i < dots.length; i++) {
       if (collision(dots[i], pacman)) {
         if (!scoretracker.includes(dots[i])) {
+          var pacmanChompAudio = document.createElement('audio')
+          pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
+          pacmanChompAudio.playbackRate = 2
           pacmanChompAudio.play()
           dots[i].style.display = 'none'
           scoretracker.push(dots[i])
@@ -353,13 +342,56 @@ function init () {
     }
   }
 
+  function defaultPosition () {
+    pacman.style.top = '440px'
+    pacman.style.left = '280px'
+    blueGhost.style.top = '40px'
+    blueGhost.style.left = '40px'
+    orangeGhost.style.top = '40px'
+    orangeGhost.style.left = '520px'
+    pinkGhost.style.top = '440px'
+    pinkGhost.style.left = '40px'
+    redGhost.style.top = '440px'
+    redGhost.style.left = '520px'
+  }
+
+  function defaultSetting () {
+    upKeyDown = false
+    downKeyDown = false
+    leftKeyDown = false
+    rightKeyDown = false
+    var intervalTimer = function () {
+      loopTimer = setInterval(loop, 50)
+      interval.style.display = 'none'
+    }
+    setTimeout(intervalTimer, 900)
+  }
+
+  function nextLevel () {
+    pacmanSpeed++
+    ghostSpeed++
+    win.style.display = 'none'
+    interval.style.display = ''
+    interval.textContent = 'NEXT LEVEL!'
+    interval.style.background = 'rgb(221, 193, 223)'
+    scores.textContent = ''
+    scoretracker = []
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].style.display = ''
+    }
+    defaultPosition()
+    defaultSetting()
+  }
+
   // game over
   function gameOver (result) {
     if (result === 'win') {
+      var pacmanWinAudio = document.createElement('audio')
+      pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
+      pacmanWinAudio.play()
       clearInterval(loopTimer)
       win.style.display = ''
-      startButton.style.display = ''
-        pacmanWinAudio.play()
+      setTimeout(nextLevel, 5000)
     } else if (result === 'lose') {
       if (lives === 1) {
         clearInterval(loopTimer)
@@ -371,36 +403,20 @@ function init () {
         lives--
         clearInterval(loopTimer)
         setTimeout(function () {
-          pause()
+          interval.style.display = ''
           interval.textContent = 'GET READY!'
           interval.style.background = 'rgb(134, 231, 196)'
-          pacman.style.top = '440px'
-          pacman.style.left = '280px'
-          blueGhost.style.top = '40px'
-          blueGhost.style.left = '40px'
-          orangeGhost.style.top = '40px'
-          orangeGhost.style.left = '520px'
-          pinkGhost.style.top = '440px'
-          pinkGhost.style.left = '40px'
-          redGhost.style.top = '440px'
-          redGhost.style.left = '520px'
+          defaultPosition()
+          defaultSetting()
         }, 1550)
       }
     }
   }
 
-  var pause = function () {
-    interval.style.display = ''
-
-    upKeyDown = false
-    downKeyDown = false
-    leftKeyDown = false
-    rightKeyDown = false
-    setTimeout(intervalTimer, 900)
-  }
-
   // start new game
   function startGame () {
+    var pacmanStartAudio = document.createElement('audio')
+    pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
     pacmanStartAudio.play()
     interval.style.display = ''
     interval.textContent = 'READY?'
@@ -418,19 +434,10 @@ function init () {
     for (var i = 0; i < dots.length; i++) {
       dots[i].style.display = ''
     }
-    pacman.style.top = '440px'
-    pacman.style.left = '280px'
-    blueGhost.style.top = '40px'
-    blueGhost.style.left = '40px'
-    orangeGhost.style.top = '40px'
-    orangeGhost.style.left = '520px'
-    pinkGhost.style.top = '440px'
-    pinkGhost.style.left = '40px'
-    redGhost.style.top = '440px'
-    redGhost.style.left = '520px'
     scoretracker = []
     lives = 3
-    setTimeout(pause, 3350)
+    defaultPosition()
+    setTimeout(defaultSetting, 3350)
   }
 
   // game loop
