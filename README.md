@@ -10,7 +10,7 @@ https://bleetdh.github.io/project-1/
 
 ### Overview
 
-This is a 1 player, 8 bit game developed using HTML, CSS and JAVASCIPT. It is inspired by old school **Alien** arcade game and Marvel hero **IronMan**.
+This is a 1 player, 8 bit game developed using **HTML**, **CSS** and **JAVASCIPT**. It is inspired by old school **Alien** arcade game and Marvel hero **IronMan**.
 
 ![](images/alien-readme.jpeg) ![](images/ironman-readme.png)
 
@@ -21,7 +21,12 @@ Unlike the conventional Alien game whereby the position of the shooter is flexib
 ### Game Instructions ###
 * Use the **'Z'**, **'X'**, **'C'** and **'V'** key to move Ironman into position 1 to 4 respectively. (Use your left hand's fingers, including your pinky!)
 
+![](images/Iron-Man.png)
+
 * Use the **'.'** key to start firing at the asteroids!
+
+![](images/ironmanshooting.png)
+![](images/fireball.png)
 
 * +1 point and time for shooting the right target, - time for shooting blanks.
 
@@ -30,7 +35,6 @@ Unlike the conventional Alien game whereby the position of the shooter is flexib
 ---
 
 ### Game Layout ###
-This part is achieved using HTML and CSS.
 
 Draft
 
@@ -43,11 +47,20 @@ Actual
 ---
 ### Script ###
 
-* To make asteroids appear and disappear, made use of **style.visibility**
+* To make asteroids appear and disappear, made use of **style.visibility** and **style.opacity**(for fires).
+
+![](images/generate-asteroids-readme.png)
 
 * To make my asteroids drop down, used **setInterval** and **clearInterval**.
 
+![](images/move-asteroids-down-readme.png)
+
 * To set different levels at different score, setInterval to less time. BUT must remember to clearInterval first.
+
+![](images/check-level-readme.png)
+
+![](images/levels-of-difficulty-readme.png)
+
 
 ---
 
