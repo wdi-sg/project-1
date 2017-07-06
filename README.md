@@ -31,6 +31,7 @@ Unlike the conventional Alien game whereby the position of the shooter is flexib
 
 ### Game Layout ###
 This part is achieved using HTML and CSS.
+
 Draft
 
 ![](images/layout-draft-readme.jpg)
@@ -42,12 +43,19 @@ Actual
 ---
 ### Script ###
 
+* To make asteroids appear and disappear, made use of **style.visibility**
+
+* To make my asteroids drop down, used **setInterval** and **clearInterval**.
+
+* To set different levels at different score, setInterval to less time. BUT must remember to clearInterval first.
+
+---
 
 ### Improvements to make ###
 
-* Instead of giving every asteroids and fires in each column a different element, should have used **createElement** and **appendChild** to different column upon generation of random number.
+* Instead of giving every asteroids and fires in each column a different element, should have used **createElement**, **appendChild** and **removeChild** to add to or remove from the various columns.
 
-* Should have used more callback functions to call for repetitive functions.
+* Should have used more **callback functions** to call for repetitive functions.
 
 ![](images/badexample1-readme.png)
 
@@ -56,7 +64,9 @@ Actual
 ![](images/badexample3-readme.png)
 
 
-* This could reduce my javascript by ALOT!
+* To set different levels of difficulty without hardcoding so that I can have more infinite levels!
+
+* This could reduce my javascript by DRY-er!
 
 ---
 
