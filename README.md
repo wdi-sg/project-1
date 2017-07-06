@@ -16,9 +16,9 @@ Link: http://dreamz89.github.io/project-1
 Step-by-Step Process
 
 * Create cover page that will disappear upon clicking start button
-* Generate fishes at intervals [Stop generating fishes after the 30th fish]
-* Fishes must be of different sizes, different initial position, and move randomly
-* Create main fish that follows mouse [And rotate too]
+* Generate fishes at intervals [Stop generating fishes after the 25th fish]
+* Fishes must be of different sizes, different initial position, and move randomly [Flipping either left or right]
+* Create main fish that follows mouse [And flips left or right]
 * Detect collision of main fish with blue fishes
 * Increase/Decrease size of main fish when colliding, and make other fish disappear
 * Win if bigger than 100x100px, because the biggest blue fish is 110x110px
@@ -35,10 +35,12 @@ Step-by-Step Process
 
 **moveRandomly()**
 * For each new fish, have it move to a random new position in a linear transition
+* Flip the fish if it is swimming a different direction
+* Set 3 different speeds to the fishes
 
 **mouseFish()**
 * When the mouse moves, find its new position and have the main fish follow with 0.05 transition
-* Rotate fish to follow mouse
+* Flip fish to follow mouse
 
 **collisionDetection()**
 
