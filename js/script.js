@@ -139,14 +139,14 @@ function gameModeEasy () {
       } else {
         if (collision()) {
           playArea.removeChild(elem)
-          setTimeout(alert('IMPALED!'), 800)
+          setTimeout(alert('IMPALED!'), 1200)
         } else {
         }
         var spikesLeft = parseInt(elem.style.left)
 
         elem.style.left = spikesLeft - 10 + 'px'
       }
-    }, 17)
+    }, 15)
   }
 
 // Detecting Collision:
@@ -207,14 +207,14 @@ function gameModeHard () {
       } else {
         if (collision()) {
           playArea.removeChild(elem)
-          setTimeout(alert('IMPALED!'), 1000)
+          setTimeout(alert('IMPALED!'), 1200)
         } else {
         }
         var spikesLeft = parseInt(elem.style.left)
 
         elem.style.left = spikesLeft - 10 + 'px'
       }
-    }, 8)
+    }, 7)
   }
 
 // Detecting Collision:
