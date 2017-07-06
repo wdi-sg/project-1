@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     audio.src = 'audio/error2.mp3'
     audio.autoplay = true
     document.querySelector('.container').appendChild(audio)
-    audio.volume = 0.4
+    audio.volume = 1
   }
 
   function endGameSound () {
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
     audio.src = 'audio/finale1.mp3'
     audio.autoplay = true
     document.querySelector('.container').appendChild(audio)
-    audio.volume = 0.4
+    audio.volume = 1
   }
 
   function endGameImage () {
