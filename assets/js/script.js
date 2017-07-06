@@ -19,20 +19,19 @@ function init () {
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
 
-  var pacmanStartAudio = document.createElement('audio')
-  pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
+  // audio files
   var pacmanChompAudio = document.createElement('audio')
   pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
+  pacmanChompAudio.playbackRate = 2
+  var pacmanStartAudio = document.createElement('audio')
+  pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
   var pacmanDeathAudio = document.createElement('audio')
   pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
   var pacmanWinAudio = document.createElement('audio')
   pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
 
-  pacmanChompAudio.playbackRate = 2
-
   var intervalTimer = function () {
     loopTimer = setInterval(loop, 50)
-    // pacmanGhostAudio.play()
     interval.style.display = 'none'
   }
 
@@ -50,12 +49,12 @@ function init () {
   var rightKeyDown = false
 
   pacmanTitle.addEventListener('click', function () {
+    newGame.style.display = 'none'
+    instructions.style.display = ''
     var instructionsTimer = function () {
       instructions.style.display = 'none'
       startGame()
     }
-    newGame.style.display = 'none'
-    instructions.style.display = ''
     setTimeout(instructionsTimer, 3000)
   })
   startButton.addEventListener('click', startGame)

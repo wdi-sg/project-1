@@ -76,5 +76,6 @@
 ## Acknowledgements
 
 * [MDN Game Development - Collision Detection](https://developer.mozilla.org/kab/docs/Games/Techniques/2D_collision_detection)
-http://www.classicgaming.cc/classics/pac-man/sounds
+* [Pac-Man Sounds](http://www.classicgaming.cc/classics/pac-man/sounds)
+* [Pacman Waka Waka Sound Effect](http://soundfxcenter.com/download-sound/pacman-waka-waka-sound-effect/)
 * [A* Search Algorithm](https://en.wikipedia.org/wiki/A%2a_search_algorithm)
