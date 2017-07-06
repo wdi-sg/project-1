@@ -4,7 +4,7 @@
 
 Instructions:
 
-* Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: to move Pac-Man around the maze. 
+* Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: to move Pac-Man around the maze.
 * Complete the level by eating all the dots.
 * **Avoid the ghosts!** If they catch you, you will lose a life.
 * You only have **3 lives**. Be careful...
@@ -16,6 +16,9 @@ URL:
 ---
 
 ### Gameboard
+
+First Draft:
+![gameboard] (assets/images/blueGhostTitle.png)
 
 ---
 
