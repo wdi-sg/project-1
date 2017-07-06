@@ -1,4 +1,4 @@
-# LeeBrian's Project 1
+# Lee Brian's Project 1
 <!---
 Read Me Contents
 -->
@@ -22,8 +22,9 @@ Unlike the conventional Alien game whereby the position of the shooter is flexib
 * Use the **'Z'**, **'X'**, **'C'** and **'V'** key to move Ironman into position 1 to 4 respectively. (Use your left hand's fingers, including your pinky!)
 
 ![](images/Iron-Man.png)
+![](images/asteroid.png)
 
-* Use the **'.'** key to start firing at the asteroids!
+* Use the **'.'** key to start firing at the asteroids! (Upon '.' key, Ironman will turn towards asteroids to FIRE!)
 
 ![](images/ironmanshooting.png)
 ![](images/fireball.png)
@@ -44,18 +45,20 @@ Actual
 
 ![](images/layout-final-readme.png)
 
+Made use of **min-width** in case of resizing of browser.
+
 ---
 ### Script ###
 
-* To make asteroids appear and disappear, made use of **style.visibility** and **style.opacity**(for fires).
+* To make asteroids appear and disappear, made use of **style.visibility** and **style.opacity**(for fires). Generation of asteroids is random.
 
 ![](images/generate-asteroids-readme.png)
 
-* To make my asteroids drop down, used **setInterval** and **clearInterval**.
+* To make my asteroids drop down, used **setInterval** and **clearInterval**. **firstAsteroidTop** is the value of **style.top**. Each loop will +2 to the top value.
 
 ![](images/move-asteroids-down-readme.png)
 
-* To set different levels at different score, setInterval to less time. BUT must remember to clearInterval first.
+* To set different levels at different score, **setInterval** to less time. BUT must remember to **clearInterval** first.
 
 ![](images/check-level-readme.png)
 
@@ -66,7 +69,7 @@ Actual
 
 ### Improvements to make ###
 
-* Instead of giving every asteroids and fires in each column a different element, should have used **createElement**, **appendChild** and **removeChild** to add to or remove from the various columns.
+* Instead of giving every asteroids and fires in each column a different element, should have used **createElement**, **appendChild** and **removeChild** to add to or remove from the various columns. Could even allow for more rows.
 
 * Should have used more **callback functions** to call for repetitive functions.
 
@@ -79,23 +82,23 @@ Actual
 
 * To set different levels of difficulty without hardcoding so that I can have more infinite levels!
 
-* This could reduce my javascript by DRY-er!
+* These could make my javascript by DRY-er!
 
 ---
 
 ### Future Development ###
-* Collision of 'FIRE' and 'ASTEROIDS'
+* Collision of 'FIRE' and 'ASTEROIDS'.
 
 * Decoy 'ASTEROIDS' that will decrease points and time.
 
-* More levels of difficulty
+* More levels of difficulty. INSANEEEEEE!
 
 ---
 
 ### Acknowledgement ###
 * Prima Aulia (my Awesome WDI Instructor!)
 
-* Wong Shimei (my very patient TA!)
+* Wong Shi Mei (my very patient TA!)
 
 * WDI 11 classmates!
 
