@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init () {
-
 // setTimeout(function () {alert("DO READ INSTRUCTIONS BEFORE START")}, 1000)
   var u1 = document.getElementById('u1')
   var u2 = document.getElementById('u2')
@@ -36,32 +35,38 @@ function init () {
   function onKeyUp (event) {
     if (checkKeyCode(event.keyCode)) {
       if (event.keyCode === 81) {
+        squish1()
         hamItem[index].classList.remove('hamItem')
         hamItem[index].classList.add('cucumber')
         index--
         // if (checkIngredient() === false )
       }
       if (event.keyCode === 87) {
+        squish2()
         hamItem[index].classList.remove('hamItem')
         hamItem[index].classList.add('meat')
         index--
       }
       if (event.keyCode === 69) {
+        squish1()
         hamItem[index].classList.add('onion')
         hamItem[index].classList.remove('hamItem')
         index--
       }
       if (event.keyCode === 82) {
+        squish2()
         hamItem[index].classList.add('lettuce')
         hamItem[index].classList.remove('hamItem')
         index--
       }
       if (event.keyCode === 84) {
+        squish1()
         hamItem[index].classList.add('cheese')
         hamItem[index].classList.remove('hamItem')
         index--
       }
       if (event.keyCode === 32) {
+        squishb()
         u1.classList.add('topbun')
         if (checkIngredient()) {
           setTimeout(function () {
@@ -71,6 +76,7 @@ function init () {
           counter = counter + 10
           point()
         } else {
+          erro()
           inputShake.classList.add('shake-hard', 'shake-constant')
           setTimeout(function () {
             resetNow()
@@ -246,7 +252,34 @@ function init () {
     if (counter > highScore) {
       highScore = counter
     }
-    document.querySelector('.top').innerHTML = highScore + ' points'
+    document.querySelector('.top').innerHTML = 'High Score : ' + highScore + ' points'
+  }
+
+  var sound1 = document.querySelector('#squish1')
+  var sound2 = document.querySelector('#squish2')
+  var sound3 = document.querySelector('#squishb')
+  var error = document.querySelector('#erro')
+
+  function squish1 () {
+    sound1.play()
+  }
+
+  function squish2 () {
+    sound2.play()
+  }
+
+  function squishb () {
+    sound3.play()
+  }
+
+  function erro () {
+    sound1.pause()
+    sound1.currentTime = 0
+    sound2.pause()
+    sound2.currentTime = 0
+    sound3.pause()
+    sound3.currentTime = 0
+    error.play()
   }
 
   function checkKeyCode (keycode) {
