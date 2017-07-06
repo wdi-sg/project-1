@@ -3,7 +3,7 @@
   height: 300px;
   width: 24%;
   display: inline-block;
-  border-radius: 5px
+  border-radius: 100px
   /*border-style: solid;*/
   /*border-color: white;*/
   /*border: 200px*/
@@ -15,7 +15,7 @@
   height: 300px;
   width: 24%;
   display: inline-block;
-  border-radius: 5px
+  border-radius: 100px
 }
 
 #blue {
@@ -23,7 +23,7 @@
   height: 300px;
   width: 24%;
   display: inline-block;
-  border-radius: 5px
+  border-radius: 100px
 }
 
 #yellow {
@@ -31,7 +31,7 @@
   height: 300px;
   width: 24%;
   display: inline-block;
-  border-radius: 5px
+  border-radius: 100px
 }
 
 
