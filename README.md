@@ -10,7 +10,13 @@ A wordgame where the player must form as many words as he can in 90 seconds from
 
 The player can choose to regenerate the random string **twice** during the game.
 
-Longer words yield higher points. Hit **'Enter'** key to submit words.
+Hit **'Enter'** key to submit words.
+
+If you are fast enough
+
+
+
+
 
 ---
 

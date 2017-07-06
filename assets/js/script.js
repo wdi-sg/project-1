@@ -146,7 +146,9 @@ function pauseAudio(sound) {
       randomStr = []
       pauseAudio(music)
       pauseAudio(musicCombo)
+      clearInterval(interval2)
       colorWhite()
+
     }
   }
 
