@@ -16,15 +16,17 @@ function randomizer (min, max) {
 
 // Generate fishes at random position of random sizes
 function generateFish1 () {
-  if (allFishes.length < 30) {
+  if (allFishes.length < 25) {
     var imgDestination = document.querySelector('body')
     var newFish = document.createElement('img')
     newFish.src = 'assets/pictures/Fish1.png'
     newFish.className = 'newFish'
     newFish.style.height = randomizer(20, 110) + 'px'
     newFish.style.position = 'absolute'
-    newFish.style.top = randomizer(0, window.innerHeight) + 'px'
-    newFish.style.left = randomizer(0, window.innerWidth) + 'px'
+
+    //Randomize the initial position
+    newFish.style.top = randomizer(0, window.innerHeight - 110) + 'px'
+    newFish.style.left = randomizer(0, window.innerWidth - 110) + 'px'
     imgDestination.appendChild(newFish)
     allFishes.push(newFish)
   }
@@ -33,9 +35,31 @@ function generateFish1 () {
 // Make each fish move randomly
 function moveRandomly () {
   for (var i = 0; i < allFishes.length; i++) {
-    allFishes[i].style.top = randomizer(0, window.innerHeight) + 'px'
-    allFishes[i].style.left = randomizer(0, window.innerWidth) + 'px'
-    allFishes[i].style.transition = 'top 1s linear, left 1s linear'
+    var currentLeft = allFishes[i].offsetLeft
+    var newLeft = randomizer(0, window.innerWidth - 110)
+
+    //Move the blue fish to a new position
+    allFishes[i].style.top = randomizer(0, window.innerHeight-110) + 'px'
+    allFishes[i].style.left = newLeft + 'px'
+
+      //Flip the blue fish if they are swimming the other way
+      if (currentLeft > newLeft) {
+        allFishes[i].src = 'assets/pictures/Fish1flip.png'
+      }
+      else {
+        allFishes[i].src = 'assets/pictures/Fish1.png'
+      }
+
+      //Make the blue fishes swim at three different speeds
+      if (i % 3 === 0) {
+        allFishes[i].style.transition = 'top 1.5s linear, left 1.5s linear'
+      }
+      if (i % 3 === 1) {
+        allFishes[i].style.transition = 'top 2s linear, left 2s linear'
+      }
+      if (i % 3 === 2) {
+        allFishes[i].style.transition = 'top 2.5s linear, left 2.5s linear'
+    }
   }
 }
 
@@ -43,20 +67,46 @@ function moveRandomly () {
 function mouseFish () {
   // Get mouse coordinates
   document.querySelector('html').addEventListener('mousemove', function (event) {
+
+    // Get main fish
+    var mainFish = document.querySelector('#main-fish')
+
+    // Get current mouse positions
     var mouseX = event.clientX
     var mouseY = event.clientY
 
-    // Get main fish to follow mouse at a distance of 50px
-    var mainFish = document.querySelector('#main-fish')
-    mainFish.style.top = (parseInt(mouseY - 50)) + 'px' // Y offset from mouse position
-    mainFish.style.left = (parseInt(mouseX - 50)) + 'px' // X offset from mouse position
-    mainFish.style.transition = 'top 0.05s linear, left 0.05s linear'
+    // Get current fish position
+    var fishX = mainFish.offsetLeft
+
+    //Flip the fish if it swims the other way
+    if (fishX > mouseX) {
+      mainFish.src = 'assets/pictures/Fish00flip.png'
+    }
+    else {
+      mainFish.src = 'assets/pictures/Fish00.png'
+    }
+
+    // Calculate offset
+    var distance =  mouseX - fishX
+    if (distance > -30 && distance < 30 ) {
+      var keepDistance = distance
+    }
+    else if (distance < -30) {
+      var keepDistance = +30
+    }
+    else {
+      var keepDistance = -30
+    }
+
+    mainFish.style.left = (mouseX + keepDistance) + 'px' // X offset from mouse position
+    mainFish.style.top = mouseY + 'px' // Y offset from mouse position
+    mainFish.style.transition = 'top 0.2s linear, left 0.2s linear'
 
     // Make fish rotate to face mouse
-    var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
-    var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
-
-    mainFish.style.transform = 'rotate(' + angle + 'deg)'
+    // var fishMouth = [ mainFish.offsetLeft + mainFish.offsetWidth / 2, mainFish.offsetTop + mainFish.offsetHeight / 3 ]
+    // var angle = Math.atan2(mouseX - fishMouth[0], -(mouseY - fishMouth[1])) * (180 / Math.PI)
+    //
+    // mainFish.style.transform = 'rotate(' + angle + 'deg)'
   })
 }
 
