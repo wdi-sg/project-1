@@ -13,6 +13,12 @@ Read Me Contents
 
 
 ---
+#### Game link
+
+https://yangtheng.github.io/project-1
+
+---
+
 ### Instructions
 
 * Type the words as they appear on the screen contained in oval bubbles, before the oval bubbles land on the bottom of the window!
