@@ -148,7 +148,7 @@ function spawnWalls (leftMargin) {
   var right = monitor.getBoundingClientRect().right
   var ground = document.querySelector('.ground')
   newWall.classList.add('wall')
-  newWall.style.width = '10px'
+  newWall.style.width = (Math.random() * 73) + 'px'
   newWall.style.height = '1px'
   // (Math.random() * (max-min) + min) + 'px'. Adjusts spawn when dimensiosn adjust
   newWall.style.left = (Math.random() * right - leftMargin) + leftMargin + 'px'
