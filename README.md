@@ -80,7 +80,7 @@ Fixed by increasing interval of calling fish movement, and changing the fish tra
 
 For more accuracy, SAT (Separating Axis Theorem) can be used between convex polygons,
 but for simplicity purposes, the fishes are assumed to be rectangles.
-<addr> Collision detection was improved by setting the interval to detect every 100ms.
+'<addr>' Collision detection was improved by setting the interval to detect every 100ms.
 
 ---
 
