@@ -1,0 +1,61 @@
+body {
+  text-align: center;
+  font-family: 'Shadows Into Light', cursive;
+  color: white;
+  margin: 88px;
+  background-image: url("https://templated.co/items/demos/visualize/images/bg.jpg");
+  background-size: 100%;
+  font-size: 50px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerPanel {
+  vertical-align: middle;
+  width: 400px;
+  min-width: 400px;
+}
+
+.square {
+  width: 90px;
+  height: 150px;
+  border-width: thin;
+  border-color: white;
+  float: left;
+}
+
+#square1, #square2, #square3, #square4, #square5, #square6, #square7, #square8, #square9, #square10, #square11, #square12, #square13, #square14, #square15, #square16 {
+  border-right-style: solid;
+}
+
+#square1, #square5, #square9, #square13 {
+  border-left-style: solid;
+}
+
+#square9, #square10, #square11, #square12 {
+  background-color: rgba(255, 255,255, .2);
+}
+
+.instructions {
+  background-image: url("http://i.imgur.com/HLC3XFU.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 240px;
+  height: 160px;
+}
+
+.cuteCat {
+  background-image: url("https://media.giphy.com/media/A9dZqpVpbLsju/giphy.gif");
+  background-size: 100%;
+  width: 240px;
+  height: 210px;
+  margin-right: 50px;
+}
+
+.timeText {
+  width: 240px;
+}
