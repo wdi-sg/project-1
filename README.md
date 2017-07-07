@@ -11,6 +11,9 @@ Click on the odd colored grid to proceed to the next level.
 
 ![](images/instructions.png)
 
+##### Link to Game:
+https://shaunloh89.github.io/project-1/
+
 ---
 
 ### Grid Design
@@ -184,11 +187,13 @@ if (this === ranGrid) {
       gridCreate()
     } else {
       wrongSound()
+      timeLeft -= 3
     }
   ```
 * If match,
 * Updates the score node and score variable
 * Increments grid size, clears and creates new grid
+* If wrong match, 3 second time deduction
 
 * this refers to each tile in the entire grid, from
 ```

@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.container').style.backgroundColor = ''
     var endMsg = document.createElement('h3')
     document.querySelector('.container').appendChild(endMsg)
-    endMsg.textContent = 'Thanks for playing!' + '\n' + 'You scored ' + score + '/10 in ' + (60 - timeLeft - 1) + ' seconds.'
+    endMsg.textContent = 'Game Over. ' + 'Thanks for playing! ' + 'You scored ' + score + '/10'
     endGameSound()
     endGameImage()
     // document.querySelector('.container').style.textAlign = 'center'
@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
       gridCreate()
     } else {
       wrongSound()
+      timeLeft -= 3
     }
   } // ##### END of isMatch() #####
 
