@@ -83,3 +83,9 @@ function () {
 ---
 
 ### Improvements
+
+Need to practice more on not repeating code.
+
+Need to reduce dependency on one eventListener for the game.
+
+Need to find ways to engage DOMContentLoaded.
