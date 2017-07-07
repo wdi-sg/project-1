@@ -2,10 +2,86 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Burger Stack</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Amatic+SC|Architects+Daughter|Permanent+Marker|Poiret+One" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/shake.css">
+
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="gameTitle">____________</div>
+
+    <div class="container">
+
+      <div class="topcontent">
+        <div class="leftcontent">
+
+          <div class="timerscore">
+            <div class="timer">1 min</div>
+            <div class="score">
+              <div class="top">High Score</div>
+              <div class="current">0 points</div>
+            </div>
+          </div>
+
+            <div class="list">
+                <li>Press "O" to Start</li>
+                <li>Press "P" to Reset</li>
+                <li>Stack the burger in order from bottom up</li>
+                <li>10 points for completed burger</li>
+                <li>-10 points for wrong combination</li>
+                <li>Watch out for the onions!</li>
+                <li>Spacebar to serve your burger!</li>
+                <li>Hurry, customers are waiting!</li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="leftmiddlecontent">
+            <div class="userinput">
+              <div id="u1" class=""></div>
+              <div id="u2" class="hamItem"></div>
+              <div id="u3" class="hamItem"></div>
+              <div id="u4" class="hamItem"></div>
+              <div id="u5" class="hamItem"></div>
+              <div id="u6" class="hamItem"></div>
+              <div id="u7" class="botbun"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rightcontent imgBorder">
+          <div class="display">
+            <div id="d1" class="topbun"></div>
+            <div id="d2" class="hamObj"></div>
+            <div id="d3" class="hamObj"></div>
+            <div id="d4" class="hamObj"></div>
+            <div id="d5" class="hamObj"></div>
+            <div id="d6" class="hamObj"></div>
+            <div id="d7" class="botbun"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottomcontent">
+        <div class="cucumber">Q</div>
+        <div class="meat">W</div>
+        <div class="onion">E</div>
+        <div class="lettuce">R</div>
+        <div class="cheese">T</div>
+      </div>
+
+      <audio src="audio/squish1.wav" id="squish1"></audio>
+      <audio src="audio/squish2.wav" id="squish2"></audio>
+      <audio src="audio/squishb.wav" id="squishb"></audio>
+      <audio src="audio/erro.mp3" id="erro"></audio>
+
+    </div>
+
+
+    <script src="js/main.js" charset="utf-8"></script>
   </body>
 </html>

@@ -1,0 +1,236 @@
+.gameTitle {
+  font-family: 'Permanent Marker', cursive;
+  color: orange;
+  background-image: url('./images/neon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 50px;
+  position: absolute;
+  width: 400px;
+  left: 42%;
+  top: 30px;
+  z-index: 1;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+li {
+  font-family: 'Poiret One', cursive;
+  font-weight: bolder;
+  color: RGB(12, 153, 246);
+  list-style: none;
+  font-size: 25px;
+}
+
+.list {
+  position: absolute;
+  top: 240px;
+  font-size: 20px;
+  text-align: center;
+}
+.imgBorder {
+  padding: 15px 15px 0;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+  -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+  -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+}
+
+.topcontent {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.leftcontent {
+  width: 30%;
+  height:  60%;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.timerscore {
+  width: 60%;
+  height: center;
+  position: absolute;
+  left: 20%;
+  top: auto;
+  font-family: 'Acme', sans-serif;
+  font-size: 25px;
+  color: white;
+}
+
+.timer {
+  background-color: orange;
+  height:100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 30px;
+  font-size: 50px;
+}
+
+.score {
+  background-color: orange;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+.top {
+  padding: 15px;
+}
+.current {
+  padding: 15px;
+}
+
+.leftmiddlecontent {
+  width: 60%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(./images/bgimg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.userinput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rightcontent {
+  border: 2px solid black;
+  width: 25.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(./images/bgimg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bottomcontent {
+  background-color: ;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbun {
+  background-image: url(./images/topbuns.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 84px;
+  background-size: contain;
+  margin: -10px 20px;
+}
+.botbun {
+  background-image: url(./images/botbuns.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 75px;
+  background-size: contain;
+  margin: -20px 20px;
+}
+
+.cucumber {
+  background-image: url(./images/cucumber.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 55px;
+  background-size: contain;
+  margin: -10px 20px -30px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.meat {
+  background-image: url(./images/pattys.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 70px;
+  background-size: contain;
+  margin: -25px 20px -15px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.onion {
+  background-image: url(./images/onions.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 58px;
+  background-size: contain;
+  margin: -30px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.lettuce {
+  background-image: url(./images/lettuces.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 88px;
+  background-size: contain;
+  margin: -50px 20px -20px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.cheese {
+  background-image: url(./images/cheeses.png);
+  background-repeat: no-repeat;
+  width: 180px;
+  height: 70px;
+  background-size: contain;
+  margin: -25px 20px -35px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.correct {
+  background-image: url('./images/correct.png');
+}
+
+#u1, #d1 {
+  z-index: 9;
+}
+#u2, #d2 {
+  z-index: 8;
+}
+#u3, #d3 {
+  z-index: 7;
+}
+#u4, #d4 {
+  z-index: 6;
+}
+#u5, #d5 {
+  z-index: 5;
+}
+#u6, #d6 {
+  z-index: 4;
+}
+#u7, #d7 {
+  z-index: 3;
+}
