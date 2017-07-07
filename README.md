@@ -64,8 +64,6 @@
 * Reset all variables
 
 
-
-
 ## To Be Implemented
 
 * Ghost AI

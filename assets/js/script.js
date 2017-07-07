@@ -21,6 +21,21 @@ function init () {
   var lose = document.querySelector('#lose')
   var startButton = document.querySelector('.startButton')
 
+  // audio files
+  var pacmanStartAudio = document.createElement('audio')
+  pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
+  pacmanStartAudio.preload = 'auto'
+  var pacmanDeathAudio = document.createElement('audio')
+  pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
+  pacmanDeathAudio.preload = 'auto'
+  var pacmanWinAudio = document.createElement('audio')
+  pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
+  pacmanWinAudio.preload = 'auto'
+  var pacmanChompAudio = document.createElement('audio')
+  pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
+  pacmanChompAudio.playbackRate = 2
+  pacmanChompAudio.preload = 'auto'
+
   var walls = []
   var dots = []
   var lives = 3
@@ -261,8 +276,6 @@ function init () {
     }
     // check for collision between pacman and ghosts
     if (hitGhost(pacman)) {
-      var pacmanDeathAudio = document.createElement('audio')
-      pacmanDeathAudio.setAttribute('src', 'assets/images/pacman-death.wav')
       pacmanDeathAudio.play()
       clearInterval(loopTimer)
       gameOver('lose')
@@ -331,9 +344,6 @@ function init () {
     for (var i = 0; i < dots.length; i++) {
       if (collision(dots[i], pacman)) {
         if (!scoretracker.includes(dots[i])) {
-          var pacmanChompAudio = document.createElement('audio')
-          pacmanChompAudio.setAttribute('src', 'assets/images/pacman-chomp.mp3')
-          pacmanChompAudio.playbackRate = 2
           pacmanChompAudio.play()
           dots[i].style.display = 'none'
           scoretracker.push(dots[i])
@@ -392,8 +402,6 @@ function init () {
   // game over
   function gameOver (result) {
     if (result === 'win') {
-      var pacmanWinAudio = document.createElement('audio')
-      pacmanWinAudio.setAttribute('src', 'assets/images/pacman-win.wav')
       pacmanWinAudio.play()
       clearInterval(loopTimer)
       win.style.display = ''
@@ -421,8 +429,6 @@ function init () {
 
   // start new game
   function startGame () {
-    var pacmanStartAudio = document.createElement('audio')
-    pacmanStartAudio.setAttribute('src', 'assets/images/pacman-start.wav')
     pacmanStartAudio.play()
     interval.style.display = ''
     interval.textContent = 'READY?'
