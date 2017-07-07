@@ -54,7 +54,7 @@ https://ddanielnp.github.io/project-1/
 
 * `document.addEventListener` on 'keyup' of **spacebar** runs the function `checkIngredient()`
 
-* **userinput** and **displayburger** has 7`divs` each. The 7`divs` were stored in an array so that the class could be manipulated to be compared in the function```checkIngredient()```.
+* ```checkIngredient()```compares the **userinput** and **displayburger** of 7`divs` each. The 7`divs` were stored in an array so that the class could be manipulated.
 ```
 userinput                               displayburger
 <div id="u6" class="hamItem"></div>     <div id="d6" class="hamObj"></div>
@@ -80,6 +80,13 @@ userinput                               displayburger
 * More levels, more ingredients...
 
 * Mute squish option
+
+---
+
+**Acknowledgements**
+* Instructor Prima Aulia
+* Assistant Shimei
+* WDI 11 classmates
 
 ### Useful Resources
 
