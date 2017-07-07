@@ -2,10 +2,40 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Bouncy Bunny</title>
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade" rel="stylesheet">
   </head>
   <body>
+
+  <div class='playarea' >
+    <br />
+      <div class="welcome">
+  			<div class="splashscreen"><center>
+        <h1>BOUNCY BUNNY</h1>
+        <h2> Help Bouncy Bunny skate across the terrain!
+        <br />
+        Press <span id='arrow'>&#8593</span> to jump over spikes!</h2>
+  			<button id="buttonE" class="button" type="button">[E]asy</button>
+        <button id="buttonH" class="button" type="button">[H]ard</button>
+         </div>
+		  </div>
+      <div class="exit">
+  			<div class="splashscreen2"><center>
+        <h1>Gameover!</h1>
+        <img src="img/dead.png">
+        <br />
+  			<button id="restartbtn" class="button" type="button">[R]estart</button>
+         </div>
+		  </div>
+      <div class="rabbit"></div>
+
+
+      <div id="timer"></div>
+      <button id="pause"><strong>[P]ause</strong></button><button id="restart"><strong>[R]estart</strong></button>
+
+  </div>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
 </html>
