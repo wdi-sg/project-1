@@ -5,23 +5,31 @@ body {
   text-align: center;
 }
 
+.container {
+  width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+
 h1 {
   font-family: "Luckiest Guy";
   font-size: 50px;
   margin: 10px auto;
+  text-align: center;
 }
 
 h3 {
   font-size: 20px;
   margin: 5px auto;
   font-family: 'Roboto';
+  text-align: center;
 }
 
 .startGameOverlay {
   position: fixed;
-  left: 35.5%;
+  left: 36%;
   height: 100%;
-  width: 30%;
+  width: 29%;
   overflow: hidden;
   background: #FFFDE5;
   z-index: 1;
@@ -49,10 +57,9 @@ li {
 
 .endGameOverlay {
   position: fixed;
-  left: 480px;
-  top: 10px;
+  left: 36%;
   height: 0px;
-  width: 500px;
+  width: 29%;
   z-index: 99;
   overflow: hidden;
   background: #FFFDE5;
@@ -73,10 +80,11 @@ li {
   background-size: cover;
   position: absolute;
   vertical-align: none;
+  left: 43%;
 }
 
 .buttons div {
-  width: 40%;
+  width: 150px;
   height: 100px;
   margin-top: 5%;
   display: inline-block;
@@ -128,7 +136,8 @@ li {
 }
 
 .left-content {
-  width: 25%;
+  width: 30%;
+  min-width: 300px;
   height: 100%;
   display: inline-block;
   background: #FFFACE;
@@ -159,14 +168,16 @@ li {
 }
 
 .middle-content {
-  width: 30%;
+  width: 35%;
+  min-width: 300px;
   height: 100%;
   display: inline-block;
   vertical-align: top;
 }
 
 .right-content {
-  width: 25%;
+  width: 30%;
+  min-width: 300px;
   height: 100%;
   box-shadow: 3px 3px 3px black;
   border: 2px solid black;
