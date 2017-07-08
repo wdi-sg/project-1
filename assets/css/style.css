@@ -1,7 +1,8 @@
 body {
-  text-align: center;
   background: #FFFDE5;
   width: 100%;
+  height: 100%;
+  text-align: center;
 }
 
 h1 {
@@ -16,16 +17,16 @@ h3 {
   font-family: 'Roboto';
 }
 
-.startGameOverlay {
+/*.startGameOverlay {
   position: fixed;
-  left: 480px;
+  left: 34%;
   top: 10px;
   height: 100%;
-  width: 500px;
+  width: 30%;
   overflow: hidden;
   background: #FFFDE5;
   z-index: 1;
-}
+}*/
 
 ol {
   font-size: 30px;
@@ -47,7 +48,7 @@ li {
   font-size: 72px;
 }
 
-.endGameOverlay {
+/*.endGameOverlay {
   position: fixed;
   left: 480px;
   top: 10px;
@@ -57,7 +58,7 @@ li {
   overflow: hidden;
   background: #FFFDE5;
   vertical-align: top;
-}
+}*/
 
 .restart {
   color: green;
@@ -71,14 +72,12 @@ li {
   width: 200px;
   height: 100px;
   background-size: cover;
-  position: absolute;
-  left: 150px;
 }
 
 .buttons div {
-  width: 150px;
+  width: 40%;
   height: 100px;
-  margin: 10px 5px;
+  margin-top: 5%;
   display: inline-block;
   font-size: 40px;
   border-radius: 10%;
@@ -98,6 +97,7 @@ li {
 #bottombun {
   background-image: url("../images/bottombun.png");
   bottom: 30px;
+  position: absolute;
 }
 
 #patty {
@@ -128,29 +128,27 @@ li {
 }
 
 .left-content {
-  width: 400px;
+  width: 25%;
   height: 100%;
   display: inline-block;
-  margin: 0px 25px;
   background: #FFFACE;
   border: 2px solid black;
   box-shadow: 3px 3px 3px black;
 }
 
 .serveButton {
-  width: 320px;
-  height: 120px;
-  margin: 10px auto;
+  width: 100%;
+  height: 100%;
 }
 
 .serveButton h1 {
-  margin: 35px auto;
-  font-size: 100px;
+  margin: 10%;
+  font-size: 90px;
   color: green;
 }
 
 .serveButton h1:hover {
-  font-size: 110px;
+  font-size: 100px;
 }
 
 
@@ -162,32 +160,28 @@ li {
 }
 
 .middle-content {
-  width: 500px;
-  height: 768px;
-  position: relative;
+  width: 30%;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
 }
 
 .right-content {
-  width: 400px;
+  width: 25%;
   height: 100%;
   box-shadow: 3px 3px 3px black;
   border: 2px solid black;
-  margin: 0px 25px;
   background: #FFFACE;
   display: inline-block;
+  vertical-align: top;
 }
 
 .order {
-  width: 320px;
-  height: 510px;
-  margin: 0 auto;
+  width: 100%;
+  height: 590px;
 }
 
 .scorebox {
-  width: 320px;
-  height: 120px;
-  margin: 20px auto;
-  padding-top: 30px;
+  width: 100%;
+  height: 20%;
 }
