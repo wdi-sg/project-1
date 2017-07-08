@@ -88,7 +88,7 @@ ___
 #### Technologies used:
 ```
 - Javascript
-- Node (during production)
+- Node (during development)
 - HTML5
 - CSS3
 ```
