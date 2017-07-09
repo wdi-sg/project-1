@@ -1,0 +1,30 @@
+{
+  "name": "p1_stockbet",
+  "version": "1.0.0",
+  "description": "<!--- Read Me Contents -->",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.15.3",
+    "google-finance": "^0.1.9",
+    "google-news": "^1.4.6",
+    "request": "^2.81.0",
+    "util": "^0.10.3",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmmlll/p1_stockbet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmmlll/p1_stockbet/issues"
+  },
+  "homepage": "https://github.com/mmmlll/p1_stockbet#readme"
+}

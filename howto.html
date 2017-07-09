@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+
+    <div id="header">
+       <a href="./index.html">Home</a>
+       <a href="./game.html" >Game</a>
+       <a href="./howto.html" >How To</a>
+    </div>
+
+    <h1>STOCKBET</h1>
+    <h2>How To Play</h2>
+    <p>Assuming that you invested in a stock a specific number of trading days ago, and sold it today, how much money would you have made?</p>
+    <ol>
+      <li>Set the parameters of the game: your wallet size (the amount each person has to invest), and your holding period (number of trading days before today).</li><br>
+      <li>Research stocks by entering ticker names. For now, only stocks on the Hong Kong stock exchange are available. Once you enter a valid ticker, the text area below will display recent news related to the ticker. <br><i>(Note to game evaluator: news data not available from within browser due to cross origin issues; the data pulled instead comes from a dummy data in JSON format.)</i></li><br>
+      <li>Based on your research, write up your investment thesis to help you improve over time (optional). Then, enter the ticker of the stock you want to purchase, and click Select Ticker.</li><br>
+      <li>The second player will repeat steps 2 and 3 above.</li><br>
+      <li>After both players have entered their stock picks, click Execute Trades to run the database lookup and so determine the winner.</li>
+      <li>Once ready, the results will show at the bottom of the page. The player whose stock returned the most will be the winner. You may email the results to yourself. Use the Facebook button to share the game with your friends!</li>
+    </ol><br><hr>
+
+    <p>Limitations and Other Notes:</p>
+    <ol>
+      <li>For this release of the game, only stocks on the Hong Kong Stock Exchange will be available for lookup. You can refer to this <a href="./tickersHKEX.html" target="_blank">full list of stock tickers.</a></li><br>
+      <li>To test the game, you can input: Wallet $1000, Holding Period 3 (days), Player 1 ticker 00005 (HSBC), Player 2 ticker 02318 (Ping An Insurance). To double check that prices are drawn correctly, you can visit: google.com/finance.</li>
+    </ol>
+
+    <input type="button" class="play-button" onclick="location.href='./game.html';" value="Play!" />
+
+  </body>
+</html>

@@ -1,96 +1,114 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# Stockbet Game
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+#### This game is for investing nerds. Relying only on news on different stocks, can you pick the stock that makes more money than your opponent?
 
-### Overview
+---
+## Gameplay
 
-Let's start out with something fun - **a game!**
+![screencap](https://github.com/mmmlll/p1_stockbet/blob/master/images/screencapture.png?raw=true)
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+1. Set the parameters of the game: your wallet size (the amount each person has to invest), and your holding period (number of trading days before today).
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+2. Research stocks by entering ticker names. For now, only stocks on the Hong Kong stock exchange are available. Once you enter a valid ticker, the text area below will display recent news related to the ticker.
 
+> _(Note to game evaluator: live news data not available from within browser due to cross origin issues; the data pulled instead comes from a dummy data in JSON format.)_
+
+3. Based on your research, write up your investment thesis to help you improve over time. Then, enter the ticker of the stock you want to purchase, and click Select Ticker.
+
+4. The second player will repeat steps 2 and 3 above.
+
+5. After both players have entered their stock picks, click Execute Trades to run the database lookup and so determine the winner.
+
+6. Once ready, the results will show at the bottom of the page. __The player whose stock returned the most will be the winner.__
+* You may email the results to yourself.
+* Use the Facebook button to share the game with your friends!
 
 ---
 
-### Technical Requirements
+## Functions in the Game
 
-Your app must:
+#### init
+* initialises game
+* set player to 1
+* clears variables
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+#### initiateParams
+* Create an object that stores the parameters submitted by players.
+* Activated when player clicks on Submit button in the Game Parameters section.
 
----
+#### displayNews
+* Pick out desired data based on large JSON file.
+* Display selected information within the news area.
+* Activated when player clicks on Go button in the Players' sections.
 
-### Necessary Deliverables
+#### createPlayerData
+* Create an object that stores the data submitted by players: investment thesis and stock to buy.
+* Push the object into a playersDataArr array (one object per player).
+* Display text to confirm data submission, and prompt for next step. Next step differs depending on which player is playing.
+* When both players have played, summarize their data in the section titled "Ready to Make Your Bets?"
+* Activated when user clicks on Select Ticker button in the Players' sections.
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+#### getPrice
+* Opens an XMLHttpRequest to Quandl database for the specified stock ticker. The URL format is roughly: "https://www.quandl.com/api/v3/datasets/HKEX/TICKER.json?kky".
+* Returns an object with voluminous amounts of data (e.g. daily price going back as far as 2014).
+* Called back by determineWinner (see below).
 
----
-
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
-
----
-
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+#### determineWinner
+* Callsback getPrice and manipulates the data object returned ('dataObj').
+* Using data from dataObj, populates playersDataArr array with information on the start and end price, start and end dates, return on investment, and wallet size.
+* __Winner is determined as the player with the larger wallet.__
+* Results are displayed in the Results section at the bottom of the page.
+* Activated when user clicks on Execute Trades button in the "Ready to Make Your Bets?" section.
 
 ---
 
-### Useful Resources
+### User Experience
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+* The status bar at the top of the page displays the status at all times (i.e. not started, Player 1's turn, Player 2's turn, results available).
+* Game sections are divided into clear sections using horizontal rules. Optional entries are clearly indicated.
+* When information is submitted, a confirmation message is provided, including prompts for next steps.
+* The option to email game results (including their investment theses in particular) allows users to genuinely use the game as a learning tool.
+* The Facebook share feature encourages engagement.
 
 ---
 
-### Project Feedback + Evaluation
+## Data Sources and NPM Packages
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+1. Quandl (quandl.com), an API-enabled financial database, is used to pull price data.
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+2. The google-news npm package (https://www.npmjs.com/package/google-news) was used to generate the dummy data used in the news research section.
+>_Specifically, I used the link provided in the browser console error log to view the news data (in XML format), converted the XML into JSON, and saved the JSON file into the project directory._
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+3. The browserify npm package was used to allow Node.JS's "require" to be interpreted in the browser. I wanted to use "require" in order to test more quickly in Node during production.
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+__Please refer to the PowerPoint in the presentations directory for more information on how the above tools were used.__
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+___
 
-* __Total__: Your instructors will give you a total score on your project between:
+#### Technologies used:
+```
+- Javascript
+- Node (during development)
+- HTML5
+- CSS3
+```
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+---
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+### Known Issues and Areas for Improvement
+
+1. Live news mechanism from google-news npm currently does not work (dummy data used, as mentioned above). Note however that it has been tested and works in the Node environment.
+2. Rarely, but sometimes, the _parameters_ object does not seem to render appropriately, and this error is encountered: _"Uncaught TypeError: Cannot read property 1 of undefined at ...determineWinner."_ Closing and re-opening the browser gets rid of the error.
+3. Ideally, the news area is cleared and then re-populated when a new ticker is entered. Currently, the new set of news is added below the results of the previous news search.
+4. Default email info needs to be rectified.
+5. Testing a full set of entries requires many clicks. Build a function that automatically populates the inputs in order to run tests whenever code is updated.
+
+---
+
+### Project Workflow
+
+__Please see PowerPoint in presentations directory for detailed representations of the below.__
+1. Specifications Document
+2. User Stories
+3. Wireframes
+4. Time Planning (Trello)

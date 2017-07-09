@@ -1,0 +1,100 @@
+.text-area {
+  display: block;
+}
+
+body {
+  background: #a07178;
+  font-family: "Roboto", "Helvetica", sans-serif;
+}
+
+.header{
+  margin: 80px;
+}
+
+h1{
+  font-size:48px;
+  text-align:center;
+  color:#E8D6CB;
+  font-family:"Lato", "Arial", sans-serif;
+}
+
+h2{
+  font-size:24px;
+  text-align:center;
+  color:#ffffff;
+  font-family:"Lato", "Arial", sans-serif;
+  margin-bottom:40px;
+}
+
+h3{
+  text-align:center;
+  color:#E8D6CB;
+}
+
+li{
+  color:#E8D6CB;
+}
+
+.form{
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 20px;
+    max-width:600px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+label{
+  color:#E8D6CB;
+  font-family:"Lato", "Arial", sans-serif;
+}
+
+p{
+  font-family:"Lato", "Arial", sans-serif;
+  font-size:16px;
+  color: #E8D6CB
+}
+
+input[type=text], input[type=number] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size:14px;
+}
+
+input[type=submit], input[type=button], button {
+    width: 75%;
+    background-color: #5D2E46;
+    color: #E8D6CB;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:16px;
+}
+
+input[type=submit]:hover, input[type=button]:hover {
+    background-color: #D0ADA7;
+}
+
+button[name='howto-button'], button[name='game-button'] {
+  width: 75%;
+  background-color: #CEBBC9;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size:16px;
+}
+
+button[name='howto-button']:hover, button[name='game-button']:hover {
+  background-color: #847996;
+}
+
+.research-area {
+  display: inline-block;
+}
