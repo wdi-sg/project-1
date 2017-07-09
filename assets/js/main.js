@@ -23,8 +23,23 @@ function init () {
       setTimeout(gameOver, 90000) // cause endGameOverlay to appear
     }
     gameStarted = true
-    startGameOverlay.style.height = '0px' // collapse overlay
+    removeStartScreen()
+    createBoard()
   }
+
+function removeStartScreen() {
+  startGameOverlay.innerHTML = ''
+}
+
+function createBoard () {
+  var title = document.createElement('h1')
+  title.innerText = 'BUILD - A - BURGER'
+  playArea.appendChild(title)
+  var anchor = document.createElement('div')
+  anchor.className = 'ingredients'
+  anchor.id = 'bottombun'
+  playArea.appendChild(anchor)
+}
 
   // DOM of orderList to match array of ingredients created with newOrder()
   function generateList () {
