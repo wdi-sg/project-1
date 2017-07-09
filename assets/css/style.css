@@ -46,16 +46,8 @@ li {
 }
 
 .endGameOverlay {
-  position: fixed;
-  left: 36%;
-  height: 0px;
-  width: 29%;
-  z-index: 99;
-  overflow: hidden;
-  background: #FFFDE5;
-  vertical-align: top;
+  visibility: hidden;
 }
-
 .restart {
   color: green;
   font-size: 70px;
