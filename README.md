@@ -6,7 +6,7 @@
 
 #### Instructions:
 
-* Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: to move Pac-Man around the maze.
+* Use the **arrow keys** :arrow_up: :arrow_down: :arrow_left: :arrow_right: or **swipe** to move Pac-Man around the maze.
 * Complete the level by eating all the dots.
 * **Avoid the ghosts!** If they catch you, you will lose a life.
 * You only have **3 lives**. Be careful!
@@ -34,20 +34,20 @@
 * Create dots on the gameboard
 
 #### hitWall (character)
-* Check if the character (Pac-Man, ghost) hit the wall _(collision function)_
+* Check if the character (Pac-Man, ghost) hits the wall _(collision function)_
 
 #### hitGhost ()
-* Check if Pac-Man hit the ghost _(collision function)_
+* Check if Pac-Man hits the ghost _(collision function)_
 
 #### pacmanMovement ()
-* Pac-Man will change direction when the arrow key is pressed
+* Pac-Man will change direction when the arrow key is pressed or when a swipe is detected
 * Pac-Man's position is rounded to the nearest multiple of 40 (size of each 'grid') at every turn
 * If Pac-Man hits a wall, he will stop
 * If Pac-Man hits a ghost, check for game over
 
 #### ghostMovement ()
 * Ghost will move in a default direction
-* If ghost hit a wall, he will move in a new random direction _(ghostHitWallNewDir function) (randomGhostDirection function)_
+* If ghost hits a wall, he will move in a new random direction _(ghostHitWallNewDir function) (randomGhostDirection function)_
 
 #### checkScore ()
 * Keep track of the score based on the number of dots eaten by Pac-Man
@@ -64,9 +64,10 @@
 * Reset all variables
 
 
-## To Be Implemented
+## To Be Implemented/ Unsolved Issues
 
 * Ghost AI
+* Audio on Mobile
 
 
 ## Built With
@@ -74,6 +75,7 @@
 * HTML5
 * CSS3
 * Javascript
+* jQuery Mobile
 
 
 ## Acknowledgements
