@@ -203,6 +203,38 @@ function init () {
     }
   })
 
+  // swipe up on mobile
+  $("html").on( "swipeup", function () {
+    upKeyDown = true
+    downKeyDown = false
+    leftKeyDown = false
+    rightKeyDown = false
+  })
+
+  // swipe down on mobile
+  $("html").on( "swipedown", function () {
+    upKeyDown = false
+    downKeyDown = true
+    leftKeyDown = false
+    rightKeyDown = false
+  })
+
+  // swipe left on mobile
+  $("html").on( "swipeleft", function () {
+    upKeyDown = false
+    downKeyDown = false
+    leftKeyDown = true
+    rightKeyDown = false
+  })
+
+  // swipe right on mobile
+  $("html").on( "swiperight", function () {
+    upKeyDown = false
+    downKeyDown = false
+    leftKeyDown = false
+    rightKeyDown = true
+  })
+
   // collision condition
   function collision (a, b) {
     var ax = parseInt(a.style.left)
