@@ -548,7 +548,8 @@ if ( eventCaptureSupported ) {
 	// setup new event shortcuts
 	$.each( ( "touchstart touchmove touchend " +
 		"tap taphold " +
-		"swipe swipeleft swiperight " +
+		// *add swipeup and swipedown*
+		"swipe swipeleft swiperight swipeup swipedown " +
 		"scrollstart scrollstop" ).split( " " ), function( i, name ) {
 
 		$.fn[ name ] = function( fn ) {
@@ -744,6 +745,18 @@ if ( eventCaptureSupported ) {
 				triggerCustomEvent( thisObject, direction,$.Event( direction, { target: origTarget, swipestart: start, swipestop: stop } ), true );
 				return true;
 			}
+
+			// *customise for swipeup and swipedown*
+			else if ( stop.time - start.time < $.event.special.swipe.durationThreshold &&
+				Math.abs( start.coords[ 0 ] - stop.coords[ 0 ] ) < $.event.special.swipe.horizontalDistanceThreshold &&
+				Math.abs( start.coords[ 1 ] - stop.coords[ 1 ] ) > $.event.special.swipe.verticalDistanceThreshold ) {
+				var direction = start.coords[1] > stop.coords[ 1 ] ? "swipeup" : "swipedown";
+
+				triggerCustomEvent( thisObject, "swipe", $.Event( "swipe", { target: origTarget, swipestart: start, swipestop: stop }), true );
+				triggerCustomEvent( thisObject, direction,$.Event( direction, { target: origTarget, swipestart: start, swipestop: stop } ), true );
+				return true;
+			}
+
 			return false;
 
 		},
@@ -845,7 +858,10 @@ if ( eventCaptureSupported ) {
 		scrollstop: "scrollstart",
 		taphold: "tap",
 		swipeleft: "swipe.left",
-		swiperight: "swipe.right"
+		swiperight: "swipe.right",
+		// *add swipeup and swipedown*
+		swipeup: "swipe.up",
+		swipedown: "swipe.down"
 	}, function( event, sourceEvent ) {
 
 		$.event.special[ event ] = {
