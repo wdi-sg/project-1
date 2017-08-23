@@ -64,10 +64,11 @@
 * Reset all variables
 
 
-## To Be Implemented/ Unsolved Issues
+## To Be Implemented/ To Be Resolved
 
 * Ghost AI
 * Audio on Mobile
+* Better User Interface for Device in Landscape Mode
 
 
 ## Built With
