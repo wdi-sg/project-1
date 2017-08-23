@@ -3,6 +3,7 @@ body {
   font-family: 'Press Start 2P', cursive;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 
 #newGame {
