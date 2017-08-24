@@ -6,6 +6,12 @@ body {
   overflow: hidden;
 }
 
+@media (max-height: 570px) {
+  body {
+    transform: scale(0.8);
+  }
+}
+
 #newGame {
   position: absolute;
   z-index: 0;
