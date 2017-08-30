@@ -1,96 +1,78 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 
-### Overview
 
-Let's start out with something fun - **a game!**
+### nineString.
+https://merejarvis.github.io/project-1/
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+1.  A game where players must form as many words as they can in 90 seconds from a random string of 9 letters.
+
+2.  Players can choose to **regenerate** the random string twice during the game.
+
+3.  Hit **'Enter'** key to submit words.
+
+4.  Longer words yield more points! Be fast enough and get into **COMBO!** mode where your points are endless!!!
+
+**Current top score > 12000! (can't remember exactly!)**
+
+
+---
+
+### Conceptualization
+
+During this phase, I thought of a few ways that the game's logic can be programmed:
+
+1.  use 'unscrambler' websites such as http://wordunscrambler.com/ and hardcode the results based on predefined strings
+
+2.  have an algorithm generating random 9 letter strings and a super algorithm churning all possible permutations and combinations of letters based on this string (Total generated results would be 9!+ 9C8 x 8! + 9C7 x 7! +... + 9C2 x 2! + 9 which would yield about a million results!!!) Then filter the results using a built in dictionary. More on the dictionary later....
+
+3. generate a random string biased on the number of times letters appear in the English language. This link was highly useful (https://stackoverflow.com/questions/24986020/word-games-in-javascript).
+After which, compare the user input with a built in dictionary and the generated string.
+
+For this project, I utilised **method 3**. Method 1 would be limited (and boring!). Method 2 is ideal but I did not find an algorithm which could churn out all possible combinations and permutations of a string and test the usability on a 9 letter string during the course of this 1 week project. I did come across Heap's algorithm which provides all permutations of a string but that was it!
+
+
+
 
 
 ---
 
-### Technical Requirements
+### Dictionary
 
-Your app must:
+* English Open Word List or the EOWL has a library of over 128000 words! Find it here: http://dreamsteep.com/projects/the-english-open-word-list.html
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+* A kind soul by the name of Tim Crouch also known as JackolanternIR developed a program for wordGameDevelopers to generate random words and to determine whether a word is part of the English language by integrating the EOWL. Thanks Tim/Jack! Look it up here:
+https://github.com/JackolanternIR/WordList-JS
 
 ---
 
-### Necessary Deliverables
+### Possible Improvements
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+Method 3 is theoretically not foolproof as the user will not know when all combinations of a certain string have been exhausted, as well as the small amount of times when they land up with all consonants (good luck with that!).
 
----
+I tried to mitigate these with a 90 sec game **(BLITZ MODE ON!)** as well as a regeneration function and of course, a generous amount of letters!
 
-### Suggested Ways to Get Started
+* **Improved string generation algorithm** If its possible to get the algorithm as mentioned in Method 2 , we can work on it and maybe reverse engineer and write a program which will generate strings with similar maximum points, for added fairness and competition!
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+
+* **Further gamification**: more levels, increasing difficulty, a relaxed mode and a blitz mode (for different users.. and moods :) )
 
 ---
 
-### Potential Project Ideas
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
 
 ---
 
-### Useful Resources
+### Acknowledgements
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+**Music**: http://www.bensound.com
+
+**Dictionary function**: Tim Crouch
+
+UK Advanced Cryptics Dictionary Licensing Information:
+Copyright © J Ross Beresford 1993-1999. All Rights Reserved. The following restriction is placed on the use of this publication: if the UK Advanced Cryptics Dictionary is used in a software package or redistributed in any form, the copyright notice must be prominently displayed and the text of this document must be included verbatim.
+
+**Link up with me at reemza77@gmail.com!**
 
 ---
-
-### Project Feedback + Evaluation
-
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!

@@ -3,9 +3,59 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+
+<div class= "left">
+<h1>nineString.</h1>
+<h4 class= 'userinput'>form as many words as you can!</h3>
+
+<div class="timerscore">
+<p class= 'timer'>Time Remaining: </p>
+<p class= 'time'>90 s</p>
+<p class = 'scorer' >Score:</p>
+<p class= 'score'>0</p>
+</div>
+
+
+<h1 class='rand'>Click Start to Play! Regenerate if Stuck!</h1>
+
+<audio id= 'myMusic' src="bensound-ukulele.mp3">
+</audio>
+
+<audio id= 'myMusic2' src="bensound-extremeaction.mp3">
+</audio>
+
+<p class="combo"></p>
+
+
+
+<input class='inputField' type="" name="" value="">
+<br><br>
+
+<button id='reset' type="button" name="button">REGENERATE X<span id='lives'>2<span></button>
+<br><br>
+  <button id='start' type="button" name="button">Start</button>
+
+
+</div>
+
+<aside class="right">
+  <!-- <p class = 'topScore'>High Score: <span id= 'highest'>0</span></p> -->
+  <p>Used Words:</p>
+<ul>
+</ul>
+
+
+
+</aside>
+
+    <script src="assets/js/wordList.js" charset="utf-8"></script>
+    <script src="assets/js/wordBank.min.js" charset="utf-8"></script>
+    <script src="assets/js/functions.js" charset="utf-8"></script>
+    <script src="assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
