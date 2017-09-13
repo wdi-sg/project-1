@@ -1,0 +1,87 @@
+html {
+  background: url("../pictures/Sea5.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height:100%;
+  width: 100%;
+  position: relative;
+}
+
+#start-fish{
+  display: flex;
+  margin: auto;
+  padding: 30px 0 10px 0;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+h1{
+  display: flex;
+  align-content: center;
+  justify-content : center;
+  font-size: 32px;
+  font-family: 'palatino'
+}
+
+p{
+  text-align: center;
+  font-size: 22px;
+  font-family: 'georgia'
+}
+
+#start-button {
+  background-color: pink;
+  border: 1px solid black;
+  border-color: black;
+  display: block;
+  width: 100px;
+  font-size: 24px;
+  margin: auto;
+  font-family: 'georgia'
+}
+
+#start-button:active {
+  background-color: pink;
+	border: 1px solid black;
+	transform: translateY(3px);
+}
+
+#main-fish{
+  display: none;
+  height: 60px;
+  width: 60px;
+  position: relative;
+}
+
+#happy-page{
+  display: none;
+  padding: 20% 0;
+}
+
+#sad-page{
+  display: none;
+  padding: 20% 0;
+}
+
+#hreplay-button {
+  background-color: LightGreen;
+  border: 1px solid black;
+  border-color: black;
+  display: block;
+  width: 100px;
+  font-size: 20px;
+  margin: auto;
+  font-family: 'georgia'
+}
+
+#sreplay-button {
+  background-color: LightGreen;
+  border: 1px solid black;
+  border-color: black;
+  display: block;
+  width: 100px;
+  font-size: 20px;
+  margin: auto;
+  font-family: 'georgia'
+}
