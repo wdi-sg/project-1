@@ -61,11 +61,15 @@ if (rect1.x < rect2.x + rect2.width &&
 * Reset fish array to null
 * Clear blue fishes from DOM screen
 
+**gameOver()**
+* If mainFish reaches 30x30px, clear fish generation and show game over page.
+* If mainFish reaches 100x100px, clear fish generation and show winning page.
+
 **startGame()**
 
 * When start button is clicked, remove start items and call the functions to generate new fishes.
 * Call collision result every 500ms.
-* Includes gameOver function, where if mainFish reaches 30x30px, clear fish generation and show game over page. If mainFish reaches 100x100px, clear fish generation and show winning page.
+* Calls game over function every 500ms.
 * Click replay button to go back to start page
 
 ---
