@@ -1,3 +1,5 @@
+ document.addEventListener("DOMContentLoaded", function(event) {
+
 /////////////////////////////
 // Declares DOM elements
 /////////////////////////////
@@ -34,8 +36,9 @@ function startGame () {
 
           HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
           HumanPlayerCardsArr[index].onclick = function (e) {
+            console.log("click!")
             if (whichPlayerTurn === Human) {
-              // ensures human player's click does not activate play if computer is still calculating playing
+              // ensures human player's click does not activate play if computer is still calculating playing              
               var humanDiscardSuccessful = playCard(Human, parseInt(e.target.id.substring(2,e.target.id.length))) //input: player & card clicked
               if (humanDiscardSuccessful) {  // let Computer play only if Human has completed discarding a valid card
                 whichPlayerTurn = Computer
@@ -47,21 +50,25 @@ function startGame () {
             }
             return false // so as not to follow thru if click cancelled
           }
+
         })
 
 
     // Presents Computer Player's Pile AS A LIST
-    ComputerPlayerPile.forEach(function (card) {
-          var listCard = document.createElement('li')
-          listCard.textContent = 'Card'
-          listComputerPlayerPile.appendChild(listCard)
+    ComputerPlayerPile.forEach(function (card, index) {
+
+          var img = document.createElement('img')
+          img.src = 'graphics/cover.png'
+          img.id = 'cp'+index
+          listComputerPlayerPile.appendChild(img)
         })
 
     // Presents opening card from Draw Pile
-    DiscardPile.forEach(function (card) {
-          var listCard = document.createElement('li')
-          listCard.textContent = card.label
-          listDiscardPile.appendChild(listCard)
+    DiscardPile.forEach(function (card, index) {
+          var img = document.createElement('img')
+          img.src = card.image
+          img.id = 'dp'+index
+          listDiscardPile.appendChild(img)
         })
 
     GameStarted = true
@@ -107,6 +114,7 @@ function displayPileUX (whichPile) {
           listHumanPlayerPile.appendChild(img)
 
           HumanPlayerCardsArr[index] = document.querySelector('#hp'+index)
+          console.log('displayPileUX: ', HumanPlayerCardsArr[index])
           HumanPlayerCardsArr[index].onclick = function (e) {
             console.log('x2');
             if (whichPlayerTurn === Human) {
@@ -127,16 +135,18 @@ function displayPileUX (whichPile) {
           }
         })
   } else if (whichPile === Computer) {
-    ComputerPlayerPile.forEach(function (computerPlayerCard) {
-          var listCard = document.createElement('li')
-          listCard.textContent = 'Card'
-          console.log('commputerpile '+computerPlayerCard.label);
-          listComputerPlayerPile.appendChild(listCard)
+    ComputerPlayerPile.forEach(function (computerPlayerCard, index) {
+          var img = document.createElement('img')
+          img.src = 'graphics/cover.png'
+          img.id = 'cp'+index
+          listComputerPlayerPile.appendChild(img)
         })
   } else if (whichPile === Discard) {
-    DiscardPile.forEach(function (DiscardPileCard) {
-          var listCard = document.createElement('li')
-          listCard.textContent = DiscardPileCard.label
+    DiscardPile.forEach(function (DiscardPileCard, index) {
+
+          var listCard = document.createElement('img')
+          listCard.src = DiscardPileCard.image
+          listCard.id = 'dp'+index
           listDiscardPile.appendChild(listCard)
         })
   } else if (whichPile === Draw) { // this section is not in use; displaying only stack PNG image
@@ -289,3 +299,6 @@ for (var i = 0; i < DrawPile.length; i++) {
 startButton.addEventListener('click', startGame)
 resetButton.addEventListener('click', resetGame)
 drawCardButton.addEventListener('click', clickDrawCardButton)
+
+
+}) // DOM content loaded
