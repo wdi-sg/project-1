@@ -130,3 +130,4 @@ This is a simplified version of the classic card game UNO!. It allows only two p
 1. README.me to document functions in scripts
 1. Camelcase some variables in scripts as standard practice
 1. Intermittent unstable turn switching after prolonged plays
+1. System error results if human player plays card before computer player does
