@@ -1,0 +1,256 @@
+body {
+    height: 680px;
+    /*background-size: stretch;
+    background-position: center;*/
+    background-color: rgb(255, 238, 218)
+}
+
+h1 {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 60px;
+}
+
+h2 {
+  margin: 0 auto;
+  font-family: 'Viga', sans-serif;
+  font-size: 30px;
+}
+
+h3 {
+  width: 600px;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  padding: 20px 50px 0px 50px;
+  font-family: 'Viga', sans-serif;
+  font-size: 50px;
+}
+
+p {
+  font-size: 20px;
+  font-family: 'Viga', sans-serif;
+  margin: 12px auto;
+}
+
+.gameInfo {
+  font-size: 20px;
+  margin: 5px 0;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+footer {
+  text-align: center;
+  color: black;
+}
+
+.createdBy {
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.inspired {
+  margin: 0 auto;
+  font-size: 18px;
+}
+.instructions {
+  margin: 0 auto;
+  text-align: center;
+  width: 600px;
+  float: center;
+}
+
+.scoreText {
+  float: left;
+
+}
+
+.score {
+  float: left;
+  margin: 0 5px;
+}
+
+.startButton {
+  display: inline-block;
+  float: center;
+  width: 80px;
+  height: 25px;
+  background-color: green;
+  color: white;
+  font-family: 'Viga', sans-serif;
+  font-size: 15px;
+  border-radius: 10%;
+}
+
+.startButton:hover {
+  background-color: rgb(64, 218, 60);
+}
+
+.timerText {
+  float: right;
+}
+
+.timer {
+  float: right;
+  margin: 0 5px;
+}
+
+.container {
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  border-radius: 5%;
+}
+
+/* 2 x 2 grid */
+.L2Grid {
+  background-color: purple;
+  border: 2px solid white;
+  width: 296px;
+  height: 296px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 3 x 3 grid */
+.L3Grid {
+  background-color: red;
+  border: 2px solid white;
+  width: 196px;
+  height: 196px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 4 x 4 grid */
+.L4Grid {
+  background-color: green;
+  border: 2px solid white;
+  width: 146px;
+  height: 146px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 5 x 5 grid */
+.L5Grid {
+  background-color: blue;
+  border: 2px solid white;
+  width: 116px;
+  height: 116px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 6 x 6 grid */
+.L6Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 96px;
+  height: 96px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 7 x 7 grid */
+.L7Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 81.7px;
+  height: 81.7px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 8 x 8 grid */
+.L8Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 71px;
+  height: 71px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 9 x 9 grid */
+.L9Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 62.6px;
+  height: 62.6px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 10 x 10 grid */
+.L10Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 56px;
+  height: 56px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 11 x 11 grid */
+.L11Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 50.54px;
+  height: 50.54px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 12 x 12 grid */
+.L12Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 13 x 13 grid */
+.L13Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 42.15px;
+  height: 42.15px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 14 x 14 grid */
+.L14Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 38.85px;
+  height: 38.85px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 15 x 15 grid */
+.L15Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 16 x 16 grid */
+.L16Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 33.5px;
+  height: 33.5px;
+  display: inline-block;
+  border-radius: 10%;
+}
