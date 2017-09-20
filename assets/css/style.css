@@ -204,3 +204,53 @@ footer {
   display: inline-block;
   border-radius: 10%;
 }
+
+/* 12 x 12 grid */
+.L12Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 46px;
+  height: 46px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 13 x 13 grid */
+.L13Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 42.15px;
+  height: 42.15px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 14 x 14 grid */
+.L14Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 38.85px;
+  height: 38.85px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 15 x 15 grid */
+.L15Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 10%;
+}
+
+/* 16 x 16 grid */
+.L16Grid {
+  background-color: pink;
+  border: 2px solid white;
+  width: 33.5px;
+  height: 33.5px;
+  display: inline-block;
+  border-radius: 10%;
+}

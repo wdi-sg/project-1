@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'rgb(255, 225, 0)'],
     ['rgb(50, 150, 255)',
       'rgb(40, 160, 235)'],
-    ['rgb(40, 40, 40)',
+    ['rgb(10, 10, 10)',
       'rgb(0, 0, 0)'],
     ['rgb(150, 255, 0)',
       'rgb(130, 255, 90)'],
@@ -47,7 +47,19 @@ document.addEventListener('DOMContentLoaded', function () {
     ['rgb(126, 16, 71)',
       'rgb(106, 16, 60)'],
     ['rgb(255, 255, 150)',
-      'rgb(255, 255, 200)']
+      'rgb(255, 255, 180)'],
+    ['rgb(50, 100, 200)',
+      'rgb(40, 105, 215)'],
+    ['rgb(77, 40, 0)',
+      'rgb(88, 30, 0)'],
+    ['rgb(0, 51, 0)',
+      'rgb(10, 60, 10)'],
+    ['rgb(0, 255, 153)',
+      'rgb(10, 255, 169)'],
+    ['rgb(0, 0, 102)',
+      'rgb(0, 15, 120)'],
+    ['rgb(250, 0, 115)',
+      'rgb(255, 15, 95)']
   ]
   // console.log(palette[3][0])
 
@@ -77,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.container').style.backgroundColor = ''
     var endMsg = document.createElement('h3')
     document.querySelector('.container').appendChild(endMsg)
-    endMsg.textContent = 'Game Over. ' + 'Thanks for playing! ' + 'You scored ' + score + '/10'
+    endMsg.textContent = 'Game Over. ' + 'Thanks for playing! ' + 'You scored ' + score + '/15'
     endGameSound()
     endGameImage()
     // document.querySelector('.container').style.textAlign = 'center'
@@ -158,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
       score += 1
 
       // increase the grid size
-      if (noOfRows < 11) {
+      if (noOfRows < 16) {
         noOfRows += 1
       } else {
         isGameOver = true
