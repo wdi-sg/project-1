@@ -2,10 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Basic Pac-Man</title>
+    <link href="/assets/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/stylesheet.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+      <div class="window">
+        <h1>Basic Pac-Man</h1>
+
+        <div class="game-board">
+          <div class="instruction-panel">
+            <h2>Instructions</h2>
+            <p>
+              <strong>Controls:</strong><br>
+              Arrow-Left '&#9664': Move Left<br>
+              Arrow-Right '&#9654': Move Right<br>
+              Arrow-Up '&#9650': Move Up<br>
+              Arrow-Down '&#9660': Move Down
+            </p>
+          </div>
+
+          <div class="character" id="pac-man"></div>
+          <div class="character" id="ghost-one"></div>
+          <div class="character" id="ghost-two"></div>
+          <div class="character" id="ghost-three"></div>
+          <div class="character" id="ghost-four"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>

@@ -1,0 +1,72 @@
+.container {
+  border: 1px solid red;
+  width: 1000px;
+  max-width: 90vw;
+  height: 700px;
+  max-height: 90vh;
+  margin: 0 auto;
+}
+
+.window {
+  border: 1px solid blue;
+  width: 900px;
+  max-width: 80vw;
+  height: 600px;
+  max-height: 80vh;
+  margin: 0 auto;
+}
+
+.game-board {
+  border: 1px solid green;
+  width: 600px;
+  max-width: 70vw;
+  height: 450px;
+  max-height: 70vh;
+  margin: 0 auto;
+}
+
+.character {
+  width: 30px;
+  height: 30px;
+  positon: absolute;
+}
+
+#pac-man {
+  background-color: yellow;
+  border-radius: 15px;
+}
+
+#ghost-one {
+  background-color: red;
+  border-radius: 15px;
+}
+
+#ghost-two {
+  background-color: pink;
+  border-radius: 15px;
+}
+
+#ghost-three {
+  background-color: orange;
+  border-radius: 15px;
+}
+
+#ghost-four {
+  background-color: cyan;
+  border-radius: 15px;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 500;
+  text-align: center;
+}
+
+h2 {
+  
+}
+
+strong {
+  font-size: 30px;
+  font-weight: 400;
+}
