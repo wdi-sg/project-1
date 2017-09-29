@@ -9,7 +9,7 @@
 
 .window {
   border: 1px solid blue;
-  width: 900px;
+  width: 800px;
   max-width: 80vw;
   height: 600px;
   max-height: 80vh;
@@ -18,42 +18,53 @@
 
 .game-board {
   border: 1px solid green;
-  width: 600px;
-  max-width: 70vw;
+  width: 570px;
   height: 450px;
-  max-height: 70vh;
   margin: 0 auto;
+  position: relative;
+  /*max-width: 70vw;*/
+  /*max-height: 70vh;*/
+}
+
+.instruction-panel {
+  display: none;
 }
 
 .character {
   width: 30px;
   height: 30px;
-  positon: absolute;
+  border-radius: 15px;
+  position: absolute;
 }
 
 #pac-man {
   background-color: yellow;
-  border-radius: 15px;
+  top: 330px;
+  left: 270px;
 }
 
 #ghost-one {
   background-color: red;
-  border-radius: 15px;
+  top: 210px;
+  left: 240px;
 }
 
 #ghost-two {
   background-color: pink;
-  border-radius: 15px;
+  top: 210px;
+  left: 270px;
 }
 
 #ghost-three {
   background-color: orange;
-  border-radius: 15px;
+  top: 210px;
+  left: 300px;
 }
 
 #ghost-four {
   background-color: cyan;
-  border-radius: 15px;
+  top: 180px;
+  left: 270px;
 }
 
 h1 {
@@ -63,10 +74,19 @@ h1 {
 }
 
 h2 {
-  
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+}
+
+p {
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
 }
 
 strong {
   font-size: 30px;
   font-weight: 400;
+  line-height: 40px;
 }

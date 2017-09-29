@@ -1,4 +1,4 @@
-# Basic Pacman
+# **Basic Pac-Man**
 
 
 <img src="/assets/images/flowchart.png" alt="flowchart.png" title="Project Flowchart" width="900">
@@ -6,6 +6,8 @@
 ## Overview
 
 The player controls Pac-Man through a maze of various dots, as well as four multi-coloured ghosts. The goal of the game is to consume all the dots. The four ghosts roam the maze, trying to kill Pac-Man. If any of the ghosts touch Pac-Man, he loses a life; when all lives have been lost, the game ends.
+
+##
 
 
 ## Challenges
