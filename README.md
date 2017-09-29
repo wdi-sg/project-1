@@ -20,14 +20,14 @@ The main challenge of this game is for the player to manage how many enemies the
 ### Game Flow
 
 ##### Overall Flow
-![Overall Flow](/assets/images/overallFlow.svg)
+![Overall Flow](/assets/images/overallFlow.png)
 
 ##### 1st Phase - Planting (to be implemented in version 2)
-![Phase 1 Planting](/assets/images/plantingPhase.svg)
+![Phase 1 Planting](/assets/images/plantingPhase.png)
 
 
 ##### 2nd Phase - Defend (to be implemented in version 1)
-![Phase 2 Fight](/assets/images/fightPhase.svg)
+![Phase 2 Fight](/assets/images/fightPhase.png)
 ---
 
 ### Technical Assets
