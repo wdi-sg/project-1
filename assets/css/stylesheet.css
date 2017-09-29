@@ -1,0 +1,24 @@
+.game {
+  max-width: 600 px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+#ball1 {
+  background-color: blue;
+  top: 0;
+  left: 0;
+}
+
+#ball2 {
+  background-color: red;
+  top: 0;
+  left: 100px;
+}
+
+.ball {
+  border-radius: 999px;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}

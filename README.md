@@ -11,7 +11,7 @@ This game operates in two dimensions which reflect each other in certain ways. Y
 
 However, the terrain **on the other side** isn't always the same.
 
-To pass each level, the player has to move **both balls** into their respective holes.
+To pass each level, the player has to move **both balls** into their respective holes. If you find yourself stuck at any point, please use the reset level button below the panel.
 
 There is a special skill the player can use, align, which lets both balls move in the same direction for a few seconds. Click 'button' to activate this each level.
 
