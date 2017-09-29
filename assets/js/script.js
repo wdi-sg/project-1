@@ -7,9 +7,9 @@ $(function () {
     // console.log(event.key)
     var pacManPos = $pacMan.position()
 
-    if(event.key === 'ArrowUp') $pacMan.css('top', `${pacManPos.top - 30}px`)
-    else if(event.key === 'ArrowDown') $pacMan.css('top', `${pacManPos.top + 30}px`)
-    else if(event.key === 'ArrowLeft') $pacMan.css('left', `${pacManPos.left - 30}px`)
-    else if(event.key === 'ArrowRight') $pacMan.css('left', `${pacManPos.left + 30}px`)
+    if(event.key === 'ArrowUp' && pacManPos.top !== 0) $pacMan.css('top', `${pacManPos.top - 30}px`)
+    else if(event.key === 'ArrowDown' && pacManPos.top !== 420) $pacMan.css('top', `${pacManPos.top + 30}px`)
+    else if(event.key === 'ArrowLeft' && pacManPos.left !== 0) $pacMan.css('left', `${pacManPos.left - 30}px`)
+    else if(event.key === 'ArrowRight' && pacManPos.left !== 540) $pacMan.css('left', `${pacManPos.left + 30}px`)
   })
 })
