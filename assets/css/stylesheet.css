@@ -1,0 +1,22 @@
+.holes{
+  background-color: grey;
+  border-radius: 100px / 50px;
+  border-color: grey;
+  width: 200px;
+  height: 100px;
+  display: inline-block;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+.holesOdd{
+  margin-left: 15px;
+}
+.holesEven{
+  margin-left: 95px;
+}
+.container{
+  text-align:center;
+}
+/*.image{
+  background-image: url(../assets/images/whackthatmole.png);
+}*/

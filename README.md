@@ -1,11 +1,19 @@
-# Project Name (Start editing here)
+
 <!---
 Read Me Contents
 -->
-
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# <img src="/assets/images/readme/whackthatmole.png" height="80"> Project #1: Whack a Mole
 
 ### Overview
+
+![](/assets/images/readme/FirstDraft.png)
+
+Whack a mole is a **fast-action** mole whacking game. When the mole **pop out** on random position, WHACK it fast!
+
+How to **WHACK** ?
+<br/>By clicking on the mole before the mole goes back into the ground. Each successful whack , 10 points awarded. To win, whack your way **FAST** within 180s.
+
+---
 
 Let's start out with something fun - **a game!**
 
@@ -21,7 +29,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +75,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---
