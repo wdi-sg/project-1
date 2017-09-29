@@ -1,96 +1,94 @@
-# Project Name (Start editing here)
+# Sweet Tooth
 <!---
 Read Me Contents
 -->
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](http://kidsdentistrynyc.com/wp-content/uploads/2015/03/tooth.png)
+
+
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+**Sweet Tooth** is a tile matching games where player are supposed to swap tiles to make a match of three or more. Within the tile, there are different type of sweets(e.g strawberry short cake, vanilla round cake, rainbow cake)
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
-
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
-
+Go ahead and join in the fun, feeding the tooth more sweet by matching the different type of sweets.
 
 ---
 
-### Technical Requirements
+### Flow Chart
 
+![](/flowchart.jpg)
 Your app must:
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+* Once the game is started, the **countdown timer** will run. The game will end when the timer reach zero.
+* After the timer is set, the grid is set.  
+
+* Check for match of three or more. Add points if yes and remove elements.Push the elements down to fill the empty space.
+* Let player moves the element if there is no match of three or more.
+* Check for match of three or more after the player moves.
+* End the game when timer is up.
+
 
 ---
 
-### Necessary Deliverables
+### Details-Array
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
-
----
-
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+* For the grid, I will be using 2d Array.
+* Currently, will work with 4x4 grid. If it works, will increase to 5x5, 6x6(if possible) once it is working.
+* At the backend, the array will look like [[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3]]
+* On the front, it will be
+![](/arr-front.png).
+* By using this method, it will allow elements (sweets) to be push down in the column.
 
 ---
 
-### Potential Project Ideas
+### Key issues
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+* **Setting the grid** There is a need to randomize the elements(sweets) that is insert into the grid.
+(Math.random may return lower value after a few run)
+* **Checking matching system** How do I check if there is match of three?
+Suggestion: to check all the possible "winning" condition.
+* **Removing elements(sweets)** After there is match of three, the system should remove the matching set from the grid.
+Suggestion: To set the value to be = null.
+* **Push the elements**
+If there is empty space below, elements(sweets) should be moved down to fill the empty space.
+Suggestion: To check if the current box value is null, if yes, make it equal to the value of box above. (shift down one by one.)
+* **Adding elements at the top when it is empty**
+Need to create a function that will generate random elements(sweets)
+* **Check if there is available moves** If no, reset the grid.
+**Suggestion**: to search more online.
+* **Let players move** Check whether the two elements that the player click is adjacent.(1st selection should be next to 2nd selection)
+* **Changing the elements position**
+**To Test:**
+Whether [a,b] =[b,a] method works?
+Using temporary var to store one of the values.
+```
+var temp = a
+a = b
+b = temp
+```
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+* **Linking box values with the visual.**
+Suggestion: to use addClass function.
+**To Test**
+```
+Var boxValue = array[i][j]
+array[i][j].addClass(`${boxValue}`)
+```
+If boxValue is string values (e.g "strawberry"), will it add class of strawberry to the box?
 
 ---
 
-### Useful Resources
+### Visual
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+##### Color
+The elements should try to have different color. (red, white, brown etc.)
+
+##### The image for the elements should be cute. (Personal preference).
+Maybe to consider 8 bit graphics.
 
 ---
 
-### Project Feedback + Evaluation
+### Self Remainder
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+** To create a _functional_ game with even bad graphics first. **
