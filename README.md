@@ -1,56 +1,114 @@
-# Diao Hua
+# Diao Hua  (Catching Flowers)
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Catching Flowers
+
 
 ### Overview
 
-Let's start out with something fun - **a game!**
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+![flower girl](http://37.media.tumblr.com/tumblr_m6s36nryDE1qdmiaso1_250.gif "flower girl")
 
+Simple side scroller game
+
+Once a year, on a special day, special **Cloud Flowers** breeze through the skies. littering precious flowers of sorts over the lands. Collect those flowers to auction them off at the upcoming **MEGA FLOWER BAZZAR**. The more flowers collected, the more gold can be gained. Think about the children at the orphanage.
+
+**Player** will be moving across screen collecting flowers fallen from the sky, each flower has a different value. Collect as much flowers as humanly possible to earn points! But watch out for the pesky **humming bird**, they are here to steal your flowers away!
+
+**TL;DR** Collect flowers and avoid birds.
 
 ---
 
-### Technical Requirements
+---
 
-Your app must:
+### Technical Codes
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
+###### Codes:
+
+* **collision**
+
+```
+var rect1 = {x: 5, y: 5, width: 50, height: 50}
+var rect2 = {x: 20, y: 10, width: 10, height: 10}
+
+if (rect1.x < rect2.x + rect2.width &&
+   rect1.x + rect1.width > rect2.x &&
+   rect1.y < rect2.y + rect2.height &&
+   rect1.height + rect1.y > rect2.y) {
+    // collision detected!
+}
+
+// filling in the values =>
+
+if (5 < 30 &&
+    55 > 20 &&
+    5 < 20 &&
+    55 > 10) {
+    // collision detected!
+}
+```
+
+* to calculate **score** when flowers collides with player HitBox.
+* Flower falls downwards in a straight line.
+* < more to come >
+*
+```
+
+                        ."      _.---_
+                       / |     /___--"     
+                       |/           
+           __--=======-+"..-..
+         //           /\  "-__\
+       //  __         \/
+     //   //\\        
+_-==//==-.|| || _---_    .     -      .-==-.   .-._
+./   //     ||// //   \\   ||   | \    //    || //   \\
+  //     .||  ||     |\./\\  /|^\\  ||-===-" //     ||
+ //        \=//\=___=//^  \\//   \-/ \\=...="/       \==-.
+//                 
+.
+```
 * **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
+*
 
 ---
 
+---
 ### Necessary Deliverables
 
 * A **working game, built by you**, hosted somewhere on the internet
 * A **link to your hosted working game** in the URL section of your GitHub repo
 * A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
 * **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+---
 
 ---
 
-### Flow Chart
-![alt text](project-1/assets/images/flowchart.png)
+### Gameplay Flowchart
+![flowchart](https://raw.githubusercontent.com/sillyadventures/project-1/master/assets/images/flowchart.png "flow chart")
 
+![gameplay](https://raw.githubusercontent.com/sillyadventures/project-1/master/assets/images/gameplay.png "gamplay")
+
+![legend](https://raw.githubusercontent.com/sillyadventures/project-1/master/assets/images/legend.png "legend")
 
 ---
 
-### Potential Project Ideas
+---
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+### Potential Advancements
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+##### Player 2 option
+Create a Player 2 option for friends to join in the fun!
+
+Hit box collision for both players, able to push the other one away, a Jump ability.
+
+##### Different level layouts & player avatar
+Create different levels with obstacles.
+
+Have different avatars for players to choose from.
+
+---
 
 ---
 
@@ -62,6 +120,8 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 # Powered By : [![N|GitHub](https://cdn1.iconfinder.com/data/icons/logotypes/32/github-128.png "Git Hub")](https://github.com/)
+
+---
 
 ---
 
