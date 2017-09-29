@@ -1,7 +1,7 @@
 # Basic Pacman
 
 
-<img src="/assets/images/flowchart.png" alt="flowchart.png" title="Project Flowchart" width="800">
+<img src="/assets/images/flowchart.png" alt="flowchart.png" title="Project Flowchart" width="900">
 
 ## Overview
 
