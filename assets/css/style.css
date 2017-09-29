@@ -1,0 +1,46 @@
+body{
+  background-color: black;
+    color: white;
+    max-width: 1700px;
+}
+
+.container{
+  border: 3px solid red;
+  height:840px;
+}
+.topContainer{
+  border: 2px solid lightblue;
+  height: 80%;
+}
+.bottomContainer{
+  border: 3px solid lightgreen;
+  height: 19%;
+}
+.projectile{
+  border: 3px solid red;
+  height: 5px;
+  width: 10px;
+  position: absolute;
+  top: 600px;
+  left:150px;
+  transition: 2s;
+  visibility: hidden;
+}
+.player{
+  height: 150px;
+  width: 50px;
+  border: 2px solid green;
+  position: absolute;
+  top: 530px;
+  left:50px;
+}
+.mob{
+  height: 140px;
+  width: 60px;
+  border: 1px solid yellow;
+  position: absolute;
+  top: 542px;
+  left: 655px;
+  transition: 4s;
+
+}
