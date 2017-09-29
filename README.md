@@ -1,7 +1,7 @@
 # Space Invader (Start editing here)
 ![Space Invader Logo](https://nebula.wsimg.com/obj/QzRGNkYxNkJERTM0M0M0MDdCMzM6YWYxNzQ2ZGRmMmVkZWFiMmY2ZDVlZjQwMzgwNTY4ZTU6Ojo6OjA=)
 
-![Pseudocode Flowchart](/assets/img/New Space Invaders.png)
+![Pseudocode Flowchart](/assets/img/New Space Invaders copy.jpg "Flowchart")
 
 ## Assets
 
