@@ -10,12 +10,13 @@ Read Me Contents
 A simple game which goal is for player to repeat the pattern showed by the ‘instructor’.
 With each round a new step is added to the pattern making, the game much more difficult with every round. A timer will also run through all of the rounds and displayed at the end of the game comparing the total time taken to finish the rounds between the two players.
 
-## My flowchart 
+## My flowchart
 
 ![](/assets/images/flowchart2.png)
 
+## Challenges
 
-
+Will update when challenges are faced
 
 ### Overview
 
