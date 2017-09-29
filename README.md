@@ -1,4 +1,4 @@
-# Project Name (Start editing here)
+# On The Other Side
 <!---
 Read Me Contents
 -->
@@ -7,11 +7,17 @@ Read Me Contents
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+This game operates in two dimensions which reflect each other in certain ways. You control the ball on the left, and **on the other side**, the ball moves in the opposite direction. e.g.: You move left, the other moves right.
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+However, the terrain **on the other side** isn't always the same.
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+To pass each level, the player has to move **both balls** into their respective holes.
+
+There is a special skill the player can use, align, which lets both balls move in the same direction for a few seconds. Click 'button' to activate this each level.
+
+### Basic flow
+
+# ![](/assets/img/ontheothersidev1.jpg)
 
 
 ---
@@ -21,7 +27,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +73,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---
