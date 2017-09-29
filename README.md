@@ -12,7 +12,7 @@ With each round a new step is added to the pattern making, the game much more di
 
 ## My flowchart
 
-![](/assets/images/flowchart2.png)
+![](/assets/images/flowchart.png)
 
 ## Challenges
 
