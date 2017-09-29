@@ -82,7 +82,7 @@ If boxValue is string values (e.g "strawberry"), will it add class of strawberry
 ### Visual
 
 ##### Color
-The elements should try to have different color. (red, white, brown etc.)
+The elements should have different color. (red, white, brown etc.)
 
 ##### The image for the elements should be cute. (Personal preference).
 Maybe to consider 8 bit graphics.
