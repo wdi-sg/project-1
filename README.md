@@ -1,9 +1,17 @@
-# Project Name (Start editing here)
+# Guess the Picture: Countries
 <!---
 Read Me Contents
 -->
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+
+ <img src="assets/img/workflow.jpg">
+
+
+### The game:
+
+Test your general knowledge. How many national flags can you identify?
+
+Bonus points awarded for fastest fingers. Solve the question before the image is revealed to win double points.
 
 ### Overview
 
@@ -21,7 +29,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +75,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---
