@@ -6,6 +6,7 @@ $(function () {
   var $player = $('.player')
   var $bullet = $('.projectile')
   var $body = $('body')
+  $bullet.hide()
 
   setInterval(startMob, 7000)
   setInterval(bulletCollisionCheck, 10)
@@ -25,8 +26,7 @@ $(function () {
        }
        break;
 
-       case 38: if($playPos.top > 529){$player.css("top",`${$playPos.top -=200}px`)
-        $bullet.show()} // up
+       case 38: if($playPos.top > 529){$player.css("top",`${$playPos.top -=200}px`)} // up
        else {
          return
        }
@@ -36,8 +36,8 @@ $(function () {
        case 39: $player.css("left",`${$playPos.left +=100}px`)// right
        break;
 
-       case 40: $player.css("top",`${$playPos.top +=10}px`)// down
-       break;
+      //  case 40: $player.css("top",`${$playPos.top +=10}px`)// down
+      //  break;
 
        default: return; // exit this handler for other keys
    }
