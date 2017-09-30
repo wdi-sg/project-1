@@ -1,12 +1,25 @@
-.cubeBlue{
+.container {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  border: 1px solid blue;
+  width: 200px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
+.cubeA{
   background-color:  #3772FF;
 }
 
-.cubeYellow{
+.cubeB{
   background-color:  #FED766;
 }
 
-.cubeRed{
+.cubeC{
   background-color:  #FE5F55;
 }
 

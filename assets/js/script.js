@@ -1,6 +1,8 @@
 $(function () {
 
   var grid=[] //this is the game board
+  var colorList = ['cubeA','cubeB','cubeC']
+  var cellColor =""
 
   // create a 2D array
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#Multi-dimensional_arrays
@@ -22,9 +24,14 @@ $(function () {
 
     console.log(grid)
   }
+  function generateColor() {
+    cellColor = colorList[Math.floor(Math.random() * colorList.length)]
+  }
 
+  generateLevel(4)
+  generateColor()
 
-  generateLevel(4) //call function to generate level
   console.log(grid)
+  console.log(cellColor)
 
 })
