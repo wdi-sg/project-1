@@ -22,7 +22,7 @@ Once all levels are complete, you win!
 
 ### Pseudo codes
 
-* Declare a variable “grid” which is an array with 16 null values to represent a 4 x 4 grid of cells.
+* Use a function to create a 2D array “grid” which is an array with 16 null values to represent a 4 x 4 grid of cells.
 
 * Function gameStart: Generate random numbers between 1 to 3 to populate the array. 1,2,3 will represent “Red”,”Yellow”, “Blue” cells respectively. 
 Function Scoring: a function to check scoring condition
