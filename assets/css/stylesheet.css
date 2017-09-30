@@ -1,23 +1,28 @@
-.game {
-  max-width: 600 px;
+.half {
+  width: 300px;
   height: 200px;
   border: 1px solid black;
-}
+  margin: 0 auto;
+  float: left;}
 
 #ball1 {
   background-color: blue;
-  top: 0;
-  left: 0;
+  top: 20px;
+  left: 250px;
 }
 
 #ball2 {
   background-color: red;
-  top: 0;
-  left: 100px;
+  top: 20px;
+  left: 30px;
+}
+
+#clear {
+  clear: both;
 }
 
 .ball {
-  border-radius: 999px;
+  border-radius: 99px;
   position: relative;
   width: 20px;
   height: 20px;
