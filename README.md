@@ -7,7 +7,9 @@ Read Me Contents
 
 ### Overview
 
-This game operates in two dimensions which reflect each other in certain ways. You control the ball on the left, and **on the other side**, the ball moves in the opposite direction. e.g.: You move left, the other moves right.
+This game operates in two dimensions which reflect each other in certain ways. You control the ball on the left, and **on the other side**, the ball moves in the opposite direction. Your ball moves left, the other moves right.
+
+![](/assets/img/ballmovedemo.gif)
 
 However, the terrain **on the other side** isn't always the same.
 

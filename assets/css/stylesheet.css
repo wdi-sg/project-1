@@ -1,8 +1,10 @@
+.container {
+  margin: 0 auto;
+}
 .half {
   width: 300px;
   height: 200px;
   border: 1px solid black;
-  margin: 0 auto;
   float: left;}
 
 #ball1 {
@@ -26,4 +28,5 @@
   position: relative;
   width: 20px;
   height: 20px;
+  transition: all 0.5s ease-out;
 }
