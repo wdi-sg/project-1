@@ -1,10 +1,10 @@
 # Project #1: [GAME NAME]
 
 ## Overview
-*]GAME NAME]* is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.
+*[GAME NAME]* is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.
 
 #### How to play
-Use your mouse to aim and shoot. Shooting enemies will damage them, some enemies require more shots to kill. Failure to kill them before they disappear will reduce your health
+Use your mouse to aim and shoot. Shooting enemies will damage them, some enemies require more shots to kill. Failure to kill them before they disappear will reduce your health.
 *Grenades* damage all visible enemies.
 Shooting *allies* cause you to lose a health.
 Shoot *ammo boxes* or *med packs* to refill your supplies and health.
