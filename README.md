@@ -23,7 +23,7 @@ Memory has long been a favourite game for all generations. Test your memory with
   + Preparing game for restart
 
 
-+ FlipCard Function
++ MatchCard Function
   + Current player flips two cards
   + If data-attribute is same, return true, leave cards upturned and return match, add 2 points
   + If data-attribute is different, return false, use setInterval to turn down cards
