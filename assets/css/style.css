@@ -11,6 +11,7 @@ body{
 .topContainer{
   border: 2px solid lightblue;
   height: 80%;
+  overflow: hidden;
 }
 .bottomContainer{
   border: 3px solid lightgreen;
@@ -23,8 +24,8 @@ body{
   position: absolute;
   top: 600px;
   left:150px;
-  transition: 2s;
-  visibility: hidden;
+  transition: 1s;
+  /*visibility: hidden;*/
 }
 .player{
   height: 150px;
@@ -33,6 +34,7 @@ body{
   position: absolute;
   top: 530px;
   left:50px;
+  transition: 0.2s;
 }
 .mob{
   height: 140px;
@@ -41,6 +43,6 @@ body{
   position: absolute;
   top: 542px;
   left: 655px;
-  transition: 4s;
+  transition: 7s;
 
 }
