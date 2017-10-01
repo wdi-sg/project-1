@@ -1,48 +1,69 @@
 $(function () {
-
   // define current player. By default, player 1 goes first
-  var player1 =$('.player1')
-  var player2 =$('.player2')
+  var player1 = $('.player1').css('backgroundColor', 'blue')
+  var player2 = $('.player2').css('backgroundColor', 'red')
   var currentPlayer = player1
-  // define starting position of grid
-  var $startPoint = $('[data-value = 0]')
-  // define current Position
-  var currentPosition;
-  var cellValue = $startPoint.data('value')
-  //define dice button
-  var $dice = $('.dice')
 
+  // define starting position of grid
+  var $startPointDiv = $('[data-value = 0]') // an object //=> [div.cell, prevObject: r.fn.init(1)]
+  // console.log($('.cell[data-value = 0]'))
+  // define current Position
+  var cellValueP1 = $startPointDiv.data('value')
+  var cellValueP2 = $startPointDiv.data('value')
+
+  var currentPositionP1
+  var currentPositionP2
+
+
+  // define dice button
+  var $dice = $('.dice')
 
   $dice.on('click', rollDice)
 
-  function rollDice() {
-    var diceResult = Math.floor(Math.random()*7)
-    cellValue += diceResult
+  function rollDice () {
+    var diceResult = 1 + Math.floor(Math.random() * 6)
+
     if (currentPlayer === player1) {
-    // currentPosition = $('[data-value = cellValue]')
-    currentPosition = $(`[data-value = ${cellValue}]`)
-    t
-    // }
+      cellValueP1 += diceResult
+      console.log(cellValueP1)
+      currentPositionP1 = (`[data-value = ${cellValueP1}]`)
+      // console.log(snake === currentPositionP1)
+      player1.detach().appendTo(currentPositionP1)
+
+      // Let's put some snakesssssss
+      if (currentPositionP1 === ('[data-value = 8]') || currentPositionP1 === ('[data-value = 14]')) {
+        currentPositionP1 = (`[data-value = 4]`)
+        player1.detach().appendTo(currentPositionP1)
+      // Let's put some ladders
+      } else if ((currentPositionP1 === ('[data-value = 1]') || currentPositionP1 === ('[data-value = 9]'))) {
+        currentPositionP1 = (`[data-value = 8]`)
+        player1.detach().appendTo(currentPositionP1)
+      }
+
+      currentPlayer = player2
+    } else if (currentPlayer === player2) {
+      cellValueP2 += diceResult
+      currentPositionP2 = $(`[data-value = ${cellValueP2}]`)
+      player2.detach().appendTo(currentPositionP2)
+
+      // Let's put some snakesssssss
+      if (currentPositionP2 === ('[data-value = 8]') || currentPositionP2 === ('[data-value = 14]')) {
+        currentPositionP2 = (`[data-value = 4]`)
+        player2.detach().appendTo(currentPositionP1)
+          // Let's put some ladders
+      } else if ((currentPositionP2 === ('[data-value = 1]') || currentPositionP2 === ('[data-value = 9]'))) {
+        currentPositionP2 = (`[data-value = 8]`)
+        player2.detach().appendTo(currentPositionP2)
+      }
+
+      currentPlayer = player1
+    }
   }
 
-// current cell value = ($('.cell').data('value')) + dice value
-// current cell Pos = $('.cell').data('current Cell value')
-//  $('player 1').detach().appendTo($('current Cell Pos'))
-
-// find initial position // box cell value 1. Append Player 1 inside
-// check if player 1 = 1
-// roll dice
-// current position = player 1 val + dice value
-// update current position on grid - append to cell
-// switch player
-// player 2 = -1
-// roll dice
-// /
-
-// html
-// create 16 square boxes div.
-// give each square a class of box & a value
-// index of 0,1,2,3
+// //check if there's snakes
+// if(currentPositionP1 === $('[data-value = 10]'))
+// // check if there's a ladder
+// if(currentPositionP1 === $('[data-value = 8]'))
 
 // Before Start Game:
 // 1. define a variable for current Player and set it to 1.
@@ -73,7 +94,7 @@ $(function () {
 //   var $player2 = $('<div id=player2>').text('Player 2').css('border','1px solid blue')
 //   $initialPosition.append($player2)
 
-//check if there are 2 players at startpoint
+// check if there are 2 players at startpoint
 // var checkPlayersAtStartPoint = function () {
 //   if ($startPoint.children().length === 2)
 //   startGame()

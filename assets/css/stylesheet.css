@@ -3,7 +3,7 @@
   width: 1200px;
 }
 
-.wrapper1 , .wrapper2 , .wrapper3 , .wrapper4 {
+.wrapper {
   border: 1px solid black;
   width: 1000px;
   margin: 0 auto;
@@ -33,6 +33,10 @@
   height 40px;
   width: 60px;
   position: relative;
+}
+
+button {
+  bottom: 900px;
 }
 
 h1 {
