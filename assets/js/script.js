@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   function checkVictory() {
     if(timer <= 0 && playerStats.health > 0) {
-      alert('VICTORY!')
+      // alert('VICTORY!')
     }
   }
 
@@ -33,6 +33,31 @@ $(document).ready(function() {
   }
   countDown()
 
+  // shooting
+  $gameScreen = $('.gameScreen')
+  $gameScreen.on('click', () => {
+    if(playerStats.ammo > 0) {
+      playerStats.ammo = playerStats.ammo - 1
+      console.log(playerStats.ammo)
+      // then check for hit
+    } else {
+      console.log('Out of ammo!')
+    }
+  })
+
+  // right click grenades
+  $gameScreen.on('contextmenu', function(ev) {
+    ev.preventDefault();
+    if (playerStats.grenade > 0) {
+      playerStats.grenade = playerStats.grenade - 1
+      console.log(playerStats.grenade)
+      // target all enemies and deal 2 damage
+      // check enemies alive?
+    } else {
+      console.log('Out of grenades!')
+    }
+  })
+
   // constructor for all spawns
   function Spawn(life, effectHealth, effectAmmo, effectGrenade, timeToRemoval){
     this.life = life;
@@ -40,22 +65,65 @@ $(document).ready(function() {
     this.effectAmmo = effectAmmo;
     this.effectGrenade = effectGrenade;
     this.timeToRemoval = timeToRemoval;
+    // effect on score in the future
   }
 
-  // spawn stats (life, effectHealth, effectAmmo, effectGrenade, timeToRemoval)
-  // var enemyEasy = new Spawn(1, 0, 0, 0, 5)
-  // var enemyNormal = new Spawn(2, 0, 0, 0, 5)
-  // var enemyHard = new Spawn (3, 0, 0, 0, 5)
-  // var enemyFast = new Spawn (1, 0, 0, 0, 3)
-  // var ally = new Spawn (1, -1, 0, 0, 5)
-  // var healthPack = new Spawn(1, +1, 0, 0, 3)
-  // var ammoBox = new Spawn(1, 0, +10, 0, 3)
-  // var grenadeRefill = new Spawn(1, 0, 0, +1, 3)
+  // testing enemy spawn
+  var enemyList = []
+  // enemyList.forEach() // iterate the enemyList and use their key/value to affect the game.
 
-  //
-  // function spawnTest(){
-  //   setInterval(spawnEnemy1, 2000)
-  // }
-  //
-  // spawnTest()
+  // spawn stats (life, effectHealth, effectAmmo, effectGrenade, timeToRemoval)
+  function spawnEnemyEasy () {
+    var enemyEasy = new Spawn(1, 0, 0, 0, 4)
+    enemyList.push(enemyEasy)
+  }
+  function spawnEnemyNormal () {
+    var enemyNormal = new Spawn(2, 0, 0, 0, 4)
+    enemyList.push(enemyNormal)
+  }
+  function spawnEnemyHard () {
+    var enemyHard = new Spawn(3, 0, 0, 0, 4)
+    enemyList.push(enemyHard)
+  }
+  function spawnAlly () {
+    var ally = new Spawn(1, -1, 0, 0, 3)
+    enemyList.push(ally)
+  }
+  function spawnHealthPack () {
+    var healthPack = new Spawn(1, +1, 0, 0, 3)
+    enemyList.push(healthPack)
+  }
+  function spawnAmmoBox () {
+    var ammoBox = new Spawn(1, 0, +10, 0, 3)
+    enemyList.push(ammoBox)
+  }
+  function spawnGrenadeRefill () {
+    var grenade = new Spawn(1, 0, 0, +1, 3)
+    enemyList.push(grenade)
+  }
+
+  //testing spawn
+  spawnEnemyEasy()
+  spawnEnemyNormal()
+  spawnAlly()
+  spawnHealthPack()
+  console.log(enemyList)
+  console.log(typeof(enemyList[2].effectHealth)) // able to pull stats from spawn
+
+  //test creating html and css using jquery for each spawn
+  $gameScreen = $('.gameScreen')
+  var $enemyEasy = $('<div class="enemy">')
+  $enemyEasy.css({
+    "height": "18px",
+    "width": "18px",
+    "background-color": "white",
+    "border": "3.5px solid red",
+    "border-radius": "999px",
+    "position": "relative",
+    "left": "200px", //spawn location
+    "top": "200px"
+  })
+
+  $gameScreen.append($enemyEasy) //think about location of spawn? random or fixed first?
+
 })

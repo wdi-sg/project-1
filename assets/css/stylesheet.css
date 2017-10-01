@@ -1,8 +1,103 @@
+.container {
+  border: 2px solid red;
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  display: block;
+}
+
 h1 {
-  width: 250px;
+  width: 100%;
   text-align: center;
   margin: 10 auto;
-  border: 5px solid black;
+  border: 2px solid black;
   display: block;
+}
+
+.gameScreen {
+  border: 1px solid black;
+  padding: 0;
+  width: 700px;
+  height: 450px;
+  margin: 0 auto;
+  background-image: url("/assets/img/cityView.jpg");
+  display: block;
+  position: relative;
+}
+
+.target {
+  height: 18px;
+  width: 18px;
+  background-color: white;
+  border: 3.5px solid red;
+  border-radius: 999px;
+  position: relative;
+  left: 250px;
+  top: 200px;
+}
+
+.gun {
+  position: relative;
+  left: 300px;
+  top: 360px;
+}
+
+
+/*.gameBackground {
+  z-index: 0;
+  padding: 0;
+  width: 700px;
+  height: 450px;
+  margin: 0 auto;
+  display: inline;
+  position: fixed;
+}*/
+
+.timer {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  display: block;
+  top: 0;
+  right: 0;
   position: absolute;
+}
+
+.playerHealth {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  display: block;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+.playerGrenade {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+}
+
+.playerAmmo {
+  background-color: white;
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  right: 0;
+}
+
+
+
+img {
+  width: 120px;
+}
+
+
+.sold1 {
+  width: 105px;
 }

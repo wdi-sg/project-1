@@ -30,9 +30,9 @@ Lose all your health
 <img src="assets/img/flowchart.jpeg">
 
 #### Coding Theory
-This is a simple game with only one victory and one failure condition.
+This game has only one victory and one failure condition.
 Enemies/allies/tools will spawn via a setInterval function.
-Different enemies have different spawn time.
+Different enemies have different spawn rates.
 They will be created via a constructor function with the following format:
 ```
 enemy{
@@ -43,16 +43,23 @@ enemy{
   // on reaching 0, enemy damages player and disappears
 }
 ```
-On shooting, function will iterate object key and value to determine effect on player stats.
+On shooting utilities, function will iterate object key and value to determine effect on player stats.
+Enemies deal damage to player on expiry.
 
 #### Future Updates
 * Scoring function
 * More enemy types
 * Combo function
 * Transition fade enemies
+* Pause button
+* Set events i.e. spawn 5 hard enemies at the same time
+* Text popups at game screen, 'Miss!' etc.
+* Music and sound effects
 
 #### Current Issues
-EVERYTHING
+Spawning of enemies, storing of enemies, targeting this.enemy on click to derive key/value.
 
 #### Working On
 * Game theory
+* Specifically creating html and css via jquery with each spawn
+* Enemies dealing damage to player on expire
