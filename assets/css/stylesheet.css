@@ -1,20 +1,50 @@
-.outer{
-  border-radius: 150px / 120px;
+body{
+  background-color: #92B6B1;
+}
+h1{
+  font-family:'Finger Paint', cursive;
+  color:white;
+  font-size: 60px;
+
+}
+
+button{
+  background: #92B6B1;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline: 0;
+  border: 0;
+}
+
+button:hover {
+  background: #788AA3;
+  text-decoration: none;
+}
+
+.mole{
+  border-radius: 100px / 50px;
   width: 230px;
   height: 130px;
   display: inline-block;
-  margin-left: 35px;
-  margin-top: 55px;
+  margin-top: -36px;
+  margin-left: -25px
 
 }
 .holes{
-  background-color: grey;
+  background-color: #788AA3;
   border-radius: 100px / 50px;
   border-color: grey;
-  width: 100px;
-  height: 50px;
+  width: 200px;
+  height: 95px;
   display: inline-block;
-  margin-top: 80px;
+  margin-top: 60px;
+  margin-left: 38px;
 }
 
 .holesOdd{
@@ -22,11 +52,12 @@
 }
 
 .holesEven{
-  margin-left: 95px;
+  margin-left: 25px;
 }
 
 .container{
   text-align:center;
+
 }
 
 .image {
