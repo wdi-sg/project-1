@@ -3,12 +3,13 @@
   width: 300px;
   height: 200px;
   border: 1px solid black;
-  float: left;}
+  float: left;
+}
 
 #ball1 {
   background-color: blue;
   top: 20px;
-  left: 250px;
+  left: 90px;
 }
 
 #ball2 {
@@ -24,8 +25,10 @@
 .balls {
   border-radius: 99px;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   display: inline-block;
+  float: left;
+  margin: 0;
   transition: all 0.5s ease-out;
 }
