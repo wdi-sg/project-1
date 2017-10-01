@@ -1,10 +1,10 @@
-# Project 1: Olde Town Beat Down
+# Project 1: Crops and Robbers
 
 ### Introduction
 
 **Bandits** are trying to steal your harvest. Luckily for you, milk isn't the only thing you deliver. Defend your crop and **deliver sweet justice**.
 
-1. Play as a farmer, Johnny Wickerbottom.
+1. Play as a farmer, Johnny Wicklebottom.
 2. Plant crops and earn gold to survive the winter.
 3. As the crops grow, enemies appear. More crops, more enemies.
 

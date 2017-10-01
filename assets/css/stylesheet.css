@@ -1,16 +1,6 @@
 .gameBoard {
   width: 800px;
-  height: 800px;
+  height: 600px;
   border: 3px solid black;
-  position: absolute;
-}
-
-.player {
-  width: 100px;
-  height: 100px;
-  border: 3px solid blue;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
   position: absolute;
 }
