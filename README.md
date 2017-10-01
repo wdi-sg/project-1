@@ -18,7 +18,6 @@ Go ahead and join in the fun, feeding the tooth more sweet by matching the diffe
 ### Flow Chart
 
 ![](/flowchart.jpg)
-Your app must:
 
 * Once the game is started, the **countdown timer** will run. The game will end when the timer reach zero.
 * After the timer is set, the grid is set.  
@@ -27,8 +26,6 @@ Your app must:
 * Let player moves the element if there is no match of three or more.
 * Check for match of three or more after the player moves.
 * End the game when timer is up.
-
-
 ---
 
 ### Details-Array
@@ -86,6 +83,18 @@ The elements should have different color. (red, white, brown etc.)
 
 ##### The image for the elements should be cute. (Personal preference).
 Maybe to consider 8 bit graphics.
+
+---
+### Versions
+
+version 0.2.0: added necessary function
+* Generate the different elements.
+* Checking the grid for match, increase score for match, delete the 3 or more matching elements and push those elements above down, add new elements to the top.
+* visual: Able to differentiate between different types of elements. Able to see the total score.
+
+yet to add
+* the swapping element function.
+* checking available moves function.
 
 ---
 

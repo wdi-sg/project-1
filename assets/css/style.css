@@ -1,0 +1,78 @@
+.box{
+  width: 100px;
+  height: 100px;
+  background-color:grey ;
+  display: inline-block;
+  margin: 2px;
+  /*border: 2px solid black;*/
+}
+.gridbox{
+  width: 450px;
+  height: 440px;
+  display: inline-block;
+  padding: 3px;
+  background-color: #9AA3AD;
+  border: 3px solid #5E6A7A;
+  border-radius: 20px;
+}
+.left{
+  /*display: block;*/
+  width: 470px;
+  height: 550px;
+  background-color: #9AA3AD;
+  text-align: center;
+  display: inline-block;
+
+}
+
+h1, h2 {
+  color: white;
+}
+
+body{
+  width: 90%;
+}
+
+.container{
+  text-align: center;
+  display: block;
+  background-color: #9AA3AD;
+  width: 800px;
+  height: 600px;
+}
+
+.right{
+  width:200px;
+  height: 600px;
+  border-left: 2px solid grey;
+  display: inline-block;
+  float:right;
+  text-align: center;
+}
+.scoreTotal{
+  width:150px;
+  height: 70px;
+  background-color: #5E6A7A;
+  vertical-align: middle;
+  color:white;
+  font-size: 40px;
+  line-height: 70px;
+  display: inline-block;
+  border-radius: 25px;
+}
+
+/* below class related to element*/
+.c1{
+  background-color: #EABED2;
+  border-radius: 50px;
+}
+
+.c2 {
+  background-color: #443528;
+  border-radius: 25px;
+}
+
+.c3 {
+  background-color: #BEE5BF;
+  border-radius: 25px 0 25px 0;
+}

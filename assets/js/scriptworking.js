@@ -11,7 +11,6 @@ var timer = 2
 //var elements = ['straw','choco','melon']
 var gridNo = 4
 var $box = $('.box')
-var $scoreBox = $('.scoreTotal')
 $(function(){
 
 // timer function
@@ -30,54 +29,12 @@ $(function(){
   if(timer >=0){ // to make it work with while loop
     generateElements() //
     checkGrid()
+  //console.log(grid)
+    pushDown()
+  //generateElements()
   }
   console.log(grid)
   console.log(total)
-
-  var toSwitchTwo = []
-
-
-  if(checkGrid()){
-    $box.on('click', function(){
-      var idArr = this.id.split('')
-      toSwitchTwo.push(idArr)
-      console.log(toSwitchTwo)
-
-      if (toSwitchTwo.length ===2){
-        var iValueOne = toSwitchTwo[0][3]
-        var jValueOne = toSwitchTwo[0][4]
-        var iValueTwo = toSwitchTwo[1][3]
-        var jValueTwo = toSwitchTwo[1][4]
-        console.log(`${iValueOne},${jValueOne}:${iValueTwo},${jValueTwo}`)
-        if (iValueOne === iValueTwo){
-          if (jValueTwo !== (jValueOne +1) && jValueTwo !== (jValueOne -1) ){
-            alert("invalid move")
-          }
-          if(jValueTwo === jValueOne +1 || jValueTwo === jValueOne -1 ){
-            var tempValue = grid[iValueOne][jValueOne]
-            grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
-            grid[iValueTwo][jValueTwo] = tempValue
-            console.log(tempValue)
-          }
-        }
-        if (jValueOne === jValueTwo){
-          if (iValueTwo !== iValueOne +1 && iValueTwo !== iValueOne -1 ){
-            alert("invalid move")
-          }
-        }
-      }
-      // var iValue = idArr[3]
-      // var jValue = idArr[4]
-      // console.log(idArr)
-      // console.log(`${iValue}${jValue}`)
-
-
-    })
-
-
-    //allow player to move and select and move two elements
-  }
-
 
 //// restart function
   function restart(){
@@ -107,14 +64,14 @@ $(function(){
         }
       }
     }
-    checkGrid()
   }
 // check grid function
   function checkGrid(){
-    var currentTotal = total
+
     // to check all possible condition // to include the match of 5 too
     // try using 2 for loop
     /// to check if is match of 4
+
     /// checking backend (row by row) visual column by column
     for (var i = 0; i<gridNo; i++){
       for (var j = 0; j< (gridNo/2);j++){
@@ -151,48 +108,77 @@ $(function(){
         }
       }
     }
-    if (total > currentTotal){
-      pushDown()
-      $scoreBox.text(`${total}`)
-      return false
-    }
-    else return true
   }
+  //
 
   function pushDown(){
     for (var i = 0; i< gridNo; i++){
-      for(var k = gridNo-1; k >= 0 ;k--){
+      for(var k = gridNo-1; k > 0 ;k--){
+        // if(grid[i][k] !== undefined ){
+        //   console.log('undefined')
+        //   continue
+        // }
+        $oneBox = $(`#box${i}${k}`)
         if (grid[i][k] === undefined){
-          $oneBox = $(`#box${i}${k}`)
           $oneBox.removeClass()
           $oneBox.addClass('box')
-          if(k > 0){
-            if (grid[i][k-1]!== undefined||grid[i][k-1]){
-              grid[i][k] = grid[i][k-1]
-              $oneBox.addClass(`c${grid[i][k]}`)
-              grid[i][k-1] = undefined
-              continue
-            }
-            else if(grid[i][k-2]!== undefined||grid[i][k-2]){
-              grid[i][k] = grid[i][k-2]
-              $oneBox.addClass(`c${grid[i][k]}`)
-              grid[i][k-2] = undefined
-              continue
-            }
-            else if(grid[i][k-3]!== undefined || grid[i][k-3]){
-              grid[i][k] = grid[i][k-3]
-              $oneBox.addClass(`c${grid[i][k]}`)
-              grid[i][k-3] = undefined
-              continue
-            }
-            else continue
+          if (grid[i][k-1]!== undefined||grid[i][k-1]){
+            grid[i][k] = grid[i][k-1]
+            $oneBox.addClass(`c${grid[i][k]}`)
+            // if (grid[i][k-1]!== undefined){
+            //   //$oneBox.addClass(`c${grid[i][k]}`)
+            // }
+            grid[i][k-1] = undefined
+            continue
           }
-          continue
+          else if(grid[i][k-2]!== undefined||grid[i][k-2]){
+            grid[i][k] = grid[i][k-2]
+
+
+            $oneBox.addClass(`c${grid[i][k]}`)
+
+            grid[i][k-2] = undefined
+            continue
+          }
+
+          else if(grid[i][k-3]!== undefined || grid[i][k-3]){
+            grid[i][k] = grid[i][k-3]
+            $oneBox.addClass(`c${grid[i][k]}`)
+
+            // if (grid[i][k-3]!== undefined){
+            // //$oneBox.addClass(`c${grid[i][k]}`)
+            // }
+            grid[i][k-3] = undefined
+            continue
+          }
+
+          else {
+            break
+          }
+          console.log('goin thru')
+          // switch (true) {
+          //   case (grid[i][k-1]!== undefined||grid[i][k-1]!==null):
+          //   grid[i][k] = `${grid[i][k-1]}`
+          //   grid[i][k-1] = null
+          //   continue
+          //
+          //   case (grid[i][k-2]!== undefined||grid[i][k-2]!==null):
+          //   grid[i][k] = `${grid[i][k-2]}`
+          //   grid[i][k-2] = null
+          //   continue
+          //   case grid[i][k-3]!==undefined||grid[i][k-3]!==null:
+          //   grid[i][k] = `${grid[i][k-3]}`
+          //   grid[i][k-3] = null
+          //   continue
+          //   default:
+          //   console.log('error')
+          // }
         }
         else continue
       }
+
     }
-    generateElements()
+    //console.log(grid)
   }
 
   // function resetGrid(){
