@@ -1,22 +1,38 @@
+.outer{
+  border-radius: 150px / 120px;
+  width: 230px;
+  height: 130px;
+  display: inline-block;
+  margin-left: 35px;
+  margin-top: 55px;
+
+}
 .holes{
   background-color: grey;
   border-radius: 100px / 50px;
   border-color: grey;
-  width: 200px;
-  height: 100px;
+  width: 100px;
+  height: 50px;
   display: inline-block;
-  margin-left: 15px;
-  margin-top: 15px;
+  margin-top: 80px;
 }
+
 .holesOdd{
   margin-left: 15px;
 }
+
 .holesEven{
   margin-left: 95px;
 }
+
 .container{
   text-align:center;
 }
-/*.image{
-  background-image: url(../assets/images/whackthatmole.png);
-}*/
+
+.image {
+  background-image: url("whackthatmole.png");
+  background-size: 100px 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

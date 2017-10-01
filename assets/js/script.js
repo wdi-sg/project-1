@@ -1,22 +1,21 @@
 $(function(){
+
   var score = 0;
   var moleTimeout = 5;
 
+  var $outter = $(".outter")
+  var $holes =$('.holes')
+
   alert('hello')
-  // var $div = $('div')
-  // $div.addClass('image')
-
-
-
-
+  randomMoleAppear()
 
 })
 
-// function randomMoleAppear(index){
-//   $this.
-//   var random = Math.floor(Math.random() * 11)
-//   console.log(random)
-//
-//   $div.addClass(".image")
-//
-// }
+function randomMoleAppear(){
+
+  var random = Math.floor(Math.random() * 10);
+  console.log(random)
+  $('.outer').eq(random).addClass("image")
+  $('.holes').eq(random).removeClass()
+
+}
