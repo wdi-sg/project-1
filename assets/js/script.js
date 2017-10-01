@@ -1,6 +1,5 @@
 $(function(){
 
-  var score = 0;
   var moleTimer = 5;
   var gameTimeout = 180;
 
@@ -15,25 +14,36 @@ $(function(){
 
 })
 
-//mole disappearance timeout is set to 5s, mole will disappear
-function randomMoleAppear(){
+function generateMoleLotsOfMole(){
+  
 
-  var random = Math.floor(Math.random() * 5);
+}
+
+//mole appears at random spot
+function randomMoleAppear(){
+  var score = 0
+
+  var random = Math.floor(Math.random() * 10);
   console.log(random)
 
   $('.mole').eq(random).addClass("image")
 
+
+  //click on the mole can get 10 points
+  $('.mole').eq(random).on('click',function(){
+      score += 10
+      $('.mole').eq(random).removeClass("image")
+      $('.score').append("Total Score : " +score)
+
+  })
+
+  //mole timeout is set to 5s, mole will disappear
   function removeMole(){
   $('.mole').eq(random).removeClass("image")
   }
   setTimeout(removeMole,4000)
-  console.log("test");
 
 }
 
 
 //within 5s user click it will score 10 points
-function whackMole(){
-
-
-}
