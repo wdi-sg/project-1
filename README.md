@@ -98,3 +98,5 @@ Version 2 {
 }
 ```
 ---
+
+Sprites from opengameart.org

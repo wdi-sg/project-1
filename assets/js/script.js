@@ -6,7 +6,19 @@ let enemyList = []
 let bulletList = []
 
 class Character {
-  constructor(type, id, sizeX, sizeY, spdX, spdY, hp, x, y, atkSpd) {
+  constructor(
+    type,
+    id,
+    sizeX,
+    sizeY,
+    spdX,
+    spdY,
+    hp,
+    x,
+    y,
+    atkSpd,
+    bulletOwner
+  ) {
     this.type = type
     this.id = id
     this.jTarget = $gameBoard.find("." + this.id)
@@ -18,25 +30,27 @@ class Character {
     this.x = x //spawn position
     this.y = y
     this.timer = 0 //how long has this asset been in the game?
-    this.atkSpd = 500 //per ms. Lower faster
+    this.atkSpd = atkSpd //per ms. Lower faster
     this.isShooting = false
     this.pressingDown = false
     this.pressingUp = false
     this.pressingLeft = false
     this.pressingRight = false
     this.aimAngle = 0
+    this.bulletOwner = bulletOwner
   }
 
   addChar() {
     let $char = $("<div>")
     $char.addClass(`${this.id}`)
-    $gameBoard.append($char)
-    this.jTarget = $gameBoard.find("." + `${this.id}`)
-    this.jTarget.css({
+    $char.css({
       position: "absolute",
       width: `${this.sizeX}px`,
       height: `${this.sizeY}px`
     })
+
+    $gameBoard.append($char)
+    this.jTarget = $gameBoard.find("." + `${this.id}`)
 
     if (this.type === "player") {
       this.jTarget.css({
@@ -46,7 +60,8 @@ class Character {
 
     if (this.type === "enemy") {
       this.jTarget.css({
-        border: "3px solid red" //update to actual sprite
+        // border: "3px solid red", //update to actual sprite
+        background: `url("/assets/images/bat.png")`
       })
     }
 
@@ -132,26 +147,35 @@ class Character {
     }
 
     generateBullet(this)
-    for (key in bulletList) {
-      bulletList[key].addChar()
-    }
   }
 }
 
 //type, id, sizeX, sizeY, spdX, spdY, hp, x, y, atkSpd
-let player = new Character("player", "player", 100, 100, 0, 0, 100, 50, 50, 500)
+let player = new Character("player", "player", 60, 60, 0, 0, 100, 50, 50, 500)
 
 const generateEnemy = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
-  let sizeX = Math.random() * 100
-  let sizeY = Math.random() * 100
-  let spdX = Math.random() * 10
-  let spdY = Math.random() * 10
+  let sizeX = 50
+  let sizeY = 50
+  let spdX = Math.random() * 5
+  let spdY = Math.random() * 5
   let hp = 50
   let x = Math.random() * 500
   let y = Math.random() * 500
+  let atkSpd = 2000
 
-  enemyList[id] = new Character("enemy", id, sizeX, sizeY, spdX, spdY, hp, x, y)
+  enemyList[id] = new Character(
+    "enemy",
+    id,
+    sizeX,
+    sizeY,
+    spdX,
+    spdY,
+    hp,
+    x,
+    y,
+    atkSpd
+  )
 }
 
 const generateBullet = entity => {
@@ -159,11 +183,12 @@ const generateBullet = entity => {
   let angle = entity.aimAngle
   let sizeX = 5
   let sizeY = 5
-  let spdX = Math.cos(angle / 180 * Math.PI) * 50
-  let spdY = Math.sin(angle / 180 * Math.PI) * 50
+  let spdX = Math.cos(angle / 180 * Math.PI) * 20
+  let spdY = Math.sin(angle / 180 * Math.PI) * 20
   let hp = 0
   let x = entity.x + entity.sizeX / 2
   let y = entity.y + entity.sizeY / 2
+  let owner = entity.type
 
   bulletList[id] = new Character(
     "bullet",
@@ -174,8 +199,12 @@ const generateBullet = entity => {
     spdY,
     hp,
     x,
-    y
+    y,
+    0,
+    owner
   )
+
+  bulletList[id].addChar()
 }
 
 const updateAim = e => {
@@ -183,6 +212,7 @@ const updateAim = e => {
 }
 
 $(function() {
+  drawMap(1)
   player.addChar()
 
   generateEnemy()
@@ -208,6 +238,12 @@ $(function() {
     }
   }, player.atkSpd)
 
+  setInterval(() => {
+    for (key in enemyList) {
+      enemyList[key].shoot()
+    }
+  }, enemyList[key].atkSpd)
+
   const update = () => {
     player.moveChar()
     //move enemies
@@ -227,9 +263,24 @@ $(function() {
         bulletList.splice(key, 1)
         continue
       }
+      //bullet collision with player
+      if (
+        checkCollision(player, bulletList[key]) &&
+        bulletList[key].bulletOwner === "enemy"
+      ) {
+        console.log("player hit!")
+        bulletList[key].removeChar()
+        bulletList.splice(key, 1)
+        continue
+      }
+
       //bullet collision with enemy
       for (enemy in enemyList) {
-        if (checkCollision(enemyList[enemy], bulletList[key])) {
+        if (
+          checkCollision(enemyList[enemy], bulletList[key]) &&
+          bulletList[key].bulletOwner === "player"
+        ) {
+          console.log("enemy hit")
           bulletList[key].removeChar()
           bulletList.splice(key, 1) //might have to be added to removeChar method
           break
@@ -240,6 +291,14 @@ $(function() {
 
   setInterval(update, 30)
 })
+
+const drawMap = level => {
+  if (level === 1) {
+    $gameBoard.css({
+      background: `url("/assets/images/spring.png")`
+    })
+  }
+}
 
 const checkCollision = (obj1, obj2) =>
   obj1.x <= obj2.x + obj2.sizeX &&
