@@ -204,6 +204,9 @@ $(function() {
   $gameScreen.on('contextmenu', function(ev) {
     ev.preventDefault();
     if (playerStats.grenade > 0) {
+      document.getElementsByClassName('boom')[0].currentTime = 0;
+      document.getElementsByClassName('boom')[0].pause()
+      document.getElementsByClassName('boom')[0].play()
       playerStats.grenade = playerStats.grenade - 1
       console.log('grenades left: ' +playerStats.grenade)
       for (i=0; i<spawnList.length;i++) {
