@@ -9,12 +9,12 @@
 #ball1 {
   background-color: blue;
   top: 40px;
-  left: 160px;
+  left: 255px;
 }
 
 #ball2 {
   background-color: red;
-  top: 20px;
+  top: 40px;
   left: 30px;
 }
 

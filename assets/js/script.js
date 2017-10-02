@@ -1,26 +1,27 @@
 $(function() {
   $body.on('keydown', ballMove)
-  $body.on('click', ballJump)
-  // console.log("ball number",$('.balls').length)
+  // $body.on('keydown', ballJump)
   function ballMove(e) {
-    var unit = 10
+    var unit = 30
     if (e.key === 'd' || e.key === 'D') {
       if (ball1Goal() === false) if (borderCheck1Right()) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false) if (borderCheck2Left()) ball2Hori(unit) //opposite side for ball2
-      // ball1Goal()
     }
     if (e.key === 'a' || e.key === 'A') {
       if (ball1Goal() === false) if (borderCheck1Left()) ball1Hori(-unit)
       if (ball2Goal() === false) if (borderCheck2Right()) ball2Hori(-unit)
     }
+    if (e.key === 'w' || e.key === 'W') {
+      if (jumpLimit === true) ballJump()
+    }
   }
 
-  createGoal("20px","30px",$('#game1'))
-  createGoal("20px","40px",$('#game2'))
+  createGoal("110px","30px",$('#game1'))
+  createGoal("110px","220px",$('#game2'))
   setInterval(ballSnap,500) //checking if border exceeds
   setInterval(levelClear,1000)
-  setInterval(gravity1, 20)
-  setInterval(gravity2, 20)
+  setInterval(gravity1, 10)
+  setInterval(gravity2, 10)
   createPlatform("100px","0",$('#game1'),"300px","5px")
   createPlatform("100px","0",$('#game2'),"300px","5px")
   console.log('number of platform',$('.platform').length)
@@ -33,6 +34,8 @@ var goalLevel = 1 // to assign goal Id's for each play field
 var gravity = 40
 var platformNo = 1
 var gLock = false
+var allowance = 0.5
+var jumpLimit = true
 
 //this controls horizontal ball movement
 function ball1Hori(a) {
@@ -69,13 +72,16 @@ function borderCheck2Left() {
 }
 
 function ballJump() {
-  gLock = true
-  for (j = 0; j < $('.balls').length; j ++) {
+  jumpLimit = false
+    console.log(jumpLimit)
+    gLock = true
+    for (j = 0; j < $('.balls').length; j ++) {
     $('.balls').eq(j).css("top", (Number($('.balls').eq(j).css("top").replace("px","")) - 8*$('.balls').height()).toString() + "px")
-  }
-  console.log('test')
+    }
+  setTimeout( () => {jumpLimit = true}, 1000)
   setTimeout( () => {gLock = false},100)
 }
+
 // snap ball back to edge of frame if it is out of play field
 function ballSnap() {
   if (borderCheck1Right() !== true) {
@@ -158,7 +164,6 @@ function levelClear() {
 var seconds1 = 0 //TODO: need to adjust such that it only starts counting when ball is floating
 function gravity1() {
   if (!gLock) {
-    allowance = 0
     var $ball1Height = $ball1.css("top")
     for (i = 0; i < $('.platform').length; i ++){
       if(($ball1.position().left < $('.platform').eq(i).position().left + $('.platform').eq(i).width()) &&
@@ -183,7 +188,6 @@ function gravity1() {
 var seconds2 = 0
 function gravity2() {
   if (!gLock) {
-    allowance = 0
     var $ball2Height = $ball2.css("top")
     for (i = 0; i < $('.platform').length; i ++){
     if(($ball2.position().left < $('.platform').eq(i).position().left + $('.platform').eq(i).width()) &&
