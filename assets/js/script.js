@@ -50,58 +50,40 @@ function move (event) {
   var $pacManRight = $pacManTile.next()
   var $pacManDown = $pacManTile.nextAll().eq(18)
   var $pacManUp = $pacManTile.prevAll().eq(18)
-  var $score = $('#score')
 
   switch(event.key) {
     case 'ArrowUp':
       // check if tile has dots
-      if ($pacManUp.has('.dots')) {
-        score++
-        $score.text(`Score: ${score}`)
-        $pacManUp.empty()
-      }
+      if ($pacManUp.children().length > 0) eatAndChangeScore($pacManUp)
       // check if pac-man can move into tile
-      if ($pacManUp.data('attr') !== 1) {
-        $pacManUp.append($pacMan)
-      }
+      if ($pacManUp.data('attr') !== 1) $pacManUp.append($pacMan)
       break
     case 'ArrowRight':
       // check if tile has dots
-      if ($pacManRight.has('.dots')) {
-        score++
-        $score.text(`Score: ${score}`)
-        $pacManRight.empty()
-      }
+      if ($pacManRight.children().length > 0) eatAndChangeScore($pacManRight)
       // check if pac-man can move into tile
-      if ($pacManRight.data('attr') !== 1) {
-        $pacManRight.append($pacMan)
-      }
+      if ($pacManRight.data('attr') !== 1) $pacManRight.append($pacMan)
       break
     case 'ArrowDown':
       // check if tile has dots
-      if ($pacManDown.has('.dots')) {
-        score++
-        $score.text(`Score: ${score}`)
-        $pacManDown.empty()
-      }
+      if ($pacManDown.children().length > 0) eatAndChangeScore($pacManDown)
       // check if pac-man can move into tile
-      if ($pacManDown.data('attr') !== 1) {
-        $pacManDown.append($pacMan)
-      }
+      if ($pacManDown.data('attr') !== 1) $pacManDown.append($pacMan)
       break
     case 'ArrowLeft':
       // check if tile has dots
-      if ($pacManLeft.has('.dots')) {
-        score++
-        $score.text(`Score: ${score}`)
-        $pacManLeft.empty()
-      }
+      if ($pacManLeft.children().length > 0) eatAndChangeScore($pacManLeft)
       // check if pac-man can move into tile
-      if ($pacManLeft.data('attr') !== 1) {
-        $pacManLeft.append($pacMan)
-      }
+      if ($pacManLeft.data('attr') !== 1) $pacManLeft.append($pacMan)
       break
   }
+}
+
+function eatAndChangeScore(tile) {
+  var $score = $('#score')
+  score++
+  $score.text(`Score: ${score}`)
+  tile.empty()
 }
 
 function loadAssets (tileSet) {
