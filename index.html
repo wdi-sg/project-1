@@ -2,10 +2,69 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Mummy Maze: Sample Level</title>
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+
+    <div class="container">
+      <h1>Mummy Maze: Sample Level</h1>
+      <div class="wrapper">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box bottom"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <div class="wrapper">
+          <div class="box" id="playerPos"></div>
+          <div class="box"></div>
+          <div class="box top right"></div>
+          <div class="box left"></div>
+          <div class="box bottom"></div>
+          <div class="box"></div>
+      </div>
+      <div class="wrapper">
+          <div class="box right"></div>
+          <div class="box left"></div>
+          <div class="box"></div>
+          <div class="box right"></div>
+          <div class="box left top"></div>
+          <div class="box"></div>
+      <div class="wrapper">
+          <div class="box"></div>
+          <div class="box bottom"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box bottom"></div>
+          <div class="box"></div>
+      </div>
+      <div class="wrapper">
+          <div class="box"></div>
+          <div class="box top right"></div>
+          <div class="box left"></div>
+          <div class="box right"></div>
+          <div class="box left top"></div>
+          <div class="box exit"></div>
+      </div>
+      <div class="wrapper">
+          <div class="box"></div>
+          <div class="box" id="mummyPos"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+      </div>
+      <!-- <button id="restart">Restart</button> -->
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/playerMovement.js"></script>
+    <script type="text/javascript" src="/js/mummyMovement.js"></script>
+    <script type="text/javascript" src="/js/gamePlay.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
   </body>
 </html>
