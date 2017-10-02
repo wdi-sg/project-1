@@ -9,8 +9,8 @@
 
 .wrapper {
   margin: 0 auto;
-  /*border: 3px solid blue;*/
-  width: 208px;
+  border: 3px solid grey;
+  width: 204px;
   display: flex;
   flex-flow: row wrap;
 
@@ -21,7 +21,7 @@
 .cell {
   width: 50px;
   height: 50px;
-  border: 1px solid grey;
+  border: 0.5px solid beige;
 }
 
 

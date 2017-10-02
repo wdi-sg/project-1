@@ -15,14 +15,12 @@ $(function () {
       grid[i] = new Array(matrix)
       for (j = 0; j < matrix; j++) {
 
-        //populate cells
-        cellColor = generateColor()
-        grid[i][j] = cellColor
+        //populate cells in game logic
+        grid[i][j] = generateColor()
+
+        //populate cells in css
         var pos = i +","+ j
-
-        $('.cell[data-position= "'+ pos +'"]').css('background-color', cellColor);
-
-        //$('[i][j]').addclass(color)
+        $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[i][j])
 
       }
     }
@@ -45,32 +43,32 @@ $(function () {
     return colorList[Math.floor(Math.random() * colorList.length)]
   }
 
-//   function checkForMatch() {
+   function checkForMatch() {
 //
-//     for (var x = 0 ; x < matrix-2; x++) {
-//       for (var y = 0; y < matrix-2; y++) {
+    for (var x = 0 ; x < matrix-2; x++) {
+      for (var y = 0; y < matrix-2; y++) {
 //         // if (grid[y][x] === grid[y][x+1]) matches = 1
 //
 //
-//         //check for horizontal matches
-//         if (grid[y][x] === grid[y][x+1] && grid[y][x] === grid[y][x+2]) {
-//           grid[y][x] = 0
-//           grid[y][x+1] = 0
-//           grid[y][x+2] = 0
-//         }
+         //check for horizontal matches
+        if (grid[x][y] === grid[x][y+1] && grid[x][y] === grid[x][y+2]) {
+          grid[x][y] = 0
+          grid[x][y+1] = 0
+          grid[x][y+2] = 0
+        }
 //         //check for vertical matches
-//         if (grid[y][x] === grid[y+1][x] && grid[y][x] === grid[y+2][x]) {
-//           grid[y][x] = 0
-//           grid[y+1][x] = 0
-//           grid[y+2][x] = 0
-//         }
-//       }
-//     }
+        if (grid[x][y] === grid[x+1][y] && grid[x][y] === grid[x+2][y]) {
+          grid[x][y] = 0
+          grid[x+1][y] = 0
+          grid[x+2][y] = 0
+        }
+      }
+    }
 //
 //
 //
-//     console.log(grid)
-//       }
+     console.log(grid)
+      }
 //
 //
 //
@@ -92,11 +90,11 @@ $(function () {
 //   }
 //
 //
-// $('body').on('click',replenish)
+//$('body').on('click',replenish)
 
   generateColor()
   generateLevel()
-//  checkForMatch()
+  checkForMatch()
 
 
 
