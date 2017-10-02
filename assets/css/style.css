@@ -1,0 +1,36 @@
+
+.container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  /*border: 1px solid blue;*/
+  width: 560px;
+  /*height: 500px;*/
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.box {
+  border: 1px solid black;
+  width: 50px;
+  height: 50px;
+}
+
+button {
+  background: #4479BA;
+  color: #FFF;
+  font-family: Josefin Slab;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+  margin: 25px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px black;
+}
+
+button:hover{
+    background: #356094;
+}
