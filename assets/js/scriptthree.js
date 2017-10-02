@@ -7,19 +7,12 @@ var grid =[[undefined,undefined,undefined,undefined],
 [undefined,undefined,undefined,undefined]]
 //var grid = [['straw','straw','straw','s'],['choco','choco','choco','cho'],['melon','melon','melon','mm'],['straw','straw','straw','e']]
 var total = 0
-var timer = 4
+var timer = 2
 //var elements = ['straw','choco','melon']
 var gridNo = 4
-
 var $box = $('.box')
 var $scoreBox = $('.scoreTotal')
 $(function(){
-  var click = true
-  var toBeDelete =[]
-  generateElements()
-  checkGrid()
-
-
 
 // timer function
   var gameTimer = setInterval(decreaseTime, 1000)
@@ -34,14 +27,9 @@ $(function(){
     }
   }
 ////
-
-
-
   if(timer >=0){ // to make it work with while loop
-    // generateElements()
-    // while(checkGrid()){
-    //   removeElements()
-    // } //
+    delay = 2000
+    setTimeout(generateElements(),delay) //
     //checkGrid()
   }
   console.log(grid)
@@ -52,19 +40,31 @@ $(function(){
 
   // if(checkGrid()){
   toSwitchTwo = []
-
     $box.on('click', function(){
-      //click = false
       var idArr = this.id.split('')
       toSwitchTwo.push(idArr)
       //console.log(toSwitchTwo)
-      console.log(grid)
 
       if (toSwitchTwo.length ===2){
         var iValueOne = Number(toSwitchTwo[0][3])
         var jValueOne = Number(toSwitchTwo[0][4])
         var iValueTwo = Number(toSwitchTwo[1][3])
         var jValueTwo = Number(toSwitchTwo[1][4])
+        // console.log(typeof(jValueTwo));
+        // console.log(`${iValueOne},${jValueOne}:${iValueTwo},${jValueTwo}`)
+        // console.log(grid[iValueOne][jValueOne])
+        // console.log(grid[iValueTwo][jValueTwo])
+        // var tempValue = grid[iValueOne][jValueOne]
+        // grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
+        // grid[iValueTwo][jValueTwo] = tempValue
+
+        //console.log(tempValue)
+        // $(`#box${iValueOne}${jValueOne}`).removeClass()
+        // $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
+        // $(`#box${iValueTwo}${jValueTwo}`).removeClass()
+        // $(`#box${iValueTwo}${jValueTwo}`).addClass(`box c${grid[iValueTwo][jValueTwo]}`)
+
+
         if (iValueOne === iValueTwo && (jValueTwo === jValueOne +1 || jValueTwo === jValueOne -1)){
           var tempValue = grid[iValueOne][jValueOne]
           grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
@@ -83,30 +83,37 @@ $(function(){
           var tempValue = grid[iValueOne][jValueOne]
           grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
           grid[iValueTwo][jValueTwo] = tempValue
-          //  console.log(tempValue)
+        //  console.log(tempValue)
           $(`#box${iValueOne}${jValueOne}`).removeClass()
           $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
           $(`#box${iValueTwo}${jValueTwo}`).removeClass()
           $(`#box${iValueTwo}${jValueTwo}`).addClass(`box c${grid[iValueTwo][jValueTwo]}`)
           toSwitchTwo = []
           setTimeout(checkGrid(),10000)
+          //checkGrid ()
+          // if (jValueTwo !== (jValueOne +1) && jValueTwo !== (jValueOne -1) ){
+          //   alert("invalid move")
+          // }
         }
         else {
           alert('invalid move')
           toSwitchTwo = []
         }
+
+        // if (jValueOne === jValueTwo){
+        //   if (iValueTwo !== iValueOne +1 && iValueTwo !== iValueOne -1 ){
+        //     alert("invalid move")
+        //     toSwitchTwo = []
+        //   }
+        // }
       }
-      // if(checkGrid()){
-      //   setTimeout(removeElements,2000)
-      // }
-      // if(!checkGrid()){
-      //   alert('invalid moves')
-      // }
+      // var iValue = idArr[3]
+      // var jValue = idArr[4]
+      // console.log(idArr)
+      // console.log(`${iValue}${jValue}`)
+
 
     })
-
-
-
 
 
     //allow player to move and select and move two elements
@@ -143,11 +150,6 @@ $(function(){
     }
     setTimeout(checkGrid(),100000)
   }
-  // function checkingDone(){
-  //   if(checkGrid()){
-  //     removeElements()
-  //   }
-  // }
 // check grid function
   function checkGrid(){
     var currentTotal = total
@@ -160,28 +162,16 @@ $(function(){
         if(grid[i][j] && grid[i][j+1] && grid[i][j+2]
           && grid[i][j] === grid[i][j+1]&& grid[i][j]===grid[i][j+2]){
             //alert('found')
-            //if(grid[i][j] === grid[i+1][j])
             if(j+3<=gridNo-1 && grid[i][j]===grid[i][j+3]){// to check if there is value
-              //total +=5 // to add point if is match of 4
-              toBeDelete.push(`${i}${j+3}`)
-
-              //grid[i][j+3]= undefined
-              //$(`#box${i}${j+3}`).toggle("bounce", { times: 3 }, 300 )
+              total +=10 // to add point if is match of 4
+              grid[i][j+3]= undefined
             }
-          //total += 10
-          toBeDelete.push(`${i}${j}`)
-          toBeDelete.push(`${i}${j+1}`)
-          toBeDelete.push(`${i}${j+2}`)
-          //grid[i][j] = undefined
-          /// consider remove class here also
+          total += 10
+          grid[i][j] = undefined /// consider remove class here also
           // /// using id(e.g b12) $(`#b${i}${j}`).removeClass
           // // if using id - consider to use id for i j (get the ide number, split to get i and j)
-          //grid[i][j+1] = undefined
-          //grid[i][j+2] = undefined
-
-          // $(`#box${i}${j}`).effect("bounce", { times: 3 }, 300 )
-          // $(`#box${i}${j+1}`).effect("bounce", { times: 3 }, 300 )
-          // $(`#box${i}${j+2}`).effect("bounce", { times: 3 }, 300)
+          grid[i][j+1] = undefined
+          grid[i][j+2] = undefined
         }
       }
       //console.log(total)// to check
@@ -194,57 +184,22 @@ $(function(){
             //alert('found')
 
             if(i+3<=gridNo-1 &&grid[i][j] === grid[(i+3)][j]){
-              //total +=10
-              toBeDelete.push(`${i+3}${j}`)
-              // grid[i+3][j]= undefined
+              total +=10
+              grid[i+3][j]= undefined
             }
-          //total += 10
-          toBeDelete.push(`${i}${j}`)
-          toBeDelete.push(`${i+1}${j}`)
-          toBeDelete.push(`${i+2}${j}`)
-          // grid[i][j] = undefined
-          // grid[i+1][j] = undefined
-          // grid[i+2][j] = undefined
+          total += 10
+          grid[i][j] = undefined
+          grid[i+1][j] = undefined
+          grid[i+2][j] = undefined
         }
       }
     }
-    if (toBeDelete.length>0){
-      removeElements()
-      //return true
-    }
-    else return false
-  }
-
-  var toBeDeleteTwo =[]
-  function removeElements(){
-    currentTotal=total
-    console.log(toBeDelete)
-    toBeDelete.forEach(function(gridId) {
-      if (!toBeDeleteTwo.includes(gridId)){
-        toBeDeleteTwo.push(gridId)
-      }
-      // else continue
-    })
-    for (var k = 0; k < toBeDeleteTwo.length; k++) {
-      idValue = toBeDeleteTwo[k].split('')
-      //console.log(`${idValue}type of${typeof(idValue)}`)
-      iValueHere = Number(idValue[0])
-      jValueHere = Number(idValue[1])
-      //console.log(`${typeof(iValueHere)}${iValueHere}${typeof(jValueHere)}${jValueHere}`)
-      total += 5
-      grid[iValueHere][jValueHere] = undefined
-      $(`#box${iValueHere}${jValueHere}`).removeClass()
-      $(`#box${iValueHere}${jValueHere}`).addClass('box')
-
-    }
-    console.log(toBeDeleteTwo)
-    if(total > currentTotal){
-      setTimeout(pushDown,2000)
+    if (total > currentTotal){
+      setTimeout(pushDown(),100000)
       $scoreBox.text(`${total}`)
+      return false
     }
-    toBeDelete =[]
-    toBeDeleteTwo =[]
-
+    else return true
   }
 
   function pushDown(){
@@ -252,6 +207,8 @@ $(function(){
       for(var k = gridNo-1; k >= 0 ;k--){
         if (grid[i][k] === undefined){
           $oneBox = $(`#box${i}${k}`)
+          $oneBox.removeClass()
+          $oneBox.addClass('box')
           if(k > 0){
             if (grid[i][k-1]!== undefined||grid[i][k-1]){
               grid[i][k] = grid[i][k-1]
@@ -279,7 +236,7 @@ $(function(){
       }
     }
     //delay = 2000
-   setTimeout(generateElements,2000)
+    setTimeout(generateElements(),100000)
   }
 
   // function resetGrid(){

@@ -4,6 +4,9 @@
   background-color:grey ;
   display: inline-block;
   margin: 2px;
+
+  transition: 2s ease-in-out;
+
   /*border: 2px solid black;*/
 }
 .gridbox{
@@ -14,6 +17,7 @@
   background-color: #9AA3AD;
   border: 3px solid #5E6A7A;
   border-radius: 20px;
+  /*transition: 8s;*/
 }
 .left{
   /*display: block;*/
@@ -65,14 +69,23 @@ body{
 .c1{
   background-color: #EABED2;
   border-radius: 50px;
+  /*transition: 2s;
+  transition: */
 }
 
 .c2 {
   background-color: #443528;
   border-radius: 25px;
+  /*transition: 2s;*/
 }
 
 .c3 {
   background-color: #BEE5BF;
   border-radius: 25px 0 25px 0;
+  /*transition: 2s;*/
+}
+
+.c4{
+  background-color:  #FFFFCC ;
+  border-radius: 50px 50px 25px 25px;
 }
