@@ -2,8 +2,11 @@ const $gameBoard = $(".gameBoard")
 const $body = $("body")
 const gameWidth = parseInt($gameBoard.css("width"))
 const gameHeight = parseInt($gameBoard.css("height"))
+const $score = $(".score")
+const $hitpoint = $(".hitpoints")
 let enemyList = []
 let bulletList = []
+let score = 0
 
 class Character {
   constructor(
@@ -54,7 +57,10 @@ class Character {
 
     if (this.type === "player") {
       this.jTarget.css({
-        border: "3px solid green" //update to actual sprite
+        // border: "3px solid green" //update to actual sprite
+        background: `url("/assets/images/char2.png")`,
+        backgroundPosition: "0 -135px",
+        backgroundSize: `350%`
       })
     }
 
@@ -66,10 +72,17 @@ class Character {
     }
 
     if (this.type === "bullet") {
-      this.jTarget.css({
-        border: "3px solid black", //update to actual sprite
-        borderRadius: "50%"
-      })
+      if (this.bulletOwner === "enemy") {
+        this.jTarget.css({
+          border: "3px solid red", //update to actual sprite
+          borderRadius: "50%"
+        })
+      } else {
+        this.jTarget.css({
+          border: "3px solid black", //update to actual sprite
+          borderRadius: "50%"
+        })
+      }
     }
   }
 
@@ -138,12 +151,20 @@ class Character {
     if (this.type === "player") {
       //mouse targeting
       $gameBoard.on("mousemove", e => {
-        let mouseX = e.clientX - $gameBoard.offset().left
-        let mouseY = e.clientY - $gameBoard.offset().top
-        let distanceX = mouseX - this.x - this.sizeX / 2
-        let distanceY = mouseY - this.y - this.sizeY / 2
+        let targetX = e.clientX - $gameBoard.offset().left //mouse X
+        let targetY = e.clientY - $gameBoard.offset().top //mouse Y
+        let distanceX = targetX - this.x - this.sizeX / 2
+        let distanceY = targetY - this.y - this.sizeY / 2
         this.aimAngle = Math.atan2(distanceY, distanceX) / Math.PI * 180
       })
+    }
+
+    if (this.type === "enemy") {
+      let targetX = player.x //mouse X
+      let targetY = player.y //mouse Y
+      let distanceX = targetX - this.x - this.sizeX / 2
+      let distanceY = targetY - this.y - this.sizeY / 2
+      this.aimAngle = Math.atan2(distanceY, distanceX) / Math.PI * 180
     }
 
     generateBullet(this)
@@ -151,7 +172,7 @@ class Character {
 }
 
 //type, id, sizeX, sizeY, spdX, spdY, hp, x, y, atkSpd
-let player = new Character("player", "player", 60, 60, 0, 0, 100, 50, 50, 500)
+let player = new Character("player", "player", 40, 60, 0, 0, 100, 50, 50, 500)
 
 const generateEnemy = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
@@ -162,8 +183,9 @@ const generateEnemy = () => {
   let hp = 50
   let x = Math.random() * 500
   let y = Math.random() * 500
-  let atkSpd = 2000
+  let atkSpd = Math.floor(1000 + Math.random() * 1000)
 
+  console.log("spawning")
   enemyList[id] = new Character(
     "enemy",
     id,
@@ -176,6 +198,8 @@ const generateEnemy = () => {
     y,
     atkSpd
   )
+
+  enemyList[id].addChar()
 }
 
 const generateBullet = entity => {
@@ -203,23 +227,24 @@ const generateBullet = entity => {
     0,
     owner
   )
-
   bulletList[id].addChar()
 }
 
-const updateAim = e => {
-  //
+const spawnEnemy = () => {
+  let enemyFrequency = 5000
+  setInterval(function spawn() {
+    generateEnemy()
+  }, 8000)
 }
 
 $(function() {
   drawMap(1)
   player.addChar()
 
-  generateEnemy()
-  generateEnemy()
+  // add enemies to dom
   generateEnemy()
 
-  //add enemies to dom
+  spawnEnemy()
   for (key in enemyList) {
     enemyList[key].addChar()
   }
@@ -239,12 +264,15 @@ $(function() {
   }, player.atkSpd)
 
   setInterval(() => {
+    //fix enemy shooting
     for (key in enemyList) {
       enemyList[key].shoot()
     }
-  }, enemyList[key].atkSpd)
+  }, 2000)
 
   const update = () => {
+    score++
+    $score.text(`Score: ${score}`)
     player.moveChar()
     //move enemies
     for (key in enemyList) {
@@ -268,7 +296,10 @@ $(function() {
         checkCollision(player, bulletList[key]) &&
         bulletList[key].bulletOwner === "enemy"
       ) {
-        console.log("player hit!")
+        // console.log("player hit!")
+        player.hp--
+        $hitpoint.text(`HP: ${player.hp}`)
+        if (player.hp <= 0) console.log("You have died.")
         bulletList[key].removeChar()
         bulletList.splice(key, 1)
         continue
@@ -280,7 +311,11 @@ $(function() {
           checkCollision(enemyList[enemy], bulletList[key]) &&
           bulletList[key].bulletOwner === "player"
         ) {
-          console.log("enemy hit")
+          enemyList[enemy].hp -= 25
+          if (enemyList[enemy].hp <= 0) {
+            enemyList[enemy].removeChar()
+            enemyList.splice(enemy, 1)
+          }
           bulletList[key].removeChar()
           bulletList.splice(key, 1) //might have to be added to removeChar method
           break
