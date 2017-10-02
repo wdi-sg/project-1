@@ -3,7 +3,7 @@ $(function() {
   $body.on('keydown', ballMove)
 
   function ballMove(e) {
-    var unit = 10
+    var unit = 20
     if (e.key === 'ArrowRight') {
       if (ball1Goal() === false) if (borderCheck1Right()) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false) if (borderCheck2Left()) ball2Hori(unit) //opposite side for ball2
@@ -19,12 +19,16 @@ $(function() {
   createGoal("20px","40px",$('#game2'))
   setInterval(ballSnap,500) //checking if border exceeds
   setInterval(levelClear,1000)
+  setInterval(gravity1, 100)
+  setInterval(gravity2, 100)
+
 })
 
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
 var goalLevel = 1 // to assign goal Id's for each play field
+var gravity = 100
 
 //this controls horizontal ball movement
 function ball1Hori(a) {
@@ -109,7 +113,7 @@ class goal {
 
 // to check if respective balls have reached their target
 function ball1Goal() {
-  console.log('checking ball1Goal')
+  // console.log('checking ball1Goal')
   if (($ball1.position().left < $('.goal:first').position().left + $('.goal:first').width()) &&
       ($ball1.position().top < $('.goal:first').position().top + $('.goal:first').height()) &&
       ($ball1.position().left + $ball1.width() > $('.goal:first').position().left) &&
@@ -121,6 +125,7 @@ function ball1Goal() {
 }
 
 function ball2Goal() {
+  // console.log('checking ball2Goal')
   if (($ball2.position().left < $('.goal:last').position().left + $('.goal:last').width()) &&
       ($ball2.position().top < $('.goal:last').position().top + $('.goal:last').height()) &&
       ($ball2.position().left + $ball2.width() > $('.goal:last').position().left) &&
@@ -136,6 +141,20 @@ function levelClear() {
     console.log('win')
   }
 }
-// $body.on('click',($('.goal').eq(0).css("left",0)))
-// $body.on('click',() => {($ball1.css("left","60px"))})
-// $body.on('click',() => {($('.goal:first').css("left","0"))})
+
+var seconds1 = 0 //TODO: need to adjust such that it only starts counting when ball is floating
+function gravity1() {
+  seconds1 += 0.1 //to tally against the gravity setInterval
+  // console.log("ball1 descent time",seconds1)
+  var $ball1Height = $ball1.css("top")
+  // console.log("ball1 height",$ball1Height)
+  $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
+}
+var seconds2 = 0
+function gravity2() {
+  seconds2 +=0.1 //independent gravity timer counter so that their vertical acceleration is independent
+  // console.log("ball2 descent time",seconds2)
+  var $ball2Height = $ball2.css("top")
+  // console.log("ball2 height",$ball2Height)
+  $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
+}
