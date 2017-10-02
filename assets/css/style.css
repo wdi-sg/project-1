@@ -2,6 +2,11 @@ body {
   background-color: #394053;
 }
 
+h1 {
+  margin: 0 auto;
+  display: flex;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -21,6 +26,10 @@ body {
   display: inline-block;
   border-radius: 9999px;
 }
+
+/*.box:click {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
+}*/
 
 #box9 {
   border: solid 1px #394053;

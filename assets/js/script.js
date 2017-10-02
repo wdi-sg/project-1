@@ -4,29 +4,26 @@ var $box = $('.box')
 var $locBtn = $('#loc')
 var count = 0;
 var score = 0;
-
-
+var index = 0;
 
 $box.on('click', locGen)
 $locBtn.on('click', compareResult)
 
+setInterval(locGen, 3000);
 
 function locGen() {
   count++;
-  console.log(count);
-  var index = randomNum();
-  // $(`${index}`).css("backgroundColor","blue")
-  recArr.push(index);
-  $(this).css('backgroundColor', '#839073')
-
-  // console.log(count)
-}
-
-function randomNum () {
-  var index = Math.floor(Math.random() * 2);
+  // console.log(count);
   console.log(index)
-  return index;
+  $(`[data-value = ${index}]`).css("backgroundColor","")
+  index = randomNum();
+  console.log(index)
+  // $(this).data('value')
+  $(`[data-value = ${index}]`).css("backgroundColor","#839073")
+  recArr.push(index);
+  // $(this).css('backgroundColor', )
 }
+
 
 function compareResult () {
   console.log('check recArr:', recArr)
@@ -38,7 +35,11 @@ function compareResult () {
   }
 }
 
-
+function randomNum () {
+  var index = Math.floor(Math.random() * 8);
+  console.log(index)
+  return index;
+}
 
 
 
