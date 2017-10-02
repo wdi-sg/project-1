@@ -1,15 +1,15 @@
 $(function() {
-
   $body.on('keydown', ballMove)
-
+  $body.on('click', ballJump)
+  // console.log("ball number",$('.balls').length)
   function ballMove(e) {
-    var unit = 20
-    if (e.key === 'ArrowRight') {
+    var unit = 10
+    if (e.key === 'd' || e.key === 'D') {
       if (ball1Goal() === false) if (borderCheck1Right()) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false) if (borderCheck2Left()) ball2Hori(unit) //opposite side for ball2
       // ball1Goal()
     }
-    if (e.key === 'ArrowLeft') {
+    if (e.key === 'a' || e.key === 'A') {
       if (ball1Goal() === false) if (borderCheck1Left()) ball1Hori(-unit)
       if (ball2Goal() === false) if (borderCheck2Right()) ball2Hori(-unit)
     }
@@ -19,16 +19,20 @@ $(function() {
   createGoal("20px","40px",$('#game2'))
   setInterval(ballSnap,500) //checking if border exceeds
   setInterval(levelClear,1000)
-  setInterval(gravity1, 100)
-  setInterval(gravity2, 100)
-
+  setInterval(gravity1, 20)
+  setInterval(gravity2, 20)
+  createPlatform("100px","0",$('#game1'),"300px","5px")
+  createPlatform("100px","0",$('#game2'),"300px","5px")
+  console.log('number of platform',$('.platform').length)
 })
 
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
 var goalLevel = 1 // to assign goal Id's for each play field
-var gravity = 100
+var gravity = 40
+var platformNo = 1
+var gLock = false
 
 //this controls horizontal ball movement
 function ball1Hori(a) {
@@ -62,6 +66,15 @@ function borderCheck2Left() {
     return true
   }
   else return false
+}
+
+function ballJump() {
+  gLock = true
+  for (j = 0; j < $('.balls').length; j ++) {
+    $('.balls').eq(j).css("top", (Number($('.balls').eq(j).css("top").replace("px","")) - 8*$('.balls').height()).toString() + "px")
+  }
+  console.log('test')
+  setTimeout( () => {gLock = false},100)
 }
 // snap ball back to edge of frame if it is out of play field
 function ballSnap() {
@@ -141,20 +154,84 @@ function levelClear() {
     console.log('win')
   }
 }
-
+//these cause the balls to fall downward
 var seconds1 = 0 //TODO: need to adjust such that it only starts counting when ball is floating
 function gravity1() {
-  seconds1 += 0.1 //to tally against the gravity setInterval
-  // console.log("ball1 descent time",seconds1)
-  var $ball1Height = $ball1.css("top")
-  // console.log("ball1 height",$ball1Height)
-  $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
+  if (!gLock) {
+    allowance = 0
+    var $ball1Height = $ball1.css("top")
+    for (i = 0; i < $('.platform').length; i ++){
+      if(($ball1.position().left < $('.platform').eq(i).position().left + $('.platform').eq(i).width()) &&
+      ($ball1.position().left + $ball1.width() >= $('.platform').eq(i).position().left) &&
+      ($ball1.position().top + $ball1.height() >= $('.platform').eq(i).position().top - allowance) &&
+      ($ball1.position().top + $ball1.height() <= $('.platform').eq(i).position().top + $('.platform').height())){
+        $ball1.css("top", $ball1.css("top"))
+        seconds1 = 0
+        // console.log('hit')
+        return
+      }
+      else {
+        seconds1 += 0.02 //to tally against the gravity setInterval
+        $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
+        // console.log("ball1 descent time",seconds1)
+        // console.log("ball1 height",$ball1Height)
+      }
+    }
+  }
 }
+
 var seconds2 = 0
 function gravity2() {
-  seconds2 +=0.1 //independent gravity timer counter so that their vertical acceleration is independent
-  // console.log("ball2 descent time",seconds2)
-  var $ball2Height = $ball2.css("top")
-  // console.log("ball2 height",$ball2Height)
-  $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
+  if (!gLock) {
+    allowance = 0
+    var $ball2Height = $ball2.css("top")
+    for (i = 0; i < $('.platform').length; i ++){
+    if(($ball2.position().left < $('.platform').eq(i).position().left + $('.platform').eq(i).width()) &&
+    ($ball2.position().left + $ball2.width() >= $('.platform').eq(i).position().left) &&
+    ($ball2.position().top + $ball2.height() >= $('.platform').eq(i).position().top - allowance) &&
+    ($ball2.position().top + $ball2.height() <= $('.platform').eq(i).position().top + $('.platform').eq(i).height())){
+      $ball2.css("top", $ball2.css("top"))
+      seconds2 = 0
+      // console.log('hit')
+      return
+    }
+    // console.log("ball2 descent time",seconds2)
+    // console.log("ball2 height",$ball2Height)
+    else {
+    seconds2 +=0.02 //independent gravity timer counter so that their vertical acceleration is independent
+    $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
+      }
+    }
+  }
 }
+
+//platform creation constructor to customize layout in different levels
+class platform {
+  constructor (color = "black", width = "100px", height = "5px", top, left, id) {
+    this.color = color
+    this.width = width
+    this.height = height
+    this.top = top
+    this.left = left
+  }
+}
+  function createPlatform(topPixels,leftPixels, half, width, height) {
+
+    var platformCreate = new platform()
+    // console.log(platformCreate)
+
+    var $platformCreate = $('<div class = platform>')
+    $platformCreate.css({
+      backgroundColor: platformCreate.color,
+      width: width,
+      height: height,
+      top: topPixels,
+      left: leftPixels,
+      position: 'relative',
+      display: 'inline-block',
+      // float: 'left'
+    })
+    $platformCreate.attr('id','p'+platformNo.toString())
+    platformNo ++
+    half.append($platformCreate)
+  }
