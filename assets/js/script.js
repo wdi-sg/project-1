@@ -35,11 +35,21 @@ var $ghostThree = $('<div class="character" id="ghost-three">')
 var $ghostFour = $('<div class="character" id="ghost-four">')
 
 $(function () {
-  // creating map
+  // write reset function
+
+  // write ifGameOver function
+
+  // write start function
+
+  // load assets
   loadAssets(tileSet)
+
+  // write countdown function
 
   // moving pacman
   $body.on('keydown', (event) => { move(event) })
+
+  // write killScreen function
 })
 
 function move (event) {
@@ -86,51 +96,39 @@ function eatAndChangeScore(tile) {
 }
 
 function loadAssets (tileSet) {
+  // objects to store css properties for tiles
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+  var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+
   for (var i = 0; i < tileSet.length; i++) {
-    // create new <div>
+    // create new <div> for tiles and dots
     var $tile = $('<div class="tile">')
     var $dots = $('<div class="dots">')
-    var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
-    var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
     // setting tile properties
     switch (tileSet[i]) {
       case 0:
-        $tile.css(blackTile)
-        $tile.data('attr', 0)
-        $tile.append($dots)
+        $tile.css(blackTile).data('attr', 0).append($dots)
         break
       case 1:
-        $tile.css(blueTile)
-        $tile.data('attr', 1)
+        $tile.css(blueTile).data('attr', 1)
         break
       case 2:
-        $tile.css(blackTile)
-        $tile.data('attr', 2)
-        break
-      case 9:
-        $tile.css(blackTile)
-        $tile.data('attr', 9)
-        $tile.append($pacMan)
-        break
-      case 8:
-        $tile.css(blackTile)
-        $tile.data('attr', 8)
-        $tile.append($ghostOne)
-        break
-      case 7:
-        $tile.css(blackTile)
-        $tile.data('attr', 7)
-        $tile.append($ghostTwo)
-        break
-      case 6:
-        $tile.css(blackTile)
-        $tile.data('attr', 6)
-        $tile.append($ghostThree)
+        $tile.css(blackTile).data('attr', 2)
         break
       case 5:
-        $tile.css(blackTile)
-        $tile.data('attr', 5)
-        $tile.append($ghostFour)
+        $tile.css(blackTile).data('attr', 5).append($ghostFour)
+        break
+      case 6:
+        $tile.css(blackTile).data('attr', 6).append($ghostThree)
+        break
+      case 7:
+        $tile.css(blackTile).data('attr', 7).append($ghostTwo)
+        break
+      case 8:
+        $tile.css(blackTile).data('attr', 8).append($ghostOne)
+        break
+      case 9:
+        $tile.css(blackTile).data('attr', 9).append($pacMan)
         break
     }
     $gameBoard.append($tile)
