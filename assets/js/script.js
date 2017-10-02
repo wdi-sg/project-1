@@ -1,49 +1,76 @@
 $(function(){
 
-  var moleTimer = 5;
+  var score = 0;
   var gameTimeout = 180;
 
-  var $outer = $(".outer")
   var $holes =$('.holes')
   var $button =$('button')
 
   alert('hello')
 
-  $button.on('click',randomMoleAppear)
+  // setInterval(randomMoleAppear,1000)
+  $button.on('click',function() {
+    if ($button.value=="Start")
+      $button.value = "Start";
+    else
+    $button.value = "Reset";
+    var timeleft = 30
+    var timer = setInterval(function(){
+      randomMoleAppear()
+      --timeleft
+      //console.log(timeleft);
+      if(timeleft <=0){
+        clearInterval(timer);
+      }
+    },700)
+  })
 
 
+function reset(){
+  score = 0;
+  //randomMoleAppear()
+}
+
+//when I click the holes without images
+//   $('.holes').on('click',function(){
+//     deductScore()
+//     $('.score').text("Total Score : " + score)
+//   })
+//
+// function deductScore() {
+//   console.log(score);
+//   score = score - 20
+// }
+
+//click on the mole can get 10 points
+function calScore(){
+  score = score + 10
+  $('.score').text("Total Score : " + score)
+}
+
+
+//target only when I click the mole with images
+$('.holes').on('click', '.image' ,function(){
+  $(this).removeClass("image")
+  calScore()
 })
 
-function generateMoleLotsOfMole(){
-  
-
-}
 
 //mole appears at random spot
 function randomMoleAppear(){
-  var score = 0
+
 
   var random = Math.floor(Math.random() * 10);
-  console.log(random)
 
   $('.mole').eq(random).addClass("image")
 
-
-  //click on the mole can get 10 points
-  $('.mole').eq(random).on('click',function(){
-      score += 10
-      $('.mole').eq(random).removeClass("image")
-      $('.score').append("Total Score : " +score)
-
-  })
 
   //mole timeout is set to 5s, mole will disappear
   function removeMole(){
   $('.mole').eq(random).removeClass("image")
   }
-  setTimeout(removeMole,4000)
+  setTimeout(removeMole,2000)
 
 }
 
-
-//within 5s user click it will score 10 points
+})
