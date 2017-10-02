@@ -14,7 +14,7 @@ $(function () {
     for (i = 0; i < matrix; i++) {
       grid[i] = new Array(matrix)
       for (j = 0; j < matrix; j++) {
-        // grid[x][y] = '[' + x + ', ' + y + ']'
+
         //populate cells
         grid[i][j] = generateColor()
       }
@@ -36,18 +36,28 @@ $(function () {
   }
 
   function checkForMatch() {
-    for (var x = 0 ; x < matrix; x++) {
+    for (var x = 1 ; x < matrix; x++) {
       for (var y = 1; y < matrix; y++) {
-        if (grid[y] === grid[y-1] === grid[y+1]) console.log("success!")
+        if (grid[y][x] === grid[y][x-1] && grid[y][x] === grid[y][x+1]) {
+          grid[y][x] = 0
+          grid[y][x+1] = 0
+          grid[y][x-1] = 0
+        }
       }
-
     }
+    console.log(grid)
   }
 
+  // function replenish() {
+  //   if (grid[y][x]) === 0) grid[y][x] === grid[y-1][x]
+  // }
+
+
+$('body').on('click',checkForMatch)
 
   generateColor()
   generateLevel()
-  checkForMatch()
+
 
 
 
