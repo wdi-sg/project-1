@@ -11,7 +11,7 @@ var $p1Div = $('.player1Div')
 var $p2Div = $('.player2Div')
 var $body = $('body')
 var $reveal = $('<input id = "reveal" type="submit" value="Reveal">')
-var itemPrice = $('img').data("price")
+var itemPrice = $('#product').data("price")
 
 var p1Arr = []
 var p2Arr = []
@@ -70,7 +70,7 @@ function priceDiff(guessVal, playerNumber) {
 
 function winCheck() {
   if(checkWinner === true) {
-    $body.append($reveal)
+    $('.result').append($reveal)
   }
   // } else {
   //   console.log('dont do anything yet, cos checkWinner is still false')
@@ -100,7 +100,7 @@ function compare () {
 function print() {
   console.log("hello")
   var $printPrice = $("<h2 class = 'printItemPrice'>")
-  $('.item').append($printPrice)
+  $('.result').append($printPrice)
   $printPrice.text('$'+ itemPrice)
 }
 

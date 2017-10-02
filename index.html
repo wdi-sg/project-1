@@ -4,24 +4,38 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
   </head>
   <body>
-    <h1>The PRICE is RIGHT!</h1>
+    <!-- <h1>The PRICE is RIGHT!</h1> -->
 
-    <div class="item">
-      <img src="http://www.pngall.com/wp-content/uploads/2016/04/Toyota-Car-PNG.png"
-      width=150px  data-price=60000  />
+  <div class="logoAndItem">
+    <img src = "/assets/img/Tpir_40_logo.png" width=150px alt="thepriceisright" />
     </div>
+    <!-- <div class="item"> -->
+    <div class="productSpace">
+      <img src="http://www.pngall.com/wp-content/uploads/2016/04/Toyota-Car-PNG.png"
+      id = "product" width=250px  data-price=60000  />
+      </div>
+    <!-- </div> -->
 
-    <div class = "player1Div">PLAYER 1
+<div class="playerInputs">
+    <div class = "player1Div">
+      <h2>PLAYER 1</h2>
       <input id="player-1" type="number">
       <input id = "submit-1" type="submit" value="Submit">
      </div>
-      <div class = "player2Div">PLAYER 2
+
+    <div class = "result">
+
+    </div>
+
+      <div class = "player2Div">
+        <h2>PLAYER 2</h2>
         <input id="player-2" type="number">
         <input id = "submit-2" type="submit" value="Submit">
       </div>
-
+</div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="assets/js/script.js" charset="utf-8"></script>
