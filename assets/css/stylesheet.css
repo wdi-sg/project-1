@@ -1,11 +1,84 @@
-/*.container {
-background-color: yellow;
+.container {
+  width: 200px;
+  margin: 0 auto;
 }
 
 .wrapper {
-  background-color: blue;
+width: 400px;
+display: flex;
+flex-flow: row wrap;
 }
 
-.instructor {
-  background-color: red;
-}*/
+
+body{
+  background-image: url("/assets/images/stage.jpg");
+  background-size:cover;
+}
+
+h1{
+  text-align: center;
+  margin-top: 160px;
+  color: white;
+}
+
+.instructor{
+text-align: center;
+color: white;
+}
+
+.btn1 {
+margin: 0 auto;
+display: block;
+}
+
+div{
+  color: white;
+  text-align: center;
+}
+
+
+.onetwonumkeys{
+  position: absolute;
+   top: 170px;
+   right: 120px;
+  height: auto;
+  width: auto;
+  max-width: 100px;
+  max-height: 100px;
+}
+.threefournumkeys{
+  position: absolute;
+   top: 170px;
+   right: 20px;
+  height: auto;
+  width: auto;
+  max-width: 100px;
+  max-height: 100px;
+}
+.playerone{
+  position: absolute;
+   top: 90px;
+   right: 50px;
+   height: auto;
+   width: auto;
+   max-width: 280px;
+   max-height: 300px;
+}
+.playertwo{
+  position: absolute;
+   top: 400px;
+   right: 50px;
+   height: auto;
+   width: auto;
+   max-width: 280px;
+   max-height: 300px;
+}
+.arrowkeys{
+  position: absolute;
+   top: 430px;
+   right: 10px;
+  height: auto;
+  width: auto;
+  max-width: 200px;
+  max-height: 200px;
+}
