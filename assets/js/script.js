@@ -141,7 +141,7 @@ $(function(){
         }
       }
     }
-    setTimeout(checkGrid(),100000)
+    setTimeout(checkGrid(),1000)
   }
   // function checkingDone(){
   //   if(checkGrid()){
@@ -215,24 +215,27 @@ $(function(){
     else return false
   }
 
-  var toBeDeleteTwo =[]
   function removeElements(){
+    var toBeDeleteTwo =[]
     currentTotal=total
     console.log(toBeDelete)
     toBeDelete.forEach(function(gridId) {
-      if (!toBeDeleteTwo.includes(gridId)){
+      if (!(toBeDeleteTwo.includes(gridId))){
         toBeDeleteTwo.push(gridId)
       }
       // else continue
     })
+
     for (var k = 0; k < toBeDeleteTwo.length; k++) {
       idValue = toBeDeleteTwo[k].split('')
       //console.log(`${idValue}type of${typeof(idValue)}`)
+      //console.log(`${typeof(idValue[0])}${idValue[0]}: ${typeof(idValue[1])}${idValue[1]}`)
       iValueHere = Number(idValue[0])
       jValueHere = Number(idValue[1])
-      //console.log(`${typeof(iValueHere)}${iValueHere}${typeof(jValueHere)}${jValueHere}`)
+      //console.log(`${typeof(iValueHere)}${iValueHere}: ${typeof(jValueHere)}${jValueHere}`)
       total += 5
       grid[iValueHere][jValueHere] = undefined
+      console.log(`#box${iValueHere}${jValueHere}`)
       $(`#box${iValueHere}${jValueHere}`).removeClass()
       $(`#box${iValueHere}${jValueHere}`).addClass('box')
 
@@ -241,6 +244,8 @@ $(function(){
     if(total > currentTotal){
       setTimeout(pushDown,2000)
       $scoreBox.text(`${total}`)
+      toBeDelete =[]
+      toBeDeleteTwo =[]
     }
     toBeDelete =[]
     toBeDeleteTwo =[]
@@ -257,18 +262,21 @@ $(function(){
               grid[i][k] = grid[i][k-1]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-1] = undefined
+              $(`#box${i}${k-1}`).removeClass().addClass('box')
               continue
             }
             else if(grid[i][k-2]!== undefined||grid[i][k-2]){
               grid[i][k] = grid[i][k-2]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-2] = undefined
+              $(`#box${i}${k-2}`).removeClass().addClass('box')
               continue
             }
             else if(grid[i][k-3]!== undefined || grid[i][k-3]){
               grid[i][k] = grid[i][k-3]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-3] = undefined
+              $(`#box${i}${k-3}`).removeClass().addClass('box')
               continue
             }
             else continue
@@ -279,7 +287,7 @@ $(function(){
       }
     }
     //delay = 2000
-   setTimeout(generateElements,2000)
+   setTimeout(generateElements,1000)
   }
 
   // function resetGrid(){
@@ -295,19 +303,6 @@ $(function(){
   // function noMoreMoves(){
   //   //   // to detect if no moves
   // }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
