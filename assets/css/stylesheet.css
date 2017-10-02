@@ -8,20 +8,22 @@ h1 {
   height: 50px;
   width: 50px;
   display: inline-block;
+  position: relative;
+
 }
 
 .playerone {
   height: 100px;
   width: 65px;
   background-color: black;
-  bottom: 0;
+  bottom: 3px;
   right: 0;
   position: absolute;
 }
 
 .container {
   border: 1px solid blue;
-  width: 80%;
+  width: 1400px;
   height: 600px;
   margin: 0 auto;
   padding: 0;
@@ -31,9 +33,15 @@ h1 {
 .score {
   border: 1px solid red;
   height: 100px;
-  width: 80%;
+  width: 1400px;
   margin: 0 auto;
   background-color: green;
+}
 
-
+.hidden {
+  border: 3px solid gold;
+  display: none;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
 }
