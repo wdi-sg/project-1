@@ -1,13 +1,19 @@
 .container {
   width: 300px;
   margin: 0 auto;
+  border: 3px solid green;
+  text-align: center;
+  position: relative;
+
 }
 
 .wrapper {
+  margin: 0 auto;
   border: 3px solid blue;
   width: 208px;
   display: flex;
   flex-flow: row wrap;
+
 }
 
 .cell {
