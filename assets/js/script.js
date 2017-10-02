@@ -11,8 +11,8 @@ $(function () {
   var cellValueP1 = $startPointDiv.data('value')
   var cellValueP2 = $startPointDiv.data('value')
 
-  var currentPositionP1
-  var currentPositionP2
+  var currentPosition;
+  // var currentPositionP2;
 
   // define dice button
   var $dice = $('.dice')
@@ -25,21 +25,20 @@ $(function () {
     if (currentPlayer === player1) {
       cellValueP1 += diceResult
       console.log(cellValueP1)
-      currentPositionP1 = (`[data-value = ${cellValueP1}]`)
-      // console.log(snake === currentPositionP1)
-      player1.detach().appendTo(currentPositionP1)
+      currentPosition = (`[data-value = ${cellValueP1}]`)
+      player1.detach().appendTo(currentPosition)
 
       // Let's put some snakesssssss
-      if (currentPositionP1 === ('[data-value = 8]') || currentPositionP1 === ('[data-value = 14]') || currentPositionP1 === ('[data-value = 15]')) {
-        currentPositionP1 = (`[data-value = 4]`)
-        console.log(currentPositionP1)
-        player1.detach().appendTo(currentPositionP1)
+      if (currentPosition === ('[data-value = 8]') || currentPosition === ('[data-value = 14]') || currentPosition === ('[data-value = 15]')) {
+        currentPosition = (`[data-value = 4]`)
+        console.log(currentPosition)
+        player1.detach().appendTo(currentPosition)
         cellValueP1 = 4
       // Let's put some ladders
-      } else if ((currentPositionP1 === ('[data-value = 1]') || currentPositionP1 === ('[data-value = 9]'))) {
-        currentPositionP1 = (`[data-value = 8]`)
-        player1.detach().appendTo(currentPositionP1)
-        console.log(currentPositionP1)
+      } else if ((currentPosition === ('[data-value = 1]') || currentPosition === ('[data-value = 9]'))) {
+        currentPosition = (`[data-value = 8]`)
+        player1.detach().appendTo(currentPosition)
+        console.log(currentPosition)
         cellValueP1 = 8
       }
 
@@ -47,23 +46,22 @@ $(function () {
     } else if (currentPlayer === player2) {
       cellValueP2 += diceResult
       console.log(cellValueP2)
-      currentPositionP2 = $(`[data-value = ${cellValueP2}]`)
-      player2.detach().appendTo(currentPositionP2)
+      currentPosition = $(`[data-value = ${cellValueP2}]`)
+      player2.detach().appendTo(currentPosition)
 
       // Let's put some snakesssssss
-      if (currentPositionP2 === ('[data-value = 8]') || currentPositionP2 === ('[data-value = 14]') || currentPositionP2 === ('[data-value = 15]')) {
-        currentPositionP2 = (`[data-value = 4]`)
-        console.log(currentPositionP2)
-        player2.detach().appendTo(currentPositionP1)
+      if (currentPosition === ('[data-value = 8]') || currentPosition === ('[data-value = 14]') || currentPosition === ('[data-value = 15]')) {
+        currentPosition = (`[data-value = 4]`)
+        console.log(currentPosition)
+        player2.detach().appendTo(currentPosition)
         cellValueP2 = 4
           // Let's put some ladders
-      } else if ((currentPositionP2 === ('[data-value = 1]') || currentPositionP2 === ('[data-value = 9]'))) {
-        currentPositionP2 = (`[data-value = 8]`)
-        player2.detach().appendTo(currentPositionP2)
-        console.log(currentPositionP2)
+      } else if ((currentPosition === ('[data-value = 1]') || currentPosition === ('[data-value = 9]'))) {
+        currentPosition = (`[data-value = 8]`)
+        player2.detach().appendTo(currentPosition)
+        console.log(currentPosition)
         cellValueP2 = 8
       }
-
       currentPlayer = player1
     }
     gameOver()
