@@ -22,12 +22,13 @@ $(function () {
 
 
     grid[1][0] = "test"
-    grid[2][0] = "test"
-    grid[0][0] = "test"
+    grid[1][1] = "test"
+    grid[1][2] = "test"
 
-    grid[0][1] = "test"
-    grid[0][2] = "test"
-    grid[0][0] = "test"
+    // grid[0][1] = "test"
+    // grid[1][1] = "test"
+    // grid[2][1] = "test"
+    // grid[3][1] = "test"
     console.log(grid)
   }
 
@@ -38,18 +39,23 @@ $(function () {
   }
 
   function checkForMatch() {
-    //check for horizontal matches
-    for (var x = 0 ; x < matrix-1; x++) {
-      for (var y = 0; y < matrix-1; y++) {
-        if (x !==0 && grid[y][x] === grid[y][x-1] && grid[y][x] === grid[y][x+1]) {
+
+    for (var x = 0 ; x < matrix-2; x++) {
+      for (var y = 0; y < matrix-2; y++) {
+        // if (grid[y][x] === grid[y][x+1]) matches = 1
+
+
+        //check for horizontal matches
+        if (grid[y][x] === grid[y][x+1] && grid[y][x] === grid[y][x+2]) {
           grid[y][x] = 0
           grid[y][x+1] = 0
-          grid[y][x-1] = 0
+          grid[y][x+2] = 0
         }
-        if (y !== 0 && grid[y][x] === grid[y-1][x] && grid[y][x] === grid[y+1][x]) {
+        //check for vertical matches
+        if (grid[y][x] === grid[y+1][x] && grid[y][x] === grid[y+2][x]) {
           grid[y][x] = 0
           grid[y+1][x] = 0
-          grid[y-1][x] = 0
+          grid[y+2][x] = 0
         }
       }
     }
@@ -62,15 +68,28 @@ $(function () {
 
 
 
-  // function replenish() {
-  //   if (grid[y][x]) === 0) grid[y][x] === grid[y-1][x]
-  // }
+  function replenish() {
+    for (var x = matrix ; x = 0; x--) {
+      for (var y = matrix; y = 0; y--) {
+        if( y === 0 && grid[y][x] === 0) grid[y][x] = generateColor()
+        if (y !== 0 && grid[y][x] === 0) {
+          var temp = grid[y-1][x]
+          grid[y][x] = temp
+          grid[y-1][x] = 0
+          if (y !== 1)
+          grid[y-1][x] = grid[y-2][x]
+        }
+      }
+    }
+    console.log(grid)
+  }
 
 
-$('body').on('click',checkForMatch)
+$('body').on('click',replenish)
 
   generateColor()
   generateLevel()
+  checkForMatch()
 
 
 

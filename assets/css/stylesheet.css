@@ -4,10 +4,16 @@
 }
 
 .wrapper {
-  border: 1px solid blue;
-  width: 200px;
+  border: 3px solid blue;
+  width: 208px;
   display: flex;
   flex-flow: row wrap;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid red;
 }
 
 
