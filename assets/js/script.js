@@ -1,14 +1,14 @@
 $(function () {
 
-  var grid=[] //this is the game board
+  var grid = [] //this is the game board
   var colorList = ['cubeA','cubeB','cubeC']
-  var cellColor =""
+  var cellColor = ""
   var matrix = 4
 
   // create a 2D array
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#Multi-dimensional_arrays
   function generateLevel () {
-    //creates a new array of height $ width specified by 'matrix'
+    //creates a new array of height & width specified by 'matrix'
     //create rows then columns, grid can be accessed with grid[row][column]
     grid = new Array(matrix)
     for (i = 0; i < matrix; i++) {
@@ -21,32 +21,46 @@ $(function () {
     }
 
 
+    grid[1][0] = "test"
+    grid[2][0] = "test"
+    grid[0][0] = "test"
 
-    console.log(grid)
-    grid[1][1] = "test"
-    grid[1][2] = "test"
-    grid[1][3] = "test"
-
-
+    grid[0][1] = "test"
+    grid[0][2] = "test"
+    grid[0][0] = "test"
     console.log(grid)
   }
+
+
+
   function generateColor() {
-    cellColor = colorList[Math.floor(Math.random() * colorList.length)]
-    return cellColor
+    return colorList[Math.floor(Math.random() * colorList.length)]
   }
 
   function checkForMatch() {
-    for (var x = 1 ; x < matrix; x++) {
-      for (var y = 1; y < matrix; y++) {
-        if (grid[y][x] === grid[y][x-1] && grid[y][x] === grid[y][x+1]) {
+    //check for horizontal matches
+    for (var x = 0 ; x < matrix-1; x++) {
+      for (var y = 0; y < matrix-1; y++) {
+        if (x !==0 && grid[y][x] === grid[y][x-1] && grid[y][x] === grid[y][x+1]) {
           grid[y][x] = 0
           grid[y][x+1] = 0
           grid[y][x-1] = 0
         }
+        if (y !== 0 && grid[y][x] === grid[y-1][x] && grid[y][x] === grid[y+1][x]) {
+          grid[y][x] = 0
+          grid[y+1][x] = 0
+          grid[y-1][x] = 0
+        }
       }
     }
+
+
+
     console.log(grid)
-  }
+      }
+
+
+
 
   // function replenish() {
   //   if (grid[y][x]) === 0) grid[y][x] === grid[y-1][x]
