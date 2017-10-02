@@ -13,6 +13,9 @@ var $body = $('body')
 var $reveal = $('<input id = "reveal" type="submit" value="Reveal">')
 var itemPrice = $('img').data("price")
 
+var p1Arr = []
+var p2Arr = []
+
 var checkWinner = false
 
 //prob, each time that someone clicks submit again, more numbers will appear.
@@ -23,18 +26,17 @@ $submit1.on('click', function () {
   var $printGuess = $("<h4 class = 'printGuess'>")
   $printGuess.text('$'+ guess)
   $p1Div.append($printGuess)
-  // call priceDiff with guess value
-  priceDiff(guess, 1)
+
   $("#player-1").remove();
   $submit1.remove();
-  console.log(guess)
 
   if($('input[type="number"]').length === 0) {
     checkWinner = true
-  }
-
+}
+  priceDiff(guess, 1)
   winCheck()
-})
+
+  })
 
 $submit2.on('click', function () {
   var guess = ($('#player-2').val())
@@ -42,15 +44,12 @@ $submit2.on('click', function () {
   $printGuess.text('$'+ guess)
   $p2Div.append($printGuess)
 
-  priceDiff(guess, 2)
   $("#player-2").remove();
   $submit2.remove();
-  console.log(guess)
-
   if($('input[type="number"]').length === 0) {
     checkWinner = true
   }
-
+  priceDiff(guess, 2)
   winCheck()
 })
 
@@ -58,19 +57,20 @@ function priceDiff(guessVal, playerNumber) {
   console.log(guessVal)
   var diff = Math.abs(guessVal - itemPrice)
 
+
   if(playerNumber === 1) {
     console.log('p1 diff is', diff);
+    p1Arr.push(diff)
   } else {
     console.log('p2 diff is', diff);
+    p2Arr.push(diff)
   }
+
 }
 
 function winCheck() {
   if(checkWinner === true) {
     $body.append($reveal)
-    // check who has the smallest diff
-
-    console.log('check who is the winner')
   }
   // } else {
   //   console.log('dont do anything yet, cos checkWinner is still false')
@@ -82,17 +82,20 @@ $reveal.on('click', function() {
   var $printPrice = $("<h2 class = 'printItemPrice'>")
   $('.item').append($printPrice)
   $printPrice.text('$'+ itemPrice)
+  compare()
 
 
+})
   //reveal the price of the item
   //reveal the winner
   //reveal what was the price difference for each player
 
-})
-// priceDiff()
-//right now the priceDiff function is running first
-//need to run it under Reveal button
-//how to put reveal button
+function compare () {
+  if (p1Arr[0] > p2Arr[0])
+  alert("winner is player 2")
+  if (p2Arr[0] > p1Arr[0])
+  alert("winner is player 1")
+}
 
 
 
