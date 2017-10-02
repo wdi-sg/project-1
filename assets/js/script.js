@@ -18,10 +18,10 @@ $submit1.on('click', function () {
   var $printGuess = $("<h4 class = 'printGuess'>")
   $printGuess.text('$'+ guess)
   $p1Div.append($printGuess)
+  priceDiff()
   $("#player-1").remove();
   $submit1.remove();
   console.log(guess)
-  priceDiff() 
 })
 
 $submit2.on('click', function () {
@@ -36,7 +36,9 @@ $submit2.on('click', function () {
 
 function priceDiff() {
   var itemPrice = $('img').data("price")
-  var p1Diff = $('#player-1').val() - itemPrice
+  var guess = ($('#player-1').val())
+  console.log(guess)
+  var p1Diff = Math.abs(guess - itemPrice)
   console.log(p1Diff)
 }
 
