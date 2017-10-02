@@ -57,3 +57,8 @@ Additional stuff that is really extra
 
  ### Links
 In progress: [Flowchart](https://www.lucidchart.com/documents/view/62c11fc6-3e69-4b2e-97be-ce66f73d84a1)
+
+Plan
+1. Monday: JS Logic
+2. Tuesday: JS Clean up (gonna be lots of repeats)
+3. Wed: CSS and Extra features
