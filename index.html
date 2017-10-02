@@ -2,10 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+
+      <div class="bird"></div>
+
+      <div class="pipe hidden"></div>
+      <div class="pipe hidden"></div>
+
+
+      <div id="score_div">
+        <b>Score: </b><span id="score">0</span>
+      </div>
+
+    <button id="restart-btn">Restart</button>
+
+
+    </div> <!--  end container div -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
