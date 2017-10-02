@@ -4,16 +4,24 @@ var player = new Object()
 player.element = 'player'
 player.x = 250
 player.y = 450
-player.w = 30
-player.h = 30
+player.w = 38
+player.h = 38
 
 var laser = new Object()
 laser.element = 'laser'
 laser.x = 0
 laser.y = -200
-laser.w = 2
-laser.h = 20
+laser.w = 12
+laser.h = 15
 
+// var enemy = new Object()
+// enemy.element = 'enemy'
+// enemy.x = 0
+// enemy.y = -200
+// enemy.w = 50
+// enemy.h = 50
+
+//create an enemy Array
 var enemies = new Array()
 
 
@@ -89,54 +97,118 @@ function handleControls() {
     laser.x = player.x + 15
     laser.y = player.y - laser.h
   }
+
   ensureBounds(player)
-  ensureBounds(laser)
+  // ensureBounds(laser)
+
 }
 
+
+
+// now to check for collision when element intersect with each other
+function intersect(a,b) {
+  return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y
+}
+
+// check for collision function
+  // laser collide with enemies
+  // hero collide with enemies
+  // and if uncontrollable object collide with edge of game map
+function checkCollision() {
+    for (var i = 0; i < enemies.length; i++) {
+      if (intersect(laser, enemies[i])) {
+        var element = document.getElementById(enemies[i].element);
+        element.style.visibility = 'hidden';
+        element.parentNode.removeChild(element);
+        enemies.splice(i, 1);
+        i--;
+        laser.y = -laser.h
+        score += 100
+      } else if (enemies[i].y + enemies[i].h >= 495) {
+        var element = document.getElementById(enemies[i].element);
+        element.style.visibility = 'hidden';
+        element.parentNode.removeChild(element);
+        enemies.splice(i, 1);
+        i--;
+        score += 50
+      } else if (intersect(player, enemies[i])) {
+        gameOver()
+      }
+    }
+}
+
+function gameOver() {
+  var element = document.getElementById(player.element);
+  element.style.visibility = 'hidden';
+  element = document.getElementById('gameover');
+  element.style.visibility = 'visible';
+
+  setInterval(reload, 5000)
+}
+
+function reload() {
+  location.reload()
+}
+
+var score = 0
 // load the sprites to the game
 function showSprites() {
   setPosition(player)
   setPosition(laser)
 
-  // show the enemy
   for (var i = 0; i < enemies.length; i++) {
     setPosition(enemies[i])
   }
+
+  var scoreElement = document.getElementById('score');
+  scoreElement.innerHTML = 'SCORE: ' + score;
 }
 
 // to update the position of object that player cannot control
 function updatePosition() {
   // update position of enemy
   for (var i = 0; i < enemies.length; i++) {
-    enemies[i].y += 4
-    enemies[i].x += getRandom(7) - 3
-    ensureBounds(enemies[i])
+    enemies[i].y += getRandom(5)
+    enemies[i].x += getRandom(5) - 2
+    ensureBounds(enemies[i], true)
   }
 
   // update position for the laser
-  laser.y -= 12
+  laser.y -= 10
 }
 
+ var iterations = 0
 // add enemy to the game map
 function addEnemy() {
-  if (getRandom(50) == 0) {
-    var summonEnemy = 'enemy' + getRandom(10000000)
-    var enemy = new Object()
-    enemy.element = 'enemy'
-    enemy.x = getRandom(450)
-    enemy.y = 0
-    enemy.w = 40
-    enemy.h = 40
+    // how to add more enemy when time passes by
+    var interval = 50
+    if (iterations > 1500) {
+      interval = 5
+    } else if (iterations > 1000) {
+      interval = 20
+    } else if (iterations > 500) {
+      interval = 40
+    }
 
-    var createEnemy = document.createElement('div')
-    createEnemy.id = enemy.element
-    createEnemy.className = 'alien'
-    document.children[0].appendChild(createEnemy)
+    if (getRandom(interval) == 0) {
+      var elementName = 'enemy' + getRandom(10000000)
+      var enemy = new Object()
+      enemy.element = elementName
+      enemy.x = getRandom(450)
+      enemy.y = -50
+      enemy.w = 40
+      enemy.h = 40
 
-    enemies[enemies.length] = enemy
+      var createEnemy = document.createElement('div')
+      createEnemy.id = enemy.element
+      createEnemy.className = 'enemy'
+      $("#background").append(createEnemy)
+
+      enemies[enemies.length] = enemy
+    }
   }
 
-}
+
 
 // get random number for enemies
 function getRandom(max) {
@@ -150,12 +222,14 @@ function gameLoop() {
   if (new Date().getTime() - lastLoopRun > 40) {
     updatePosition()
     handleControls()
+    checkCollision()
 
     addEnemy()
 
     showSprites()
 
     lastLoopRun = new Date().getTime()
+    iterations++
   }
   setTimeout('gameLoop()', 2)
 }
