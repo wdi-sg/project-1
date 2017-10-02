@@ -77,18 +77,16 @@ function winCheck() {
   // }
 }
 
-$reveal.on('click', function() {
-  console.log("hello")
-  var $printPrice = $("<h2 class = 'printItemPrice'>")
-  $('.item').append($printPrice)
-  $printPrice.text('$'+ itemPrice)
-  compare()
-
-
+$reveal.on('click', function () {
+  print();
+  setTimeout(compare,3000);
 })
   //reveal the price of the item
   //reveal the winner
   //reveal what was the price difference for each player
+
+  //problem now is that when we run on click, it immediatesly alert.
+  //i want to reveal the true price first. ok, set timeout?
 
 function compare () {
   if (p1Arr[0] > p2Arr[0])
@@ -97,8 +95,12 @@ function compare () {
   alert("winner is player 1")
 }
 
-
-
+function print() {
+  console.log("hello")
+  var $printPrice = $("<h2 class = 'printItemPrice'>")
+  $('.item').append($printPrice)
+  $printPrice.text('$'+ itemPrice)
+}
 
 
 })
