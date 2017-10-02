@@ -10,7 +10,6 @@
     <div class="container">
       <h1>Basic Pac-Man</h1>
       <div class="window">
-
         <div class="game-board">
           <div class="instruction-panel">
             <h2>Instructions</h2>
@@ -21,16 +20,13 @@
               Arrow-Up '&#9650' : Move 'Up'<br>
               Arrow-Down '&#9660' : Move 'Down'
             </p>
-          </div>
-
-          <div class="character" id="pac-man"></div>
-          <div class="character" id="ghost-one"></div>
-          <div class="character" id="ghost-two"></div>
-          <div class="character" id="ghost-three"></div>
-          <div class="character" id="ghost-four"></div>
-        </div>
-      <!-- </div> -->
-    <!-- </div> -->
+          </div> <!-- instruction-panel -->
+        </div> <!-- game-board -->
+        <div class="score-board">
+          <h2 id="score">Score: 0</h2>
+        </div> <!-- score-board -->
+      </div> <!-- window -->
+    </div> <!-- container -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="/assets/js/script.js" charset="utf-8"></script>

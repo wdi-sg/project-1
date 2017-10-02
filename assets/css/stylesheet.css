@@ -53,40 +53,29 @@ body {
 }
 
 .character {
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
 }
 
 #pac-man {
   background-color: yellow;
-  top: 390px;
-  left: 270px;
 }
 
 #ghost-one {
   background-color: red;
-  top: 210px;
-  left: 270px;
 }
 
 #ghost-two {
   background-color: pink;
-  top: 240px;
-  left: 270px;
 }
 
 #ghost-three {
   background-color: orange;
-  top: 240px;
-  left: 300px;
 }
 
 #ghost-four {
   background-color: cyan;
-  top: 240px;
-  left: 240px;
 }
 
 h1 {
