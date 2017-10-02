@@ -14,6 +14,12 @@ div {
   margin: 0 auto;
 }
 
+#reveal {
+  font-size: 20px;
+  background-color: yellow;
+  border-color: red;
+  font-family: 'Share Tech Mono', monospace;
+}
 
 
 input[type="submit"] {
@@ -32,7 +38,7 @@ h2, h4 {
 }
 
 #player-1, #player-2 {
-  border: 5px solid green;
+  border: 5px solid #2ECC71;
   font-size: 20px;
   margin: 10px;
 }
