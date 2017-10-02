@@ -7,16 +7,33 @@
   </head>
   <body>
     <div class="container">
-      <h1>Project 1: Crops and Robbers</h1>
-      <div class="hitpointsDiv">
-        <h2 class="hitpoints">HP: 100</h2>
+      <div class="gameWrapper">
+        <div class="info">
+          <div class="hitpointsDiv">
+            <h2 class="hitpoints">HP: 100</h2>
+          </div>
+          <div class="scoreDiv">
+            <h2 class="score">Score: 0</h2>
+          </div>
+        </div>
+        <div class="gameBoard"></div>
       </div>
-      <div class="scoreDiv">
-        <h2 class="score">Score: 0</h2>
-      </div>
-      <div class="gameBoard"></div>
 
-      <div class="footer"></div>
+      <div class="aside">
+        <h1>Project 1: Crops and Robbers</h1>
+        <p>Avoid enemies and shoot them to reduce their number. Survive as long as you can.</p>
+        <p>Controls</p>
+        <ul>
+          <li>w - move up</li>
+          <li>a - move left</li>
+          <li>s - move down</li>
+          <li>d - move right</li>
+          <li>cursor - aim</li>
+          <li>click - shoot</li>
+        </ul>
+        <button type="button" id="startBtn">Start Game</button>
+        <button type="button" id="pauseBtn">Pause Game</button>
+      </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

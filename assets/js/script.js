@@ -4,9 +4,13 @@ const gameWidth = parseInt($gameBoard.css("width"))
 const gameHeight = parseInt($gameBoard.css("height"))
 const $score = $(".score")
 const $hitpoint = $(".hitpoints")
-let enemyList = []
-let bulletList = []
+const $pauseBtn = $("#pauseBtn")
+const $startBtn = $("#startBtn")
+const enemyList = []
+const bulletList = []
+const upgradeList = []
 let score = 0
+let pause = false
 
 class Character {
   constructor(
@@ -20,7 +24,8 @@ class Character {
     x,
     y,
     atkSpd,
-    bulletOwner
+    bulletOwner,
+    aniFrame
   ) {
     this.type = type
     this.id = id
@@ -41,6 +46,7 @@ class Character {
     this.pressingRight = false
     this.aimAngle = 0
     this.bulletOwner = bulletOwner
+    this.aniFrame = 0
   }
 
   addChar() {
@@ -51,6 +57,7 @@ class Character {
       width: `${this.sizeX}px`,
       height: `${this.sizeY}px`
     })
+    //fix for bullet
 
     $gameBoard.append($char)
     this.jTarget = $gameBoard.find("." + `${this.id}`)
@@ -58,8 +65,8 @@ class Character {
     if (this.type === "player") {
       this.jTarget.css({
         // border: "3px solid green" //update to actual sprite
-        background: `url("/assets/images/char2.png")`,
-        backgroundPosition: "0 -135px",
+        background: `url("/assets/images/char.png")`,
+        backgroundPosition: "0 -200px",
         backgroundSize: `350%`
       })
     }
@@ -68,6 +75,13 @@ class Character {
       this.jTarget.css({
         // border: "3px solid red", //update to actual sprite
         background: `url("/assets/images/bat.png")`
+      })
+    }
+
+    if (this.type === "upgrade") {
+      this.jTarget.css({
+        border: "3px solid green" //update to actual sprite
+        // background: `url("/assets/images/bat.png")`
       })
     }
 
@@ -91,19 +105,20 @@ class Character {
   }
 
   moveChar() {
-    this.x += this.spdX
-    this.y += this.spdY
-
     this.jTarget.css({
       left: `${this.x}px`,
       top: `${this.y}px`
     })
 
-    if (this.type === "enemy") {
+    if (this.type === "enemy" || this.type === "upgrade") {
+      this.x += this.spdX
+      this.y += this.spdY
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision y
     }
     if (this.type === "bullet") {
+      this.x += this.spdX
+      this.y += this.spdY
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.removeChar() //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.removeChar()
     }
@@ -132,10 +147,30 @@ class Character {
         }
       })
 
-      if (player.pressingRight) player.x += 10
-      if (player.pressingLeft) player.x -= 10
-      if (player.pressingDown) player.y += 10
-      if (player.pressingUp) player.y -= 10
+      if (player.pressingRight) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -100px`
+        })
+        player.x += this.spdX
+      }
+      if (player.pressingLeft) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -290px`
+        })
+        player.x -= 4
+      }
+      if (player.pressingDown) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -200px`
+        })
+        player.y += 4
+      }
+      if (player.pressingUp) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -20px`
+        })
+        player.y -= 4
+      }
 
       //border collision
       if (player.x <= 0) player.x = 0
@@ -144,6 +179,9 @@ class Character {
         player.x = gameWidth - player.sizeX - 4
       if (player.y > gameHeight - player.sizeY - 4)
         player.y = gameHeight - player.sizeY - 4
+
+      //update aniFrame
+      this.aniFrame += 0.06
     }
   }
 
@@ -168,11 +206,24 @@ class Character {
     }
 
     generateBullet(this)
+    this.aimAngle += 5
+    generateBullet(this)
   }
 }
 
-//type, id, sizeX, sizeY, spdX, spdY, hp, x, y, atkSpd
-let player = new Character("player", "player", 40, 60, 0, 0, 100, 50, 50, 500)
+//type, id, sizeX, sizeY, spdX, spdY, hp, x, y, atkSpd, bulletOwner, aniFrame
+let player = new Character(
+  "player",
+  "player",
+  60,
+  90,
+  4.5,
+  4.5,
+  100,
+  50,
+  50,
+  500
+)
 
 const generateEnemy = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
@@ -185,7 +236,7 @@ const generateEnemy = () => {
   let y = Math.random() * 500
   let atkSpd = Math.floor(1000 + Math.random() * 1000)
 
-  console.log("spawning")
+  // console.log("spawning")
   enemyList[id] = new Character(
     "enemy",
     id,
@@ -207,8 +258,8 @@ const generateBullet = entity => {
   let angle = entity.aimAngle
   let sizeX = 5
   let sizeY = 5
-  let spdX = Math.cos(angle / 180 * Math.PI) * 20
-  let spdY = Math.sin(angle / 180 * Math.PI) * 20
+  let spdX = Math.cos(angle / 180 * Math.PI) * 10
+  let spdY = Math.sin(angle / 180 * Math.PI) * 10
   let hp = 0
   let x = entity.x + entity.sizeX / 2
   let y = entity.y + entity.sizeY / 2
@@ -230,24 +281,65 @@ const generateBullet = entity => {
   bulletList[id].addChar()
 }
 
+const generateUpgrade = () => {
+  let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
+  let sizeX = 20
+  let sizeY = 20
+  let spdX = Math.random()
+  let spdY = Math.random()
+  let hp = 0
+  let x = Math.random() * 500
+  let y = Math.random() * 500
+  let atkSpd = 0
+  let owner = ""
+
+  // console.log("spawning")
+  upgradeList[id] = new Character(
+    "upgrade",
+    id,
+    sizeX,
+    sizeY,
+    spdX,
+    spdY,
+    hp,
+    x,
+    y,
+    atkSpd,
+    owner
+  )
+  upgradeList[id].addChar()
+}
+
 const spawnEnemy = () => {
   let enemyFrequency = 5000
   setInterval(function spawn() {
+    if (pause === false) generateEnemy()
+  }, 4000)
+}
+
+const startGame = () => {
+  if (pause === false) {
+    drawMap(1)
+    player.addChar()
     generateEnemy()
-  }, 8000)
+    generateUpgrade()
+    generateUpgrade()
+    // spawnEnemy()
+  }
 }
 
 $(function() {
-  drawMap(1)
-  player.addChar()
+  $pauseBtn.on("click", function togglePause() {
+    if (pause === false) pause = true
+    else {
+      pause = false
+      requestAnimationFrame(update)
+    }
+  })
 
-  // add enemies to dom
-  generateEnemy()
+  $startBtn.on("click", startGame) //starts the game
 
-  spawnEnemy()
-  for (key in enemyList) {
-    enemyList[key].addChar()
-  }
+  startGame()
 
   $body.on("mousedown", () => {
     player.isShooting = true
@@ -257,29 +349,42 @@ $(function() {
     player.isShooting = false
   })
 
-  setInterval(() => {
+  let intervalShootID = setInterval(() => {
     if (player.isShooting) {
       player.shoot()
     }
+    // console.log("test") //to do: kill interval
   }, player.atkSpd)
 
   setInterval(() => {
     //fix enemy shooting
-    for (key in enemyList) {
-      enemyList[key].shoot()
+    if (pause === false) {
+      for (key in enemyList) {
+        enemyList[key].shoot()
+      }
     }
+    //to do: clear interval after enemy delete
   }, 2000)
 
   const update = () => {
-    score++
-    $score.text(`Score: ${score}`)
+    // score++
+    $score.text(`Score: ${Math.floor(score / 1)}`)
     player.moveChar()
+
     //move enemies
     for (key in enemyList) {
       enemyList[key].moveChar()
       if (checkCollision(enemyList[key], player)) {
-        console.log("collision")
         player.hp -= 1 //player takes damage on collision
+      }
+    }
+
+    for (key in upgradeList) {
+      upgradeList[key].moveChar()
+      if (checkCollision(upgradeList[key], player)) {
+        player.hp += 10 //player takes health on collision
+        upgradeList[key].removeChar()
+        upgradeList.splice(key, 1)
       }
     }
     //move bullets
@@ -298,13 +403,12 @@ $(function() {
       ) {
         // console.log("player hit!")
         player.hp--
-        $hitpoint.text(`HP: ${player.hp}`)
+
         if (player.hp <= 0) console.log("You have died.")
         bulletList[key].removeChar()
         bulletList.splice(key, 1)
         continue
       }
-
       //bullet collision with enemy
       for (enemy in enemyList) {
         if (
@@ -313,6 +417,7 @@ $(function() {
         ) {
           enemyList[enemy].hp -= 25
           if (enemyList[enemy].hp <= 0) {
+            score += 10
             enemyList[enemy].removeChar()
             enemyList.splice(enemy, 1)
           }
@@ -322,9 +427,14 @@ $(function() {
         }
       }
     }
+
+    $hitpoint.text(`HP: ${player.hp}`)
+    if (pause === false) requestAnimationFrame(update)
   }
 
-  setInterval(update, 30)
+  // setInterval(update, 30)
+  //60 fps
+  requestAnimationFrame(update)
 })
 
 const drawMap = level => {
