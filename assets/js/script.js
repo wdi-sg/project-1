@@ -11,7 +11,7 @@
     }
 
     colorFn () {
-      var colorSet = ['#DB5461', '#6D1135', '#C226C9', '#FFEF80', '#63C5B7']
+      var colorSet = ['#DB5461', '#6D1135', '#5C7ECD', '#FFEF80', '#63C5B7']
       var colorIndex = Math.floor(Math.random() * colorSet.length)
       return colorSet[colorIndex]
     }
@@ -44,7 +44,7 @@
     var $container = $('.container')
 
     // $playerOne.on('click')
-    setInterval(createFlower, 200)
+    setInterval(createFlower, 150)
     createFlower()
     createPlayerOne()
 
@@ -74,10 +74,10 @@
 
         switch (event.key) {
             case 'ArrowRight': // left arrow key
-              if($playerPos.left < 1300) $('.playerOne').css('left', $playerPos.left + 70);
+              if($playerPos.left < 1300) $('.playerOne').css('left', $playerPos.left + 35);
               break;
             case 'ArrowLeft': // right arrow key
-               if($playerPos.left > 0) $('.playerOne').css('left', $playerPos.left - 70);
+               if($playerPos.left > 0) $('.playerOne').css('left', $playerPos.left - 35);
                break;
         }
     })

@@ -10,6 +10,7 @@ h1 {
   left: 0px;
   display: inline-block;
   position: absolute;
+  transition: linear 0.1s;
 
 }
 
@@ -20,7 +21,7 @@ h1 {
   top: 500px;
   display: inline-block;
   position: absolute;
-  transition: linear 0.  s;
+  transition: linear 0.1s;
 }
 
 .container {
