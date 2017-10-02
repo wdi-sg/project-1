@@ -1,0 +1,39 @@
+h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+.flower {
+  padding: 1px;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.playerone {
+  height: 100px;
+  width: 65px;
+  background-color: black;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.container {
+  border: 1px solid blue;
+  width: 80%;
+  height: 600px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+.score {
+  border: 1px solid red;
+  height: 100px;
+  width: 80%;
+  margin: 0 auto;
+  background-color: green;
+
+
+}
