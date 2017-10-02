@@ -77,9 +77,10 @@ function winCheck() {
   // }
 }
 
-$reveal.on('click', function () {
+$reveal.one('click', function () {
   print();
   setTimeout(compare,3000);
+
 })
   //reveal the price of the item
   //reveal the winner
@@ -93,6 +94,7 @@ function compare () {
   alert("winner is player 2")
   if (p2Arr[0] > p1Arr[0])
   alert("winner is player 1")
+  window.location.reload(true)
 }
 
 function print() {
@@ -102,5 +104,9 @@ function print() {
   $printPrice.text('$'+ itemPrice)
 }
 
+
+
+//now need to have
+//reset button (curently it reloads after alert "ok" is clicked)
 
 })
