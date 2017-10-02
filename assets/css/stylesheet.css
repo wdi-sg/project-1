@@ -1,11 +1,14 @@
-body {
-  background-image: url("/assets/img/foodback.png");
+.background{
+  /*background-image: url("/assets/img/foodback1.png");*/
+  background-color: pink;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: 1400px 800px;
+  overflow: hidden;
   /*opacity: 0.5;*/
 }
+
 
 h1 {
   color:  white;
@@ -18,27 +21,27 @@ h1 {
 }
 
 #memoryBoard {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 1);
   border: #999 1px solid;
   width: 850px;
-  height: 550px;
+  height: 610px;
   padding: 10px;
   margin: 0px auto;
   border-radius: 25px;
   border: 1.5px solid grey;
   box-sizing: border-box;
-
 }
 
 #memoryBoard > div {
   display: inline-flex;
-  width: 180px;
-  height: 90px;
+  width: 130px;
+  height: 130px;
   margin: 8px;
   padding: none;
-  font-size: 64px;
   cursor: pointer;
   align-content: center;
+
+
   /*margin-left: -5px;*/
 }
 
@@ -48,11 +51,13 @@ img {
   border: 2px solid black;
   /*position: relative;
   flex-wrap: wrap;*/
-  width: 95px;
-  height: 140px
+  width: 150px;
+  height: 120px
+
 
 }
 
-.card {
-  margin-left: -60px;
-}
+/*.card {
+  margin-left: 60px;
+
+}*/

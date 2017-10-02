@@ -23,6 +23,7 @@ var cardRefArr = [
 
 var cardsClicked = 0;
 var cardsClickedArr = [];
+var cardsSave = [];
 var matchNotFound = false;
 
 $(function () {
@@ -31,6 +32,7 @@ $(function () {
 
   $memoryBoard.on('click', '.card', function() {
     //how to get the data-id
+
     var cardId = $(this).data('id')
     var cardImage = $(this).find('img')
 
@@ -39,17 +41,23 @@ $(function () {
     else cardImage.attr('src', `assets/img/${'10a'}.jpg`)
 
     cardsClicked++
+    cardsSave.push(Number(cardId))
     cardsClickedArr.push(Number(cardId))
 
-    if(cardsClicked === 2) matchNotFound = matchCard()
+    if(cardsClicked === 2) matchNotFound = matchCard() //make a class to use css to click stop
     console.log('matchNotFound', matchNotFound)
 
     if (matchNotFound) {
+      console.log(cardsClickedArr)
       setTimeout(() => {
+        var firstClicked = cardsSave[cardsSave.length-2]
+        console.log('[data-id="'+firstClicked+'"]')
+        $('[data-id="'+firstClicked+'"]').find('img').attr('src', '/assets/img/back.jpg')
         var cardImage = $(this).find('img')
         console.log('flipback called')
         cardImage.attr('src', '/assets/img/back.jpg')
         matchNotFound = false
+        //make click again
       }, 2000);
     }
 
@@ -88,10 +96,13 @@ $(function () {
       var $card = $('<div>')
       $card.addClass('card')
 
+
       var $cardUnflipped = $('<img>')
-      $cardUnflipped.css('width', 100)
-      $cardUnflipped.css('height', 100)
+      // $cardUnflipped.css('width', 100)
+      // $cardUnflipped.css('height', 100)
       $cardUnflipped.css('backgroundColor', 'white')
+      // $cardUnflipped.css('margin-left','50px')
+
 
 
       $cardUnflipped.attr('src', '/assets/img/back.jpg')
