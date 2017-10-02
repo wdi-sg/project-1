@@ -7,18 +7,20 @@ h1 {
   padding: 1px;
   height: 50px;
   width: 50px;
+  left: 0px;
   display: inline-block;
-  position: relative;
+  position: absolute;
 
 }
 
-.playerone {
+.playerOne {
   height: 100px;
-  width: 65px;
+  width: 70px;
   background-color: black;
-  bottom: 3px;
-  right: 0;
+  top: 500px;
+  display: inline-block;
   position: absolute;
+  transition: linear 0.  s;
 }
 
 .container {

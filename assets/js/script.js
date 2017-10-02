@@ -2,12 +2,12 @@
 // set each color of flower to have different values.
 
   class Flower {
-    constructor (color = this.colorFn(), width, height) {
+    constructor (color = this.colorFn()) {
       this.color = color
       this.element = $('<div class="flower">')
       setInterval(() => {
         this.fall()
-      }, 200)
+      }, 100)
     }
 
     colorFn () {
@@ -22,31 +22,100 @@
       // console.log(this.element)
 
       var position = this.element.position()
-      this.element.css('top', position.top + 30 + 'px')
-        console.log(position)
-        if (position.top > '520') {
-          this.element.remove()
-        }
+      this.element.css('top', position.top + 20 + 'px')
+      if (position.top > '520') {
+        this.element.remove()
       }
-
+    }
   }
 
+  class Player {
+    constructor () {
+      this.name = "player"
+      this.element = $('<div class="playerOne">')
+
+
+    }
+  }
+
+
   $(function () {
+    var $playerOne = $('.playerOne')
     var $container = $('.container')
 
-    setInterval(createFlower, 1000)
+    // $playerOne.on('click')
+    setInterval(createFlower, 200)
     createFlower()
+    createPlayerOne()
+
+
 
     function createFlower () {
       var randomFlower = new Flower()
       var $newFlower = randomFlower.element
-      console.log(randomFlower)
       $newFlower.css({
-        backgroundColor: randomFlower.color
+        backgroundColor: randomFlower.color,
+        left: (Math.floor(Math.random() * 1350) + 'px')
       })
+
       $container.append($newFlower)
-      console.log('createFlower')
     }
+
+    function createPlayerOne() {
+      var player = new Player()
+      var $newPlayer = player.element
+      $container.append($newPlayer)
+    }
+
+
+    $('body').on('keydown', $playerOne, function(event) {
+      var $playerOne = $('.playerOne')
+      var $playerPos = $playerOne.position()
+
+        switch (event.key) {
+            case 'ArrowRight': // left arrow key
+              if($playerPos.left < 1300) $('.playerOne').css('left', $playerPos.left + 70);
+              break;
+            case 'ArrowLeft': // right arrow key
+               if($playerPos.left > 0) $('.playerOne').css('left', $playerPos.left - 70);
+               break;
+        }
+    })
+
+
+
+
+    // function movePlayer() {
+    //   $playerOne.on('keydown', function(e) {
+    //     var playerPos = $playerOne.position()
+    //      if(e.keyCode == 37) { left
+    //      $('.playerOne').animate({
+    //        left: "-=20" + "px"
+    //      })
+    //    }
+
+        // $playerOne.css({
+        //   right: `${playerOne.right + 20}px`
+        // })
+    //   })
+    // }
+
+
+    // {
+    //   if(e.keyCode == 37) { // left
+    //     $("#showroom").animate({
+    //       left: "-=980"
+    //     });
+    //   }
+    //   else if(e.keyCode == 39) { // right
+    //     $("#showroom").animate({
+    //       left: "+=980"
+    //     });
+    //   }
+    // });
+
+
+// ('left', position.left + (Math.floor(Math.random() *1400) + 'px' )
 
       // var $playerOne = $('.playerone')
 
