@@ -1,3 +1,7 @@
+body {
+  background-color: #394053;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -11,22 +15,24 @@
 }
 
 .box {
-  border: solid 2px black;
+  border: solid 1px #4E4A59;
   width: 100px;
   height: 100px;
   display: inline-block;
   border-radius: 9999px;
 }
 
-#box4 {
-  border: solid 2px white;
+#box9 {
+  border: solid 1px #394053;
+  border-radius: 0px;
 }
 
-#loco {
+#loc {
   width: 100px;
   height: 100px;
   border-radius: 20px;
   margin: 20px;
   font-size: 20px;
-  color: red;
+  color: #7CAE7A;
+  background-color: #4E4A59;
 }
