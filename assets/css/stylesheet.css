@@ -25,6 +25,7 @@ h1 {
   height: 450px;
   margin: 0 auto;
   background-image: url("/assets/img/cityView.jpg");
+  background-size: contain;
   display: block;
   position: relative;
 }
@@ -94,7 +95,7 @@ h1 {
   height: 13px;
   width: 13px;
   position: absolute;
-  background-color: white;
+  background-color: black;
 }
 
 .enemyEasy {
@@ -106,4 +107,19 @@ h1 {
 .enemyNormal {
   border: 3.5px solid orange;
   border-radius: 999px;
+}
+
+.enemyHard {
+  border: 3.5px solid white;
+  border-radius: 999px;
+}
+
+.ally {
+  border: 3.5px solid green;
+  background-color: white;
+}
+
+.healthPack {
+  border: 3.5px solid red;
+  background-color: white;
 }

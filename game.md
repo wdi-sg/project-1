@@ -56,7 +56,18 @@ Enemies deal damage to player on expiry.
 * Text popups at game screen, 'Miss!' etc.
 * Music and sound effects
 
-#### Current Issues / Working On
-1. Linking spawn html to JS
-2. Targeting this.enemy on click to derive key/value
+#### Misc Issues
+* No max health
+
+#### To Do List
+1. <s>Linking spawn html to JS</s>
+2. <s>Targeting this.enemy on click to derive key/value</s>
 3. Enemies dealing effect/damage to player on expiry
+4. <s>Add gunshot audio on click</s>
+5. setInterval checker for player/enemy health
+6. setInterval spawner for different enemy types
+7. Adjust spawn locations
+8. Css stuff
+9. Grenade audio
+10. Text notification on miss etc.
+11. Enemies zoom to player (transition effect) when they expire
