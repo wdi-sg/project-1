@@ -44,12 +44,14 @@ $(function () {
     if(cardsClicked === 2) matchNotFound = matchCard()
     console.log('matchNotFound', matchNotFound)
 
-    setTimeout(() => {
-      var cardImage = $(this).find('img')
-      console.log($(this))
-      console.log('flipback called')
-      if(matchNotFound) cardImage.attr('src', '/assets/img/back.jpg')
-    }, 3000);
+    if (matchNotFound) {
+      setTimeout(() => {
+        var cardImage = $(this).find('img')
+        console.log('flipback called')
+        cardImage.attr('src', '/assets/img/back.jpg')
+        matchNotFound = false
+      }, 2000);
+    }
 
   })
 
@@ -133,8 +135,7 @@ $(function () {
   function matchCard() {
     var cardOne = cardsClickedArr[0]
     var cardTwo = cardsClickedArr[1]
-    console.log(cardOne)
-    console.log(cardTwo)
+
 
     if(cardOne % 10 === cardTwo) {
       console.log('match found')
@@ -145,12 +146,12 @@ $(function () {
       return false
     }
     else {
+      cardsClicked = 0
+      cardsClickedArr = []
       console.log('no match')
       return true
     }
 
-    cardsClicked = 0
-    cardsClickedArr = []
   }
 
 })
