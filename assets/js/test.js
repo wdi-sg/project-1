@@ -1,18 +1,3 @@
-// global variables
-// var memoryArr = [
-//   "Spain","Spain Ans",
-//   "USA","USA Ans",
-//   "China","China Ans",
-//   "India","India Ans",
-//   "Japan","Japan Ans",
-//   "Korea","Korea Ans",
-//   "Finland","Finland Ans",
-//   "Maldives","Maldives Ans",
-//   "Iceland","Iceland Ans",
-//   "Kenya","Kenya Ans",
-//   "Egypt","Egypt Ans"
-// ];
-
 var cardRefArr = [
     "assets/img/1.jpg",
     "assets/img/1a.jpg",
@@ -41,83 +26,101 @@ $memoryBoard = $('#memoryBoard') // game board
 $(function () {
   loadAssets()
 
-  if(match()) score++
+// if(match()) score++
 
-  // functions
-  // function ready () {
-  //
-  // }
+// functions
 
   function loadAssets () {
     var indexArr = []
-    indexArr = getUniqueIndex()
+    var myArray = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'];
+    var indexArr = shuffle(myArray)
 
     for(var i = 0 ; i < 20 ; i++) {
       $card = $('<div>')
       $card.addClass("card")
 
-      $cardUnflipped = $('<div>')
-      $cardUnflipped.css('height', 30)
+
+      $cardUnflipped = $('<img>')
       $cardUnflipped.css('width', 70)
+      $cardUnflipped.css('height', 30)
       $cardUnflipped.css('backgroundColor', 'white')
       $cardUnflipped.css('display', 'none')
+      // $cardUnflipped.attr('src', "images/back.jpg");
+      // $cardUnflipped.attr('data-id', i);
+      // $cardUnflipped.addEventListener("click", flipCard);
+      $card.append($cardUnflipped)
 
       $cardFlipped = $('<img>')
       $cardFlipped.attr('src', cardRefArr[indexArr.length-1])
       // $cardFlipped.attr('display', 'none')
-      $cardFlipped.attr('width', 70)
-      $cardFlipped.attr('height', 30)
+      // $cardFlipped.attr('width', 70)
+      // $cardFlipped.attr('height', 30)
       // $cardFlipped.attr('background-size', '100%')
       indexArr.pop()
-
-      $card.append($cardUnflipped)
       $card.append($cardFlipped)
+
       $memoryBoard.append($card)
     }
   }
 
-  function getUniqueIndex () {
-    // generate first random number and push to randomArr
-    var random = Math.floor(Math.random() * 20)
-    var randomArr = []
-    randomArr.push(random)
-    random = Math.floor(Math.random() * 20) // generate next random number
+function shuffle(array) {
+    let counter = array.length;
 
-    // while randomArr does not contain 20 unique numbers between 0-19, generate and store
-    while(randomArr.length !== 19) {
-      // loop through randomArr as many times as it takes to reach end of array
-      for(var i = 0 ; i < randomArr.length ; i++) {
-        // if (end of randomArr)
-        if(i === randomArr.length-1) {
-          // no repeated random number, store
-          if(random !== randomArr[i]) {
-            randomArr.push(random)
-            random = Math.floor(Math.random() * 20) // generate new random number
-          }
-        }
-      // not at end of randomArr
-        else {
-          // and random is not equal to current element in randomArr, continue(check next element in randomArr)
-          if(random !== randomArr[i]) continue
-          // if random is equal to current element in randomArr, generate new random number and exit current loop to restart
-          else {
-            random = Math.floor(Math.random() * 20)
-            break
-          }
-        }
-      }
-      return randomArr
+    // While there are elements in the array
+    while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+
+          //use temp to store last counter (20)
+        let temp = array[counter];
+          //console.log(temp)
+
+          //random index replace with last counter (20)
+        array[counter] = array[index];
+          //console.log(array[counter])
+
+          //push back last counter (20) into random index prev position
+        array[index] = temp;
+          //console.log(array[index])
     }
-  }
+    return array;
+}
 
-  function match() {
+  //
+  // function matchCard() {
+  //   // if click 2 cards then try to match
+  //   if(cardsInPlay.length == 2) {
+  //   //get data-id to pair up?rank to pair up? ASK
+  //     if (cardsInPlay[0] === cardsInPlay[1]) {
+  //   //if match alert true
+  //       alert("You found a match!");
+  //   // if no match return false
+  //     } else {
+  //       alert("Sorry, try again.");
+  //     }
+  //   }
+  // }
 
-    // if match return true
-    // if no match return false
-  }
+  // function flipCard() {
+  //   // get data-id attribute
+  //   var cardId = this.getAttribute("data-id");
+  //   // set images
+  //   this.setAttribute('src',cardRefArr[cardId].cardImage); ASK
+  //   //push rank ASK
+  //   cardsInPlay.push(cards[cardId].rank);
+  //   //matchCard function
+  //   matchCard(cardId);
+  // }
+  //
 
   // function gameStart () {
-  //
+  // onclick instruction pop up?
+  // onclick how to set shuffle
   // }
 
 })

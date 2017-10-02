@@ -1,11 +1,11 @@
-# Wanderlust
+# Food Memory Game
 
 <img src="/assets/img/gameflowchart.png" border = 2px solid black>
 
 ## Project #1: The Game
 
 ### **Overview**
-Memory has long been a favourite game for all generations. Test your memory with Wanderlust - a memory card game for all those who have a strong desire to travel and explore the world. This game requires a good knowledge of observation, concentration and a good memory to win. The object of the game is to collect the most matching pairs. The game is designed so two players can play against each other and win by scoring higher than the other player.
+Memory has long been a favourite game for all generations. Test your memory with Food Memory Game - a memory card game for all those who have a strong desire to eat. This game requires a good knowledge of observation, concentration and a good memory to win. The objective of the game is to match all the pairs.
 
 ### **Challenges**
 + How to make shuffle function
@@ -29,14 +29,12 @@ Memory has long been a favourite game for all generations. Test your memory with
   + If data-attribute is different, return false, use setInterval to turn down cards
   + Turns of player automatically switched
 
++ FlipCard Function
 
 + GameOver Function
   + Return true or false if game is over
 
-
-+ Winner Function
-  + Return 0 if the game is not yet finished. Else it should return either 1 or 2 depending on which player won. It should return 3 if the game is a draw.
-
++
 ### **Tech**
 
 This game was written with: jQuery
