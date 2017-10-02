@@ -25,7 +25,7 @@ body {
 
 .game-board {
   border: 1px solid green;
-  width: 600px;
+  width: 570px;
   height: 540px;
   margin: 0 auto;
   position: relative;
@@ -34,6 +34,18 @@ body {
   align-content: flex-start;
   max-width: 70vw;
   max-height: 70vh;
+}
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dots {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: yellow;
 }
 
 .instruction-panel {
@@ -56,25 +68,25 @@ body {
 #ghost-one {
   background-color: red;
   top: 210px;
-  left: 240px;
+  left: 270px;
 }
 
 #ghost-two {
   background-color: pink;
-  top: 210px;
+  top: 240px;
   left: 270px;
 }
 
 #ghost-three {
   background-color: orange;
-  top: 210px;
+  top: 240px;
   left: 300px;
 }
 
 #ghost-four {
   background-color: cyan;
-  top: 180px;
-  left: 270px;
+  top: 240px;
+  left: 240px;
 }
 
 h1 {
