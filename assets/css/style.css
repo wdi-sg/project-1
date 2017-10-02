@@ -9,7 +9,7 @@ h1, p {
 }
 
 #background {
-  background: url('/assets/img/starsbackground.jpg');
+  background: url('/assets/img/bg2.png');
   width: 500px;
   height: 500px;
   position: absolute;
@@ -28,6 +28,7 @@ h1, p {
   width: 12px;
   height: 15px;
   position: absolute;
+  visibility: 'hidden';
 }
 .enemy {
   background: url('/assets/img/enemy1.png');
@@ -49,4 +50,12 @@ h1, p {
   left: 190px;
   top: 190px;
   visibility: hidden;
+}
+
+span {
+  cursor: pointer;
+}
+
+span:hover {
+  color: pink;
 }
