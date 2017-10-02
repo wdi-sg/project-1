@@ -34,7 +34,7 @@ body{
   position: absolute;
   top: 530px;
   left:50px;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 .mob{
   height: 140px;
@@ -43,6 +43,6 @@ body{
   position: absolute;
   top: 542px;
   left: 655px;
-  transition: 7s;
+  transition: 4s;
 
 }
