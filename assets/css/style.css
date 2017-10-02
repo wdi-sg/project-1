@@ -2,47 +2,77 @@ body{
   background-color: black;
     color: white;
     max-width: 1700px;
+    max-height: 840px;
 }
-
+img{
+  background-size: contain;
+}
 .container{
-  border: 3px solid red;
+  /*border: 3px solid red;*/
   height:840px;
 }
 .topContainer{
-  border: 2px solid lightblue;
-  height: 80%;
-  overflow: hidden;
+  /*border: 2px solid lightblue;*/
+  height: 88%;
+  background-image: url(/assets/images/background.png);
+  background-size: contain;
 }
 .bottomContainer{
-  border: 3px solid lightgreen;
-  height: 19%;
+  border: 0px;
+  height: 12%;
+  background-image: url(/assets/images/healthBar.png);
+  background-size: contain;
 }
 .projectile{
-  border: 3px solid red;
-  height: 5px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   position: absolute;
-  top: 600px;
+  top: 620px;
   left:150px;
-  transition: 1s;
+  transition: 0.5s;
+  background-image: url(/assets/images/bullet.png);
+  background-position: 16% 15%;
   /*visibility: hidden;*/
 }
 .player{
-  height: 150px;
-  width: 50px;
-  border: 2px solid green;
+  height: 110px;
+  width: 60px;
+  /*border: 2px solid green;*/
   position: absolute;
-  top: 530px;
+  top: 560px;
   left:50px;
   transition: 0.3s;
+  background: url(/assets/images/playerModel.png);
+  animation: playerPlay 3s steps(4) infinite;
+  animation-play-state: paused;
 }
 .mob{
-  height: 140px;
-  width: 60px;
-  border: 1px solid yellow;
+  /*border: 1px solid yellow;*/
   position: absolute;
-  top: 542px;
+  top: 505px;
   left: 655px;
   transition: 4s;
+  width: 180px;
+  height: 170px;
+  background: url(/assets/images/stoneGolem.png);
+  animation: mobPlay 2s steps(4) infinite;
 
+}
+
+@keyframes mobPlay {
+  0% {
+   background-position: 0% 22%;
+ }
+ 100% {
+   background-position: 46% 22%;
+ } }
+
+
+@keyframes playerPlay {
+  0% {
+   background-position: 55% 35%;
+ }
+ 100% {
+   background-position: 85.1% 35%;
+ }
 }
