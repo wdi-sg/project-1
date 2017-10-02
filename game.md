@@ -56,10 +56,7 @@ Enemies deal damage to player on expiry.
 * Text popups at game screen, 'Miss!' etc.
 * Music and sound effects
 
-#### Current Issues
-Spawning of enemies, storing of enemies, targeting this.enemy on click to derive key/value.
-
-#### Working On
-* Game theory
-* Specifically creating html and css via jquery with each spawn
-* Enemies dealing damage to player on expire
+#### Current Issues / Working On
+1. Linking spawn html to JS
+2. Targeting this.enemy on click to derive key/value
+3. Enemies dealing effect/damage to player on expiry

@@ -1,9 +1,13 @@
+body {
+  background-color: black;
+}
 .container {
   border: 2px solid red;
   width: 800px;
   height: 600px;
   margin: 0 auto;
   display: block;
+  background-color: grey;
 }
 
 h1 {
@@ -25,16 +29,6 @@ h1 {
   position: relative;
 }
 
-.target {
-  height: 18px;
-  width: 18px;
-  background-color: white;
-  border: 3.5px solid red;
-  border-radius: 999px;
-  position: relative;
-  left: 250px;
-  top: 200px;
-}
 
 .gun {
   position: relative;
@@ -72,6 +66,7 @@ h1 {
   left: 0;
   position: absolute;
 }
+
 .playerGrenade {
   background-color: white;
   width: 150px;
@@ -91,13 +86,24 @@ h1 {
   right: 0;
 }
 
-
-
-img {
+.gun {
   width: 120px;
 }
 
+.spawn {
+  height: 13px;
+  width: 13px;
+  position: absolute;
+  background-color: white;
+}
 
-.sold1 {
-  width: 105px;
+.enemyEasy {
+  border: 3.5px solid red;
+  border-radius: 999px;
+
+}
+
+.enemyNormal {
+  border: 3.5px solid orange;
+  border-radius: 999px;
 }
