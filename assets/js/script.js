@@ -1,3 +1,12 @@
+// class Mob = new class {
+//
+//   constructor(id,hitPoints){
+//
+//     this.id = id
+//     this.hitPoints = hitPoints
+//   }
+// }
+
 $(function () {
 
   console.log('Dom is ready')
@@ -10,17 +19,19 @@ $(function () {
   var $body = $('body')
   var $mobHP = $("#mobHP")
   var $playerHP = $("#healthPoints")
+  var $hpBar = $(".hpBar")
   var fireDirection = ""
   var keys = {37: false, 32: false, 39: false}
   var playerHealth = 100
   var mobHealth = 50
   var currentMobsOnScreen = 0
+  var gameEnd = false
   $bullet.hide()
 
   setInterval(startMob, 1000)
   setInterval(bulletCollisionCheck, 10)
   setInterval(playerMobCollisionCheck,300)
-  setInterval(checkHeight,800)
+  setInterval(checkHeight,300)
 
 
   function checkHeight(){ // check player height and drop if he is floating
@@ -34,48 +45,30 @@ $(function () {
     var $playPos = $player.position()
     keys[e.keyCode] = true;
     $player.css("webkitAnimationPlayState","running")
-    // console.log(keys);
 
     if (keys[32] && keys[39] && $playPos.top === 560 && $playPos.left < 1240){ //right and up
-    $player.css('left', `${$playPos.left += 150}px`)
-    $player.css('top', `${$playPos.top -= 250}px`)
+    $player.css('top', `${$playPos.top -= 200}px`)
+    $player.css('left', `${$playPos.left += 200}px`)
     $player.css("transform","scaleX(-1)")
     fireDirection = "right"
     }
-    if(keys[37] && keys[32] && $playPos.top === 560 && $playPos.left >251){  //left and up
-    $player.css('left', `${$playPos.left -= 150}px`)
-    $player.css('top', `${$playPos.top -= 250}px`)
+    if(keys[37] && keys[32] && $playPos.top === 560 && $playPos.left >201){  //left and up
+    $player.css('top', `${$playPos.top -= 200}px`)
+    $player.css('left', `${$playPos.left -= 200}px`)
     $player.css("transform","scaleX(1)")
     fireDirection = "left"
     }
-    if (keys[37] && $playPos.left >51) {$player.css('left', `${$playPos.left -= 50}px`)
+    if (keys[37] && $playPos.left >151) {
+    $player.css('left', `${$playPos.left -= 150}px`)
     $player.css("transform","scaleX(1)")
-    fireDirection = "left"} //left
-    if (keys[32] && $playPos.top === 560) {$player.css('top', `${$playPos.top -= 200}px`)}   //up
-    if (keys[39] && $playPos.left < 1540) { $player.css('left', `${$playPos.left += 50}px`)
+    fireDirection = "left"
+  } //left
+    if (keys[32] && $playPos.top === 560) {$player.css('top', `${$playPos.top -= 300}px`)}   //up
+    if (keys[39] && $playPos.left < 1480) {
+    $player.css('left', `${$playPos.left += 150}px`)
     $player.css("transform","scaleX(-1)")
     fireDirection = "right"} //right
     if (keys[67]) {fireBullet()}
-    // switch (e.keyCode) {
-    //
-    //   case 37: if ($playPos.left > 100) { $player.css('left', `${$playPos.left -= 100}px`) } // left
-    //     else {
-    //     return
-    //   }
-    //     break
-    //
-    //   case 38: if ($playPos.top === 530) { $player.css('top', `${$playPos.top -= 200}px`) // up
-    // } else if ($playPos.top === 330) {$player.css('top', `${$playPos.top += 200}px`)}
-    //     console.log($playPos.top)
-    //     break
-    //
-    //   case 39: $player.css('left', `${$playPos.left += 100}px`)// right
-    //     break
-    //   //  case 40: $player.css("top",`${$playPos.top +=10}px`)// down
-    //   //  break;
-    //
-    //   default: return // exit this handler for other keys
-    // }
     e.preventDefault() // prevent the default action (scroll / move caret)
   })
 
@@ -85,11 +78,12 @@ $(function () {
     var $playPos = $player.position()
     $player.css("webkitAnimationPlayState","paused")
     // console.log(` current position ${$playPos.top}`)
-    if ($playPos.top < 560) { $player.css('top', `560px`) }
+    // if ($playPos.top !== 560) { $player.css('top', `560px`) }
   })
-
+  var mobArray = []
   function startMob () {
     $spawnMob = $("<div class='mob'>")
+    // mobArray.push($spawnMob)
     // if(currentMobsOnScreen < 3){
     //   currentMobsOnScreen ++
     //   $topContainer.append($spawnMob)
@@ -112,18 +106,19 @@ $(function () {
     $playPos = $player.position()
     mobPosLeft = $mobPosition.left
 
-    if(mobPosLeft > $playPos.left){     //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved right, hence flip right
+    if(mobPosLeft < $playPos.left){     //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved right, hence flip right
 
       // direction = "right"
-      $mob.css("transform","scaleX(1)")
+      $mob.removeClass("mob")
+      $mob.addClass("mobRight")
     }
-    else if(mobPosLeft < $playPos.left){    //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved left, hence flip left
+    else if(mobPosLeft > $playPos.left){    //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved left, hence flip left
 
       // direction = "left"
-      $mob.css("transform","scaleX(-1)")
+      $mob.removeClass("mobRight")
+      $mob.addClass("mob")
     }
     oldXAxis = mobPosLeft//update current mouse/page X axis
-
   }
 
 
@@ -192,7 +187,12 @@ $(function () {
        $mob.height() + blueY > redY) {
       console.log('PLAYER HEALTH REDUCED')
       playerHealth -=1
-      $playerHP.text(`Player HP:${playerHealth}`)
+      var currentHpWidth = $(".hpBar").width()
+      $(".hpBar").css("width",`${currentHpWidth-2}px`)
+      $hpBar.text(`${playerHealth}/100`)
+      if(playerHealth === 0){
+        gameEnd = true
+      }
     } else {
       return false
     }
