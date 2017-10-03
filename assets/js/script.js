@@ -84,6 +84,13 @@ $(function () {
         $column.css({ 'width': '50px', 'height': '50px'})
         $column.attr('id', id--) // give each individual column a number
 
+        if(Number($column.attr('id')) % 2 === 0) {
+          $column.css('backgroundColor', '#ffff00')
+        } else {
+          $column.css('backgroundColor', ' ')
+
+        }
+
         // reverse the numbering for even or odd rows.
         $row.each(function () {
           if (Number(($(this).attr('class'))) % 2 === 0) {
