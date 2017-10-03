@@ -170,7 +170,7 @@ function eatAndChangeScore (tile) {
   var $score = $('#score')
   score++
   $score.text(`Score: ${score}`)
-  tile.empty()
+  tile.find('div:first').remove()
 }
 
 function movePacLeft () {
