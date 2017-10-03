@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
@@ -13,40 +14,116 @@
   <a href="README.md">Readme</a>
 
   <button id="dice">Throw Dice</button>
-
-
+  <img class="dice" src="" alt="">
+  <h4 id="currPos"></h4>
+  <h4 id="newPos"></h4>
+  <h4 id="jump"></h4>
+  <h4 id="winner"></h4>
   <!-- grid elements -->
   <div class="wrapper">
-    <div class="box">30</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box">21</div>
-    <div class="box">20</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box">11</div>
-    <div class="box">10</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box">1</div>
+
+    <div class="box" data-id="100">100</div>
+    <div class="box" data-id="99"></div>
+    <div class="box" data-id="98"></div>
+    <div class="box" data-id="97"></div>
+    <div class="box" data-id="96"></div>
+    <div class="box" data-id="95"></div>
+    <div class="box" data-id="94"></div>
+    <div class="box" data-id="93"></div>
+    <div class="box" data-id="92"></div>
+    <div class="box" data-id="91"></div>
+    <div class="box" data-id="81"></div>
+    <div class="box" data-id="82"></div>
+    <div class="box" data-id="83"></div>
+    <div class="box" data-id="84"></div>
+    <div class="box" data-id="85"></div>
+    <div class="box" data-id="86"></div>
+    <div class="box" data-id="87"></div>
+    <div class="box" data-id="88"></div>
+    <div class="box" data-id="89"></div>
+    <div class="box" data-id="90">90</div>
+    <div class="box" data-id="80">80</div>
+    <div class="box" data-id="79"></div>
+    <div class="box" data-id="78"></div>
+    <div class="box" data-id="77"></div>
+    <div class="box" data-id="76"></div>
+    <div class="box" data-id="75"></div>
+    <div class="box" data-id="74"></div>
+    <div class="box" data-id="73"></div>
+    <div class="box" data-id="72"></div>
+    <div class="box" data-id="71"></div>
+    <div class="box" data-id="61"></div>
+    <div class="box" data-id="62"></div>
+    <div class="box" data-id="63"></div>
+    <div class="box" data-id="64"></div>
+    <div class="box" data-id="65"></div>
+    <div class="box" data-id="66"></div>
+    <div class="box" data-id="67"></div>
+    <div class="box" data-id="68"></div>
+    <div class="box" data-id="69"></div>
+    <div class="box" data-id="70">70</div>
+    <!-- go down end -->
+    <div class="box" data-id="60">60</div>
+    <div class="box" data-id="59"></div>
+    <div class="box" data-id="58"></div>
+    <div class="box" data-id="57"></div>
+    <div class="box" data-id="56"></div>
+    <div class="box" data-id="55"></div>
+    <div class="box" data-id="54"></div>
+    <div class="box" data-id="53"></div>
+    <div class="box" data-id="52"></div>
+    <div class="box" data-id="51"></div>
+    <!-- go down end -->
+    <div class="box" data-id="41"></div>
+    <div class="box" data-id="42"></div>
+    <div class="box" data-id="43"></div>
+    <div class="box" data-id="44"></div>
+    <div class="box" data-id="45"></div>
+    <div class="box" data-id="46"></div>
+    <div class="box" data-id="47"></div>
+    <div class="box" data-id="48"></div>
+    <div class="box" data-id="49"></div>
+    <div class="box" data-id="50">50</div>
+    <div class="box" data-id="40">40</div>
+    <div class="box" data-id="39"></div>
+    <div class="box" data-id="38"></div>
+    <div class="box" data-id="37"></div>
+    <div class="box" data-id="36"></div>
+    <div class="box" data-id="35"></div>
+    <div class="box" data-id="34"></div>
+    <div class="box" data-id="33"></div>
+    <div class="box" data-id="32"></div>
+    <div class="box" data-id="31"></div>
+    <div class="box" data-id="21">21</div>
+    <div class="box" data-id="22"></div>
+    <div class="box" data-id="23"></div>
+    <div class="box" data-id="24"></div>
+    <div class="box" data-id="25"></div>
+    <div class="box" data-id="26"></div>
+    <div class="box" data-id="27"></div>
+    <div class="box" data-id="28"></div>
+    <div class="box" data-id="29"></div>
+    <div class="box" data-id="30">30</div>
+    <div class="box" data-id="20">20</div>
+    <div class="box" data-id="19">19</div>
+    <div class="box" data-id="18">18</div>
+    <div class="box" data-id="17">17</div>
+    <div class="box" data-id="16">16</div>
+    <div class="box" data-id="15">15</div>
+    <div class="box" data-id="14"></div>
+    <div class="box" data-id="13"></div>
+    <div class="box" data-id="12"></div>
+    <div class="box" data-id="11">11</div>
+    <div class="box" data-id="1">1</div>
+    <div class="box" data-id="2">2</div>
+    <div class="box" data-id="3">3</div>
+    <div class="box" data-id="4">4</div>
+    <div class="box" data-id="5">5</div>
+    <div class="box" data-id="6">6</div>
+    <div class="box" data-id="7">7</div>
+    <div class="box" data-id="8">8</div>
+    <div class="box" data-id="9">9</div>
+    <div class="box" data-id="10">10</div>
   </div>
 </div>
 
@@ -57,3 +134,111 @@
     <script src="/assets/js/gameplay.js" charset="utf-8"></script>
   </body>
 </html>
+
+<!-- old grid format copy-->
+<!--
+<div class="box" data-id="100">100</div>
+<div class="box" data-id="99"></div>
+<div class="box" data-id="98"></div>
+<div class="box" data-id="97"></div>
+<div class="box" data-id="96"></div>
+<div class="box" data-id="95"></div>
+<div class="box" data-id="94"></div>
+<div class="box" data-id="93"></div>
+<div class="box" data-id="92"></div>
+<div class="box" data-id="91"></div>
+<div class="box" data-id="90">90</div>
+<div class="box" data-id="89"></div>
+<div class="box" data-id="88"></div>
+<div class="box" data-id="87"></div>
+<div class="box" data-id="86"></div>
+<div class="box" data-id="85"></div>
+<div class="box" data-id="84"></div>
+<div class="box" data-id="83"></div>
+<div class="box" data-id="82"></div>
+<div class="box" data-id="81"></div>
+<div class="box" data-id="80">80</div>
+<div class="box" data-id="79"></div>
+<div class="box" data-id="78"></div>
+<div class="box" data-id="77"></div>
+<div class="box" data-id="76"></div>
+<div class="box" data-id="75"></div>
+<div class="box" data-id="74"></div>
+<div class="box" data-id="73"></div>
+<div class="box" data-id="72"></div>
+<div class="box" data-id="71"></div>
+<div class="box" data-id="70">70</div>
+<div class="box" data-id="69"></div>
+<div class="box" data-id="68"></div>
+<div class="box" data-id="67"></div>
+<div class="box" data-id="66"></div>
+<div class="box" data-id="65"></div>
+<div class="box" data-id="64"></div>
+<div class="box" data-id="63"></div>
+<div class="box" data-id="62"></div>
+<div class="box" data-id="61"></div>
+
+<div class="box" data-id="51"></div>
+<div class="box" data-id="52"></div>
+<div class="box" data-id="53"></div>
+<div class="box" data-id="54"></div>
+<div class="box" data-id="55"></div>
+<div class="box" data-id="56"></div>
+<div class="box" data-id="57"></div>
+<div class="box" data-id="58"></div>
+<div class="box" data-id="59"></div>
+<div class="box" data-id="60">60</div>
+
+<div class="box" data-id="50">50</div>
+<div class="box" data-id="49"></div>
+<div class="box" data-id="48"></div>
+<div class="box" data-id="47"></div>
+<div class="box" data-id="46"></div>
+<div class="box" data-id="45"></div>
+<div class="box" data-id="44"></div>
+<div class="box" data-id="43"></div>
+<div class="box" data-id="42"></div>
+<div class="box" data-id="41"></div>
+<div class="box" data-id="31"></div>
+<div class="box" data-id="32"></div>
+<div class="box" data-id="33"></div>
+<div class="box" data-id="34"></div>
+<div class="box" data-id="35"></div>
+<div class="box" data-id="36"></div>
+<div class="box" data-id="37"></div>
+<div class="box" data-id="38"></div>
+<div class="box" data-id="39"></div>
+<div class="box" data-id="40">40</div>
+<div class="box" data-id="30">30</div>
+<div class="box" data-id="29"></div>
+<div class="box" data-id="28"></div>
+<div class="box" data-id="27"></div>
+<div class="box" data-id="26"></div>
+<div class="box" data-id="25"></div>
+<div class="box" data-id="24"></div>
+<div class="box" data-id="23"></div>
+<div class="box" data-id="22"></div>
+<div class="box" data-id="21">21</div>
+<div class="box" data-id="11">11</div>
+<div class="box" data-id="12"></div>
+<div class="box" data-id="13"></div>
+<div class="box" data-id="14"></div>
+<div class="box" data-id="15">15</div>
+<div class="box" data-id="16">16</div>
+<div class="box" data-id="17">17</div>
+<div class="box" data-id="18">18</div>
+<div class="box" data-id="19">19</div>
+<div class="box" data-id="20">20</div>
+<div class="box" data-id="10">10</div>
+
+<div class="box" data-id="9">9</div>
+<div class="box" data-id="8">8</div>
+<div class="box" data-id="7">7</div>
+<div class="box" data-id="6">6</div>
+<div class="box" data-id="5">5</div>
+
+<div class="box" data-id="4">4</div>
+<div class="box" data-id="3">3</div>
+
+<div class="box" data-id="2">2</div>
+<div class="box" data-id="1">1</div> -->

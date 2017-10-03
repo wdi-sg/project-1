@@ -1,23 +1,15 @@
-var grid = Array(20).fill(0) //chg back to 100
+var grid = Array(100).fill(0) //chg back to 100
 //console.log(grid, grid.length)
 
 //store snakes and ladders keys
 var jumps = {
-  1: 5,
-  3: 3,
-  5: 1,
-  10: -2,
-  12:3,
-  15: -8,
-  17:4,
-  97:3,
-  98:-4,
-  99:-20
-
+//if has jump, move player to that value itself;
+  1: 38,  4:14,  9:31,  17:7,  21:42, 28:84, 51:67,  54:34, 62:19,  64:60,  72:91,  80:99,  87:36,
+  93:73,  95:75,  98:79,
 }
 
+
 function getJump(rollValue) {
-  //return sort.attr('selected') ? true : false;
   if (jumps[rollValue]) {
   //  console.log(jumps[rollValue]);
     return jumps[rollValue]
@@ -25,30 +17,24 @@ function getJump(rollValue) {
 }
 // console.log(typeof(getJump(2)));
 
-//random #s - to add to function
-var rollDice = () => {
-  return Math.floor(Math.random() * 6) + 1
-}
-//console.log(rollDice());
-
-
+//change board for reset.
 var reset = () => {
-  var grid = Array(20).fill(0) //chg to 100
+  var grid = Array(100).fill(0) //chg to 100
   changePlayer()
 }
 
 //variable definitionss
 var player = 1 //may be 1 or 2, add more later
 var move = 0
-var lastMoveOfThisPlayer
-
-//var jump = 0
 
 //check win
 function whoWon() {
-  if (grid[20] > 0) { //chg back to 100 **TO-DO***
-    console.log('winner', grid[20]); //winner number
-    return grid[20]
+  if (grid[100] > 0) {
+    console.log('winner', grid[100]); //winner number
+    $("#jump").text(`Winner is : ${grid[100]}`)
+    //add prompt to reset/button. after delay.
+    reset()
+    return grid[100]
   }
 }
 
@@ -56,24 +42,34 @@ function whoWon() {
 function playTurn() {
   console.log('PLAYER START:', player);
 
-  //get random value 1-6
-  var roll = rollDice()
-  console.log('rollValue', roll);
-
-  //lookup jump.
-  var jump = getJump(roll) //should define outside?
-  console.log('jump', jump);
-
   //update code to get last move of this player, last index of player. Set to 1 at start of game (index will be -1). can this be refactored?
-  lastMoveOfThisPlayer = grid.lastIndexOf(player)<1?1:grid.lastIndexOf(player)
-  console.log('lastMoveOfThisPlayer',lastMoveOfThisPlayer);
+  var lastMove = grid.lastIndexOf(player)<1?0:grid.lastIndexOf(player)
 
-  //set the value to move this player
-  move = lastMoveOfThisPlayer + roll + jump
-  console.log('move', move)
+  console.log('lastMove',lastMove);
 
-  //if player >20 (wins), set to index 20.
-  move > 20 ? move = 20 : grid[move] = player
+  //get random value 1-6
+  var roll = Math.floor(Math.random() * 6) + 1
+  console.log('rollValue', roll);
+  var nextPos = lastMove+roll
+//add codes to show pplayer at roll+ position first, before jump.
+
+  //lookup jump based on new player position .
+  // var jump = getJump(roll+lastMove) //should define outside?
+  // console.log('jump', jump);
+  //
+  // //set the value to move this player to new position plus the jump
+  // move = lastMove + roll + jump
+  // console.log('move', move)
+console.log('jump', getJump(nextPos));
+move = getJump(nextPos)===0?nextPos:getJump(nextPos)
+console.log('move', move)
+showTexts(lastMove,roll,nextPos,move, player)
+
+//just
+//add animation between nextPos and move.
+
+  //if player >100 (wins), set to index 100.
+  move > 100 ? move = 100 : grid[move] = player
   grid[move] = player // keep changing player to add to grid.
 
   console.log('END ROUND');
@@ -83,22 +79,41 @@ function playTurn() {
 function changePlayer() {
   player === 1 ? player = 2 : player = 1
 }
-//console.log(player);
-
-//play game
-// function play(){
-//   whoWon()?reset():playTurn()
-// }
 
 //run a round until someone wins
-do {
+// do {
+//   playTurn()
+// } while (!whoWon());
+
+// console.log(grid);
+
+$(document).ready(function() {
+  var $dice = $("#dice")
+  $dice.on('click', runGame) //when to put () and when not to? if put () it will run auto. it w/o (), will run when clicked
+})
+
+var runGame = ()=>{
+  if(whoWon()){
+    whoWon()
+  }else
   playTurn()
-} while (!whoWon());
-console.log(grid);
+}
 
 
-// $(document).ready(function() {
-//   var $dice = $('dice')
-//   $dice.on('click', playTurn()) //when to put () and when not to?
-//
-// })
+function showTexts(lastMove,roll,newPos,move, player){
+  var $diceImg = $('img.dice')
+  $diceImg.attr('src',"../assets/images/Dice-"+roll+".png")
+
+  var $currPos = $("#currPos")
+  $currPos.text('Last Position is: ' + lastMove )
+
+  var $newPos = $("#newPos")
+  $newPos.text('New position is: ' + newPos)
+
+  var $jump = $("#jump")
+  $jump.text("Ok, jumping to: "+ move)
+//add first to newPos, then delay and change to move
+$('div').removeClass(`player${player}`);
+  $(`[data-id='${newPos}']`).addClass(`player${player}`);
+  $(`[data-id='${move}']`).addClass(`player${player}`);
+}
