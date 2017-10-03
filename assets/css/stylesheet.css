@@ -1,5 +1,6 @@
 .background{
-  background-image: url("/assets/img/hi3.png");
+  /*background-image: url("/assets/img/hi3.png");*/
+  background-image: url("/assets/img/foodback1.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -9,7 +10,7 @@
 }
 
 h1 {
-  /*background color: : url("/assets/img/hi2.jpg")*/
+
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   text-align: center;
@@ -77,4 +78,5 @@ img {
 .timer{
   width: 30px;
   height:12px;
+  
 }

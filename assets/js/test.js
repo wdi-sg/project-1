@@ -1,3 +1,4 @@
+// global variables
 var cardRefArr = [
   'assets/img/1.jpg',
   'assets/img/1a.jpg',
@@ -21,6 +22,7 @@ var cardRefArr = [
   'assets/img/10a.jpg'
 ]
 
+// global game variables
 var cardsClicked = 0
 var cardsClickedArr = []
 var cardsSave = []
@@ -28,17 +30,23 @@ var matchFound = false
 var score = 0
 
 $(function () {
-  var $memoryBoard = $('#memoryBoard') // game board
+  // jQuery objects
+  var $memoryBoard = $('#memoryBoard') // game board div
+  var $restart = $('#restart') // restart button
+  var $start = $('#start') //
+  var $timer = $('.timer')
 
+  // game variables
+  var timer
+
+  // logic start
   loadAssets()
 
   $memoryBoard.on('click', '.card', function () {
     var cardId = $(this).data('id')
     var cardImage = $(this).find('img')
 
-    if (cardId <= 10) cardImage.attr('src', `assets/img/${cardId}.jpg`)
-    else if (cardId > 10 && cardId < 20) cardImage.attr('src', `assets/img/${cardId % 10}a.jpg`)
-    else cardImage.attr('src', `assets/img/${'10a'}.jpg`)
+    assignCard(cardId, cardImage)
 
     cardsClicked++
     cardsSave.push(Number(cardId))
@@ -49,16 +57,16 @@ $(function () {
     if (cardsClicked === 2) {
       matchFound = matchCard()
 
-      if (matchFound) {
-        score += 2
-        $('.score').html("Total:" + score)
-      } else {
+      if (matchFound) changeScore()
+      else {
         setTimeout(() => {
+          // gets data id of first clicked div
           var firstClicked = cardsSave[cardsSave.length - 2]
-          $('[data-id="' + firstClicked + '"]').find('img').attr('src', '/assets/img/back.jpg')
-
-          var cardImage = $(this).find('img')
-          cardImage.attr('src', '/assets/img/back.jpg')
+          // set img src attribute of first clicked div
+          $(`[data-id="${firstClicked}"]`).find('img').attr('src', '/assets/img/back.jpg')
+          // set img src attribute of second clicked div
+          $(this).find('img').attr('src', '/assets/img/back.jpg')
+          // sets matchFound to false
           matchFound = false
           // remove class of stopping clicks
           $('.card').removeClass('avoid-clicks')
@@ -67,14 +75,63 @@ $(function () {
 
       // return cardsClicked = 0 and cardsClickedArr = [] everytime
       // the program checks for matchCard()
-
       cardsClicked = 0
       cardsClickedArr = []
     }
-
   })
 
-// functions
+  // hide restart button
+  $restart.hide()
+  // hide score
+  $('.score').hide()
+
+  $('.card').addClass('avoid-clicks')
+
+  $('#start').on('click', function() {
+    $start.hide()
+    $('.score').show()
+    $('.card').removeClass('avoid-clicks')
+    timer()
+  })
+
+  $restart.on('click', function() {
+    $restart.hide()
+    $memoryBoard.children().remove()
+    loadAssets()
+
+    score = 0
+    $('.score').html("Total: " + score)
+    $('.card').removeClass('avoid-clicks')
+    timer()
+  })
+  // logic end
+
+  // functions
+  function timer () {
+    var timeleft = 10
+    timer = setInterval(function() {
+      --timeleft
+      $timer.html(timeleft)
+      if(timeleft <= 0){
+        clearInterval(timer)
+        $restart.show()
+        $('.card').addClass('avoid-clicks')
+        flipBackAll()
+        // loadAssets()
+      }
+    }, 1000)
+  }
+
+  function changeScore () {
+    score += 2
+    $('.score').html("Total:" + score)
+  }
+
+  function assignCard (cardId, cardImage) {
+    if (cardId <= 10) cardImage.attr('src', `assets/img/${cardId}.jpg`)
+    else if (cardId > 10 && cardId < 20) cardImage.attr('src', `assets/img/${cardId % 10}a.jpg`)
+    else cardImage.attr('src', `assets/img/${'10a'}.jpg`)
+  }
 
   function flipBackAll () {
     $('.card').find('img').attr('src', '/assets/img/back.jpg')
@@ -101,19 +158,15 @@ $(function () {
     }
   }
 
-
   function shuffle (array) {
     let counter = array.length
-
     // While there are elements in the array
     while (counter > 0) {
-        // Pick a random index
+      // Pick a random index
       let index = Math.floor(Math.random() * counter)
-
-        // Decrease counter by 1
+      // Decrease counter by 1
       counter--
-
-    // SWOP
+      // SWOP
       // use temp to store last counter (20)
       let temp = array[counter]
       // random index replace with last counter (20)
@@ -124,46 +177,9 @@ $(function () {
     return array
   }
 
-  var timer
-  var $restart = $('#restart')
-  $restart.hide()
-  $('.score').hide()
-
-  var $start = $('#start')
-  var $timer = $('.timer')
-
-  $('#start').on('click', function() {
-    $start.hide()
-    $('.score').show()
-    $('.card').removeClass('avoid-clicks')
-
-    var timeleft = 10
-    timer = setInterval(function() {
-      --timeleft
-      $timer.html(timeleft)
-      if(timeleft <= 0){
-        clearInterval(timer)
-        $restart.show()
-        $('.card').addClass('avoid-clicks')
-      }
-    }, 1000)
-    console.log(timeleft);
-
-  })
-
-  $restart.on('click', function() {
-    $restart.hide()
-    score = 0
-    $('.score').html("Total: " + score)
-    flipBackAll()
-    $start.show()
-
-  })
-
   function matchCard () {
     var cardOne = cardsClickedArr[0]
     var cardTwo = cardsClickedArr[1]
     return cardOne % 10 === cardTwo % 10
   }
-
 })
