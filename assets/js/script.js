@@ -23,16 +23,11 @@ var tileSet = [
 // jQuery objects
 var $body = $('body')
 var $gameBoard = $('.game-board')
+var direction = 'left'
 
 // score variable
 var score = 0
 
-// creating pac-man and ghosts
-var $pacMan = $('<div class="character" id="pac-man">')
-var $ghostOne = $('<div class="character" id="ghost-one">')
-var $ghostTwo = $('<div class="character" id="ghost-two">')
-var $ghostThree = $('<div class="character" id="ghost-three">')
-var $ghostFour = $('<div class="character" id="ghost-four">')
 
 $(function () {
   // write reset function
@@ -47,59 +42,112 @@ $(function () {
   // write countdown function
 
   // moving pacman
+  setInterval(function () {
+    switch (direction) {
+      case 'left':
+        moveLeft()
+        break
+      case 'right':
+        moveRight()
+        break
+      case 'up':
+        moveUp()
+        break
+      case 'down':
+        moveDown()
+        break
+    }
+  }, 700)
+  // switching directions
   $body.on('keydown', (event) => { move(event) })
 
   // write killScreen function
 })
 
 function move (event) {
-  var $pacMan = $('#pac-man')
-  var $pacManTile = $pacMan.parent()
-  var $pacManLeft = $pacManTile.prev()
-  var $pacManRight = $pacManTile.next()
-  var $pacManDown = $pacManTile.nextAll().eq(18)
-  var $pacManUp = $pacManTile.prevAll().eq(18)
-
-  switch(event.key) {
+  switch (event.key) {
     case 'ArrowUp':
-      // check if tile has dots
-      if ($pacManUp.has('.dots').length > 0) eatAndChangeScore($pacManUp)
-      // check if pac-man can move into tile
-      if ($pacManUp.data('attr') !== 1) $pacManUp.append($pacMan)
+      direction = 'up'
       break
     case 'ArrowRight':
-      // check if tile has dots
-      if ($pacManRight.has('.dots').length > 0) eatAndChangeScore($pacManRight)
-      // check if pac-man can move into tile
-      if ($pacManRight.data('attr') !== 1) $pacManRight.append($pacMan)
+      direction = 'right'
       break
     case 'ArrowDown':
-      // check if tile has dots
-      if ($pacManDown.has('.dots').length > 0) eatAndChangeScore($pacManDown)
-      // check if pac-man can move into tile
-      if ($pacManDown.data('attr') !== 1) $pacManDown.append($pacMan)
+      direction = 'down'
       break
     case 'ArrowLeft':
-      // check if tile has dots
-      if ($pacManLeft.has('.dots').length > 0) eatAndChangeScore($pacManLeft)
-      // check if pac-man can move into tile
-      if ($pacManLeft.data('attr') !== 1) $pacManLeft.append($pacMan)
+      direction = 'left'
       break
   }
 }
 
-function eatAndChangeScore(tile) {
+function eatAndChangeScore (tile) {
   var $score = $('#score')
   score++
   $score.text(`Score: ${score}`)
   tile.empty()
 }
 
+function moveLeft () {
+  var $pacMan = $('#pac-man')
+  var $pacManTile = $pacMan.parent()
+  var $pacManLeft = $pacManTile.prev()
+  // check if tile has dots
+  if ($pacManLeft.has('.dots').length > 0) eatAndChangeScore($pacManLeft)
+  // check if pac-man can move into tile
+  if ($pacManLeft.data('attr') !== 1) $pacManLeft.append($pacMan)
+}
+
+function moveDown () {
+  var $pacMan = $('#pac-man')
+  var $pacManTile = $pacMan.parent()
+  var $pacManDown = $pacManTile.nextAll().eq(18)
+  // check if tile has dots
+  if ($pacManDown.has('.dots').length > 0) eatAndChangeScore($pacManDown)
+  // check if pac-man can move into tile
+  if ($pacManDown.data('attr') !== 1) $pacManDown.append($pacMan)
+}
+
+function moveRight () {
+  var $pacMan = $('#pac-man')
+  var $pacManTile = $pacMan.parent()
+  var $pacManRight = $pacManTile.next()
+  // check if tile has dots
+  if ($pacManRight.has('.dots').length > 0) eatAndChangeScore($pacManRight)
+  // check if pac-man can move into tile
+  if ($pacManRight.data('attr') !== 1) $pacManRight.append($pacMan)
+}
+
+function moveUp () {
+  var $pacMan = $('#pac-man')
+  var $pacManTile = $pacMan.parent()
+  var $pacManUp = $pacManTile.prevAll().eq(18)
+  // check if tile has dots
+  if ($pacManUp.has('.dots').length > 0) eatAndChangeScore($pacManUp)
+  // check if pac-man can move into tile
+  if ($pacManUp.data('attr') !== 1) $pacManUp.append($pacMan)
+}
+
+function clearAllIntervals(left, right, up, down) {
+  clearInterval(left)
+  clearInterval(right)
+  clearInterval(up)
+  clearInterval(down)
+}
+
 function loadAssets (tileSet) {
+  // creating pac-man and ghosts
+  var $pacMan = $('<div class="character" id="pac-man">')
+  var $ghostOne = $('<div class="character" id="ghost-one">')
+  var $ghostTwo = $('<div class="character" id="ghost-two">')
+  var $ghostThree = $('<div class="character" id="ghost-three">')
+  var $ghostFour = $('<div class="character" id="ghost-four">')
+
   // objects to store css properties for tiles
   var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
   var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
 
+  // loop through tileSet array and generate map as well as load characters
   for (var i = 0; i < tileSet.length; i++) {
     // create new <div> for tiles and dots
     var $tile = $('<div class="tile">')
