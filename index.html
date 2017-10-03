@@ -5,19 +5,24 @@
     <title>Food Memory Game</title>
     <link href="https://fonts.googleapis.com/css?family=Leckerli+One|Permanent+Marker" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/stylesheet.css">
-    <!-- <audio id="music" loop src="/assets/img/cupcake.mp3" autoplay> </audio> -->
+    <!-- <audio id="music" loop src="/assets/img/maybe.mp3" autoplay> </audio> -->
   </head>
   <body>
     <div class="background">
-      <h1 class="rose">EAT ME</h1>
-      <div id="memoryBoard"></div>
-      <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-      <script src="/assets/js/test.js" charset="utf-8"></script>
+      <div class="inline">
+        <h1>EAT ME</h1>
+      </div>
+
+      <div class="wrap">
+        <button id="start">Start</button>
+        <div class="timer"></div>
+        <button id="restart">Restart</button>
+      </div>
+      <div class="score"></div>
+
+    <div id="memoryBoard"></div>
     </div>
-
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="/assets/js/test.js" charset="utf-8"></script>
   </body>
 </html>

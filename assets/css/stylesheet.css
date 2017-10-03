@@ -5,8 +5,8 @@
   background-attachment: fixed;
   background-size: 1400px 800px;
   overflow: hidden;
-}
 
+}
 
 h1 {
   /*background color: : url("/assets/img/hi2.jpg")*/
@@ -15,15 +15,32 @@ h1 {
   text-align: center;
   font-family: 'Leckerli One', cursive;
   font-size: 70px;
-  margin: 10px;
+  margin: 5px;
   color: white;
   /*text-transform: lowercase;*/
 }
 
+button{
+  background: #92B6B1;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: 'Leckerli One', cursive;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline: 0;
+  border: white 2px solid;
+}
+
+button:hover {
+  background: #B76E79;
+  text-decoration: none;
+}
 
 #memoryBoard {
   background-color: #B76E79;
-  opacity: 70%;
   /*background-image: url("/assets/img/foodback.jpg");*/
   /*background-image: url("/assets/img/foodback1.jpg");*/
   border: white 2px solid;
@@ -33,7 +50,6 @@ h1 {
   margin: 0px auto;
   border-radius: 25px;
   box-sizing: border-box;
-
 }
 
 #memoryBoard > div {
@@ -43,11 +59,6 @@ h1 {
   margin: 8px;
   padding: none;
   cursor: pointer;
-  /*align-content: center;*/
-
-
-
-  /*margin-left: -5px;*/
 }
 
 img {
@@ -55,15 +66,14 @@ img {
   max-height: 100%;
   border: 2px solid #B76E79;
   border-radius: 10px;
-
-  /*position: relative;
-  flex-wrap: wrap;*/
   width: 120px;
   height: 120px
-
-
 }
 
 .avoid-clicks {
   pointer-events: none;
+}
+.timer{
+  width: 30px;
+  height:12px;
 }

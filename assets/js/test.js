@@ -25,6 +25,7 @@ var cardsClicked = 0
 var cardsClickedArr = []
 var cardsSave = []
 var matchFound = false
+var score = 0
 
 $(function () {
   var $memoryBoard = $('#memoryBoard') // game board
@@ -32,8 +33,6 @@ $(function () {
   loadAssets()
 
   $memoryBoard.on('click', '.card', function () {
-    // how to get the data-id
-
     var cardId = $(this).data('id')
     var cardImage = $(this).find('img')
 
@@ -51,10 +50,9 @@ $(function () {
       matchFound = matchCard()
 
       if (matchFound) {
-        console.log(this)
-        // $memoryBoard.addClass('avoid-clicks')
+        score += 2
+        $('.score').html("Total:" + score)
       } else {
-        console.log('cardsClickedArr', cardsClickedArr)
         setTimeout(() => {
           var firstClicked = cardsSave[cardsSave.length - 2]
           $('[data-id="' + firstClicked + '"]').find('img').attr('src', '/assets/img/back.jpg')
@@ -74,10 +72,13 @@ $(function () {
       cardsClickedArr = []
     }
 
-    // else $memoryBoard.removeClass("avoid-clicks");
   })
 
 // functions
+
+  function flipBackAll () {
+    $('.card').find('img').attr('src', '/assets/img/back.jpg')
+  }
 
   function loadAssets () {
     var indexArr = []
@@ -100,6 +101,7 @@ $(function () {
     }
   }
 
+
   function shuffle (array) {
     let counter = array.length
 
@@ -111,37 +113,55 @@ $(function () {
         // Decrease counter by 1
       counter--
 
-        // And swap the last element with it
-
-          // use temp to store last counter (20)
+    // SWOP
+      // use temp to store last counter (20)
       let temp = array[counter]
-          // console.log(temp)
-
-          // random index replace with last counter (20)
+      // random index replace with last counter (20)
       array[counter] = array[index]
-          // console.log(array[counter])
-
-          // push back last counter (20) into random index prev position
+      // push back last counter (20) into random index prev position
       array[index] = temp
-          // console.log(array[index])
     }
     return array
   }
 
+  var timer
+  var $restart = $('#restart')
+  $restart.hide()
+
+  var $start = $('#start')
+  var $timer = $('.timer')
+
+  $('#start').on('click', function() {
+    console.log("test");
+    $start.hide()
+
+    var timeleft = 20
+    timer = setInterval(function() {
+      --timeleft
+      $timer.html(timeleft)
+      if(timeleft <= 0){
+        clearInterval(timer)
+        $restart.show()
+      }
+    }, 1000)
+    console.log(timeleft);
+
+  })
+
+  $restart.on('click', function() {
+    $restart.hide()
+    score = 0
+    $('.score').html("Total:" + score)
+    flipBackAll()
+    $start.show()
+
+
+  })
+
   function matchCard () {
     var cardOne = cardsClickedArr[0]
     var cardTwo = cardsClickedArr[1]
-
-    // if (cardOne % 10 === cardTwo % 10) {
-    //   // console.log('match found')
-    //   return true
-    // } else if (cardOne % 10 === cardTwo % 10) {
-    //   // console.log('match found')
-    //   return true
-    // } else {
-    //   // console.log('no match')
-    //   return false
-    // }
     return cardOne % 10 === cardTwo % 10
   }
+
 })
