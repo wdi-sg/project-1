@@ -34,8 +34,12 @@ var pacManSpeed = 600
 // ghost variables
 var ghostMovementMode = 'scatter'
 var ghostSpeed = 600
+var prevDirOne = []
+var prevDirTwo = []
+var prevDirThree = []
+var prevDirFour = []
 // ghost-one variables
-var ghostOneTarget
+// var ghostOneTarget
 // ghost-two variables
 
 // ghost-three variables
@@ -63,14 +67,31 @@ $(function () {
       $body.on('keydown', (event) => { changeDirection(event) })
       // moving ghost-one
       setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
-
       // moving ghost-two
-
+      setTimeout(function () {
+        setInterval(function () {
+          moveGhost($('#ghost-two'))
+        }, ghostSpeed)
+      }, 3000)
       // moving ghost-three
-
+      setTimeout(function () {
+        setInterval(function () {
+          moveGhost($('#ghost-three'))
+        }, ghostSpeed)
+      }, 6000)
       // moving ghost-four
-
+      setTimeout(function () {
+        setInterval(function () {
+          moveGhost($('#ghost-four'))
+        }, ghostSpeed)
+      }, 9000)
       // write killScreen function
+      setInterval(function () {
+        if (score === 119) {
+          var $score = $('#score')
+          $score.text(`You've Won!`)
+        }
+      }, 300)
     }
   })
 })
@@ -193,29 +214,116 @@ function movePacUp () {
 }
 
 function moveGhost ($ghost) {
+  // jQuery ghost objects
   var $ghostOne = $('#ghost-one')
   var $ghostTwo = $('#ghost-two')
   var $ghostThree = $('#ghost-three')
   var $ghostFour = $('#ghost-four')
-  console.log('moving ghost')
+
   switch (true) {
-    case ($ghost.is($ghostOne)):
-      console.log('go left')
-      moveTopLeft($ghost)
+    case ($ghost.is($ghostOne)): patrolTopLeft($ghost)
+      break
+    case ($ghost.is($ghostTwo)): patrolTopRight($ghost)
+      break
+    case ($ghost.is($ghostThree)): patrolBottomRight($ghost)
+      break
+    case ($ghost.is($ghostFour)): patrolBottomLeft($ghost)
+      break
   }
-
-
 }
 
-function moveTopLeft ($ghost) {
+function patrolTopLeft ($ghost) {
   var $ghostTile = $ghost.parent()
   var $ghostUp = $ghostTile.prevAll().eq(18)
   var $ghostLeft = $ghostTile.prev()
   var $ghostRight = $ghostTile.next()
   var $ghostDown = $ghostTile.nextAll().eq(18)
 
-  if ($ghostUp.data('attr') !== 1) $ghostUp.append($ghost)
-  else if ($ghostLeft.data('attr') !== 1) $ghostLeft.append($ghost)
-  else if ($ghostRight.data('attr') !== 1) $ghostRight.append($ghost)
-  else if ($ghostDown.data('attr') !== 1) $ghostRight.append($ghost)
+  if ($ghostUp.data('attr') !== 1 && prevDirOne[0] !== 'down' && prevDirOne[1] !== 'down') {
+    prevDirOne.push('up')
+    $ghostUp.append($ghost)
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirOne[0] !== 'right' && prevDirOne[1] !== 'right') {
+    prevDirOne.push('left')
+    $ghostLeft.append($ghost)
+  } else if ($ghostRight.data('attr') !== 1 && prevDirOne[0] !== 'left' && prevDirOne[1] !== 'left') {
+    $ghostRight.append($ghost)
+    prevDirOne.push('right')
+  } else if ($ghostDown.data('attr') !== 1 && prevDirOne[0] !== 'up' && prevDirOne[1] !== 'up') {
+    prevDirOne.push('down')
+    $ghostDown.append($ghost)
+  }
+  // shift entire array left by one element (keeps array 2 elements long)
+  if (prevDirOne.length > 2) prevDirOne.shift()
+}
+
+function patrolTopRight ($ghost) {
+  var $ghostTile = $ghost.parent()
+  var $ghostUp = $ghostTile.prevAll().eq(18)
+  var $ghostLeft = $ghostTile.prev()
+  var $ghostRight = $ghostTile.next()
+  var $ghostDown = $ghostTile.nextAll().eq(18)
+
+  if ($ghostUp.data('attr') !== 1 && prevDirTwo[0] !== 'down' && prevDirTwo[1] !== 'down') {
+    prevDirTwo.push('up')
+    $ghostUp.append($ghost)
+  } else if ($ghostRight.data('attr') !== 1 && prevDirTwo[0] !== 'left' && prevDirTwo[1] !== 'left') {
+    $ghostRight.append($ghost)
+    prevDirTwo.push('right')
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirTwo[0] !== 'right' && prevDirTwo[1] !== 'right') {
+    prevDirTwo.push('left')
+    $ghostLeft.append($ghost)
+  } else if ($ghostDown.data('attr') !== 1 && prevDirTwo[0] !== 'up' && prevDirTwo[1] !== 'up') {
+    prevDirTwo.push('down')
+    $ghostDown.append($ghost)
+  }
+  // shift entire array left by one element (keeps array 2 elements long)
+  if (prevDirTwo.length > 2) prevDirTwo.shift()
+}
+
+function patrolBottomRight ($ghost) {
+  var $ghostTile = $ghost.parent()
+  var $ghostUp = $ghostTile.prevAll().eq(18)
+  var $ghostLeft = $ghostTile.prev()
+  var $ghostRight = $ghostTile.next()
+  var $ghostDown = $ghostTile.nextAll().eq(18)
+
+  if ($ghostDown.data('attr') !== 1 && prevDirThree[0] !== 'up' && prevDirThree[1] !== 'up') {
+    prevDirThree.push('down')
+    $ghostDown.append($ghost)
+  } else if ($ghostUp.data('attr') !== 1 && prevDirThree[0] !== 'down' && prevDirThree[1] !== 'down') {
+    prevDirThree.push('up')
+    $ghostUp.append($ghost)
+  } else if ($ghostRight.data('attr') !== 1 && prevDirThree[0] !== 'left' && prevDirThree[1] !== 'left') {
+    $ghostRight.append($ghost)
+    prevDirThree.push('right')
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirThree[0] !== 'right' && prevDirThree[1] !== 'right') {
+    prevDirThree.push('left')
+    $ghostLeft.append($ghost)
+  }
+  // shift entire array left by one element (keeps array 2 elements long)
+  if (prevDirThree.length > 2) prevDirThree.shift()
+}
+
+function patrolBottomLeft ($ghost) {
+  var $ghostTile = $ghost.parent()
+  var $ghostUp = $ghostTile.prevAll().eq(18)
+  var $ghostLeft = $ghostTile.prev()
+  var $ghostRight = $ghostTile.next()
+  var $ghostDown = $ghostTile.nextAll().eq(18)
+
+  if ($ghostDown.data('attr') !== 1 && prevDirFour[0] !== 'up' && prevDirFour[1] !== 'up') {
+    prevDirFour.push('down')
+    $ghostDown.append($ghost)
+  } else if ($ghostUp.data('attr') !== 1 && prevDirFour[0] !== 'down' && prevDirFour[1] !== 'down') {
+    prevDirFour.push('up')
+    $ghostUp.append($ghost)
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirFour[0] !== 'right' && prevDirFour[1] !== 'right') {
+    prevDirFour.push('left')
+    $ghostLeft.append($ghost)
+  } else if ($ghostRight.data('attr') !== 1 && prevDirFour[0] !== 'left' && prevDirFour[1] !== 'left') {
+    $ghostRight.append($ghost)
+    prevDirFour.push('right')
+  }
+  // shift entire array left by one element (keeps array 2 elements long)
+  if (prevDirFour.length > 2) prevDirFour.shift()
 }
