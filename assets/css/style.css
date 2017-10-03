@@ -48,6 +48,12 @@ font-size: 22px;
 #textbox {
   border: solid 1px #394053;
   border-radius: 0px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  background-color: #68C3D4
 }
 
 #loc {

@@ -3,6 +3,7 @@ var $box = $('.box')
 var $locBtn = $('#loc')
 var $colorBtn = $('#colorBtn')
 var $startBtn = $('#startBtn')
+var textbox = $('#textbox')
 var colorArr = ['red', 'blue', 'orange', 'yellow','white', 'green', 'grey', 'purple']
 var recArr = [];
 var recCol = [];
@@ -10,6 +11,7 @@ var count = 0;
 var index = 0;
 var on = 0;
 var refreshIntervalId;
+var n = 3;
 var scoreObj = {
   score: 0,
   scoreBoard: $('#scoreBoard')
@@ -34,7 +36,7 @@ $startBtn.on('click', () => {
 function locGen() {
   count++;
   var color = randomColor();
-  if (count == 10) {
+  if (count == 20) {
     $('.box').css("backgroundColor","")
     return gameOver()//call gameover
   }
@@ -47,7 +49,8 @@ function locGen() {
 
   setTimeout(function() {
     $(`[data-value = ${index}]`).css("backgroundColor",`${color}`)
-    // $(`[data-value = ${index}]`).css("backgroundColor","${colorArr[0]}")
+    textbox.text(`${color}`)
+    textbox.css('color', `${color}`)
   }, 1000)
 
   recArr.push(index);
@@ -64,10 +67,10 @@ function compareResult () {
   // console.log('check recArr:', recArr)
   // console.log('check recArr[count]:', recArr[count - 1])
   // console.log('check recArr[count - 1]:', recArr[count - 2])
-  if (recArr[count - 1] === recArr[count - 2]) {
+  if (recArr[count - 1] === recArr[count - n]) {
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
-  } else if (recArr[count - 1] != recArr[count - 2]) {
+  } else if (recArr[count - 1] != recArr[count - n]) {
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
   }
@@ -75,10 +78,10 @@ function compareResult () {
 }
 
 function compareColor () {
-  if (recCol[count - 1] === recCol[count - 2]) {
+  if (recCol[count - 1] === recCol[count - n]) {
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
-  } else if (recCol[count - 1] != recCol[count - 2]) {
+  } else if (recCol[count - 1] != recCol[count - n]) {
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
   }
