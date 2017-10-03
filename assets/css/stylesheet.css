@@ -1,6 +1,7 @@
 body {
   background-color: black;
 }
+
 .container {
   border: 2px solid red;
   width: 800px;
@@ -13,12 +14,13 @@ body {
 h1 {
   width: 100%;
   text-align: center;
-  margin: 10 auto;
+  margin: 5 auto;
   border: 2px solid black;
   display: block;
 }
 
 .gameScreen {
+  cursor: url(../img/crosshair.jpg), auto;
   border: 1px solid black;
   padding: 0;
   width: 700px;
@@ -122,4 +124,14 @@ h1 {
 .healthPack {
   border: 3.5px solid red;
   background-color: white;
+}
+
+.ammoBox {
+  border: 3.5px solid black;
+  background-color: grey;
+}
+
+.grenadeRefill {
+  border: 3.5px solid green;
+  background-color: grey;
 }

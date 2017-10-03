@@ -4,13 +4,37 @@ $(function() {
   var playerStats = {
     health: 5,
     ammo: 20,
-    grenade: 3
+    grenade: 3,
   }
 
-  var timer = 120; // default game starts at 120 seconds
+  function updatePlayerStats () {
+    setInterval(() => {
+      var $playerHealth = $('.playerHealth')
+      var $playerAmmo = $('.playerAmmo')
+      var $playerGrenade = $('.playerGrenade')
+      $playerHealth.text('Health: ' +playerStats.health)
+      $playerAmmo.text('Ammo: ' +playerStats.ammo)
+      $playerGrenade.text('Grenade: ' +playerStats.grenade)
+    }, 100)
+  }
+  updatePlayerStats()
+
+  var timeCount = 120; // default game starts at 120 seconds
+  // every second timer -1, check victory, check loss
+  function countDown() {
+    setInterval( () => {
+      var $timer = $('.timer')
+      timeCount = timeCount - 1
+      $timer.text('Timer: ' +timeCount+ ' seconds')
+      checkVictory()
+      checkLoss()
+    }
+    , 1000)
+  }
+  countDown()
 
   function checkVictory() {
-    if(timer <= 0 && playerStats.health > 0) {
+    if(timeCount <= 0 && playerStats.health > 0) {
       // alert('VICTORY!')
     }
   }
@@ -20,22 +44,6 @@ $(function() {
       alert('GAME OVER!')
     }
   }
-
-  // every second timer -1, check victory, check loss
-  function countDown() {
-    setInterval( () => {
-      timer = timer - 1
-      // console.log(timer)
-      checkVictory()
-      checkLoss()
-    }
-    , 1000)
-  }
-  countDown()
-
-
-
-
 
   // constructor for all spawns
   function Spawn(life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink){
@@ -56,6 +64,7 @@ $(function() {
   var counter = 1
   $gameScreen = $('.gameScreen')
 
+// Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
 // Spawn functions
   function spawnEnemyEasy () {
     var enemyEasy = new Spawn(1, 1, 0, 0, 0, 4, 's'+counter)
@@ -127,12 +136,47 @@ $(function() {
     counter++
   }
 
+  function spawnAmmoBox () {
+    var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+counter)
+    spawnList.push(ammoBox)
+    var $spawn = $('<div>')
+    $spawn.attr('id', "s"+counter)
+    $spawn.addClass('spawn ammoBox')
+    $spawn.css({
+      "left": Math.floor(Math.random() * 400),
+      "top": Math.floor(Math.random() * 300)
+    })
+    $gameScreen.append($spawn)
+    counter++
+  }
+
+  function spawnGrenadeRefill () {
+    var grenadeRefill = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
+    spawnList.push(grenadeRefill)
+    var $spawn = $('<div>')
+    $spawn.attr('id', "s"+counter)
+    $spawn.addClass('spawn grenadeRefill')
+    $spawn.css({
+      "left": Math.floor(Math.random() * 400),
+      "top": Math.floor(Math.random() * 300)
+    })
+    $gameScreen.append($spawn)
+    counter++
+  }
+
   spawnEnemyHard()
   spawnEnemyEasy()
   spawnEnemyNormal()
   spawnAlly()
   spawnEnemyEasy()
   spawnHealthPack()
+  spawnGrenadeRefill()
+  spawnAmmoBox()
+  spawnAlly()
+  spawnAlly()
+  spawnAlly()
+  spawnAlly()
+
 
 
 // left click hit interaction
@@ -140,7 +184,7 @@ $(function() {
   $spawn = $('.spawn')
   $spawn.on('click', function(){
   //  console.log($(this).attr('id'))
-    for (i=0; i<spawnList.length;i++) {
+    for (i = 0; i < spawnList.length; i++) {
       if (spawnList[i].counterLink === $(this).attr('id')) {
         if ($(this).attr('class') === 'spawn enemyEasy' || $(this).attr('class') === 'spawn enemyNormal' || $(this).attr('class') === 'spawn enemyHard') {
           spawnList[i].life = spawnList[i].life -1
@@ -148,7 +192,6 @@ $(function() {
             $('div').remove('#'+$(this).attr('id')) // this removes html on click, if class is spawn enemyEasy
             spawnList.splice(i, 1) // this removes array, apply this to enemies only
           }
-      // PROBLEM: removes enemies immediately, doesnt take into account life // start with easy enemy first
         } else {
           $('div').remove('#'+$(this).attr('id'))
           for(var key in spawnList[i]) {
@@ -156,28 +199,20 @@ $(function() {
             if (key === 'effectAmmo') playerStats.ammo = playerStats.ammo + spawnList[i][key]
             if (key === 'effectGrenade') playerStats.grenade = playerStats.grenade + spawnList[i][key]
           }
+          spawnList.splice(i, 1)
+          console.log(spawnList)
         }
       }
     }
   })
 
- // spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
-
-  function spawnAmmoBox () {
-    var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+counter)
-    spawnList.push(ammoBox)
-    counter++
-  }
-  function spawnGrenadeRefill () {
-    var grenade = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
-    spawnList.push(grenade)
-    counter++
-  }
-
   function checkEnemyHealth () {
     for (var i = spawnList.length -1; i > -1; i --) {
       if(spawnList[i].life <= 0) {
         $('div').remove('#'+spawnList[i].counterLink)
+        if (spawnList[i].effectHealth === -1) playerStats.health = playerStats.health -1
+        if (spawnList[i].effectAmmo === +10) playerStats.ammo = playerStats.ammo +10
+        if (spawnList[i].effectGrenade === +1) playerStats.grenade = playerStats.grenade +1
         spawnList.splice(i, 1)
       }
     }
@@ -217,6 +252,7 @@ $(function() {
     }
     console.log(spawnList)
     checkEnemyHealth()
+    updatePlayerStats()
   })
 
 })

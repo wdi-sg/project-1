@@ -46,15 +46,13 @@ enemy{
 On shooting utilities, function will iterate object key and value to determine effect on player stats.
 Enemies deal damage to player on expiry.
 
-#### Future Updates
+#### Future Possible Updates
 * Scoring function
 * More enemy types
 * Combo function
-* Transition fade enemies
 * Pause button
 * Set events i.e. spawn 5 hard enemies at the same time
 * Text popups at game screen, 'Miss!' etc.
-* Music and sound effects
 
 #### Misc Issues
 * No max health
@@ -64,10 +62,10 @@ Enemies deal damage to player on expiry.
 2. <s>Targeting this.enemy on click to derive key/value</s>
 3. Enemies dealing effect/damage to player on expiry
 4. <s>Add gunshot audio on click</s>
-5. setInterval checker for player/enemy health
+5. <s>setInterval checker for player/enemy health</s>
 6. setInterval spawner for different enemy types
 7. Adjust spawn locations
 8. Css stuff
-9. Grenade audio
+9. <s>Grenade audio</s>
 10. Text notification on miss etc.
 11. Enemies zoom to player (transition effect) when they expire
