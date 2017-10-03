@@ -1,35 +1,39 @@
 .background{
-  /*background-image: url("/assets/img/foodback1.png");*/
-  background-color: pink;
+  background-image: url("/assets/img/hi3.png");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: 1400px 800px;
   overflow: hidden;
-  /*opacity: 0.5;*/
 }
 
 
 h1 {
-  color:  white;
-  -webkit-text-stroke-width: 2px;
+  /*background color: : url("/assets/img/hi2.jpg")*/
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   text-align: center;
   font-family: 'Leckerli One', cursive;
   font-size: 70px;
+  margin: 10px;
+  color: white;
   /*text-transform: lowercase;*/
 }
 
+
 #memoryBoard {
-  background-color: rgba(255, 255, 255, 1);
-  border: #999 1px solid;
-  width: 850px;
+  background-color: #B76E79;
+  opacity: 70%;
+  /*background-image: url("/assets/img/foodback.jpg");*/
+  /*background-image: url("/assets/img/foodback1.jpg");*/
+  border: white 2px solid;
+  width: 754px;
   height: 610px;
   padding: 10px;
   margin: 0px auto;
   border-radius: 25px;
-  border: 1.5px solid grey;
   box-sizing: border-box;
+
 }
 
 #memoryBoard > div {
@@ -39,7 +43,8 @@ h1 {
   margin: 8px;
   padding: none;
   cursor: pointer;
-  align-content: center;
+  /*align-content: center;*/
+
 
 
   /*margin-left: -5px;*/
@@ -48,16 +53,17 @@ h1 {
 img {
   max-width: 100%;
   max-height: 100%;
-  border: 2px solid black;
+  border: 2px solid #B76E79;
+  border-radius: 10px;
+
   /*position: relative;
   flex-wrap: wrap;*/
-  width: 150px;
+  width: 120px;
   height: 120px
 
 
 }
 
-/*.card {
-  margin-left: 60px;
-
-}*/
+.avoid-clicks {
+  pointer-events: none;
+}
