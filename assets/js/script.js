@@ -6,11 +6,16 @@ const $score = $(".score")
 const $hitpoint = $(".hitpoints")
 const $pauseBtn = $("#pauseBtn")
 const $startBtn = $("#startBtn")
-const enemyList = []
-const bulletList = []
-const upgradeList = []
+const $restartBtn = $("#restartBtn")
+const $loseDiv = $("<div class='lose'>")
+const catMeow = new Audio("/assets/audio/catMeow.mp3")
+let enemyList = []
+let bulletList = []
+let upgradeList = []
+let petList = []
 let score = 0
-let pause = false
+let pause = true
+let gameCounter = 0
 
 class Character {
   constructor(
@@ -47,6 +52,7 @@ class Character {
     this.aimAngle = 0
     this.bulletOwner = bulletOwner
     this.aniFrame = 0
+    this.bulletMod = [0]
   }
 
   addChar() {
@@ -65,8 +71,8 @@ class Character {
     if (this.type === "player") {
       this.jTarget.css({
         // border: "3px solid green" //update to actual sprite
-        background: `url("/assets/images/char.png")`,
-        backgroundPosition: "0 -200px",
+        background: `url("/assets/images/playerRed1.png")`,
+        backgroundPosition: "0 -190px",
         backgroundSize: `350%`
       })
     }
@@ -74,26 +80,56 @@ class Character {
     if (this.type === "enemy") {
       this.jTarget.css({
         // border: "3px solid red", //update to actual sprite
-        background: `url("/assets/images/bat.png")`
+        background: `url("/assets/images/onionFace2.png")`,
+        backgroundPosition: `0px -200px`,
+        backgroundSize: "350%"
       })
     }
 
     if (this.type === "upgrade") {
       this.jTarget.css({
         border: "3px solid green" //update to actual sprite
-        // background: `url("/assets/images/bat.png")`
+        // background: `url("/assets/images/cat.png")`
       })
+    }
+
+    if (this.type === "cow") {
+      this.jTarget.css({
+        background: 'url("/assets/images/cow.png")'
+      })
+    }
+
+    if (this.type === "cat") {
+      let randomCat = Math.random()
+      if (randomCat < 0.333) {
+        this.jTarget.css({
+          background: `url("/assets/images/weilisCat1.png")`,
+          backgroundPosition: `0px -200px`,
+          backgroundSize: "450%"
+        })
+      } else if (randomCat > 0.333 && randomCat < 0.666) {
+        this.jTarget.css({
+          background: `url("/assets/images/weilisCat2.png")`,
+          backgroundPosition: `0px -200px`,
+          backgroundSize: "450%"
+        })
+      } else
+        this.jTarget.css({
+          background: `url("/assets/images/weilisCat3.png")`,
+          backgroundPosition: `0px -200px`,
+          backgroundSize: "450%"
+        })
     }
 
     if (this.type === "bullet") {
       if (this.bulletOwner === "enemy") {
         this.jTarget.css({
-          border: "3px solid red", //update to actual sprite
+          border: "3px solid black", //update to actual sprite
           borderRadius: "50%"
         })
       } else {
         this.jTarget.css({
-          border: "3px solid black", //update to actual sprite
+          border: "6px solid red", //update to actual sprite
           borderRadius: "50%"
         })
       }
@@ -110,12 +146,81 @@ class Character {
       top: `${this.y}px`
     })
 
-    if (this.type === "enemy" || this.type === "upgrade") {
+    if (
+      this.type === "enemy" ||
+      this.type === "upgrade" ||
+      this.type === "cow"
+    ) {
       this.x += this.spdX
       this.y += this.spdY
+      if (this.spdX > 0) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -100px`
+        })
+      }
+      if (this.spdX < 0) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -290px`
+        })
+      }
+      if (this.spdY > 0 && this.spdY > this.spdX) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -200px`
+        })
+      }
+      if (this.spdY < 0 && this.spdY > this.spdX) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -20px`
+        })
+      }
+      this.aniFrame += 0.07
+      //enemy collision with border
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision y
     }
+
+    if (this.type === "cat") {
+      this.x += this.spdX
+      this.y += this.spdY
+      if (this.spdX === 0) {
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 4) *
+            -67.5}px -270px`
+        })
+      }
+      if (this.spdX > 0 && this.spdY > 0) {
+        //right
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 4) *
+            -67.5}px -200px`
+        })
+      }
+      if (this.spdX < 0 && this.spdY > 0) {
+        //left
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 4) * -67.5}px 0px`
+        })
+      }
+      if (this.spdX > 0 && this.spdY < 0) {
+        //down
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 4) *
+            -67.5}px -130px`
+        })
+      }
+      if (this.spdX < 0 && this.spdY < 0) {
+        //up
+        this.jTarget.css({
+          backgroundPosition: `${Math.floor(this.aniFrame % 4) * -67.5}px -65px`
+        })
+      }
+      this.aniFrame += 0.1
+      //enemy collision with border
+
+      if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
+      if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision y
+    }
+
     if (this.type === "bullet") {
       this.x += this.spdX
       this.y += this.spdY
@@ -125,24 +230,24 @@ class Character {
 
     if (this.type === "player") {
       $body.on("keydown", e => {
-        if (e.key === "w") {
+        if (e.key === "w" || e.key === "ArrowUp") {
           player.pressingUp = true
-        } else if (e.key === "a") {
+        } else if (e.key === "a" || e.key === "ArrowLeft") {
           player.pressingLeft = true
-        } else if (e.key === "s") {
+        } else if (e.key === "s" || e.key === "ArrowDown") {
           player.pressingDown = true
-        } else if (e.key === "d") {
+        } else if (e.key === "d" || e.key === "ArrowRight") {
           player.pressingRight = true
         }
       })
       $body.on("keyup", e => {
-        if (e.key === "w") {
+        if (e.key === "w" || e.key === "ArrowUp") {
           player.pressingUp = false
-        } else if (e.key === "a") {
+        } else if (e.key === "a" || e.key === "ArrowLeft") {
           player.pressingLeft = false
-        } else if (e.key === "s") {
+        } else if (e.key === "s" || e.key === "ArrowDown") {
           player.pressingDown = false
-        } else if (e.key === "d") {
+        } else if (e.key === "d" || e.key === "ArrowRight") {
           player.pressingRight = false
         }
       })
@@ -161,13 +266,13 @@ class Character {
       }
       if (player.pressingDown) {
         this.jTarget.css({
-          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -200px`
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -190px`
         })
         player.y += 4
       }
       if (player.pressingUp) {
         this.jTarget.css({
-          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -20px`
+          backgroundPosition: `${Math.floor(this.aniFrame % 3) * 70}px -10px`
         })
         player.y -= 4
       }
@@ -186,6 +291,7 @@ class Character {
   }
 
   shoot() {
+    if (pause === true) return
     if (this.type === "player") {
       //mouse targeting
       $gameBoard.on("mousemove", e => {
@@ -198,16 +304,23 @@ class Character {
     }
 
     if (this.type === "enemy") {
-      let targetX = player.x //mouse X
-      let targetY = player.y //mouse Y
+      let targetX = player.x
+      let targetY = player.y
       let distanceX = targetX - this.x - this.sizeX / 2
       let distanceY = targetY - this.y - this.sizeY / 2
       this.aimAngle = Math.atan2(distanceY, distanceX) / Math.PI * 180
     }
 
-    generateBullet(this)
-    this.aimAngle += 5
-    generateBullet(this)
+    for (key in this.bulletMod) {
+      if (this.bulletMod[key] === 0) generateBullet(this) //default 0 -> 1 bullet
+      if (this.bulletMod[key] > 0) {
+        generateBullet(this)
+        this.aimAngle += 5
+      }
+      if (this.bulletMod === "a") {
+        //special bullets to be added
+      }
+    }
   }
 }
 
@@ -222,16 +335,52 @@ let player = new Character(
   100,
   50,
   50,
-  500
+  500,
+  "",
+  0
 )
+
+const generateCow = () => {
+  let id = Math.floor(Math.random() * 100000)
+  let sizeX = 60
+  let sizeY = 90
+  let spdX = Math.random() * 2.5
+  let spdY = Math.random() * 2.5
+  let x = 150
+  let y = 150
+
+  petList[id] = new Character("cow", id, sizeX, sizeY, spdX, spdY, 0, x, y)
+
+  petList[id].addChar()
+}
+
+const generateCat = () => {
+  let id = Math.floor(Math.random() * 100000)
+  let sizeX = 60
+  let sizeY = 80
+  let spdModX = Math.random()
+  let spdMultX = 1
+  if (spdModX < 0.5) spdMultX = -1
+  let spdModY = Math.random()
+  let spdMultY = 1
+  if (spdModY < 0.5) spdMultY = -1
+  let spdX = Math.random() * 0.3 * spdMultX
+  let spdY = Math.random() * 0.3 * spdMultY
+  let x = Math.random() * 500
+  let y = Math.random() * 500
+
+  petList[id] = new Character("cat", id, sizeX, sizeY, spdX, spdY, 0, x, y)
+
+  petList[id].addChar()
+}
 
 const generateEnemy = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
-  let sizeX = 50
-  let sizeY = 50
-  let spdX = Math.random() * 5
-  let spdY = Math.random() * 5
-  let hp = 50
+  let sizeX = 60
+  let sizeY = 90
+  let spdX = Math.random() * 2.5
+  let spdY = Math.random() * 2.5
+  let hp = 150
   let x = Math.random() * 500
   let y = Math.random() * 500
   let atkSpd = Math.floor(1000 + Math.random() * 1000)
@@ -310,36 +459,100 @@ const generateUpgrade = () => {
   upgradeList[id].addChar()
 }
 
+// unlimited spawn
 const spawnEnemy = () => {
-  let enemyFrequency = 5000
-  setInterval(function spawn() {
-    if (pause === false) generateEnemy()
-  }, 4000)
-}
-
-const startGame = () => {
-  if (pause === false) {
-    drawMap(1)
-    player.addChar()
+  let enemyFrequency = 800
+  // setInterval(function spawn() {
+  if (pause === false && gameCounter % enemyFrequency === 0) {
+    // generateEnemy()
     generateEnemy()
-    generateUpgrade()
-    generateUpgrade()
-    // spawnEnemy()
+    if (gameCounter > 2000) enemyFrequency = 500
   }
 }
 
+const restartGame = () => {
+  for (key in enemyList) {
+    enemyList[key].removeChar()
+  }
+
+  for (key in bulletList) {
+    bulletList[key].removeChar()
+  }
+
+  for (key in upgradeList) {
+    upgradeList[key].removeChar()
+  }
+
+  player.hp = 100
+  enemyList = []
+  bulletList = []
+  upgradeList = []
+  gameCounter = 0
+  startGame()
+  // requestAnimationFrame(update)
+}
+
 $(function() {
-  $pauseBtn.on("click", function togglePause() {
+  $pauseBtn.on("click", togglePause)
+
+  function togglePause() {
+    if (player.hp <= 0) return
     if (pause === false) pause = true
     else {
       pause = false
       requestAnimationFrame(update)
     }
-  })
+  }
+
+  const startGame = () => {
+    if (player.hp <= 0) return
+    if (pause === true) {
+      drawMap(1)
+      player.addChar()
+      // generateEnemy()
+      generateCat()
+      generateCat()
+      generateCat()
+      // generateCow()
+
+      gameCounter = 0
+      pause = false
+      requestAnimationFrame(update)
+    }
+  }
+
+  const restartGame = () => {
+    for (key in enemyList) {
+      enemyList[key].removeChar()
+    }
+    for (key in bulletList) {
+      bulletList[key].removeChar()
+    }
+    for (key in upgradeList) {
+      upgradeList[key].removeChar()
+    }
+
+    player.hp = 100
+    score = 0
+    gameCounter = 0
+    enemyList = []
+    bulletList = []
+    upgradeList = []
+    startGame()
+  }
 
   $startBtn.on("click", startGame) //starts the game
+  $restartBtn.on("click", restartGame) //restarts the game
 
-  startGame()
+  for (cat in petList) {
+    let catMeow = new Audio("/assets/audio/catMeow.mp3")
+    console.log("loop test")
+    if (petList[cat].type === "cat") {
+      this.jTarget.on("click", catMeow.play())
+    }
+  }
+
+  // startGame()
 
   $body.on("mousedown", () => {
     player.isShooting = true
@@ -367,15 +580,27 @@ $(function() {
   }, 2000)
 
   const update = () => {
-    // score++
+    if (pause === true) return
+    gameCounter++ // keeps track of time spent in game 60 fps
     $score.text(`Score: ${Math.floor(score / 1)}`)
     player.moveChar()
 
+    //spawnEnemy
+    spawnEnemy()
     //move enemies
     for (key in enemyList) {
       enemyList[key].moveChar()
       if (checkCollision(enemyList[key], player)) {
-        player.hp -= 1 //player takes damage on collision
+        player.hp-- //player takes damage on collision
+        checkDead()
+      }
+    }
+
+    for (key in petList) {
+      petList[key].moveChar()
+      if (checkCollision(petList[key], player) && petList[key].type === "cat") {
+        catMeow.play()
+        console.log('Mr Scruffington says "Get off my lawn, pesky farmer!"')
       }
     }
 
@@ -383,6 +608,7 @@ $(function() {
       upgradeList[key].moveChar()
       if (checkCollision(upgradeList[key], player)) {
         player.hp += 10 //player takes health on collision
+        player.bulletMod.push(2)
         upgradeList[key].removeChar()
         upgradeList.splice(key, 1)
       }
@@ -402,9 +628,9 @@ $(function() {
         bulletList[key].bulletOwner === "enemy"
       ) {
         // console.log("player hit!")
-        player.hp--
+        player.hp -= 10
+        checkDead()
 
-        if (player.hp <= 0) console.log("You have died.")
         bulletList[key].removeChar()
         bulletList.splice(key, 1)
         continue
@@ -432,17 +658,56 @@ $(function() {
     if (pause === false) requestAnimationFrame(update)
   }
 
-  // setInterval(update, 30)
+  //setInterval(update, 30)
   //60 fps
   requestAnimationFrame(update)
 })
 
+const loseScreen = () => {
+  let $deadText = $('<h1 class="deadText">')
+  let $deadScore = $('<h1 class="deadScore">')
+  $deadText.text(`You have died. Score: ${score}`)
+  // $deadScore.text(`Score: ${score}`)
+
+  $deadText.css({
+    position: "absolute"
+  })
+
+  $deadScore.css({
+    position: "absolute"
+  })
+
+  $loseDiv.append($deadText)
+  $loseDiv.append($deadScore)
+  $loseDiv.css({
+    color: "white",
+    // margin: "0 auto",
+    display: "flex",
+    "justify-content": "center",
+    "align-items": "center",
+    height: "400px"
+    // background: "rgba(255, 255, 255, 0.5)"
+  })
+
+  $gameBoard.append($loseDiv)
+
+  $gameBoard.css({
+    filter: "grayscale(1)"
+  })
+}
+
 const drawMap = level => {
   if (level === 1) {
     $gameBoard.css({
-      background: `url("/assets/images/spring.png")`
+      background: `url("/assets/images/spring.png")`,
+      display: "flex",
+      "justify-content": "center",
+      "align-items": "center",
+      filter: "none"
     })
   }
+  $loseDiv.empty()
+  $loseDiv.remove()
 }
 
 const checkCollision = (obj1, obj2) =>
@@ -450,3 +715,10 @@ const checkCollision = (obj1, obj2) =>
   obj2.x <= obj1.x + obj1.sizeX &&
   obj1.y <= obj2.y + obj2.sizeY &&
   obj2.y <= obj1.y + obj1.sizeY
+
+const checkDead = () => {
+  if (player.hp <= 0) {
+    pause = true
+    loseScreen()
+  }
+}

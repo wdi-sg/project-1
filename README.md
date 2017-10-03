@@ -2,7 +2,7 @@
 
 ### Introduction
 
-**Bandits** are trying to steal your harvest. Luckily for you, milk isn't the only thing you deliver. Defend your crop and **deliver sweet justice**.
+**Bandits** are trying to steal your harvest. You and your cow are getting distressed. Luckily for you, milk isn't the only thing you deliver. Defend your crop and **deliver sweet justice**.
 
 1. Play as a farmer, Johnny Wicklebottom.
 2. Plant crops and earn gold to survive the winter.
