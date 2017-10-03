@@ -8,7 +8,7 @@ var tileSet = [
   1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
   1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1,
   1, 1, 1, 1, 1, 1, 2, 1, 1, 8, 1, 1, 2, 1, 1, 1, 1, 1, 1,
-  2, 2, 2, 2, 2, 2, 2, 1, 7, 6, 5, 1, 2, 2, 2, 2, 2, 2, 2,
+  3, 2, 2, 2, 2, 2, 2, 1, 7, 6, 5, 1, 2, 2, 2, 2, 2, 2, 3,
   1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,
   1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1,
   1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
@@ -24,12 +24,23 @@ var tileSet = [
 var $body = $('body')
 var $gameBoard = $('.game-board')
 var $instructionPanel = $('.instruction-panel')
+var $scoreBoard = $('.score-board')
 
 // game variables
-var direction = 'left'
-var pacManSpeed = 700
 var score = 0
+// pacman variables
+var direction = 'left'
+var pacManSpeed = 600
+// ghost variables
+var ghostMovementMode = 'scatter'
+var ghostSpeed = 600
+// ghost-one variables
+var ghostOneTarget
+// ghost-two variables
 
+// ghost-three variables
+
+// ghost-four variables
 
 $(function () {
   // write reset function
@@ -37,10 +48,11 @@ $(function () {
   // write ifGameOver function
 
   // hit enter to start
-  $body.on('keydown', (event) => {
-    if(event.key === "Enter") {
+  $body.on('keyup', (event) => {
+    if (event.key === 'Enter') {
       // hide instructions
       $instructionPanel.css('display', 'none')
+      $scoreBoard.css('visibility', 'visible')
       // load assets
       loadAssets(tileSet)
       // write countdown function
@@ -49,20 +61,73 @@ $(function () {
       setInterval(function () { movePacMan() }, pacManSpeed)
       // switching directions
       $body.on('keydown', (event) => { changeDirection(event) })
+      // moving ghost-one
+      setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+
+      // moving ghost-two
+
+      // moving ghost-three
+
+      // moving ghost-four
+
       // write killScreen function
     }
   })
 })
 
+function loadAssets (tileSet) {
+  // creating pac-man and ghosts
+  var $pacMan = $('<div class="character" id="pac-man">')
+  var $ghostOne = $('<div class="character" id="ghost-one">')
+  var $ghostTwo = $('<div class="character" id="ghost-two">')
+  var $ghostThree = $('<div class="character" id="ghost-three">')
+  var $ghostFour = $('<div class="character" id="ghost-four">')
+
+  // objects to store css properties for tiles
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+  var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+  var yellowTile = { 'background-color': 'yellow', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+
+  // loop through tileSet array and generate map as well as load characters
+  for (var i = 0; i < tileSet.length; i++) {
+    // create new <div> for tiles and dots
+    var $tile = $('<div class="tile">')
+    var $dots = $('<div class="dots">')
+
+    // setting tile properties and adding characters
+    switch (tileSet[i]) {
+      case 0: $tile.css(blackTile).data('attr', 0).append($dots)
+        break
+      case 1: $tile.css(blueTile).data('attr', 1)
+        break
+      case 2: $tile.css(blackTile).data('attr', 2)
+        break
+      case 3: $tile.css(blackTile).data('attr', 3)
+        break
+      case 5: $tile.css(blackTile).data('attr', 5).append($ghostFour)
+        break
+      case 6: $tile.css(blackTile).data('attr', 6).append($ghostThree)
+        break
+      case 7: $tile.css(blackTile).data('attr', 7).append($ghostTwo)
+        break
+      case 8: $tile.css(yellowTile).data('attr', 8).append($ghostOne)
+        break
+      case 9: $tile.css(blackTile).data('attr', 9).append($pacMan)
+        break
+    }
+    $gameBoard.append($tile)
+  }
+}
+
 function movePacMan () {
   switch (direction) {
-    case 'left': moveLeft()
+    case 'left': movePacLeft()
       break
-    case 'right': moveRight()
+    case 'right': movePacRight()
       break
-    case 'up': moveUp()
+    case 'up': movePacUp()
       break
-    case 'down': moveDown()
+    case 'down': movePacDown()
       break
   }
 }
@@ -87,82 +152,70 @@ function eatAndChangeScore (tile) {
   tile.empty()
 }
 
-function moveLeft () {
+function movePacLeft () {
   var $pacMan = $('#pac-man')
   var $pacManTile = $pacMan.parent()
   var $pacManLeft = $pacManTile.prev()
   // check if tile has dots
   if ($pacManLeft.has('.dots').length > 0) eatAndChangeScore($pacManLeft)
   // check if pac-man can move into tile
-  if ($pacManLeft.data('attr') !== 1) $pacManLeft.append($pacMan)
+  if ($pacManLeft.data('attr') !== 1 && $pacManLeft.data('attr') !== 8) $pacManLeft.append($pacMan)
 }
 
-function moveDown () {
+function movePacDown () {
   var $pacMan = $('#pac-man')
   var $pacManTile = $pacMan.parent()
   var $pacManDown = $pacManTile.nextAll().eq(18)
   // check if tile has dots
   if ($pacManDown.has('.dots').length > 0) eatAndChangeScore($pacManDown)
   // check if pac-man can move into tile
-  if ($pacManDown.data('attr') !== 1) $pacManDown.append($pacMan)
+  if ($pacManDown.data('attr') !== 1 && $pacManDown.data('attr') !== 8) $pacManDown.append($pacMan)
 }
 
-function moveRight () {
+function movePacRight () {
   var $pacMan = $('#pac-man')
   var $pacManTile = $pacMan.parent()
   var $pacManRight = $pacManTile.next()
   // check if tile has dots
   if ($pacManRight.has('.dots').length > 0) eatAndChangeScore($pacManRight)
   // check if pac-man can move into tile
-  if ($pacManRight.data('attr') !== 1) $pacManRight.append($pacMan)
+  if ($pacManRight.data('attr') !== 1 && $pacManRight.data('attr') !== 8) $pacManRight.append($pacMan)
 }
 
-function moveUp () {
+function movePacUp () {
   var $pacMan = $('#pac-man')
   var $pacManTile = $pacMan.parent()
   var $pacManUp = $pacManTile.prevAll().eq(18)
   // check if tile has dots
   if ($pacManUp.has('.dots').length > 0) eatAndChangeScore($pacManUp)
   // check if pac-man can move into tile
-  if ($pacManUp.data('attr') !== 1) $pacManUp.append($pacMan)
+  if ($pacManUp.data('attr') !== 1 && $pacManUp.data('attr') !== 8) $pacManUp.append($pacMan)
 }
 
-function loadAssets (tileSet) {
-  // creating pac-man and ghosts
-  var $pacMan = $('<div class="character" id="pac-man">')
-  var $ghostOne = $('<div class="character" id="ghost-one">')
-  var $ghostTwo = $('<div class="character" id="ghost-two">')
-  var $ghostThree = $('<div class="character" id="ghost-three">')
-  var $ghostFour = $('<div class="character" id="ghost-four">')
-
-  // objects to store css properties for tiles
-  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
-  var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
-
-  // loop through tileSet array and generate map as well as load characters
-  for (var i = 0; i < tileSet.length; i++) {
-    // create new <div> for tiles and dots
-    var $tile = $('<div class="tile">')
-    var $dots = $('<div class="dots">')
-    // setting tile properties
-    switch (tileSet[i]) {
-      case 0: $tile.css(blackTile).data('attr', 0).append($dots)
-        break
-      case 1: $tile.css(blueTile).data('attr', 1)
-        break
-      case 2: $tile.css(blackTile).data('attr', 2)
-        break
-      case 5: $tile.css(blackTile).data('attr', 5).append($ghostFour)
-        break
-      case 6: $tile.css(blackTile).data('attr', 6).append($ghostThree)
-        break
-      case 7: $tile.css(blackTile).data('attr', 7).append($ghostTwo)
-        break
-      case 8: $tile.css(blackTile).data('attr', 8).append($ghostOne)
-        break
-      case 9: $tile.css(blackTile).data('attr', 9).append($pacMan)
-        break
-    }
-    $gameBoard.append($tile)
+function moveGhost ($ghost) {
+  var $ghostOne = $('#ghost-one')
+  var $ghostTwo = $('#ghost-two')
+  var $ghostThree = $('#ghost-three')
+  var $ghostFour = $('#ghost-four')
+  console.log('moving ghost')
+  switch (true) {
+    case ($ghost.is($ghostOne)):
+      console.log('go left')
+      moveTopLeft($ghost)
   }
+
+
+}
+
+function moveTopLeft ($ghost) {
+  var $ghostTile = $ghost.parent()
+  var $ghostUp = $ghostTile.prevAll().eq(18)
+  var $ghostLeft = $ghostTile.prev()
+  var $ghostRight = $ghostTile.next()
+  var $ghostDown = $ghostTile.nextAll().eq(18)
+
+  if ($ghostUp.data('attr') !== 1) $ghostUp.append($ghost)
+  else if ($ghostLeft.data('attr') !== 1) $ghostLeft.append($ghost)
+  else if ($ghostRight.data('attr') !== 1) $ghostRight.append($ghost)
+  else if ($ghostDown.data('attr') !== 1) $ghostRight.append($ghost)
 }
