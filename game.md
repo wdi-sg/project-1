@@ -51,19 +51,21 @@ Enemies deal damage to player on expiry.
 * More enemy types
 * Combo function
 * Pause button
-* Set events i.e. spawn 5 hard enemies at the same time
+* <s>Set events i.e. spawn 5 hard enemies at the same time</s>
 * Text popups at game screen, 'Miss!' etc.
 
 #### Misc Issues
 * No max health
+* Using grenade on 5 allies and 1 healthpack will result in gameover. Though 5health - 5 + 1 = 1 health
 
 #### To Do List
 1. <s>Linking spawn html to JS</s>
 2. <s>Targeting this.enemy on click to derive key/value</s>
-3. Enemies dealing effect/damage to player on expiry
+3. <s>Enemies dealing effect/damage to player on expiry</s>
 4. <s>Add gunshot audio on click</s>
 5. <s>setInterval checker for player/enemy health</s>
-6. setInterval spawner for different enemy types
+6. <s>setInterval spawner for different enemy types</s>
+6. <s>Adjust setInterval to adjust game difficulty</s>
 7. Adjust spawn locations
 8. Css stuff
 9. <s>Grenade audio</s>
