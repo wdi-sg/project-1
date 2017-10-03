@@ -4,7 +4,7 @@ var $locBtn = $('#loc')
 var $colorBtn = $('#colorBtn')
 var $startBtn = $('#startBtn')
 var textbox = $('#textbox')
-var colorArr = ['red', 'blue', 'orange', 'yellow','white', 'green', 'grey', 'purple']
+var colorArr = ['red', 'blue', 'orange', 'yellow','white', 'green', 'grey', 'purple'];
 var recArr = [];
 var recCol = [];
 var count = 0;
@@ -17,9 +17,25 @@ var scoreObj = {
   scoreBoard: $('#scoreBoard')
 }
 
-$box.on('click', locGen)
 $locBtn.on('click', compareResult)
+$(document).on('keydown', function(e){
+  if(e.keyCode===37){
+    compareResult();
+  }
+});
+
+
 $colorBtn.on('click', compareColor)
+$(document).on('keydown', function(e){
+  if(e.keyCode === 39) {
+    compareColor()
+  }
+});
+
+$box.on('click', locGen)
+$('html').on('keypress', function(e) {
+  console.log(e.keyCode)
+})
 $startBtn.on('click', () => {
   //TODO reset score
   if (on == 0) {

@@ -77,3 +77,9 @@ font-size: 22px;
   background-color: #4E4A59;
   display: inline-block;
 }
+
+#startBtn {
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+}
