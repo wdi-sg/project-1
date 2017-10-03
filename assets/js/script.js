@@ -37,31 +37,58 @@ $(function () {
     // grid[0][1] = "test"
     // grid[0][0] = "test"
     console.log(grid)
-    $cell.on('click', checkForMatch)
+    $cell.on('click', playerMatchCells)
   }
 
 
 
+    function playerMatchCells() {
+      var index = ($(this).data('position')) //index[0], index[2]
+      var index1 = parseInt(index[0])
+      var index2 = parseInt(index[2])
+     //  console.log(index)
+     //  console.log(grid[index1][index2])
 
-   function checkForMatch() {
+     if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
+       checker.push([index1, index2,'h'])
+     }
+     if(grid[index1+2]){
+       if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2])  {
+         checker.push([index1, index2,'v'])
+       }
+     }
 
-    //  var index = ($(this).data('position')) //index[0], index[2]
-    //  var index1 = parseInt(index[0])
-    //  var index2 = parseInt(index[2])
-    // //  console.log(index)
-    // //  console.log(grid[index1][index2])
-    //
-    //  if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2] || grid[index1-1][index2] )  {
-    //    console.log('match found')
-    //  }
-    //  if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
-    //    console.log('match found')
-    //  }
+     if( grid[index1][index2]===grid[index1][index2-1] && grid[index1][index2]===grid[index1][index2-2]) {
+       checker.push([index1, index2,'h'])
+     }
+     if(grid[index1-2]){
+       if( grid[index1][index2]===grid[index1-1][index2] && grid[index1][index2]===grid[index1-2][index2])  {
+         checker.push([index1, index2,'v'])
+       }
+     }
 
-    // var copiedArr = grid.slice();
-    // var temp = copiedArr[x][y];
+     if (checker.length > 0) {
+       for(var i = 0; i < checker.length; i++) {
+         if (checker[i][2] === 'h') {
+           grid[checker[i][0]][checker[i][1]] = 0
+           grid[checker[i][0]][checker[i][1] + 1] = 0
+           grid[checker[i][0]][checker[i][1] + 2] = 0
+         }
+         if (checker[i][2] === 'v') {
+           grid[checker[i][0]][checker[i][1]] = 0
+           grid[checker[i][0] + 1][checker[i][1]] = 0
+           grid[checker[i][0] + 2][checker[i][1]] = 0
+         }
+       }
+     }
+     console.log(grid)
+     replenishCells()
+    }
 
-    var checker = []
+   var checker = []
+
+   function checkForMatches() {
+
 
     for (var x = 0 ; x < matrix; x++) {
       for (var y = 0; y < matrix; y++) {
@@ -97,25 +124,25 @@ $(function () {
     console.log(checker)
     console.log(grid)
     }
-//
-//
-//
-//
-//   function replenish() {
-//     for (var x = matrix ; x = 0; x--) {
-//       for (var y = matrix; y = 0; y--) {
-//         if( y === 0 && grid[y][x] === 0) grid[y][x] = generateColor()
-//         if (y !== 0 && grid[y][x] === 0) {
-//           var temp = grid[y-1][x]
-//           grid[y][x] = temp
-//           grid[y-1][x] = 0
-//           if (y !== 1)
-//           grid[y-1][x] = grid[y-2][x]
-//         }
-//       }
-//     }
-//     console.log(grid)
-//   }
+
+
+  function replenishCells() {
+
+    for (var x = matrix ; x = 0; x--) {
+      for (var y = matrix; y = 0; y--) {
+
+        if( y === 0 && grid[y][x] === 0) grid[y][x] = generateColor()
+
+        if (y !== 0 && grid[y][x] === 0) {
+          var temp = grid[y-1][x]
+          grid[y][x] = temp
+          grid[y-1][x] = 0
+          if (y !== 1) grid[y-1][x] = grid[y-2][x]
+        }
+      }
+    }
+    console.log(grid)
+  }
   // function highlight(){
   //   $(this).css('border', '0.5px solid red')
   // }
