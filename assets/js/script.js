@@ -6,12 +6,17 @@ $(function () {
 var productIndex = Math.floor((Math.random() * 13))
 var theProduct = data[productIndex]
 var $productImg = $('<img width= 150px/>')
+var $printProductName = $('<h3>')
+$printProductName.text(theProduct.productName)
+
 
 $productImg.attr(
   {'id':"product",
   'src': theProduct.image,
   'data-price': theProduct.price})
 $('.productSpace').prepend($productImg)
+$('.productSpace').append($printProductName)
+$('.text').text(theProduct.productAdv)
 
 console.log(data[productIndex])
 console.log($productImg)
@@ -91,7 +96,7 @@ function winCheck() {
 
 $reveal.one('click', function () {
   print();
-  setTimeout(compare,3000);
+  setTimeout(compare,2000);
 
 })
   //reveal the price of the item
