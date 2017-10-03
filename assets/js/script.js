@@ -131,12 +131,12 @@ $(function () {
     for (var x = matrix ; x = 0; x--) {
       for (var y = matrix; y = 0; y--) {
 
-        if( y === 0 && grid[y][x] === 0) grid[y][x] = generateColor()
+        if( y === 0 && grid[x][y] === 0) grid[y][x] = generateColor()
 
-        if (y !== 0 && grid[y][x] === 0) {
-          var temp = grid[y-1][x]
-          grid[y][x] = temp
-          grid[y-1][x] = 0
+        if (y !== 0 && grid[x][y] === 0) {
+          var temp = grid[x-1][y]
+          grid[x][y] = temp
+          grid[x-1][y] = 0
           if (y !== 1) grid[y-1][x] = grid[y-2][x]
         }
       }
