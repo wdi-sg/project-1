@@ -5,7 +5,7 @@ $(function () {
 
 var productIndex = Math.floor((Math.random() * 13))
 var theProduct = data[productIndex]
-var $productImg = $('<img width= 200px/>')
+var $productImg = $('<img width= 150px/>')
 
 $productImg.attr(
   {'id':"product",
