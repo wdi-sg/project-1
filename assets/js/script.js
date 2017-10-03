@@ -28,11 +28,11 @@ $(function () {
     }
 
 
-    // grid[1][3] = "test"
-    // grid[2][3] = "test"
-    // grid[0][3] = "test"
+    // grid[1][2] = "test"
+    // grid[2][2] = "test"
+    // grid[3][2] = "test"
     //
-    // grid[0][3] = "test"
+    //
     // grid[0][2] = "test"
     // grid[0][1] = "test"
     // grid[0][0] = "test"
@@ -81,8 +81,22 @@ $(function () {
          }
        }
      }
-     console.log(grid)
-     replenishCells()
+     //alert(grid)
+
+     //replenish top row first
+     for (var x = 0 ; x < matrix; x++) {
+       for (var y = 0; y < matrix; y++) {
+
+          if(x === 0 && grid[x][y] === 0) {
+            grid[x][y] = generateColor()
+            var pos = x +","+ y
+            $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
+          }
+        }
+      }
+     //alert(grid)
+
+     //replenishCells()
     }
 
    var checker = []
@@ -121,27 +135,30 @@ $(function () {
       }
     }
 
-    console.log(checker)
-    console.log(grid)
+
+    alert(grid)
     }
 
 
   function replenishCells() {
 
-    for (var x = matrix ; x = 0; x--) {
-      for (var y = matrix; y = 0; y--) {
+    for (var x = 0 ; x < matrix; x++) {
+      for (var y = 0; y < matrix; y++) {
 
-        if( y === 0 && grid[x][y] === 0) grid[y][x] = generateColor()
-
-        if (y !== 0 && grid[x][y] === 0) {
+  //       //replenish top row
+  //       //  if(x === 0 && grid[x][y] === 0) {
+  //       //    grid[x][y] = generateColor()
+  //       //  }
+        if(grid[x-1]){
+        if (grid[x][y] === 0) {
           var temp = grid[x-1][y]
           grid[x][y] = temp
           grid[x-1][y] = 0
-          if (y !== 1) grid[y-1][x] = grid[y-2][x]
         }
       }
     }
-    console.log(grid)
+  }
+    // console.log(grid)
   }
   // function highlight(){
   //   $(this).css('border', '0.5px solid red')
