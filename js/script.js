@@ -1,32 +1,91 @@
-//layout for blockage
-var map = [
-[5,1,9,1,1,6],
-[4,0,6,4,3,2],
-[10,4,0,2,5,2],
-[4,3,0,0,3,2],
-[4,6,4,2,5,0],
-[7,3,3,3,3,8]
-]
+// GET ALL BOXES
+var $boxes = $('.box')
+var $wrapper = $('.wrapper')
 
-//array indicating the exits
-var exit = [
-[0,0,0,0,0,0],
-[0,0,0,0,0,0],
-[0,0,0,0,0,0],
-[0,0,0,0,0,0],
-[0,0,0,0,0,2],
-[0,0,0,0,0,0],
-]
-//character Position
-var charY = 1
-var charX = 0
+//allow movement?
+var clicker=true
 
-//mummy position
-var mumX = 1
-var mumY = 5
+function initGame() {
+  // SET THE MAP
+  map.forEach(function(spotY,indexY) {
+    spotY.forEach(function(spot, indexX){
+    switch (spot) {
+      case 1:
+      case 5:
+      case 6:
+      case 9:
+      case 11:
+      case 12:
+      case 14:
+        $wrapper.eq(indexY).find('.box').eq(indexX).addClass('top')
+        break;
+      }
+    switch (spot) {
+      case 3:
+      case 7:
+      case 8:
+      case 9:
+      case 12:
+      case 13:
+      case 14:
+        $wrapper.eq(indexY).find('.box').eq(indexX).addClass('bottom')
+        break;
+      }
+    switch (spot) {
+      case 4:
+      case 5:
+      case 7:
+      case 10:
+      case 11:
+      case 13:
+      case 14:
+        $wrapper.eq(indexY).find('.box').eq(indexX).addClass('left')
+        break;
+      }
+    switch (spot) {
+      case 2:
+      case 6:
+      case 8:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+        $wrapper.eq(indexY).find('.box').eq(indexX).addClass('right')
+        break;
+    }
+    })
+  })
+  // SET THE CHAR POSITION
+  $wrapper.eq(charY).find('.box').eq(charX).attr('id','playerPos')
+  var player = '<div id="player"></div>';
+  $('#playerPos').append(player)
 
-//presets for the Game
-var playerMove = true;
+  // SET THE MUMMY POSITION
+  $wrapper.eq(mumY).find('.box').eq(mumX).attr('id','mummyPos')
+  var mummy = '<div id="mummy"></div>';
+  $('#mummyPos').append(mummy);
+
+  //SET EXIT POSITION
+  exit.forEach(function(spotY,indexY) {
+    spotY.forEach(function(spot, indexX){
+      switch(spot){
+        case 1://top
+          $wrapper.eq(indexY).find('.box').eq(indexX).addClass('exitTop')
+          break;
+        case 2://right
+          $wrapper.eq(indexY).find('.box').eq(indexX).addClass('exitRight')
+          break;
+        case 3://bottom
+          $wrapper.eq(indexY).find('.box').eq(indexX).addClass('exitBottom')
+          break;
+        case 4://left
+          $wrapper.eq(indexY).find('.box').eq(indexX).addClass('exitLeft')
+          break;
+        }
+      })
+    })
+  }
+
 
 
 //checking for Exit
@@ -72,6 +131,15 @@ function checkYPos(mumY, charY){
     return true
   }else{
     return false
+  }
+}
+
+function meetMummy(){
+  if(checkYPos(mumY, charY) && checkXPos(mumX, charX)){
+    setTimeout(function(){
+      alert('you lose')
+    },100)
+    clicker = false
   }
 }
 
@@ -139,6 +207,13 @@ function checkYBlockBottom(x){
     }
 }
 
+function alertWin(){
+  setTimeout(function(){
+    alert('win')
+  },200)
+  clicker=false
+}
+
 function restart(){
-  // location.reload();
+  location.reload()
 }

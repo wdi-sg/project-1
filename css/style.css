@@ -1,51 +1,87 @@
 .container{
-  width: 420px;
+  width: 800px;
+  height: 500px;
   margin: 0 auto;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
+  background: url(/img/background_3.jpg) no-repeat;
+  background-size: cover;
 }
-h1{
+h1,h2{
   text-align: center;
+  font-family: 'Creepster', cursive;
+  font-size: 50px;
+  color: brown;
+  margin: 0;
 }
+
+h2{
+  font-size: 30px;
+}
+
 .wrapper{
-  width: 320px;
+  width: 300px;
   display: flex;
   flex-flow: row wrap;
-  margin: 0 auto;;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.5);
 }
 .box{
-  border: 1px solid black;
+  border: 1px solid rgba(245,245,245,0.5);
   width: 50px;
   height: 50px;
+  box-sizing: border-box;
+}
+.function{
+
 }
 #player{
   position: absolute;
-  border: 1px solid pink;
-  background-color: pink;
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
+  width: 50px;
+  height: 50px;
+  background-image: url(/img/player_1.png);
+  background-size: cover;
+
 }
 
 #mummy{
   position: absolute;
-  border: 1px solid red;
-  width: 52px;
-  height: 52px;
-  border-radius: 99999px;
-  background-color: red;
+  width: 50px;
+  height: 50px;
+  background: url(/img/tinyMummySprite.png);
+  background-size: cover;
 }
 .right{
-  border-right: 1px solid red;
+  border-right: 2px solid brown;
+  box-sizing: border-box;
 }
 .top{
-  border-top: 1px solid red;
+  border-top: 2px solid brown;
+  box-sizing: border-box;
 }
 .bottom{
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid brown;
+  box-sizing: border-box;
 }
 .left{
-  border-left: 1px solid red;
+  border-left: 2px solid brown;
+  box-sizing: border-box;
 }
-.exit{
+.exitLeft{
+  border-left: 5px solid blue;
+}
+.exitRight{
   border-right: 5px solid blue;
+}
+.exitTop{
+  border-top: 5px solid blue;
+}
+.exitBottom{
+  border-bottom: 5px solid blue;
+}
+button{
+  display: block;
+  margin: auto;
+  height: 30px;
+  margin-top: 5px;
+
 }

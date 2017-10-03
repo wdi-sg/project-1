@@ -1,6 +1,5 @@
 $(function(){
-  var player = '<div id="player"></div>';
-  $('#playerPos').append(player)
+  
 })
 
   function charMoveLeft(){

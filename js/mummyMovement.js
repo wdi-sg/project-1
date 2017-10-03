@@ -1,6 +1,5 @@
 $(function(){
-  var mummy = '<div id="mummy"></div>';
-  $('#mummyPos').append(mummy);
+
 })
 
 function mummyMoveX(){
@@ -40,18 +39,14 @@ function mummyFollowChar(){
   mumPos = map[mumY][mumX]
   if(counter <2){
     mummyMoveX()
-    console.log('moving1x', counter, mumX, mumY)
   }
   if(counter <2){
     mummyMoveX()
-    console.log('moving2x', counter,mumX, mumY)
   }
   if(counter <2){
     mummyMoveY()
-    console.log('moving1y', counter, mumX, mumY)
   }
   if(counter <2){
     mummyMoveY()
-    console.log('moving2y', counter, mumX, mumY)
   }
 }

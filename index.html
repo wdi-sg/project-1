@@ -2,69 +2,20 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Mummy Maze: Sample Level</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Mummy Maze</title>
+    <link rel="stylesheet" href="/css/menu.css">
+    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
   </head>
   <body>
-
     <div class="container">
-      <h1>Mummy Maze: Sample Level</h1>
-      <div class="wrapper">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box bottom"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-      </div>
-      <div class="wrapper">
-          <div class="box" id="playerPos"></div>
-          <div class="box"></div>
-          <div class="box top right"></div>
-          <div class="box left"></div>
-          <div class="box bottom"></div>
-          <div class="box"></div>
-      </div>
-      <div class="wrapper">
-          <div class="box right"></div>
-          <div class="box left"></div>
-          <div class="box"></div>
-          <div class="box right"></div>
-          <div class="box left top"></div>
-          <div class="box"></div>
-      <div class="wrapper">
-          <div class="box"></div>
-          <div class="box bottom"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box bottom"></div>
-          <div class="box"></div>
-      </div>
-      <div class="wrapper">
-          <div class="box"></div>
-          <div class="box top right"></div>
-          <div class="box left"></div>
-          <div class="box right"></div>
-          <div class="box left top"></div>
-          <div class="box exit"></div>
-      </div>
-      <div class="wrapper">
-          <div class="box"></div>
-          <div class="box" id="mummyPos"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-      </div>
-      <!-- <button id="restart">Restart</button> -->
+      <h1>Mummy Maze</h1>
+      <button type="button" id="Start" onclick="location.href='level1.html'">Start</button>
+      <button type="button" id="instructions">Instructions</button>
     </div>
     <script
     src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/playerMovement.js"></script>
-    <script type="text/javascript" src="/js/mummyMovement.js"></script>
-    <script type="text/javascript" src="/js/gamePlay.js"></script>
-    <script type="text/javascript" src="/js/script.js"></script>
+    <script src="/js/startMenu.js"></script>
   </body>
 </html>
