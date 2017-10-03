@@ -9,17 +9,24 @@ var index = 0;
 $box.on('click', locGen)
 $locBtn.on('click', compareResult)
 
-setInterval(locGen, 3000);
+// setInterval(locGen, 3000);
 
 function locGen() {
   count++;
+  if (count == 20) {
+    gameOver()//call gameover
+  }
   // console.log(count);
   console.log(index)
   $(`[data-value = ${index}]`).css("backgroundColor","")
   index = randomNum();
   console.log(index)
   // $(this).data('value')
-  $(`[data-value = ${index}]`).css("backgroundColor","#839073")
+
+  setTimeout(function() {
+    $(`[data-value = ${index}]`).css("backgroundColor","#839073")
+  }, 1000)
+
   recArr.push(index);
   // $(this).css('backgroundColor', )
 }
@@ -41,6 +48,16 @@ function randomNum () {
   return index;
 }
 
+function gameOver () {
+  // Show Score.
+  count = 0;
+  score = 0;
+  index = 0;
+  recArr = [];
+  console.log('Count:', count, "Score:", score, "Index:", index, "recArr:", recArr)
+  // reset gameboard
+  // off setInterval
+}
 
 
 
