@@ -7,26 +7,32 @@
   </head>
   <body>
     <div class="container">
-        <h1>Project 1: On a Windless Night</h1>
-        <p><b>On a Windless Night</b> is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.</p>
-        <img class="spawn enemyEasy"><br><p>Easy enemy = 1 hit</p>
-        <img class="spawn enemyNormal"><br><p>Normal enemy = 2 hits</p>
-        <img class="spawn enemyHard"><br><p>Hard enemy = 3 hits</p>
-        <img class="spawn ammoBox"><br><p>Ammo box = +10 ammo</p>
+        <h1>.Shoot</h1>
+
+        <div class="game_begin">
+        <b>.Shoot</b> is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.</p>
+        </div>
+
+        <div class="game_instructions">
+        <p>Left click: Shoot</p>
+        <p>Right click: Grenade (deal 2 damage to all enemies)</p>
+        <img class="spawn enemyEasy "><br><p class="">Easy enemy = 1 hit</p>
+        <img class="spawn enemyNormal "><br><p class="">Normal enemy = 2 hits</p>
+        <img class="spawn enemyHard "><br><p class="">Hard enemy = 3 hits</p>
+        <img class="spawn ammoBox "><br><p class="">Ammo box = +10 ammo</p>
+        </div>
         <button type="button" name="button" class="start">Start</button>
+
         <div class="gameScreen">
 
-          <img src="/assets/img/gun.jpg" alt="" class="gun">
-          <div class="timer">Timer: 120 seconds</div>
+          <img src="/assets/img/gun2.png" alt="" class="gun">
+          <div class="timer">Timer: <strong>120</strong> seconds</div>
           <div class="playerHealth">Health: 5</div>
           <div class="playerAmmo">Ammo: 25</div>
           <div class="playerGrenade">Grenade: 3</div>
 
         </div>
-
     </div>
-
-
 
     <audio class="bang" src="assets/audio/bang.mp3" ></audio>
     <audio class="boom" src="assets/audio/boom.mp3" ></audio>

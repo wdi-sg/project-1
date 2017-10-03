@@ -12,11 +12,12 @@ $(function() {
     // spawnIntervalHealth()
     // spawnIntervalGrenade()
     event1()
-      event2()
+    event2()
     event3()
     event4()
     // event5()
     event6()
+    event7()
   })
 
   // player starting stats
@@ -25,6 +26,9 @@ $(function() {
     ammo: 25,
     grenade: 3,
   }
+
+// GENERAL GAME FUNCTIONS ------------------------------
+  var timeCount = 120;
 
   function updatePlayerStats () {
     setInterval(() => {
@@ -36,10 +40,7 @@ $(function() {
       $playerGrenade.text('Grenade: ' +playerStats.grenade)
     }, 200)
   }
-  // updatePlayerStats()
 
-  var timeCount = 120; // default game starts at 120 seconds
-  // every second timer -1, check victory, check loss
   function countDown() {
     document.getElementsByClassName('bgm')[0].currentTime = 3;
     document.getElementsByClassName('bgm')[0].volume = 0.6;
@@ -62,7 +63,18 @@ $(function() {
     }
     , 1000)
   }
-  // countDown()
+
+  function checkEnemyHealth () {
+    for (var i = spawnList.length -1; i > -1; i --) {
+      if(spawnList[i].life <= 0) {
+        $('div').remove('#'+spawnList[i].counterLink)
+        if (spawnList[i].effectHealth === -1) playerStats.health = playerStats.health -1
+        if (spawnList[i].effectAmmo === +10) playerStats.ammo = playerStats.ammo +10
+        if (spawnList[i].effectGrenade === +1) playerStats.grenade = playerStats.grenade +1
+        spawnList.splice(i, 1)
+      }
+    }
+  }
 
   function checkVictory() {
     if(timeCount <= 0 && playerStats.health > 0) {
@@ -72,9 +84,16 @@ $(function() {
 
   function checkLoss() {
     if (playerStats.health <= 0) {
-      alert('GAME OVER! AHAHAHAHHAHAHAHAHAHAHHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHAHHAHAHAHAHAHAHAHHAHAHAHAHAHHAHAHAHAHAHAHHAHAHAHA try again')
+      alert('GAME OVER! Try again!')
     }
   }
+
+// END OF GENERAL GAME FUNCTIONS -----------------------
+// SPAWN FUNCTIONS -------------------------------------
+
+  $gameScreen = $('.gameScreen')
+  var spawnList = []
+  var counter = 1
 
   // constructor for all spawns
   function Spawn(life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink){
@@ -85,19 +104,10 @@ $(function() {
     this.effectGrenade = effectGrenade;
     this.timeToExpire = timeToExpire;
     this.counterLink = counterLink;
-    // this.counterValue = counter // to match html circle to data
     // effect on score in the future
   }
 
-
-  // spawnList.forEach() // iterate the spawnList and use their key/value to affect the game.
-  // spawn stats (life, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
-  var spawnList = []
-  var counter = 1
-  $gameScreen = $('.gameScreen')
-
-// Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
-// Spawn functions
+  // Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
   function spawnEnemyEasy () {
     var enemyEasy = new Spawn(1, 1, 0, 0, 0, 2.5, 's'+counter)
     spawnList.push(enemyEasy)
@@ -196,51 +206,47 @@ $(function() {
     counter++
   }
 
-  // spawn intervals
+// SPAWN INTERVALS ------------------------------------
 
   function spawnIntervalEasy() {
     setInterval(spawnEnemyEasy, 3000)
   }
 
-
   function spawnIntervalNormal() {
     setInterval(spawnEnemyNormal, 6000)
   }
-
 
   function spawnIntervalHard () {
     setInterval(spawnEnemyHard, 10000)
   }
 
-
   function spawnIntervalAlly () {
     setInterval(spawnAlly, 8000)
   }
-
 
   function spawnIntervalAmmo () {
     setInterval(spawnAmmoBox, 8000)
   }
 
-
   function spawnIntervalHealth () {
     setInterval(spawnHealthPack, 8000)
   }
-
 
   function spawnIntervalGrenade () {
     setInterval(spawnGrenadeRefill, 8000)
   }
 
+// END OF SPAWN FUNCTIONS -----------------------------
+// EVENTS ---------------------------------------------
 
   function event1() {
     setTimeout(() => {
-      for(var i=0; i <300; i++){
-        spawnEnemyNormal()
+      for(var i=0; i <2; i++){
+        spawnEnemyEasy()
       }
-    }, 46000)
+      spawnAmmoBox()
+    }, 14000)
   }
-
 
   function event2() {
     setTimeout(() => {
@@ -250,8 +256,15 @@ $(function() {
     }, 35000)
   }
 
-
   function event3() {
+    setTimeout(() => {
+      for(var i=0; i <300; i++){
+        spawnEnemyNormal()
+      }
+    }, 46000)
+  }
+
+  function event4() {
     setTimeout(() => {
       for(var i=0; i <4; i++){
         spawnEnemyHard()
@@ -259,8 +272,7 @@ $(function() {
     }, 56000)
   }
 
-
-  function event4() {
+  function event5() {
     setTimeout(() => {
       for(var i=0; i <15; i++){
         spawnEnemyEasy()
@@ -268,42 +280,51 @@ $(function() {
     }, 66000)
   }
 
-
-  function event5() {
-    setTimeout(() => {
-      for(var i=0; i <2; i++){
-        spawnEnemyEasy()
-      }
-    }, 14000)
-    spawnAmmoBox
-  }
-
-
   function event6() {
     setTimeout(() => {
       for(var i=0; i <7; i++){
         spawnEnemyEasy()
       }
+      spawnAmmoBox()
+      spawnGrenadeRefill()
     }, 84000)
-    spawnAmmoBox
-    spawnGrenadeRefill
   }
 
+  function event7() {
+    setTimeout(() => {
+      for(var i=0; i <30; i++){
+        spawnEnemyNormal()
+      }
+      spawnEnemyHard()
+    }, 116000)
+  }
 
-  function checkEnemyHealth () {
-    for (var i = spawnList.length -1; i > -1; i --) {
-      if(spawnList[i].life <= 0) {
-        $('div').remove('#'+spawnList[i].counterLink)
-        if (spawnList[i].effectHealth === -1) playerStats.health = playerStats.health -1
-        if (spawnList[i].effectAmmo === +10) playerStats.ammo = playerStats.ammo +10
-        if (spawnList[i].effectGrenade === +1) playerStats.grenade = playerStats.grenade +1
-        spawnList.splice(i, 1)
+// END OF EVENTS --------------------------------------
+// CONTROLS -------------------------------------------
+
+  function clickCheck (element) {
+    for (i = 0; i < spawnList.length; i++) {
+      if (spawnList[i].counterLink === element.id) {
+        if (element.className === 'spawn enemyEasy' || element.className === 'spawn enemyNormal' || element.className === 'spawn enemyHard') {
+          spawnList[i].life = spawnList[i].life -1
+          if(spawnList[i].life === 0) {
+            $('div').remove('#'+ element.id)
+            spawnList.splice(i, 1)
+          }
+        } else {
+          $('div').remove('#'+ element.id)
+          for(var key in spawnList[i]) {
+            if (key === 'effectHealth') playerStats.health = playerStats.health + spawnList[i][key]
+            if (key === 'effectAmmo') playerStats.ammo = playerStats.ammo + spawnList[i][key]
+            if (key === 'effectGrenade') playerStats.grenade = playerStats.grenade + spawnList[i][key]
+          }
+          spawnList.splice(i, 1)
+        }
       }
     }
   }
 
-
-  // left click shooting - ammo only
+  // left click shooting
   $gameScreen = $('.gameScreen')
   $gameScreen.on('click', function(e) {
     if(playerStats.ammo > 0) {
@@ -320,29 +341,6 @@ $(function() {
     }
   })
 
-
-  function clickCheck (element) {
-    for (i = 0; i < spawnList.length; i++) {
-      if (spawnList[i].counterLink === element.id) {
-        if (element.className === 'spawn enemyEasy' || element.className === 'spawn enemyNormal' || element.className === 'spawn enemyHard') {
-          spawnList[i].life = spawnList[i].life -1
-          if(spawnList[i].life === 0) {
-            $('div').remove('#'+ element.id) // this removes html on click, if class is spawn enemyEasy
-            spawnList.splice(i, 1) // this removes array, apply this to enemies only
-          }
-        } else {
-          $('div').remove('#'+ element.id)
-          for(var key in spawnList[i]) {
-            if (key === 'effectHealth') playerStats.health = playerStats.health + spawnList[i][key]
-            if (key === 'effectAmmo') playerStats.ammo = playerStats.ammo + spawnList[i][key]
-            if (key === 'effectGrenade') playerStats.grenade = playerStats.grenade + spawnList[i][key]
-          }
-          spawnList.splice(i, 1)
-        }
-      }
-    }
-  }
-
   // right click grenades
   $gameScreen.on('contextmenu', function(ev) {
     ev.preventDefault();
@@ -358,9 +356,9 @@ $(function() {
     } else {
       console.log('Out of grenades!')
     }
-    // console.log(spawnList)
     checkEnemyHealth()
     updatePlayerStats()
   })
 
+// END OF CONTROLS ------------------------------------
 })

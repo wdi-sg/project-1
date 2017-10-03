@@ -4,8 +4,8 @@ body {
 
 .container {
   border: 2px solid red;
-  width: 800px;
-  height: 600px;
+  width: 76%;
+  height: 650px;
   margin: 0 auto;
   display: block;
   background-color: grey;
@@ -19,59 +19,95 @@ h1 {
   display: block;
 }
 
+.game_begin{
+  width:80%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.game_instructions{
+  width: 20%;
+  height: auto;
+  padding-left: 15px;
+  margin-left: 14px;
+  font-size:14px;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: white;
+}
+
+.instructions{
+ display: inline;
+}
+
+.start {
+  font-size: 25px;
+  border-radius: 20px;
+  border: 2px solid black;
+  width: 210px;
+  height: 100px;
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 170px;
+}
+
 .gameScreen {
   cursor: url(../img/crosshair.jpg), auto;
   border: 1px solid black;
   padding: 0;
+  top: -175px;
+  left: 10px;
   width: 700px;
   height: 450px;
-  margin: 50px auto;
+  margin: 15px auto;
   background-image: url("/assets/img/cityView.jpg");
   background-size: contain;
-  display: block;
+  display: inline-block;
   position: relative;
 }
-
 
 .gun {
   position: relative;
   left: 300px;
-  top: 360px;
+  top: 305px;
+  width: 220px;
 }
 
-
-/*.gameBackground {
-  z-index: 0;
-  padding: 0;
-  width: 700px;
-  height: 450px;
-  margin: 0 auto;
-  display: inline;
-  position: fixed;
-}*/
-
 .timer {
-  background-color: white;
+  color: white;
   width: 150px;
   height: 30px;
   display: block;
-  top: 0;
+  top: 10px;
   right: 0;
   position: absolute;
 }
 
 .playerHealth {
-  background-color: white;
-  width: 150px;
+  background-color: green;
+  border-radius: 20px;
+  opacity: 0.8;
+  color: white;
+  border: 1px solid white;
+  padding-top: 10px;
+  text-align: center;
+  width: 130px;
   height: 30px;
   display: block;
-  bottom: 0;
-  left: 0;
+  bottom: 5px;
+  left: 5px;
   position: absolute;
 }
 
 .playerGrenade {
-  background-color: white;
+  background-color: black;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  color: white;
+  text-align:center;
+  padding:8px 0px 0px 0px;
+  opacity: 0.8;
   width: 150px;
   height: 30px;
   position: absolute;
@@ -80,22 +116,24 @@ h1 {
 }
 
 .playerAmmo {
-  background-color: white;
+  background-color: black;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  color: white;
+  text-align:center;
+  padding:8px 0px 0px 0px;
+  opacity: 0.8;
   width: 150px;
   height: 30px;
   position: absolute;
   display: inline-block;
-  bottom: 0;
+  bottom: 2px;
   right: 0;
 }
 
-.gun {
-  width: 120px;
-}
-
 .spawn {
-  height: 17px;
-  width: 17px;
+  height: 18px;
+  width: 18px;
   position: absolute;
   /*background-color: black;*/
 }
