@@ -127,21 +127,24 @@ $(function () {
   var timer
   var $restart = $('#restart')
   $restart.hide()
+  $('.score').hide()
 
   var $start = $('#start')
   var $timer = $('.timer')
 
   $('#start').on('click', function() {
-    console.log("test");
     $start.hide()
+    $('.score').show()
+    $('.card').removeClass('avoid-clicks')
 
-    var timeleft = 20
+    var timeleft = 10
     timer = setInterval(function() {
       --timeleft
       $timer.html(timeleft)
       if(timeleft <= 0){
         clearInterval(timer)
         $restart.show()
+        $('.card').addClass('avoid-clicks')
       }
     }, 1000)
     console.log(timeleft);
@@ -151,10 +154,9 @@ $(function () {
   $restart.on('click', function() {
     $restart.hide()
     score = 0
-    $('.score').html("Total:" + score)
+    $('.score').html("Total: " + score)
     flipBackAll()
     $start.show()
-
 
   })
 

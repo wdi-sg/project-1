@@ -73,6 +73,7 @@ img {
 .avoid-clicks {
   pointer-events: none;
 }
+
 .timer{
   width: 30px;
   height:12px;
