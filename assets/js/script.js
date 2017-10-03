@@ -2,13 +2,16 @@ $(function(){
 var $box = $('.box')
 var $locBtn = $('#loc')
 var $startBtn = $('#startBtn')
-var $score = $('#scoreBoard');
+var colorArr = ['red', 'blue', 'orange'. 'yellow','white', 'green', 'grey', 'purple']
 var recArr = [];
 var count = 0;
 var index = 0;
 var on = 0;
 var refreshIntervalId;
-
+var scoreObj = {
+  score: 0,
+  scoreBoard: $('#scoreBoard')
+}
 
 $box.on('click', locGen)
 $locBtn.on('click', compareResult)
@@ -23,9 +26,10 @@ $startBtn.on('click', () => {
 
 });
 
+
 function locGen() {
   count++;
-  if (count == 5) {
+  if (count == 10) {
     $('.box').css("backgroundColor","")
     return gameOver()//call gameover
   }
@@ -50,9 +54,15 @@ function compareResult () {
   // console.log('check recArr[count]:', recArr[count - 1])
   // console.log('check recArr[count - 1]:', recArr[count - 2])
   if (recArr[count - 1] === recArr[count - 2]) {
-    // console.log('entered!')
-    $score+= 10;
+    scoreObj.score += 10;
+    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    console.log(scoreObj.score)
+  } else if (recArr[count - 1] != recArr[count - 2]) {
+    scoreObj.score -= 10;
+    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    console.log(scoreObj.score)
   }
+  // TODO: No Click?
 }
 
 function randomNum () {
@@ -64,10 +74,10 @@ function randomNum () {
 function gameOver () {
   // Show Score.
   count = 0;
-  $score = 0;
+  scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
   index = 0;
   recArr = [];
-  console.log('Count:', count, "Score:", $score, "Index:", index, "recArr:", recArr)
+  console.log('Count:', count, "Score:", scoreObj.score, "Index:", index, "recArr:", recArr)
   // console.log(clearInterval, refreshIntervalId);
   clearInterval(refreshIntervalId);
   // console.log(clearInterval, refreshIntervalId);
