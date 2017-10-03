@@ -23,10 +23,11 @@ var tileSet = [
 // jQuery objects
 var $body = $('body')
 var $gameBoard = $('.game-board')
+var $instructionPanel = $('.instruction-panel')
+
+// game variables
 var direction = 'left'
 var pacManSpeed = 700
-
-// score variable
 var score = 0
 
 
@@ -35,19 +36,22 @@ $(function () {
 
   // write ifGameOver function
 
-  // write start function
+  // hit enter to start
+  $body.on('keydown', (event) => {
+    if(event.key === "Enter") {
+      // hide instructions
+      $instructionPanel.css('display', 'none')
+      // load assets
+      loadAssets(tileSet)
+      // write countdown function
 
-  // load assets
-  loadAssets(tileSet)
-
-  // write countdown function
-
-  // moving pacman
-  setInterval(function () { movePacMan() }, pacManSpeed)
-  // switching directions
-  $body.on('keydown', (event) => { changeDirection(event) })
-
-  // write killScreen function
+      // moving pacman
+      setInterval(function () { movePacMan() }, pacManSpeed)
+      // switching directions
+      $body.on('keydown', (event) => { changeDirection(event) })
+      // write killScreen function
+    }
+  })
 })
 
 function movePacMan () {
