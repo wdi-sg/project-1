@@ -1,4 +1,3 @@
-
 // create objects here
 var player = new Object()
 player.element = 'player'
@@ -14,6 +13,7 @@ laser.y = 0
 laser.w = 12
 laser.h = 15
 
+// create an object for the controls
 var controller = new Object()
 
 //create an enemy Array
@@ -26,6 +26,9 @@ var upKey = 38
 var rightKey = 39
 var downKey = 40
 var spaceKey = 32
+
+// player movement speed
+var playerMovement = 10
 
 
 // set up our control keys
@@ -60,27 +63,26 @@ document.onkeyup =  function(event) {
 function handleControls() {
 
   if (controller.left) {
-    player.x -= 5
+    player.x -= playerMovement
   }
   if (controller.up) {
-    player.y -= 5
+    player.y -= playerMovement
   }
   if (controller.right) {
-    player.x += 5
+    player.x += playerMovement
   }
   if (controller.down) {
-    player.y += 5
+    player.y += playerMovement
   }
   if (controller.space && laser.y <= 0) {
     laser.x = player.x + 15
     laser.y = player.y - laser.h
     $('#laser').css('visibility', 'visible')
-
+    laserSound()
   }
-
+// it ensures that my character will not go out of the game map
   ensureBounds(player)
 }
-
 
 // set the position of our objects
 function setPosition(sprite) {
@@ -90,6 +92,8 @@ function setPosition(sprite) {
 }
 
 var score = 0
+var highscore = localStorage.getItem("highscore")
+
 // load the sprites to the game
 function showSprites() {
   setPosition(player)
@@ -101,18 +105,25 @@ function showSprites() {
 
   var scoreElement = document.getElementById('score');
   scoreElement.innerHTML = 'SCORE: ' + score;
+
+  // create a highscore function to keep track player highest score
+  var highScoreElement = document.getElementById('highscore');
+  highScoreElement.innerHTML = 'HIGH SCORE: ' + localStorage.getItem("highscore");
+
+    if (score > localStorage.getItem("highscore")) {
+     localStorage.setItem("highscore", score);
+    }
 }
 
 // to update the position of object that player cannot control
 function updatePosition() {
   // update position of enemy
   for (var i = 0; i < enemies.length; i++) {
-    enemies[i].y += getRandom(7)
+    enemies[i].y += getRandom(8)
     enemies[i].x += getRandom(7) - 3
-    ensureBounds(enemies[i], true)
+    ensureBounds(enemies[i])
   }
-
-  // update position for the laser
+  // adjust for the rate of speed of laser
   laser.y -= 15
 }
 
@@ -137,20 +148,33 @@ var iterations = 0
 function addEnemy() {
    // how to add more enemy when time passes by
    var interval = 50
-   if (iterations > 1500) {
+  for (var i = 0; i < enemies.length; i++) {
+   if (iterations > 2000) {
+     interval = 2.5
+     enemies[i].y += getRandom(25)
+     enemies[i].x += getRandom(7) - 3
+   } else if (iterations > 1500) {
      interval = 5
+     enemies[i].y += getRandom(18)
+     enemies[i].x += getRandom(7) - 3
    } else if (iterations > 1000) {
-     interval = 20
+     interval = 15
+     enemies[i].y += getRandom(15)
+     enemies[i].x += getRandom(7) - 3
    } else if (iterations > 500) {
-     interval = 40
+     interval = 35
+     enemies[i].y += getRandom(12)
+     enemies[i].x += getRandom(7) - 3
    }
-
+  //  console.log(iterations)
+}
+  // this will create the random enemies that will be placed in an array
    if (getRandom(interval) == 0) {
-     var elementName = 'enemy' + getRandom(10000000)
+     var elementName = 'enemy' + getRandom(100000000)
      var enemy = new Object()
      enemy.element = elementName
-     enemy.x = getRandom(450)
-     enemy.y = -80
+     enemy.x = getRandom(480)
+     enemy.y = 0
      enemy.w = 40
      enemy.h = 40
 
@@ -163,7 +187,8 @@ function addEnemy() {
    }
  }
 
-// get random number for enemies
+
+// get random number for enemies function
 function getRandom(max) {
  return parseInt(Math.random() * max)
 }
@@ -175,10 +200,8 @@ function intersect(a,b) {
 }
 
 // check for collision function
-  // laser collide with enemies
-  // hero collide with enemies
-  // and if uncontrollable object collide with edge of game map
 function checkCollision() {
+    // laser collide with enemies
     for (var i = 0; i < enemies.length; i++) {
       if (intersect(laser, enemies[i])) {
         var element = document.getElementById(enemies[i].element);
@@ -186,11 +209,17 @@ function checkCollision() {
         element.parentNode.removeChild(element);
         enemies.splice(i, 1);
         i--;
-        laser.y = -laser.h
+        laser.y = -laser.h // this ensures that it also gets deleted after hitting an enemy
         $('#laser').css('visibility', 'hidden')
+        collideSound()
         score += 100
+
+        // hero collide with enemies
       } else if (intersect(player, enemies[i])) {
+        collideSound()
         gameOver()
+
+        // and if uncontrollable object collide with edge of game map
       } else if (enemies[i].y + enemies[i].h >= 495) {
         var element = document.getElementById(enemies[i].element);
         element.style.visibility = 'hidden';
@@ -199,18 +228,20 @@ function checkCollision() {
         i--;
       }
     }
-    if (laser.y + laser.h <= 0) {
+    if (laser.y + laser.h <= 5) {
     $('#laser').css('visibility', 'hidden')
     // console.log($('#laser').position())
     // console.log($('#background').position())
     }
+
 }
 
 // this will run the events in our game to keep the gameplay smooth
-var lastLoopRun = 0
-
+// var lastLoopRun = 0
+// if (new Date().getTime() - lastLoopRun > 40) {}
+// lastLoopRun = new Date().getTime()
 function gameLoop() {
-  if (new Date().getTime() - lastLoopRun > 40) {
+
     updatePosition()
 
     handleControls()
@@ -221,13 +252,15 @@ function gameLoop() {
 
     showSprites()
 
-    lastLoopRun = new Date().getTime()
-    iterations++
-  }
-   setTimeout('gameLoop()', 2)
+    iterations++ // it creates the difficulty component by increasing speed & number of enemies as it increases
+    console.log(iterations)
 }
 
-gameLoop()
+var game = setInterval(function() {
+  gameLoop()
+}, 40) // can also put 40 milliseconds to run the same without if statement in gameLoop
+
+
 
 function gameOver() {
   var element = document.getElementById(player.element);
@@ -235,11 +268,56 @@ function gameOver() {
   element = document.getElementById('gameover');
   element.style.visibility = 'visible';
 
+  $('.enemy').css('visibility', 'hidden')
+  $('#laser').css('visibility', 'hidden')
 
-  setInterval(reload, 10000)
+  gameOverSound()
+
+  // setInterval(reload, 10000)
+  clearInterval(game)
+}
+
+// reload the game
+function reload() {
+  location.reload()
 }
 
 
-function reload() {
-  location.reload()
+
+// Add sounds to the game
+
+function gameSound() {
+  var audio = document.createElement('audio')
+  audio.src = '/assets/sounds/kick_shock.wav'
+  audio.autoplay = true
+  audio.loop = true
+  audio.play()
+  audio.volume = 0.3
+}
+// gameSound()
+
+
+function laserSound() {
+  var audio = document.createElement('audio')
+  audio.src = '/assets/sounds/shot.mp3'
+  audio.autoplay = true
+  audio.play()
+  audio.volume = 0.3
+}
+
+function collideSound() {
+  var audio = document.createElement('audio')
+  audio.src = '/assets/sounds/explo.mp3'
+  audio.autoplay = true
+  audio.play()
+  audio.volume = 0.3
+}
+
+function gameOverSound() {
+  var audio = document.createElement('audio')
+  audio.src = '/assets/sounds/game_over.wav'
+  audio.autoplay = true
+  audio.loop = true
+  audio.play()
+  audio.volume = 0.5
 }

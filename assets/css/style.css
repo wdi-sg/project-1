@@ -1,6 +1,11 @@
-h1, p {
+body {
+  background: url('/assets/img/spacebg.jpg')
+}
+
+h1, h4, p {
   display: flex;
   justify-content: center;
+  color: #ffffff;
 }
 
 #container {
@@ -13,7 +18,7 @@ h1, p {
   width: 500px;
   height: 500px;
   position: absolute;
-  border: 3px solid orange;
+  border: 5px solid orange;
 }
 
 #player {
@@ -43,8 +48,17 @@ h1, p {
   left: 20px;
   top: 20px;
 }
+
+#highscore {
+  color: #ffffff;
+  font-size: 18pt;
+  position: absolute;
+  left: 270px;
+  top: 20px;
+}
+
 #gameover {
-  color: #ff0000;
+  color: purple;
   font-size: 20px;
   position: absolute;
   left: 190px;
