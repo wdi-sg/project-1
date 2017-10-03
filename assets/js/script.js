@@ -3,15 +3,15 @@ $(function() {
   // $body.on('keydown', ballJump)
   function ballMove(e) {
     var unit = 30
-    if (e.key === 'd' || e.key === 'D') {
+    if (e.key === 'd' || e.key === 'D' || e.key === "ArrowLeft") {
       if (ball1Goal() === false) if (borderCheck1Right()) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false) if (borderCheck2Left()) ball2Hori(unit) //opposite side for ball2
     }
-    if (e.key === 'a' || e.key === 'A') {
+    if (e.key === 'a' || e.key === 'A' || e.key === "ArrowRight") {
       if (ball1Goal() === false) if (borderCheck1Left()) ball1Hori(-unit)
       if (ball2Goal() === false) if (borderCheck2Right()) ball2Hori(-unit)
     }
-    if (e.key === 'w' || e.key === 'W') {
+    if (e.key === 'w' || e.key === 'W' || e.key === "ArrowUp") {
       if (jumpLimit === true) ballJump()
     }
   }
@@ -24,14 +24,14 @@ $(function() {
   setInterval(gravity2, 10)
   createPlatform("100px","0",$('#game1'),"300px","5px")
   createPlatform("100px","0",$('#game2'),"300px","5px")
-  console.log('number of platform',$('.platform').length)
+  // console.log('number of platform',$('.platform').length)
 })
 
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
 var goalLevel = 1 // to assign goal Id's for each play field
-var gravity = 40
+var gravity = 70
 var platformNo = 1
 var gLock = false
 var allowance = 0.5
@@ -76,7 +76,7 @@ function ballJump() {
     console.log(jumpLimit)
     gLock = true
     for (j = 0; j < $('.balls').length; j ++) {
-    $('.balls').eq(j).css("top", (Number($('.balls').eq(j).css("top").replace("px","")) - 8*$('.balls').height()).toString() + "px")
+    $('.balls').eq(j).css("top", (Number($('.balls').eq(j).css("top").replace("px","")) - 9*$('.balls').height()).toString() + "px")
     }
   setTimeout( () => {jumpLimit = true}, 1000)
   setTimeout( () => {gLock = false},100)
@@ -157,6 +157,8 @@ function ball2Goal() {
 
 function levelClear() {
   if (ball1Goal() === true && ball2Goal() === true){
+    // $('#p1').remove()
+    // $('#p2').remove()
     console.log('win')
   }
 }
