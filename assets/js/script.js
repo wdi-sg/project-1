@@ -1,19 +1,14 @@
 $(function() {
   $body.on('keydown', ballMove)
-  // $body.on('keydown', ballJump)
   function ballMove(e) {
     var unit = 20
     if (e.key === 'd' || e.key === 'D' || e.key === "ArrowRight") {
       if (ball1Goal() === false && (borderCheck1Right()) && (blockCheck1Right())) ball1Hori(unit) //if ball1 doesn't exceed right border
-      // if (ball1Goal() === false && (borderCheck1Right())) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false && (borderCheck2Left()) && (blockCheck2Left())) ball2Hori(unit) //opposite side for ball2
-      // if (ball2Goal() === false && (borderCheck2Left())) ball2Hori(unit) //opposite side for ball2
     }
     if (e.key === 'a' || e.key === 'A' || e.key === "ArrowLeft") {
       if (ball1Goal() === false && (borderCheck1Left()) && (blockCheck1Left())) ball1Hori(-unit)
-      // if (ball1Goal() === false && (borderCheck1Left())) ball1Hori(-unit)
       if (ball2Goal() === false && (borderCheck2Right()) && (blockCheck2Right())) ball2Hori(-unit)
-      // if (ball2Goal() === false && (borderCheck2Right())) ball2Hori(-unit)
     }
     if (e.key === 'w' || e.key === 'W' || e.key === "ArrowUp") {
       if (jumpLimit) {
@@ -23,19 +18,20 @@ $(function() {
     }
   }
 
-  createGoal("110px","30px",$('#game1'))
-  createGoal("110px","220px",$('#game2'))
-  createPlatform("100px","0",$('#game1'),"300px","5px","floor")
-  createPlatform("60px","190px",$('#game1'),"50px","50px","wall1")
-  createPlatform("100px","0",$('#game2'),"300px","5px","floor")
-  createPlatform("60px","60px",$('#game2'),"50px","50px","wall2")
-  console.log($('.wall1').length)
+  createGoal("125px","30px",$('#game1'))
+  createGoal("125px","247px",$('#game2'))
+  createPlatform("150px","0",$('#game1'),"300px","5px","floor")
+  createPlatform("120px","190px",$('#game1'),"50px","50px","wall1")
+  createPlatform("150px","0",$('#game2'),"300px","5px","floor")
+  createPlatform("120px","60px",$('#game2'),"50px","50px","wall2")
   setInterval(ballSnap,500) //checking if border exceeds
   setInterval(gravity1, 30)
   setInterval(gravity2, 30)
+
+
 })
 
-var checkClear = setInterval(levelClear,1000)
+var checkClear = setInterval(levelClear,100)
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
@@ -81,15 +77,15 @@ function borderCheck2Left() {
 }
 // console.log($('.wall1').length)
 
-function collision(i) {
-  if(($ball1.position().left < $('.wall1').eq(0).position().left + $('.wall1').eq(0).width()) &&
-     ($ball1.position().left + $ball1.width() > $('.wall1').eq(0).position().left) &&
-     ($ball1.position().top > $('.wall1').eq(0).position().top) &&
-     ($ball1.position().top + $ball1.height() < $('.wall1').eq(0).position().top + $('.wall1').eq(0).height())) {
-       console.log("triggered col")
-     }
-  else console.log("no trigger")
-}
+// function collision(i) {
+//   if(($ball1.position().left < $('.wall1').eq(0).position().left + $('.wall1').eq(0).width()) &&
+//      ($ball1.position().left + $ball1.width() > $('.wall1').eq(0).position().left) &&
+//      ($ball1.position().top > $('.wall1').eq(0).position().top) &&
+//      ($ball1.position().top + $ball1.height() < $('.wall1').eq(0).position().top + $('.wall1').eq(0).height())) {
+//        console.log("triggered col")
+//      }
+//   else console.log("no trigger")
+// }
 function blockCheck1Left() {
     for (var l = 0; l < 2; l ++) {
         if(($ball1.position().left <= $('.wall1').eq(l).position().left + $('.wall1').eq(l).width()) &&
@@ -105,14 +101,6 @@ function blockCheck1Left() {
   }
 }
 }
-
-function testcol() {
-  for (var z = 0; z < 2; z++) {
-    blockCheck1Left()
-  }
-}
-
-
 function blockCheck1Right() {
     for (m = 0; m < $('.wall1').length; m ++) {
       if(($ball1.position().left + $ball1.width() >= $('.wall1').eq(m).position().left) &&
@@ -120,7 +108,7 @@ function blockCheck1Right() {
          ($ball1.position().top >= $('.wall1').eq(m).position().top) &&
          ($ball1.position().top + $ball1.height() <= $('.wall1').eq(m).position().top + $('.wall1').eq(m).height())){
         $ball1.css("left", ($('.wall1').eq(m).position().left - $ball1.width()).toString() + "px")
-        console.log("blockCheck1Right trigger")
+        // console.log("blockCheck1Right trigger")
         return false
       }
         else //console.log("blockCheck1Right no trigger")
@@ -212,7 +200,7 @@ class goal {
       height: goalCreate.height,
       top: topPixels,
       left: leftPixels,
-      position: 'relative',
+      position: 'absolute',
       display: 'inline-block',
       opacity: 0.5,
       // float: 'left'
@@ -247,24 +235,51 @@ function ball2Goal() {
   else return false
 }
 
-function levelClear() {
-  if (ball1Goal() === true && ball2Goal() === true){
-    clearInterval(checkClear) // stop interval checking for win condition
-    // setTimeout( () => $('.floor').remove(), 1000)
-    return  $('.container').append('<button class ="highlight" onclick="secondFunction()">Next Level</button>')
-
-    // console.log('win')
-  }
-}
-
 function secondFunction() {
   $('.goal').remove()
   $('.platform').remove()
   console.log("top",$('#ball1').css('top'))
   $('#ball1').css('top', (Number($('#ball1').css('top').replace("px","")) - 80).toString() + "px")
   $('#ball2').css('top', (Number($('#ball2').css('top').replace("px","")) - 80).toString() + "px")
+  // createGoal("60px","195px",$('#game1'))
+  // createGoal("30px","195px",$('#game1'))
+
+  createGoal("60px","227px",$('#game1'))
+  createGoal("60px","50px",$('#game2'))
+  createPlatform("150px","0",$('#game1'),"250px","5px","floor")
+  createPlatform("110px","250px",$('#game1'),"50px","5px","wall1")
+  createPlatform("150px","50px",$('#game2'),"250px","5px","floor")
+  createPlatform("110px","0",$('#game2'),"30px","5px","wall2")
+  createPlatform("83px","238px",$('#game1'),"20px","5px","floor")
+  createPlatform("83px","40px",$('#game2'),"20px","5px","floor")
+  checkClear2()
   return  $('.highlight').remove()
-  // $('#game2').slice(1).remove()
+}
+
+var checkClear2 = () => {setInterval(levelClear,100)}
+
+function levelClear() {
+  if (ball1Goal() === true && ball2Goal() === true){
+    // console.log("test run")
+    // console.log("input",$('.goal').last().attr('id'))
+    // console.log("input type",typeof $('.goal').last().attr('id')/2)
+    // console.log($('.goal').last().attr('id')/2)
+    // clearInterval(checkClear) // stop interval checking for win condition
+    // setTimeout( () => $('.floor').remove(), 1000)
+    switch($('.goal').last().attr('id')/2) {
+      case 1:
+      clearInterval(checkClear)
+      $('.container').append('<button class ="highlight" onclick="secondFunction()">Next Level</button>');
+      break;
+      case 2:
+      console.log("test")
+      clearInterval(checkClear2)
+      $('.container').append('<button class ="highlight" onclick="thirdFunction()">Next Level</button>');
+      break;
+    }
+
+    // console.log('win')
+  }
 }
 //these cause the balls to fall downward
 var seconds1 = 0 //TODO: need to adjust such that it only starts counting when ball is floating
@@ -337,7 +352,7 @@ class platform {
       height: height,
       top: topPixels,
       left: leftPixels,
-      position: 'relative',
+      position: 'absolute',
       display: 'inline-block',
       // float: 'left'
     })
