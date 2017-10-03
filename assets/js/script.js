@@ -25,21 +25,17 @@ $(function() {
 
   createGoal("110px","30px",$('#game1'))
   createGoal("110px","220px",$('#game2'))
-  setInterval(ballSnap,500) //checking if border exceeds
-  setInterval(levelClear,1000)
-  setInterval(gravity1, 30)
-  setInterval(gravity2, 30)
   createPlatform("100px","0",$('#game1'),"300px","5px","floor")
   createPlatform("60px","190px",$('#game1'),"50px","50px","wall1")
-
   createPlatform("100px","0",$('#game2'),"300px","5px","floor")
   createPlatform("60px","60px",$('#game2'),"50px","50px","wall2")
-  $body.on('click', () => {console.log("ball2 css left",$ball2.css('left'),"ball2 left",$ball2.position().left, "platform left and width",$('.wall2').eq(0).position().left + $('.wall2').eq(0).width())})
-  // console.log("ball1 left",$ball1.position().left, "platform width",$('.platform').eq(1).width())
-  console.log("left",$ball2.css('left'))
-  console.log("platform count",$('#game1').find('.platform').length)
+  console.log($('.wall1').length)
+  setInterval(ballSnap,500) //checking if border exceeds
+  setInterval(gravity1, 30)
+  setInterval(gravity2, 30)
 })
 
+var checkClear = setInterval(levelClear,1000)
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
@@ -83,20 +79,39 @@ function borderCheck2Left() {
   }
   else return false
 }
+// console.log($('.wall1').length)
+
+function collision(i) {
+  if(($ball1.position().left < $('.wall1').eq(0).position().left + $('.wall1').eq(0).width()) &&
+     ($ball1.position().left + $ball1.width() > $('.wall1').eq(0).position().left) &&
+     ($ball1.position().top > $('.wall1').eq(0).position().top) &&
+     ($ball1.position().top + $ball1.height() < $('.wall1').eq(0).position().top + $('.wall1').eq(0).height())) {
+       console.log("triggered col")
+     }
+  else console.log("no trigger")
+}
 function blockCheck1Left() {
-    for (l = 0; l < $('.wall1').length; l ++) {
+    for (var l = 0; l < 2; l ++) {
         if(($ball1.position().left <= $('.wall1').eq(l).position().left + $('.wall1').eq(l).width()) &&
            ($ball1.position().left > $('.wall1').eq(l).position().left) &&
            ($ball1.position().top >= $('.wall1').eq(l).position().top) &&
            ($ball1.position().top + $ball1.height() <= $('.wall1').eq(l).position().top + $('.wall1').eq(l).height())){
           $ball1.css("left", ($('.wall1').eq(l).position().left + $('.wall1').eq(l).width()).toString() + "px")
-          // console.log("blockCheck1Left trigger")
+          console.log("blockCheck1Left trigger")
           return false
     }
-        else //console.log("blockCheck1Left no trigger")
+        else {//console.log("blockCheck1Left no trigger")
         return true
   }
 }
+}
+
+function testcol() {
+  for (var z = 0; z < 2; z++) {
+    blockCheck1Left()
+  }
+}
+
 
 function blockCheck1Right() {
     for (m = 0; m < $('.wall1').length; m ++) {
@@ -105,7 +120,7 @@ function blockCheck1Right() {
          ($ball1.position().top >= $('.wall1').eq(m).position().top) &&
          ($ball1.position().top + $ball1.height() <= $('.wall1').eq(m).position().top + $('.wall1').eq(m).height())){
         $ball1.css("left", ($('.wall1').eq(m).position().left - $ball1.width()).toString() + "px")
-        // console.log("blockCheck1Right trigger")
+        console.log("blockCheck1Right trigger")
         return false
       }
         else //console.log("blockCheck1Right no trigger")
@@ -234,10 +249,22 @@ function ball2Goal() {
 
 function levelClear() {
   if (ball1Goal() === true && ball2Goal() === true){
-    // $('#p1').remove()
-    // $('#p2').remove()
-    console.log('win')
+    clearInterval(checkClear) // stop interval checking for win condition
+    // setTimeout( () => $('.floor').remove(), 1000)
+    return  $('.container').append('<button class ="highlight" onclick="secondFunction()">Next Level</button>')
+
+    // console.log('win')
   }
+}
+
+function secondFunction() {
+  $('.goal').remove()
+  $('.platform').remove()
+  console.log("top",$('#ball1').css('top'))
+  $('#ball1').css('top', (Number($('#ball1').css('top').replace("px","")) - 80).toString() + "px")
+  $('#ball2').css('top', (Number($('#ball2').css('top').replace("px","")) - 80).toString() + "px")
+  return  $('.highlight').remove()
+  // $('#game2').slice(1).remove()
 }
 //these cause the balls to fall downward
 var seconds1 = 0 //TODO: need to adjust such that it only starts counting when ball is floating
@@ -251,7 +278,7 @@ function gravity1() {
       ($ball1.position().top + $ball1.height() <= $('#game1').find('.platform').eq(i).position().top + $('#game1').find('.platform').eq(i).height())){
         $ball1.css("top", $ball1.css("top"))
         seconds1 = 0
-        console.log($('#game1').find('.platform').eq(i))
+        // console.log($('#game1').find('.platform').eq(i))
         return
       }
       else {
