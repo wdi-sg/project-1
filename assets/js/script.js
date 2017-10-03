@@ -1,9 +1,11 @@
 $(function(){
 var $box = $('.box')
 var $locBtn = $('#loc')
+var $colorBtn = $('#colorBtn')
 var $startBtn = $('#startBtn')
-var colorArr = ['red', 'blue', 'orange'. 'yellow','white', 'green', 'grey', 'purple']
+var colorArr = ['red', 'blue', 'orange', 'yellow','white', 'green', 'grey', 'purple']
 var recArr = [];
+var recCol = [];
 var count = 0;
 var index = 0;
 var on = 0;
@@ -15,7 +17,9 @@ var scoreObj = {
 
 $box.on('click', locGen)
 $locBtn.on('click', compareResult)
+$colorBtn.on('click', compareColor)
 $startBtn.on('click', () => {
+  //TODO reset score
   if (on == 0) {
   refreshIntervalId = setInterval(locGen, 3000);
   on = 1;
@@ -29,6 +33,7 @@ $startBtn.on('click', () => {
 
 function locGen() {
   count++;
+  var color = randomColor();
   if (count == 10) {
     $('.box').css("backgroundColor","")
     return gameOver()//call gameover
@@ -41,13 +46,19 @@ function locGen() {
   // $(this).data('value')
 
   setTimeout(function() {
-    $(`[data-value = ${index}]`).css("backgroundColor","#839073")
+    $(`[data-value = ${index}]`).css("backgroundColor",`${color}`)
+    // $(`[data-value = ${index}]`).css("backgroundColor","${colorArr[0]}")
   }, 1000)
 
   recArr.push(index);
+  recCol.push(`${color}`)
   // $(this).css('backgroundColor', )
 }
 
+function randomColor () {
+  var col = colorArr[randomNum()];
+  return col;
+}
 
 function compareResult () {
   // console.log('check recArr:', recArr)
@@ -56,13 +67,21 @@ function compareResult () {
   if (recArr[count - 1] === recArr[count - 2]) {
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
-    console.log(scoreObj.score)
   } else if (recArr[count - 1] != recArr[count - 2]) {
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
-    console.log(scoreObj.score)
   }
-  // TODO: No Click?
+  // TODO: No Click? click = false
+}
+
+function compareColor () {
+  if (recCol[count - 1] === recCol[count - 2]) {
+    scoreObj.score += 10;
+    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+  } else if (recCol[count - 1] != recCol[count - 2]) {
+    scoreObj.score -= 10;
+    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+  }
 }
 
 function randomNum () {
