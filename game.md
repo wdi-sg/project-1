@@ -71,3 +71,4 @@ Enemies deal damage to player on expiry.
 9. <s>Grenade audio</s>
 10. Text notification on miss etc.
 11. Enemies zoom to player (transition effect) when they expire
+12. Start button

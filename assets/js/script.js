@@ -1,8 +1,23 @@
 $(function() {
 
-  document.getElementsByClassName('bgm')[0].currentTime = 3;
-  document.getElementsByClassName('bgm')[0].volume = 0.6;
-  document.getElementsByClassName('bgm')[0].play()
+  $start = $('.start')
+  $start.on('click', () => {
+    updatePlayerStats()
+    countDown()
+    spawnIntervalEasy()
+    spawnIntervalNormal()
+    spawnIntervalHard()
+    // spawnIntervalAlly()
+    spawnIntervalAmmo()
+    // spawnIntervalHealth()
+    // spawnIntervalGrenade()
+    event1()
+      event2()
+    event3()
+    event4()
+    // event5()
+    event6()
+  })
 
   // player starting stats
   var playerStats = {
@@ -21,11 +36,14 @@ $(function() {
       $playerGrenade.text('Grenade: ' +playerStats.grenade)
     }, 200)
   }
-  updatePlayerStats()
+  // updatePlayerStats()
 
   var timeCount = 120; // default game starts at 120 seconds
   // every second timer -1, check victory, check loss
   function countDown() {
+    document.getElementsByClassName('bgm')[0].currentTime = 3;
+    document.getElementsByClassName('bgm')[0].volume = 0.6;
+    document.getElementsByClassName('bgm')[0].play()
     setInterval( () => {
       var $timer = $('.timer')
       timeCount = timeCount - 1
@@ -44,7 +62,7 @@ $(function() {
     }
     , 1000)
   }
-  countDown()
+  // countDown()
 
   function checkVictory() {
     if(timeCount <= 0 && playerStats.health > 0) {
@@ -183,37 +201,37 @@ $(function() {
   function spawnIntervalEasy() {
     setInterval(spawnEnemyEasy, 3000)
   }
-  spawnIntervalEasy()
+
 
   function spawnIntervalNormal() {
     setInterval(spawnEnemyNormal, 6000)
   }
-  spawnIntervalNormal()
+
 
   function spawnIntervalHard () {
     setInterval(spawnEnemyHard, 10000)
   }
-  spawnIntervalHard()
+
 
   function spawnIntervalAlly () {
     setInterval(spawnAlly, 8000)
   }
-  // spawnIntervalAlly()
+
 
   function spawnIntervalAmmo () {
     setInterval(spawnAmmoBox, 8000)
   }
-  spawnIntervalAmmo()
+
 
   function spawnIntervalHealth () {
     setInterval(spawnHealthPack, 8000)
   }
-  // spawnIntervalHealth()
+
 
   function spawnIntervalGrenade () {
     setInterval(spawnGrenadeRefill, 8000)
   }
-  // spawnIntervalGrenade()
+
 
   function event1() {
     setTimeout(() => {
@@ -222,7 +240,7 @@ $(function() {
       }
     }, 46000)
   }
-  event1()
+
 
   function event2() {
     setTimeout(() => {
@@ -231,7 +249,7 @@ $(function() {
       }
     }, 35000)
   }
-  event2()
+
 
   function event3() {
     setTimeout(() => {
@@ -240,7 +258,7 @@ $(function() {
       }
     }, 56000)
   }
-  event3()
+
 
   function event4() {
     setTimeout(() => {
@@ -249,28 +267,28 @@ $(function() {
       }
     }, 66000)
   }
-  event4()
+
 
   function event5() {
     setTimeout(() => {
-      for(var i=0; i <3; i++){
+      for(var i=0; i <2; i++){
         spawnEnemyEasy()
       }
     }, 14000)
     spawnAmmoBox
   }
-  event5()
+
 
   function event6() {
     setTimeout(() => {
-      for(var i=0; i <3; i++){
+      for(var i=0; i <7; i++){
         spawnEnemyEasy()
       }
     }, 84000)
     spawnAmmoBox
     spawnGrenadeRefill
   }
-  event5()
+
 
   function checkEnemyHealth () {
     for (var i = spawnList.length -1; i > -1; i --) {
