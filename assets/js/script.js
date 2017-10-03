@@ -25,13 +25,13 @@ $(function() {
   createPlatform("150px","0",$('#game2'),"300px","5px","floor")
   createPlatform("120px","60px",$('#game2'),"50px","50px","wall2")
   setInterval(ballSnap,500) //checking if border exceeds
-  setInterval(gravity1, 30)
-  setInterval(gravity2, 30)
+  setInterval(gravity1, 20)
+  setInterval(gravity2, 20)
 
 
 })
 
-var checkClear = setInterval(levelClear,100)
+var checkClear = setInterval(levelClear,500)
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
@@ -238,25 +238,49 @@ function ball2Goal() {
 function secondFunction() {
   $('.goal').remove()
   $('.platform').remove()
-  console.log("top",$('#ball1').css('top'))
-  $('#ball1').css('top', (Number($('#ball1').css('top').replace("px","")) - 80).toString() + "px")
-  $('#ball2').css('top', (Number($('#ball2').css('top').replace("px","")) - 80).toString() + "px")
-  // createGoal("60px","195px",$('#game1'))
-  // createGoal("30px","195px",$('#game1'))
 
   createGoal("60px","227px",$('#game1'))
   createGoal("60px","50px",$('#game2'))
-  createPlatform("150px","0",$('#game1'),"250px","5px","floor")
+  createPlatform("155px","0",$('#game1'),"250px","5px","floor")
   createPlatform("110px","250px",$('#game1'),"50px","5px","wall1")
-  createPlatform("150px","50px",$('#game2'),"250px","5px","floor")
+  createPlatform("155px","50px",$('#game2'),"250px","5px","floor")
   createPlatform("110px","0",$('#game2'),"30px","5px","wall2")
   createPlatform("83px","238px",$('#game1'),"20px","5px","floor")
   createPlatform("83px","40px",$('#game2'),"20px","5px","floor")
-  checkClear2()
+  checkClear2 = setInterval(levelClear,500)
   return  $('.highlight').remove()
 }
 
-var checkClear2 = () => {setInterval(levelClear,100)}
+function thirdFunction() {
+  $('.goal').remove()
+  $('.platform').remove()
+
+  createGoal("10px","10px",$('#game1'))
+  createGoal("10px","90px",$('#game2'))
+  createPlatform("83px","225px",$('#game1'),"35px","5px","floor")
+  createPlatform("0px","210px",$('#game1'),"15px","100px","wall1")
+  createPlatform("120px","280px",$('#game1'),"15px","5px","floor")
+  createPlatform("170px","190px",$('#game1'),"70px","5px","floor")
+  createPlatform("150px","100px",$('#game1'),"70px","5px","floor")
+  createPlatform("120px","30px",$('#game1'),"70px","5px","floor")
+  createPlatform("95px","5",$('#game1'),"50px","5px","floor")
+  createPlatform("70px","10px",$('#game1'),"20px","5px","floor")
+  createPlatform("40px","15px",$('#game1'),"10px","5px","floor")
+
+
+
+
+  createPlatform("83px","40px",$('#game2'),"30px","5px","floor")
+  createPlatform("0px","70px",$('#game2'),"15px","100px","wall2")
+  createPlatform("130px","0",$('#game2'),"95px","5px","floor")
+  createPlatform("100px","120px",$('#game2'),"20px","5px","floor")
+  createPlatform("70px","150px",$('#game2'),"20px","5px","floor")
+  createPlatform("40px","95px",$('#game2'),"60px","5px","floor")
+
+  checkClear2 = setInterval(levelClear,500)
+  return  $('.highlight').remove()
+}
+
 
 function levelClear() {
   if (ball1Goal() === true && ball2Goal() === true){
@@ -275,6 +299,10 @@ function levelClear() {
       console.log("test")
       clearInterval(checkClear2)
       $('.container').append('<button class ="highlight" onclick="thirdFunction()">Next Level</button>');
+      break;
+      case 3:
+      clearInterval(checkClear2)
+      $('.container').append('<button class ="highlight" onclick="fourthFunction()">Next Level</button>');
       break;
     }
 
@@ -297,7 +325,7 @@ function gravity1() {
         return
       }
       else {
-        seconds1 += 0.03 //to tally against the gravity setInterval
+        seconds1 += 0.02 //to tally against the gravity setInterval
         $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
         // console.log("ball1 descent time",seconds1)
         // console.log("ball1 height",$ball1Height)
@@ -323,7 +351,7 @@ function gravity2() {
     // console.log("ball2 descent time",seconds2)
     // console.log("ball2 height",$ball2Height)
     else {
-    seconds2 +=0.03 //independent gravity timer counter so that their vertical acceleration is independent
+    seconds2 +=0.02 //independent gravity timer counter so that their vertical acceleration is independent
     $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
       }
     }
