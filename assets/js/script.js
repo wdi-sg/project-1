@@ -4,6 +4,10 @@ $(function () {
 //create <h2> with the data from the input
 // $(#player-1).val()
 // $(#player-2).val()
+var data = require ('../products.json')
+
+var items = data.items
+var amtOfItems = items.length
 
 var $submit1 = $('#submit-1')
 var $submit2 = $('#submit-2')
