@@ -24,6 +24,7 @@ var tileSet = [
 var $body = $('body')
 var $gameBoard = $('.game-board')
 var direction = 'left'
+var pacManSpeed = 700
 
 // score variable
 var score = 0
@@ -42,41 +43,35 @@ $(function () {
   // write countdown function
 
   // moving pacman
-  setInterval(function () {
-    switch (direction) {
-      case 'left':
-        moveLeft()
-        break
-      case 'right':
-        moveRight()
-        break
-      case 'up':
-        moveUp()
-        break
-      case 'down':
-        moveDown()
-        break
-    }
-  }, 700)
+  setInterval(function () { movePacMan() }, pacManSpeed)
   // switching directions
-  $body.on('keydown', (event) => { move(event) })
+  $body.on('keydown', (event) => { changeDirection(event) })
 
   // write killScreen function
 })
 
-function move (event) {
+function movePacMan () {
+  switch (direction) {
+    case 'left': moveLeft()
+      break
+    case 'right': moveRight()
+      break
+    case 'up': moveUp()
+      break
+    case 'down': moveDown()
+      break
+  }
+}
+
+function changeDirection (event) {
   switch (event.key) {
-    case 'ArrowUp':
-      direction = 'up'
+    case 'ArrowUp': direction = 'up'
       break
-    case 'ArrowRight':
-      direction = 'right'
+    case 'ArrowRight': direction = 'right'
       break
-    case 'ArrowDown':
-      direction = 'down'
+    case 'ArrowDown': direction = 'down'
       break
-    case 'ArrowLeft':
-      direction = 'left'
+    case 'ArrowLeft': direction = 'left'
       break
   }
 }
@@ -128,13 +123,6 @@ function moveUp () {
   if ($pacManUp.data('attr') !== 1) $pacManUp.append($pacMan)
 }
 
-function clearAllIntervals(left, right, up, down) {
-  clearInterval(left)
-  clearInterval(right)
-  clearInterval(up)
-  clearInterval(down)
-}
-
 function loadAssets (tileSet) {
   // creating pac-man and ghosts
   var $pacMan = $('<div class="character" id="pac-man">')
@@ -154,29 +142,21 @@ function loadAssets (tileSet) {
     var $dots = $('<div class="dots">')
     // setting tile properties
     switch (tileSet[i]) {
-      case 0:
-        $tile.css(blackTile).data('attr', 0).append($dots)
+      case 0: $tile.css(blackTile).data('attr', 0).append($dots)
         break
-      case 1:
-        $tile.css(blueTile).data('attr', 1)
+      case 1: $tile.css(blueTile).data('attr', 1)
         break
-      case 2:
-        $tile.css(blackTile).data('attr', 2)
+      case 2: $tile.css(blackTile).data('attr', 2)
         break
-      case 5:
-        $tile.css(blackTile).data('attr', 5).append($ghostFour)
+      case 5: $tile.css(blackTile).data('attr', 5).append($ghostFour)
         break
-      case 6:
-        $tile.css(blackTile).data('attr', 6).append($ghostThree)
+      case 6: $tile.css(blackTile).data('attr', 6).append($ghostThree)
         break
-      case 7:
-        $tile.css(blackTile).data('attr', 7).append($ghostTwo)
+      case 7: $tile.css(blackTile).data('attr', 7).append($ghostTwo)
         break
-      case 8:
-        $tile.css(blackTile).data('attr', 8).append($ghostOne)
+      case 8: $tile.css(blackTile).data('attr', 8).append($ghostOne)
         break
-      case 9:
-        $tile.css(blackTile).data('attr', 9).append($pacMan)
+      case 9: $tile.css(blackTile).data('attr', 9).append($pacMan)
         break
     }
     $gameBoard.append($tile)
