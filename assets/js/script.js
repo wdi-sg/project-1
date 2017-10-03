@@ -80,21 +80,22 @@ $(function () {
            grid[checker[i][0] + 2][checker[i][1]] = 0
          }
        }
+       checker = []
      }
      //alert(grid)
 
      //replenish top row first
-     for (var x = 0 ; x < matrix; x++) {
-       for (var y = 0; y < matrix; y++) {
-
-          if(x === 0 && grid[x][y] === 0) {
-            grid[x][y] = generateColor()
-            var pos = x +","+ y
-            $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
-          }
-        }
-      }
-     //alert(grid)
+    //  for (var x = 0 ; x < matrix; x++) {
+    //    for (var y = 0; y < matrix; y++) {
+     //
+    //       if(x === 0 && grid[x][y] === 0) {
+    //         var pos = x +","+ y
+    //         grid[x][y] = generateColor()
+    //         $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
+    //       }
+    //     }
+    //   }
+     console.log(grid)
 
      //replenishCells()
     }
@@ -133,6 +134,7 @@ $(function () {
           grid[checker[i][0] + 2][checker[i][1]] = 0
         }
       }
+      checker = []
     }
 
 
