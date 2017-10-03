@@ -6,18 +6,19 @@ $(function () {
   var matrix = 4
   var $cell = $('.cell')
 
-
   function generateLevel () {
     // create a 2D array
     //creates a new array of height & width specified by 'matrix'
     //create rows then columns, grid can be accessed with grid[row][column]
-    grid = new Array(matrix)
+    // grid = new Array(matrix)
     for (i = 0; i < matrix; i++) {
-      grid[i] = new Array(matrix)
+      grid.push([])
+      // grid[i] = new Array(matrix)
       for (j = 0; j < matrix; j++) {
 
         //populate cells in game logic
-        grid[i][j] = generateColor()
+        // grid[i][j] = generateColor()
+        grid[i].push(generateColor())
 
         //populate cells in css
         var pos = i +","+ j
@@ -27,22 +28,23 @@ $(function () {
     }
 
 
-    grid[2][1] = "test"
-    grid[2][2] = "test"
-    grid[2][3] = "test"
-
-    grid[0][1] = "test"
-    grid[1][1] = "test"
-    grid[2][1] = "test"
-    grid[3][1] = "test"
+    // grid[1][3] = "test"
+    // grid[2][3] = "test"
+    // grid[0][3] = "test"
+    //
+    // grid[0][3] = "test"
+    // grid[0][2] = "test"
+    // grid[0][1] = "test"
+    // grid[0][0] = "test"
     console.log(grid)
+    $cell.on('click', checkForMatch)
   }
 
 
 
 
-
    function checkForMatch() {
+
     //  var index = ($(this).data('position')) //index[0], index[2]
     //  var index1 = parseInt(index[0])
     //  var index2 = parseInt(index[2])
@@ -58,41 +60,42 @@ $(function () {
 
     // var copiedArr = grid.slice();
     // var temp = copiedArr[x][y];
-    var tempArr = grid.slice()
+
+    var checker = []
+
     for (var x = 0 ; x < matrix; x++) {
       for (var y = 0; y < matrix; y++) {
-//         // if (grid[y][x] === grid[y][x+1]) matches = 1
-//
 
-//
          //check for horizontal matches
         if (grid[x][y] === grid[x][y+1] && grid[x][y] === grid[x][y+2]) {
-          //var horizontal = [ [x, y] ,[x, y+1], [x, y+2] ]
-
-          tempArr[x][y] = 0
-          tempArr[x][y+1] = 0
-          tempArr[x][y+2] = 0
+          checker.push([x,y,'h'])
         }
-//         //check for vertical matches
-        // if (grid[x+2]) {
-        //   if (grid[x][y] === grid[x+1][y] && grid[x][y] === grid[x+2][y]) {
-        //     //var vertical = [ [x, y] ,[x+1, y], [x+2, y] ]
-        //     //console.log(vertical);
-        //     tempArr[x][y] = 0
-        //     tempArr[x+1][y] = 0
-        //     tempArr[x+2][y] = 0
-        //   }
-        // }
-
-
+        //check for vertical matches
+        if (grid[x+2]) {
+          if (grid[x][y] === grid[x+1][y] && grid[x][y] === grid[x+2][y]) {
+            checker.push([x,y,'v'])
+          }
         }
       }
-      //grid = tempGrid
+    }
 
-//
-//
-//
-     console.log(grid)
+    if (checker.length > 0) {
+      for(var i = 0; i < checker.length; i++) {
+        if (checker[i][2] === 'h') {
+          grid[checker[i][0]][checker[i][1]] = 0
+          grid[checker[i][0]][checker[i][1] + 1] = 0
+          grid[checker[i][0]][checker[i][1] + 2] = 0
+        }
+        if (checker[i][2] === 'v') {
+          grid[checker[i][0]][checker[i][1]] = 0
+          grid[checker[i][0] + 1][checker[i][1]] = 0
+          grid[checker[i][0] + 2][checker[i][1]] = 0
+        }
+      }
+    }
+
+    console.log(checker)
+    console.log(grid)
     }
 //
 //
@@ -120,10 +123,11 @@ $(function () {
   function generateColor() {
     return colorList[Math.floor(Math.random() * colorList.length)]
   }
+
   generateLevel()
   //checkForMatch()
 
   //$cell.on('mouseover', highlight)
-  $cell.on('click', checkForMatch)
+
 
 })
