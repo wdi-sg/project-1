@@ -2,58 +2,76 @@ $(function(){
 
   var score = 0;
   var gameTimeout = 180;
+  var snd = new Audio("assets/sounds/hit.mp3");
 
   var $holes =$('.holes')
   var $button =$('button')
+  var timer;
 
-  alert('hello')
+
+  $('.holes').addClass("avoid-clicks")
+  $('#reset').hide()
 
   // setInterval(randomMoleAppear,1000)
-  $button.on('click',function() {
-    if ($button.value=="Start")
-      $button.value = "Start";
-    else
-    $button.value = "Reset";
+  $('#start').on('click',function() {
+    $('#start').hide()
+    $('#reset').show()
+    $('.holes').removeClass("avoid-clicks")
+
     var timeleft = 30
-    var timer = setInterval(function(){
+    timer = setInterval(function(){
+      randomMoleAppear()
       randomMoleAppear()
       --timeleft
-      //console.log(timeleft);
+      $('.timer').html("Timeleft: <span>"+ timeleft +"</span>")
       if(timeleft <=0){
         clearInterval(timer);
+        $('.holes').addClass("avoid-clicks")
       }
-    },700)
+    },1000)
   })
 
+  //reset score to 0,clearInterval,hide reset button
+  $('#reset').on('click',function(){
+    clearInterval(timer);
+    reset()
+    $('#start').show()
+    $('#reset').hide()
+    $('.score').html("")
+    $('.timer').html("")
+    $('.holes').addClass("avoid-clicks")
+  })
 
 function reset(){
-  score = 0;
-  //randomMoleAppear()
+  score = 0
+  $('.mole').removeClass("image")
+  $('.score').html("Score: <span>"+ score +"</span>")
 }
 
 //when I click the holes without images
-//   $('.holes').on('click',function(){
-//     deductScore()
-//     $('.score').text("Total Score : " + score)
-//   })
-//
-// function deductScore() {
-//   console.log(score);
-//   score = score - 20
-// }
+$('.mole').on('click',function(){
+  snd.play()
+  if($(this).hasClass('image')){
+    $(this).removeClass("image")
+    calScore()
+  }else{
+    deductScore()
+  }
+})
+
+//When hit the hole -20
+function deductScore() {
+  score = score - 5
+  $('.score').html("Score: <span>"+ score +"</span>")
+    // "Total Score : " + "<span>score</span>")
+}
 
 //click on the mole can get 10 points
 function calScore(){
   score = score + 10
-  $('.score').text("Total Score : " + score)
+  $('.score').html("Score: <span>"+ score +"</span>")
 }
 
-
-//target only when I click the mole with images
-$('.holes').on('click', '.image' ,function(){
-  $(this).removeClass("image")
-  calScore()
-})
 
 
 //mole appears at random spot
@@ -69,7 +87,7 @@ function randomMoleAppear(){
   function removeMole(){
   $('.mole').eq(random).removeClass("image")
   }
-  setTimeout(removeMole,2000)
+  setTimeout(removeMole,900)
 
 }
 
