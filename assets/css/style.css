@@ -1,13 +1,24 @@
 .box{
   width: 100px;
   height: 100px;
-  background-color:grey ;
+  background-color:#9AA3AD ;
   display: inline-block;
   margin: 2px;
+  box-sizing: border-box;
 
-  transition: 2s ease-in-out;
+  /*transition: 1s ease-in-out;*/
 
   /*border: 2px solid black;*/
+}
+header{
+  width: inherit;
+  height: 100px;
+  font-family: 'Sunshiney', cursive;
+  font-size: 70px;
+  font-weight: bold;
+  vertical-align: middle;
+  color:white;
+  padding-top: 10px;
 }
 .gridbox{
   width: 450px;
@@ -28,7 +39,15 @@
   display: inline-block;
 
 }
+h1{
+  font-family: 'Sunshiney', cursive;
+  font-size: 60px;
+  vertical-align: middle;
+  color:white;
 
+
+
+}
 h1, h2 {
   color: white;
 }
@@ -46,8 +65,9 @@ body{
 }
 
 .right{
+  padding-top: 20px;
   width:200px;
-  height: 600px;
+  height: 580px;
   border-left: 2px solid grey;
   display: inline-block;
   float:right;
@@ -55,6 +75,17 @@ body{
 }
 .scoreTotal{
   width:150px;
+  height: 60px;
+  background-color: #5E6A7A;
+  vertical-align: middle;
+  color:white;
+  font-size: 35px;
+  line-height: 60px;
+  display: inline-block;
+  border-radius: 25px;
+}
+.timer{
+  width: 150px;
   height: 70px;
   background-color: #5E6A7A;
   vertical-align: middle;
@@ -64,7 +95,18 @@ body{
   display: inline-block;
   border-radius: 25px;
 }
-
+.character{
+  width:inherit;
+  height:220px;
+}
+button{
+  width: 100px;
+  height: 40px;
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+}
 /* below class related to element*/
 .c1{
   background-color: #EABED2;
@@ -88,4 +130,9 @@ body{
 .c4{
   background-color:  #FFFFCC ;
   border-radius: 50px 50px 25px 25px;
+}
+
+.c5{
+  background-color: #baf4ed;
+  border-radius: 25px 25px 50px 50px
 }

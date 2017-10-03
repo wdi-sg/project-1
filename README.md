@@ -92,10 +92,26 @@ version 0.2.0: added necessary function
 * Checking the grid for match, increase score for match, delete the 3 or more matching elements and push those elements above down, add new elements to the top.
 * visual: Able to differentiate between different types of elements. Able to see the total score.
 
-yet to add
+version 0.4.0: added:
+* one more type of elements: cream color.
 * the swapping element function.
-* checking available moves function.
+* able to remove match of 5
+* added delay to most of the function to aid player to view what is going on
 
+version 0.6.0: added:
+* check available move function
+* reset grid function. (with remove class and add class 'Box' function)
+
+current timing: checkGrid to removeElements(0)
+removeElements(removing 400) to pushdown(250) to generateElements (500) to checkGrid (700)
+full cycle 1,850.
+
+yet to add
+* working timer, the game should end when the timer reach zero.
+* check if after swapped, there is any match, if no, should change back two elements swapped.
+* better visual design
+extra
+* more score for match of four or five.
 ---
 
 ### Self Remainder

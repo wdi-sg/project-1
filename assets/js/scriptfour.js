@@ -13,37 +13,48 @@ var gridNo = 4
 
 var $box = $('.box')
 var $scoreBox = $('.scoreTotal')
-var toBeDelete = []
-var toSwitchTwo = []
 
 $(function(){
+  var click = true
+  var toBeDelete =[]
+  var readyMove = false
+  var toSwitchTwo = []
+  setGrid()
+  //total = 0
+  gameTimer
 
-  var gamePlay = {
-    timer : 10,
-    gameTimer:0,
-    turn :true,
 
 
-    setUpTimer (){
-      $('#start').on('click',()=>{
-        if (this.turn){
-          this.gameTimer = setInterval(()=>{
-            if (this.timer>0){
-              this.timer-= 1
-              $('.timer').text(`${this.timer}`)
-            }
-            this.turn = false
-          }, 1000)
-          setGrid()
+// timer function
+  var gameTimer = setInterval(decreaseTime, 1000)
+  //restart() // to restart each games
+  // generateElements() // to generate elements if the value is null
+  // console.log(grid)
 
-        }
+  function decreaseTime(){
+    if (timer>0){
+      timer-= 1
+      $('.timer').text(`${timer}`)
+    }
+  }
+////
 
-      })
-    },
 
-    gameMode (){
-      if (timer> 0){
-        $box.on('click', function(){
+
+
+  // console.log(grid)
+  // console.log(total)
+
+
+
+  // if(checkGrid()){
+  toSwitchTwo = []
+  // if(timer>= 0){
+  //   var $newDiv = $('<div class="endtitle">')
+  //   $newDiv.append(total)
+  //   $newDiv.css({'width':'470px','height':'550px'})
+  // }
+  $box.on('click', function(){
     //click = false
     $(this).css({'border':"2px solid red"})
     var idArr = this.id.split('')
@@ -106,40 +117,6 @@ $(function(){
     // }
 
   })
-      }
-    },
-  }
-  gamePlay.setUpTimer()
-  gamePlay.gameMode()
-    //restart() // to restart each games
-    // generateElements() // to generate elements if the value is null
-    // console.log(grid)
-
-
-
-  //total = 0
-
-
-
-
-// timer function
-////
-
-
-
-
-  // console.log(grid)
-  // console.log(total)
-
-
-
-  // if(checkGrid()){
-  //toSwitchTwo = []
-  // if(timer>= 0){
-  //   var $newDiv = $('<div class="endtitle">')
-  //   $newDiv.append(total)
-  //   $newDiv.css({'width':'470px','height':'550px'})
-  // }
 
 
 

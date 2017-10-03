@@ -253,7 +253,66 @@ $(function(){
   //   //   // to detect if no moves
   // }
 
+function checkAvailableMove (){
 
+  for (var j = 0;j<gridNo;j++){
+    for (var i = 0; i<gridNo-1;i++){
+      if (grid[i][j]===[i+1][j]){
+        switch (true) {
+          case (((j-2)>=0) &&grid[i][j-2]===grid[i][j]):
+          console.log('case 1')
+          console.log(`${i}${j}:${i}${(j-2>=0)}${j-2}`)
+          return true
+          break;
+          case ((i-1)>=0 && (j-1)>=0 &&grid[i-1][j-1]===grid[i][j]):
+          console.log('case 2')
+          console.log(`${i}${j}:${i-1}${j-1}`)
+          return true;
+          case ((j-1)>=0&& (i+1)<gridNo &&grid[i+1][j-1] === grid[i][j]):
+          console.log('case 3')
+          console.log(`${i}${j}:${i+1}${j-1}`)
+          return true;
+          case ((i-1)>=0&&(j+2)<gridNo &&grid[i-1][j+2]=== grid[i][j]):
+          console.log('case 4')
+          console.log(`${i}${j}:${i-1}${j+2}`)
+          return true;
+          case ((i+1)<gridNo && (j+2)<gridNo && grid[i+1][j+2]===grid[i][j]):
+          console.log('case 5')
+          console.log(`${i}${j}:${i+1}${j+2}`)
+          return true;
+          case ((j+3)<gridNo && grid[i][j+3]===grid[i][j]):
+          console.log('case 6')
+          console.log(`${i}${j}:${i}${j+3}`)
+          return true ;
+          default:
+          return false
+
+        }
+        if(i>1&& grid[i][j]===grid[i-2][j]){
+          return true
+        }
+        if(i>0&& j>0&&grid[i][j]===grid[i-1][j-1]){
+          return true
+        }
+        if(i>0&& j+1 < gridNo&&grid[i][j]===grid[i-1][j+1]){
+          return true
+        }
+        if (i+2<gridNo&&j>0&&grid[i][j]===grid[i+2][j-1]){
+          return true
+        }
+        if(i+3<gridNo&& grid[i][j]===grid[i+3][j]){
+          return true
+        }
+        if (i+2<gridNo&& j+1<gridNo&&grid[i][j]===grid[i+2][j+1]){
+          return true
+        }
+        // cjheck for other
+
+
+      }
+}
+}
+function checkAvailableMoveOld (){
 
 
 
