@@ -7,7 +7,10 @@ var productIndex = Math.floor((Math.random() * 13))
 var theProduct = data[productIndex]
 var $productImg = $('<img width= 200px/>')
 
-$productImg.attr('src', theProduct.image)
+$productImg.attr(
+  {'id':"product",
+  'src': theProduct.image,
+  'data-price': theProduct.price})
 $('.productSpace').prepend($productImg)
 
 console.log(data[productIndex])
