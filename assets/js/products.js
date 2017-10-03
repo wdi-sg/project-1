@@ -1,4 +1,5 @@
- {
+ var data = [
+   {
    "image":"http://img.dxcdn.com/productimages/sku_413458_1.jpg",
    "product-Name":"Silicon Power Stream S03 1TB Portable External Hard Drive USB 3.0 (SP010TBPHDS03S3K)",
    "price":63.82,
@@ -60,12 +61,12 @@
  },
  {
    "image":"assets/img/Volvo V90.png",
-   "product-Name":"Volvo"
+   "product-Name":"Volvo",
    "price":70400,
  },
  {
    "image":"assets/img/Exterior-80301.jpg",
-   "product-Name":"Honda"
+   "product-Name":"Honda",
    "price":53000,
  },
  {
@@ -73,3 +74,4 @@
    "product-Name": "Toyota",
    "price":60000,
  }
+ ]

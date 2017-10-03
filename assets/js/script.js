@@ -1,13 +1,18 @@
 $(function () {
+//randomly choose one of the data[]
+//pick out the image - append that to the main div
+//make img attr (data-price) as the price
 
-//sumbit button on click
-//create <h2> with the data from the input
-// $(#player-1).val()
-// $(#player-2).val()
-var data = require ('../products.json')
+var productIndex = Math.floor((Math.random() * 13))
+var theProduct = data[productIndex]
+var $productImg = $('<img width= 200px/>')
 
-var items = data.items
-var amtOfItems = items.length
+$productImg.attr('src', theProduct.image)
+$('.productSpace').prepend($productImg)
+
+console.log(data[productIndex])
+console.log($productImg)
+
 
 var $submit1 = $('#submit-1')
 var $submit2 = $('#submit-2')
@@ -107,9 +112,6 @@ function print() {
   $('.result').append($printPrice)
   $printPrice.text('$'+ itemPrice)
 }
-
-
-
 //now need to have
 //reset button (curently it reloads after alert "ok" is clicked)
 
