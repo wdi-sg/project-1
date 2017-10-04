@@ -30,6 +30,7 @@ $(function () {
         $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[i][j])
 
       }
+
     }
 
     //for testing
@@ -68,6 +69,7 @@ $(function () {
 
 
     // console.log(grid)
+    if (checkForMatches() !== true) restart()
     $cell.on('click', playerMatchCells)
   }
 
@@ -113,22 +115,7 @@ $(function () {
        }
        checker = []
      }
-     //alert(grid)
 
-     //replenish top row first
-    //  for (var x = 0 ; x < matrix; x++) {
-    //    for (var y = 0; y < matrix; y++) {
-     //
-    //       if(x === 0 && grid[x][y] === 0) {
-    //         var pos = x +","+ y
-    //         grid[x][y] = generateColor()
-    //         $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
-    //       }
-    //     }
-    //   }
-    //  console.log(grid)
-
-     //var loopCheck = true
 
       replenishCells()
     }
@@ -155,7 +142,7 @@ $(function () {
 
     if (checker.length > 0) {
       return true
-      }
+    }
 
       checker = []
     }
@@ -219,6 +206,12 @@ $(function () {
   function generateColor() {
     return colorList[Math.floor(Math.random() * colorList.length)]
   }
+
+  function restart() {
+    grid=[]
+    generateLevel()
+  }
+
 
   generateLevel()
 
