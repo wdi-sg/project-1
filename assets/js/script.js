@@ -3,6 +3,8 @@ var $box = $('.box')
 var $locBtn = $('#loc')
 var $colorBtn = $('#colorBtn')
 var $startBtn = $('#startBtn')
+var $stopBtn = $('#stopBtn')
+var $resetBtn = $('#resetBtn')
 var textbox = $('#textbox')
 var colorArr = ['red', 'blue', 'orange', 'yellow','white', 'green', 'grey', 'purple'];
 var recArr = [];
@@ -11,7 +13,7 @@ var count = 0;
 var index = 0;
 var on = 0;
 var refreshIntervalId;
-var n = 3;
+var n = 2;
 var scoreObj = {
   score: 0,
   scoreBoard: $('#scoreBoard')
@@ -34,7 +36,7 @@ $(document).on('keydown', function(e){
 $startBtn.on('click', () => {
   scoreObj.scoreBoard.text('Score : 0')
   if (on == 0) {
-  refreshIntervalId = setInterval(locGen, 3000);
+  refreshIntervalId = setInterval(locGen, 2000);
   on = 1;
 } else if (on == 1) {
   clearInterval(refreshIntervalId);
@@ -79,10 +81,10 @@ function compareResult () {
   // console.log('check recArr[count - 1]:', recArr[count - 2])
   if (recArr[count - 1] === recArr[count - n]) {
     scoreObj.score += 10;
-    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recArr[count - 1] != recArr[count - n]) {
     scoreObj.score -= 10;
-    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   }
   // TODO: No Click? click = false
 }
@@ -90,10 +92,10 @@ function compareResult () {
 function compareColor () {
   if (recCol[count - 1] === recCol[count - n]) {
     scoreObj.score += 10;
-    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recCol[count - 1] != recCol[count - n]) {
     scoreObj.score -= 10;
-    scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+    scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   }
 }
 
@@ -106,7 +108,7 @@ function randomNum () {
 function gameOver () {
   // Show Score.
   count = 0;
-  scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
+  scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   index = 0;
   recArr = [];
   // console.log('Count:', count, "Score:", scoreObj.score, "Index:", index, "recArr:", recArr)
