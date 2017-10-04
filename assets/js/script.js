@@ -6,12 +6,15 @@
 // 1 - play mode
 // 0 - die mode - no input is accepted.
 
+
 $(function () {
+  spop()
   $startBtn = $('.start')
   $startBtn.on('click', () => {
+    document.getElementsByClassName('startpop')[0].pause()
     playBgSound ()
-    // speed = 20
-    $('.start').hide()
+    speed = 20
+    $('.start_pop').hide()
   })
 
     // saving dom objects to variables
@@ -40,6 +43,10 @@ $(function () {
 
   }
 
+  function spop() {
+    document.getElementsByClassName('startpop')[0].play()
+  }
+
   function flapsound() {
     // document.getElementsByClassName('birdFlapping')[0].currentTime = 1.3
     // document.getElementsByClassName('birdFlapping')[0].volume = 1
@@ -62,7 +69,6 @@ $(function () {
     start()
     birdFlap ()
     flapsound()
-    speed = 20
     if (gameState > 1) return
     if (gameState === 2) {
       gameState = 1
@@ -73,7 +79,6 @@ $(function () {
     start()
     birdFlap ()
     flapsound()
-    speed = 20
     if (e.keyCode === 32) {
       if (gameState > 1) return
       if (gameState === 2) gameState = 1

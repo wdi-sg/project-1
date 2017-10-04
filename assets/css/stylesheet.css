@@ -14,13 +14,36 @@
     height:100%;
     margin:0;
   }
+
+/*---------------------------------------------*/
+
+.start_pop {
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+  position: absolute;
+  z-index: 900;
+  /*background-color: black;*/
+  }
+
+.start_img {
+  background: url('/images/flappy-starts.png');
+  width: 600px;
+  height: 188px;
+  margin-left: 26%;
+  margin-top: 100px;
+}
 /*---------------------------------------------*/
 
 .start {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 900;
+  width: 42%;
+  height: 100px;
+  background-color: white;
+  margin-left: 27%;
+  border: 2px dashed black;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 /*---------------------------------------------*/
