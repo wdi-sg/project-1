@@ -1,7 +1,7 @@
 $(function () {
   // Create P1 & P2 divs & give them a color.
-  var $player1 = $('<div class="player1">').css('backgroundColor', 'blue')
-  var $player2 = $('<div class="player2">').css('backgroundColor', 'red')
+  var $player1 = $('<div class="player1 lupid">')
+  var $player2 = $('<div class="player2 pig">').css('backgroundColor', 'red')
 
   var currentPlayer = $player1
 
@@ -87,7 +87,7 @@ $(function () {
         if(Number($column.attr('id')) % 2 === 0) {
           $column.css('backgroundColor', '#ffff00')
         } else {
-          $column.css('backgroundColor', ' ')
+          $column.css('backgroundColor', 'white')
 
         }
 

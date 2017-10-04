@@ -1,11 +1,49 @@
-.container {
-  border: 1px solid red;
-
+body, html {
+    height: 100%;
 }
 
-.player1 , .player2 {
+.bg {
+  background-image: url("../images/bg4.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;*/
+}
+
+
+
+.container {
+  border: 1px solid red;
+  max-width: 1500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+table {
+  text-align:left;
+}
+
+.player1, .player2 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}
+
+
+.player2 {
   width: 15px;
-  height:15px;
+  height: 15px;
+}
+
+.lupid {
+  width: 40px;
+  height: 40px;
+  background: url('../images/lupid.png') left center;
+  animation: monkey 2s steps(10) infinite;
+}
+
+@keyframes monkey {
+  100% {background-position: -414px;}
 }
 
 button {
@@ -13,14 +51,16 @@ button {
   border: 1px solid black;
 }
 
-table {
-  border: 1px solid black;
-}
 
 h1 {
-  position: relative;
-  left: 150px;
   border: 1px solid red;
+  margin: 25px 0px;
+}
+
+td {
+  max-width: 50px;
+  max-height: 50px;
+  position: relative;
 }
 
 .wrapper {
@@ -38,4 +78,17 @@ h1 {
   z-index: 3;
   background-image: url('../images/LaddersSnakes.png');
   background-repeat: no-repeat;
+}
+
+.wrapper2 {
+  display: inline-block;
+  border: 1px solid red;
+  margin-bottom: 110px;
+  margin-left: 30px;
+}
+
+.right-section {
+  border: 1px solid red;
+  min-width: 300px;
+  min-height: 150px;
 }
