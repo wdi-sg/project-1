@@ -31,20 +31,19 @@ var score = 0
 // pacman variables
 var direction = 'left'
 var pacManSpeed = 600
+var pacManMeetGhost = false
+var pacManLives = 3
 // ghost variables
-var ghostMovementMode = 'scatter'
-var ghostSpeed = 600
-var prevDirOne = []
-var prevDirTwo = []
-var prevDirThree = []
-var prevDirFour = []
+var ghostSpeed = 400
+// var ghostMovementMode = 'scatter'
 // ghost-one variables
-// var ghostOneTarget
+var prevDirOne = []
 // ghost-two variables
-
+var prevDirTwo = []
 // ghost-three variables
-
+var prevDirThree = []
 // ghost-four variables
+var prevDirFour = []
 
 $(function () {
   // write reset function
@@ -85,7 +84,27 @@ $(function () {
           moveGhost($('#ghost-four'))
         }, ghostSpeed)
       }, 9000)
-      // write killScreen function
+      // lose condiition
+      setInterval(function () {
+        // jQuery object variables
+        var $pacMan = $('#pac-man')
+        var $score = $('#score')
+        var $tile = $('.tile')
+        // targeting pac-man starting tile
+        var $pacManStart = $tile.filter(function () { return $(this).data('attr') === 9 })
+        // checking if pac-man and ghosts occupy the same tile
+        pacManMeetGhost = checkCollision()
+        if (pacManMeetGhost) {
+          // move pacman back to starting
+          $pacManStart.append($pacMan)
+          // decrease and updates scoreboard
+          pacManLives--
+          $score.text(`Score: ${score} Lives: ${pacManLives}`)
+        }
+        // update loss
+        if (pacManLives <= 0) $score.text(`You've Lost!`)
+      }, 400)
+      // win condition
       setInterval(function () {
         if (score === 119) {
           var $score = $('#score')
@@ -169,7 +188,7 @@ function changeDirection (event) {
 function eatAndChangeScore (tile) {
   var $score = $('#score')
   score++
-  $score.text(`Score: ${score}`)
+  $score.text(`Score: ${score} Lives: ${pacManLives}`)
   tile.find('div:first').remove()
 }
 
@@ -326,4 +345,18 @@ function patrolBottomLeft ($ghost) {
   }
   // shift entire array left by one element (keeps array 2 elements long)
   if (prevDirFour.length > 2) prevDirFour.shift()
+}
+
+function checkCollision () {
+  var $pacMan = $('#pac-man')
+  var $pacManTile = $pacMan.parent()
+
+  // return true if pacman's parent tile contains any of the ghosts
+  switch (true) {
+    case ($pacManTile.has('#ghost-one').length > 0):
+    case ($pacManTile.has('#ghost-two').length > 0):
+    case ($pacManTile.has('#ghost-three').length > 0):
+    case ($pacManTile.has('#ghost-four').length > 0):
+      return true
+  }
 }
