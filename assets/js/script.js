@@ -8,6 +8,7 @@ const $pauseBtn = $("#pauseBtn")
 const $startBtn = $("#startBtn")
 const $restartBtn = $("#restartBtn")
 const $loseDiv = $("<div class='lose'>")
+const $house = $(".house")
 const catMeow = new Audio("/assets/audio/catMeow.mp3")
 let enemyList = []
 let bulletList = []
@@ -30,7 +31,8 @@ class Character {
     y,
     atkSpd,
     bulletOwner,
-    aniFrame
+    aniFrame,
+    aimAngle
   ) {
     this.type = type
     this.id = id
@@ -49,10 +51,10 @@ class Character {
     this.pressingUp = false
     this.pressingLeft = false
     this.pressingRight = false
-    this.aimAngle = 0
+    this.aimAngle = aimAngle
     this.bulletOwner = bulletOwner
     this.aniFrame = 0
-    this.bulletMod = [0]
+    this.bulletMod = 0
   }
 
   addChar() {
@@ -66,7 +68,7 @@ class Character {
     //fix for bullet
 
     $gameBoard.append($char)
-    this.jTarget = $gameBoard.find("." + `${this.id}`)
+    this.jTarget = $gameBoard.find(`.${this.id}`)
 
     if (this.type === "player") {
       this.jTarget.css({
@@ -129,8 +131,10 @@ class Character {
         })
       } else {
         this.jTarget.css({
-          border: "6px solid red", //update to actual sprite
-          borderRadius: "50%"
+          background: `url("/assets/images/fireball.png")`,
+          backgroundPosition: `50px -45px`,
+          // border: "3px solid black", //update to actual sprite
+          backgroundSize: "200%"
         })
       }
     }
@@ -205,7 +209,7 @@ class Character {
         //down
         this.jTarget.css({
           backgroundPosition: `${Math.floor(this.aniFrame % 4) *
-            -67.5}px -130px`
+            -67.5}px -132px`
         })
       }
       if (this.spdX < 0 && this.spdY < 0) {
@@ -226,6 +230,19 @@ class Character {
       this.y += this.spdY
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.removeChar() //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.removeChar()
+      if (Math.floor(this.aniFrame % 4) === 0) {
+        this.jTarget.css({
+          backgroundPosition: `0 0`,
+          transform: `rotate(${this.aimAngle - 90}deg)`
+        })
+      } else if (Math.floor(this.aniFrame % 4) === 1) {
+        this.jTarget.css({ backgroundPosition: `50px 0` })
+      } else if (Math.floor(this.aniFrame % 4) === 2) {
+        this.jTarget.css({ backgroundPosition: `0 -48px` })
+      } else {
+        this.jTarget.css({ backgroundPosition: `50px -48px` })
+      }
+      this.aniFrame += 0.15
     }
 
     if (this.type === "player") {
@@ -311,16 +328,20 @@ class Character {
       this.aimAngle = Math.atan2(distanceY, distanceX) / Math.PI * 180
     }
 
-    for (key in this.bulletMod) {
-      if (this.bulletMod[key] === 0) generateBullet(this) //default 0 -> 1 bullet
-      if (this.bulletMod[key] > 0) {
-        generateBullet(this)
-        this.aimAngle += 5
-      }
-      if (this.bulletMod === "a") {
-        //special bullets to be added
-      }
+    for (let i = 0; i <= this.bulletMod; i++) {
+      generateBullet(this)
+      this.aimAngle += 5
     }
+    // if (this.bulletMod === 0) generateBullet(this)
+    // else (this.bulletMod === > 0) {
+    //default 0 -> 1 bullet
+    //   generateBullet(this)
+    //   this.aimAngle += 5
+    //   generateBullet(this)
+    // }
+    // if (this.bulletMod === "a") {
+    //   //special bullets to be added
+    // }
   }
 }
 
@@ -335,24 +356,25 @@ let player = new Character(
   100,
   50,
   50,
-  500,
+  1000,
   "",
   0
 )
 
-const generateCow = () => {
-  let id = Math.floor(Math.random() * 100000)
-  let sizeX = 60
-  let sizeY = 90
-  let spdX = Math.random() * 2.5
-  let spdY = Math.random() * 2.5
-  let x = 150
-  let y = 150
-
-  petList[id] = new Character("cow", id, sizeX, sizeY, spdX, spdY, 0, x, y)
-
-  petList[id].addChar()
-}
+// const generateCow = () => {
+//   //to be implemented
+//   let id = Math.floor(Math.random() * 100000)
+//   let sizeX = 60
+//   let sizeY = 90
+//   let spdX = Math.random() * 2.5
+//   let spdY = Math.random() * 2.5
+//   let x = 150
+//   let y = 150
+//
+//   petList[id] = new Character("cow", id, sizeX, sizeY, spdX, spdY, 0, x, y)
+//
+//   petList[id].addChar()
+// }
 
 const generateCat = () => {
   let id = Math.floor(Math.random() * 100000)
@@ -366,8 +388,8 @@ const generateCat = () => {
   if (spdModY < 0.5) spdMultY = -1
   let spdX = Math.random() * 0.3 * spdMultX
   let spdY = Math.random() * 0.3 * spdMultY
-  let x = Math.random() * 500
-  let y = Math.random() * 500
+  let x = Math.random() * 700 //to regenerate when spawned inside house
+  let y = 330 + Math.random() * 200
 
   petList[id] = new Character("cat", id, sizeX, sizeY, spdX, spdY, 0, x, y)
 
@@ -381,9 +403,9 @@ const generateEnemy = () => {
   let spdX = Math.random() * 2.5
   let spdY = Math.random() * 2.5
   let hp = 150
-  let x = Math.random() * 500
+  let x = 360 + Math.random() * 350
   let y = Math.random() * 500
-  let atkSpd = Math.floor(1000 + Math.random() * 1000)
+  let atkSpd = Math.floor(1000 + Math.random() * 1500)
 
   // console.log("spawning")
   enemyList[id] = new Character(
@@ -405,10 +427,10 @@ const generateEnemy = () => {
 const generateBullet = entity => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
   let angle = entity.aimAngle
-  let sizeX = 5
-  let sizeY = 5
-  let spdX = Math.cos(angle / 180 * Math.PI) * 10
-  let spdY = Math.sin(angle / 180 * Math.PI) * 10
+  let sizeX = 50
+  let sizeY = 50
+  let spdX = Math.cos(angle / 180 * Math.PI) * 5
+  let spdY = Math.sin(angle / 180 * Math.PI) * 5
   let hp = 0
   let x = entity.x + entity.sizeX / 2
   let y = entity.y + entity.sizeY / 2
@@ -425,7 +447,9 @@ const generateBullet = entity => {
     x,
     y,
     0,
-    owner
+    owner,
+    0,
+    angle
   )
   bulletList[id].addChar()
 }
@@ -437,7 +461,7 @@ const generateUpgrade = () => {
   let spdX = Math.random()
   let spdY = Math.random()
   let hp = 0
-  let x = Math.random() * 500
+  let x = Math.random() * 700
   let y = Math.random() * 500
   let atkSpd = 0
   let owner = ""
@@ -459,6 +483,25 @@ const generateUpgrade = () => {
   upgradeList[id].addChar()
 }
 
+const makeHouse = () => {
+  let $houseDiv = $("<div class='house'>")
+  $houseDiv.css({
+    width: "100px",
+    height: "120px",
+    position: "absolute",
+    top: "200px",
+    left: "260px"
+  })
+  $gameBoard.append($houseDiv)
+}
+
+const house = {
+  x: 260,
+  y: 200,
+  sizeX: 100,
+  sizeY: 120
+}
+
 // unlimited spawn
 const spawnEnemy = () => {
   let enemyFrequency = 800
@@ -466,7 +509,8 @@ const spawnEnemy = () => {
   if (pause === false && gameCounter % enemyFrequency === 0) {
     // generateEnemy()
     generateEnemy()
-    if (gameCounter > 2000) enemyFrequency = 500
+    if (gameCounter > 1500) enemyFrequency = 400
+    else if (gameCounter > 2500) enemyFrequency = 250
   }
 }
 
@@ -474,26 +518,31 @@ const restartGame = () => {
   for (key in enemyList) {
     enemyList[key].removeChar()
   }
-
   for (key in bulletList) {
     bulletList[key].removeChar()
   }
-
   for (key in upgradeList) {
     upgradeList[key].removeChar()
+  }
+  for (key in petList) {
+    petList[key].removeChar()
   }
 
   player.hp = 100
   enemyList = []
   bulletList = []
   upgradeList = []
+  petList = []
   gameCounter = 0
+  pause = true
   startGame()
   // requestAnimationFrame(update)
 }
 
 $(function() {
   $pauseBtn.on("click", togglePause)
+
+  makeHouse()
 
   function togglePause() {
     if (player.hp <= 0) return
@@ -509,10 +558,12 @@ $(function() {
     if (pause === true) {
       drawMap(1)
       player.addChar()
-      // generateEnemy()
+      generateUpgrade()
+      // generateUpgrade()
+      generateEnemy()
+
       generateCat()
-      generateCat()
-      generateCat()
+
       // generateCow()
 
       gameCounter = 0
@@ -531,6 +582,9 @@ $(function() {
     for (key in upgradeList) {
       upgradeList[key].removeChar()
     }
+    for (key in petList) {
+      petList[key].removeChar()
+    }
 
     player.hp = 100
     score = 0
@@ -538,6 +592,7 @@ $(function() {
     enemyList = []
     bulletList = []
     upgradeList = []
+    petList = []
     startGame()
   }
 
@@ -546,13 +601,10 @@ $(function() {
 
   for (cat in petList) {
     let catMeow = new Audio("/assets/audio/catMeow.mp3")
-    console.log("loop test")
     if (petList[cat].type === "cat") {
       this.jTarget.on("click", catMeow.play())
     }
   }
-
-  // startGame()
 
   $body.on("mousedown", () => {
     player.isShooting = true
@@ -570,7 +622,6 @@ $(function() {
   }, player.atkSpd)
 
   setInterval(() => {
-    //fix enemy shooting
     if (pause === false) {
       for (key in enemyList) {
         enemyList[key].shoot()
@@ -585,8 +636,7 @@ $(function() {
     $score.text(`Score: ${Math.floor(score / 1)}`)
     player.moveChar()
 
-    //spawnEnemy
-    spawnEnemy()
+    // spawnEnemy()
     //move enemies
     for (key in enemyList) {
       enemyList[key].moveChar()
@@ -594,13 +644,41 @@ $(function() {
         player.hp-- //player takes damage on collision
         checkDead()
       }
+      if (checkCollision(enemyList[key], house)) {
+        //
+        if (
+          enemyList[key].x + enemyList[key].sizeX >= house.x &&
+          enemyList[key].x <= house.x + house.sizeX
+        )
+          enemyList[key].spdX *= -1
+        if (
+          enemyList[key].y + enemyList[key].sizeY >= house.y &&
+          enemyList[key].y <= house.y + house.sizeY
+        ) {
+          enemyList[key].spdY *= -1
+        }
+      }
     }
 
     for (key in petList) {
       petList[key].moveChar()
       if (checkCollision(petList[key], player) && petList[key].type === "cat") {
         catMeow.play()
-        console.log('Mr Scruffington says "Get off my lawn, pesky farmer!"')
+        // console.log('Mr Scruffington says "Get off my lawn, pesky farmer!"')
+      }
+      if (checkCollision(petList[key], house)) {
+        //
+        if (
+          petList[key].x + petList[key].sizeX >= house.x &&
+          petList[key].x <= house.x + house.sizeX
+        )
+          petList[key].spdX *= -1
+        if (
+          petList[key].y + petList[key].sizeY >= house.y &&
+          petList[key].y <= house.y + house.sizeY
+        ) {
+          petList[key].spdY *= -1
+        }
       }
     }
 
@@ -608,7 +686,7 @@ $(function() {
       upgradeList[key].moveChar()
       if (checkCollision(upgradeList[key], player)) {
         player.hp += 10 //player takes health on collision
-        player.bulletMod.push(2)
+        player.bulletMod++
         upgradeList[key].removeChar()
         upgradeList.splice(key, 1)
       }
@@ -617,7 +695,7 @@ $(function() {
     for (key in bulletList) {
       bulletList[key].moveChar()
       bulletList[key].timer++
-      if (bulletList[key].timer > 100) {
+      if (bulletList[key].timer > 150) {
         bulletList[key].removeChar()
         bulletList.splice(key, 1)
         continue
@@ -628,7 +706,16 @@ $(function() {
         bulletList[key].bulletOwner === "enemy"
       ) {
         // console.log("player hit!")
-        player.hp -= 10
+        player.hp -= 5
+
+        player.jTarget.css({
+          filter: "grayscale(1)"
+        })
+        setTimeout(function() {
+          player.jTarget.css({
+            filter: "none"
+          })
+        }, 200)
         checkDead()
 
         bulletList[key].removeChar()
@@ -641,7 +728,23 @@ $(function() {
           checkCollision(enemyList[enemy], bulletList[key]) &&
           bulletList[key].bulletOwner === "player"
         ) {
-          enemyList[enemy].hp -= 25
+          enemyList[enemy].hp -= 50
+          enemyList[enemy].jTarget.css({
+            filter: "grayscale(1)"
+          })
+          setTimeout(function() {
+            if (enemyList[enemy]) {
+              enemyList[enemy].jTarget.css({
+                filter: "none"
+              })
+            }
+          }, 200)
+          if (bulletList[key].x < enemyList[enemy].x) {
+            enemyList[enemy].x += 10
+          } else enemyList[enemy].x -= 10
+          if (bulletList[key].y < enemyList[enemy].y + enemyList[enemy].sizeY) {
+            enemyList[enemy].y -= 10
+          } else enemyList[enemy].y -= 10
           if (enemyList[enemy].hp <= 0) {
             score += 10
             enemyList[enemy].removeChar()
@@ -650,6 +753,13 @@ $(function() {
           bulletList[key].removeChar()
           bulletList.splice(key, 1) //might have to be added to removeChar method
           break
+        }
+      }
+      //bullet collision with house
+      for (key in bulletList) {
+        if (checkCollision(bulletList[key], house)) {
+          bulletList[key].removeChar()
+          bulletList.splice(key, 1)
         }
       }
     }
