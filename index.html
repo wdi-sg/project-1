@@ -7,25 +7,31 @@
   </head>
   <body>
     <div class="container">
-      <!-- <div class="landingScreen">
+      <div class="landingScreen">
           <div class="maplestoryImage"></div>
-      </div> -->
+          <div class="instructions">
+            <h1>Instructions</h1>
+            <h2>Use left and right arrow keys to move, space bar to jump and "C" to attack</h2>
+            <button id="restart" type="button" name="button">Start</button>
+
+          </div>
+      </div>
       <div class="topContainer">
         <div class="miniMap"></div>
+        <div class="skillOne"></div>
           <div class="player">
           </div>
           <div class="projectile">
           </div>
-          <div class="mob">
-          </div>
+
       </div>
       <div class="bottomContainer">
         <!-- <img src="/assets/images/healthBar.png" alt=""> -->
-        <div class="hpBar">100/100</div>
+        <div class="hpBar"></div>
+        <div class="mpBar">200/200</div>
+        <div class="xpBar"></div>
         <div class="Information">.
-          <p id ="healthPoints">Current Health: 100HP</p>
           <p id="mobHP">Current Mob HP: 50  </p>
-          <p id="mobsKilled">Killed 20 Mobs</p>
 
         </div>
 
@@ -34,6 +40,6 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="/assets/js/script.js" charset="utf-8"></script>
+    <script src="/assets/js/testScript.js" charset="utf-8"></script>
   </body>
 </html>

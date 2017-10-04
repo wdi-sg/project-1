@@ -1,12 +1,3 @@
-// class Mob = new class {
-//
-//   constructor(id,hitPoints){
-//
-//     this.id = id
-//     this.hitPoints = hitPoints
-//   }
-// }
-
 $(function () {
 
   console.log('Dom is ready')
@@ -20,6 +11,7 @@ $(function () {
   var $mobHP = $("#mobHP")
   var $playerHP = $("#healthPoints")
   var $hpBar = $(".hpBar")
+  var $startButton = $("#restart")
   var fireDirection = ""
   var keys = {37: false, 32: false, 39: false}
   var playerHealth = 100
@@ -27,11 +19,29 @@ $(function () {
   var currentMobsOnScreen = 0
   var gameEnd = false
   $bullet.hide()
+  $mob.css("left","205px")
 
-  setInterval(startMob, 1000)
-  setInterval(bulletCollisionCheck, 10)
-  setInterval(playerMobCollisionCheck,300)
-  setInterval(checkHeight,300)
+
+  // setInterval(checkHeight,300)
+
+  setInterval(function(){
+    if (gameEnd) { $(".landingScreen").show()}
+  },1000)
+
+  $startButton.on("click",restartGame)
+
+
+
+  function restartGame(){
+    $(".landingScreen").hide()
+    setInterval(startMob, 1000)
+    setInterval(bulletCollisionCheck, 10)
+    setInterval(playerMobCollisionCheck,300)
+    playerHealth = 100
+    mobHealth = 50
+    $mob.css("left","205px")
+    gameEnd = false
+  }
 
 
   function checkHeight(){ // check player height and drop if he is floating
@@ -43,7 +53,7 @@ $(function () {
   $body.on('keydown', function (e) {
     var $player = $('.player')
     var $playPos = $player.position()
-    keys[e.keyCode] = true;
+    keys[e.keyCode] = true
     $player.css("webkitAnimationPlayState","running")
 
     if (keys[32] && keys[39] && $playPos.top === 560 && $playPos.left < 1240){ //right and up
@@ -78,48 +88,25 @@ $(function () {
     var $playPos = $player.position()
     $player.css("webkitAnimationPlayState","paused")
     // console.log(` current position ${$playPos.top}`)
-    // if ($playPos.top !== 560) { $player.css('top', `560px`) }
+    if ($playPos.top !== 560) { $player.css('top', `560px`) }
   })
-  var mobArray = []
+
   function startMob () {
-    $spawnMob = $("<div class='mob'>")
-    // mobArray.push($spawnMob)
-    // if(currentMobsOnScreen < 3){
-    //   currentMobsOnScreen ++
-    //   $topContainer.append($spawnMob)
-    // }
     $mobPosition = $mob.position()
     $playPos = $player.position()
     mobPosLeft = $mobPosition.left
-    // if (mobPosLeft > 1510) {
-      $mob.css('left', `${$playPos.left}px`)
-      mobDirection()
-    // } else if (mobPosLeft < 1500) {
-    //   $mob.css('left', `${mobPosLeft + 900}px`)
-    // }
-
-  }
-
-  var oldXAxis = 0       // set axis to start from
-  function mobDirection(){
-    $mobPosition = $mob.position()
-    $playPos = $player.position()
-    mobPosLeft = $mobPosition.left
-
-    if(mobPosLeft < $playPos.left){     //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved right, hence flip right
-
-      // direction = "right"
+    if (mobPosLeft === 205) {
+      $mob.css('left', "1490px")
       $mob.removeClass("mob")
       $mob.addClass("mobRight")
-    }
-    else if(mobPosLeft > $playPos.left){    //if current position of mouse on the x axis of page is more than oiginal position, mouse has moved left, hence flip left
-
-      // direction = "left"
+    } else if (mobPosLeft === 1490) {
+      $mob.css('left', "205px")
       $mob.removeClass("mobRight")
       $mob.addClass("mob")
     }
-    oldXAxis = mobPosLeft//update current mouse/page X axis
+
   }
+
 
 
 
@@ -165,7 +152,9 @@ $(function () {
          $bullet.css('left',$playPos.left)
          $bullet.css("top","620px")
          if(mobHealth === 0) {
-           setTimeout($mob.remove(), 5000)}
+           $mob.remove()
+           gameEnd = true
+         }
       console.log('CRASH')
       $bullet.hide()
     } else {
