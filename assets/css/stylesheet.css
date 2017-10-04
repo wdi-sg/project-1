@@ -10,7 +10,10 @@ body, html {
   background-size: cover;*/
 }
 
-
+.gold {
+  width: 50px;
+  height: 50px;
+}
 
 .container {
   border: 1px solid red;
@@ -25,25 +28,31 @@ table {
 
 .player1, .player2 {
   position: absolute;
-  top: 20%;
-  left: 20%;
+  top: 10%;
+  left: 15%;
 }
 
 
-.player2 {
-  width: 15px;
-  height: 15px;
+.pig {
+  width: 50px;
+  height: 50px;
+  background: url('../images/pig.png');
+  animation: pig 2s steps(4) infinite;
+}
+
+@keyframes pig {
+  100% {background-position: -209px;}
 }
 
 .lupid {
-  width: 40px;
-  height: 40px;
-  background: url('../images/lupid.png') left center;
+  width: 50px;
+  height: 50px;
+  background: url('../images/lupid.png');
   animation: monkey 2s steps(10) infinite;
 }
 
 @keyframes monkey {
-  100% {background-position: -414px;}
+  100% {background-position: -498px;}
 }
 
 button {
@@ -61,6 +70,7 @@ td {
   max-width: 50px;
   max-height: 50px;
   position: relative;
+  transition: all 500ms ease-in-out 500ms;
 }
 
 .wrapper {
@@ -77,18 +87,73 @@ td {
   position: absolute;
   z-index: 3;
   background-image: url('../images/LaddersSnakes.png');
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;2
 }
 
 .wrapper2 {
   display: inline-block;
+  width: 280px;
+  height: 565px;
   border: 1px solid red;
-  margin-bottom: 110px;
   margin-left: 30px;
 }
 
 .right-section {
   border: 1px solid red;
-  min-width: 300px;
-  min-height: 150px;
+  min-width: 280px;
+  min-height: 180px;
+  background-image: url('../images/images.jpg')
+}
+/*.top-row {
+  display:flex;
+  justify-content: space-between;
+}*/
+.top-row button {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background-color: #D2B48C;
+}
+.reset {
+  padding: 0px;
+}
+
+.sound {
+margin-left: 50px;
+padding: 0px;
+}
+
+.auto-play {
+margin-right: 50px;
+padding: 0px;
+}
+.middle-row {
+  position:relative;
+}
+
+.turn, h3 , .circle {
+  position:absolute;
+}
+
+h3 {
+  word-spacing: 4.5em;
+  left: 67px;
+  top: 30px;
+}
+
+.p1Turn {
+  left: 50px;
+  top: 80px;
+}
+
+.p2Turn {
+  left: 140px;
+  top: 84px;
+}
+
+.circle {
+  left: 17px;
+  /*left: 127px;*/
+  top: 63px;
 }

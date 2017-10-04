@@ -1,7 +1,9 @@
 $(function () {
   // Create P1 & P2 divs & give them a color.
   var $player1 = $('<div class="player1 lupid">')
-  var $player2 = $('<div class="player2 pig">').css('backgroundColor', 'red')
+  var $player2 = $('<div class="player2 pig">')
+
+  var $circle = $('.circle') // to indicate which player's turn
 
   var currentPlayer = $player1
 
@@ -17,6 +19,10 @@ $(function () {
   var $dice = $('.dice')
   $dice.on('click', rollDice)
 
+  var $autoPlay = $('.auto-play')
+  $autoPlay.on('click', autoPlay)
+  var clear;
+
   // Create reset event
   var $reset = $('.reset')
   $reset.on('click', reset)
@@ -28,6 +34,7 @@ $(function () {
     if (currentPlayer === $player1) {
       cellValueP1 += randomDiceResult
       $player1.detach().appendTo(`#${cellValueP1}`) // move player 1 + dice value
+      $circle.css("left", "17px")
       painOrPleasureP1()
 
       if (randomDiceResult === 6) {
@@ -39,6 +46,7 @@ $(function () {
       cellValueP2 += randomDiceResult
       $player2.detach().appendTo(`#${cellValueP2}`) // move player 1 + dice value
       painOrPleasureP2()
+      $circle.css("left", "127px")
 
       if (randomDiceResult === 6) {
         currentPlayer = $player2
@@ -68,6 +76,11 @@ $(function () {
     cellValueP2 = 1
     $player1.detach().appendTo(`#${cellValueP1}`)
     $player2.detach().appendTo(`#${cellValueP2}`)
+    clearInterval(clear)
+  }
+
+  function autoPlay() {
+    clear = setInterval(rollDice, 1000)
   }
 
   function createTable () {
