@@ -25,6 +25,7 @@ var $body = $('body')
 var $gameBoard = $('.game-board')
 var $instructionPanel = $('.instruction-panel')
 var $scoreBoard = $('.score-board')
+var $livesContainer = $('.lives-container')
 
 // game variables
 var score = 0
@@ -88,7 +89,7 @@ $(function () {
       setInterval(function () {
         // jQuery object variables
         var $pacMan = $('#pac-man')
-        var $score = $('#score')
+        var $score = $('.score')
         var $tile = $('.tile')
         // targeting pac-man starting tile
         var $pacManStart = $tile.filter(function () { return $(this).data('attr') === 9 })
@@ -100,7 +101,7 @@ $(function () {
           // decrease and updates scoreboard
           pacManLives--
           pacManMeetGhost = false
-          $score.text(`Score: ${score} Lives: ${pacManLives}`)
+          $livesContainer.children().last().remove()
         }
         // update loss
         if (pacManLives <= 0) $score.text(`You've Lost!`)
@@ -108,7 +109,7 @@ $(function () {
       // win condition
       setInterval(function () {
         if (score === 119) {
-          var $score = $('#score')
+          var $score = $('.score')
           $score.text(`You've Won!`)
         }
       }, 300)
@@ -125,9 +126,9 @@ function loadAssets (tileSet) {
   var $ghostFour = $('<div class="character" id="ghost-four">')
 
   // objects to store css properties for tiles
-  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid 	#303030' }
-  var blueTile = { 'background-color': '#000066', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
-  var yellowTile = { 'background-color': 'yellow', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid #303030' }
+  var blueTile = { 'background-color': '#2D47DD', 'height': '28px', 'width': '28px', 'border': '1px solid #3366FF' }
+  var yellowTile = { 'background-color': '#FFCC00', 'height': '5px', 'width': '30px' }
 
   // loop through tileSet array and generate map as well as load characters
   for (var i = 0; i < tileSet.length; i++) {
@@ -187,9 +188,9 @@ function changeDirection (event) {
 }
 
 function eatAndChangeScore (tile) {
-  var $score = $('#score')
+  var $score = $('.score')
   score++
-  $score.text(`Score: ${score} Lives: ${pacManLives}`)
+  $score.text(`Score: ${score}`)
   tile.find('div:first').remove()
 }
 

@@ -15,18 +15,37 @@
           <div class="instruction-panel">
             <h2>Instructions</h2>
             <p>
-              <strong>Controls</strong><br>
-              Arrow-Left '&#9664' : Move 'Left'<br>
-              Arrow-Right '&#9654' : Move 'Right'<br>
-              Arrow-Up '&#9650' : Move 'Up'<br>
-              Arrow-Down '&#9660' : Move 'Down'
+              Navigate Pac-Man through a maze of Pac-Dots.<br>
+              The goal of the game is to consume all the Pac-Dots.<br>
+              If any of the ghosts touch Pac-Man, he loses a life.<br>
+              when all lives have been lost, the game ends.<br>
+              <strong>Change Directions</strong><br>
+              <span>
+                Arrow-Left '&#9664' : Move 'Left'<br>
+                Arrow-Right '&#9654' : Move 'Right'<br>
+                Arrow-Up '&#9650' : Move 'Up'<br>
+                Arrow-Down '&#9660' : Move 'Down'
+              </span>
             </p>
             <p class="hit-enter">&lt Hit Enter to begin &gt</p>
           </div> <!-- instruction-panel -->
-          <!-- create win board and lose board -->
+          <div class="win-panel">
+            <h3>You Win!</h3>
+            <h3 class="score">Score: 0</h3>
+          </div> <!-- win-panel -->
+          <div class="lose-panel">
+            <h3>You Lose!</h3>
+            <p class="hit-enter">&lt Hit enter to try again &gt</p>
+          </div> <!-- lose-panel -->
         </div> <!-- game-board -->
         <div class="score-board">
-          <h3 id="score">Score: 0 Lives: 3</h3>
+          <h3 class="score">Score: 0</h3>
+          <div class="lives-container">
+            <h3 id="live">Lives:</h3>
+            <div class="lives"></div>
+            <div class="lives"></div>
+            <div class="lives"></div>
+          </div>
         </div> <!-- score-board -->
       </div> <!-- window -->
     </div> <!-- container -->
