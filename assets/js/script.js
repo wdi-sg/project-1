@@ -124,3 +124,5 @@ function print() {
 //reset button (curently it reloads after alert "ok" is clicked)
 
 })
+
+//more changes in project 1 copy

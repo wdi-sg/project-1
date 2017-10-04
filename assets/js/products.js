@@ -62,7 +62,7 @@
  {
    "image":"assets/img/Volvo V90.png",
    "productName":"Volvo",
-   "price":70400,
+   "price":70400, 
    "productAdv":"loremipsumagainandagain"
  },
  {
