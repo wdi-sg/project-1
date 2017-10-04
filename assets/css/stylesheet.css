@@ -1,50 +1,55 @@
+body {
+  font-family: "Press Start 2P";
+}
+
 h1 {
-  font-size: 36px;
+  font-size: 50px;
   text-align: center;
 }
 
 .flower {
-  padding: 1px;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   left: 0px;
   display: inline-block;
   position: absolute;
-  transition: linear 0.1s;
+  transition: linear 0.05s
 
 }
 
 .playerOne {
   height: 100px;
-  width: 70px;
-  background-color: black;
-  top: 500px;
+  width: 50px;
+  background-color: ;
+  top: 600px;
   display: inline-block;
   position: absolute;
 
 }
 
 .container {
-  border: 1px solid blue;
+  background: url("http://i.imgur.com/qlgoLVk.png");
+  background-size: cover;
+  background-position: center;
   width: 1400px;
-  height: 600px;
+  height: 700px;
   margin: 0 auto;
   padding: 0;
   position: relative;
 }
 
-.score {
-  border: 1px solid red;
-  height: 100px;
-  width: 1400px;
-  margin: 0 auto;
-  background-color: green;
+.timer {
+  font-size: 50px;
+  text-align: center;
+  width: 500px;
+  padding-top: 30px;
+  float: left;
 }
 
-.hidden {
-  border: 3px solid gold;
-  display: none;
-  bottom: 0;
-  width: 100%;
-  position: absolute;
+.score {
+  font-size: 50px;
+  text-align: center;
+  padding-top: 30px;
+  width: 500px;
+  float: right;
 }
