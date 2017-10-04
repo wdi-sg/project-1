@@ -28,7 +28,14 @@ $(function () {
   var cardsClickedArr = []
   var cardsSave = []
   var matchFound = false
-  var score = 0
+  // var score = 0
+
+  var player1Score = 0
+  // var player1Turns = 0
+  var player2Score = 0
+  // var player2Turns = 0
+  var currentPlayer = 1
+
   // game variables
   var timer1
 
@@ -38,15 +45,19 @@ $(function () {
   var $start = $('#start') //
   var $timer = $('.timer')
 
-
   // logic start
   loadAssets()
+  instrSlider()
 
   $('#start').on('click', function () {
     $start.hide()
-    $('.score').show()
+    // $('.score').show()
     $('.card').removeClass('avoid-clicks')
     timer()
+    var player1Name = prompt("What's Player 1's name?")
+    var player2Name = prompt("What's Player 2's name?")
+    $('.player1').text(player1Name)
+    $('.player2').text(player2Name)
   })
 
   $memoryBoard.on('click', '.card', function () {
@@ -59,19 +70,18 @@ $(function () {
     cardsSave.push(Number(cardId))
     cardsClickedArr.push(Number(cardId))
 
-
     if (cardsClicked === 2) {
       $('.card').addClass('avoid-clicks')
-      matchFound = matchCard( cardsClickedArr[0], cardsClickedArr[1] )
+      matchFound = matchCard(cardsClickedArr[0], cardsClickedArr[1])
 
       if (matchFound) {
-        changeScore(score,)
+        changeScore(currentPlayer)
 
         // remove '.avoid-clicks' for all card except .card that's matched
         $('.card').removeClass('avoid-clicks')
 
-        $(`.card[data-id="${ cardsSave[cardsSave.length - 1] }"]`).addClass('avoid-clicks')
-        $(`.card[data-id="${ cardsSave[cardsSave.length - 2] }"]`).addClass('avoid-clicks')
+        $(`.card[data-id="${cardsSave[cardsSave.length - 1]}"]`).addClass('avoid-clicks')
+        $(`.card[data-id="${cardsSave[cardsSave.length - 2]}"]`).addClass('avoid-clicks')
       } else {
         setTimeout(() => {
           // gets data id of first clicked div
@@ -93,8 +103,12 @@ $(function () {
       cardsClicked = 0
       cardsClickedArr = []
 
+
       // TODO: switch player here
+      // currentPlayer = (currentPlayer === 1) ? 2 : 1
+      currentPlayerTurn()
     }
+    checkWinner()
   })
 
   $restart.on('click', function () {
@@ -106,9 +120,16 @@ $(function () {
     cardsClickedArr = []
     cardsSave = []
     matchFound = false
-    score = 0
+    player1Score = 0
+    player2Score = 0
+    playerTurn = 1
+    currentPlayer = 1
 
-    $('.score').html('Total: ' + score)
+    $('.playerTurnNow').text("It's Player " + currentPlayer + "'s turn.")
+    $('.player1-score').text('Player 1 Score: ' + player1Score)
+    $('.player2-score').text('Player 2 Score: ' + player2Score)
+
+    // $('.score').html('Total: ' + score)
     $('.card').removeClass('avoid-clicks')
     clearInterval(timer1)
     timer()
@@ -135,7 +156,6 @@ $(function () {
 
       $card.append($cardUnflipped)
       $memoryBoard.append($card)
-
     }
 
     // avoid click if start has not been clicked yet
@@ -165,8 +185,28 @@ $(function () {
     return array
   }
 
+  function instrSlider () {
+    var instrlink = $('#instructionslink')
+    instrlink.click(function () {
+      var instrtext = $('#instructionstext')
+      instrtext.slideToggle(100, 'linear', function () {
+      })
+    })
+  }
+
+  function currentPlayerTurn () {
+    currentPlayer = (currentPlayer === 1) ? 2 : 1
+    $('.playerTurnNow').text("It's Player " + currentPlayer + "'s turn.")
+    // if (cardsClickedArr === 2) {
+    //   playerTurn = 1
+    // } else {
+    //   playerTurn = 2
+    //   $('.playerTurnNow').text("It's Player " + playerTurn + "'s turn.")
+    // }
+  }
+
   function timer () {
-    var timeleft = 10
+    var timeleft = 100
     timer1 = setInterval(function () {
       --timeleft
       $timer.html(timeleft)
@@ -194,12 +234,38 @@ $(function () {
 
   // TODO: put score as argument
   // put another argument to which player
-  function changeScore (score, player) {
-    score += 2
-    $('.score').html('Total:' + score)
+  function changeScore (player) {
+    // if (matchFound === true) {
+      if (player === 1) {
+        player1Score += 2
+        $('.player1-score').text('Player 1 Score: ' + player1Score)
+        // swal({title: ':D', text: 'Yes! You found a match:)', type: 'success', confirmButtonText: 'ok!'})
+      } else {
+        player2Score += 2
+        $('.player2-score').text('Player 2 Score: ' + player2Score)
+        // swal({title: ':D', text: 'Yes! You found a match:)', type: 'success', confirmButtonText: 'ok!'})
+      }
+    // } else {
+    //   swal({title: ':(', text: 'Not a match!', type: 'error', confirmButtonText: 'ok!'})
+    // }
   }
 
   function flipBackAll () {
     $('.card').find('img').attr('src', '/assets/img/back.jpg')
+  }
+
+  function checkWinner () {
+    if (timer1 == 0) {
+      if (player1Score > player2Score) {
+        alert('Player 1 wins!')
+        location.reload()
+      } else if (player2Score > player1Score) {
+        alert('Player 2 wins!')
+        location.reload()
+      } else {
+        alert("It's a draw! Play again?")
+        location.reload()
+      }
+    }
   }
 })
