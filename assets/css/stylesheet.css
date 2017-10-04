@@ -2,11 +2,9 @@
 width: 1260px;
 height: 700px;
 margin: 0 auto;
-/*border: 10px solid black;*/
 background-color: black;
-background-image: url("http://cliparting.com/wp-content/uploads/2017/04/Spotlight-black-and-white-clipart-kid.png");
+background-image: url("/assets/images/background1.png");
 background-size:cover;
-/*border: 1px solid black;*/
 }
 .instructions{
   margin-right: 10px;
@@ -17,10 +15,11 @@ background-size:cover;
 }
 .instructor{
   margin-right: 50px;
+  color: red;
 }
 body{
   background-color: black;
-  /*position: fixed;*/
+  position: fixed;
 }
 .banner {
   width: 1230px;
@@ -155,6 +154,22 @@ div{
   width: 40px;
   height: 76px;
 }
+.instructionsMoves1{
+  float:left;
+  margin-top: 10px;
+}
+.instructionsMoves2{
+  float:left;
+  margin-top: 20px;
+}
+.instructionsMoves3{
+  float:left;
+  margin-top: 20px;
+}
+.instructionsMoves4{
+  float:left;
+  margin-top: 20px;
+}
 
 .player1{
   background-image: url('/assets/images/player1_default.png')
@@ -170,15 +185,20 @@ div{
 }
 
 .move {
-  width: 60px;
+  width: 55px;
   height: 76px;
   margin-left: 65px;
-  background-size:cover;
+  background-size: no-repeat;
   transition: all 0.25s ease-in-out;
 }
 
+p{
+  width: 150px;
+  float: right;
+}
+
 .playerOneAlert{
-  border: 1px blue solid;
+  /*border: 1px blue solid;*/
   width: 30px;
   height: 50px;
   margin-top: 260px;
@@ -189,7 +209,7 @@ div{
 }
 
 .playerTwoAlert{
-  border: 1px green solid;
+  /*border: 1px green solid;*/
   width: 30px;
   height: 50px;
   text-align: right;
