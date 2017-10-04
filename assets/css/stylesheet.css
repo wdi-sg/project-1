@@ -18,7 +18,22 @@ h1 {
   font-size: 70px;
   margin: 5px;
   color: white;
-  /*text-transform: lowercase;*/
+}
+
+.rose {
+    /*color:#c3a343;*/
+    -webkit-text-fill-color: transparent;
+    background: -webkit-linear-gradient(transparent, transparent),
+    url(/assets/img/rose.jpg) repeat;
+    background: -o-linear-gradient(transparent, transparent);
+    -webkit-background-clip: text;
+}
+
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 button{
@@ -33,6 +48,7 @@ button{
   text-decoration: none;
   outline: 0;
   border: white 2px solid;
+  margin: 0 auto;
 }
 
 button:hover {
@@ -78,5 +94,13 @@ img {
 .timer{
   width: 30px;
   height:12px;
-  
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.score {
+  display: inline-block;
+  margin: 20px;
+  text-align: center;
 }
