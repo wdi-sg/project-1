@@ -2,7 +2,8 @@ $(function () {
 
   var grid = [] //this is the game board
 
-  var colorList = ['blue','yellow','red']
+  //var colorList = ['blue','yellow','red']  //for testing
+  var colorList =['#3772FF','#FED766','#FE5F55']
   var cellColor = ""
   var matrix = 4
   var $cell = $('.cell')
@@ -31,6 +32,7 @@ $(function () {
       }
     }
 
+    //for testing
     // grid[0][0] = "red"
     // $('.cell[data-position= "0,0"]').css('backgroundColor', grid[0][0])
     // grid[0][1] = "red"
@@ -201,7 +203,7 @@ $(function () {
         }
       }
     }
-    
+
     console.log(grid)
     if (checkForMatches() !== true) alert('No More matches exist')
   }
