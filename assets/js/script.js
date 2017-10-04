@@ -69,9 +69,9 @@ $(function () {
 
 
     // console.log(grid)
-    if (checkForMatches() !== true) restart()
-    $cell.on('click', playerMatchCells)
+    if (checkForMatches() < 3 ) restart()
   }
+  $cell.on('click', playerMatchCells)
 
 
 
@@ -116,50 +116,51 @@ $(function () {
        checker = []
      }
 
-
+     console.log(grid)
       replenishCells()
     }
 
    var checker = []
+   var gameChecker =[]
 
    function checkForMatches() {
 
+    gameChecker = []
     for (var x = 0 ; x < matrix; x++) {
       for (var y = 0; y < matrix; y++) {
 
          //check for horizontal matches
         if (grid[x][y] === grid[x][y+1] && grid[x][y] === grid[x][y+2]) {
-          checker.push([x,y,'h'])
+          gameChecker.push([x,y,'h'])
         }
         //check for vertical matches
         if (grid[x+2]) {
           if (grid[x][y] === grid[x+1][y] && grid[x][y] === grid[x+2][y]) {
-            checker.push([x,y,'v'])
+            gameChecker.push([x,y,'v'])
           }
         }
       }
     }
 
-    if (checker.length > 0) {
-      return true
+    // if (checker.length > 0) {
+    //   return true
+    // }
+
+    console.log (gameChecker.length)
+    return gameChecker.length
+
+
     }
-
-      checker = []
-    }
-
-
-
-
 
 
   function replenishCells() {
     var pos;
+
     for (var x = matrix - 1 ; x >= 0 ; x--) {
       for (var y = matrix - 1; y >= 0 ; y--) {
     // for (var x = 0 ; x < matrix ; x++) {
     //   for (var y = 0; y < matrix ; y++) {
         pos = x +","+ y
-
 
         if (grid[x-1] && grid[x][y] === 0) {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
@@ -191,8 +192,12 @@ $(function () {
       }
     }
 
-    console.log(grid)
-    if (checkForMatches() !== true) alert('No More matches exist')
+    if (checkForMatches() === 0 ) {
+
+      alert('Level Complete!')
+      restart()
+    //console.log(grid)
+    }
   }
   //     }
   //   }
@@ -208,7 +213,7 @@ $(function () {
   }
 
   function restart() {
-    grid=[]
+    grid = []
     generateLevel()
   }
 

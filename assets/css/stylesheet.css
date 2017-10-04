@@ -22,7 +22,16 @@
   width: 80px;
   height: 80px;
   border: 0.5px solid beige;
+  transition: background-color 0.2s ease;
+
 }
+
+
+
+
+
+
+
 
 
 /*.cubeA{
