@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="./assets/css/stylesheet.css">
   </head>
   <body>
-    <button type="button" class="start" name="button">Start</button>
+
     <div class="container">
+
+      <button type="button" class="start" name="button">Player: Use space bar / click to control the bird</button>
 
       <div class="bird"></div>
 
       <div id="score_div">
-        <b>Score: </b><span id="score">0</span>
+        <b>Score: </b><span id="score"><strong>0</strong></span>
       </div>
 
       <div id="pole_1" class="pole"></div>
@@ -20,11 +22,15 @@
 
       <div class="gameover_pop">
       <div class="gameover-head"><img src="/images/gameover.png"></div>
-      <button id="restart-btn">Replay</button>
+      <button id="restart-btn">Let's try again!</button>
       </div>
 
 
     </div> <!--  end container div -->
+
+    <audio src="assets/audio/failure.mp3" class="hit"></audio>
+    <audio src="assets/audio/gameplay.mp3" class="play_bgsound"></audio>
+    <audio src="assets/audio/flapping.mp3" class="birdFlapping"></audio>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- <script type="text/javascript" src="/assets/js/global.js"></script> -->
     <script src="/assets/js/script.js" charset="utf-8"></script>

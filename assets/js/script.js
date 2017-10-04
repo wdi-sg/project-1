@@ -9,7 +9,9 @@
 $(function () {
   $startBtn = $('.start')
   $startBtn.on('click', () => {
-    speed = 20
+    playBgSound ()
+    // speed = 20
+    $('.start').hide()
   })
 
     // saving dom objects to variables
@@ -35,10 +37,32 @@ $(function () {
 
   function start () {
     birdFlap()
+
   }
+
+  function flapsound() {
+    // document.getElementsByClassName('birdFlapping')[0].currentTime = 1.3
+    // document.getElementsByClassName('birdFlapping')[0].volume = 1
+    document.getElementsByClassName('birdFlapping')[0].pause()
+    document.getElementsByClassName('birdFlapping')[0].play()
+  }
+
+  function playBgSound() {
+    document.getElementsByClassName('play_bgsound')[0].volume = 0.8
+    document.getElementsByClassName('play_bgsound')[0].play()
+  }
+
+  function hitOver() {
+    document.getElementsByClassName('hit')[0].play()
+  }
+
+
 
 	$container.on('mousedown', function () {
     start()
+    birdFlap ()
+    flapsound()
+    speed = 20
     if (gameState > 1) return
     if (gameState === 2) {
       gameState = 1
@@ -47,11 +71,15 @@ $(function () {
 
 	$(this).on('keydown', function (e) {
     start()
+    birdFlap ()
+    flapsound()
+    speed = 20
     if (e.keyCode === 32) {
       if (gameState > 1) return
       if (gameState === 2) gameState = 1
     }
   })
+
 
   var polePosInterval = setInterval(poleMove, 50)
 
@@ -73,7 +101,7 @@ $(function () {
 
   // collision with top and bottom container
   function birdPos () {
-    if (parseInt($bird.css('top')) <= 0 || parseInt($bird.css('top')) >= conHeight - $birdHeight) {
+    if (parseInt($bird.css('top')) <= 0 || parseInt($bird.css('top')) > $('.container').height() - $('.bird').width()) {
       gameEnd()
     }
   }
@@ -94,6 +122,7 @@ $(function () {
       // change the pole's height
       poleTop.css('height', pole_initial_height + newHeight)
       poleBottom.css('height', pole_initial_height - newHeight)
+      speed = speed + 1;
       scoreAdd = false
       // move pole back to right
       cPolePos = polePos
@@ -111,7 +140,7 @@ $(function () {
         birdPos()
         $bird.css('transform', 'rotate(0deg)')
         $bird.stop().animate({
-          bottom: '-=60px'
+          bottom: '-=50px'
         }, 200, 'linear', function () {
           birdPos()
           gravity()
@@ -131,11 +160,12 @@ $(function () {
 
   function gameEnd () {
     // $bird.stop().animate
+    hitOver()
     clearInterval(birdPosInterval)
     clearInterval(polePosInterval)
     gameState = 0
     $('.gameover_pop').show()
-    start()
+    document.getElementsByClassName('play_bgsound')[0].pause()
     // restartBtn.slideDown()
   }
 
