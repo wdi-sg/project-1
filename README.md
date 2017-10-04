@@ -9,9 +9,9 @@ Read Me Contents
 
 ### Overview
 
-**Sweet Tooth** is a tile matching games where player are supposed to swap tiles to make a match of three or more. Within the tile, there are different type of sweets(e.g strawberry short cake, vanilla round cake, rainbow cake)
+Sweetly is a **Sweet Tooth** from the tooth kingdom. After a long duration of lack of sweets due to working, she found her health deteriorate that she has turned yellow. Help Sweetly regain her health and become stronger by feeding her more sweets. Swap sweets to make a match of three or more to feed her. Beware as she only has (100) seconds break time to eat.
 
-Go ahead and join in the fun, feeding the tooth more sweet by matching the different type of sweets.
+Different types of sweets available for Sweetly: rainbow cake, chocolate cake, ice cream, vanilla cupcake and strawberry parfait.
 
 ---
 
@@ -31,7 +31,7 @@ Go ahead and join in the fun, feeding the tooth more sweet by matching the diffe
 ### Details-Array
 
 * For the grid, I will be using 2d Array.
-* Currently, will work with 4x4 grid. If it works, will increase to 5x5, 6x6(if possible) once it is working.
+* Currently, will work with 4x4 grid. If it works, will increase to 5x5, 6x6(if possible).
 * At the backend, the array will look like [[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3]]
 * On the front, it will be
 ![](/arr-front.png).
@@ -42,7 +42,7 @@ Go ahead and join in the fun, feeding the tooth more sweet by matching the diffe
 ### Key issues
 
 * **Setting the grid** There is a need to randomize the elements(sweets) that is insert into the grid.
-(Math.random may return lower value after a few run)
+
 * **Checking matching system** How do I check if there is match of three?
 Suggestion: to check all the possible "winning" condition.
 * **Removing elements(sweets)** After there is match of three, the system should remove the matching set from the grid.
@@ -82,34 +82,38 @@ If boxValue is string values (e.g "strawberry"), will it add class of strawberry
 The elements should have different color. (red, white, brown etc.)
 
 ##### The image for the elements should be cute. (Personal preference).
-Maybe to consider 8 bit graphics.
+Maybe to consider pixel art.
 
 ---
 ### Versions
 
-version 0.2.0: added necessary function
+version 0.2.0:(1/10/2017) added necessary function:
 * Generate the different elements.
 * Checking the grid for match, increase score for match, delete the 3 or more matching elements and push those elements above down, add new elements to the top.
 * visual: Able to differentiate between different types of elements. Able to see the total score.
 
-version 0.4.0: added:
+version 0.4.0:(2/10/2017) added:
 * one more type of elements: cream color.
 * the swapping element function.
 * able to remove match of 5
 * added delay to most of the function to aid player to view what is going on
 
-version 0.6.0: added:
+version 0.6.0:(3/10/2017) added:
 * check available move function
 * reset grid function. (with remove class and add class 'Box' function)
 
+version 0.8.0:(4/10/2017) added:
+* working timer, grid is removed when timer reach zero.
+* better visual design
+* check if after swapped, there is any match, if no, should change back two elements swapped.
+* able to change character image based on score
+* increase grid to 5x5
+
 current timing: checkGrid to removeElements(0)
-removeElements(removing 400) to pushdown(250) to generateElements (500) to checkGrid (700)
-full cycle 1,850.
+removeElements(removing 300) to pushdown(250) to generateElements (300) to checkGrid (300)
+full cycle 1,150.
 
 yet to add
-* working timer, the game should end when the timer reach zero.
-* check if after swapped, there is any match, if no, should change back two elements swapped.
-* better visual design
 extra
 * more score for match of four or five.
 ---
