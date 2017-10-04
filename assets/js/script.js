@@ -1,10 +1,14 @@
 $(function () {
 
   var grid = [] //this is the game board
+
   var colorList = ['blue','yellow','red']
   var cellColor = ""
   var matrix = 4
   var $cell = $('.cell')
+  var matchesExist;
+
+
 
   function generateLevel () {
     // create a 2D array
@@ -27,41 +31,41 @@ $(function () {
       }
     }
 
-    grid[0][0] = "red"
-    $('.cell[data-position= "0,0"]').css('backgroundColor', grid[0][0])
-    grid[0][1] = "red"
-    $('.cell[data-position= "0,1"]').css('backgroundColor', grid[0][1])
-    grid[0][2] = "red"
-    $('.cell[data-position= "0,2"]').css('backgroundColor', grid[0][2])
-    grid[0][3] = "yellow"
-    $('.cell[data-position= "0,3"]').css('backgroundColor', grid[0][3])
-    grid[1][0] = "blue"
-    $('.cell[data-position= "1,0"]').css('backgroundColor', grid[1][0])
-    grid[1][1] = "blue"
-    $('.cell[data-position= "1,1"]').css('backgroundColor', grid[1][1])
-    grid[1][2] = "blue"
-    $('.cell[data-position= "1,2"]').css('backgroundColor', grid[1][2])
-    grid[1][3] = "yellow"
-    $('.cell[data-position= "1,3"]').css('backgroundColor', grid[1][3])
-    grid[2][0] = "yellow"
-    $('.cell[data-position= "2,0"]').css('backgroundColor', grid[2][0])
-    grid[2][1] = "yellow"
-    $('.cell[data-position= "2,1"]').css('backgroundColor', grid[2][1])
-    grid[2][2] = "yellow"
-    $('.cell[data-position= "2,2"]').css('backgroundColor', grid[2][2])
-    grid[3][0] = "red"
-    $('.cell[data-position= "3,0"]').css('backgroundColor', grid[3][0])
-    grid[3][1] = "red"
-    $('.cell[data-position= "3,1"]').css('backgroundColor', grid[3][1])
-    grid[3][2] = "red"
-    $('.cell[data-position= "3,2"]').css('backgroundColor', grid[3][2])
-    grid[3][3] = "yellow"
-    $('.cell[data-position= "3,3"]').css('backgroundColor', grid[3][3])
-    grid[2][3] = "yellow"
-    $('.cell[data-position= "2,3"]').css('backgroundColor', grid[2][3])
+    // grid[0][0] = "red"
+    // $('.cell[data-position= "0,0"]').css('backgroundColor', grid[0][0])
+    // grid[0][1] = "red"
+    // $('.cell[data-position= "0,1"]').css('backgroundColor', grid[0][1])
+    // grid[0][2] = "red"
+    // $('.cell[data-position= "0,2"]').css('backgroundColor', grid[0][2])
+    // grid[0][3] = "blue"
+    // $('.cell[data-position= "0,3"]').css('backgroundColor', grid[0][3])
+    // grid[1][0] = "blue"
+    // $('.cell[data-position= "1,0"]').css('backgroundColor', grid[1][0])
+    // grid[1][1] = "blue"
+    // $('.cell[data-position= "1,1"]').css('backgroundColor', grid[1][1])
+    // grid[1][2] = "blue"
+    // $('.cell[data-position= "1,2"]').css('backgroundColor', grid[1][2])
+    // grid[1][3] = "yellow"
+    // $('.cell[data-position= "1,3"]').css('backgroundColor', grid[1][3])
+    // grid[2][0] = "yellow"
+    // $('.cell[data-position= "2,0"]').css('backgroundColor', grid[2][0])
+    // grid[2][1] = "yellow"
+    // $('.cell[data-position= "2,1"]').css('backgroundColor', grid[2][1])
+    // grid[2][2] = "yellow"
+    // $('.cell[data-position= "2,2"]').css('backgroundColor', grid[2][2])
+    // grid[3][0] = "red"
+    // $('.cell[data-position= "3,0"]').css('backgroundColor', grid[3][0])
+    // grid[3][1] = "red"
+    // $('.cell[data-position= "3,1"]').css('backgroundColor', grid[3][1])
+    // grid[3][2] = "red"
+    // $('.cell[data-position= "3,2"]').css('backgroundColor', grid[3][2])
+    // grid[3][3] = "yellow"
+    // $('.cell[data-position= "3,3"]').css('backgroundColor', grid[3][3])
+    // grid[2][3] = "yellow"
+    // $('.cell[data-position= "2,3"]').css('backgroundColor', grid[2][3])
 
 
-    console.log(grid)
+    // console.log(grid)
     $cell.on('click', playerMatchCells)
   }
 
@@ -77,7 +81,7 @@ $(function () {
      if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
        checker.push([index1, index2,'h'])
      }
-     if(grid[index1+2]){
+     if(grid[index1+2]) {
        if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2])  {
          checker.push([index1, index2,'v'])
        }
@@ -120,9 +124,11 @@ $(function () {
     //       }
     //     }
     //   }
-     console.log(grid)
+    //  console.log(grid)
 
-     replenishCells()
+     //var loopCheck = true
+
+      replenishCells()
     }
 
    var checker = []
@@ -147,49 +153,61 @@ $(function () {
     }
 
     if (checker.length > 0) {
-      for(var i = 0; i < checker.length; i++) {
-        if (checker[i][2] === 'h') {
-          grid[checker[i][0]][checker[i][1]] = 0
-          grid[checker[i][0]][checker[i][1] + 1] = 0
-          grid[checker[i][0]][checker[i][1] + 2] = 0
-        }
-        if (checker[i][2] === 'v') {
-          grid[checker[i][0]][checker[i][1]] = 0
-          grid[checker[i][0] + 1][checker[i][1]] = 0
-          grid[checker[i][0] + 2][checker[i][1]] = 0
-        }
+      matchesExist = true
       }
       checker = []
     }
 
 
-    alert(grid)
-    }
+
+
 
 
   function replenishCells() {
-
+    var pos;
     for (var x = matrix - 1 ; x >= 0 ; x--) {
       for (var y = matrix - 1; y >= 0 ; y--) {
-        var pos = x +","+ y
+    // for (var x = 0 ; x < matrix ; x++) {
+    //   for (var y = 0; y < matrix ; y++) {
+        pos = x +","+ y
 
 
         if (grid[x-1] && grid[x][y] === 0) {
-
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
+          }
 
-        }
 
-          //replenish top row
-         if(x === 0 && grid[x][y] === 0) {
-             grid[x][y] = generateColor()
-             $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
-             }
 
       }
-  }
+    }
+
+    for (var x = 0 ; x < matrix ; x++) {
+      for (var y = 0; y < matrix ; y++) {
+        pos = x +","+ y
+
+        if (grid[x-1] && grid[x][y] === 0) {
+          ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
+          $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
+          }
+
+      }
+    }
+
+    for (var x = 0 ; x < matrix ; x++) {
+      for (var y = 0; y < matrix ; y++) {
+
+        if (grid[x][y] === 0) {
+          pos = x +","+ y
+          grid[x][y] = generateColor()
+         $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
         }
+      }
+    }
+
+
+    console.log(grid)
+  }
   //     }
   //   }
   // }
