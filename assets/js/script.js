@@ -99,11 +99,12 @@ $(function () {
           $pacManStart.append($pacMan)
           // decrease and updates scoreboard
           pacManLives--
+          pacManMeetGhost = false
           $score.text(`Score: ${score} Lives: ${pacManLives}`)
         }
         // update loss
         if (pacManLives <= 0) $score.text(`You've Lost!`)
-      }, 400)
+      }, 100)
       // win condition
       setInterval(function () {
         if (score === 119) {
