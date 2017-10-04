@@ -14,10 +14,12 @@ var index = 0;
 var on = 0;
 var refreshIntervalId;
 var n = 2;
+var $turn = $('#turn')
 var scoreObj = {
   score: 0,
   scoreBoard: $('#scoreBoard')
 }
+
 
 $resetBtn.on('click', reset)
 $stopBtn.on('click', stop)
@@ -49,6 +51,7 @@ $startBtn.on('click', () => {
 
 function locGen() {
   count++;
+  $turn.text(`Turn : ${count}`)
   var color = randomColor();
   if (count == 20) {
     $('.box').css("backgroundColor","")
@@ -65,12 +68,9 @@ function locGen() {
     $(`[data-value = ${index}]`).css("backgroundColor",`${color}`)
     textbox.text(`${color}`)
     textbox.css('color', `${color}`)
-    recArr.push(index); // 
+    recArr.push(index); //
     recCol.push(`${color}`) //
   }, 1000)
-
-
-  console.log(recCol);
   // $(this).css('backgroundColor', )
 }
 

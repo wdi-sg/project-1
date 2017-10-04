@@ -1,0 +1,14 @@
+.container {
+  padding: 20px 200px;
+  font-family: helvetica, sans-serif;
+  /*visibility: hidden;*/
+}
+
+button {
+  width : 500px;
+  height: 100px;
+  background-color: #4E4A59;
+  font-family: helvetica, sans-serif;
+  font-size: 36px;
+  color:#7CAE7A;
+}

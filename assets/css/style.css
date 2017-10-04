@@ -115,3 +115,8 @@ font-family: helvetica, sans-serif;
   font-family: helvetica, sans-serif;
   color: #7CAE7A;
 }
+
+#turn {
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
