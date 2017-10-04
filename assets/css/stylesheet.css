@@ -1,7 +1,15 @@
 .container {
   margin: 0 auto;
-  text-align: center
+  text-align: center;
 }
+
+body {
+  background: #F4D35E;
+  background-size: cover;
+  min-height: 100%
+}
+
+p { text-align: center}
 
 .half {
   width: 300px;
@@ -13,19 +21,20 @@
   display: inline-block;
 }
 
-/*#game1 {margin-right: auto;
-float: left}
-#game2 {margin-left: auto;
-float: right}*/
+.start, .skip {display: block;
+  margin: 0 auto}
+
+.start {background-color: #e55b77}
+.start:hover {background-color: #eb3d72}
 
 #ball1 {
-  background-color: blue;
+  background-image: radial-gradient(ellipse farthest-corner at 30px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);
   top: 30px;
   left: 255px;
 }
 
 #ball2 {
-  background-color: red;
+  background-image: radial-gradient(ellipse farthest-corner at -30px 45px , #ffb6c1 0%, rgba(0, 255, 0, 0) 50%, #ff0000 95%);
   top: 30px;
   left: 30px;
 }
@@ -53,3 +62,24 @@ float: right}*/
 margin: 0 auto;
 display: block}
 .reset:hover {background: #0b7dda}
+
+h1,h2 {text-align: center}
+
+h1 {background-color: #083D77;
+    padding: 0;
+    width: 100%;
+    margin: 0 15px;
+    color: #EBEBD3;
+    /*overflow: auto;*/
+    /*position: absolute}*/
+}
+.goalBorder {
+    border: 2px solid #9ecaed;
+    border-radius: 7px;
+}
+
+.platformBorder {
+  border-top: medium thick green;
+  border-radius: 3px;
+
+}

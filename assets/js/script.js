@@ -1,9 +1,11 @@
 
 $(function() {
   $('.start').on('click', () => {
+    $('.start').remove()
+    $('h2').remove()
   $body.on('keydown', ballMove)
   function ballMove(e) {
-    var unit = 20
+    var unit = 20 //20
     if (e.key === 'd' || e.key === 'D' || e.key === "ArrowRight") {
       if (ball1Goal() === false && (borderCheck1Right()) && (wallCheck1Right())) ball1Hori(unit) //if ball1 doesn't exceed right border
       if (ball2Goal() === false && (borderCheck2Left()) && (wallCheck2Left())) ball2Hori(unit) //opposite side for ball2
@@ -25,6 +27,7 @@ $(function() {
   setInterval(gravity1, 30)
   setInterval(gravity2, 30)
   $('.reset').on('click',resetLevel)
+  $('.skip').on('click',skipLevel)
   checkClear = setInterval(levelClear,500)
 
 
@@ -35,10 +38,10 @@ var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
 var goalLevel = 1 // to assign goal Id's for each play field
-var gravity = 30 // gravity multiplier
+var gravity = 50 // gravity multiplier
 var platformNo = 1 // to assign platform Id's
 var gLock = false // toggle for gravity
-var allowance = 0 // to accomodate for gravity stopping distance, i.e. hover value
+var allowance = 1 // to accomodate for gravity stopping distance, i.e. hover value
 var jumpLimit = true // switch for jump
 var start1 = [] //indicates ball1 starting position, index position increases with level
 var start2 = []
@@ -108,17 +111,18 @@ function wallCheck1Right() {
 }
 
 function wallCheck2Left() {
-    for (n = 0; n < $('.wall2').length; n ++) {
-        if(($ball2.position().left <= $('.wall2').eq(n).position().left + $('.wall2').eq(n).width()) &&
-           ($ball2.position().left > $('.wall2').eq(n).position().left) &&
-           ($ball2.position().top >= $('.wall2').eq(n).position().top) &&
-           ($ball2.position().top + $ball2.height() <= $('.wall2').eq(n).position().top + $('.wall2').eq(n).height())){
-          $ball2.css("left", ($('.wall2').eq(n).position().left + $('.wall2').eq(n).width()).toString() + "px")
+    // for (n = 0; n < $('.wall2').length; n ++) {
+        if(($ball2.position().left <= $('.wall2').eq(0).position().left + $('.wall2').eq(0).width()) &&
+           ($ball2.position().left > $('.wall2').eq(0).position().left) &&
+           ($ball2.position().top >= $('.wall2').eq(0).position().top) &&
+           ($ball2.position().top + $ball2.height() <= $('.wall2').eq(0).position().top + $('.wall2').eq(0).height())){
+          $ball2.css("left", ($('.wall2').eq(0).position().left + $('.wall2').eq(0).width()).toString() + "px")
+          // console.log('wall2 trigger')
           return false
     }
         else
         return true
-  }
+  // }
 }
 
 function wallCheck2Right() {
@@ -138,14 +142,14 @@ function wallCheck2Right() {
 function ball1Jump() {
     gravityTimeout(100)
     jumpLimit = false
-    $ball1.css("top", (Number($ball1.css("top").replace("px","")) - 9*$ball1.height()).toString() + "px")
+    $ball1.css("top", (Number($ball1.css("top").replace("px","")) - 8.5*$ball1.height()).toString() + "px")
     setTimeout( () => {jumpLimit = true}, 1000)
 }
 
 function ball2Jump() {
     gravityTimeout(100)
     jumpLimit = false
-    $ball2.css("top", (Number($ball2.css("top").replace("px","")) - 9*$ball2.height()).toString() + "px")
+    $ball2.css("top", (Number($ball2.css("top").replace("px","")) - 8.5*$ball2.height()).toString() + "px")
     setTimeout( () => {jumpLimit = true}, 1000)
 }
 
@@ -192,6 +196,7 @@ class goal {
       // float: 'left'
     })
     $goalCreate.attr('id',goalLevel.toString())
+    $goalCreate.addClass("goalBorder")
     goalLevel ++
     half.append($goalCreate)
   }
@@ -209,7 +214,6 @@ function ball1Goal() {
 }
 
 function ball2Goal() {
-  // console.log('checking ball2Goal')
   if (($ball2.position().left < $('.goal:last').position().left + $('.goal:last').width()) &&
       ($ball2.position().top < $('.goal:last').position().top + $('.goal:last').height()) &&
       ($ball2.position().left + $ball2.width() > $('.goal:last').position().left) &&
@@ -218,6 +222,29 @@ function ball2Goal() {
     return true
   }
   else return false
+}
+function skipLevel() {
+    // switch(currentLevel) {
+    //   case 1:
+    seconds2 = 0;
+    seconds1 = 0;
+    gravityTimeout(500)
+      $ball1.css("top",$('.goal:first').position().top.toString()+"px")
+      $ball1.css("left",$('.goal:first').position().left.toString()+"px")
+      $ball2.css("top",$('.goal:last').position().top.toString()+"px")
+      $ball2.css("left",$('.goal:last').position().left.toString()+"px")
+    }
+
+function level1() {
+  createGoal("125px","30px",$('#game1'))
+  createGoal("125px","247px",$('#game2'))
+  start1.push($('.goal:first').position())
+  start2.push($('.goal:last').position())
+  currentLevel = $('.goal').last().attr('id')/2
+  createPlatform("150px","0",$('#game1'),"300px","5px","floor1")
+  createPlatform("120px","190px",$('#game1'),"50px","50px","wall1")
+  createPlatform("150px","0",$('#game2'),"300px","5px","floor2")
+  createPlatform("120px","60px",$('#game2'),"50px","50px","wall2")
 }
 
 function level2() {
@@ -262,7 +289,7 @@ function level3() {
 
 
   createPlatform("83px","40px",$('#game2'),"30px","5px","floor2")
-  createPlatform("0px","70px",$('#game2'),"15px","100px","wall2")
+  createPlatform("0","70px",$('#game2'),"15px","100px","wall2")
   createPlatform("130px","0",$('#game2'),"95px","5px","floor2")
   createPlatform("100px","120px",$('#game2'),"20px","5px","floor2")
   createPlatform("70px","150px",$('#game2'),"20px","5px","floor2")
@@ -271,6 +298,60 @@ function level3() {
   return  $('.nextLevel').remove()
 }
 
+function level4() {
+  $('.goal').remove()
+  $('.platform').remove()
+
+  createGoal("120px","180px",$('#game1'))
+  createGoal("30px","210px",$('#game2'))
+  start1.push($('.goal:first').position())
+  start2.push($('.goal:last').position())
+  currentLevel = $('.goal').last().attr('id')/2
+  createPlatform("75px","8px",$('#game1'),"30px","7px","floor1")
+  createPlatform("55px","150px",$('#game1'),"25px","100px","wall1")
+  createPlatform("75px","56px",$('#game1'),"30px","7px","floor1")
+  createPlatform("75px","106px",$('#game1'),"29px","7px","floor1")
+  createPlatform("75px","175px",$('#game1'),"30px","7px","floor1")
+  createPlatform("95px","235px",$('#game1'),"25px","7px","floor1")
+  createPlatform("143px","176px",$('#game1'),"27px","7px","floor1")
+
+  createPlatform("85px","80px",$('#game2'),"25px","7px","floor2")
+  createPlatform("0","63px",$('#game2'),"16px","100px","wall2")
+  createPlatform("95px","150px",$('#game2'),"20px","7px","floor2")
+  createPlatform("70px","163px",$('#game2'),"20px","7px","floor2")
+  createPlatform("55px","195px",$('#game2'),"30px","7px","floor2")
+  checkClear = setInterval(levelClear,500)
+  return  $('.nextLevel').remove()
+}
+
+function level5() {
+  $('.goal').remove()
+  $('.platform').remove()
+
+  createGoal("0","274px",$('#game1'))
+  createGoal("0","0",$('#game2'))
+  start1.push($('.goal:first').position())
+  start2.push($('.goal:last').position())
+  currentLevel = $('.goal').last().attr('id')/2
+  createPlatform("163px","130px",$('#game1'),"70px","7px","floor1")
+  createPlatform("50px","150px",$('#game1'),"40px","30px","wall1")
+  createPlatform("143px","220px",$('#game1'),"30px","7px","floor1")
+  createPlatform("100px","130px",$('#game1'),"70px","7px","floor1")
+  createPlatform("23px","210px",$('#game1'),"80px","7px","floor2")
+
+
+  createPlatform("95px","195px",$('#game2'),"28px","7px","floor2")
+  createPlatform("95px","260px",$('#game2'),"40px","7px","floor2")
+  createPlatform("0","179px",$('#game2'),"16px","100px","wall2")
+  createPlatform("135px","250px",$('#game2'),"28px","7px","floor2")
+  createPlatform("145px","100px",$('#game2'),"130px","7px","floor2")
+  createPlatform("99px","0",$('#game2'),"70px","7px","floor2")
+  createPlatform("49px","60px",$('#game2'),"20px","7px","floor2")
+  createPlatform("30px","10px",$('#game2'),"30px","7px","floor2")
+
+  checkClear = setInterval(levelClear,500)
+  return  $('.nextLevel').remove()
+}
 
 function levelClear() {
   if (ball1Goal() === true && ball2Goal() === true){
@@ -286,6 +367,14 @@ function levelClear() {
       case 3:
       clearInterval(checkClear)
       $('.container').append('<button class ="nextLevel" onclick="level4()">Next Level</button>');
+      break;
+      case 4:
+      clearInterval(checkClear)
+      $('.container').append('<button class ="nextLevel" onclick="level5()">Next Level</button>');
+      break;
+      case 5:
+      clearInterval(checkClear)
+      $('.container').append('<button class ="nextLevel" onclick="level5()">Thank you for playing!</button>');
       break;
     }
 
@@ -307,7 +396,7 @@ function gravity1() {
         return
       }
       else {
-        seconds1 += 0.02
+        seconds1 += 0.01
          //to tally against the gravity setInterval
         $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
       }
@@ -329,7 +418,7 @@ function gravity2() {
       return
     }
     else {
-    seconds2 +=0.02 //independent gravity timer counter so that their vertical acceleration is independent
+    seconds2 +=0.01 //independent gravity timer counter so that their vertical acceleration is independent
     $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
       }
     }
@@ -361,12 +450,16 @@ class platform {
       display: 'inline-block',
     })
     $platformCreate.addClass(type)
+    $platformCreate.addClass("platformBorder")
+
     $platformCreate.attr('id','p'+platformNo.toString())
     platformNo ++
     half.append($platformCreate)
   }
 
 function resetLevel() {
+  seconds2 = 0
+  seconds1 = 0
   gravityTimeout(500)
   $('.goal').css("backgroundColor","black")
   if ($('.nextLevel').length){ //Check if winning condition has already been triggered, and resets if so
@@ -392,6 +485,18 @@ function resetLevel() {
     $ball2.css("top",(start2[1].top).toString()+"px")
     $ball2.css("left",(start2[1].left+$('.goal').width()/2-$ball2.width()).toString()+"px")
     break;
+    case 4:
+    $ball1.css("top",(start1[2].top).toString()+"px")
+    $ball1.css("left",(start1[2].left+$('.goal').width()/2).toString()+"px")
+    $ball2.css("top",(start2[2].top).toString()+"px")
+    $ball2.css("left",(start2[2].left+$('.goal').width()/2-$ball2.width()).toString()+"px")
+    break;
+    case 5:
+    $ball1.css("top",(start1[3].top).toString()+"px")
+    $ball1.css("left",(start1[3].left+$('.goal').width()/2).toString()+"px")
+    $ball2.css("top",(start2[3].top).toString()+"px")
+    $ball2.css("left",(start2[3].left+$('.goal').width()/2-$ball2.width()).toString()+"px")
+    break;
 
   }
 }
@@ -399,16 +504,4 @@ function resetLevel() {
 function gravityTimeout(x) {
   gLock = true
   setTimeout(() => {gLock = false},x)
-}
-
-function level1() {
-  createGoal("125px","30px",$('#game1'))
-  createGoal("125px","247px",$('#game2'))
-  start1.push($('.goal:first').position())
-  start2.push($('.goal:last').position())
-  currentLevel = $('.goal').last().attr('id')/2
-  createPlatform("150px","0",$('#game1'),"300px","5px","floor1")
-  createPlatform("120px","190px",$('#game1'),"50px","50px","wall1")
-  createPlatform("150px","0",$('#game2'),"300px","5px","floor2")
-  createPlatform("120px","60px",$('#game2'),"50px","50px","wall2")
 }
