@@ -1,4 +1,6 @@
+
 $(function() {
+  $('.start').on('click', () => {
   $body.on('keydown', ballMove)
   function ballMove(e) {
     var unit = 20
@@ -20,14 +22,15 @@ $(function() {
 
   level1()
   setInterval(ballSnap,500) //checking if border exceeds
-  setInterval(gravity1, 20)
-  setInterval(gravity2, 20)
+  setInterval(gravity1, 30)
+  setInterval(gravity2, 30)
   $('.reset').on('click',resetLevel)
+  checkClear = setInterval(levelClear,500)
 
 
 })
+})
 
-var checkClear = setInterval(levelClear,500)
 var $ball1 = $('#ball1')
 var $ball2 = $('#ball2')
 var $body = $('body')
@@ -175,7 +178,6 @@ class goal {
   function createGoal(topPixels,leftPixels, half) {
 
     var goalCreate = new goal()
-    console.log(goalCreate)
 
     var $goalCreate = $('<div class = goal>')
     $goalCreate.css({
