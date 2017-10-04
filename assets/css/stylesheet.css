@@ -1,16 +1,18 @@
 body{
   background-color: #92B6B1;
-  cursor:url("hammer.png") 25 15, auto;
 
 }
+
+#hammer{
+  position: absolute;
+}
+
 h1{
   font-family:'Finger Paint', cursive;
   color:white;
-  font-size: 60px;
-
+  font-size: 65px;
   margin: 0;
   padding: 0;
-
 
 }
 
@@ -35,11 +37,6 @@ button:hover {
 }
 .avoid-clicks{
   pointer-events: none;
-}
-
-@keyframes myfirst {
-  0%   {left: 0px; top: 0px;}
-  75%  {left: 0px; top: 200px;}
 }
 
 .mole{
@@ -115,6 +112,10 @@ audio {
   }
 }
 
+span{
+  animation: bounceIn 2s;
+}
+
 .wrap{
   text-align: center;
   margin-left:-450px;
@@ -123,14 +124,10 @@ audio {
 .timer{
   margin-right: -250px;
   margin-right: -250px;
-  padding-left:250px;
+  padding-left: 250px;
   display: inline-block;
   color: white;
   font-family:'Finger Paint', cursive;
   font-size: 40px;
   color: #E8DDB5;
-}
-
-span{
-  animation: bounceIn 2s;
 }
