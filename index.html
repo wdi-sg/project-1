@@ -6,34 +6,55 @@
     <link rel="stylesheet" href="/assets/css/stylesheet.css">
   </head>
   <body>
-    <h1>Follow the pattern</h1>
-
-    <div class="container">
-
+    <div class="wrapper">
+      <div class="banner">
+        <h1>Follow the pattern</h1>
+      </div>
+      <div class="menuTop">
+        <button type="button" name="start" class="btn1">start</button>
+        <button type="button" name="reset" class="btn2">reset</button>
         <div class="instructor">
-          <p>Sequence</p>
+          Pattern will appear here
         </div>
-
+      </div>
+      <div class="columnLeft">
+        <img src="/assets/images/instructions.png" alt="instructions" class ="instructions">
+        <img src="/assets/images/instructor_default.png" alt="players" class ="instructionsMoves">
+        <img src="/assets/images/instructor_1.png" alt="players" class ="instructionsMoves">
+        <img src="/assets/images/instructor_2.png" alt="players" class ="instructionsMoves">
+        <img src="/assets/images/instructor_3.png" alt="players" class ="instructionsMoves">
+        <img src="/assets/images/instructor_4.png" alt="players" class ="instructionsMoves">
+      </div>
+      <div class="columnRight">
+        <h2>Player 1's control</h2>
+        <img src="/assets/images/12_key.png" alt="players" class ="onetwonumkeys">
+        <img src="/assets/images/34_key.png" alt="players" class ="threefournumkeys">
+        <h2>Player 2's control</h2>
+        <img src="/assets/images/Arrow_keys.png" alt="arrow keys" class="arrowkeys">
+      </div>
+    <div class="content">
       <div class="playerOne" >
         P1 Score:0
       </div>
       <div class="playerTwo">
         P2 Score:0
       </div>
-      <div class="images">
-        <img src="/assets/images/playerone.png" alt="players" class ="playerone">
-        <img src="/assets/images/playertwo.png" alt="players" class ="playertwo">
-        <img src="/assets/images/Arrow_keys.png" alt="arrow keys" class="arrowkeys">
-        <img src="/assets/images/12_key.png" alt="players" class ="onetwonumkeys">
-        <img src="/assets/images/34_key.png" alt="players" class ="threefournumkeys">
+      <div class="playerOneAlert"><div class="playerOneAlert2"></div></div>
+      <div class="playerTwoAlert"></div>
+
+        <div class="playerOnePic" >
+          <div class="playerOneDiv"></div>
+        </div>
+        <div class="instructorImg" >
+          <div class="instructorDiv"></div>
+        </div>
+      <div class="playerTwoPic">
+        <div class="playerTwoDiv"></div>
       </div>
-      <button type="button" name="start" class="btn1">start</button>
-
-
-
-
-
     </div>
+    <div class="footer"></div>
+  </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="assets/js/script.js" charset="utf-8"></script>
   </body>

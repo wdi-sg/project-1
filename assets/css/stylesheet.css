@@ -1,24 +1,77 @@
-.container {
-  width: 200px;
-  margin: 0 auto;
-}
-
 .wrapper {
-width: 400px;
-display: flex;
-flex-flow: row wrap;
+width: 1260px;
+height: 700px;
+margin: 0 auto;
+/*border: 10px solid black;*/
+background-color: black;
+background-image: url("http://cliparting.com/wp-content/uploads/2017/04/Spotlight-black-and-white-clipart-kid.png");
+background-size:cover;
+/*border: 1px solid black;*/
+}
+.instructions{
+  margin-right: 10px;
+  width: 100px;
+}
+.instructionsMoves{
+  margin-right: 800px;
+}
+.instructor{
+  margin-right: 50px;
+}
+body{
+  background-color: black;
+  /*position: fixed;*/
+}
+.banner {
+  width: 1230px;
+  height: 100px;
+  /*border: 1px solid black;*/
 }
 
+.menuTop {
+  width: 1230px;
+  height: 35px;
+  /*border: 1px solid black;*/
+}
 
-body{
+.columnLeft{
+  width: 240px;
+  height: 495px;
+  float: left;
+  /*border: 1px solid black;*/
+}
+
+.columnRight{
+  width: 270px;
+  height: 495px;
+  float: right;
+  /*border: 1px solid black;*/
+}
+
+.content{
+  width: 750px;
+  height: 495px;
+  margin-left: 240px;
+  text-align: center;
+  /*border: 10px solid red;*/
   background-image: url("/assets/images/stage.jpg");
   background-size:cover;
 }
 
 h1{
   text-align: center;
-  margin-top: 160px;
   color: white;
+}
+
+.btn1 {
+  background: #1a394d;
+  border-radius: 28px;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 2px 2px 2px 2px;
+  /*text-decoration: none;*/
+  float:left;
 }
 
 .instructor{
@@ -26,9 +79,16 @@ text-align: center;
 color: white;
 }
 
-.btn1 {
+.btn2 {
 margin: 0 auto;
-display: block;
+float:left;
+background: #1a394d;
+border-radius: 28px;
+font-family: Courier New;
+color: #ffffff;
+font-size: 20px;
+padding: 2px 2px 2px 2px;
+display: none;
 }
 
 div{
@@ -36,49 +96,103 @@ div{
   text-align: center;
 }
 
-
 .onetwonumkeys{
-  position: absolute;
-   top: 170px;
-   right: 120px;
-  height: auto;
-  width: auto;
   max-width: 100px;
   max-height: 100px;
 }
 .threefournumkeys{
-  position: absolute;
-   top: 170px;
-   right: 20px;
-  height: auto;
-  width: auto;
   max-width: 100px;
   max-height: 100px;
 }
-.playerone{
-  position: absolute;
-   top: 90px;
-   right: 50px;
-   height: auto;
-   width: auto;
-   max-width: 280px;
-   max-height: 300px;
-}
-.playertwo{
-  position: absolute;
-   top: 400px;
-   right: 50px;
-   height: auto;
-   width: auto;
-   max-width: 280px;
-   max-height: 300px;
-}
 .arrowkeys{
-  position: absolute;
-   top: 430px;
-   right: 10px;
-  height: auto;
-  width: auto;
   max-width: 200px;
   max-height: 200px;
+}
+
+.playerone{
+
+   margin-top: 910px;
+   margin-left: 150px;
+}
+.playertwo{
+  margin-top: 910px;
+  margin-left: 150px;
+
+}
+.playerOnePic{
+  width: 100px;
+  height: 76px;
+  margin-left: 230px;
+  margin-top: 50px;
+  /*border: 10px solid purple;*/
+}
+.playerOneDiv{
+  width: 40px;
+  height: 76px;
+}
+
+.playerTwoPic{
+  width: 100px;
+  height: 76px;
+  margin-left: 460px;
+  margin-top: -54px;
+  /*border: 10px solid purple;*/
+}
+
+.playerTwoDiv{
+  width: 40px;
+  height: 76px;
+}
+
+.instructorImg{
+  width: 100px;
+  height: 76px;
+  margin-left: 350px;
+  margin-top: -95px;
+  /*border: 10px solid purple;*/
+}
+.instructorDiv{
+  width: 40px;
+  height: 76px;
+}
+
+.player1{
+  background-image: url('/assets/images/player1_default.png')
+}
+
+.instructorPic{
+  background-image: url('/assets/images/instructor_default.png')
+
+}
+
+.player2{
+  background-image: url('/assets/images/player1_default.png')
+}
+
+.move {
+  width: 60px;
+  height: 76px;
+  margin-left: 65px;
+  background-size:cover;
+  transition: all 0.25s ease-in-out;
+}
+
+.playerOneAlert{
+  border: 1px blue solid;
+  width: 30px;
+  height: 50px;
+  margin-top: 260px;
+  margin-left: 250px;
+  opacity:1;
+  transition:opacity 500ms;
+
+}
+
+.playerTwoAlert{
+  border: 1px green solid;
+  width: 30px;
+  height: 50px;
+  text-align: right;
+  margin-top: -50px;
+  margin-left: 470px;
 }
