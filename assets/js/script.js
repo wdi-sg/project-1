@@ -8,8 +8,14 @@ const $pauseBtn = $("#pauseBtn")
 const $startBtn = $("#startBtn")
 const $restartBtn = $("#restartBtn")
 const $loseDiv = $("<div class='lose'>")
+const $levelDiv = $(".levelDiv")
+const $levelText = $(".levelText")
+const $houseDiv = $("<div class='house'>")
 const $house = $(".house")
+const $houseHp = $('<div class="houseHp">')
+const $houseHpBar = $('<div class="houseHpBar">')
 const catMeow = new Audio("/assets/audio/catMeow.mp3")
+let level = 1
 let enemyList = []
 let bulletList = []
 let upgradeList = []
@@ -126,8 +132,13 @@ class Character {
     if (this.type === "bullet") {
       if (this.bulletOwner === "enemy") {
         this.jTarget.css({
-          border: "3px solid black", //update to actual sprite
-          borderRadius: "50%"
+          // border: "3px solid black", //update to actual sprite
+          // borderRadius: "50%"
+
+          background: `url("/assets/images/fireball.png")`,
+          backgroundPosition: `50px -45px`,
+          // border: "3px solid black", //update to actual sprite
+          backgroundSize: "200%"
         })
       } else {
         this.jTarget.css({
@@ -328,9 +339,13 @@ class Character {
       this.aimAngle = Math.atan2(distanceY, distanceX) / Math.PI * 180
     }
 
-    for (let i = 0; i <= this.bulletMod; i++) {
+    if (this.bulletMod === 0) {
+      generateBullet(this)
+    } else {
       generateBullet(this)
       this.aimAngle += 5
+      generateBullet(this)
+      this.aimAngle -= 5
     }
     // if (this.bulletMod === 0) generateBullet(this)
     // else (this.bulletMod === > 0) {
@@ -402,7 +417,7 @@ const generateEnemy = () => {
   let sizeY = 90
   let spdX = Math.random() * 2.5
   let spdY = Math.random() * 2.5
-  let hp = 150
+  let hp = 100
   let x = 360 + Math.random() * 350
   let y = Math.random() * 500
   let atkSpd = Math.floor(1000 + Math.random() * 1500)
@@ -484,7 +499,6 @@ const generateUpgrade = () => {
 }
 
 const makeHouse = () => {
-  let $houseDiv = $("<div class='house'>")
   $houseDiv.css({
     width: "100px",
     height: "120px",
@@ -492,6 +506,25 @@ const makeHouse = () => {
     top: "200px",
     left: "260px"
   })
+  $houseHp.css({
+    width: "100px",
+    height: "20px",
+    position: "absolute",
+    top: "170px",
+    left: "260px"
+    // border: "3px solid black"
+  })
+  $houseHpBar.css({
+    // background: "green",
+    width: "100px",
+    height: "20px",
+    position: "absolute",
+    top: "170px",
+    left: "260px"
+    // border: "3px solid black"
+  })
+  $gameBoard.append($houseHpBar)
+  $gameBoard.append($houseHp)
   $gameBoard.append($houseDiv)
 }
 
@@ -499,18 +532,38 @@ const house = {
   x: 260,
   y: 200,
   sizeX: 100,
-  sizeY: 120
+  sizeY: 120,
+  hp: 100
 }
-
 // unlimited spawn
+let enemyFrequency = 500
 const spawnEnemy = () => {
-  let enemyFrequency = 800
-  // setInterval(function spawn() {
-  if (pause === false && gameCounter % enemyFrequency === 0) {
-    // generateEnemy()
-    generateEnemy()
-    if (gameCounter > 1500) enemyFrequency = 400
-    else if (gameCounter > 2500) enemyFrequency = 250
+  if (pause) return
+
+  if (gameCounter % (enemyFrequency * 2) === 0) {
+    generateUpgrade()
+  }
+
+  if (gameCounter > 5000) {
+    console.log(enemyList)
+    console.log("You win!")
+  } else if (gameCounter > 3500) {
+    $levelText.text("Level 3")
+    enemyFrequency = 300
+    if (gameCounter % enemyFrequency === 0) {
+      generateEnemy()
+      generateEnemy()
+    }
+  } else if (gameCounter > 2500) {
+    $levelText.text("level 2")
+    enemyFrequency = 300
+    if (gameCounter % enemyFrequency === 0) {
+      generateEnemy()
+    }
+  } else if (gameCounter < 2500) {
+    if (gameCounter % enemyFrequency === 0) {
+      generateEnemy()
+    }
   }
 }
 
@@ -559,13 +612,10 @@ $(function() {
       drawMap(1)
       player.addChar()
       generateUpgrade()
-      // generateUpgrade()
-      generateEnemy()
-
       generateCat()
-
+      generateEnemy()
       // generateCow()
-
+      $levelText.text("Level 1")
       gameCounter = 0
       pause = false
       requestAnimationFrame(update)
@@ -587,6 +637,7 @@ $(function() {
     }
 
     player.hp = 100
+    house.hp = 100
     score = 0
     gameCounter = 0
     enemyList = []
@@ -606,14 +657,22 @@ $(function() {
     }
   }
 
+  // $body.on("click", () => {
+  //   // player.isShooting = true
+  //   let totalBulletsOnScreen = 0
+  //   for (key in bulletList) {
+  //     totalBulletsOnScreen++ //counts bullets on screen
+  //   }
+  //   if (totalBulletsOnScreen < 15) player.shoot()
+  // })
+
+  //for mouse hold shooting
   $body.on("mousedown", () => {
     player.isShooting = true
   })
-
   $body.on("mouseup", () => {
     player.isShooting = false
   })
-
   let intervalShootID = setInterval(() => {
     if (player.isShooting) {
       player.shoot()
@@ -636,8 +695,7 @@ $(function() {
     $score.text(`Score: ${Math.floor(score / 1)}`)
     player.moveChar()
 
-    // spawnEnemy()
-    //move enemies
+    spawnEnemy()
     for (key in enemyList) {
       enemyList[key].moveChar()
       if (checkCollision(enemyList[key], player)) {
@@ -685,8 +743,8 @@ $(function() {
     for (key in upgradeList) {
       upgradeList[key].moveChar()
       if (checkCollision(upgradeList[key], player)) {
-        player.hp += 10 //player takes health on collision
-        player.bulletMod++
+        player.hp += 20 //player takes health on collision
+        // player.bulletMod++
         upgradeList[key].removeChar()
         upgradeList.splice(key, 1)
       }
@@ -739,12 +797,13 @@ $(function() {
               })
             }
           }, 200)
+
           if (bulletList[key].x < enemyList[enemy].x) {
-            enemyList[enemy].x += 10
-          } else enemyList[enemy].x -= 10
+            enemyList[enemy].x += 5
+          } else enemyList[enemy].x -= 5
           if (bulletList[key].y < enemyList[enemy].y + enemyList[enemy].sizeY) {
-            enemyList[enemy].y -= 10
-          } else enemyList[enemy].y -= 10
+            enemyList[enemy].y -= 5
+          } else enemyList[enemy].y -= 5
           if (enemyList[enemy].hp <= 0) {
             score += 10
             enemyList[enemy].removeChar()
@@ -756,10 +815,21 @@ $(function() {
         }
       }
       //bullet collision with house
+
       for (key in bulletList) {
         if (checkCollision(bulletList[key], house)) {
           bulletList[key].removeChar()
           bulletList.splice(key, 1)
+          $houseHpBar.css({
+            background: "#00ff00",
+            width: `${house.hp}px`,
+            border: "2px solid #00ff00"
+          })
+          $houseHp.css({
+            border: "2px solid black"
+          })
+          house.hp--
+          checkDead()
         }
       }
     }
@@ -776,8 +846,12 @@ $(function() {
 const loseScreen = () => {
   let $deadText = $('<h1 class="deadText">')
   let $deadScore = $('<h1 class="deadScore">')
-  $deadText.text(`You have died. Score: ${score}`)
+  $deadText.text(`You died. Score: ${score}`)
   // $deadScore.text(`Score: ${score}`)
+
+  // $houseDiv.remove()
+  // $houseHp.remove()
+  // $houseHpBar.remove()
 
   $deadText.css({
     position: "absolute"
@@ -791,11 +865,11 @@ const loseScreen = () => {
   $loseDiv.append($deadScore)
   $loseDiv.css({
     color: "white",
-    // margin: "0 auto",
+    // display: "inline-block"
     display: "flex",
-    "justify-content": "center",
-    "align-items": "center",
-    height: "400px"
+    "justify-content": "center"
+    // "align-items": "top",
+    // top: "200px"
     // background: "rgba(255, 255, 255, 0.5)"
   })
 
@@ -827,7 +901,7 @@ const checkCollision = (obj1, obj2) =>
   obj2.y <= obj1.y + obj1.sizeY
 
 const checkDead = () => {
-  if (player.hp <= 0) {
+  if (player.hp <= 0 || house.hp <= 0) {
     pause = true
     loseScreen()
   }
