@@ -1,0 +1,64 @@
+.body {
+}
+
+
+.container {
+  margin: 0 auto;
+  background-size: contain;
+  background-position: right;
+  width: 600px;
+  height: 400px;
+
+}
+
+h1 {
+ text-align: center;
+ font-family: monospace, sans-serif;
+ font-size: 72px;
+ text-decoration: underline;
+}
+
+.scoreCounter {
+  font-size: 32px;
+}
+
+.grid {
+  border: 6px solid white;
+  border-style: ridge;
+  width: 596px;
+  height: 392px;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-auto-rows: minmax(78px,auto);
+}
+
+.box {
+  border: 1px solid white;
+  background-color: white;
+  width: 118px;
+  height: 80px;
+}
+
+.letters {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.input {
+}
+
+.submit {
+  display: inline-block;
+}
+
+.timer {
+  font-family: monospace, sans-serif;
+  font-size: 46px;
+}
+
+.endPage {
+  font-family: monospace, sans-serif;
+  font-size: 72px;
+  background-color: white;
+  display: none;
+}

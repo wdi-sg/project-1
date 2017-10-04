@@ -7,11 +7,11 @@ Read Me Contents
  <img src="assets/img/workflow.jpg">
 
 
-### The game:
+### The game
 
 Test your general knowledge. How many national flags can you identify?
 
-Bonus points awarded for fastest fingers. Solve the question before the image is revealed to win double points.
+Bonus points awarded for fastest fingers. Solve the question within 5 seconds to win double points.
 
 ### Overview
 
