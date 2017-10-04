@@ -6,7 +6,7 @@ $(function () {
   var cellColor = ""
   var matrix = 4
   var $cell = $('.cell')
-  var matchesExist;
+
 
 
 
@@ -135,7 +135,6 @@ $(function () {
 
    function checkForMatches() {
 
-
     for (var x = 0 ; x < matrix; x++) {
       for (var y = 0; y < matrix; y++) {
 
@@ -153,8 +152,9 @@ $(function () {
     }
 
     if (checker.length > 0) {
-      matchesExist = true
+      return true
       }
+
       checker = []
     }
 
@@ -176,9 +176,6 @@ $(function () {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
           }
-
-
-
       }
     }
 
@@ -204,9 +201,9 @@ $(function () {
         }
       }
     }
-
-
+    
     console.log(grid)
+    if (checkForMatches() !== true) alert('No More matches exist')
   }
   //     }
   //   }
@@ -222,7 +219,7 @@ $(function () {
   }
 
   generateLevel()
-  //checkForMatch()
+
 
   //$cell.on('mouseover', highlight)
 
