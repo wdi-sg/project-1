@@ -41,7 +41,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt molest
 
 ## Acknowledgements
 
-+ Get dynamically added element by data attribute using jQuery [https://stackoverflow.com/questions/31402103/how-to-find-dynamically-added-element-by-data-attribute-using-jquery]
-+ Lorem ipsum dolor sit amet, consectetur adipiscing elit
++ Font https://fonts.googleapis.com/css?family=Bungee
++ Get dynamically added element by data attribute using jQuery https://stackoverflow.com/questions/31402103/how-to-find-dynamically-added-element-by-data-attribute-using-jquery
 + Lorem ipsum dolor sit amet, consectetur adipiscing elit
 + Lorem ipsum dolor sit amet, consectetur adipiscing elit

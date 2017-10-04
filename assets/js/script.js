@@ -125,8 +125,8 @@ function loadAssets (tileSet) {
   var $ghostFour = $('<div class="character" id="ghost-four">')
 
   // objects to store css properties for tiles
-  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
-  var blueTile = { 'background-color': 'blue', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid 	#303030' }
+  var blueTile = { 'background-color': '#000066', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
   var yellowTile = { 'background-color': 'yellow', 'height': '28px', 'width': '28px', 'border': '1px solid yellow' }
 
   // loop through tileSet array and generate map as well as load characters
