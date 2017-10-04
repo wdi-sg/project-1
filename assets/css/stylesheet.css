@@ -157,3 +157,33 @@ h3 {
   /*left: 127px;*/
   top: 63px;
 }
+
+.bottom-row {
+  position:relative;
+}
+.dieFace {
+  position: absolute;
+  border-radius: 5px;
+  width:52px;
+  height: 42px;
+  padding:15px 10px 10px 10px;
+  font-size:24px;
+  background:#F5F5F5;
+  top: 50px;
+  left: 95px;
+  border: 1px solid blue;
+  text-align:center;
+}
+
+.dice {
+  position: absolute;
+  border-radius: 5px;
+  width:52px;
+  padding:1px;
+  font-size:14px;
+  background:#F5F5F5;
+  top: 20px;
+  left: 105px;
+  border: 1px solid blue;
+  text-align:center;
+}

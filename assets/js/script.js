@@ -29,7 +29,11 @@ $(function () {
 
   function rollDice () {
     var randomDiceResult = 1 + Math.floor(Math.random() * 6)
+
+    var $dieFace = $('.dieFace')
+    $dieFace.text(`${randomDiceResult}`)
     console.log(randomDiceResult)
+
 
     if (currentPlayer === $player1) {
       cellValueP1 += randomDiceResult
