@@ -1,3 +1,4 @@
+
 body {
   font-family: "Press Start 2P";
 }
@@ -7,29 +8,49 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  display:flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+h3 {
+  text-align: center;
+}
+
+h4 {
+  word-spacing: 140px;
+  text-align: center;
+  padding-top: 0px;
+}
+
+
 .flower {
-  height: 40px;
-  width: 40px;
+  height: 65px;
+  width: 65px;
   left: 0px;
   display: inline-block;
   position: absolute;
-  transition: linear 0.05s
+  transition: all 0.5s ease-out;
+  background-size: cover;
+
 
 }
 
 .playerOne {
-  height: 100px;
-  width: 50px;
-  background-color: ;
-  top: 600px;
-  display: inline-block;
+  height: 150px;
+  width: 150px;
+  background-image: url("/assets/images/superPink1.gif");
+  background-size: cover;
+  top: 530px;
+  left: 650px;
   position: absolute;
+  transition: all 0.05s ease-out;
 
 }
 
 .container {
-  background: url("http://i.imgur.com/qlgoLVk.png");
-  background-size: cover;
+  background: url("/assets/images/background2.gif");
+  background-size: 100% 100%;
   background-position: center;
   width: 1400px;
   height: 700px;
@@ -39,17 +60,48 @@ h1 {
 }
 
 .timer {
+  color: #a5ffcc;
   font-size: 50px;
   text-align: center;
   width: 500px;
   padding-top: 30px;
   float: left;
+
 }
 
 .score {
+  color: 	#a5ffcc;
   font-size: 50px;
   text-align: center;
   padding-top: 30px;
   width: 500px;
   float: right;
+
+}
+
+.gameover {
+  background: url("/assets/images/PinkStarGirl.gif");
+  font-size: 60px;
+  text-align: center;
+  vertical-align: middle;
+  height: 700px;
+  width: 1400px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  display: none;
+  z-index: 0;
+}
+
+.instructions {
+  font: 30px;
+  height: 230px;
+  width: 1400px;
+  margin: 0 auto;
+  padding-top: 0px;
+}
+
+.instructions img {
+  height: 75px;
+  width: 75px;
 }
