@@ -24,6 +24,8 @@ var tileSet = [
 var $body = $('body')
 var $gameBoard = $('.game-board')
 var $instructionPanel = $('.instruction-panel')
+var $winPanel = $('.win-panel')
+var $losePanel = $('.lose-panel')
 var $scoreBoard = $('.score-board')
 var $livesContainer = $('.lives-container')
 
@@ -47,6 +49,8 @@ var prevDirThree = []
 var prevDirFour = []
 
 $(function () {
+  $winPanel.hide()
+  $losePanel.hide()
   // write reset function
 
   // write ifGameOver function
@@ -55,7 +59,9 @@ $(function () {
   $body.on('keyup', (event) => {
     if (event.key === 'Enter') {
       // hide instructions
-      $instructionPanel.css('display', 'none')
+      $instructionPanel.hide()
+
+      // show score-board
       $scoreBoard.css('visibility', 'visible')
       // load assets
       loadAssets(tileSet)
@@ -104,13 +110,18 @@ $(function () {
           $livesContainer.children().last().remove()
         }
         // update loss
-        if (pacManLives <= 0) $score.text(`You've Lost!`)
+        if (pacManLives <= 0) {
+          $scoreBoard.css('visibility', 'hidden')
+          $winPanel.hide()
+          $losePanel.show()
+        }
       }, 100)
       // win condition
       setInterval(function () {
         if (score === 119) {
-          var $score = $('.score')
-          $score.text(`You've Won!`)
+          $scoreBoard.css('visibility', 'hidden')
+          $losePanel.hide()
+          $winPanel.show()
         }
       }, 300)
     }

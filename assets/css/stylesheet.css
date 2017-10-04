@@ -49,6 +49,7 @@ body {
   flex-wrap: wrap;
   align-content: flex-start;
   position: relative;
+  /*display: none;*/
 }
 
 .instruction-panel {
@@ -62,7 +63,6 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  /*display: none;*/
 }
 
 .score-board {
@@ -88,7 +88,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  display: none;
+  position: absolute;
+  z-index: 1;
 }
 
 .lose-panel {
@@ -102,7 +103,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  display: none;
+  position: absolute;
+  z-index: 1;
 }
 
 .tile {
