@@ -9,7 +9,7 @@
 
     <div id="container">
 
-          <h1>My Space Invader</h1>
+          <h2>My Space Invader</h1>
           <h4><span onclick="$('#hidden').toggle(); return false">Instructions</span></h4>
           <p style="display:none;" id="hidden">My Space Invader Game
             is designed for players who likes to play a never ending game where you
@@ -20,12 +20,15 @@
             It's game over if one of the enemy sprite touches
             the player sprite. You win by beating your previous score.<br><br>
 
-            Player Controls : <br>  Move Player = Arrow Keys <br>   Fire Laser = Spacebar
+            Player Controls : <br>  Move Player = Arrow Keys (←↑↓→) <br>   Fire Laser = Spacebar
           </p>
+
 
           <div id="background">
             <div id="player"></div>
             <div id="laser"></div>
+            <div id="start"><span onclick="start()">START</span></div>
+
             <div id="score"></div>
             <div id="highscore"></div>
             <div id="gameover">GAME OVER<p><span onclick="reload()">Restart</span><p></div>

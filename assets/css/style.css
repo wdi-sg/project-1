@@ -2,7 +2,7 @@ body {
   background: url('/assets/img/spacebg.jpg')
 }
 
-h1, h4, p {
+h2, h4, p {
   display: flex;
   justify-content: center;
   color: #ffffff;
@@ -26,6 +26,7 @@ h1, h4, p {
   width: 38px;
   height: 38px;
   position: absolute;
+  visibility: hidden;
 }
 
 #laser {
@@ -33,7 +34,7 @@ h1, h4, p {
   width: 12px;
   height: 15px;
   position: absolute;
-  visibility: 'hidden';
+  visibility: hidden;
 }
 .enemy {
   background: url('/assets/img/enemy1.png');
@@ -64,6 +65,14 @@ h1, h4, p {
   left: 190px;
   top: 190px;
   visibility: hidden;
+}
+
+#start {
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  left: 220px;
+  top: 200px;
 }
 
 span {

@@ -1,3 +1,11 @@
+// start the game
+function start() {
+  init()
+  $('#start').css('visibility', 'hidden')
+}
+
+function init() {
+
 // create objects here
 var player = new Object()
 player.element = 'player'
@@ -5,6 +13,7 @@ player.x = 250
 player.y = 450
 player.w = 38
 player.h = 38
+$('#player').css('visibility', 'visible')
 
 var laser = new Object()
 laser.element = 'laser'
@@ -92,7 +101,11 @@ function setPosition(sprite) {
 }
 
 var score = 0
+
 var highscore = localStorage.getItem("highscore")
+
+// to reset highscore
+// localStorage.setItem("highscore", score);
 
 // load the sprites to the game
 function showSprites() {
@@ -150,16 +163,16 @@ function addEnemy() {
    var interval = 50
   for (var i = 0; i < enemies.length; i++) {
    if (iterations > 2000) {
-     interval = 2.5
-     enemies[i].y += getRandom(25)
+     interval = 5
+     enemies[i].y += getRandom(50)
      enemies[i].x += getRandom(7) - 3
    } else if (iterations > 1500) {
      interval = 5
-     enemies[i].y += getRandom(18)
+     enemies[i].y += getRandom(25)
      enemies[i].x += getRandom(7) - 3
    } else if (iterations > 1000) {
      interval = 15
-     enemies[i].y += getRandom(15)
+     enemies[i].y += getRandom(18)
      enemies[i].x += getRandom(7) - 3
    } else if (iterations > 500) {
      interval = 35
@@ -181,8 +194,8 @@ function addEnemy() {
      var createEnemy = document.createElement('div')
      createEnemy.id = enemy.element
      createEnemy.className = 'enemy'
-     $("#background").append(createEnemy)
-
+     document.getElementById('background').appendChild(createEnemy)
+     //  $("#background").append(createEnemy)
      enemies[enemies.length] = enemy
    }
  }
@@ -263,39 +276,50 @@ var game = setInterval(function() {
 
 
 function gameOver() {
-  var element = document.getElementById(player.element);
-  element.style.visibility = 'hidden';
-  element = document.getElementById('gameover');
-  element.style.visibility = 'visible';
-
+  // var element = document.getElementById(player.element);
+  // element.style.visibility = 'hidden';
+  // element = document.getElementById('gameover');
+  // element.style.visibility = 'visible';
+  $('#gameover').css('visibility', 'visible')
+  $('#player').css('visibility', 'hidden')
   $('.enemy').css('visibility', 'hidden')
   $('#laser').css('visibility', 'hidden')
 
   gameOverSound()
 
-  // setInterval(reload, 10000)
+  // stop game music to let game over music play
+  stop()
+
+  // this stops all functions in the gameLoop
   clearInterval(game)
+
+// alert player if he gets new High Score
+  // if (score > highscore)
+  //   alert("Good Job!!!!! NEW HIGH SCORE!!!")
+  // else
+  //   alert("Try Again!")
 }
 
-// reload the game
-function reload() {
-  location.reload()
-}
 
 
 
 // Add sounds to the game
 
-function gameSound() {
-  var audio = document.createElement('audio')
-  audio.src = '/assets/sounds/kick_shock.wav'
-  audio.autoplay = true
-  audio.loop = true
-  audio.play()
-  audio.volume = 0.3
-}
-// gameSound()
+var gameAudio = document.createElement('audio')
+  gameAudio.src = '/assets/sounds/kick_shock.wav'
+  gameAudio.autoplay = true
+  gameAudio.loop = true
+  gameAudio.volume = 0.3
+  document.body.appendChild(gameAudio)
 
+function play() {
+  gameAudio.play()
+}
+play()
+
+function stop() {
+  gameAudio.pause()
+}
 
 function laserSound() {
   var audio = document.createElement('audio')
@@ -320,4 +344,12 @@ function gameOverSound() {
   audio.loop = true
   audio.play()
   audio.volume = 0.5
+}
+
+
+}
+
+// reload the game
+function reload() {
+  location.reload()
 }
