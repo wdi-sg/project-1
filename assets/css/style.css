@@ -1,5 +1,5 @@
 body {
-  background-color: #394053;
+  background-color: black;
 }
 
 h1 {
@@ -53,7 +53,7 @@ font-size: 22px;
   align-items: center;
   justify-content: center;
   color: red;
-  background-color: #68C3D4
+  background-color: #CDCACC
 }
 
 #loc {

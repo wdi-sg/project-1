@@ -24,7 +24,6 @@ $(document).on('keydown', function(e){
   }
 });
 
-
 $colorBtn.on('click', compareColor)
 $(document).on('keydown', function(e){
   if(e.keyCode === 39) {
@@ -32,12 +31,8 @@ $(document).on('keydown', function(e){
   }
 });
 
-$box.on('click', locGen)
-$('html').on('keypress', function(e) {
-  console.log(e.keyCode)
-})
 $startBtn.on('click', () => {
-  //TODO reset score
+  scoreObj.scoreBoard.text('Score : 0')
   if (on == 0) {
   refreshIntervalId = setInterval(locGen, 3000);
   on = 1;
@@ -47,7 +42,6 @@ $startBtn.on('click', () => {
 }
 
 });
-
 
 function locGen() {
   count++;
@@ -115,7 +109,7 @@ function gameOver () {
   scoreObj.scoreBoard.text(`Score:${scoreObj.score}`)
   index = 0;
   recArr = [];
-  console.log('Count:', count, "Score:", scoreObj.score, "Index:", index, "recArr:", recArr)
+  // console.log('Count:', count, "Score:", scoreObj.score, "Index:", index, "recArr:", recArr)
   // console.log(clearInterval, refreshIntervalId);
   clearInterval(refreshIntervalId);
   // console.log(clearInterval, refreshIntervalId);
