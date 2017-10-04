@@ -6,23 +6,27 @@
     <link rel="stylesheet" href="./assets/css/stylesheet.css">
   </head>
   <body>
+    <button type="button" class="start" name="button">Start</button>
     <div class="container">
 
       <div class="bird"></div>
-
-      <div class="pipe hidden"></div>
-      <div class="pipe hidden"></div>
-
 
       <div id="score_div">
         <b>Score: </b><span id="score">0</span>
       </div>
 
-    <button id="restart-btn">Restart</button>
+      <div id="pole_1" class="pole"></div>
+      <div id="pole_2" class="pole"></div>
+
+      <div class="gameover_pop">
+      <div class="gameover-head"><img src="/images/gameover.png"></div>
+      <button id="restart-btn">Replay</button>
+      </div>
 
 
     </div> <!--  end container div -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="/assets/js/global.js"></script> -->
     <script src="/assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
