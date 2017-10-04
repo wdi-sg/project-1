@@ -19,6 +19,8 @@ var scoreObj = {
   scoreBoard: $('#scoreBoard')
 }
 
+$resetBtn.on('click', reset)
+$stopBtn.on('click', stop)
 $locBtn.on('click', compareResult)
 $(document).on('keydown', function(e){
   if(e.keyCode===37){
@@ -36,7 +38,7 @@ $(document).on('keydown', function(e){
 $startBtn.on('click', () => {
   scoreObj.scoreBoard.text('Score : 0')
   if (on == 0) {
-  refreshIntervalId = setInterval(locGen, 2000);
+  refreshIntervalId = setInterval(locGen, 2500);
   on = 1;
 } else if (on == 1) {
   clearInterval(refreshIntervalId);
@@ -63,10 +65,12 @@ function locGen() {
     $(`[data-value = ${index}]`).css("backgroundColor",`${color}`)
     textbox.text(`${color}`)
     textbox.css('color', `${color}`)
+    recArr.push(index); // 
+    recCol.push(`${color}`) //
   }, 1000)
 
-  recArr.push(index);
-  recCol.push(`${color}`)
+
+  console.log(recCol);
   // $(this).css('backgroundColor', )
 }
 
@@ -108,18 +112,28 @@ function randomNum () {
 function gameOver () {
   // Show Score.
   count = 0;
-  scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   index = 0;
+  on = 0;
   recArr = [];
-  // console.log('Count:', count, "Score:", scoreObj.score, "Index:", index, "recArr:", recArr)
-  // console.log(clearInterval, refreshIntervalId);
+  recCol = [];
+  scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   clearInterval(refreshIntervalId);
-  // console.log(clearInterval, refreshIntervalId);
-  // reset gameboard
-  // off setInterval
 }
 
+function stop (){
+  clearInterval(refreshIntervalId);
+}
 
+function reset(){
+  count = 0;
+  index = 0;
+  on = 0;
+  recArr = [];
+  recCol = [];
+  scoreObj.scoreBoard.text('Score : 0')
+  textbox.text('')
+  $('.box').css("backgroundColor","")
+}
 
 
 });
