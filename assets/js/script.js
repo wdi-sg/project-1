@@ -20,7 +20,6 @@ var scoreObj = {
   scoreBoard: $('#scoreBoard')
 }
 
-
 $resetBtn.on('click', reset)
 $stopBtn.on('click', stop)
 $locBtn.on('click', compareResult)
@@ -84,6 +83,7 @@ function compareResult () {
   // console.log('check recArr[count]:', recArr[count - 1])
   // console.log('check recArr[count - 1]:', recArr[count - 2])
   if (recArr[count - 1] === recArr[count - n]) {
+    audioCorrect();
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recArr[count - 1] != recArr[count - n]) {
@@ -95,6 +95,7 @@ function compareResult () {
 
 function compareColor () {
   if (recCol[count - 1] === recCol[count - n]) {
+    audioWrong()
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recCol[count - 1] != recCol[count - n]) {
@@ -133,6 +134,14 @@ function reset(){
   scoreObj.scoreBoard.text('Score : 0')
   textbox.text('')
   $('.box').css("backgroundColor","")
+}
+
+function audioCorrect() {
+  document.getElementById("audioCorrect").play();
+}
+
+function audioWrong() {
+  document.getElementById("audioCorrect").play();
 }
 
 

@@ -5,7 +5,8 @@
 }
 
 button {
-  width : 500px;
+  margin: 0 420px;
+  width: 200px;
   height: 100px;
   background-color: #4E4A59;
   font-family: helvetica, sans-serif;

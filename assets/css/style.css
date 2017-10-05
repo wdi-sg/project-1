@@ -44,8 +44,15 @@ h1 {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both
 }*/
 
+#HIT {
+  text-align: center;
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
 #scoreBoard {
-display: block;
+display: inline-block;
 text-align: center;
 font-size: 20px;
 font-family: helvetica, sans-serif;

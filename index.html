@@ -23,7 +23,7 @@
       <div class="box" data-value="6"></div>
       <div class="box" data-value="7"></div>
   <h1>1 n Back</h1><span>
-    <div>
+    <div id="HIT">
       <div id="scoreBoard">Score : 0</div>
       <div id="turn">Turn : 0</div>
     </div>
@@ -33,6 +33,16 @@
     </div>
   </div>
   </div>
+  <audio id="audioCorrect" src="./audio/'Correct Answer Sound Effect.mp3'"></audio>
+  <script charset="utf-8">
+  function audioCorrect(){
+    document.getElementById("audioCorrect").play();
+  }</script>
+  <audio id = "audioWrong" src="./audio/'Wrong Answer Sound Effect.mp3'"></audio>
+  <script charset="utf-8">
+    function audioWrong(){
+      document.getElementById("audioWrong").play();
+    }</script>
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
