@@ -28,7 +28,7 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
 ### **Interesting Logic I Learnt**
 + Shuffle Function
   + Generate random numbers and replace numbers in an array with a while loop
-  ```
+  ``` javascript
   function shuffle (array) {
       let counter = array.length
       // While there are elements in the array
@@ -55,14 +55,14 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
 
 
 + How to use 'this' to find last clicked div
-```javascript
+``` javascript
 $(this).find('img').attr('src', './assets/img/back.jpg')
 cardsSave.pop()
 ```
 
 
 + How to find values without the use of 'this' to find second last clicked div
-```javascript
+``` javascript
 $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', './assets/img/back.jpg')
 ```
 
