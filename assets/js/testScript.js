@@ -24,14 +24,14 @@ class Mob {
         top: '505px',
         left: '1460px',
         transition: `ease-out ${speed}s`,
-        background: 'url(/assets/images/stoneGolemRight.png)',
+        background: 'url(./assets/images/stoneGolemRight.png)',
         animation: 'mobPlayRight 2s steps(4) infinite'
       })
     } else if (mobPosition.left > 1400) {
       this.jTarget.css({
         left: '1px',
         transition: `ease-out ${speed}s`,
-        background: 'url(/assets/images/stoneGolem.png)',
+        background: 'url(./assets/images/stoneGolem.png)',
         animation: 'mobPlay 2s steps(4) infinite'
       })
     }
@@ -51,7 +51,7 @@ class Mob {
       top: '505px',
       left: `${location}px`,
       transition: 'ease-out 20s',
-      background: 'url(/assets/images/stoneGolemRight.png)',
+      background: 'url(./assets/images/stoneGolemRight.png)',
       animation: 'mobPlayRight 2s steps(4) infinite'
     })
   }
@@ -70,7 +70,7 @@ class Mob {
       top: '390px',
       left: `${location}px`,
       transition: 'ease-out 20s',
-      background: 'url(/assets/images/boss.png)',
+      background: 'url(./assets/images/boss.png)',
       animation: ' bossOne 1s steps(8) infinite'
     })
   }
