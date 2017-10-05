@@ -99,7 +99,7 @@ $(function () {
           // remove class of stopping clicks
           $('.card').removeClass('avoid-clicks')
 
-        }, 500)
+        }, 1000)
       }
 
       // return cardsClicked = 0 and cardsClickedArr = [] everytime

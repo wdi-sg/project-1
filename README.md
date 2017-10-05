@@ -5,7 +5,7 @@
 ## Project #1: The Game
 
 ### **Overview**
-Memory has long been a favourite game for all generations. Test your memory with Food Memory Game - a memory card game for all those who have a strong desire to eat. This game requires a good knowledge of observation, concentration and a good memory to win. The objective of the game is to match all the pairs.
+Memory has long been a favourite game for all generations. Test your memory with Eat This - a memory card game for all those who have a strong desire to eat. This game requires a good knowledge of observation, concentration and a good memory to win. The objective of the game is to collect the most matching pairs. The game is designed so two players can play against each other and win by scoring higher than the other player.
 
 ### **Instructions**
 
