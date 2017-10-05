@@ -1,0 +1,134 @@
+
+  * {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: 0;
+    font-family: segoe ui, helvetica neue, helvetica, arial, sans-serif;
+    font-weight: 200;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+
+  body {
+    width:100%;
+    height:100%;
+    margin:0;
+  }
+
+/*---------------------------------------------*/
+
+.start_pop {
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+  position: absolute;
+  z-index: 900;
+  /*background-color: black;*/
+  }
+
+.start_img {
+  background: url('../../images/flappy-starts.png');
+  width: 600px;
+  height: 188px;
+  margin-left: 26%;
+  margin-top: 100px;
+}
+/*---------------------------------------------*/
+
+.start {
+  width: 42%;
+  height: 100px;
+  background-color: white;
+  margin-left: 27%;
+  border: 2px dashed black;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/*---------------------------------------------*/
+  .container {
+    position: relative;
+    max-width:100%;
+    height:750px;
+    background-size:cover;
+    background: url('../../images/flappy-bg.png');
+  }
+
+
+  /* Bird */
+  .bird {
+  	height: 69px;
+  	width: 90px;
+  	background: url('../../images/birds.png');
+  	position: absolute;
+  	bottom: 60%;
+  	left: 130px;
+  	z-index: 3;
+    animation: birdFly 0.3s steps(3, end) infinite alternate;
+    transition: transform 0.3s;
+  }
+
+  @keyframes birdFly {
+    0% {background-position: 0 208px;}
+    100% {background-position: 0 0;}
+  }
+
+  .pole {
+    position: absolute;
+    height: 300px;
+    width: 90px;
+    right: -89px;
+    background: url('../../images/flappy-block.png');
+  }
+
+  #pole_1 {
+    top: 0;
+    z-index: 3;
+    position: absolute;
+  }
+
+  #pole_2 {
+    bottom: 0;
+    position: absolute;
+    z-index: 0;
+  }
+
+  #score_div {
+    width: 157px;
+    text-align: center;
+    font-size: 20px;
+    margin: 17px 0px 0px 20px;
+    padding: 10px;
+    opacity: 0.8;
+    border-radius: 20px;
+    left: 42.5%;
+    z-index: 500;
+    position: absolute;
+    border-radius: 20px;
+    background-color: white;
+  }
+
+  .gameover_pop {
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    left: 30%;
+    top: 20%;
+    display:none;
+    z-index: 100;
+  }
+
+  #restart-btn {
+    font-size: 20px;
+    position: absolute;
+    border: 3px dashed black;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    font-weight:500;
+    left: 190px;
+    cursor: pointer;
+  }

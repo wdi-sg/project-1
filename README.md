@@ -1,96 +1,142 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# Project #1: Flappy Bird Game :
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+## Overview
 
-### Overview
+**Click** on the screen, or use your **spacebar** to get started. Fly the bird as far as you can without hitting the obstacle(poles) and **score a point**. As the speed of the obstacles increasing everytime a new pole entered  each time you pass through it.
 
-Let's start out with something fun - **a game!**
+Challenge your patient level and let's create a whole new **high score** buddy!
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+### Controls Option
+Mouse Left / Space Bar tap : To Fly
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+[*Click here to play!*](https://heyzernut.github.io/project-1/)
 
+---
+### Flow Chart:
+
+![Image of flowchart](/images/flowchart.png)
 
 ---
 
-### Technical Requirements
+### Screen:
 
-Your app must:
+![Image of flowchart](/images/startscreen.jpg)
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+![Image of flowchart](/images/playscreen.jpg)
+
+![Image of flowchart](/images/gameoverscreen.jpg)
 
 ---
 
-### Necessary Deliverables
+### Logic for gravity and velocity
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+The bird falls continuously, and when the user taps on spacebar or click on mouse, it 'jumps' a bit.
+
+bird's vertical speed (positive if it goes up, negative if it falls down). Use $bird.stop().animate to set a positive and negative constant, to which the speed gets reset whenever the user taps the screen. This will immediately make the bird start its ascension. While setting the gravity to a bottom '0'. bird object will instant falls after falling for -= 70px on height when mouse event listener is not applied. This makes the bird increase in speed when falling.
+
+```
+function birdFlap () {
+  if (gameState === 1 || gameState === 2) {
+    $bird.css('transform', 'rotate(-20deg)')
+    $bird.stop().animate({
+      bottom: '+=40px'
+    }, 200, function () {
+      birdPos()
+      $bird.css('transform', 'rotate(0deg)')
+      $bird.stop().animate({
+        bottom: '-=70px'
+      }, 200, 'linear', function () {
+        birdPos()
+        gravity()
+      })
+    })
+  }
+}
+
+function gravity () {
+  $bird.stop().animate({
+    bottom: '0'
+  })
+  $bird.css('transform', 'rotate(40deg)')
+}
+```
+
+From here on, all you have to do is experiment with the values, to find a set that works best for you.
+
+For reference. You can go to [link for .stop().animate](http://google.com) method explanation.
 
 ---
 
-### Suggested Ways to Get Started
+## Collisions (Player and Obstacle)
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+Collision take place when bird touches the poles(obstacle) while flying pass it and also when it touches body.height(y) top and bottom. When it do so, the game ended. A popup game over screen appear.
 
----
+```
+// collision with top and bottom container
 
-### Potential Project Ideas
+function birdPos () {
+  if (parseInt($bird.css('top')) <= 0 || parseInt($bird.css('top')) > $('.container').height() - $('.bird').width()) {
+    gameEnd()
+  }
+}
+```
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+## 2D collision detection
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
-### Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+```
+if (rect1.x < rect2.x + rect2.width &&
+   rect1.x + rect1.width > rect2.x &&
+   rect1.y < rect2.y + rect2.height &&
+   rect1.height + rect1.y > rect2.y) {
+    // collision detected!
+}
+```
+Using this algorithms to detect collision between the obstacles(pole) and the bird object
 
 ---
 
-### Project Feedback + Evaluation
+### Work Process
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+1. Create basic html, flappy game screen layout.
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+2. Create CSS file and js file
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+3. Set Variable in js for each div id/class created
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+4. Set mouse and keydown event listener
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+5. Create a function to store logic to control the gravity and velocity of the bird object with vertical height and speed.
 
-* __Total__: Your instructors will give you a total score on your project between:
+6. Detect collision when touches the top and bottom of the container
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+7. Create Game Over function
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+8. Adjust css file
+
+9. Create pole top and bottom function, and give the pole class a negative 'right' value to move put of the screen.
+
+10. setInterval to give pole class a speed for constant movement to the left of screen.
+
+11. create a if statement in a function to detect collision between bird object and the pole. if collision check mean game over.
+
+12. Create function to store a new random height for pole when it move out of the container from left and return back to the same position of the initial. Movement go on and on.
+
+13. Increase 1 value for speed of the pole each time a new pole height is generate.
+
+14. if statement to add score each time the bird object pass through the pole.
+
+15. Create a gameover popup screen. And player and replay the same by clicking on the replay button.
+
+16. Add audio for the game
+
+17. Create a start game pop up screen
+
+18. Add images and beautify the whole layout
+
+---
+
+### Future Possible Updates
+
+* Scoring function for storing best score
+* Creating more obstacles in one interval
+* Difficulty Level

@@ -2,10 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+
+    <div class="start_pop">
+      <div class="start_img"></div>
+      <button type="button" class="start" name="button">Game Instruction: Use <i>left click</i> or <i>space bar</i> to control the bird <br/><br/> Ready? Click here to get start !</button>
+    </div>
+
+    <div class="container">
+
+      <div class="bird"></div>
+
+      <div id="score_div">
+        <b>Score: </b><span id="score"><strong>0</strong></span>
+      </div>
+
+      <div id="pole_1" class="pole"></div>
+      <div id="pole_2" class="pole"></div>
+
+      <div class="gameover_pop">
+      <div class="gameover-head"><img src="./images/gameover.png"></div>
+      <button id="restart-btn">Let's try again!</button>
+      </div>
+
+
+    </div> <!--  end container div -->
+
+    <audio src="./assets/audio/asian-starting.mp3" class="startpop"></audio>
+    <audio src="./assets/audio/failure.mp3" class="hit"></audio>
+    <audio src="./assets/audio/mystery.mp3" class="play_bgsound"></audio>
+    <audio src="./assets/audio/flapping.mp3" class="birdFlapping"></audio>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- <script type="text/javascript" src="/assets/js/global.js"></script> -->
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
