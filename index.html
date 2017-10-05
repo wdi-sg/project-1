@@ -2,10 +2,47 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Food Memory Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Parisienne" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <audio id="music" loop src="./assets/sounds/song.mp3" autoplay> </audio>
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="background">
+      <div class="inline">
+        <h1>Eat This</h1>
+      </div>
+      <div id="instructionscontainer">
+        <div id="instructionslink"> Instructions </div>
+        <div id="instructionstext"> Welcome to Eat This, an intense two player Food Memory Game! Fun for the whole family!
+          <br> There is a time limit! Every match gives you two points, the player with the highest score wins! Click START
+       </div>
+      </div>
+      <div class="wrap">
+        <button id="start">Start</button>
+        <div class="timer"></div>
+        <button id="restart">Restart</button>
+        <h2 class = "playerTurnNow">Player 1 begins!</h2>
+        <div class = "playerScoreBoard">
+          <div id = "player1">
+            <h3 class= "player1">Player 1</h3>
+            <h5 class= "player1-score">Score: 0</h5>
+          </div>
+
+          <div id = "player2">
+            <h3 class= "player2">Player 2</h3>
+            <h5 class= "player2-score">Score: 0</h5>
+          </div>
+
+          <div class = "clearfix"></div>
+
+
+        </div>
+
+      <div id="memoryBoard"></div>
+    </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
