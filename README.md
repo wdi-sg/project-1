@@ -18,6 +18,11 @@ Shoot the enemies while avoiding hit or getting your house damaged. The enemies 
 
 ![Instructions](/assets/images/controls.png)
 
+
+### In Game Screen Shot
+
+![screen shot](/assets/images/screenShot.png)
+
 ---
 ### Game Flow
 
