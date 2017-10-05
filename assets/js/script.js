@@ -37,7 +37,7 @@ var isGameOver = false
 var direction = 'left'
 var pacManSpeed = 600
 var pacManMeetGhost = false
-var pacManLives = 1
+var pacManLives = 3
 // ghost variables
 var ghostSpeed = 400
 // var ghostMovementMode = 'scatter'
@@ -132,6 +132,8 @@ $(function () {
           clearInterval(clear)
         }
       }, 300)
+      // reloads window to restart game
+      $body.on('keydown', (event) => { if (isGameOver && event.key === ' ') this.location.reload() })
     }
   })
 })

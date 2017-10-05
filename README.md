@@ -230,7 +230,7 @@ function patrolTopLeft ($ghost) {
 + Instead of having four separate functions to move Pac Man (one for each direction), refactor into one function which takes a direction argument.
 + Instead of having four separate patrol functions for the ghosts (one for each ghost), refactor into one function (if possible).
 + Ghosts movement is overly simple. Two movement modes were originally planned: Scatter and Chase. Scatter is the current patrol mode, while chase will cause the ghosts to actively track and chase Pac Man. The Ghosts were to switch between the two modes at every fixed interval.
-+ Plan further ahead. Some features were not implemented due to time constraints (Restart, Ghosts Chase mode, Power Pellets).
++ Plan further ahead. Some features were not implemented due to time constraints (Proper restart function, Ghosts Chase mode, Power Pellets).
 
 
 ## Resources
