@@ -120,7 +120,7 @@ h1 {
   position: absolute;
   display: block;
   background-color: black;
-  background-image: url("/assets/img/buildingsEvening.jpg");
+  background-image: url("./assets/img/buildingsEvening.jpg");
   background-size: cover;
 }
 
@@ -232,14 +232,14 @@ h1 {
 }
 
 .ammoBox {
-  background-image: url("/assets/img/bullet.png");
+  background-image: url("./assets/img/bullet.png");
   background-size: contain;
   height: 54px;
   width: 50px;
 }
 
 .grenadeRefill {
-  background-image: url("/assets/img/grenade.png");
+  background-image: url("./assets/img/grenade.png");
   background-size: contain;
   height: 52px;
   width: 50px;
