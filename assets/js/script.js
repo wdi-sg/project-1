@@ -21,7 +21,7 @@ class Flower {
                       points: -3,
                       speed: 50,
                       sec: -1,
-                      img: 'url(/assets/images/catGhost.gif)'
+                      img: 'url(../assets/images/catGhost.gif)'
                     },
                     {
                       points: 1,
