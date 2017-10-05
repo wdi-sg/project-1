@@ -12,12 +12,13 @@ $(function(){
   var randomIndex
   var usedIndex = []
   var begin
+  var $container = $(".container")
 
   //start on click
   $('.start').one('click', start)
 
   function start() {
-    $('.container').css('visibility','visible')
+    $container.css('visibility','visible')
     //clear usedIndex
     usedIndex = []
     //score reset
@@ -50,7 +51,7 @@ $(function(){
     els: {
       timer: $('#timer')
     },
-    // object method, start timer on page load
+    // object method, start timer on load
     startTimer() {
       this.els.timer.text(`Time elapsed: ${this.seconds}`)
       this.timerId =  setInterval(() => {
@@ -77,7 +78,7 @@ $(function(){
   }
 
 
-  //shuffle image for next question
+  //shuffle image without duplicate for next question
   function shuffleImg() {
     // console.log(usedIndex)
     randomIndex = Math.floor(Math.random()*5)
@@ -89,7 +90,6 @@ $(function(){
   }
     answer = country[randomIndex]
     var flagImage = image[randomIndex]
-    var $container = $(".container")
     $container.css("background-image",flagImage)
   }
 
@@ -139,7 +139,7 @@ $(function(){
       start()
     } else if (score >= 5) {
       alert('proceed to level 2')
-      $('.container').css('visibility','hidden')
+      $container.css('visibility','hidden')
     timerObj.resetTime()
   }
 }

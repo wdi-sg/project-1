@@ -52,7 +52,7 @@ h4 {
 }
 
 Button {
-	-moz-box-shadow: 3px 4px 0px 0px #d6d6d6;
+  -moz-box-shadow: 3px 4px 0px 0px #d6d6d6;
 	-webkit-box-shadow: 3px 4px 0px 0px #d6d6d6;
 	box-shadow: 3px 4px 0px 0px #d6d6d6;
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #94612e), color-stop(1, #a17a52));
