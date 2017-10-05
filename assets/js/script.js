@@ -27,7 +27,6 @@ var $instructionPanel = $('.instruction-panel')
 var $winPanel = $('.win-panel')
 var $losePanel = $('.lose-panel')
 var $scoreBoard = $('.score-board')
-var $livesContainer = $('.lives-container')
 var $tiles = $('.tile')
 
 // game variables
@@ -39,8 +38,7 @@ var pacManSpeed = 600
 var pacManMeetGhost = false
 var pacManLives = 3
 // ghost variables
-var ghostSpeed = 300
-// var ghostMovementMode = 'scatter'
+var ghostSpeed = 350
 // ghost-one variables
 var prevDirOne = []
 // ghost-two variables
@@ -89,38 +87,18 @@ $(function () {
       }, 12000)
       // lose condiition
       setInterval(function () {
-        // jQuery object variables
-        var $pacMan = $('#pac-man')
-        var $tile = $('.tile')
-        // targeting pac-man starting tile
-        var $pacManStart = $tile.filter(function () { return $(this).data('attr') === 9 })
         // checking if pac-man and ghosts occupy the same tile
         pacManMeetGhost = checkCollision()
         if (pacManMeetGhost) {
-          // move pacman back to starting
-          $pacManStart.append($pacMan)
-          // decrease and updates scoreboard
-          pacManLives--
+          movePacToStart()
+          updateLives()
           pacManMeetGhost = false
-          $livesContainer.children().last().remove()
         }
         // update loss
-        if (pacManLives <= 0) {
-          $scoreBoard.css('visibility', 'hidden')
-          $winPanel.hide()
-          $losePanel.show()
-          isGameOver = true
-        }
+        if (pacManLives <= 0) showWinLossPanel('loss')
       }, 100)
       // win condition
-      setInterval(function () {
-        if (score === 119) {
-          $scoreBoard.css('visibility', 'hidden')
-          $losePanel.hide()
-          $winPanel.show()
-          isGameOver = true
-        }
-      }, 300)
+      setInterval(function () { if (score === 119) showWinLossPanel('win') }, 300)
       // clearing game board
       var clear = setInterval(function () {
         if (isGameOver) {
@@ -224,10 +202,9 @@ function changeDirection (event) {
 }
 
 function eatAndChangeScore (tile) {
-  var $score = $('.score')
   score++
-  $score.text(`Score: ${score}`)
-  tile.find('div:first').remove()
+  $('.score').text(`Score: ${score}`)
+  tile.find('div:first').remove() // find first element (dots) and remove
 }
 
 function movePacLeft () {
@@ -386,9 +363,7 @@ function patrolBottomLeft ($ghost) {
 }
 
 function checkCollision () {
-  var $pacMan = $('#pac-man')
-  var $pacManTile = $pacMan.parent()
-
+  var $pacManTile = $('#pac-man').parent()
   // return true if pacman's parent tile contains any of the ghosts
   switch (true) {
     case ($pacManTile.has('#ghost-one').length > 0):
@@ -396,5 +371,31 @@ function checkCollision () {
     case ($pacManTile.has('#ghost-three').length > 0):
     case ($pacManTile.has('#ghost-four').length > 0):
       return true
+  }
+}
+
+function movePacToStart () {
+  // targeting pac-man starting tile
+  var $pacManStart = $('.tile').filter(function () { return $(this).data('attr') === 9 })
+  // append pac-man to starting tile
+  $pacManStart.append($('#pac-man'))
+}
+
+function updateLives () {
+  pacManLives--
+  $('.lives-container').children().last().remove()
+}
+
+function showWinLossPanel (winLoss) {
+  if (winLoss === 'win') {
+    $scoreBoard.css('visibility', 'hidden')
+    $losePanel.hide()
+    $winPanel.show()
+    isGameOver = true
+  } else {
+    $scoreBoard.css('visibility', 'hidden')
+    $winPanel.hide()
+    $losePanel.show()
+    isGameOver = true
   }
 }
