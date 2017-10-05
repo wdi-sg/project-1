@@ -4,101 +4,147 @@ Read Me Contents
 -->
 # <img src="/assets/images/readme/whackthatmole.png" height="80"> Project #1: Whack a Mole
 
+### Introduction
+![](/assets/images/readme/Preview.png)
+
+Whack a mole is a **fast-action** mole whacking game. The mole **pop out** at random position. Each mole timeout is set to 9ms, WHACK it fast!
+
+### Instructions
+![](/assets/images/readme/gameStarts.png)
+How to **WHACK** ?
+<br/>By clicking on the mole before the mole goes back into the ground. Each successful whack , 10 points awarded. Wrong target, 5 points will be deducted. To win, whack your way **FAST** within 30s.
+
+---
+
 ### Overview
 
-![](/assets/images/readme/FirstDraft.png)
+ ![](/assets/images/readme/flow.png)
 
-Whack a mole is a **fast-action** mole whacking game. When the mole **pop out** on random position, WHACK it fast!
+### How it works
 
-How to **WHACK** ?
-<br/>By clicking on the mole before the mole goes back into the ground. Each successful whack , 10 points awarded. To win, whack your way **FAST** within 180s.
+```JavaScript
+//when user tigger start button ,
+//it setInterval for Mole to appear every 1s
+$('#start').on('click',function() {
+  $('#start').hide()
+  $('#reset').show()
+  $('.holes').removeClass("avoid-clicks")
 
----
+  var timeleft = 30
+  timer = setInterval(function(){
+    randomMoleAppear()
+    randomMoleAppear()
+    timeleft--
+    $('.timer').html("Timeleft: <span>"+ timeleft +"</span>")
+    if(timeleft <=0){
+      clearInterval(timer);
+      $('.holes').addClass("avoid-clicks")
+    }
+  },1000)
+})```
 
-Let's start out with something fun - **a game!**
+```JavaScript
+//mole appears at random spot
+function randomMoleAppear(){
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+  var random = Math.floor(Math.random() * 10);
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+  $('.mole').eq(random).addClass("image")
 
 
----
+  //mole timeout is set to 9ms, mole will disappear
+  function removeMole(){
+    $('.mole').eq(random).removeClass("image")
+  }
+  setTimeout(removeMole,900)
+}```
 
-### Technical Requirements
+```JavaScript
+//if you hit the mole, it a sound will be played
+//add the score
+$('.mole').on('click',function(){
+  if($(this).hasClass('image')){
+    sound()
+    $(this).removeClass("image")
+    calScore()
+  }else{
+    //when I click the holes without mole
+    //it will deduct score
+    deductScore()
+  }
+})```
 
-Your app must:
+```JavaScript
+//play this sound if mole is being click
+function sound(){
+  var snd = document.createElement('audio')
+  snd.src= "assets/sounds/hit.mp3"
+  snd.play()
+}```
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+```JavaScript
+//each successful click on the mole can get 10 score
+function calScore(){
+  score = score + 10
+  $('.score').html("Score: <span>"+ score +"</span>")
+}```
 
----
+```JavaScript
+//When click on the hole without a mole -5 from score
+function deductScore() {
+  score = score - 5
+  $('.score').html("Score: <span>"+ score +"</span>")
+    // "Total Score : " + "<span>score</span>")
+}```
 
-### Necessary Deliverables
+```JavaScript
+//reset score to 0,clearInterval,hide reset button
+$('#reset').on('click',function(){
+  clearInterval(timer);
+  reset()
+  $('#start').show()
+  $('#reset').hide()
+  $('.score').html("")
+  $('.timer').html("")
+  $('.holes').addClass("avoid-clicks")
+})```
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+```JavaScript
+//reset score and clear interval
+//remove any mole if the timeout for the mole hasn't end
+function reset(){
+  score = 0
+  $('.mole').removeClass("image")
+  $('.score').html("Score: <span>"+ score +"</span>")
+}```
 
----
+```JavaScript
+//add a hammer image to the mouse cursor
+$body.on('mousemove', hammer)
+function hammer(e) {
+  // clientX => left rule
+  // clientY => top rule
+  var clientX = e.clientX
+  var clientY = e.clientY
+  var hammerWidth = $hammer.width()
+  var hammerHeight = $hammer.height()
 
-### Suggested Ways to Get Started
+  var hammerPoint = midPoint(clientX, clientY, hammerWidth, hammerHeight)
+  var bodyWidth = $body.width()
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+  $hammer.css(hammerPoint)
+}
 
----
+function midPoint(hammerX, hammerY, objWidth, objHeight) {
+  return {
+    top: `${hammerY - 20- (objHeight/2)}px`,
+    left: `${hammerX +50 - (objWidth/2)}px`,
+    // transform: (mouseX > bodyWidth/2) ? 'scaleX(-1)' : 'scaleX(1)'
+  }
+}```
 
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
-### Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
-
----
-
-### Project Feedback + Evaluation
-
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+```JavaScript
+//once start it will hide reset button and
+//add avoid click until user press start
+$('.holes').addClass("avoid-clicks")
+$('#reset').hide()```

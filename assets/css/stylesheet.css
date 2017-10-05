@@ -17,6 +17,7 @@ h1{
 }
 
 button{
+  font-family:'Finger Paint', cursive;
   background: #92B6B1;
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
@@ -31,9 +32,16 @@ button{
 }
 
 button:hover {
+  font-family:'Finger Paint', cursive;
   background: #788AA3;
   text-decoration: none;
 
+}
+#start{
+  font-family:'Finger Paint', cursive;
+}
+#reset{
+  font-family:'Finger Paint', cursive;
 }
 .avoid-clicks{
   pointer-events: none;

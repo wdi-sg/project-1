@@ -8,13 +8,13 @@ $(function(){
   var $hammer =$('#hammer')
   var $body =$('body')
 
-  //once start it will hide reset and
+  //once start it will hide reset button and
   //add avoid click until user press start
   $('.holes').addClass("avoid-clicks")
   $('#reset').hide()
 
 
-  //add a hammer to the mouse cursor
+  //add a hammer image to the mouse cursor
   $body.on('mousemove', hammer)
   function hammer(e) {
     // clientX => left rule
@@ -44,6 +44,7 @@ $(function(){
   $('#start').on('click',function() {
     $('#start').hide()
     $('#reset').show()
+    //remove avoid-clicks so user able to click
     $('.holes').removeClass("avoid-clicks")
 
     var timeleft = 30
@@ -69,28 +70,31 @@ $(function(){
     $('.timer').html("")
     $('.holes').addClass("avoid-clicks")
   })
-//reset my score and clear interval
+//reset score and clear interval
 //remove any mole if the timeout for the mole hasn't end
 function reset(){
   score = 0
   $('.mole').removeClass("image")
   $('.score').html("Score: <span>"+ score +"</span>")
 }
-//sound if mole is being whack
+//play this sound if mole is being click
 function sound(){
   var snd = document.createElement('audio')
   snd.src= "assets/sounds/hit.mp3"
   snd.play()
 }
 
-//when I click the holes without images
-//if you only hit the mole, it will generate a sound
+
+//if you hit the mole, it will generate a sound
+//add the score
 $('.mole').on('click',function(){
   if($(this).hasClass('image')){
     sound()
     $(this).removeClass("image")
     calScore()
   }else{
+    //when I click the holes without mole
+    //it will deduct score
     deductScore()
   }
 })
@@ -102,26 +106,26 @@ function deductScore() {
     // "Total Score : " + "<span>score</span>")
 }
 
-  //click on the mole can get 10 points
-  function calScore(){
-    score = score + 10
-    $('.score').html("Score: <span>"+ score +"</span>")
-  }
+//each successful click on the mole can get 10 points
+function calScore(){
+  score = score + 10
+  $('.score').html("Score: <span>"+ score +"</span>")
+}
 
 
 //mole appears at random spot
-  function randomMoleAppear(){
+function randomMoleAppear(){
 
-    var random = Math.floor(Math.random() * 10);
+  var random = Math.floor(Math.random() * 10);
 
-    $('.mole').eq(random).addClass("image")
+  $('.mole').eq(random).addClass("image")
 
 
   //mole timeout is set to 9ms, mole will disappear
-    function removeMole(){
-      $('.mole').eq(random).removeClass("image")
-    }
-    setTimeout(removeMole,900)
-    }
+  function removeMole(){
+    $('.mole').eq(random).removeClass("image")
+  }
+  setTimeout(removeMole,900)
+}
 
 })
