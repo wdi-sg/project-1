@@ -25,6 +25,7 @@ The main challenge of this game is for the player to shoot the enemies while avo
 ### Game Flow
 
 ![Gameflow](/assets/images/fightPhase.png)
+
 ---
 
 ### Technical Assets
