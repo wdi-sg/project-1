@@ -6,6 +6,8 @@
 2. Defend your farm against the OnionFace Bandit Gang.
 3. Survive them all to win.
 
+Play the game at: https://soemn.github.io/project-1/
+
 ![Introduction](/assets/images/introScreen2.png)
 
 ##### Gameplay
@@ -64,7 +66,7 @@ class Character {
 
   shoot()
   //Generates a bullet at the character's position
-  //Ghoots it to the aimAngle.
+  //Shoots direction base on aimAngle.
   //All characters can shoot. Even pets and bullets.
 ```
 
