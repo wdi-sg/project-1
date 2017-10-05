@@ -23,8 +23,9 @@ h1 {
   font-size: 30px;
   position: relative;
   left: 110px;
-  top: 100px;
+  top: 0px;
 }
+
 h2 {
   font-family: 'Quicksand', sans-serif;
   text-align: center;
@@ -35,9 +36,22 @@ h2 {
   position: relative;
   left: 140px;
   font-size: 20px;
-  top: 100px;
+  top: 0px;
 }
 
+h3 {
+  font-family: 'Monoton', cursive;
+  text-align:  center;
+  color: white;
+  /*text-transform: uppercase;*/
+  /*background-color: rgba(255,255,255,0.4);*/
+  width: 450px;
+  font-size: 30px;
+  position: relative;
+  left: 110px;
+
+
+}
 div {
   /*border: 1px solid black;*/
 
@@ -60,7 +74,7 @@ div {
   text-shadow:1px #3C97D4;
   text-transform:uppercase;
   position: relative;
-  top: 100px;
+  top: 50px;
   right: 20px;` `
 
 }
@@ -79,7 +93,7 @@ top: 10px;
   font-family: 'Acme', sans-serif;
   position: relative;
 
-  top:250px;
+  top:200px;
 }
 
 #scoreBoard1 {
@@ -108,17 +122,17 @@ top: 10px;
 
 .images {
   position: relative;
-  top: 70px;
+  top: 10px;
 }
 
 #daffy {
-  position: relative;
+  position: absolute;
   float: right;
   right: 130px;
 }
 
 #donald {
-  position: relative;
+  position: absolute;
   float: left;
   left: 100px;
 }
