@@ -125,8 +125,8 @@ $(function () {
     currentPlayer = 1
 
     $('.playerTurnNow').text("It's Player " + currentPlayer + "'s turn.")
-    $('.player1-score').text('Player 1 Score: ' + player1Score)
-    $('.player2-score').text('Player 2 Score: ' + player2Score)
+    $('.player1-score').text('Score: ' + player1Score)
+    $('.player2-score').text('Score: ' + player2Score)
 
     $('.card').removeClass('avoid-clicks')
     clearInterval(timer1)
@@ -143,8 +143,6 @@ $(function () {
     var indexArr = shuffle(myArray)
 
     for (var i = 0; i < myArray.length; i++) {
-      // console.log(`indexArr[${i}]`, indexArr[i])
-
       var $card = $('<div>')
       $card.addClass('card')
 
@@ -196,12 +194,14 @@ $(function () {
   }
 
   function timer () {
-    var timeleft = 10
+    var timeleft = 50
+    $('.timer').show()
     timer1 = setInterval(function () {
       --timeleft
       $timer.html(timeleft)
 
       if (timeleft <= 0) {
+        $('.timer').hide()
         clearInterval(timer1)
         $restart.show()
         $('.card').addClass('avoid-clicks')
@@ -226,32 +226,24 @@ $(function () {
   function changeScore (player) {
     if (player === 1) {
       player1Score += 2
-      $('.player1-score').text('Player 1 Score: ' + player1Score)
-        // swal({title: ':D', text: 'Yes! You found a match:)', type: 'success', confirmButtonText: 'ok!'})
+      $('.player1-score').text('Score: ' + player1Score)
     } else {
       player2Score += 2
-      $('.player2-score').text('Player 2 Score: ' + player2Score)
-        // swal({title: ':D', text: 'Yes! You found a match:)', type: 'success', confirmButtonText: 'ok!'})
+      $('.player2-score').text('Score: ' + player2Score)
     }
-    // } else {
-    //   swal({title: ':(', text: 'Not a match!', type: 'error', confirmButtonText: 'ok!'})
-    // }
   }
 
   function flipBackAll () {
     $('.card').find('img').attr('src', '/assets/img/back.jpg')
   }
 
-  function checkWinner () { //does not work
+  function checkWinner () {
       if (player1Score > player2Score) {
         alert('Player 1 wins!')
-        // location.reload()
       } else if (player2Score > player1Score) {
         alert('Player 2 wins!')
-        // location.reload()
       } else {
         alert("It's a draw! Play again?")
-        // location.reload()
       }
   }
 })
