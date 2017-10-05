@@ -19,6 +19,7 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
 
 ### **Instructions**
 <img src="/assets/img/gamescreenshot.png" border = 2px solid black>
+
 **How To Play:**
 + Each player clicks on two cards to try and match them
 + Every successful match gives the player two points
@@ -27,7 +28,7 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
 ### **Interesting Logic I Learnt**
 + Shuffle Function
   + Generate random numbers and replace numbers in an array with a while loop
-  ```  
+  ```
   function shuffle (array) {
       let counter = array.length
       // While there are elements in the array
@@ -45,9 +46,10 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
         array[index] = temp
       }
       return array
-    }```
+    }
+    ```
 
-+ Using for loops to add classes and assign ```div```s
++ Using for loops to add classes and assign `div`s
 
 + How to call functions and use multiple parameters and pass in additional arguments
 
