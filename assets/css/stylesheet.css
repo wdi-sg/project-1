@@ -72,7 +72,7 @@ h1{
   color: white;
 }
 
-.btn1 {
+.startBtn {
   background: #300700;
   border-radius: 28px;
   font-family: Courier New;
@@ -82,7 +82,7 @@ h1{
   float:left;
 }
 
-.btn2 {
+.resetBtn {
   margin: 0 auto;
   float:left;
   background: #1a394d;

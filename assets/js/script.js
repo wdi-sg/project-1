@@ -2,15 +2,21 @@
 var instructorMoves = [37,38,39,40]
 var whichPlayer = 0
 var playerTest = 0
+var scoreP1 = 0
+var scoreP2 = 0
+var counterP1 = 0
+var counterP2 = 0
+var rounds = 1
 
 
 function shuffleArray(arr) {
-      for (var i = arr.length - 1; i > 0; i--) {
-          var shuffle = Math.floor(Math.random() * (i + 1)) // <- semi-colon needed to seperate from next line
-          ;[arr[i], arr[shuffle]] = [arr[shuffle], arr[i]]
-      }
-      return arr
-      }
+  for (var i = arr.length - 1; i > 0; i--){
+    var shuffle = Math.floor(Math.random() * (i + 1)) // <- semi-colon needed to seperate from next line
+    ;[arr[i], arr[shuffle]] = [arr[shuffle], arr[i]]
+  }
+  return arr
+}
+
 
 $(function(){
   var $body = $('body')
@@ -22,11 +28,6 @@ $(function(){
   $('.playerTwoDiv').addClass("player2")
   $('.instructorDiv').addClass("instructorPic")
   var $resetButton = $('<button class = "resetBtn">Reset</button>')
-  var scoreP1 = 0
-  var scoreP2 = 0
-  var counter1 = 0
-  var counter2 = 0
-  var rounds = 1
   var randSequence = shuffleArray(instructorMoves)
 
 
@@ -36,7 +37,7 @@ $(function(){
     randSequence = shuffleArray(instructorMoves)
     return randSequence;
   }
-
+  //Making the instructor move according to number sequence
   function instructorDance () {
     var instructorMovesPic = [
       { number: 37, image: 'url("./assets/images/instructor_1.png")' },
@@ -46,17 +47,14 @@ $(function(){
     ];
     $('.instructorDiv').addClass("move");
     var timeoutInterval = 1000
-    // console.log(randSequence);
     let test = randSequence.map(function(value) {
       return (value - 36);
     })
 
     for(let e = 0; e <= randSequence.length; e++){
       for(let i = 0; i < instructorMovesPic.length; i++) {
-        // console.log(i);
         if(instructorMovesPic[i].number === randSequence[e]){
           setTimeout(function() {
-            console.log(e)
             $('.instructorDiv').css('backgroundImage', instructorMovesPic[i].image);
             $instructor.text(test.slice(0,e+1))
           }, timeoutInterval * (e*0.4))
@@ -65,6 +63,7 @@ $(function(){
     }
   }
 
+  //Adding timer, execute addTurn and call instructorDance
   function timerWithAddRounds (){
     var timer = 6;
     var timerInverval = setInterval(function() {
@@ -80,10 +79,11 @@ $(function(){
     }, 1000);
   }
 
-  $('.btn2').on('click', function(){
+  $('.resetBtn').on('click', function(){
   document.location.reload(true);
   })
 
+  //Looping my background music
   myAudio = new Audio('./assets/audio/bgm.mp3')
   myAudio.addEventListener('ended', function() {
   this.currentTime = 0;
@@ -93,8 +93,8 @@ $(function(){
   $button.on('click' , function () {
     myAudio.play();
     timerWithAddRounds()
-    $(".btn1").hide()
-    $(".btn2").show()
+    $(".startBtn").hide()
+    $(".resetBtn").show()
 
   $body.on('keydown', (e) => {
 
@@ -109,7 +109,7 @@ $(function(){
     var strOfKeys = e.which - 12 //Player one's key stroke
     var strOfKeys1 = e.which    //Player two's key stroke
 
-    // Bind keys with different images for player 1
+    // Set keys with different images for player 1
     if(strOfKeys === 37) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("./assets/images/player1_1.png")`);
@@ -131,7 +131,7 @@ $(function(){
     new Audio('./assets/audio/sound4.mp3').play()
     }
 
-    // Bind keys with different images for player 2
+    // Set keys with different images for player 2
     if(strOfKeys === 25) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_1.png")`);
@@ -154,59 +154,52 @@ $(function(){
     }
 
   //Check Player 1's match with randomized array
-
-  if(strOfKeys === randSequence[counter1]) {
-    console.log('correct P1')
-    counter1++
-    if(counter1 === 4 && rounds === 1) {
-      // alert(`Player 1 passed round ${rounds}`)
+  if(strOfKeys === randSequence[counterP1]) {
+    counterP1++
+    if(counterP1 === 4 && rounds === 1) {
       $(".playerOneAlert2").html("O").show().delay(2000).fadeOut(1000)
       $(".playerOneAlert2").css({"color" : "green", "font-size" : "50px"})
-      counter1 = 0
+      counterP1 = 0
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
       new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
-    if(counter1 === 8 && rounds === 2) {
-      // alert(`Player 1 passed round ${rounds}`)
+    if(counterP1 === 8 && rounds === 2) {
       $(".playerOneAlert2").html("O").show().delay(2000).fadeOut(1000)
       $(".playerOneAlert2").css({"color" : "green", "font-size" : "50px"})
-      counter1 = 0
+      counterP1 = 0
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
       new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
-    if(counter1 === 16 && rounds === 3) {
-      // alert(`Player 1 passed round ${rounds}`)
+    if(counterP1 === 16 && rounds === 3) {
       $(".playerOneAlert2").html("O").show().delay(2000).fadeOut(1000)
       $(".playerOneAlert2").css({"color" : "green", "font-size" : "50px"})
-      counter1 = 0
+      counterP1 = 0
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
       new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
-    if(counter1 === 32 && rounds === 4) {
-      // alert(`Player 1 passed round ${rounds}`)
+    if(counterP1 === 32 && rounds === 4) {
       $(".playerOneAlert2").html("O").show().delay(2000).fadeOut(1000)
       $(".playerOneAlert2").css({"color" : "green", "font-size" : "50px"})
-      counter1 = 0
+      counterP1 = 0
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
       new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
-    if(counter1 === 64 && rounds === 5) {
-      // alert(`Player 1 passed round ${rounds}`)
+    if(counterP1 === 64 && rounds === 5) {
       $(".playerOneAlert2").html("X").show().delay(2000).fadeOut(1000)
       $(".playerOneAlert2").css({"color" : "green", "font-size" : "50px"})
-      counter1 = 0
+      counterP1 = 0
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
@@ -217,62 +210,61 @@ $(function(){
         $(".playerOneAlert2").css({"color" : "blue", "font-size" : "50px"})
       }
     }
-  } else if (strOfKeys !== randSequence[counter1] && whichPlayer === 1) {
-     console.log('Invalid move! P1')
+  }
+  else if (strOfKeys !== randSequence[counterP1] && whichPlayer === 1) {
      $(".playerOneAlert2").html("X").show().delay(400).fadeOut(400)
      $(".playerOneAlert2").css({"color" : "red", "font-size" : "50px"})
      new Audio('./assets/audio/boo.mp3').play()
-     counter1 = 0
+     counterP1 = 0
   }
 
  //Check Player 2's match with randomized array
- if(strOfKeys1 === randSequence[counter2]) {
-   console.log('correct P2')
-   counter2++
-   if(counter2 === 4 && rounds === 1) {
+ if(strOfKeys1 === randSequence[counterP2]) {
+   counterP2++
+   if(counterP2 === 4 && rounds === 1) {
      $(".playerTwoAlert2").html("O").show().delay(2000).fadeOut(1000)
      $(".playerTwoAlert2").css({"color" : "green", "font-size" : "50px"})
-     counter2 = 0
+     counterP2 = 0
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
      new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
-   if(counter2 === 8 && rounds === 2) {
+   if(counterP2 === 8 && rounds === 2) {
      $(".playerTwoAlert2").html("O").show().delay(2000).fadeOut(1000)
      $(".playerTwoAlert2").css({"color" : "green", "font-size" : "50px"})
-     counter2 = 0
+     counterP2 = 0
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
      new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
-   if(counter2 === 16 && rounds === 3) {
+   if(counterP2 === 16 && rounds === 3) {
      $(".playerTwoAlert2").html("O").show().delay(2000).fadeOut(1000)
      $(".playerTwoAlert2").css({"color" : "green", "font-size" : "50px"})
-     counter2 = 0
+     counterP2 = 0
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
      new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
-   if(counter2 === 32 && rounds === 4) {
+   if(counterP2 === 32 && rounds === 4) {
      $(".playerTwoAlert2").html("O").show().delay(2000).fadeOut(1000)
      $(".playerTwoAlert2").css({"color" : "green", "font-size" : "50px"})
-     counter2 = 0
+     counterP2 = 0
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
      new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
-   if(counter2 === 64 && rounds === 5) {
+   if(counterP2 === 64 && rounds === 5) {
      $(".playerTwoAlert2").html("O").show().delay(2000).fadeOut(1000)
      $(".playerTwoAlert2").css({"color" : "green", "font-size" : "50px"})
-     counter2 = 0
+     counterP2 = 0
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
@@ -284,12 +276,11 @@ $(function(){
      }
    }
   }
-  else if (strOfKeys !== randSequence[counter1] && whichPlayer === 2) {
-    console.log('Invalid move! P2')
+  else if (strOfKeys !== randSequence[counterP1] && whichPlayer === 2) {
     $(".playerTwoAlert2").html("X").show().delay(400).fadeOut(400)
     $(".playerTwoAlert2").css({"color" : "red", "font-size" : "50px"})
     new Audio('./assets/audio/boo.mp3').play()
-    counter2 = 0
+    counterP2 = 0
 }
 
 
