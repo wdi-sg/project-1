@@ -39,10 +39,10 @@ $(function(){
 
   function instructorDance () {
     var instructorMovesPic = [
-      { number: 37, image: 'url("../images/instructor_1.png")' },
-      { number: 38, image: 'url("../images/instructor_2.png")' },
-      { number: 39, image: 'url("../images/instructor_3.png")' },
-      { number: 40, image: 'url("../images/instructor_4.png")' }
+      { number: 37, image: 'url("./assets/instructor_1.png")' },
+      { number: 38, image: 'url("./assets/instructor_2.png")' },
+      { number: 39, image: 'url("./assets/instructor_3.png")' },
+      { number: 40, image: 'url("./assets/instructor_4.png")' }
     ];
     $('.instructorDiv').addClass("move");
     var timeoutInterval = 1000
@@ -112,44 +112,44 @@ $(function(){
     // Bind keys with different images for player 1
     if(strOfKeys === 37) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("../images/player1_1.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/player1_1.png")`);
     new Audio('./assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 38) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("../images/player1_2.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/player1_2.png")`);
     new Audio('./assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 39) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("../images/player1_3.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/player1_3.png")`);
     new Audio('./assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 40) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("../images/player1_4.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/player1_4.png")`);
     new Audio('./assets/audio/sound4.mp3').play()
     }
 
     // Bind keys with different images for player 2
     if(strOfKeys === 25) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("../images/player1_1.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/player1_1.png")`);
     new Audio('../audio/sound1.mp3').play()
     }
     if(strOfKeys === 26) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("../images/player1_2.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/player1_2.png")`);
     new Audio('../audio/sound2.mp3').play()
     }
     if(strOfKeys === 27) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("../images/player1_3.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/player1_3.png")`);
     new Audio('../audio/sound3.mp3').play()
     }
     if(strOfKeys === 28) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("../images/player1_4.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/player1_4.png")`);
     new Audio('../audio/sound4.mp3').play()
     }
 
