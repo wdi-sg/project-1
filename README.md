@@ -32,13 +32,6 @@ Below is a code snippet:
 
 ``` javascript
 function loadAssets (tileSet) {
-  // creating pac-man and ghosts
-  var $pacMan = $('<div class="character" id="pac-man">')
-  var $ghostOne = $('<div class="character" id="ghost-one">')
-  var $ghostTwo = $('<div class="character" id="ghost-two">')
-  var $ghostThree = $('<div class="character" id="ghost-three">')
-  var $ghostFour = $('<div class="character" id="ghost-four">')
-
   // objects to store css properties for tiles
   var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid #303030' }
   var blueTile = { 'background-color': '#2D47DD', 'height': '28px', 'width': '28px', 'border': '1px solid #3366FF' }
@@ -48,12 +41,9 @@ function loadAssets (tileSet) {
   for (var i = 0; i < tileSet.length; i++) {
     // create new <div> for tiles and dots
     var $tile = $('<div class="tile">')
-
     // setting tile properties and adding characters
     switch (tileSet[i]) {
-      case 0:
-        var $dots = $('<div class="dots">') // only create dots if tile can contain one
-        $tile.css(blackTile).data('attr', 0).append($dots)
+      case 0: $tile.css(blackTile).data('attr', 0).append($('<div class="dots">'))
         break
       case 1: $tile.css(blueTile).data('attr', 1)
         break
@@ -61,15 +51,15 @@ function loadAssets (tileSet) {
         break
       case 3: $tile.css(blackTile).data('attr', 3)
         break
-      case 5: $tile.css(blackTile).data('attr', 5).append($ghostFour)
+      case 5: $tile.css(blackTile).data('attr', 5).append($('<div class="character" id="ghost-four">'))
         break
-      case 6: $tile.css(blackTile).data('attr', 6).append($ghostThree)
+      case 6: $tile.css(blackTile).data('attr', 6).append($('<div class="character" id="ghost-three">'))
         break
-      case 7: $tile.css(blackTile).data('attr', 7).append($ghostTwo)
+      case 7: $tile.css(blackTile).data('attr', 7).append($('<div class="character" id="ghost-two">'))
         break
-      case 8: $tile.css(yellowTile).data('attr', 8).append($ghostOne)
+      case 8: $tile.css(yellowTile).data('attr', 8).append($('<div class="character" id="ghost-one">'))
         break
-      case 9: $tile.css(blackTile).data('attr', 9).append($pacMan)
+      case 9: $tile.css(blackTile).data('attr', 9).append($('<div class="character" id="pac-man">'))
         break
     }
     $gameBoard.append($tile)
@@ -85,9 +75,7 @@ Below is a code snippet:
 
 ``` javascript
 function checkCollision () {
-  var $pacMan = $('#pac-man')
-  var $pacManTile = $pacMan.parent()
-
+  var $pacManTile = $('#pac-man').parent()
   // return true if pacman's parent tile contains any of the ghosts
   switch (true) {
     case ($pacManTile.has('#ghost-one').length > 0):
@@ -106,51 +94,42 @@ To move Pac Man through the grid, the game first gets the tile which Pac-Man is 
 Below are some code snippets:
 
 ``` javascript
+// start game after 3 seconds
 setTimeout(function () {
-  // Moving Pac Man
-  setInterval(function () { movePacMan() }, pacManSpeed)
+  // moving pacman
+  setInterval(function () { movePac() }, pacManSpeed)
   // switching directions
-  $body.on('keydown', (event) => { changeDirection(event) })
+  $body.on('keydown', (event) => { direction = changeDirection(event) })
   // moving ghost-one
-  setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+  setInterval(function () { patrolTopLeft($('#ghost-one')) }, ghostSpeed)
 }, 3000)
 
-// Moving Pac Man
-function movePacMan () {
+function pacTarget (direction) {
+  // using direction, target tile
+  var $pacManTile = $('#pac-man').parent()
+
   switch (direction) {
-    case 'left': movePacLeft()
-      break
-    case 'right': movePacRight()
-      break
-    case 'up': movePacUp()
-      break
-    case 'down': movePacDown()
-      break
+    case 'left': return $pacManTile.prev()
+    case 'right': return $pacManTile.next()
+    case 'up': return $pacManTile.prevAll().eq(18)
+    case 'down': return $pacManTile.nextAll().eq(18)
   }
 }
 
-// Move Left
-function movePacLeft () {
-  var $pacMan = $('#pac-man')
-  var $pacManTile = $pacMan.parent()
-  var $pacManLeft = $pacManTile.prev()
+function movePac () {
+  var targetTile = pacTarget(direction)
   // check if tile has dots
-  if ($pacManLeft.has('.dots').length > 0) eatAndChangeScore($pacManLeft)
+  if ($(targetTile).has('.dots').length > 0) eatAndChangeScore($(targetTile))
   // check if pac-man can move into tile
-  if ($pacManLeft.data('attr') !== 1 && $pacManLeft.data('attr') !== 8) $pacManLeft.append($pacMan)
+  if ($(targetTile).data('attr') !== 1 && $(targetTile).data('attr') !== 8) $(targetTile).append($('#pac-man'))
 }
 
-// Switching Directions
 function changeDirection (event) {
   switch (event.key) {
-    case 'ArrowUp': direction = 'up'
-      break
-    case 'ArrowRight': direction = 'right'
-      break
-    case 'ArrowDown': direction = 'down'
-      break
-    case 'ArrowLeft': direction = 'left'
-      break
+    case 'ArrowUp': return 'up'
+    case 'ArrowRight': return 'right'
+    case 'ArrowDown': return 'down'
+    case 'ArrowLeft': return 'left'
   }
 }
 ```
