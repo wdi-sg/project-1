@@ -7,6 +7,7 @@ $(function () {
   var cellColor = ""
   var matrix = 4
   var $cell = $('.cell')
+  var score = 0
 
 
 
@@ -24,6 +25,7 @@ $(function () {
         //populate cells in game logic
         // grid[i][j] = generateColor()
         grid[i].push(generateColor())
+
 
         //populate cells in css
         var pos = i +","+ j
@@ -66,13 +68,11 @@ $(function () {
     // $('.cell[data-position= "3,3"]').css('backgroundColor', grid[3][3])
     // grid[2][3] = "yellow"
     // $('.cell[data-position= "2,3"]').css('backgroundColor', grid[2][3])
-
-
     // console.log(grid)
     if (checkForMatches() < 3 ) restart()
   }
-  $cell.on('click', playerMatchCells)
 
+  $cell.on('click', playerMatchCells)
 
 
     function playerMatchCells() {
@@ -84,10 +84,12 @@ $(function () {
 
      if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
        checker.push([index1, index2,'h'])
+       score ++
      }
      if(grid[index1+2]) {
        if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2])  {
          checker.push([index1, index2,'v'])
+         score ++
        }
      }
 
@@ -118,6 +120,7 @@ $(function () {
 
      console.log(grid)
       replenishCells()
+
     }
 
    var checker = []
@@ -146,7 +149,7 @@ $(function () {
     //   return true
     // }
 
-    console.log (gameChecker.length)
+    //console.log (gameChecker.length)
     return gameChecker.length
 
 
@@ -217,8 +220,35 @@ $(function () {
     generateLevel()
   }
 
+  function resetAll() {
+    score = 0
+    restart()
+  }
+
+  function scoreboard() {
+    console.log(score)
+    $('h3').text('Score: ' + score)
+  }
+
+  function bgChanger(){
+
+    var r = Math.floor(Math.random() * 255)
+    var g = Math.floor(Math.random() * 255)
+    var b = Math.floor(Math.random() * 255)
+    var $body = $('body')
+    var bgColorArray = "rgb("+r+","+g+","+b+")"
+    console.log(bgColorArray)
+
+    $body.css('backgroundColor', bgColorArray)
+    //simple assignment => create random color within rbg
+    //2nd assignment => changing gradually
+  }
+
 
   generateLevel()
+  $('body').on('click', scoreboard)
+  $('button').on('click', resetAll)
+  setInterval(bgChanger,5000)
 
 
   //$cell.on('mouseover', highlight)
