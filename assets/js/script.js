@@ -13,7 +13,6 @@ var currentLevel
 // var lose = new Audio("/assets/sounds/lose.wav")
 // lose.loop = false
 // lose.play()
-// Audio.src = "/assets/sounds/lose.wav"
 $(function() {
   $('body').on('keydown',startClick)
   function startClick(e) { if (e.keyCode === 32) $('.start').click()}
