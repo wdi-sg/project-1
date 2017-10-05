@@ -31,9 +31,7 @@ $(function () {
   // var score = 0
 
   var player1Score = 0
-  // var player1Turns = 0
   var player2Score = 0
-  // var player2Turns = 0
   var currentPlayer = 1
 
   // game variables
@@ -53,11 +51,11 @@ $(function () {
     $start.hide()
 
     $('.card').removeClass('avoid-clicks')
-    timer()
     var player1Name = prompt("What's Player 1's name?")
     var player2Name = prompt("What's Player 2's name?")
     $('.player1').text(player1Name)
     $('.player2').text(player2Name)
+    timer()
   })
 
   $memoryBoard.on('click', '.card', function () {
