@@ -1,6 +1,6 @@
 # Star Power !
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Star Catching
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Star Power !
 
 
 ### Overview
@@ -11,47 +11,17 @@
 
 Simple side scroller game
 
-Once a year, on a special day, special **Cloud Flowers** breeze through the skies. littering precious flowers of sorts over the lands. Collect those flowers to auction them off at the upcoming **MEGA FLOWER BAZZAR**. The more flowers collected, the more gold can be gained. Think about the children at the orphanage.
+It's that time of the year again, special **Stars** are falling through the skies. littering precious stars of sorts over the lands. Collect these special stars to auction them off at the upcoming **MEGA STAR BAZZAR**. The more stars collected, the more gold can be gained. Think about the children at the orphanage.
 
-**Player** will be moving across screen collecting flowers fallen from the sky, each flower has a different value. Collect as much flowers as humanly possible to earn points! But watch out for the pesky **humming bird**, they are here to steal your flowers away!
+**Player** will be moving across screen collecting stars fallen from the sky, each star has a different score. Collect as much stars as humanly possible to earn points! But watch out for the pesky **7 month cat ghost**, they are here to steal your stars away, they can't resist shiny stuff.
 
-**TL;DR** Collect flowers and avoid birds.
+**TL;DR** Collect stars and avoid cat ghost.
 
 ---
 
 ---
 
 ### Technical Codes
-
-###### Codes:
-
-* **collision**
-
-```
-var rect1 = {x: 5, y: 5, width: 50, height: 50}
-var rect2 = {x: 20, y: 10, width: 10, height: 10}
-
-if (rect1.x < rect2.x + rect2.width &&
-   rect1.x + rect1.width > rect2.x &&
-   rect1.y < rect2.y + rect2.height &&
-   rect1.height + rect1.y > rect2.y) {
-    // collision detected!
-}
-
-// filling in the values =>
-
-if (5 < 30 &&
-    55 > 20 &&
-    5 < 20 &&
-    55 > 10) {
-    // collision detected!
-}
-```
-
-* to calculate **score** when flowers collides with player HitBox.
-* Flower falls downwards in a straight line.
-* < more to come >
-*
 ```
 
                         ."      _.---_
@@ -68,10 +38,33 @@ _-==//==-.|| || _---_    .     -      .-==-.   .-._
 //                 
 .
 ```
-* **Deploy your game online**, where the rest of the world can access it
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-*
 
+###### Codes:
+
+* **Flower**
+
+Here I created a constructor with the purpose to create flowers of different properties. Each time a flower is create, it will have a particular set of properties that is unique to one of the 5 classes created. In here I use (this) to bind the values needed to each flower created at the interval.
+
+* **fall**
+```
+fall () {
+  var position = this.element.position()
+  this.element.css('top', position.top + this.speed)
+  if (position.top > '600') {
+    this.element.remove()
+  }
+}
+```
+Here I am making the fall effect, coming from the top of the game screen, then removing them when they hit a certain height. This will stop them from falling all the way down the page.
+
+* **leaderBoard**
+```
+var highScoreArr = JSON.parse(localStorage.getItem('HighScore'))
+  highScoreArr.sort((a, b) => b - a)
+var storage = window.localStorage
+
+
+```
 ---
 
 ---
