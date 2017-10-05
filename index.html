@@ -2,10 +2,56 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Basic Pac-Man</title>
+    <link href="./assets/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="./assets/css/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+      <h1>Basic Pac-Man</h1>
+      <div class="window">
+        <div class="game-board">
+          <div class="instruction-panel">
+            <h2>Instructions</h2>
+            <p>
+              Navigate Pac-Man through a maze of Pac-Dots.<br>
+              The goal of the game is to consume all the Pac-Dots.<br>
+              If any of the ghosts touch Pac-Man, he loses a life.<br>
+              when all lives have been lost, the game ends.<br>
+              <strong>Change Directions</strong><br>
+              <span>
+                Arrow-Left '&#9664' : Move 'Left'<br>
+                Arrow-Right '&#9654' : Move 'Right'<br>
+                Arrow-Up '&#9650' : Move 'Up'<br>
+                Arrow-Down '&#9660' : Move 'Down'
+              </span>
+            </p>
+            <p class="hit-enter">Hit &lt Enter &gt to begin</p>
+          </div> <!-- instruction-panel -->
+          <div class="win-panel">
+            <h3>You Win!</h3>
+            <h3 class="score">Score: 0</h3>
+            <p class="hit-enter">Hit &lt Space &gt to play again</p>
+          </div> <!-- win-panel -->
+          <div class="lose-panel">
+            <h3>You Lose!</h3>
+            <h3 class="score">Score: 0</h3>
+            <p class="hit-enter">Hit &lt Space &gt to try again</p>
+          </div> <!-- lose-panel -->
+        </div> <!-- game-board -->
+        <div class="score-board">
+          <h3 class="score">Score: 0</h3>
+          <div class="lives-container">
+            <h3 id="live">Lives:</h3>
+            <div class="lives"></div>
+            <div class="lives"></div>
+            <div class="lives"></div>
+          </div>
+        </div> <!-- score-board -->
+      </div> <!-- window -->
+    </div> <!-- container -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>

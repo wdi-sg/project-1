@@ -1,96 +1,187 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# **Basic Pac-Man**
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+<img src="/assets/images/flowchart.png" alt="flowchart.png" title="Project Flowchart" width="900">
 
-### Overview
+## Overview
 
-Let's start out with something fun - **a game!**
+This is a simplified version of Pac Man.
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+The player controls Pac-Man through a maze of various dots, as well as four multi-coloured ghosts. The goal of the game is to consume all the dots. The four ghosts roam the maze, trying to kill Pac-Man. If any of the ghosts touch Pac-Man, he loses a life; when all lives have been lost, the game ends.
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+## Instructions
 
++ Arrow-Left '◀' : Move 'Left'
++ Arrow-Right '▶' : Move 'Right'
++ Arrow-Up '▲' : Move 'Up'
++ Arrow-Down '▼' : Move 'Down'
 
----
+## [▶ Click Here to Play Game ◀](https://koozy0.github.io/project-1/)
 
-### Technical Requirements
+## Considerations
 
-Your app must:
++ Grid-style layout VS open game board while actively checking for collision at set intervals.
++ Since game board is reasonably small, a grid-style layout is used to reduce the amount of resources consumed by the game
++ Constantly checking for collision against all elements VS checking if the target tile is valid at the point of movement.
++ Also makes generating the game assets easier.
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+## Loading Game Assets
 
----
+A 19x18 array containing numbers between 0 - 9 is used to generate the game board. Each number denotes which assets to generate as well as mark out the location of the Pac-Dots, Pac Man and the four Ghosts. A loop is used to go through the array and generate the game assets.
 
-### Necessary Deliverables
+Below is a code snippet:
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+``` javascript
+function loadAssets (tileSet) {
+  // objects to store css properties for tiles
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid #303030' }
+  var blueTile = { 'background-color': '#2D47DD', 'height': '28px', 'width': '28px', 'border': '1px solid #3366FF' }
+  var yellowTile = { 'background-color': '#FFCC00', 'height': '5px', 'width': '30px' }
 
----
+  // loop through tileSet array and generate map as well as load characters
+  for (var i = 0; i < tileSet.length; i++) {
+    // create new <div> for tiles and dots
+    var $tile = $('<div class="tile">')
+    // setting tile properties and adding characters
+    switch (tileSet[i]) {
+      case 0: $tile.css(blackTile).data('attr', 0).append($('<div class="dots">'))
+        break
+      case 1: $tile.css(blueTile).data('attr', 1)
+        break
+      case 2: $tile.css(blackTile).data('attr', 2)
+        break
+      case 5: $tile.css(blackTile).data('attr', 5).append($('<div class="character" id="ghost-four">'))
+        break
+      case 6: $tile.css(blackTile).data('attr', 6).append($('<div class="character" id="ghost-three">'))
+        break
+      case 7: $tile.css(blackTile).data('attr', 7).append($('<div class="character" id="ghost-two">'))
+        break
+      case 8: $tile.css(yellowTile).data('attr', 8).append($('<div class="character" id="ghost-one">'))
+        break
+      case 9: $tile.css(blackTile).data('attr', 9).append($('<div class="character" id="pac-man">'))
+        break
+    }
+    $gameBoard.append($tile)
+  }
+}
+```
 
-### Suggested Ways to Get Started
+## Collision Logic
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+Basic Pac Man is created with a grid-style layout. No collision algorithms are used. Each individual tile has it's own data attribute, denoting whether it is a tile which the 5 characters can enter. Checking whether Pac Man touches any of the four Ghosts is a simple check for whether any of other elements inhabit the same tile as Pac Man or his target tile. Checking whether Pac Man touches any of the Pac-Dots is a check for whether Pac Man inhabits the same tile as the Pac-Dots.
 
----
+Below is a code snippet:
 
-### Potential Project Ideas
+``` javascript
+function checkCollision () {
+  var $pacManTile = $('#pac-man').parent()
+  var targetTile = pacTarget(direction)
+  // return true if pacman's parent tile or pacman's target tile contains any of the ghosts
+  switch (true) {
+    case ($pacManTile.has('#ghost-one, #ghost-two, #ghost-three, #ghost-four').length > 0):
+    case ($(targetTile).has('#ghost-one, #ghost-two, #ghost-three, #ghost-four').length > 0):
+      return true
+  }
+}
+```
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+## Moving Pac-Man
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+To move Pac Man through the grid, the game first gets the tile which Pac-Man is inhabiting. Depending on which tile Pac Man is trying to move into, the game then gets the target tile and checks it's data attribute to determine if the tile selected is a valid tile. Event handlers are used to change Pac Man's direction depending on which ArrowKey is hit.
 
----
+Below are some code snippets:
 
-### Useful Resources
+``` javascript
+// start game after 3 seconds
+setTimeout(function () {
+  // moving pacman
+  setInterval(function () { movePac() }, pacManSpeed)
+  // switching directions
+  $body.on('keydown', (event) => { direction = changeDirection(event) })
+  // moving ghost-one
+  setInterval(function () { patrolTopLeft($('#ghost-one')) }, ghostSpeed)
+}, 3000)
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+function pacTarget (direction) {
+  // using direction, target tile
+  var $pacManTile = $('#pac-man').parent()
 
----
+  switch (direction) {
+    case 'left': return $pacManTile.prev()
+    case 'right': return $pacManTile.next()
+    case 'up': return $pacManTile.prevAll().eq(18)
+    case 'down': return $pacManTile.nextAll().eq(18)
+  }
+}
 
-### Project Feedback + Evaluation
+function movePac () {
+  var targetTile = pacTarget(direction)
+  // check if tile has dots
+  if ($(targetTile).has('.dots').length > 0) eatAndChangeScore($(targetTile))
+  // check if pac-man can move into tile
+  if ($(targetTile).data('attr') !== 1 && $(targetTile).data('attr') !== 8) $(targetTile).append($('#pac-man'))
+}
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+function changeDirection (event) {
+  switch (event.key) {
+    case 'ArrowUp': return 'up'
+    case 'ArrowRight': return 'right'
+    case 'ArrowDown': return 'down'
+    case 'ArrowLeft': return 'left'
+  }
+}
+```
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+## Ghosts Movement
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+Ghosts movement use the same logic as Pac Man. Initial parent tile of the ghost is captured, then the target tile is evaluated if it is a viable tile.
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+However, ghosts movement has to be automated. Four separate patrol functions were created and assigned to each of the four ghosts.
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+Below are some code snippets:
 
-* __Total__: Your instructors will give you a total score on your project between:
+``` javascript
+// Ghost Variables
+var ghostSpeed = 400
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+// moving ghost-two after 6 seconds
+setTimeout(function () { setInterval(function () { patrolTopRight($('#ghost-two')) }, ghostSpeed) }, 6000)
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+// ghost-two variables
+var prevDirTwo = []
+
+function patrolTopRight ($ghost) {
+  var $ghostTile = $ghost.parent()
+  var $ghostUp = $ghostTile.prevAll().eq(18)
+  var $ghostLeft = $ghostTile.prev()
+  var $ghostRight = $ghostTile.next()
+  var $ghostDown = $ghostTile.nextAll().eq(18)
+
+  if ($ghostUp.data('attr') !== 1 && prevDirTwo[0] !== 'down' && prevDirTwo[1] !== 'down') {
+    prevDirTwo.push('up')
+    $ghostUp.append($ghost)
+  } else if ($ghostRight.data('attr') !== 1 && prevDirTwo[0] !== 'left' && prevDirTwo[1] !== 'left') {
+    $ghostRight.append($ghost)
+    prevDirTwo.push('right')
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirTwo[0] !== 'right' && prevDirTwo[1] !== 'right') {
+    prevDirTwo.push('left')
+    $ghostLeft.append($ghost)
+  } else if ($ghostDown.data('attr') !== 1 && prevDirTwo[0] !== 'up' && prevDirTwo[1] !== 'up') {
+    prevDirTwo.push('down')
+    $ghostDown.append($ghost)
+  }
+  // shift entire array left by one element (keeps array 2 elements long)
+  if (prevDirTwo.length > 2) prevDirTwo.shift()
+}
+```
+
+## Reflections
+
++ Creating a character class which stores the position of the character's parent tile, a method to get and store the four adjacent tiles and an array variable to store the ghosts' last two moves will reduce the amount of code repetition and global variables.
++ Ghosts movement is overly simple. Two movement modes were originally planned: Scatter and Chase. Scatter is the current patrol mode, while chase will cause the ghosts to actively track and chase Pac Man. The Ghosts were to switch between the two modes at every fixed interval.
++ Plan further ahead. Some features were not implemented due to time constraints (Proper restart function, Ghosts Chase mode, Power Pellets).
+
+## Resources
+
++ [Get dynamically added element by data attribute using jQuery](https://stackoverflow.com/questions/31402103/how-to-find-dynamically-added-element-by-data-attribute-using-jquery)
++ [Ghost Behaviour](http://gameinternals.com/post/2072558330/understanding-pac-man-ghost-behavior)
++ [Font](https://fonts.googleapis.com/css?family=Bungee)
