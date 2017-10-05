@@ -23,6 +23,7 @@ body {
   font-family: "Press Start 2P";
   background-image: url("../images/sailormoonTile.png");
   background-repeat: repeat;
+  margin: 0 auto;
 }
 
 
