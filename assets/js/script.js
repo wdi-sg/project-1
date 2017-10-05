@@ -15,6 +15,7 @@ const $houseDiv = $("<div class='house'>")
 const $house = $(".house")
 const $houseHp = $('<div class="houseHp">')
 const $houseHpBar = $('<div class="houseHpBar">')
+const $cowDiv = $("<div>")
 const catMeow = new Audio("./assets/audio/catMeow.mp3")
 const fireball = new Audio("./assets/audio/catMeow.mp3")
 const introMusic = new Audio("./assets/audio/spring.mp3")
@@ -392,20 +393,22 @@ let player = new Character(
   0
 )
 
-// const generateCow = () => {
-//   //to be implemented
-//   let id = Math.floor(Math.random() * 100000)
-//   let sizeX = 60
-//   let sizeY = 90
-//   let spdX = Math.random() * 2.5
-//   let spdY = Math.random() * 2.5
-//   let x = 150
-//   let y = 150
-//
-//   petList[id] = new Character("cow", id, sizeX, sizeY, spdX, spdY, 0, x, y)
-//
-//   petList[id].addChar()
-// }
+const generateCow = () => {
+  $cowDiv.addClass("cow1") //static cow used
+  $gameBoard.append($cowDiv)
+  //moving cow to be implemented
+  //   let id = Math.floor(Math.random() * 100000)
+  //   let sizeX = 60
+  //   let sizeY = 90
+  //   let spdX = Math.random() * 2.5
+  //   let spdY = Math.random() * 2.5
+  //   let x = 150
+  //   let y = 150
+  //
+  //   petList[id] = new Character("cow", id, sizeX, sizeY, spdX, spdY, 0, x, y)
+  //
+  // petList[id].addChar()
+}
 
 const generateCat = () => {
   let id = Math.floor(Math.random() * 100000)
@@ -659,7 +662,7 @@ $(function() {
       generateUpgrade()
       generateCat()
       generateEnemy()
-      // generateCow()
+      generateCow()
       $levelText.text("Level 1")
       gameCounter = 0
       pause = false
@@ -748,6 +751,7 @@ $(function() {
     //to do: clear interval after enemy delete
   }, 2000)
 
+  //update --------------------------------------------------------------
   const update = () => {
     if (pause === true) return
     if (gameStatus === "won") {
@@ -760,6 +764,13 @@ $(function() {
     $score.text(`Score: ${Math.floor(score)}`)
     player.moveChar()
     fightMusic.play()
+
+    //Temp solution to animate cow
+    if (gameCounter % 30 === 0) {
+      if ($cowDiv.attr("class") === "cow1") {
+        $cowDiv.attr("class", "cow2")
+      } else $cowDiv.attr("class", "cow1")
+    }
 
     spawnEnemy()
     for (key in enemyList) {

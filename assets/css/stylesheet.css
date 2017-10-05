@@ -74,9 +74,18 @@ button {
 
 .scoreDiv {
   display: inline-block;
-  /*float: right;*/
 }
 
-.footer {
-  height: 40px;
+.cow1 {
+  background: url("../images/cow1.png");
+  width: 80px;
+  height: 80px;
+  background-size: 100%;
+}
+
+.cow2 {
+  background: url("../images/cow2.png");
+  width: 80px;
+  height: 80px;
+  background-size: 100%;
 }
