@@ -1,13 +1,18 @@
 # Food Memory Game
 
-<img src="/assets/img/gameflowchart.png" border = 2px solid black>
 
 ## Project #1: The Game
+
+### **Flowchart**
+<img src="/assets/img/gameflowchart.png" border = 2px solid black>
 
 ### **Overview**
 Memory has long been a favourite game for all generations. Test your memory with Eat This - a memory card game for all those who have a strong desire to eat. This game requires a good knowledge of observation, concentration and a good memory to win. The objective of the game is to collect the most matching pairs. The game is designed so two players can play against each other and win by scoring higher than the other player.
 
 ### **Instructions**
+
+
+
 
 ### **Challenges**
 + How to make shuffle function
@@ -37,11 +42,14 @@ Memory has long been a favourite game for all generations. Test your memory with
   + Return true or false if game is over
 
 +
+### **Potential Improvements**
++ CSS reorganisation, reduce/increase the number of cards to fit well within one frame without scrolling
++ Animate card flips
++
 
-### **Daily Progress**
+### **External Libraries / Frameworks**
 
-### **Tech**
+[JQuery] (https://jquery.com/)
 
-This game was written with: jQuery
-
-<!-- ### **Resources** -->
+### **References**
+Shuffle Function: https://bost.ocks.org/mike/shuffle/
