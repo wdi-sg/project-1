@@ -3,7 +3,7 @@
 Read Me Contents
 -->
 
-# ![](http://kidsdentistrynyc.com/wp-content/uploads/2015/03/tooth.png)
+# ![](/assets/css/img/whiteteeth.png)
 
 
 
@@ -113,7 +113,7 @@ version 0.8.0:(4/10/2017) added:
 * increase grid to 5x5
 
 version 0.9.0: (5/10/2017) added:
-* end game screen 
+* end game screen
 
 current timing: checkGrid to removeElements(0)
 removeElements(removing 300) to pushdown(250) to generateElements (300) to checkGrid (300)
