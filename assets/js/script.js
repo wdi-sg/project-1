@@ -14,7 +14,7 @@ const $houseDiv = $("<div class='house'>")
 const $house = $(".house")
 const $houseHp = $('<div class="houseHp">')
 const $houseHpBar = $('<div class="houseHpBar">')
-const catMeow = new Audio("/assets/audio/catMeow.mp3")
+const catMeow = new Audio("./assets/audio/catMeow.mp3")
 const $startGame = $(".startGame")
 let level = 1
 let enemyList = []
@@ -80,7 +80,7 @@ class Character {
     if (this.type === "player") {
       this.jTarget.css({
         // border: "3px solid green" //update to actual sprite
-        background: `url("/assets/images/playerRed1.png")`,
+        background: `url("./assets/images/playerRed1.png")`,
         backgroundPosition: "0 -190px",
         backgroundSize: `350%`
       })
@@ -89,7 +89,7 @@ class Character {
     if (this.type === "enemy") {
       this.jTarget.css({
         // border: "3px solid red", //update to actual sprite
-        background: `url("/assets/images/onionFace2.png")`,
+        background: `url("./assets/images/onionFace2.png")`,
         backgroundPosition: `0px -200px`,
         backgroundSize: "350%"
       })
@@ -98,14 +98,14 @@ class Character {
     if (this.type === "upgrade") {
       this.jTarget.css({
         // border: "3px solid green" //update to actual sprite
-        background: `url("/assets/images/health.png")`,
+        background: `url("./assets/images/health.png")`,
         backgroundSize: "100%"
       })
     }
 
     if (this.type === "cow") {
       this.jTarget.css({
-        background: 'url("/assets/images/cow.png")'
+        background: 'url("./assets/images/cow.png")'
       })
     }
 
@@ -113,19 +113,19 @@ class Character {
       let randomCat = Math.random()
       if (randomCat < 0.333) {
         this.jTarget.css({
-          background: `url("/assets/images/weilisCat1.png")`,
+          background: `url("./assets/images/weilisCat1.png")`,
           backgroundPosition: `0px -200px`,
           backgroundSize: "450%"
         })
       } else if (randomCat > 0.333 && randomCat < 0.666) {
         this.jTarget.css({
-          background: `url("/assets/images/weilisCat2.png")`,
+          background: `url("./assets/images/weilisCat2.png")`,
           backgroundPosition: `0px -200px`,
           backgroundSize: "450%"
         })
       } else
         this.jTarget.css({
-          background: `url("/assets/images/weilisCat3.png")`,
+          background: `url("./assets/images/weilisCat3.png")`,
           backgroundPosition: `0px -200px`,
           backgroundSize: "450%"
         })
@@ -137,14 +137,14 @@ class Character {
           // border: "3px solid black", //update to actual sprite
           // borderRadius: "50%"
 
-          background: `url("/assets/images/fireballBlue.png")`,
+          background: `url("./assets/images/fireballBlue.png")`,
           backgroundPosition: `50px -45px`,
           // border: "3px solid black", //update to actual sprite
           backgroundSize: "200%"
         })
       } else {
         this.jTarget.css({
-          background: `url("/assets/images/fireball.png")`,
+          background: `url("./assets/images/fireball.png")`,
           backgroundPosition: `50px -45px`,
           // border: "3px solid black", //update to actual sprite
           backgroundSize: "200%"
@@ -671,7 +671,7 @@ $(function() {
   $restartBtn.on("click", restartGame) //restarts the game
 
   for (cat in petList) {
-    let catMeow = new Audio("/assets/audio/catMeow.mp3")
+    let catMeow = new Audio("./assets/audio/catMeow.mp3")
     if (petList[cat].type === "cat") {
       this.jTarget.on("click", catMeow.play())
     }
@@ -934,7 +934,7 @@ const winScreen = () => {
 const drawMap = level => {
   if (level === 1) {
     $gameBoard.css({
-      background: `url("/assets/images/spring.png")`,
+      background: `url("./assets/images/spring.png")`,
       display: "flex",
       "justify-content": "center",
       "align-items": "center",
