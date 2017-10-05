@@ -7,12 +7,19 @@ Read Me Contents
 ### Introduction
 ![](/assets/images/readme/Preview.png)
 
+What is **Whack A Mole**?
+
 Whack a mole is a **fast-action** mole whacking game. The mole **pop out** at random position. Each mole timeout is set to 9ms, WHACK it fast!
+
+https://pehhuishi.github.io/project-1/
 
 ### Instructions
 ![](/assets/images/readme/gameStarts.png)
 How to **WHACK** ?
-<br/>By clicking on the mole before the mole goes back into the ground. Each successful whack , 10 points awarded. Wrong target, 5 points will be deducted. To win, whack your way **FAST** within 30s.
+
+<br/>Click on the mole before it returns to the ground!
+Every whack gives you 10 points while every wrong hit to an empty hole reduces 5 points.
+There's a time limit of 30s so start whacking!
 
 ---
 
@@ -160,3 +167,15 @@ $('#reset').hide()
 ```
 
 ---
+
+### Challenges
+
+- Adding the mole to the specific hole.
+  Previously, I generated a random number and use a for loop to loop through the div(mole) length. To add mole images to my using their ID. But when it comes to removing the mole I cannot identify which mole I added first.
+
+- To calculate the score correctly
+  I used 2 onclick function at first. One for adding score and one for deducting score. It end up getting the wrong score even I click on the mole.
+
+- A timer for my game to end
+  I used the setInterval but my game will not end as expected.
+  As I am not sure how to use it. Went to google how to use the setInterval.
