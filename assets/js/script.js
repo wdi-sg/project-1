@@ -166,7 +166,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('../audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
     if(counter1 === 8 && rounds === 2) {
@@ -177,7 +177,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('../audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
     if(counter1 === 16 && rounds === 3) {
@@ -188,7 +188,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('../audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
     if(counter1 === 32 && rounds === 4) {
@@ -199,7 +199,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('../audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
     if(counter1 === 64 && rounds === 5) {
@@ -210,7 +210,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('../audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       if(scoreP1 >= 3){
         $playerOne.text(`Score: ${scoreP1}, Player 1 won!`)
         $(".playerOneAlert2").html("Winner!").show().delay(5000).fadeOut(400)
@@ -221,7 +221,7 @@ $(function(){
      console.log('Invalid move! P1')
      $(".playerOneAlert2").html("X").show().delay(400).fadeOut(400)
      $(".playerOneAlert2").css({"color" : "red", "font-size" : "50px"})
-     new Audio('../audio/boo.mp3').play()
+     new Audio('./assets/audio/boo.mp3').play()
      counter1 = 0
   }
 
@@ -236,7 +236,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('../audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 8 && rounds === 2) {
@@ -246,7 +246,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('../audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 16 && rounds === 3) {
@@ -256,7 +256,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('../audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 32 && rounds === 4) {
@@ -266,7 +266,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('../audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 64 && rounds === 5) {
@@ -276,7 +276,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('../audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      if(scoreP2 >= 3){
        $playerTwo.text(`Score: ${scoreP2}, Player 2 won!`)
        $(".playerTwoAlert2").html("Winner!").show().delay(5000).fadeOut(400)
@@ -288,7 +288,7 @@ $(function(){
     console.log('Invalid move! P2')
     $(".playerTwoAlert2").html("X").show().delay(400).fadeOut(400)
     $(".playerTwoAlert2").css({"color" : "red", "font-size" : "50px"})
-    new Audio('../audio/boo.mp3').play()
+    new Audio('./assets/audio/boo.mp3').play()
     counter2 = 0
 }
 
