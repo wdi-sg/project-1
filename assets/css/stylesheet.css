@@ -68,7 +68,7 @@ div {
 .container {
 width: 700px;
 height: 500px;
-background-image: url("./Images/background.jpeg");
+background-image: url("../../Images/background.jpeg");
 background-repeat: no-repeat;
 background-position: center;
 position: relative;
