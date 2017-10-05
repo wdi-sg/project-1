@@ -3,7 +3,7 @@ width: 1260px;
 height: 700px;
 margin: 0 auto;
 background-color: black;
-background-image: url("/assets/images/background1.jpg");
+background-image: url("./assets/images/background1.jpg");
 background-size:cover;
 }
 .dancebg{
@@ -63,7 +63,7 @@ body{
   height: 495px;
   margin-left: 240px;
   text-align: center;
-  background-image: url("/assets/images/stage.jpg");
+  background-image: url("./assets/images/stage.jpg");
   background-size:cover;
 }
 
@@ -174,16 +174,16 @@ div{
 }
 
 .player1{
-  background-image: url('/assets/images/player1_default.png')
+  background-image: url('./assets/images/player1_default.png')
 }
 
 .instructorPic{
-  background-image: url('/assets/images/instructor_default.png')
+  background-image: url('./assets/images/instructor_default.png')
 
 }
 
 .player2{
-  background-image: url('/assets/images/player1_default.png')
+  background-image: url('./assets/images/player1_default.png')
 }
 
 .move {

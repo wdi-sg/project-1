@@ -39,10 +39,10 @@ $(function(){
 
   function instructorDance () {
     var instructorMovesPic = [
-      { number: 37, image: 'url("/assets/images/instructor_1.png")' },
-      { number: 38, image: 'url("/assets/images/instructor_2.png")' },
-      { number: 39, image: 'url("/assets/images/instructor_3.png")' },
-      { number: 40, image: 'url("/assets/images/instructor_4.png")' }
+      { number: 37, image: 'url("./assets/images/instructor_1.png")' },
+      { number: 38, image: 'url("./assets/images/instructor_2.png")' },
+      { number: 39, image: 'url("./assets/images/instructor_3.png")' },
+      { number: 40, image: 'url("./assets/images/instructor_4.png")' }
     ];
     $('.instructorDiv').addClass("move");
     var timeoutInterval = 1000
@@ -84,7 +84,7 @@ $(function(){
   document.location.reload(true);
   })
 
-  myAudio = new Audio('/assets/audio/bgm.mp3')
+  myAudio = new Audio('./assets/audio/bgm.mp3')
   myAudio.addEventListener('ended', function() {
   this.currentTime = 0;
   this.play();
@@ -112,44 +112,44 @@ $(function(){
     // Bind keys with different images for player 1
     if(strOfKeys === 37) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_1.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/images/player1_1.png")`);
     new Audio('/assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 38) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_2.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/images/player1_2.png")`);
     new Audio('/assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 39) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_3.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/images/player1_3.png")`);
     new Audio('/assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 40) {
     $('.playerOneDiv').addClass("move");
-    $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_4.png")`);
+    $('.playerOneDiv').css('backgroundImage', `url("./assets/images/player1_4.png")`);
     new Audio('/assets/audio/sound4.mp3').play()
     }
 
     // Bind keys with different images for player 2
     if(strOfKeys === 25) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_1.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_1.png")`);
     new Audio('/assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 26) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_2.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_2.png")`);
     new Audio('/assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 27) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_3.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_3.png")`);
     new Audio('/assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 28) {
     $('.playerTwoDiv').addClass("move");
-    $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_4.png")`);
+    $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_4.png")`);
     new Audio('/assets/audio/sound4.mp3').play()
     }
 
@@ -199,7 +199,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('/assets/audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       timerWithAddRounds()
     }
     if(counter1 === 64 && rounds === 5) {
@@ -210,7 +210,7 @@ $(function(){
       rounds++
       scoreP1++
       $playerOne.text(`Score: ${scoreP1}`)
-      new Audio('/assets/audio/cheer.mp3').play()
+      new Audio('./assets/audio/cheer.mp3').play()
       if(scoreP1 >= 3){
         $playerOne.text(`Score: ${scoreP1}, Player 1 won!`)
         $(".playerOneAlert2").html("Winner!").show().delay(5000).fadeOut(400)
@@ -221,7 +221,7 @@ $(function(){
      console.log('Invalid move! P1')
      $(".playerOneAlert2").html("X").show().delay(400).fadeOut(400)
      $(".playerOneAlert2").css({"color" : "red", "font-size" : "50px"})
-     new Audio('/assets/audio/boo.mp3').play()
+     new Audio('./assets/audio/boo.mp3').play()
      counter1 = 0
   }
 
@@ -236,7 +236,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('/assets/audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 8 && rounds === 2) {
@@ -246,7 +246,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('/assets/audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 16 && rounds === 3) {
@@ -256,7 +256,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('/assets/audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 32 && rounds === 4) {
@@ -266,7 +266,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('/assets/audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      timerWithAddRounds()
    }
    if(counter2 === 64 && rounds === 5) {
@@ -276,7 +276,7 @@ $(function(){
      rounds++
      scoreP2++
      $playerTwo.text(`Score: ${scoreP2}`)
-     new Audio('/assets/audio/cheer.mp3').play()
+     new Audio('./assets/audio/cheer.mp3').play()
      if(scoreP2 >= 3){
        $playerTwo.text(`Score: ${scoreP2}, Player 2 won!`)
        $(".playerTwoAlert2").html("Winner!").show().delay(5000).fadeOut(400)
@@ -288,7 +288,7 @@ $(function(){
     console.log('Invalid move! P2')
     $(".playerTwoAlert2").html("X").show().delay(400).fadeOut(400)
     $(".playerTwoAlert2").css({"color" : "red", "font-size" : "50px"})
-    new Audio('/assets/audio/boo.mp3').play()
+    new Audio('./assets/audio/boo.mp3').play()
     counter2 = 0
 }
 
