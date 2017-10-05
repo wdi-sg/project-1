@@ -69,7 +69,7 @@ a {text-decoration: none }
 .reset {background-color: #2196F3;
 margin: 0 auto;
 display: block}
-.mute {display: inline-block;}
+.mute {display: block;}
 .reset:hover {background: #0b7dda}
 
 .goalBorder {
