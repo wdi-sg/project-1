@@ -5,98 +5,75 @@
 **Bandits** are trying to steal your harvest. You and your cow are getting distressed. Luckily for you, milk isn't the only thing you deliver. Defend your crop and **deliver sweet justice**.
 
 1. Play as a farmer, Johnny Wicklebottom.
-2. Plant crops and earn gold to survive the winter.
-3. As the crops grow, enemies appear. More crops, more enemies.
+2. Defend your farm against the OnionFace Bandit Gang.
+3. Survive them all to win.
 
-**Version 1:** Implement fight phase alone, with set enemies (no input from farm) per level
+![Introduction](/assets/images/introScreen2.png)
 
-**Version 2:** Implement farm phase
+
+
 
 ##### Gameplay
-The main challenge of this game is for the player to manage how many enemies the player want to engage for that level. Too many and the player will be overrun, too little and the player might run into gold problems for the next levels.
+The main challenge of this game is for the player to shoot the enemies while avoiding hit or getting his house damaged. The enemies keep spawning so defeat them fast to avoid beign overrun!
 
+
+### Controls
+
+![Instructions](/assets/images/controls.png)
 
 ---
 ### Game Flow
 
-##### Overall Flow
-![Overall Flow](/assets/images/overallFlow.png)
-
-##### 1st Phase - Planting (to be implemented in version 2)
-![Phase 1 Planting](/assets/images/plantingPhase.png)
-
-
-##### 2nd Phase - Defend (to be implemented in version 1)
-![Phase 2 Fight](/assets/images/fightPhase.png)
+![Gameflow](/assets/images/fightPhase.png)
 ---
 
 ### Technical Assets
 
-##### Player
-```
-Instance Properties {
-  Current gold
-  Current level
-  Planted crops {
-    Type
-  }
-}
+The update loop uses ```window.requestAnimationFrame()``` to update the game when not paused.
 
-Character {
-  Health
-  Current weapon
-  Available weapons
-}
+The ```Character``` class is used to create all game elements on the gameBoard.
 ```
-##### Weapons
-```
-Weapons {
-  Type
-  Projectile behaviour
-  Damage
-}
+class Character {
+  constructor(
+    type, //player, enemy, bullet, pet
+    id,
+    sizeX,
+    sizeY,
+    spdX, //movement speed
+    spdY,
+    hp,
+    x, //location on gameBoard
+    y,
+    atkSpd, //attack speed
+    bulletOwner, //who shot the bullet
+    aniFrame, //animation counter
+    aimAngle //bullet direction
+  )
+
+  addChar()
+  //adds the character element to the gameBoard
+
+  removeChar()
+  //removes the character element from the gameBoard
+
+  moveChar()
+  //moves and animates the character
+
+  shoot()
+  //Generates a bullet at the character's position
+  //Ghoots it to the aimAngle.
+  //All characters can shoot. Even pets and bullets.
 ```
 
-
-##### Enemies
-```
-Enemy {
-  Type
-  Health
-  Current Weapon
-  Behaviour/Pathing
-}
-```
-
-##### Crops
-```
-Properties {
-  Attractiveness
-  Gold cost to plant
-  Gold cost after harvest
-  Health
-}
-
-```
+The ```generateEnemy```, ```generateBullet```, ```generateUpgrade```, ```generateCat``` functions are used to create and call the ```Character```. class
 
 ##### Levels
 
-4 seasons, different gold required to survive
-```
-Version 1 {
-  level 1: 3 enemies
-  level 2: 5
-  level 3: 7
-  level 4: 3 + boss
-}
+3 Levels with varying enemy spawn rates base on a timer.
 
-Version 2 {
-  Spring : 500 //gold required to pass
-  Summer : 1000
-  Autumn : 2000
-  Winter : 3500
-}
-```
 ---
 
-Sprites from opengameart.org
+Sprites from:
+- opengameart.org
+- spriters-resource.com
+- charas-project.net

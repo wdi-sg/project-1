@@ -15,6 +15,7 @@ const $house = $(".house")
 const $houseHp = $('<div class="houseHp">')
 const $houseHpBar = $('<div class="houseHpBar">')
 const catMeow = new Audio("/assets/audio/catMeow.mp3")
+const $startGame = $(".startGame")
 let level = 1
 let enemyList = []
 let bulletList = []
@@ -96,8 +97,9 @@ class Character {
 
     if (this.type === "upgrade") {
       this.jTarget.css({
-        border: "3px solid green" //update to actual sprite
-        // background: `url("/assets/images/cat.png")`
+        // border: "3px solid green" //update to actual sprite
+        background: `url("/assets/images/health.png")`,
+        backgroundSize: "100%"
       })
     }
 
@@ -135,7 +137,7 @@ class Character {
           // border: "3px solid black", //update to actual sprite
           // borderRadius: "50%"
 
-          background: `url("/assets/images/fireball.png")`,
+          background: `url("/assets/images/fireballBlue.png")`,
           backgroundPosition: `50px -45px`,
           // border: "3px solid black", //update to actual sprite
           backgroundSize: "200%"
@@ -161,11 +163,7 @@ class Character {
       top: `${this.y}px`
     })
 
-    if (
-      this.type === "enemy" ||
-      this.type === "upgrade" ||
-      this.type === "cow"
-    ) {
+    if (this.type === "enemy") {
       this.x += this.spdX
       this.y += this.spdY
       if (this.spdX > 0) {
@@ -192,6 +190,13 @@ class Character {
       //enemy collision with border
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision y
+    }
+
+    if (this.type === "upgrade") {
+      this.x += this.spdX
+      this.y += this.spdY
+      if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
+      if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision
     }
 
     if (this.type === "cat") {
@@ -608,6 +613,10 @@ $(function() {
 
   const startGame = () => {
     if (player.hp <= 0) return
+
+    if ($startGame) {
+      $startGame.remove()
+    }
     if (pause === true) {
       drawMap(1)
       player.addChar()
@@ -623,6 +632,9 @@ $(function() {
   }
 
   const restartGame = () => {
+    if (pause === false) {
+      return
+    }
     for (key in enemyList) {
       enemyList[key].removeChar()
     }
@@ -638,6 +650,14 @@ $(function() {
 
     player.hp = 100
     house.hp = 100
+    $houseHpBar.css({
+      background: "#00ff00",
+      width: `${house.hp}px`,
+      border: "2px solid #00ff00"
+    })
+    $houseHp.css({
+      border: "2px solid black"
+    })
     score = 0
     gameCounter = 0
     enemyList = []
@@ -647,7 +667,7 @@ $(function() {
     startGame()
   }
 
-  $startBtn.on("click", startGame) //starts the game
+  $startGame.on("click", startGame) //starts the game
   $restartBtn.on("click", restartGame) //restarts the game
 
   for (cat in petList) {
@@ -692,7 +712,7 @@ $(function() {
   const update = () => {
     if (pause === true) return
     gameCounter++ // keeps track of time spent in game 60 fps
-    $score.text(`Score: ${Math.floor(score / 1)}`)
+    $score.text(`Score: ${Math.floor(score / 0.1)}`)
     player.moveChar()
 
     spawnEnemy()
@@ -743,7 +763,8 @@ $(function() {
     for (key in upgradeList) {
       upgradeList[key].moveChar()
       if (checkCollision(upgradeList[key], player)) {
-        player.hp += 20 //player takes health on collision
+        player.hp += 10
+        //player takes health on collision
         // player.bulletMod++
         upgradeList[key].removeChar()
         upgradeList.splice(key, 1)
@@ -764,7 +785,7 @@ $(function() {
         bulletList[key].bulletOwner === "enemy"
       ) {
         // console.log("player hit!")
-        player.hp -= 5
+        player.hp -= 10
 
         player.jTarget.css({
           filter: "grayscale(1)"
@@ -828,7 +849,7 @@ $(function() {
           $houseHp.css({
             border: "2px solid black"
           })
-          house.hp--
+          house.hp -= 5
           checkDead()
         }
       }

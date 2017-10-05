@@ -8,12 +8,44 @@
   height: 730px;
 }
 
+.controls {
+  height: 400px;
+  width: 450px;
+  background: url("/assets/images/controls.png");
+  background-size: 100%;
+}
+
+.startGame {
+  display: inline-block;
+  padding: 0;
+  height: 60px;
+  width: 250px;
+  background: green;
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  font-size: 20px;
+}
+
+#startGame {
+  margin: 7px auto;
+}
+
+button {
+  margin-top: 20px;
+}
+
 .gameBoard {
   width: 800px;
   height: 630px;
   border: 3px solid black;
   position: absolute;
   display: inline-block;
+  background: url("/assets/images/introScreen2.png");
+  background-size: 103%;
+  background-repeat: no-repeat;
 }
 
 .info {
