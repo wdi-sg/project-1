@@ -125,7 +125,7 @@ class Character {
         })
       } else
         this.jTarget.css({
-          background: `url("./assets/images/weilisCat3.png")`,
+          background: `url("./assets/images/weilisCat4.png")`,
           backgroundPosition: `0px -200px`,
           backgroundSize: "450%"
         })
