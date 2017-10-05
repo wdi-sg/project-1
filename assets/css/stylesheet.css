@@ -1,6 +1,13 @@
 .container {
   display: flex;
   justify-content: left;
+  /*height: 100%;*/
+  /*background: url("../images/background.png");*/
+}
+
+body {
+  background: url("../images/background.png");
+  font-family: "Press Start 2P";
 }
 
 .gameWrapper {
@@ -18,7 +25,7 @@
 .startGame {
   display: inline-block;
   padding: 0;
-  height: 60px;
+  height: 90px;
   width: 250px;
   background: green;
   text-align: center;
