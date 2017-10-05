@@ -13,6 +13,16 @@ Challenge your patient level and let's create a whole new **high score** buddy!
 
 ---
 
+### Screen:
+
+![Image of flowchart](/images/startscreen.jpg)
+
+![Image of flowchart](/images/playscreen.jpg)
+
+![Image of flowchart](/images/gameoverscreen.jpg)
+
+---
+
 ### Technical logic
 
 The bird falls continuously, and when the user taps on spacebar or click on mouse, it 'jumps' a bit.
