@@ -107,7 +107,7 @@ var highscore = localStorage.getItem("highscore")
 // to reset highscore
 // localStorage.setItem("highscore", score);
 
-// load the sprites to the game
+// load the elements to the game layout
 function showSprites() {
   setPosition(player)
   setPosition(laser)
@@ -132,12 +132,12 @@ function showSprites() {
 function updatePosition() {
   // update position of enemy
   for (var i = 0; i < enemies.length; i++) {
-    enemies[i].y += getRandom(8)
+    enemies[i].y += getRandom(7)
     enemies[i].x += getRandom(7) - 3
     ensureBounds(enemies[i])
   }
   // adjust for the rate of speed of laser
-  laser.y -= 15
+  laser.y -= 25
 }
 
 // to keep the objects inside of the game map
@@ -164,7 +164,7 @@ function addEnemy() {
   for (var i = 0; i < enemies.length; i++) {
    if (iterations > 2000) {
      interval = 5
-     enemies[i].y += getRandom(50)
+     enemies[i].y += getRandom(35)
      enemies[i].x += getRandom(7) - 3
    } else if (iterations > 1500) {
      interval = 5
@@ -175,10 +175,11 @@ function addEnemy() {
      enemies[i].y += getRandom(18)
      enemies[i].x += getRandom(7) - 3
    } else if (iterations > 500) {
-     interval = 35
+     interval = 30
      enemies[i].y += getRandom(12)
      enemies[i].x += getRandom(7) - 3
    }
+   ensureBounds(enemies[i])
   //  console.log(iterations)
 }
   // this will create the random enemies that will be placed in an array
@@ -222,6 +223,7 @@ function checkCollision() {
         element.parentNode.removeChild(element);
         enemies.splice(i, 1);
         i--;
+        // console.log(element)
         laser.y = -laser.h // this ensures that it also gets deleted after hitting an enemy
         $('#laser').css('visibility', 'hidden')
         collideSound()
@@ -295,7 +297,7 @@ function gameOver() {
 
 // alert player if he gets new High Score
   // if (score > highscore)
-  //   alert("Good Job!!!!! NEW HIGH SCORE!!!")
+  //   alert("Good Job!!! NEW HIGH SCORE!!!")
   // else
   //   alert("Try Again!")
 }

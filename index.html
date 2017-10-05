@@ -9,25 +9,29 @@
 
     <div id="container">
 
-          <h2>My Space Invader</h1>
-          <h4><span onclick="$('#hidden').toggle(); return false">Instructions</span></h4>
+          <h1>My Space Invader</h1>
+          <h3><span onclick="$('#hidden').toggle(); return false">Instructions</span></h3>
           <p style="display:none;" id="hidden">My Space Invader Game
             is designed for players who likes to play a never ending game where you
             rack up points until the player dies.
-            The key to the game is to survive as long as possible
-            while getting points by shooting enemies
-            the longer you survive more enemies will spawn.
-            It's game over if one of the enemy sprite touches
-            the player sprite. You win by beating your previous score.<br><br>
+            The key to the game is to survive as long as possible by avoiding the enemies
+            while getting points by shooting enemies with the player's laser
+            the longer you survive the harder the game gets.
+            It's game over if one of the enemy collides with
+            the player. Try to get a higher score each time you play theres nothing better
+            than beating your own highscore and setting a new one.<br><br>
 
-            Player Controls : <br>  Move Player = Arrow Keys (←↑↓→) <br>   Fire Laser = Spacebar
-          </p>
+            Player Controls : <br>  Move Player = Arrow Keys (←↑↓→) <br>
+            Fire Laser = Spacebar <br><br>
+          <img src="/assets/img/ship.png"> : Player</img>
+          <img src="/assets/img/bullet.png"> : Laser</img>
+          <img src="/assets/img/enemy1.png"> : Enemy</img></p>
 
 
           <div id="background">
             <div id="player"></div>
             <div id="laser"></div>
-            <div id="start"><span onclick="start()">START</span></div>
+            <div id="start"><p><span onclick="start()">START</span></p></div>
 
             <div id="score"></div>
             <div id="highscore"></div>

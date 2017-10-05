@@ -5,7 +5,7 @@
 
 ### Overview
 
-  My Space Invader Game is designed for players who likes to play a never ending game where you rack up points until the player dies. The key to the game is to survive as long as possible while getting points by shooting enemies. The longer you survive more enemies will spawn and the faster they will get. It's game over if one of the enemy sprite touches the player sprite. Player wins by beating the previous score. It is a game that is inspired by the classic Space Invader game with a slight difference in gameplay.
+  My Space Invader Game is designed for players who likes to play a never ending game where you rack up points until the player dies. The key to the game is to survive as long as possible while getting points by shooting enemies. The longer you survive more enemies will spawn and the faster they will get. It's game over if one of the enemy sprite touches the player sprite. Player wins by beating the high score. It is a game that is inspired by the classic Space Invader game with a slight difference in gameplay.
 
 ### Game Instructions
 
