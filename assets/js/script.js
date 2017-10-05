@@ -16,13 +16,13 @@ var $start = $('#start')
 var toBeDeleteFinal =[]
 var $instructionBtn = $('.instructionBtn')
 var $instruction = $('.instruction')
+$instruction.hide()
 $(function(){
   var gameTimer = 0
   var settingMode = true
   var gameOver=false
   var gameOverCheck = 0
 
-  $instruction.hide()
 
 
   $instructionBtn.on('click',function(){
