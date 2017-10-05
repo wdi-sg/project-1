@@ -62,12 +62,8 @@ function locGen() {
     $('.box').css("backgroundColor","")
     return gameOver()//call gameover
   }
-  // console.log(count);
-  // console.log(index)
   $(`[data-value = ${index}]`).css("backgroundColor","")
   index = randomNum();
-  // console.log(index)
-  // $(this).data('value')
 
   setTimeout(function() {
     $(`[data-value = ${index}]`).css("backgroundColor",`${color}`)
@@ -76,7 +72,6 @@ function locGen() {
     recArr.push(index); //
     recCol.push(`${color}`) //
   }, 1000)
-  // $(this).css('backgroundColor', )
 }
 
 function randomColor () {
@@ -85,9 +80,7 @@ function randomColor () {
 }
 
 function compareResult () {
-  // console.log('check recArr:', recArr)
-  // console.log('check recArr[count]:', recArr[count - 1])
-  // console.log('check recArr[count - 1]:', recArr[count - 2])
+
   if (recArr[count - 1] === recArr[count - n]) {
     audioCorrect();
     scoreObj.score += 10;
@@ -114,7 +107,6 @@ function compareColor () {
 
 function randomNum () {
   var index = Math.floor(Math.random() * 8);
-  // console.log(index)
   return index;
 }
 
@@ -127,7 +119,6 @@ function gameOver () {
   recCol = [];
   scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   clearInterval(refreshIntervalId);
-  // gameOverDiv.css('visibility', 'visible')
   gameOverDiv.css('display', 'block')
 }
 

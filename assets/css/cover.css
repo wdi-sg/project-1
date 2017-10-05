@@ -6,10 +6,21 @@
 
 button {
   margin: 0 420px;
-  width: 200px;
-  height: 100px;
-  background-color: #4E4A59;
+  width: 201px;
+  height: 124px;
+  background-color: gold;
   font-family: helvetica, sans-serif;
-  font-size: 36px;
-  color:#7CAE7A;
+  font-size: 47px;
+  color: blue;
+  border-radius: 10px;
+  animation-name: blinker;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; color: blue;
+}
+
+@keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1.0; }
 }
