@@ -4,10 +4,13 @@ You are trapped in a chamber with a mummy. The mummy seemed to follow around the
 
  Your quest is to be able to exit the room before the mummy reaches you. Quick! Your Time is running out!
 
+Play it here
+https://thamjieying.github.io/project-1/
+
 
 Basic Layout
 ------------
-![Basic Layout](/img/basicLayout1.png "Grid Layout")
+<img src="./img/basicLayout2.png" width=300px>
 
 * 6X6 grid layout
 * Walls as barriers
@@ -17,7 +20,7 @@ Basic Layout
 
 
 ### Sample Game Layout
-![Sample Layout](/img/sampleLayout1.png "Sample Level")
+<img src="./img/sampleLayout1.png" width=300px>
 
 Instructions
 ---------
@@ -27,11 +30,11 @@ Reach the exit without being caught by the mummy
 ### Game Play
 1. Player Starts First
 2. Player gets to move by 1 grid in any direction
-![Player Moves](/img/playerMoves.png "Player Moves")
+<br><img src="./img/playerMoves.png" width=100px>
 3. Each move the player makes, the mummy moves towards the player by 2 moves towards the player
-![Mummy Moves](/img/mummyMoves.png "Mummy Moves")
+<img src="./img/mummyMoves.png" width=200px>
 4. The walls prevents the mummy from moving towards the player while the player moves towards the exit
-![blockage & exit](/img/barrierMoves.png "Blockage and Exit")
+<img src="./img/barrierMoves.png" width=200px>
 5. Once the player gets to the exit, the play is completed, Player proceeds to the next level.
 
 ### How does the mummy moves?
@@ -45,7 +48,7 @@ You can "trick" the mummy into walking into the barriers to buy you some "moves"
 Building the Game
 -----------------
 ### Flow Chart of the Game Logic
-![FlowChart](/img/flowChart.png "Game Logic")
+<img src="./img/flowChart.png">
 
 
 ### Placing the Barriers on the board
@@ -63,32 +66,99 @@ var map = [
 [4,0,0,0,0,2],
 [7,3,3,3,3,8]]
 ```
-Sample Level Board (with Barrier)
+
+### Initialisation of the Game
+Setting up the map and exit using a 2D array
+
 ```javascript
 var map = [
-[5,1,9,1,1,6],
-[4,0,6,0,3,2],
-[10,4,0,2,5,2],
-[4,3,0,0,3,2],
-[4,6,4,2,5,0],
-[7,3,3,3,3,8]]
-```
-### Checking Movement
+  [5,1,9,1,1,6],
+  [4,0,6,0,3,2],
+  [10,4,0,2,5,2],
+  [4,3,0,0,3,2],
+  [4,6,4,2,5,0],
+  [7,3,3,3,3,8]]
 
-###### left or Right
+var exit = [
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,0],
+  [0,0,0,0,0,2],
+  [0,0,0,0,0,0],
+  ]
+
+  ```
+
+  Setting the starting position of the player, mummy and the exit
+  ```javascript
+  var charX //x position of the player
+  var charY //y position of the player
+
+  var mumX //x position of the mummy
+  var mumY //y position of the mummy
+
+  var exitX //x position of the exit
+  var exitY //y position of the exit
+  ```
+
+### Checking Valid Movement
+#### Checking Blockage
+
+Using a switch case to check the tile corresponding each wall. The function returns a true if the movement is blocked and a false if the movement is allowed
+
+example: checking if moving up is valid
+```javascript
+function checkYBlockTop(x){
+  switch(x){
+    case 1://top blocked
+    case 5://top and left blocked
+    case 6://top and right blocked
+    case 9://top and bottom blocked
+    case 11:// top, left and right blocked
+    case 12:// top, right and bottom blocked
+    case 14:// top, left and bottom blocked
+      return true;//movement is blocked
+      break;
+    default:
+      return false;//movement is NOT blocked
+    }
+}
+```
+
+### Mummy's movement
+Mummy needs to get closer to the player. With the player's every move, it will move 2 step closer.
+
+We control's the mummy movement by first checking the relative position of the mummy to the player.
+* check relative x position
+* move horizontally(if possible)
+* check relative y position
+* move vertically (if possible)
+* if both mummy and player are in the same position, this means that it has reached the end of the game.
+
+###### Deciding to move left or Right
 Mummy (x-position) - Player(x-position) = positive (left)
-Mummy (x-position) - Player(x-position) = negative (right)
+<br>Mummy (x-position) - Player(x-position) = negative (right)
 
-###### Up or Down
+###### Deciding to move Up or Down
 Mummy (y-position) - Player(y-position) = positive (up)
-Mummy (y-position) - Player(y-position) = negative (down)
+<br>Mummy (y-position) - Player(y-position) = negative (down)
 
-### Checking Exit
-Tiles with Exit will be given a identification class
+### Number of Levels
+There are a total of 6 level with increasing difficulty.
 
-```HTML
-<div class="exit left"></div>
-<div class="exit right"></div>
-<div class="exit top"></div>
-<div class="exit bottom"></div>
-```
+### Ending the Game
+There are 2 ways that will led to the end of the game
+1. Mummy meets the player
+2. Player exits the maze
+
+### Challenges
+* Linking the movement of the characters with the javascript
+* mapping all the combinations of the barriers and representing it on a 2D array.
+* Ensuring that the mummies follows the player with the defined logic.
+
+### Improvement
+* Creating random levels without presetting the map, character position and mummy position.
+* Creating animation for the character.
+* Creating more enemies to increase the difficulty of the game.
+* Making sure that the character move within the grids

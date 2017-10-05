@@ -6,9 +6,10 @@ var $wrapper = $('.wrapper')
 var clicker=true
 
 function initGame() {
+  var snd = new Audio("./audio/scary.mp3"); // buffers automatically when created
+  snd.play();
+
   // SET THE MAP
-  // var snd = new Audio("/audio/scary.mp3"); // buffers automatically when created
-  // snd.play();
   map.forEach(function(spotY,indexY) {
     spotY.forEach(function(spot, indexX){
     switch (spot) {
@@ -104,7 +105,7 @@ function isExit(){
   }
 }
 
-//checing x-position
+//checing relative x-position of mummy to player
 function checkXPos(mumX, charX){
   if(mumX === charX){
     return true
@@ -127,7 +128,7 @@ function upDown(){
 }
 
 
-//checking y-position
+//checking relative y-position from mummy to player
 function checkYPos(mumY, charY){
   if(mumY === charY){
     return true

@@ -3,8 +3,8 @@ $(function(){
   $(document).keydown(function(e){
     var charPos = map[charY][charX]
     counter=0
+    
     //playerMovement
-    console.log(mumX, mumY);
   if(!isExit() && clicker){
     switch(e.keyCode){
       case 37: //left

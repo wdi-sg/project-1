@@ -1,7 +1,3 @@
-$(function(){
-
-})
-
   function charMoveLeft(){
     var position = $('#player').position()
     $('#player').css('left', position.left - 51 +'px')

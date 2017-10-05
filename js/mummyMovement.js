@@ -1,7 +1,3 @@
-$(function(){
-
-})
-
 function mummyMoveX(){
   var mumPosition = $('#mummy').position()
   var mumPos = map[mumY][mumX]
