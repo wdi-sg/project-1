@@ -7,6 +7,8 @@
 ### **Overview**
 Memory has long been a favourite game for all generations. Test your memory with Food Memory Game - a memory card game for all those who have a strong desire to eat. This game requires a good knowledge of observation, concentration and a good memory to win. The objective of the game is to match all the pairs.
 
+### **Instructions**
+
 ### **Challenges**
 + How to make shuffle function
 + How to make card flip transition, rise up to center of the screen
@@ -35,6 +37,9 @@ Memory has long been a favourite game for all generations. Test your memory with
   + Return true or false if game is over
 
 +
+
+### **Daily Progress**
+
 ### **Tech**
 
 This game was written with: jQuery

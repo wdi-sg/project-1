@@ -82,7 +82,8 @@ $(function () {
         for (var i = 0; i <cardsSave.length; i++) {
           $(`.card[data-id="${cardsSave[i]}"]`).addClass('avoid-clicks')
         }
-        //only cards that are currently matched will be avoid clicks, the prev matches dont avoid clicks
+
+      //only cards that are currently matched will be avoid clicks, the prev matches dont avoid clicks
       } else {
         setTimeout(() => {
           // gets data id of first clicked div
@@ -246,4 +247,5 @@ $(function () {
         alert("It's a draw! Play again?")
       }
   }
+
 })

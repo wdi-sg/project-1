@@ -35,17 +35,17 @@ h1 {
   font-size: 34px;
   position: relative;
   text-align: center;
-
 }
 
 #instructionslink {
   font-size: 1.1em;
   padding: 0px 0px 20px 0px;
-
 }
+
 #instructionslink:hover {
   cursor: pointer;
 }
+
 #instructionstext {
   background-color: #995129;;
   font-family: 'Courgette', cursive;
@@ -84,9 +84,22 @@ button:hover {
   text-decoration: none;
 }
 
+.timer{
+  font-family: 'Parisienne', cursive;
+  font-size: 25px;
+  color: #995129;
+  background: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  border: 1px white solid;
+  margin: 20px 20px;
+  padding: 5px 30px;
+  margin-bottom: -45px;
+  font-weight: 200;
+}
+
 .clearfix {
     overflow: auto;
-  }
+}
 
 .playerScoreBoard {
   margin-top: -152px;
@@ -117,7 +130,6 @@ button:hover {
 }
 
 .playerTurnNow {
-  /* margin-right: 401px; */
   margin-bottom: -8px;
   margin-top: 52px;
 }
@@ -152,17 +164,4 @@ img {
 
 .avoid-clicks {
   pointer-events: none;
-}
-
-.timer{
-  font-family: 'Parisienne', cursive;
-  font-size: 25px;
-  color: #995129;
-  background: rgba(255,255,255,0.8);
-  border-radius: 20px;
-  border: 1px white solid;
-  margin: 20px 20px;
-  padding: 5px 30px;
-  margin-bottom: -45px;
-  font-weight: 200;
 }
