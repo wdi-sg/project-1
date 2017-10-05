@@ -60,7 +60,7 @@ p {
   height: 93%;
   float: left;
   position: relative;
-  background-image: url(../img/yishun-map-no-bg.png);
+  background-image: url(./img/yishun-map-no-bg.png);
   background-size: 70%;
   background-repeat: no-repeat;
   background-position: 50% 0;
