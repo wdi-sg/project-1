@@ -15,9 +15,6 @@ h1 {background-color: #083D77;
   margin: 0;
   color: #EBEBD3;
   text-align: center;
-  /*line-height: ;*/
-  /*overflow: auto;*/
-  /*position: absolute}*/
 }
 p { text-align: center}
 .half {
@@ -29,6 +26,8 @@ p { text-align: center}
   display: inline-block;
 }
 
+li {display: inline}
+a {text-decoration: none }
 .start, .skip {display: block;
   margin: 0 auto}
 
@@ -70,6 +69,7 @@ p { text-align: center}
 .reset {background-color: #2196F3;
 margin: 0 auto;
 display: block}
+.mute {display: inline-block;}
 .reset:hover {background: #0b7dda}
 
 .goalBorder {

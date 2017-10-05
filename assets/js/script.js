@@ -10,9 +10,12 @@ var jumpLimit = true // switch for jump
 var start1 = [] //indicates ball1 starting position, index position increases with level
 var start2 = []
 var currentLevel
-// var lose = new Audio("/assets/sounds/lose.wav")
-// lose.loop = false
-// lose.play()
+var lose = new Audio("/assets/sounds/lose.wav")
+lose.loop = false
+var loseCheck = false
+var jumpSound = new Audio("/assets/sounds/jump.wav")
+jumpSound.loop = false
+
 $(function() {
   $('body').on('keydown',startClick)
   function startClick(e) { if (e.keyCode === 32) $('.start').click()}
@@ -140,6 +143,7 @@ function wallCheck2Right() {
 
 function ball1Jump() {
     gravityTimeout(100)
+    jumpSound.play()
     jumpLimit = false
     $ball1.css("top", (Number($ball1.css("top").replace("px","")) - 8.5*$ball1.height()).toString() + "px")
     setTimeout( () => {jumpLimit = true}, 1000)
@@ -147,6 +151,7 @@ function ball1Jump() {
 
 function ball2Jump() {
     gravityTimeout(100)
+    jumpSound.play()
     jumpLimit = false
     $ball2.css("top", (Number($ball2.css("top").replace("px","")) - 8.5*$ball2.height()).toString() + "px")
     setTimeout( () => {jumpLimit = true}, 1000)
@@ -172,9 +177,10 @@ function gravity1() {
         //to tally against the gravity setInterval
         $ball1.css("top",(Number($ball1Height.replace("px",""))+(0.5*gravity*seconds1^2)).toString() + "px")
         if ($ball1.position().top+$ball1.height() > $('.half').height()) {
-          // var lose = new Audio("/assets/sounds/lose.wave")
-          // lose.loop = false
-          // lose.play()
+          if (loseCheck === false) {
+            lose.play()
+            loseCheck = true
+          }
           $ball1.css("top",($('.half').height() + 20).toString() + 'px')
           $ball1.css("left","245px")
           $('#game1').removeClass("play")
@@ -203,9 +209,10 @@ function gravity2() {
         seconds2 +=0.02 //independent gravity timer counter so that their vertical acceleration is independent
         $ball2.css("top",(Number($ball2Height.replace("px",""))+(0.5*gravity*seconds2^2)).toString() + "px")
         if ($ball2.position().top+$ball2.height() > $('.half').height()) {
-          // var lose = new Audio("/assets/sounds/lose.wave")
-          // lose.loop = false
-          // lose.play()
+          if (loseCheck === false) {
+            lose.play()
+            loseCheck = true
+          }
           $ball2.css("top",($('.half').height() + 20).toString() + 'px')
           $ball2.css("left","40px")
           $('#game2').removeClass("play")
@@ -342,6 +349,7 @@ function alert1() {
   alert("Game over")
 }
 function resetLevel() {
+  loseCheck = false
   seconds2 = 0
   seconds1 = 0
   gravityTimeout(500)
