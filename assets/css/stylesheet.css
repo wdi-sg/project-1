@@ -2,6 +2,10 @@
 body {
   font-family: "Press Start 2P";
 }
+html, body {
+    margin: 0;
+    height: 100%;
+}
 
 h1 {
   font-size: 50px;
