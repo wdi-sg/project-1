@@ -2,6 +2,7 @@
 <!---
 Read Me Contents
 -->
+* https://siya-ng.github.io/project-1/
 
 # ![](/assets/css/img/whiteteeth.png)
 
@@ -150,3 +151,5 @@ full cycle 1,150.
 * Adding sound effect to the game.
 
 * Adding instruction page.
+
+* Improve the animation or effect of the game.

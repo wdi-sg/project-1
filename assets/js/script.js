@@ -14,11 +14,23 @@ var toSwitchTwo = []
 var $character = $('.character')
 var $start = $('#start')
 var toBeDeleteFinal =[]
+var $instructionBtn = $('.instructionBtn')
+var $instruction = $('.instruction')
 $(function(){
   var gameTimer = 0
   var settingMode = true
   var gameOver=false
   var gameOverCheck = 0
+
+  $instruction.hide()
+
+
+  $instructionBtn.on('click',function(){
+    $instruction.slideToggle(100,function(){
+      if (settingMode) settingMode = false
+      else settingMode = true
+    })
+  })
 
   $start.on('click',()=>{
     if (settingMode){
