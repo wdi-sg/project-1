@@ -30,9 +30,9 @@ Once each player `submits`, the input number of each player will be displayed an
 
 Once the `reveal` button is clicked, the price of the item will be revealed and at the same time the player inputs will be compared with the price of the item.
 
-The player that has the lower price difference, either higher or lower from the item actual price, will win. Player number will be displayed `Congratulations! Player 1, you have won.. a NEW CARRRR!!!!`
+<!-- The player that has the lower price difference, either higher or lower from the item actual price, will win. Player number will be displayed `Congratulations! Player 1, you have won.. a NEW CARRRR!!!!` -->
 
-And the game will restart with a new item (at this point I think I would just use preset items first.)
+And the game will restart with a new item and the player that has the most items in the shopping cart can bring it home!
 
 
 ![Flowchart](https://www.lucidchart.com/publicSegments/view/e82f8629-795a-43fe-b5ef-3d832464ed3f/image.jpeg)
@@ -41,9 +41,9 @@ And the game will restart with a new item (at this point I think I would just us
 
  ### My plan
  I forsee that I would be able to handle doing just one game for now. If I manage to reach the basic logic and skeleton of the game, I'd add in these features (to make it as close to the real game as possible!)
- 1. 'ting' sound when players input their guess
- 2. Color scheme - muted pink, blue, yellow, green.
- 3. Allow for players to add their names and the winner name to use the players' actual name.
+ 1. 'ting' sound when players input their guess (nope)
+ 2. Color scheme - muted pink, blue, yellow, green. (nope)
+ 3. Allow for players to add their names and the winner name to use the players' actual name. (done!)
  4. Allow for 4 players
 
 Additional stuff that is really extra
