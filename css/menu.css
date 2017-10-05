@@ -38,3 +38,10 @@ button{
 li{
   font-family: "Arial Rounded MT Bold";
 }
+#menu{
+  font-family: arial;
+  font-size: 20px;
+  padding; 10px;
+  height: 50px;
+  opacity: 1;
+}
