@@ -7,7 +7,9 @@ Read Me Contents
 
 ### Overview
 
-This game operates in two dimensions which reflect each other in certain ways. You control the ball on the left, and **on the other side**, the ball moves in the opposite direction. Your ball moves left, the other moves right.
+On The Other Side is a platform puzzle game in which the player guides two balls into their respective 'goals'.
+
+This game operates in two dimensions which reflect each other in certain ways. You control the ball on the left, and **on the other side**, the ball moves in the opposite direction. Blue moves left, Red moves right.
 
 ![](/assets/img/ballmovedemo.gif)
 
@@ -20,6 +22,7 @@ There is a special skill the player can use, align, which lets both balls move i
 ### Basic flow
 
 # ![](/assets/img/ontheothersidev1.jpg)
+# ![](/assets/img/Project-1 flowchart.jpg)
 
 
 ---

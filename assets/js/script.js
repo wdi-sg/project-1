@@ -10,12 +10,11 @@ var jumpLimit = true // switch for jump
 var start1 = [] // indicates ball1 starting position, index position increases with level
 var start2 = []
 var currentLevel
-var lose = new Audio('/assets/sounds/lose.wav')
-lose.loop = false
+var lose = new Audio('../assets/sounds/lose.wav')
 var loseCheck = false
-var jumpSound = new Audio('/assets/sounds/jump.wav')
-jumpSound.loop = false
-var mute = true
+var jumpSound = new Audio('../assets/sounds/jump.wav')
+var muteSwitch = true //mute switch
+var muteBeep = new Audio("../assets/sounds/beep.wav")
 
 $(function () {
   $('body').on('keydown', startClick)
@@ -41,7 +40,6 @@ $(function () {
         if (jumpLimit) {
           if (!ball1Goal()) ball1Jump()
           if (!ball2Goal()) ball2Jump()
-          console.log(mute)
         }
       }
       if (e.key === 'r' || e.key === 'R') {
@@ -143,7 +141,7 @@ function wallCheck2Right () {
 
 function ball1Jump () {
   gravityTimeout(100)
-  if (mute === false) jumpSound.play()
+  if (muteSwitch === false) jumpSound.play()
   jumpLimit = false
   $ball1.css('top', (Number($ball1.css('top').replace('px', '')) - 8.5 * $ball1.height()).toString() + 'px')
   setTimeout(() => { jumpLimit = true }, 1000)
@@ -151,7 +149,7 @@ function ball1Jump () {
 
 function ball2Jump () {
   gravityTimeout(100)
-  if (mute === false) jumpSound.play()
+  if (muteSwitch === false) jumpSound.play()
   jumpLimit = false
   $ball2.css('top', (Number($ball2.css('top').replace('px', '')) - 8.5 * $ball2.height()).toString() + 'px')
   setTimeout(() => { jumpLimit = true }, 1000)
@@ -175,7 +173,7 @@ function gravity1 () {
         // to tally against the gravity setInterval
         $ball1.css('top', (Number($ball1Height.replace('px', '')) + (0.5 * gravity * seconds1 ^ 2)).toString() + 'px')
         if ($ball1.position().top + $ball1.height() > $('.half').height()) {
-          if (loseCheck === false && mute === false) {
+          if (loseCheck === false && muteSwitch === false) {
             lose.play()
             loseCheck = true
           }
@@ -206,7 +204,7 @@ function gravity2 () {
         seconds2 += 0.02 // independent gravity timer counter so that their vertical acceleration is independent
         $ball2.css('top', (Number($ball2Height.replace('px', '')) + (0.5 * gravity * seconds2 ^ 2)).toString() + 'px')
         if ($ball2.position().top + $ball2.height() > $('.half').height()) {
-          if (loseCheck === false && mute == false) {
+          if (loseCheck === false && muteSwitch == false) {
             lose.play()
             loseCheck = true
           }
@@ -339,12 +337,13 @@ function skipLevel () {
   $ball2.css('left', $('.goal:last').position().left.toString() + 'px')
 }
 function toggleSound () {
-  if (mute === true){
-    mute = false
+  if (muteSwitch === true){
+    muteBeep.play()
+    muteSwitch = false
     $('.mute').html('I regret doing that (M)')
   }
-  else if (mute === false){
-    mute = true
+  else if (muteSwitch === false){
+    muteSwitch = true
     $('.mute').html("Lonely without sound (M)")
   }
 }
