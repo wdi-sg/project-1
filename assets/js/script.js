@@ -61,8 +61,6 @@ $(function(){
     $(this).css({'border':"2px solid red"})
     var idArr = this.id.split('')
     toSwitchTwo.push(idArr)
-    //console.log(toSwitchTwo)
-    //console.log(grid)
     if (toSwitchTwo.length ===2){
       setTimeout(function(){
         var iValueOne = Number(toSwitchTwo[0][3])
@@ -76,13 +74,11 @@ $(function(){
           var tempValue = grid[iValueOne][jValueOne]
           grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
           grid[iValueTwo][jValueTwo] = tempValue
-          //console.log(tempValue)
           $(`#box${iValueOne}${jValueOne}`).removeClass()
           $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
           $(`#box${iValueTwo}${jValueTwo}`).removeClass()
           $(`#box${iValueTwo}${jValueTwo}`).addClass(`box c${grid[iValueTwo][jValueTwo]}`)
-          // console.log(`box c${grid[iValueOne][jValueOne]}`)
-          // console.log(`box c${grid[iValueOne][jValueOne]}`)
+
           //toSwitchTwo = []
           if (checkingMatch()){
             setTimeout(checkGrid(),1000)
@@ -103,7 +99,6 @@ $(function(){
           var tempValue = grid[iValueOne][jValueOne]
           grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
           grid[iValueTwo][jValueTwo] = tempValue
-          //  console.log(tempValue)
           $(`#box${iValueOne}${jValueOne}`).removeClass()
           $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
           $(`#box${iValueTwo}${jValueTwo}`).removeClass()
@@ -140,7 +135,6 @@ $(function(){
     //addClassBox()
     var characterImage = $character.css('background-image')
     console.log(characterImage)
-
     $gameOverText = $('<h2 class ="overText">')
     $gameOverText.text("Time's Up")
     $totalScore = $('<h2 class="totalScore">')
@@ -148,6 +142,7 @@ $(function(){
     $characterFinal = $('<div class="characterFinal">')
     characterImage= characterImage.replace('url("http://127.0.0.1:3000/','')
     characterImage = characterImage.replace('")','')
+
     console.log(characterImage)
     $charImage = $(`<img src=${characterImage} />`)
     // $characterFinal.css("background-image",`"url=('${characterImage}')"`)
@@ -174,7 +169,6 @@ $(function(){
     generateElements()
     setTimeout(function(){
       total = totalBefore
-      console.log(total)
       $scoreBox.text(`${total}`)
     },2000) // consider shorter time frame
 
