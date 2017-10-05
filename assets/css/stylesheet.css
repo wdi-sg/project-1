@@ -27,7 +27,7 @@
   }
 
 .start_img {
-  background: url('/images/flappy-starts.png');
+  background: url('../../images/flappy-starts.png');
   width: 600px;
   height: 188px;
   margin-left: 26%;
@@ -52,7 +52,7 @@
     max-width:100%;
     height:750px;
     background-size:cover;
-    background: url('/images/flappy-bg.png');
+    background: url('../../images/flappy-bg.png');
   }
 
 
@@ -60,7 +60,7 @@
   .bird {
   	height: 69px;
   	width: 90px;
-  	background: url('/images/birds.png');
+  	background: url('../../images/birds.png');
   	position: absolute;
   	bottom: 60%;
   	left: 130px;
@@ -79,7 +79,7 @@
     height: 300px;
     width: 90px;
     right: -89px;
-    background: url('/images/flappy-block.png');
+    background: url('../../images/flappy-block.png');
   }
 
   #pole_1 {
