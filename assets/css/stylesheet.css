@@ -151,21 +151,21 @@ body {
 }
 
 #ghost-one {
-  background: url("../assets/images/ghosts.jpg");
+  background: url("../images/ghosts.jpg");
   background-position: -33px -35px;
   background-size: 230%;
   position: absolute;
 }
 
 #ghost-two {
-  background: url("../assets/images/ghosts.jpg");
+  background: url("../images/ghosts.jpg");
   background-position: -3px -35px;
   background-size: 230%;
   position: absolute;
 }
 
 #ghost-three {
-  background: url("../assets/images/ghosts.jpg");
+  background: url("../images/ghosts.jpg");
   background-position: -3px -7px;
   background-size: 230%;
   position: absolute;
@@ -173,7 +173,7 @@ body {
 
 #ghost-four {
   /*background-color: cyan;*/
-  background: url("../assets/images/ghosts.jpg");
+  background: url("../images/ghosts.jpg");
   background-position: -33px -7px;
   background-size: 230%;
   position: absolute;
@@ -236,7 +236,7 @@ strong {
   width: 40px;
   height: 40px;
   margin-right: 5px;
-  background-image: url("../assets/images/pacman.png");
+  background-image: url("../images/pacman.png");
   background-size: 100% 100%;
   transform: scaleX(-1);
 }
