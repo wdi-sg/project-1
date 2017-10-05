@@ -11,11 +11,11 @@ body{
 .topContainer{
   /*border: 2px solid lightblue;*/
   height: 88%;
-  background-image: url(/assets/images/background.png);
+  background-image: url(../images/background.png);
   background-size: contain;
 }
 #restart{
-  background-image: url(/assets/images/buttons.png);
+  background-image: url(../images/buttons.png);
   width: 180px;
   height: 87px;
   background-position: 31% 46.5%;
@@ -24,7 +24,7 @@ body{
   top: 160px;
 }
 .maplestoryImage{
-  background-image: url(/assets/images/maplestory.png);
+  background-image: url(../images/maplestory.png);
   width: 500px;
   height: 100px;
   position: relative;
@@ -42,14 +42,14 @@ body{
 .bottomContainer{
   border: 0px;
   height: 12%;
-  background-image: url(/assets/images/healthBarTest.png);
+  background-image: url(../images/healthBarTest.png);
   background-size: contain;
   position: relative;
 }
 
 .landingScreen{
   z-index: 9;
-  background-image: url(/assets/images/landingPage.jpg);
+  background-image: url(../images/landingPage.jpg);
   height: 700px;
   width: 1550px;
   margin: 50px;
@@ -67,7 +67,7 @@ body{
   top: 620px;
   left:150px;
   transition: 0.5s;
-  background-image: url(/assets/images/bullet.png);
+  background-image: url(../images/bullet.png);
   background-position: 16% 15%;
   /*visibility: hidden;*/
 }
@@ -75,12 +75,12 @@ body{
   position: absolute;
   width: 440px;
   height: 200px;
-  background-image: url(/assets/images/minimap.png);
+  background-image: url(../images/minimap.png);
   border-radius: 10px;
 }
 .skillOne{
 
-  background-image: url(/assets/images/skill1.gif);
+  background-image: url(../images/skill1.gif);
   width: 657px;
   height: 346px;
   position: absolute;
@@ -97,7 +97,7 @@ body{
   top: 560px;
   left:50px;
   transition: 0.8s;
-  background: url(/assets/images/playerModel.png);
+  background: url(../images/playerModel.png);
   animation: playerPlay 3s steps(4) infinite;
   animation-play-state: paused;
 }
@@ -108,7 +108,7 @@ body{
   width: 180px;
   height: 170px;
   transition: 10s;
-  background: url(/assets/images/stoneGolem.png);
+  background: url(../images/stoneGolem.png);
   animation: mobPlay 2s steps(4) infinite;
 
 }
@@ -119,7 +119,7 @@ body{
   width: 180px;
   height: 170px;
   transition: 10s;
-  background: url(/assets/images/stoneGolemRight.png);
+  background: url(../images/stoneGolemRight.png);
   animation: mobPlayRight 4s steps(4) infinite;
 
 }
@@ -155,7 +155,7 @@ body{
   top: 390px;
   left: 100px;
   transition: ease-out 20s;
-  background: url(/assets/images/boss.png);
+  background: url(../images/boss.png);
   animation: bossOne 1s steps(8) infinite;
 
 
