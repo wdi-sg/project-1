@@ -278,7 +278,7 @@ $(function () {
   }
 
   function topScore () {
-      if (scoreCounter1 === 2 || scoreCounter2 === 2) {
+      if (scoreCounter1 === 3 || scoreCounter2 === 3) {
       setTimeout(function() {
         winSound.play()}, 800)
 
@@ -286,7 +286,7 @@ $(function () {
         alert(`Player ${currentPlayer} wins!`)}, 1000)
       //alert(`Player ${currentPlayer} wins!`)
       setTimeout(function() {window.location.reload(true)}, 1000)
-      return true
+      
     }
   }
 
