@@ -1,47 +1,39 @@
-
-// to check if function is working
-//var grid = [[1,undefined,2,3],[4,5,undefined,6],[7,8,9,undefined],[10,11,12,13]]
 var grid =[[undefined,undefined,undefined,undefined,undefined],
 [undefined,undefined,undefined,undefined,undefined],
 [undefined,undefined,undefined,undefined,undefined],
 [undefined,undefined,undefined,undefined,undefined],
 [undefined,undefined,undefined,undefined,undefined]]
-//var grid = [['straw','straw','straw','s'],['choco','choco','choco','cho'],['melon','melon','melon','mm'],['straw','straw','straw','e']]
 var total = 0
 var timer = 100
-//var elements = ['straw','choco','melon']
 var gridNo = 5
-
 var $box = $('.box')
 var $scoreBox = $('.scoreTotal')
 var $gridbox = $('gridbox')
 var toBeDelete = []
 var toSwitchTwo = []
 var $character = $('.character')
-
+var $start = $('#start')
+var toBeDeleteFinal =[]
 $(function(){
-
   var gameTimer = 0
-  var turn = true
+  var settingMode = true
   var gameOver=false
   var gameOverCheck = 0
-  $start=$('#start')
-  $start.on('click',()=>{
-    if (turn){
 
+  $start.on('click',()=>{
+    if (settingMode){
       $('.overText').remove()
       $('.totalScore').remove()
       $('.characterFinal').remove()
       $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
-      gameOver=false
+      gameOver = false
       removeClassBox()
       addClassBox()
       setGrid()
       gameTimer = setInterval(()=>{
         timer-= 1
         $('.timer').text(`${timer}`)
-
-        turn = false
+        settingMode = false
       }, 1000)
     }
     gameOverCheck = setInterval(()=>{
@@ -49,7 +41,7 @@ $(function(){
         gameOver = true
         clearInterval(gameTimer)
         endGame()
-        turn = true
+        settingMode = true
         timer = 100
         clearInterval(gameOverCheck)
       }
@@ -57,7 +49,6 @@ $(function(){
   })
 
   $box.on('click', function(){
-    //click = false
     $(this).css({'border':"2px solid red"})
     var idArr = this.id.split('')
     toSwitchTwo.push(idArr)
@@ -78,16 +69,14 @@ $(function(){
           $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
           $(`#box${iValueTwo}${jValueTwo}`).removeClass()
           $(`#box${iValueTwo}${jValueTwo}`).addClass(`box c${grid[iValueTwo][jValueTwo]}`)
-
-          //toSwitchTwo = []
           if (checkingMatch()){
             setTimeout(checkGrid(),1000)
           }
           else{
             setTimeout(()=>{
-              var tempValueTwo = grid[iValueTwo][jValueTwo]
+              tempValue = grid[iValueTwo][jValueTwo]
               grid[iValueTwo][jValueTwo] = grid[iValueOne][jValueOne]
-              grid[iValueOne][jValueOne] = tempValueTwo
+              grid[iValueOne][jValueOne] = tempValue
               $(`#box${iValueOne}${jValueOne}`).removeClass()
               $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
               $(`#box${iValueTwo}${jValueTwo}`).removeClass()
@@ -108,9 +97,9 @@ $(function(){
           }
           else{
             setTimeout(()=>{
-              var tempValueTwo = grid[iValueTwo][jValueTwo]
+              tempValue = grid[iValueTwo][jValueTwo]
               grid[iValueTwo][jValueTwo] = grid[iValueOne][jValueOne]
-              grid[iValueOne][jValueOne] = tempValueTwo
+              grid[iValueOne][jValueOne] = tempValue
               $(`#box${iValueOne}${jValueOne}`).removeClass()
               $(`#box${iValueOne}${jValueOne}`).addClass(`box c${grid[iValueOne][jValueOne]}`)
               $(`#box${iValueTwo}${jValueTwo}`).removeClass()
@@ -132,7 +121,7 @@ $(function(){
     [undefined,undefined,undefined,undefined,undefined],
     [undefined,undefined,undefined,undefined,undefined]]
     removeClassBox()
-    //addClassBox()
+
     var characterImage = $character.css('background-image')
     $gameOverText = $('<h2 class ="overText">')
     $gameOverText.text("Time's Up")
@@ -142,18 +131,16 @@ $(function(){
     //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','') // to test locally
     characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
     characterImage = characterImage.replace('")','')
-    $charImage = $(`<img src=${characterImage} />`)
-    // $characterFinal.css("background-image",`"url=('${characterImage}')"`)
-    $characterFinal.prepend($charImage)
+    var $endGameImage = $(`<img src=${characterImage} />`)
+    $characterFinal.prepend($endGameImage)
     $('.gridbox').append($gameOverText)
     $('.gridbox').append($totalScore)
     $('.gridbox').append($characterFinal)
     total = 0
-    turn = true
+    settingMode = true
   }
 
   function setGrid(){
-
     totalBefore = total
     grid =[[undefined,undefined,undefined,undefined,undefined],
     [undefined,undefined,undefined,undefined,undefined],
@@ -163,18 +150,14 @@ $(function(){
     removeClassBox()
     addClassBox()
     generateElements()
+    settingMode = false
     setTimeout(function(){
       total = totalBefore
       $scoreBox.text(`${total}`)
-    },2000) // consider shorter time frame
-
+    },50)
   }
-  // reset grid should happen if noavailablemove is true
-/// generate element function
   function generateElements(){
     if(!gameOver){
-      /// to generate the elements
-      /// run two for loop to check
       for (var i = 0; i< gridNo;i++){
         for(var j = 0; j<gridNo;j++){
           if (grid[i][j] === undefined){
@@ -182,17 +165,15 @@ $(function(){
             var $oneBox = $(`#box${i}${j}`)
             $oneBox.addClass(`c${elementValue}`)
             grid[i][j] = elementValue
-            continue
           }
         }
       }
-      setTimeout(checkGrid(),300)
+      if(settingMode) checkGrid()
+      else setTimeout(checkGrid,300)
     }
   }
   function checkingMatch (){
-    // to check all possible condition
-    // try using 2 for loop
-    /// checking backend (row by row) visual column by column
+    /// checking data (row by row) visual column by column
     for (var i = 0; i<gridNo; i++){
       for (var j = 0; j< (gridNo/2);j++){
         if(grid[i][j] && grid[i][j+1] && grid[i][j+2]
@@ -202,8 +183,8 @@ $(function(){
             toBeDelete.push(`${i}${j+2}`)
           }
         }
-      } // end of first 2 for loop
-      // backend column by column visual row by row
+      }
+      // data column by column visual row by row
       for (var j = 0;j<gridNo;j++){
         for (var i = 0; i<(gridNo/2);i++){
           if(grid[i][j] && grid[i+1][j] && grid[i+2][j] &&
@@ -221,59 +202,54 @@ $(function(){
   }
   function checkGrid(){
     if (checkingMatch()&&!gameOver){
-      removeElements()
+      finaliseRemoveList()
     }
     else {
       if (!checkAvailableMove()){
         alert('No more moves. Resetting the grid')
+        settingMode = true
         setGrid()
       }
       else return false
     }
   }
-  function removeElements(){
-    var toBeDeleteTwo =[]
+  function finaliseRemoveList(){
     currentTotal=total
     toBeDelete.forEach(function(gridId) {
-      if (!(toBeDeleteTwo.includes(gridId))){
-        toBeDeleteTwo.push(gridId)
+      if (!(toBeDeleteFinal.includes(gridId))){
+        toBeDeleteFinal.push(gridId)
       }
     })
-    for (var h = 0; h < toBeDeleteTwo.length; h++) {
-      idValue = toBeDeleteTwo[h].split('')
+    for (var h = 0; h < toBeDeleteFinal.length; h++) {
+      idValue = toBeDeleteFinal[h].split('')
       iValueHere = Number(idValue[0])
       jValueHere = Number(idValue[1])
-      $(`#box${iValueHere}${jValueHere}`).effect("bounce", { times: 3 }, 150 )
+      if (!settingMode) $(`#box${iValueHere}${jValueHere}`).effect("bounce", { times: 3 }, 150 )
     }
-    setTimeout(function(){
-      for (var k = 0; k < toBeDeleteTwo.length; k++) {
-        idValue = toBeDeleteTwo[k].split('')
-        iValueHere = Number(idValue[0])
-        jValueHere = Number(idValue[1])
-        total += 5
-        grid[iValueHere][jValueHere] = undefined
-        $(`#box${iValueHere}${jValueHere}`).removeClass()
-        $(`#box${iValueHere}${jValueHere}`).addClass('box')
-      }
-      if(total > currentTotal&&!gameOver){
-        setTimeout(pushDown,250)
-        $scoreBox.text(`${total}`)
-        toBeDelete =[]
-        toBeDeleteTwo =[]
-        if(total>700){
-          $character.css("background-image","url('./assets/css/img/toothfairy.png')")//going from html
-        }
-        else if (total>500){
-          $character.css("background-image","url('./assets/css/img/pinkteeth.png')")
-
-        }
-        else if(total>250){
-          $character.css('background-image','url("./assets/css/img/whiteteeth.png")')
-        }
-        else $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
-
-      }
-    },300)
+    if(settingMode) removeElements()
+    else setTimeout(removeElements,300)
+  }
+  function removeElements(){
+    for (var k = 0; k < toBeDeleteFinal.length; k++) {
+      idValue = toBeDeleteFinal[k].split('')
+      iValueHere = Number(idValue[0])
+      jValueHere = Number(idValue[1])
+      total += 5
+      grid[iValueHere][jValueHere] = undefined
+      $(`#box${iValueHere}${jValueHere}`).removeClass()
+      $(`#box${iValueHere}${jValueHere}`).addClass('box')
+    }
+    if(total > currentTotal&& !gameOver){
+      $scoreBox.text(`${total}`)
+      toBeDelete =[]
+      toBeDeleteFinal =[]
+      if(total>700) $character.css("background-image","url('./assets/css/img/toothfairy.png')")
+      else if (total>500) $character.css("background-image","url('./assets/css/img/pinkteeth.png')")
+      else if(total>250) $character.css('background-image','url("./assets/css/img/whiteteeth.png")')
+      else $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
+      if (settingMode) pushDown()
+      else setTimeout(pushDown,200)
+    }
   }
   function pushDown(){
     for (var i = 0; i< gridNo; i++){
@@ -286,37 +262,31 @@ $(function(){
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-1] = undefined
               $(`#box${i}${k-1}`).removeClass().addClass('box')
-              continue
             }
             else if(grid[i][k-2]!== undefined||grid[i][k-2]){
               grid[i][k] = grid[i][k-2]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-2] = undefined
               $(`#box${i}${k-2}`).removeClass().addClass('box')
-              continue
             }
             else if(grid[i][k-3]!== undefined || grid[i][k-3]){
               grid[i][k] = grid[i][k-3]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-3] = undefined
               $(`#box${i}${k-3}`).removeClass().addClass('box')
-              continue
             }
             else if (grid[i][k-4]!== undefined || grid[i][k-4]){
               grid[i][k] = grid[i][k-4]
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-4] = undefined
               $(`#box${i}${k-4}`).removeClass().addClass('box')
-              continue
             }
-            else continue
           }
-          continue
         }
-        else continue
       }
     }
-   setTimeout(generateElements,300)
+    if(settingMode) generateElements()
+    else setTimeout(generateElements,300)
   }
   function removeClassBox(){
     for (var i = 0; i< gridNo; i++){
@@ -338,50 +308,24 @@ $(function(){
       }
     }
   }
-
   function checkAvailableMove(){
-    if (checkAvailableMoveOne ()){
-      return true
-    }
-    else if (checkAvailableMoveTwo ()){
-      return true
-    }
-    else if(checkAvailableMoveThree()){
-      return true
-    }
-    else if(checkAvailableMoveFour()){
-      return true
-    }
+    if (checkAvailableMoveOne ()) return true
+    else if (checkAvailableMoveTwo ()) return true
+    else if(checkAvailableMoveThree()) return true
+    else if(checkAvailableMoveFour()) return true
     else return false
   }
-  /// function to check available move by combi 1 column, combi 1 row
-  // combi 2 column combi 2 row
   function checkAvailableMoveOne (){
-
     for (var i = 0; i < gridNo; i++) {
       for (var j = 0; j < gridNo-1; j++) {
         if(grid[i][j]===grid[i][j+1]){
-          if (((j-2)>=0) &&grid[i][j-2]===grid[i][j]){
-            return true
-          }
-          if ((i-1)>=0 && (j-1)>=0 &&grid[i-1][j-1]===grid[i][j]){
-            return true
-          }
-          if((j-1)>=0&& (i+1)<gridNo &&grid[i+1][j-1] === grid[i][j]){
-            return true
-          }
-          if ((i-1)>=0&&(j+2)<gridNo &&grid[i-1][j+2]=== grid[i][j]){
-            return true
-          }
-          if ((i+1)<gridNo && (j+2)<gridNo && grid[i+1][j+2]===grid[i][j]){
-            return true
-          }
-          if ((j+3)<gridNo && grid[i][j+3]===grid[i][j]){
-            return true
-          }
-          else continue
+          if (((j-2)>=0) &&grid[i][j-2]===grid[i][j]) return true
+          if ((i-1)>=0 && (j-1)>=0 &&grid[i-1][j-1]===grid[i][j])return true
+          if((j-1)>=0&& (i+1)<gridNo &&grid[i+1][j-1] === grid[i][j]) return true
+          if ((i-1)>=0&&(j+2)<gridNo &&grid[i-1][j+2]=== grid[i][j]) return true
+          if ((i+1)<gridNo && (j+2)<gridNo && grid[i+1][j+2]===grid[i][j]) return true
+          if ((j+3)<gridNo && grid[i][j+3]===grid[i][j]) return true
         }
-        else continue
       }
     }
   }
@@ -389,27 +333,18 @@ $(function(){
     for (var j = 0; j < gridNo; j++) {
       for (var i = 0; i < gridNo-1; i++) {
         if(grid[i][j]===grid[i+1][j]){
-          if (((i-2)>=0) &&grid[i-2][j]===grid[i][j]){
-            return true
-          }
-          if ((i-1)>=0 && (j-1)>=0 &&grid[i-1][j-1]===grid[i][j]){
-            return true
-          }
-          if((i-1)>=0&& (j+1)<gridNo &&grid[i-1][j+1] === grid[i][j]){
-            return true
-          }
+          if (((i-2)>=0) &&grid[i-2][j]===grid[i][j])return true
+          if ((i-1)>=0 && (j-1)>=0 &&grid[i-1][j-1]===grid[i][j]) return true
+          if((i-1)>=0&& (j+1)<gridNo &&grid[i-1][j+1] === grid[i][j]) return true
           if ((i+2)< gridNo &&(j+1)<gridNo &&grid[i+2][j+1]=== grid[i][j]){
             return true
           }
           if ((i+3)<gridNo && grid[i+3][j]===grid[i][j]){
             return true
           }
-          if ((i+2)<gridNo&& j-1>=0 && grid[i+2][j-1]===grid[i][j]){
-            return true
-          }
-          else continue
+          if ((i+2)<gridNo&& j-1>=0 && grid[i+2][j-1]===grid[i][j])return true
         }
-        else continue
+
       }
     }
   }
@@ -417,12 +352,8 @@ $(function(){
     for (var i = 0; i < gridNo; i++) {
       for (var j = 0; j+2 < gridNo; j++) {
         if(grid[i][j]===grid[i][j+2]){
-          if(i-1>=0 && j+1<gridNo && grid[i-1][j+1]===grid[i][j]){
-            return true
-          }
-          else if(i+1<gridNo&& j+1<gridNo&&grid[i+1][j+1]=== grid[i][j]){
-            return true
-          }
+          if(i-1>=0 && j+1<gridNo && grid[i-1][j+1]===grid[i][j]) return true
+          else if(i+1<gridNo&& j+1<gridNo&&grid[i+1][j+1]=== grid[i][j]) return true
         }
       }
     }
@@ -431,12 +362,8 @@ $(function(){
     for (var j = 0; j < gridNo; j++) {
       for (var i = 0; i+2 < gridNo; i++)  {
         if(grid[i][j]===grid[i+2][j]){
-          if(j-1>=0 && i+1<gridNo && grid[i+1][j-1]===grid[i][j]){
-            return true
-          }
-          else if(i+1<gridNo&& j+1<gridNo&&grid[i+1][j+1]=== grid[i][j]){
-            return true
-          }
+          if(j-1>=0 && i+1<gridNo && grid[i+1][j-1]===grid[i][j]) return true
+          else if(i+1<gridNo&& j+1<gridNo&&grid[i+1][j+1]=== grid[i][j]) return true
         }
       }
     }

@@ -9,11 +9,17 @@ Read Me Contents
 
 ### Overview
 
-Sweetly is a **Sweet Tooth** from the tooth kingdom. After a long duration of lack of sweets due to working, she found her health deteriorate that she has turned yellow. Help Sweetly regain her health and become stronger by feeding her more sweets. Swap sweets to make a match of three or more to feed her. Beware as she only has (100) seconds break time to eat.
+Sweetly is a **Sweet Tooth** from the tooth kingdom. After a long duration of lack of sweets due to working, she found her health deteriorate that she has turned yellow. Help Sweetly regain her health and become stronger by feeding her more sweets.
 
 ![](/assets/css/img/sweettoothcharacter.png)
 
-Different types of sweets available for Sweetly: rainbow cake, chocolate cake, ice cream, vanilla cupcake and strawberry parfait.
+Swap sweets to make a match of three or more to feed her. Beware as she has only 100 seconds break time to eat.
+
+![](/assets/css/img/gameplay.png)
+
+
+Different types of sweets available for Sweetly: rainbow cake, vanilla cupcake, ice cream, chocolate cake and strawberry parfait.
+
 ![](/assets/css/img/sweetstype.png)
 
 ---
@@ -31,18 +37,9 @@ Different types of sweets available for Sweetly: rainbow cake, chocolate cake, i
 * End the game when timer is up.
 ---
 
-### Details-Array
 
-* For the grid, I will be using 2d Array.
-* Currently, will work with 4x4 grid. If it works, will increase to 5x5, 6x6(if possible).
-* At the backend, the array will look like [[0,1,2,3],[0,1,2,3],[0,1,2,3],[0,1,2,3]]
-* On the front, it will be
-![](/arr-front.png).
-* By using this method, it will allow elements (sweets) to be push down in the column.
 
----
-
-### Key issues
+### Key issues (before start to code)
 
 * **Setting the grid** There is a need to randomize the elements(sweets) that is insert into the grid.
 
@@ -108,7 +105,7 @@ version 0.6.0:(3/10/2017) added:
 version 0.8.0:(4/10/2017) added:
 * working timer, grid is removed when timer reach zero.
 * better visual design
-* check if after swapped, there is any match, if no, should change back two elements swapped.
+* check when after swapping the elements if there is no match, it should change back.
 * able to change character image based on score
 * increase grid to 5x5
 
