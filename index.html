@@ -2,10 +2,47 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Pac-Man</title>
+    <link rel="stylesheet" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/images/pacman.png" />
   </head>
+
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div id='newGame'>
+      P<img id='blueGhostTitle' src='assets/images/blueGhostTitle.png'>C
+      <input type='image' id='pacmanTitle' src='assets/images/pacmanTitle.png'>
+      M<img id='orangeGhostTitle' src='assets/images/orangeGhostTitle.png'>N
+    </div>
+
+    <div id='instructions'>
+      <p>Instructions:<br>
+      Use the <span class='redText'>arrow keys</span> or <span class='redText'>swipe</span> to move Pac-Man around the maze.<br>
+      Complete the level by eating all the dots.<br>
+      <span class='redText'>Avoid the ghosts!</span> If they catch you, you will lose a life.<br>
+      You only have <span class='redText'>3 lives</span>. Be careful!</p>
+    </div>
+
+    <div id='gameboard'>
+      <img id='pacman' src='assets/images/pacman.png'>
+      <img id='blueGhost' src='assets/images/ghost-blue.png'>
+      <img id='orangeGhost' src='assets/images/ghost-orange.png'>
+      <img id='pinkGhost' src='assets/images/ghost-pink.png'>
+      <img id='redGhost' src='assets/images/ghost-red.png'>
+      <div id='interval'></div>
+      <div id='win'>CONGRATULATIONS!</div>
+      <div id='lose'>TRY HARDER!</div>
+      <div id='scoreboard'>Score: <span id='scores'></span></div>
+      <div id='levelboard'>Level: <span id='level'></span></div>
+      <button class='startButton'>New Game</button>
+      <div id="lifetracker">
+        <img class='life' id='life1' src='assets/images/pacman.png'>
+        <img class='life' id='life2' src='assets/images/pacman.png'>
+        <img class='life' id='life3' src='assets/images/pacman.png'>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="assets/js/jquery.mobile.custom.js" charset="utf-8"></script>
+    <script src="assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>

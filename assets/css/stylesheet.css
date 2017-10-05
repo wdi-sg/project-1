@@ -1,0 +1,206 @@
+body {
+  background-color: black;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-height: 570px) {
+  body {
+    transform: scale(0.8);
+  }
+}
+
+#newGame {
+  position: absolute;
+  z-index: 0;
+  width: 660px;
+  height: 520px;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+#pacmanTitle {
+  height: 150px;
+  width: 150px;
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+#pacmanTitle:active {
+  transform: translateY(5px);
+}
+
+#blueGhostTitle {
+  position: relative;
+  height: 55px;
+  width: 55px;
+  animation: ghostMovement 5s ease-in-out 1s 1;
+}
+
+@keyframes ghostMovement {
+  0%    {top: 0px; left: 0px;}
+  20%   {top: 50px; left: 0px;}
+  40%   {top: 50px; left: -110px;}
+  60%   {top: -60px; left: -110px;}
+  80%   {top: -60px; left: 0px;}
+  100%  {top: 0px; left: 0px;}
+}
+
+#orangeGhostTitle {
+  position: relative;
+  height: 55px;
+  width: 55px;
+  transform: scaleX(-1);
+  animation: ghostMovement2 5s ease-in-out 1s 1;
+}
+
+@keyframes ghostMovement2 {
+  0%    {top: 0px; left: 0px;}
+  20%   {top: 50px; left: 0px;}
+  40%   {top: 50px; left: 110px;}
+  60%   {top: -60px; left: 110px;}
+  80%   {top: -60px; left: 0px;}
+  100%  {top: 0px; left: 0px;}
+}
+
+#instructions {
+  position: absolute;
+  z-index: 1;
+  width: 600px;
+  height: 520px;
+  color: white;
+  font-family: 'VT323', monospace;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.redText {
+  color: red;
+  font-weight: bold;
+}
+
+#gameboard {
+  position: relative;
+  margin: 0 auto;
+  width: 600px;
+  height: 520px;
+  background: black;
+  z-index: -2;
+}
+
+#pacman, #blueGhost, #orangeGhost, #pinkGhost, #redGhost {
+  position: absolute;
+  z-index: 0;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.rotate270 {
+  transform: rotate(270deg);
+}
+
+.mirrorImage {
+  transform: scaleX(-1);
+}
+
+.wall {
+  position: absolute;
+  background-color: white;
+}
+
+.dot {
+  position: absolute;
+  background-color: rgb(249, 248, 199);
+  z-index: -2;
+}
+
+#levelboard {
+  position: absolute;
+  top: 540px;
+  background: black;
+  z-index: 0;
+  font-size: 11px;
+  color: white;
+}
+
+#scoreboard {
+  position: absolute;
+  top: 540px;
+  left: 220px;
+  background: black;
+  z-index: 0;
+  font-size: 11px;
+  color: white;
+}
+
+#lifetracker {
+  position: absolute;
+  top: 532px;
+  left: 525px;
+  z-index: 0;
+  display: flex;
+}
+
+.life {
+  height: 25px;
+  width: 25px;
+}
+
+#win, #lose, #interval {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#win {
+  background: pink;
+}
+
+#lose {
+  background: red;
+}
+
+.startButton {
+  position: absolute;
+  height: 30px;
+  width: 140px;
+  top: 530px;
+  left: 460px;
+  background: white;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: black;
+  border: 2px dotted black;
+  border-radius: 15px;
+  outline: none;
+  z-index: 0;
+}
+
+.startButton:hover {
+	background: black;
+  border: 2px dotted white;
+  color: white;
+	opacity: 1;
+}
+
+.startButton:active {
+  transform: translateY(2px);
+}
