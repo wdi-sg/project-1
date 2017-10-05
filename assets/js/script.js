@@ -179,8 +179,13 @@ function submitGuess() {
 
 
   $('.result').on('click', '#nextProduct', function (){
-    if ($( "li" ).length == 10) {
-      alert("THANK YOU FOR PLAYING! Hope you've enjoyed your shopping!")
+    if ($( "li" ).length == 3) {
+      if (($('.player1Div li').length) > ($('.player2Div li').length))
+        alert("Congrats "+ $('.player1').text() + "! You get to bring home your shopping cart!")
+      if (($('.player2Div li').length) > ($('.player1Div li').length))
+        alert("Congrats "+ $('.player2').text() + "! You get to bring home your shopping cart!")
+  
+      alert("THANK YOU FOR PLAYING! Hope you've enjoyed your (free) shopping!")
       window.location.reload(true)
     }
     else {
