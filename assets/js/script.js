@@ -308,7 +308,7 @@ function gameOver() {
 // Add sounds to the game
 
 var gameAudio = document.createElement('audio')
-  gameAudio.src = '/assets/sounds/kick_shock.wav'
+  gameAudio.src = './assets/sounds/kick_shock.wav'
   gameAudio.autoplay = true
   gameAudio.loop = true
   gameAudio.volume = 0.3
@@ -325,7 +325,7 @@ function stop() {
 
 function laserSound() {
   var audio = document.createElement('audio')
-  audio.src = '/assets/sounds/shot.mp3'
+  audio.src = './assets/sounds/shot.mp3'
   audio.autoplay = true
   audio.play()
   audio.volume = 0.3
@@ -333,7 +333,7 @@ function laserSound() {
 
 function collideSound() {
   var audio = document.createElement('audio')
-  audio.src = '/assets/sounds/explo.mp3'
+  audio.src = './assets/sounds/explo.mp3'
   audio.autoplay = true
   audio.play()
   audio.volume = 0.3
@@ -341,7 +341,7 @@ function collideSound() {
 
 function gameOverSound() {
   var audio = document.createElement('audio')
-  audio.src = '/assets/sounds/game_over.wav'
+  audio.src = './assets/sounds/game_over.wav'
   audio.autoplay = true
   audio.loop = true
   audio.play()
