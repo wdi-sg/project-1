@@ -1,9 +1,8 @@
-# Follow the pattern
 <!---
 Read Me Contents
 -->
 
-# <img src="/assets/images/game.png" height ="50"> Project #1: The Game
+# <img src="/assets/images/game.png" height ="50"> Project #1: Follow the pattern
 
 ### Brief summary of the game :
 
