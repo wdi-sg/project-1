@@ -23,7 +23,6 @@ $(function () {
   var polePos = parseInt(pole.css('right'))
   var pole_initial_height = parseInt(pole.css('height'))
   var $birdLeft = parseInt($bird.css('left'))
-  var $birdHeight = parseInt($bird.height())
 
   var gameState = 2
   var speed = 0
@@ -53,6 +52,7 @@ $(function () {
   function hitOver() {
     document.getElementsByClassName('hit')[0].play()
   }
+  // audio
 
   spop()
 
