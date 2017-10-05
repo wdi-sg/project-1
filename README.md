@@ -1,23 +1,20 @@
-# Project #1: [GAME NAME]
+# Project #1: .Shoot
 
 ## Overview
-*[GAME NAME]* is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.
+*.Shoot* is a first-person-shooter game that tests your reflexes and judgement. Juggle between identifying foes from allies as well as inventory management in the form of ammos and grenades.
+
+#### Objective
+Survive for *two* minutes. Lose all health and you lose.
 
 #### How to play
-Use your mouse to aim and shoot. Shooting enemies will damage them, some enemies require more shots to kill. Failure to kill them before they disappear will reduce your health.
-*Grenades* damage all visible enemies.
+Use your mouse to aim and left click to shoot them. Shooting enemies will damage them, some enemies require more shots to kill. Failure to kill them before they disappear will reduce your health.
+Right click to use *grenades* which damage all visible enemies.
 Shooting *allies* cause you to lose a health.
 Shoot *ammo boxes* or *med packs* to refill your supplies and health.
 
 #### Controls
 *Mouse Left Click*: **Shoot** (damage targeted enemy)<br>
 *Mouse Right Click*: **Grenade** (damage all enemies)
-
-#### Conditions for victory:
-Survive for *two* minutes
-
-#### Conditions for failure:
-Lose all your health
 
 ## Technical Documentation
 * Game Logic Flow-Chart
@@ -43,7 +40,7 @@ enemy{
   // on reaching 0, enemy damages player and disappears
 }
 ```
-On shooting utilities, function will iterate object key and value to determine effect on player stats.
+On shooting spawns, function will iterate object key and value to determine effect on player stats.
 Enemies deal damage to player on expiry.
 
 #### Future Possible Updates
@@ -66,11 +63,14 @@ Enemies deal damage to player on expiry.
 5. <s>setInterval checker for player/enemy health</s>
 6. <s>setInterval spawner for different enemy types</s>
 6. <s>Adjust setInterval to adjust game difficulty</s>
-7. Adjust spawn locations
+7. <s>Adjust spawn locations</s>
 8. Css stuff
 9. <s>Grenade audio</s>
 10. Text notification on miss etc.
 11. Enemies zoom to player (transition effect) when they expire
 12. <s>Start button</s>
 13. Pause button
-14. Stop game on Loss or Victory
+14. <s>Stop game on Loss or Victory</s>
+15. <s>Game overlay to cover game screen before play</s>
+16. <s>Game victory and loss functions</s>
+17. <s>Set easy level, new BG BGM Events.</s>
