@@ -7,36 +7,48 @@
   </head>
   <body>
     <div class="container">
+      <!-- <div class="start-screen">
+        <h1>Help Halimah Make Yishun Great Again</h1>
+        <button class="start-btn" type="button" onClick="window.location.reload()">Start</button>
+      </div> -->
+
       <h1>Help Halimah Make Yishun Great Again</h1>
 
       <div class="instruction">
         <p><b>How to play?</b></p>
         <img src="/assets/img/arrow-keys.png" class="arrow-keys" alt="Arrow Keys">
-        <p>Control the paddle using the <b>left</b> and <b>right arrow keys</b></p>
+        <p id="p2">Control the paddle using the <b>left</b> and <b>right arrow keys</b></p>
+        <p id="p2"><b>A life</b> will be <b>lost</b> when you fail to deflect the heart with the paddle</p>
+        <p id="p2"><b>Complete the level's mission</b> (on the right column) to advance to the next level</p>
+
         <p><b>Scoring</b></p>
-        <p id="p2"><img src="/assets/img/murderer.png" class="icon" alt="Murderer" width="35%"> Murder: + 5 pts</p>
-        <p id="p2"><img src="/assets/img/brothel.png" class="icon" alt="Brothel" width="38%"> Brothel: + 4 pts</p>
-        <p id="p2"><img src="/assets/img/drug-dealer.png" class="icon" alt="Drug Dealer" width="22%"> Drug Syndicate: + 3 pts</p>
-        <p id="p2"><img src="/assets/img/injured-cat.png" class="icon" alt="Injured Cat" width="23%"> Cat Abuse: + 2 pts</p>
-        <p id="p2"><img src="/assets/img/bike-thef.png" class="icon" alt="Bike Thef" width="25%"> Bike Thef: + 1 pts</p>
+        <p id="p3"><img src="/assets/img/murderer.png" class="icon" alt="Murderer" width="33%">  Murder: + 5 pts</p>
+        <p id="p3"><img src="/assets/img/brothel.png" class="icon" alt="Brothel" width="37%">  Brothel: + 4 pts</p>
+        <p id="p3"><img src="/assets/img/drug-dealer.png" class="icon" alt="Drug Dealer" width="20%">  Drug Syndicate: + 3 pts</p>
+        <p id="p3"><img src="/assets/img/injured-cat.png" class="icon" alt="Injured Cat" width="20%">  Cat Abuse: + 2 pts</p>
+        <p id="p3"><img src="/assets/img/bike-thef.png" class="icon" alt="Bike Theft" width="23%">  Bike Theft: + 1 pt</p>
       </div>
 
       <div class="game-column">
-        <!-- <img src="/assets/img/yishun-map-no-bg.png" class="yishun-map-no-bg" alt="Yishun's Map"> -->
-
         <span class="heart"></span>
         <div class="paddle"></div>
-
-        <div class="restart">
-          <!-- <p id="winner"></p> -->
-          <button id="restartBtn">Restart</button>
-        </div>
-
       </div>
 
       <div class="results">
-        <div class="score"></div>
-        <div class="record"></div>
+        <b><p class="level">Level: 1</p></b>
+        <b><p class="mission">Mission: Obtain a score of 100</p></b>
+        <b><p class="lives">Lives:<br>
+          <img src="/assets/img/lives.png" class="halimah-lives" id="halimah-lives-1" width="31%">
+          <img src="/assets/img/lives.png" class="halimah-lives" id="halimah-lives-2" width="31%">
+          <img src="/assets/img/lives.png" class="halimah-lives" id="halimah-lives-3" width="31%">
+        </p></b>
+        <b><p class="score">Score: 0</p></b>
+      </div>
+
+      <div class="finish-screen" style="display:none">
+        <h1>Game Over</h1>
+        <p>Your score was: <span id="score"></span></p>
+        <button class="start-btn" type="button" onClick="window.location.reload()">Restart</button>
       </div>
 
     </div>
