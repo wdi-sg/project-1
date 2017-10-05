@@ -20,12 +20,13 @@ body{
 }
 #restart{
   background-image: url(../images/buttons.png);
-  width: 180px;
+  width: 170px;
   height: 87px;
   background-position: 31% 46.5%;
   border: none;
   position: relative;
   top: 40px;
+  border-radius: 10px;
 }
 .levelOneGameEnd{
   position: absolute;
@@ -43,16 +44,32 @@ body{
   height: 100px;
   position: relative;
   top: 80px;
-  left: 520px;
+  left: 540px;
 }
 .instructions{
   font-family: 'Lekton';
   text-align: center;
   position: relative;
   top: 150px;
-  left: 580px;
-  width: 400px;
+  left: 400px;
+  width: 800px;
 }
+.won{
+  background-image: url(../images/congratulations.png);
+  width: 830px;
+  height: 80px;
+  position: absolute;
+  left: 400px;
+  top: 50px;
+  /*visibility: hidden;*/
+}
+/*.gameOver{
+  background-image: url(../images/gameOver.png);
+  width: 570px;
+  height: 80px;
+  visibility: hidden;
+
+}*/
 .bottomContainer{
   border: 0px;
   height: 12%;

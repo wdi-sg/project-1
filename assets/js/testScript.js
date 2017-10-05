@@ -64,7 +64,7 @@ class Boss {  // Class to spawn boss
 
   constructor (id) {
     this.id = id
-    this.hitPoints = 350
+    this.hitPoints = 500
     this.damage = 3
     this.bosscheck = true
     this.jTarget = $('body').find(`#${this.id}`)
@@ -134,9 +134,8 @@ $(function () {
   var fireDirection = ''
   var keys = {37: false, 32: false, 39: false}
   var playerHealth = 1000
-  var mobHealth = 50
   var mobsOnScreen = 0
-  var levelOneMobCount = 10
+  var levelOneMobCount = 20
   var gameEnd = false
   var bossDead = false
   var bossLevel = false
@@ -145,16 +144,35 @@ $(function () {
 
   $startButton.on('click', restartGame)
 
-  setInterval(function () {
-    if (gameEnd) { $('.landingScreen').show() } // if game has ended show the landing screen
+  setInterval(function () {       // if game has ended show the landing screen
+    if (gameEnd ===  true && playerHealth >0) {
+      $('.landingScreen').show()
+      $(".maplestoryImage").css({
+        background: "url(./assets/images/congratulations.png)",
+        width: "830px",
+        height: "80px",
+        position: "absolute",
+        left: "400px",
+        top: "50px"
+      })
+
+    }else if (gameEnd === true && playerHealth < 0){
+      $('.landingScreen').show()
+      $(".maplestoryImage").css({
+        background: "url(./assets/images/gameOver.png)",
+        width: "570px",
+        height: "80px",
+        position: "absolute",
+        left: "520px",
+        top: "50px"
+    })
+  }
   }, 1000)
+
 
   setInterval(function () {                 // check whether boss is to be spawned, if yes set image to visible and spawn boss
     if (bossLevel) {
       $bossSign.css('visibility', 'visible')
-      setTimeout(function () {
-        $bossSign.css('visibility', 'hidden')
-      }, 2000)
       if (mobsOnScreen < 1 && bossDead === false) { generateBoss() } // ensure no other bosses are on screen prior to spawning
     }
   }, 1000)
@@ -167,11 +185,11 @@ $(function () {
     mana = 202
     $mpBar.text(`${mana}/202`)
     $mpBar.css('width', `202px`)
-    mobHealth = 50
     mobsOnScreen = 0
     gameEnd = false
     bossLevel = false
-    levelOneMobCount = 10
+    levelOneMobCount = 20
+    bossDead = false
     runSpawner()
     for (key in mobArray) {
       mobArray[key].jTarget.remove()
