@@ -55,12 +55,17 @@ Memory has long been a favourite game for all ages. Test your memory with Eat Th
 
 
 + How to use 'this' to find last clicked div
-  + ```$(this).find('img').attr('src', './assets/img/back.jpg')
-  cardsSave.pop()```
+  + ```
+  $(this).find('img').attr('src', './assets/img/back.jpg')
+  cardsSave.pop()
+  ```
 
 
 + How to find values without the use of 'this' to find second last clicked div
-  + ```$(`.card[data-id="${firstClicked}"]`).find('img').attr('src', './assets/img/back.jpg')```
+  +
+  ```
+  $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', './assets/img/back.jpg')
+  ```
 
 ### **Motivation**
 I like food, I thought this would be relatively simple, but as I added more functions, I soon realised the many problems one function could cause.
