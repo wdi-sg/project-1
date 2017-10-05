@@ -84,7 +84,7 @@ $(function(){
   document.location.reload(true);
   })
 
-  myAudio = new Audio('../audio/bgm.mp3')
+  myAudio = new Audio('./assets/audio/bgm.mp3')
   myAudio.addEventListener('ended', function() {
   this.currentTime = 0;
   this.play();
