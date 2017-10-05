@@ -113,22 +113,22 @@ $(function(){
     if(strOfKeys === 37) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("../images/player1_1.png")`);
-    new Audio('/assets/audio/sound1.mp3').play()
+    new Audio('./assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 38) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("../images/player1_2.png")`);
-    new Audio('/assets/audio/sound2.mp3').play()
+    new Audio('./assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 39) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("../images/player1_3.png")`);
-    new Audio('/assets/audio/sound3.mp3').play()
+    new Audio('./assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 40) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("../images/player1_4.png")`);
-    new Audio('/assets/audio/sound4.mp3').play()
+    new Audio('./assets/audio/sound4.mp3').play()
     }
 
     // Bind keys with different images for player 2
