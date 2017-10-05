@@ -3,9 +3,16 @@ width: 1260px;
 height: 700px;
 margin: 0 auto;
 background-color: black;
-background-image: url("/assets/images/background1.png");
+background-image: url("/assets/images/background1.jpg");
 background-size:cover;
 }
+.dancebg{
+width: 300px;
+height: 100px;
+margin-top: -70px;
+margin-left: -80px;
+}
+
 .instructions{
   margin-right: 10px;
   width: 100px;
@@ -14,37 +21,41 @@ background-size:cover;
   margin-right: 800px;
 }
 .instructor{
-  margin-right: 50px;
-  color: red;
+  margin-right: 30px;
+  width: 750px;
+  font-size: 30px;
+  display: block;
+  word-break: break-all;
+}
+.footer{
+  display: flex;
+  justify-content: center;
 }
 body{
   background-color: black;
   position: fixed;
+  font-family: 'Geo', sans-serif;
 }
 .banner {
   width: 1230px;
   height: 100px;
-  /*border: 1px solid black;*/
 }
 
 .menuTop {
   width: 1230px;
   height: 35px;
-  /*border: 1px solid black;*/
 }
 
 .columnLeft{
   width: 240px;
   height: 495px;
   float: left;
-  /*border: 1px solid black;*/
 }
 
 .columnRight{
   width: 270px;
   height: 495px;
   float: right;
-  /*border: 1px solid black;*/
 }
 
 .content{
@@ -52,7 +63,6 @@ body{
   height: 495px;
   margin-left: 240px;
   text-align: center;
-  /*border: 10px solid red;*/
   background-image: url("/assets/images/stage.jpg");
   background-size:cover;
 }
@@ -63,31 +73,25 @@ h1{
 }
 
 .btn1 {
+  background: #300700;
+  border-radius: 28px;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 2px 2px 2px 2px;
+  float:left;
+}
+
+.btn2 {
+  margin: 0 auto;
+  float:left;
   background: #1a394d;
   border-radius: 28px;
   font-family: Courier New;
   color: #ffffff;
   font-size: 20px;
   padding: 2px 2px 2px 2px;
-  /*text-decoration: none;*/
-  float:left;
-}
-
-.instructor{
-text-align: center;
-color: white;
-}
-
-.btn2 {
-margin: 0 auto;
-float:left;
-background: #1a394d;
-border-radius: 28px;
-font-family: Courier New;
-color: #ffffff;
-font-size: 20px;
-padding: 2px 2px 2px 2px;
-display: none;
+  display: none;
 }
 
 div{
@@ -122,7 +126,7 @@ div{
   width: 100px;
   height: 76px;
   margin-left: 230px;
-  margin-top: 50px;
+  margin-top: 60px;
   /*border: 10px solid purple;*/
 }
 .playerOneDiv{
@@ -135,7 +139,6 @@ div{
   height: 76px;
   margin-left: 460px;
   margin-top: -54px;
-  /*border: 10px solid purple;*/
 }
 
 .playerTwoDiv{
@@ -148,7 +151,6 @@ div{
   height: 76px;
   margin-left: 350px;
   margin-top: -95px;
-  /*border: 10px solid purple;*/
 }
 .instructorDiv{
   width: 40px;
@@ -198,7 +200,6 @@ p{
 }
 
 .playerOneAlert{
-  /*border: 1px blue solid;*/
   width: 30px;
   height: 50px;
   margin-top: 260px;
@@ -209,7 +210,6 @@ p{
 }
 
 .playerTwoAlert{
-  /*border: 1px green solid;*/
   width: 30px;
   height: 50px;
   text-align: right;

@@ -8,15 +8,22 @@ Read Me Contents
 ### Brief summary of the game :
 
 A simple game which goal is for player to repeat the pattern showed by the ‘instructor’.
-With each round a new step is added to the pattern making, the game much more difficult with every round. A timer will also run through all of the rounds and displayed at the end of the game comparing the total time taken to finish the rounds between the two players.
+With each round a new step is added to the pattern making, the game much more difficult with every round. Player with the fastest correct sequence and points will win.
 
-## My flowchart
+## Game logic
 
-![](/assets/images/flowchart.png)
+![](/assets/images/flowchart2.png)
+
+Updated the game logic from having two players to take turns to follow the sequence and having timer as the win condition to two players representing different keys competing on who finishes the sequence first. The faster player scores a point and the player with the higher points after 5 rounds will win.
+
 
 ## Challenges
 
 Will update when challenges are faced
+
+## Breakdown of the game
+### Making the game work
+* **The start button**
 
 ### Overview
 

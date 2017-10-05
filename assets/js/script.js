@@ -59,8 +59,7 @@ $(function(){
             console.log(e)
             $('.instructorDiv').css('backgroundImage', instructorMovesPic[i].image);
             $instructor.text(test.slice(0,e+1))
-
-          }, timeoutInterval * e)
+          }, timeoutInterval * (e*0.4))
         }
       }
     }
@@ -114,36 +113,44 @@ $(function(){
     if(strOfKeys === 37) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_1.png")`);
+    new Audio('/assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 38) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_2.png")`);
+    new Audio('/assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 39) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_3.png")`);
+    new Audio('/assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 40) {
     $('.playerOneDiv').addClass("move");
     $('.playerOneDiv').css('backgroundImage', `url("/assets/images/player1_4.png")`);
+    new Audio('/assets/audio/sound4.mp3').play()
     }
 
     // Bind keys with different images for player 2
     if(strOfKeys === 25) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_1.png")`);
+    new Audio('/assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 26) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_2.png")`);
+    new Audio('/assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 27) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_3.png")`);
+    new Audio('/assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 28) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("/assets/images/player1_4.png")`);
+    new Audio('/assets/audio/sound4.mp3').play()
     }
 
   //Check Player 1's match with randomized array
@@ -206,6 +213,8 @@ $(function(){
       new Audio('/assets/audio/cheer.mp3').play()
       if(scoreP1 >= 3){
         $playerOne.text(`Score: ${scoreP1}, Player 1 won!`)
+        $(".playerOneAlert2").html("Winner!").show().delay(5000).fadeOut(400)
+        $(".playerOneAlert2").css({"color" : "blue", "font-size" : "50px"})
       }
     }
   } else if (strOfKeys !== randSequence[counter1] && whichPlayer === 1) {
@@ -270,6 +279,8 @@ $(function(){
      new Audio('/assets/audio/cheer.mp3').play()
      if(scoreP2 >= 3){
        $playerTwo.text(`Score: ${scoreP2}, Player 2 won!`)
+       $(".playerTwoAlert2").html("Winner!").show().delay(5000).fadeOut(400)
+       $(".playerTwoAlert2").css({"color" : "blue", "font-size" : "50px"})
      }
    }
   }
