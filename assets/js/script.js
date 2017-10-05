@@ -17,6 +17,7 @@ $(function(){
   $('.start').on('click', start)
 
   function start() {
+    $('.container').css('visibility','visible')
     //clear usedIndex
     usedIndex = []
     //score reset
@@ -28,15 +29,15 @@ $(function(){
     // calling timer object method to create timer upon page load
     timerObj.startTimer()
     if (randomIndex === 0) {
-      $('<input type="text" class="input" placeholder="*******">').insertBefore(".submit");
+      $('<input type="text" class="input" placeholder="* * * * * * *">').insertBefore(".submit");
     } else if (randomIndex === 1) {
-      $('<input type="text" class="input" placeholder="*****">').insertBefore(".submit");
+      $('<input type="text" class="input" placeholder="* * * * *">').insertBefore(".submit");
     } else if (randomIndex === 2) {
-      $('<input type="text" class="input" placeholder="*****">').insertBefore(".submit");
+      $('<input type="text" class="input" placeholder="* * * * *">').insertBefore(".submit");
     } else if (randomIndex === 3) {
-      $('<input type="text" class="input" placeholder="******">').insertBefore(".submit");
+      $('<input type="text" class="input" placeholder="* * * * * *">').insertBefore(".submit");
     } else if (randomIndex === 4) {
-      $('<input type="text" class="input" placeholder="*****">').insertBefore(".submit");
+      $('<input type="text" class="input" placeholder="* * * * *">').insertBefore(".submit");
     }
   }
 
@@ -93,7 +94,8 @@ $(function(){
     $container.css("background-image",flagImage)
   }
 
-
+  //skip question
+  $('.skip').one('click',shuffleImg)
 
   //check answer for match on click
   $('.submit').click(function() {
@@ -123,18 +125,23 @@ $(function(){
       isGameOver()
       reset()
 
+    } else {
+      score +=0
+      isGameOver()
+      reset()
     }
   }
 
 // var end = setInterval(isGameOver,)
   function isGameOver() {
     if (usedIndex.length === 5 && score < 5) {
-      alert('fail')
+      alert('try again?')
       $('input').remove()
       start()
     } else if (score >= 5) {
     alert('proceed to level 2')
-    reset()
+    $('.container').css('visibility','hidden')
+    timerObj.resetTime()
   }
 }
 

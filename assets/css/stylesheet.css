@@ -1,4 +1,14 @@
 .body {
+  text-align: justify;
+  font-family: sans-serif;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background-image: url("/assets/img/antique-map.jpg");
+  background-size: cover;
 }
 
 
@@ -12,14 +22,52 @@
 }
 
 h1 {
+ margin: 0 auto;
  text-align: center;
  font-family: monospace, sans-serif;
- font-size: 72px;
+ color: #8c5d00;
+ text-shadow: 1px 2px black;
+ font-size: 70px;
+ font-weight: bold;
  text-decoration: underline;
+ padding-top: 30px;
+ text-decoration-color: #8c5d00;
+}
+
+h2 {
+  padding-left: 40px;
+  font-weight: 900;
+  color: #5e3e00;
+  text-shadow: 1px 0 black;
+}
+
+h3 {
+  padding-left: 40px;
+  color: #5e3e00;
+  text-shadow: 1px 0 black;
+}
+
+h4 {
+  padding-left: 40px;
+}
+
+.start {
+  margin-left: 50px;
+  padding: 10px;
+}
+
+.skip {
+  margin-left: 65%;
+  margin-bottom: 5px;
+  padding: 10px;
 }
 
 .scoreCounter {
   font-size: 32px;
+  padding-left: 50px;
+  font-family: monospace, sans-serif;
+  color: #5e3e00;
+  text-shadow: 1px 0 black;
 }
 
 .grid {
@@ -45,20 +93,16 @@ h1 {
 }
 
 .input {
+  padding: 8px;
 }
 
 .submit {
   display: inline-block;
+  padding: 10px;
+  margin: 40px auto;
 }
 
 .timer {
   font-family: monospace, sans-serif;
   font-size: 46px;
-}
-
-.endPage {
-  font-family: monospace, sans-serif;
-  font-size: 72px;
-  background-color: white;
-  display: none;
 }
