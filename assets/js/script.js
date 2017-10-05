@@ -92,7 +92,7 @@ var $newPos = $("#newPos")
 var $jump = $("#jump")
 
 function showTexts(lastMove,roll,newPos,move, player){
-  $diceImg.attr('src',"../images/Dice-"+roll+".png")
+  $diceImg.attr('src',"./assets/images/Dice-"+roll+".png")
   $currPos.text('Last Position is: ' + lastMove )
   $newPos.text('New position is: ' + newPos)
   $jump.text("Ok, jumping to: "+ move)
