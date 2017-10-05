@@ -1,7 +1,5 @@
 .background{
-  background-image: url("/assets/img/hi5.jpg");
-  /*background-image: url("/assets/img/foodback1.jpg");*/
-  background-color: pink;
+  background-image: url("/assets/img/hihi.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -11,32 +9,32 @@
 }
 
 h2, h3, h5 {
-  font-family: 'Architects Daughter', cursive;
-  font-size: 15px;
+  font-family: 'Parisienne', cursive;
+  font-size: 25px;
+  color: #995129;
+  background: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  border: 1px white solid;
+  margin: 20px 20px;
+  padding: 5px;
 
 }
+
 h1 {
-/*-webkit-text-stroke-width: 0.02px;
-  -webkit-text-stroke-color: black;*/
   text-align: center;
   font-family: 'Parisienne', cursive;
-  font-size: 60px;
+  font-size: 109px;
   color: white;
-  background: url('/assets/img/a1.png');
-  width: 473px;
-  height: 119px;
-  margin: 0 auto;
+  height: 126px;
+  margin: 10px 20px 1px 20px;
 }
 
 #instructionscontainer {
   color: white;
-  font-weight: bolder;
-  text-align: center;
-
-  font-family: 'Architects Daughter', cursive;
-  font-size: 30px;
+  font-family: 'Parisienne', cursive;
+  font-size: 34px;
   position: relative;
-  z-index: 100;
+  text-align: center;
 }
 
 #instructionslink {
@@ -44,15 +42,18 @@ h1 {
   padding: 0.25% 0;
 }
 #instructionslink:hover {
-  /*background-color: pink;*/
   cursor: pointer;
 }
 #instructionstext {
-  background-color: #B76E79;
+  background-color: #995129;;
+  font-family: 'Courgette', cursive;
   color: white;
   font-size: 0.8em;
   display: none;
   padding: 0.5% 0;
+  position: relative;
+  z-index: 1000;
+  border-radius: 15px;
 }
 
 .wrap {
@@ -63,24 +64,21 @@ h1 {
 }
 
 button{
-  background: #92B6B1;
+  background: rgba(255,255,255,1);
   position: absolute;
-  top: 163px;
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
+  top: 219px;
   border-radius: 28px;
-  font-family: 'Architects Daughter', cursive;
-  color: #ffffff;
-  font-size: 20px;
-  padding: 10px 20px 10px 20px;
+  font-family: 'Parisienne', cursive;
+  color: #D2B895;
+  font-size: 30px;
+  padding: 5px 10px;
   text-decoration: none;
   outline: 0;
-  border: white 2px solid;
-  margin: 0 auto;
+  border: 2px white solid;
 }
 
 button:hover {
-  background: #B76E79;
+  background: #685031;
   text-decoration: none;
 }
 
@@ -89,14 +87,13 @@ button:hover {
   }
 
 .playerScoreBoard {
-  width: 50%;
   margin-top: -152px;
+  margin-bottom: -30px;
 }
 
 #player1 {
   float:left;
-  margin: 40px 40px;
-  /*margin-right: 750px;*/
+  margin: 40px 155px;
 }
 
 .player1 {
@@ -105,7 +102,7 @@ button:hover {
 
 #player2 {
   float:right;
-  margin: 40px 40px;
+  margin: 40px 155px;
 }
 
 .player2 {
@@ -117,35 +114,40 @@ button:hover {
   margin-top: -0.5em;
 }
 
+.playerTurnNow {
+  /* margin-right: 401px; */
+  margin-bottom: -11px;
+}
+
 h5 {
   text-align: center;
 }
 #memoryBoard {
-
-  /*background-image: url("/assets/img/foodback.jpg");*/
-  /*background-image: url("/assets/img/foodback1.jpg");*/
-  border: white 3px solid;
-  width: 706px;
-  height: 582px;
+  /*border: white 5px solid;*/
+  width: 764px;
+  height: 619px;
   padding: 10px;
   margin-top: -25px;
   border-radius: 25px;
   box-sizing: border-box;
+
+
 }
 
 #memoryBoard > div {
   display: inline-flex;
   width: 130px;
   height: 130px;
-  margin: 3px;
+  margin: 8px;
   padding: none;
   cursor: pointer;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 img {
   max-width: 100%;
   max-height: 100%;
-  border: 2px solid #B76E79;
+  border: 5px solid #433220;
   border-radius: 10px;
   width: 130px;
   height: 130px
@@ -155,10 +157,4 @@ img {
   pointer-events: none;
 }
 
-.timer{
-  width: 30px;
-  height:12px;
-  margin: 20px;
-  display: flex;
-  justify-content: center;
-}
+.timer{font-family: 'Parisienne', cursive;font-size: 25px;color: #995129;background: rgba(255,255,255,0.8);border-radius: 20px;border: 1px white solid;margin: 20px 20px;padding: 5px 30px;margin-bottom: -10px;}
