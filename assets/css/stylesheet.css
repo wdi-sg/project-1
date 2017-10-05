@@ -6,14 +6,14 @@ body {
 
 
 .container {
-  width: 328px;
-  height: 550px;
+  width: 330px;
+  /*height: 550px;*/
   margin: 0 auto;
   /*border: 3px solid green;*/
   text-align: center;
   position: relative;
   font-family: 'Helvetica', sans-serif;
-  /*background-color: white;*/
+  /*background-color: black;*/
   display: block;
 
 }
@@ -38,10 +38,19 @@ h1 {
 
 h3 {
   font-family: 'Orbitron', sans-serif;
-
-  /*background-color: #00AFC2 ;*/
+  font-size: 30px;
   display: block;
-  padding: 10px 5px 8px 5px;
+  /*background-color: #00AFC2 ;*/
+  margin: 10px;
+
+}
+
+h2 {
+  font-family: 'Orbitron', sans-serif;
+  /*background-color: #00AFC2 ;*/
+  margin:10px;
+  display: block;
+  /*padding: 10px 5px 8px 5px;*/
   /*border: 2px solid grey;*/
 }
 
@@ -54,6 +63,7 @@ button {
   font-weight: bold;
   padding: 10px 5px 8px 5px;
   background-color: white;
+
 }
 
 .cell {

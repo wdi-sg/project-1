@@ -8,7 +8,7 @@ $(function () {
   var matrix = 4
   var $cell = $('.cell')
   var score = 0
-
+  var time = 60
 
 
 
@@ -205,13 +205,18 @@ $(function () {
   }
 
   function resetAll() {
-    score = 0
+    clearInterval(timer)
+    time = 60
+    scoreboard()
+    timer = setInterval(timerFn, 1000)
     restart()
   }
 
   function scoreboard() {
-
+    score = 0
     $('h3').text('Score: ' + score)
+
+
   }
 
   function bgChanger(){
@@ -222,15 +227,33 @@ $(function () {
     var $body = $('body')
     var bgColorArray = "rgb("+r+","+g+","+b+")"
 
-
     $body.css('backgroundColor', bgColorArray)
 
   }
 
+  function timerFn () {
+
+    if (time !==0) {
+      time--
+      $('h2').text('Time left: ' + time +'s')
+
+      }
+    if(time === 0) {
+
+    alert('Time is up! Click ok to start new game.')
+    clearInterval(timer)
+    resetAll()
+
+    }
+
+  }
 
   generateLevel()
   $('body').on('click', scoreboard)
   $('button').on('click', resetAll)
   setInterval(bgChanger,4000)
+  var timer = setInterval(timerFn, 1000)
+
+
 
 })
