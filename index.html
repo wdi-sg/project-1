@@ -2,10 +2,68 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Guess the Picture</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+  <div class="background">
+    <h1> Guess the Picture: Countries</h1>
+    <h2>Think you know your flags?</h2>
+    <h3>A random section of the flag is revealed every second. You have 30 seconds to guess the flag and win points.<br>
+      Guess the correct country within 5 seconds to double your points! You are allowed to skip one question.<br>
+      Proceed to level 2 when you accumulate 5 points.<br>
+    </h3>
+    <h4> Hint: The number of * * * in the textbox represents the length of the word.<br>
+    </h4>
+      <button class="start">Start</button>
+
+  <!-- score display -->
+    <div class="scoreCounter"> Score: <span>0</span>
+      <!-- skip -->
+      <button class="skip"> Skip </button>
+    </div>
+
+    <!-- <img src> -->
+    <div class="container">
+
+      <!-- grid elements -->
+      <div class="grid">
+        <div class="box" id="1"></div>
+        <div class="box" id="2"></div>
+        <div class="box" id="3"></div>
+        <div class="box" id="4"></div>
+        <div class="box" id="5"></div>
+        <div class="box" id="6"></div>
+        <div class="box" id="7"></div>
+        <div class="box" id="8"></div>
+        <div class="box" id="9"></div>
+        <div class="box" id="10"></div>
+        <div class="box" id="11"></div>
+        <div class="box" id="12"></div>
+        <div class="box" id="13"></div>
+        <div class="box" id="14"></div>
+        <div class="box" id="15"></div>
+        <div class="box" id="16"></div>
+        <div class="box" id="17"></div>
+        <div class="box" id="18"></div>
+        <div class="box" id="19"></div>
+        <div class="box" id="20"></div>
+        <div class="box" id="21"></div>
+        <div class="box" id="22"></div>
+        <div class="box" id="23"></div>
+        <div class="box" id="24"></div>
+        <div class="box" id="25"></div>
+      </div>
+    </div>
+    <!-- textbox for letters -->
+    <div class="letters">
+      <button class="submit">Submit</button>
+    </div>
+<!-- time counter -->
+    <div id="timer">
+    </div>
+  </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
