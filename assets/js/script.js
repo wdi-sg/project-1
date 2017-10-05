@@ -6,7 +6,7 @@ $(function(){
 
   var country =["vietnam", "china", "italy", "mexico", "india"]
   var image = ["url(./assets/img/vietnam.png)","url(./assets/img/china.png)",
-  "url(./assets/assets/img/italy.png)","url(./assets/img/mexico.png)","url(./assets/img/india.png)"]
+  "url(./assets/img/italy.png)","url(./assets/img/mexico.png)","url(./assets/img/india.png)"]
 
   var score = 0
   var randomIndex
