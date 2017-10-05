@@ -16,7 +16,7 @@ With each round a new step is added to the pattern making, the game much more di
 
 Updated the game logic from having two players to take turns to follow the sequence and having timer as the win condition to two players representing different keys competing on who finishes the sequence first. The faster player scores a point and the player with the higher points after 5 rounds will win.
 ## Finished product
----
+
 ![](/assets/images/finishedproduct.png)
 
 ### How to win / How to play?
@@ -35,7 +35,7 @@ Updated the game logic from having two players to take turns to follow the seque
 
 
 ## Stage of the game development
----
+
 ### Setting up the divs
 ![](/assets/images/divsofgame.png)
 Creating many different divs for different purposes.
@@ -111,7 +111,7 @@ function addTurn(){
 ```
 
 ## Challenges
----
+
 
 * Making the music instructor move together with the number sequence.
  <img src="/assets/images/instructor_1.png" height ="50"><img src="/assets/images/instructor_2.png" height ="50"><img src="/assets/images/instructor_3.png" height ="50"><img src="/assets/images/instructor_4.png" height ="50">    
@@ -121,7 +121,7 @@ function addTurn(){
 * Making the image of instructor's moves appear together with the pattern on the screen.
 
 ## Possible future improvements
----
+
 
 1. Adding more rounds
 
@@ -130,7 +130,7 @@ function addTurn(){
 3. More keys to control on more dance moves other than '1,2,3,4'
 
 ## Credit
----
+
 TA - Alex & Shumin
 
 Google
