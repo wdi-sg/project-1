@@ -56,6 +56,25 @@ class Mob {
     })
   }
 
+  addBoss () {
+    var location = Math.floor(Math.random() * 480)
+    var spawnMob = $('<div>')
+    spawnMob.attr('id', this.id)
+
+    $('.topContainer').append(spawnMob)
+    this.jTarget = $('body').find(`#${this.id}`)
+    this.jTarget.css({
+      width: '250px',
+      height: '320px',
+      position: 'absolute',
+      top: '390px',
+      left: `${location}px`,
+      transition: 'ease-out 20s',
+      background: 'url(/assets/images/boss.png)',
+      animation: ' bossOne 1s steps(8) infinite'
+    })
+  }
+
 }
 
 $(function () {
@@ -78,6 +97,8 @@ $(function () {
   var mobHealth = 50
   var mobsOnScreen = 0
   var levelOneMobCount = 10
+  var levelTwoMobCount = 20
+  var levelThreeMobCount = 50
   var gameEnd = false
   var levelOneEnd = false
   var mana = 202
@@ -97,27 +118,42 @@ $(function () {
   function restartGame () {
     $('.landingScreen').hide()
     playerHealth = 200
+    $hpBar.text(`${playerHealth}/200`)
+      $hpBar.css('width', `200px`)
+    mana = 202
+    $mpBar.text(`${mana}/202`)
+      $mpBar.css('width', `202px`)
     mobHealth = 50
     mobsOnScreen = 0
     gameEnd = false
+    levelOneMobCount = 10
+    runSpawner()
     $hpBar.text(`${playerHealth}/200`)
     for (key in mobArray) {
       mobArray[key].jTarget.remove()
     }
   }
 
-   setInterval(function(){
+function runSpawner(){
+   var mobSpawn = setInterval(function(){
      if(mobsOnScreen<levelOneMobCount){
        generateMob()
      }
    },3000)
-
+ }
+ // var bossArr = []
   function generateMob () {
     var id = Math.floor(Math.random() * 1000)
     mobArray[id] = new Mob(id)
     mobArray[id].addChar()
     mobsOnScreen +=1
   }
+  // function generateBoss () {
+  //   var id = Math.floor(Math.random() * 1000)
+  //   bossArray[id] = new Mob(id)
+  //   bossArray[id].addBoss()
+  // }
+
   var manaRegen = setInterval(function(){
     if (mana<200){
       mana +=1
@@ -199,7 +235,9 @@ $(function () {
         levelOneMobCount --
 
       }
-      if (mobsOnScreen === 0 && levelOneMobCount === 0) { gameEnd = true }
+      if (mobsOnScreen === 0 && levelOneMobCount === 0) { gameEnd = true
+      clearInterval(mobSpawn)
+    }
       return true
     } else { return false }
   }
@@ -258,7 +296,7 @@ $(function () {
     $firstSkillDiv.css("visibility","visible")
     setTimeout(function(){
       $firstSkillDiv.css("visibility","hidden")
-    },1000)
+    },800)
     for (key in mobArray) {
     mobArray[key].hitPoints -=50
     if (mobArray[key].hitPoints < 0) {

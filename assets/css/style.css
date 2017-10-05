@@ -14,9 +14,30 @@ body{
   background-image: url(/assets/images/background.png);
   background-size: contain;
 }
+#restart{
+  background-image: url(/assets/images/buttons.png);
+  width: 180px;
+  height: 87px;
+  background-position: 31% 46.5%;
+  border: none;
+  position: relative;
+  top: 160px;
+}
+.maplestoryImage{
+  background-image: url(/assets/images/maplestory.png);
+  width: 500px;
+  height: 100px;
+  position: relative;
+  top: 80px;
+  left: 520px;
+}
 .instructions{
-
+  font-family: 'Lekton';
   text-align: center;
+  position: relative;
+  top: 200px;
+  left: 580px;
+  width: 400px;
 }
 .bottomContainer{
   border: 0px;
@@ -25,23 +46,19 @@ body{
   background-size: contain;
   position: relative;
 }
+
 .landingScreen{
   z-index: 9;
-  background-color: black;
+  background-image: url(/assets/images/landingPage.jpg);
   height: 700px;
   width: 1550px;
   margin: 50px;
+  background-size: cover;
+  background-position: bottom;
   float: left;
   position: relative;
   visibility: visible;
-  border-radius: 10px;
-}
-.maplestoryImage{
-  background-image: url(/assets/images/maplestory.png);
-  height:100px;
-  width: 760px;
-  margin-left: 360px;
-  margin-right: 300px;
+  border-radius: 20px;
 }
 .projectile{
   height: 20px;
@@ -110,7 +127,7 @@ body{
   position: relative;
   text-align: center;
   color: white;
-  left: 742px;
+  left: 747px;
   top: 38px;
   width: 200px;
   height: 14px;
@@ -121,7 +138,7 @@ body{
   position: relative;
   text-align: center;
   color: white;
-  left: 742px;
+  left: 747px;
   top: 44px;
   width: 202px;
   height: 14px;
@@ -130,6 +147,27 @@ body{
   border-color: white;
   border: 1px;
 }
+
+.boss{
+  width: 250px;
+  height: 320px;
+  position: absolute;
+  top: 390px;
+  left: 100px;
+  transition: ease-out 20s;
+  background: url(/assets/images/boss.png);
+  animation: bossOne 1s steps(8) infinite;
+
+
+}
+
+@keyframes bossOne {
+  0% {
+   background-position: 0% 0%;
+ }
+ 100% {
+   background-position: 34% 0%;
+ } }
 
 @keyframes mobPlayRight {
   0% {
