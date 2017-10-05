@@ -98,55 +98,60 @@ $(function () {
     }
 
   function replenishCells() {
-    //replenish the cells where matches were found by the player
+    //replenish the empty cells where matches were found by the player
     var pos = x +","+ y
 
+    //replenish from bottom
     for (var x = matrix - 1 ; x >= 0 ; x--) {
       for (var y = matrix - 1; y >= 0 ; y--) {
         if (grid[x-1] && grid[x][y] === 0) {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
+          pos = x +","+ y
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
           }
       }
     }
-
+    //run again to replenish adjacent empty
     for (var x = 0 ; x < matrix ; x++) {
       for (var y = 0; y < matrix ; y++) {
         if (grid[x-1] && grid[x][y] === 0) {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
+          pos = x +","+ y
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
           }
 
       }
     }
-
+    //replenish last adjacent empty
     for (var x = 0 ; x < matrix ; x++) {
       for (var y = 0; y < matrix ; y++) {
         if (grid[x][y] === 0) {
           grid[x][y] = generateColor()
+          pos = x +","+ y
          $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
         }
       }
     }
 
     if (checkForMatches() === 0 ) {
-
+      //if no matches remain on the board, start a new level
       alert('Level Complete!')
       restart()
     }
   }
-
 
   function generateColor() {
     return colorList[Math.floor(Math.random() * colorList.length)]
   }
 
   function restart() {
+    //restarts level
     grid = []
     generateLevel()
   }
 
   function resetAll() {
+    //resets the game & starts a new game
     clearInterval(timer)
     time = 60
     score = 0
@@ -156,33 +161,27 @@ $(function () {
   }
 
   function scoreboard() {
-
+    //display score
     $('h3').text('Score: ' + score)
-
-
   }
 
   function bgChanger(){
-
+    //background color changer
     var r = Math.floor(Math.random() * 255)
     var g = Math.floor(Math.random() * 255)
     var b = Math.floor(Math.random() * 255)
     var $body = $('body')
     var bgColorArray = "rgb("+r+","+g+","+b+")"
-
     $body.css('backgroundColor', bgColorArray)
-
   }
 
   function timerFn () {
-
+    //countdown timer
     if (time !==0) {
       time--
       $('h2').text('Time left: ' + time +'s')
-
-      }
+    }
     if(time === 0) {
-
     alert('Time is up! Click ok to start new game.')
     clearInterval(timer)
     resetAll()
