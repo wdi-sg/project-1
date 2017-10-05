@@ -137,7 +137,7 @@ $(function(){
     $gameOverText = $('<h2 class ="overText">')
     $gameOverText.text("Time's Up")
     $totalScore = $('<h2 class="totalScore">')
-    $totalScore.text(`Total Score: ${total}`)
+    $totalScore.text(`Total Score : ${total}`)
     $characterFinal = $('<div class="characterFinal">')
     //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','') // to test locally
     characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
@@ -261,7 +261,7 @@ $(function(){
         toBeDelete =[]
         toBeDeleteTwo =[]
         if(total>700){
-          $character.css("background-image","url('./assets/css/img/toothfairy.png')")
+          $character.css("background-image","url('./assets/css/img/toothfairy.png')")//going from html
         }
         else if (total>500){
           $character.css("background-image","url('./assets/css/img/pinkteeth.png')")
