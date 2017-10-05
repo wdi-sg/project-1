@@ -13,10 +13,13 @@
 
 Play with a friend! Answer 3 true or false trivia questions correctly first to **WIN** the ducky challenge!
 
-
+Click on the link to play: https://persisn.github.io/project-1/
 
 
 ---
+#### Flowchart
+
+![](./Images/readmeP1.png)
 
 
-![](./Images/flowchart.jpg)
+##### References

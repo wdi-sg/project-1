@@ -201,7 +201,6 @@ $(function () {
     }
 
   ]
-  // var randomQnIndex = Math.floor(Math.random() * allQuestions.length)// random
 
   // targeting elements
   var $h1 = $('h1')
@@ -214,7 +213,6 @@ $(function () {
   var $scoreBoard2 = $('#scoreBoard2')
   var randomQnIndex = Math.floor(Math.random() * allQuestions.length)
   var currentAns = allQuestions[randomQnIndex].ans
-  var turnCounter = 0
   var currentExp = allQuestions[randomQnIndex].exp
   var correctSound = new Audio("./sounds/correct.wav");
   var incorrectSound = new Audio("./sounds/wrong.wav")
@@ -222,8 +220,8 @@ $(function () {
 
   $h1.text(`${allQuestions[randomQnIndex].qn}`)
 
-  // event on button click
   $ansBtn.on('click', clickAns)
+    // event on button click
 
   function clickAns () {
     if ($(this).data('choice') === currentAns) {
@@ -241,28 +239,17 @@ $(function () {
         scoreCounter2++
         $scoreBoard2.text(`Player 2 : ${scoreCounter2}`)
       }
-        // $scoreBoard.text(`${score}`)
-        // console.log(randomQnIndex)
-        // console.log(currentAns)
+
     } else {
       incorrectSound.play()
       alert(`Incorrect! ${currentExp}`)
     }
 
-    turnCounter++
-
     topScore()
-    // get the index of qns index to be removed
-    // console.log('removed qn index', randomQnIndex)
-    allQuestions.splice(randomQnIndex,1)
-    // console.log(allQuestions)
 
-    // if (topScore)
-    // ""
-    // else
+    allQuestions.splice(randomQnIndex,1)
+    // to remove index of questions shown previously
     setTimeout(switchPlayers, 1000)
-    // console.log($(this).attr('id'))
-    // topScore?"":switchPlayers()
   }
 
   function switchPlayers () {
@@ -284,13 +271,9 @@ $(function () {
 
       setTimeout(function() {
         alert(`Player ${currentPlayer} wins!`)}, 1000)
-      //alert(`Player ${currentPlayer} wins!`)
+
       setTimeout(function() {window.location.reload(true)}, 1000)
 
     }
   }
-
-
-
-  // console.log(randomQnIndex)
 })
