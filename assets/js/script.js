@@ -39,20 +39,17 @@ var pacManMeetGhost = false
 var pacManLives = 3
 // ghost variables
 var ghostSpeed = 300
-// ghost-one variables
-var prevDirOne = []
-// ghost-two variables
-var prevDirTwo = []
-// ghost-three variables
-var prevDirThree = []
-// ghost-four variables
-var prevDirFour = []
+var prevDirOne = [] // ghost-one variables
+var prevDirTwo = [] // ghost-two variables
+var prevDirThree = [] // ghost-three variables
+var prevDirFour = [] // ghost-four variables
 
 $(function () {
   togglePanels('hide')
   // hit enter to start
   $body.on('keyup', (event) => {
     if (event.key === 'Enter') {
+      // preparing game board and countdown to start
       $body.off()
       isGameOver = false
       togglePanels('starting')
@@ -66,14 +63,14 @@ $(function () {
         // switching directions
         $body.on('keydown', (event) => { direction = changeDirection(event) })
         // moving ghost-one
-        setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+        setInterval(function () { patrolTopLeft($('#ghost-one')) }, ghostSpeed)
       }, 3000)
       // moving ghost-two after 6 seconds
-      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-two')) }, ghostSpeed) }, 6000)
+      setTimeout(function () { setInterval(function () { patrolTopRight($('#ghost-two')) }, ghostSpeed) }, 6000)
       // moving ghost-three after 9 seconds
-      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-three')) }, ghostSpeed) }, 9000)
+      setTimeout(function () { setInterval(function () { patrolBottomRight($('#ghost-three')) }, ghostSpeed) }, 9000)
       // moving ghost-four after 12 seconds
-      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-four')) }, ghostSpeed) }, 12000)
+      setTimeout(function () { setInterval(function () { patrolBottomLeft($('#ghost-four')) }, ghostSpeed) }, 12000)
       // lose condition
       setInterval(function () {
         pacManMeetGhost = checkCollision()
@@ -185,25 +182,6 @@ function movePac () {
   if ($(targetTile).has('.dots').length > 0) eatAndChangeScore($(targetTile))
   // check if pac-man can move into tile
   if ($(targetTile).data('attr') !== 1 && $(targetTile).data('attr') !== 8) $(targetTile).append($('#pac-man'))
-}
-
-function moveGhost ($ghost) {
-  // jQuery ghost objects
-  var $ghostOne = $('#ghost-one')
-  var $ghostTwo = $('#ghost-two')
-  var $ghostThree = $('#ghost-three')
-  var $ghostFour = $('#ghost-four')
-
-  switch (true) {
-    case ($ghost.is($ghostOne)): patrolTopLeft($ghost)
-      break
-    case ($ghost.is($ghostTwo)): patrolTopRight($ghost)
-      break
-    case ($ghost.is($ghostThree)): patrolBottomRight($ghost)
-      break
-    case ($ghost.is($ghostFour)): patrolBottomLeft($ghost)
-      break
-  }
 }
 
 function patrolTopLeft ($ghost) {
