@@ -126,7 +126,7 @@ $(function() {
       $timer.text('Timer: ' +timeCount+ ' seconds')
       checkEnemyExpire()
       checkVictory()
-      // checkLoss()
+      checkLoss()
     }
     , 1000)
   }
