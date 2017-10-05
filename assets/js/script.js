@@ -14,7 +14,7 @@ $(function(){
   var begin
 
   //start on click
-  $('.start').on('click', start)
+  $('.start').one('click', start)
 
   function start() {
     $('.container').css('visibility','visible')
@@ -139,8 +139,8 @@ $(function(){
       $('input').remove()
       start()
     } else if (score >= 5) {
-    alert('proceed to level 2')
-    $('.container').css('visibility','hidden')
+      alert('proceed to level 2')
+      $('.container').css('visibility','hidden')
     timerObj.resetTime()
   }
 }
