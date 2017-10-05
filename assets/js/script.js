@@ -32,7 +32,7 @@ $(function(){
       $('.overText').remove()
       $('.totalScore').remove()
       $('.characterFinal').remove()
-      $character.css('background-image','url("/assets/css/img/yellowteeth.png")')
+      $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
       gameOver=false
       removeClassBox()
       addClassBox()
