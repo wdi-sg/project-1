@@ -212,9 +212,9 @@ $(function () {
   }
 
   function assignCard (cardId, cardImage) {
-    if (cardId <= 10) cardImage.attr('src', `.assets/img/${cardId}.jpg`)
-    else if (cardId > 10 && cardId < 20) cardImage.attr('src', `.assets/img/${cardId % 10}a.jpg`)
-    else cardImage.attr('src', `.assets/img/${'10a'}.jpg`)
+    if (cardId <= 10) cardImage.attr('src', `./assets/img/${cardId}.jpg`)
+    else if (cardId > 10 && cardId < 20) cardImage.attr('src', `./assets/img/${cardId % 10}a.jpg`)
+    else cardImage.attr('src', `./assets/img/${'10a'}.jpg`)
   }
 
   function matchCard (cardOne, cardTwo) {
