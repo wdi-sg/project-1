@@ -228,7 +228,6 @@ function patrolTopLeft ($ghost) {
 ## Reflections
 
 + Creating a character class which stores the position of the character's parent tile, a method to get and store the four adjacent tiles and an array variable to store the ghosts' last two moves will reduce the amount of code repetition and global variables.
-+ Instead of having four separate patrol functions for the ghosts (one for each ghost), refactor into one function (if possible).
 + Ghosts movement is overly simple. Two movement modes were originally planned: Scatter and Chase. Scatter is the current patrol mode, while chase will cause the ghosts to actively track and chase Pac Man. The Ghosts were to switch between the two modes at every fixed interval.
 + Plan further ahead. Some features were not implemented due to time constraints (Proper restart function, Ghosts Chase mode, Power Pellets).
 
