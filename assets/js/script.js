@@ -165,7 +165,6 @@ function eatAndChangeScore (tile) {
 function pacTarget (direction) {
   // using direction, target tile, then move pacman into target tile if its a valid tile
   var $pacManTile = $('#pac-man').parent()
-
   switch (direction) {
     case 'left': return $pacManTile.prev()
     case 'right': return $pacManTile.next()
@@ -280,12 +279,17 @@ function patrolBottomLeft ($ghost) {
 
 function checkCollision () {
   var $pacManTile = $('#pac-man').parent()
-  // return true if pacman's parent tile contains any of the ghosts
+  var targetTile = pacTarget(direction)
+  // return true if pacman's parent tile or pacman's target tile contains any of the ghosts
   switch (true) {
     case ($pacManTile.has('#ghost-one').length > 0):
     case ($pacManTile.has('#ghost-two').length > 0):
     case ($pacManTile.has('#ghost-three').length > 0):
     case ($pacManTile.has('#ghost-four').length > 0):
+    case ($(targetTile).has('#ghost-one').length > 0):
+    case ($(targetTile).has('#ghost-two').length > 0):
+    case ($(targetTile).has('#ghost-three').length > 0):
+    case ($(targetTile).has('#ghost-four').length > 0):
       return true
   }
 }
