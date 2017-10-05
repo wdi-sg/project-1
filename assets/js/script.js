@@ -22,8 +22,8 @@ $(function () {
   var clear;
 
   // Create reset event
-  var $reset = $('.reset')
-  $reset.on('click', reset)
+  var $resetButton = $('.resetButton')
+  $resetButton.on('click', resetButton)
 
   // Create audio event
   var $soundButton = $('.sound')
@@ -78,14 +78,14 @@ $(function () {
   function whoWon () {
     if ((totalStepsTakenByP1 >= 100)) {
       alert('Player 1 has won!')
-      reset()
+      resetButton()
     } else if ((totalStepsTakenByP2 >= 100)) {
       alert('Player 2 has won!')
-      reset()
+      resetButton()
     }
   }
 
-  function reset () {
+  function resetButton () {
     totalStepsTakenByP1 = 1
     totalStepsTakenByP2 = 1
     currentPlayer = $player1
