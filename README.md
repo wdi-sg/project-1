@@ -10,7 +10,7 @@ The n-back task is a continuous performance task that is commonly used as an ass
 #![n Back Flow Chart]
 <img src="/img/N-Back Flow Chart.png"/>
 
-### Game logic
+### Game Logic
 
 Game board will consist of 8 square tiles. A location & color button.
 
@@ -29,4 +29,6 @@ Each round will last for 20 turns.
 4. Increase speed between intervals.
 5. Increase n variable. (Memorize more steps back)
 
-### 
+### User Story
+
+The primary goal of the game is to stress fluid memory.
