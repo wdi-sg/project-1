@@ -5,7 +5,7 @@ $(function() {
   $easyStart = $('.easyStartBtn')
   $easyStart.on('click', () => {
     $gameScreen.css({
-      'background-image': 'url("../img/bgAnime.jpg")'
+      'background-image': 'url("./assets/img/bgAnime.jpg")'
     })
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
