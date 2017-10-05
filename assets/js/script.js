@@ -135,22 +135,22 @@ $(function(){
     if(strOfKeys === 25) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_1.png")`);
-    new Audio('../audio/sound1.mp3').play()
+    new Audio('./assets/audio/sound1.mp3').play()
     }
     if(strOfKeys === 26) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_2.png")`);
-    new Audio('../audio/sound2.mp3').play()
+    new Audio('./assets/audio/sound2.mp3').play()
     }
     if(strOfKeys === 27) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_3.png")`);
-    new Audio('../audio/sound3.mp3').play()
+    new Audio('./assets/audio/sound3.mp3').play()
     }
     if(strOfKeys === 28) {
     $('.playerTwoDiv').addClass("move");
     $('.playerTwoDiv').css('backgroundImage', `url("./assets/images/player1_4.png")`);
-    new Audio('../audio/sound4.mp3').play()
+    new Audio('./assets/audio/sound4.mp3').play()
     }
 
   //Check Player 1's match with randomized array
