@@ -1,14 +1,21 @@
-# Project Name Cubix : The Matching Game
+# Project #1
 <!---
 Read Me Contents
 -->
-![Temp Logo](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1") (Placeholder logo)
 
-#  Project #1: Cubix : The Matching Game
+
+# Cubix : The Matching Game
 
 ### Overview
 
-The player is presented with a game board which is a 4 x 4 grid of squares. The goal of this game is to find matching sequences of 3 squares. Once all possible matches have been found, the game will progress to the next level. Once all levels are complete, the player wins and the game will end.
+The player is presented with a game board which is a 4 x 4 grid of squares. Each square is one of 3 colours.
+
+The goal of the game is to find matching sequences of 3 squares of the same colour.
+Each match will score 3 points.
+
+Once all possible matches have been found, the game will progress to the next level.
+
+Once all levels are complete, the player wins and the game will end.
 
 ### How to play
 

@@ -68,7 +68,7 @@ $(function () {
     // $('.cell[data-position= "3,3"]').css('backgroundColor', grid[3][3])
     // grid[2][3] = "yellow"
     // $('.cell[data-position= "2,3"]').css('backgroundColor', grid[2][3])
-    // console.log(grid)
+
     if (checkForMatches() < 3 ) restart()
   }
 
@@ -79,8 +79,7 @@ $(function () {
       var index = ($(this).data('position')) //index[0], index[2]
       var index1 = parseInt(index[0])
       var index2 = parseInt(index[2])
-     //  console.log(index)
-     //  console.log(grid[index1][index2])
+
 
      if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
        checker.push([index1, index2,'h'])
@@ -118,7 +117,7 @@ $(function () {
        checker = []
      }
 
-     console.log(grid)
+
       replenishCells()
 
     }
@@ -145,14 +144,7 @@ $(function () {
       }
     }
 
-    // if (checker.length > 0) {
-    //   return true
-    // }
-
-    //console.log (gameChecker.length)
     return gameChecker.length
-
-
     }
 
 
@@ -199,17 +191,9 @@ $(function () {
 
       alert('Level Complete!')
       restart()
-    //console.log(grid)
     }
   }
-  //     }
-  //   }
-  // }
-    // console.log(grid)
-  // }
-  // function highlight(){
-  //   $(this).css('border', '0.5px solid red')
-  // }
+
 
   function generateColor() {
     return colorList[Math.floor(Math.random() * colorList.length)]
@@ -226,7 +210,7 @@ $(function () {
   }
 
   function scoreboard() {
-    console.log(score)
+
     $('h3').text('Score: ' + score)
   }
 
@@ -237,11 +221,10 @@ $(function () {
     var b = Math.floor(Math.random() * 255)
     var $body = $('body')
     var bgColorArray = "rgb("+r+","+g+","+b+")"
-    console.log(bgColorArray)
+
 
     $body.css('backgroundColor', bgColorArray)
-    //simple assignment => create random color within rbg
-    //2nd assignment => changing gradually
+
   }
 
 
@@ -249,9 +232,5 @@ $(function () {
   $('body').on('click', scoreboard)
   $('button').on('click', resetAll)
   setInterval(bgChanger,4000)
-
-
-  //$cell.on('mouseover', highlight)
-
 
 })
