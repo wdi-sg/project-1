@@ -104,7 +104,9 @@ Below are some code snippet:
 
 ``` javascript
 // Moving Pac Man
-setInterval(function () { movePacMan() }, pacManSpeed)
+setTimeout(function () {
+  setInterval(function () { movePacMan() }, pacManSpeed)
+}, 3000)
 
 // Moving Pac Man
 function movePacMan () {
@@ -163,7 +165,9 @@ Below are some code snippets:
 var ghostSpeed = 400
 
 // Moving Ghost One
-setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+setTimeout(function () {
+  setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+}, 3000)
 
 // Assigning Patrol Function
 function moveGhost ($ghost) {
