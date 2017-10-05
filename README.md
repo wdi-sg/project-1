@@ -2,19 +2,14 @@
 
 ### Introduction
 
-**Bandits** are trying to steal your harvest. You and your cow are getting distressed. Luckily for you, milk isn't the only thing your farm deliver. Defend your farm and **deliver sweet justice**.
-
 1. Play as a farmer, Johnny Wicklebottom.
 2. Defend your farm against the OnionFace Bandit Gang.
 3. Survive them all to win.
 
 ![Introduction](/assets/images/introScreen2.png)
 
-
-
-
 ##### Gameplay
-The main challenge of this game is for the player to shoot the enemies while avoiding hit or getting his house damaged. The enemies keep spawning so defeat them fast to avoid beign overrun!
+The main challenge of this game is for the player to shoot the enemies while avoiding hit or getting his house damaged. The enemies keep spawning so defeat them fast to avoid being overrun!
 
 
 ### Controls
@@ -30,7 +25,14 @@ The main challenge of this game is for the player to shoot the enemies while avo
 
 ### Technical Assets
 
+#### Content update
 The update loop uses ```window.requestAnimationFrame()``` to update the game when not paused.
+
+The ```update``` function is used to move the characters using ```element.moveChar``` and check interaction using ```checkCollision()```. Each element behave differently upon collision.
+
+
+#### Element creation
+The ```generateEnemy```, ```generateBullet```, ```generateUpgrade```, ```generateCat``` functions are used to create elements using the ```Character``` class.
 
 The ```Character``` class is used to create all game elements on the gameBoard.
 ```
@@ -66,17 +68,15 @@ class Character {
   //All characters can shoot. Even pets and bullets.
 ```
 
-The ```generateEnemy```, ```generateBullet```, ```generateUpgrade```, ```generateCat``` functions are used to create elements using the ```Character```. class
 
-The ```update``` function is used to ```element.moveChar``` and ```checkCollision()```. Each element behave differently upon collision.
 
 ##### Levels
 
-3 Levels with varying enemy spawn rates base on a timer.
+3 Levels with varying enemy spawn rates base on a timer. Past a certain point, enemies stop spawning and once all enemies are dead, the game is won.
 
 ---
 
 Sprites from:
 - opengameart.org
-- spriters-resource.com
+- spriters-resource.com (Stardew Valley)
 - charas-project.net
