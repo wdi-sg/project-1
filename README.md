@@ -1,4 +1,4 @@
-# Sweet Tooth
+#Project#1:  Sweet Tooth
 <!---
 Read Me Contents
 -->
@@ -11,7 +11,10 @@ Read Me Contents
 
 Sweetly is a **Sweet Tooth** from the tooth kingdom. After a long duration of lack of sweets due to working, she found her health deteriorate that she has turned yellow. Help Sweetly regain her health and become stronger by feeding her more sweets. Swap sweets to make a match of three or more to feed her. Beware as she only has (100) seconds break time to eat.
 
+![](/assets/css/img/sweettoothcharacter.png)
+
 Different types of sweets available for Sweetly: rainbow cake, chocolate cake, ice cream, vanilla cupcake and strawberry parfait.
+![](/assets/css/img/sweetstype.png)
 
 ---
 
@@ -109,13 +112,16 @@ version 0.8.0:(4/10/2017) added:
 * able to change character image based on score
 * increase grid to 5x5
 
+version 0.9.0: (5/10/2017) added:
+* end game screen 
+
 current timing: checkGrid to removeElements(0)
 removeElements(removing 300) to pushdown(250) to generateElements (300) to checkGrid (300)
 full cycle 1,150.
 
-yet to add
-extra
+yet to add: extra:
 * more score for match of four or five.
+
 ---
 
 ### Self Remainder

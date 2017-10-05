@@ -30,7 +30,9 @@ $(function(){
     if (turn){
 
       $('.overText').remove()
-
+      $('.totalScore').remove()
+      $('.characterFinal').remove()
+      $character.css('background-image','url("/assets/css/img/yellowteeth.png")')
       gameOver=false
       removeClassBox()
       addClassBox()
@@ -42,16 +44,18 @@ $(function(){
         turn = false
       }, 1000)
     }
+    gameOverCheck = setInterval(()=>{
+      if (timer <= 0){
+        gameOver = true
+        clearInterval(gameTimer)
+        endGame()
+        turn = true
+        timer = 100
+        clearInterval(gameOverCheck)
+      }
+    },1000)
   })
-  gameOverCheck = setInterval(()=>{
-    if (timer <= 0){
-      gameOver = true
-      clearInterval(gameTimer)
-      endGame()
-      turn = true
-      timer = 100
-    }
-  },1000)
+
   $box.on('click', function(){
     //click = false
     $(this).css({'border':"2px solid red"})
@@ -134,28 +138,29 @@ $(function(){
     [undefined,undefined,undefined,undefined,undefined]]
     removeClassBox()
     //addClassBox()
+    var characterImage = $character.css('background-image')
+    console.log(characterImage)
+
     $gameOverText = $('<h2 class ="overText">')
     $gameOverText.text("Time's Up")
     $totalScore = $('<h2 class="totalScore">')
-    $totalScore.text(`${total}`)
+    $totalScore.text(`Total Score: ${total}`)
+    $characterFinal = $('<div class="characterFinal">')
+    characterImage= characterImage.replace('url("http://127.0.0.1:3000/','')
+    characterImage = characterImage.replace('")','')
+    console.log(characterImage)
+    $charImage = $(`<img src=${characterImage} />`)
+    // $characterFinal.css("background-image",`"url=('${characterImage}')"`)
+
+    $characterFinal.prepend($charImage)
     $('.gridbox').append($gameOverText)
     $('.gridbox').append($totalScore)
+    $('.gridbox').append($characterFinal)
     total = 0
     turn = true
 
   }
 
-//// restart function
-  // function restart(){
-  //
-  //   grid =[[undefined,undefined,undefined,undefined],
-  //   [undefined,undefined,undefined,undefined],
-  //   [undefined,undefined,undefined,undefined],
-  //   [undefined,undefined,undefined,undefined]]
-  //   generateElements()
-  //   total = 0
-  //   timer = 300
-  // }
   function setGrid(){
 
     totalBefore = total
@@ -265,17 +270,17 @@ $(function(){
         $scoreBox.text(`${total}`)
         toBeDelete =[]
         toBeDeleteTwo =[]
-        if(total>800){
-          $character.css("background-image","url('./assets/css/img/toothfairy.png')")
+        if(total>700){
+          $character.css("background-image","url('/assets/css/img/toothfairy.png')")
         }
         else if (total>500){
-          $character.css("background-image","url('./assets/css/img/pinkteeth.png')")
+          $character.css("background-image","url('/assets/css/img/pinkteeth.png')")
 
         }
         else if(total>250){
-          $character.css('background-image','url("./assets/css/img/whiteteeth.png")')
+          $character.css('background-image','url("/assets/css/img/whiteteeth.png")')
         }
-        else $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
+        else $character.css('background-image','url("/assets/css/img/yellowteeth.png")')
 
       }
     },300)
@@ -305,6 +310,13 @@ $(function(){
               $oneBox.addClass(`c${grid[i][k]}`)
               grid[i][k-3] = undefined
               $(`#box${i}${k-3}`).removeClass().addClass('box')
+              continue
+            }
+            else if (grid[i][k-4]!== undefined || grid[i][k-4]){
+              grid[i][k] = grid[i][k-4]
+              $oneBox.addClass(`c${grid[i][k]}`)
+              grid[i][k-4] = undefined
+              $(`#box${i}${k-4}`).removeClass().addClass('box')
               continue
             }
             else continue
