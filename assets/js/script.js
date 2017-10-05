@@ -77,7 +77,7 @@ $(function () {
   var $flowerPos = $flower.position()
   var score = 0
   var highScoreArr = JSON.parse(localStorage.getItem('HighScore'))
-  if(!highScoreArr) highScoreArr = [120, 100];
+  if(!highScoreArr) highScoreArr = [120, 100, 300];
   highScoreArr.sort((a, b) => b - a)
 
   var timer = 30
