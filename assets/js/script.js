@@ -2,8 +2,7 @@ $(function() {
 
 // SCREEN BUTTONS
   // Gamestage Believer EASY
-  $easyStart = $('.easyStartBtn')
-  $easyStart.on('click', () => {
+  $('.easyStartBtn').on('click', () => {
     $gameScreen.css({
       'background-image': 'url("./assets/img/bgAnime.jpg")'
     })
@@ -32,9 +31,27 @@ $(function() {
     event6(62000)
   })
 
+//WORK IN PROGRESS
+  // $('.normalStartBtn').on('click', () => {
+  //   $gameScreen.css({
+  //     'background-image': 'url("./assets/img/nightBG.jpg")'
+  //   })
+  //   $gameOverlay = $('.gameOverlay')
+  //   $gameOverlay.css({
+  //     'display': 'none'
+  //   })
+  //   document.getElementsByClassName('gogo')[0].volume = 0.6;
+  //   document.getElementsByClassName('gogo')[0].play()
+  //   updatePlayerStats()
+  //   countDown()
+  //   document.getElementsByClassName('believerBGM')[0].volume = 1
+  //   document.getElementsByClassName('believerBGM')[0].play()
+  //   spawnIntervalEasy(4000)
+  //   spawnIntervalAlly(8000)
+  // })
+
   // Gamestage Deadpool HARD
-  $hardStart = $('.hardStartBtn')
-  $hardStart.on('click', () => {
+  $('.hardStartBtn').on('click', () => {
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
       'display': 'none'
@@ -129,11 +146,12 @@ $(function() {
     if(timeCount <= 0 && playerStats.health > 0) {
       clearInterval(playerStatsInterval)
       clearInterval(countDownInterval)
-      document.getElementsByClassName('deadpoolBGM')[0].pause()
-      document.getElementsByClassName('ghoulBGM')[0].pause()
+      // document.getElementsByClassName('deadpoolBGM')[0].pause()
+      // document.getElementsByClassName('ghoulBGM')[0].pause()
       // document.getElementsByClassName('deadpoolBGM')[0].pause()
       document.getElementsByClassName('victory')[0].play()
       $('.overlayText').text("VICTORY! TERRORISTS WIN!")
+      $('.retryBtn').text('TRY A DIFFERENT LEVEL')
       $gameOverlay = $('.gameOverlay')
       $gameOverlay.css({
         'display': 'block'
@@ -145,6 +163,9 @@ $(function() {
         'display': 'block'
       })
       $('.easyStartBtn').css({
+        'display': 'none'
+      })
+      $('.normalStartBtn').css({
         'display': 'none'
       })
       $('.hardStartBtn').css({
@@ -160,7 +181,7 @@ $(function() {
       clearInterval(countDownInterval)
       document.getElementsByClassName('deadpoolBGM')[0].pause()
       document.getElementsByClassName('ghoulBGM')[0].pause()
-      // document.getElementsByClassName('deadpoolBGM')[0].pause()
+      document.getElementsByClassName('believerBGM')[0].pause()
       document.getElementsByClassName('death')[0].play()
       $('.overlayText').text("GAME OVER")
       $('.hint').text("Hint: Manage your inventory")
@@ -175,6 +196,9 @@ $(function() {
         'display': 'block'
       })
       $('.easyStartBtn').css({
+        'display': 'none'
+      })
+      $('.normalStartBtn').css({
         'display': 'none'
       })
       $('.hardStartBtn').css({

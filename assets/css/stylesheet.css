@@ -13,11 +13,10 @@ body {
 
 h1 {
   width: 100%;
+  font-size: 28px;
   height: 5%;
   text-align: center;
-  margin: 1px auto;
-  border: 2px solid black;
-  display: block;
+  margin: 0 0 3px 0;
 }
 
 .gameInstructions {
@@ -97,6 +96,18 @@ h1 {
   display: block;
 }
 
+.normalStartBtn {
+  font-size: 18px;
+  border-radius: 3px;
+  border: 2px solid black;
+  top: 20%;
+  left: 5%;
+  width: 15%;
+  height: 5%;
+  position: absolute;
+  display: block;
+}
+
 .hardStartBtn {
   font-size: 18px;
   border-radius: 3px;
@@ -121,12 +132,10 @@ h1 {
   height: 20%;
   position: absolute;
   display: none;
-  z-index: 0;
 }
 
 .gameScreen {
   /*cursor: url(../img/crosshair.png) 22 22, auto;*/
-  padding: 0;
   top: 6%;
   left: 17%;
   width: 83%;
@@ -231,11 +240,10 @@ h1 {
 }
 
 .ally {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid white;
+  width: 33px;
+  height: 33px;
+  background-image: url("../img/triangle.png");
+  background-size: contain;
 }
 
 .healthPack {
