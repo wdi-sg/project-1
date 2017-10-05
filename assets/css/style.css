@@ -128,8 +128,15 @@ p {
   margin-right: 15px;
 }
 
+.halimah-lives {
+  width: 18%;
+  right: 18px;
+  bottom: 25px;
+  position: absolute;
+}
+
 .start-screen, .finish-screen {
-  width: 63.1%;
+  width: 81.1%;
   height: 93.3%;
   /*bottom: 5px;*/
   left: 18.15%;
@@ -144,7 +151,7 @@ p {
   font-size: 70px;
   color: white;
   top: 35px;
-  left: 30%;
+  left: 38%;
   padding: 10px;
   position: absolute;
   display: block;
@@ -154,7 +161,7 @@ p {
   font-size: 50px;
   color: white;
   top: 90px;
-  left: 30%;
+  left: 36%;
   padding: 10px;
   position: absolute;
   display: block;
@@ -166,7 +173,7 @@ p {
   color: black;
   background-color: white;
   top: 300px;
-  left: 38%;
+  left: 43%;
   /*margin: 15px auto;*/
   position: absolute;
 }

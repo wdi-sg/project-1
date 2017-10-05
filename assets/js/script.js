@@ -1,10 +1,8 @@
 $(function () {
-
-  $(".start-Button").click(function () {
-      $(".start-screen").hide()
-      $(".finish-screen").hide()
-      $(".gamecolumn").show()
-      // startGame();
+  $('.start-Button').click(function () {
+    $('.start-screen').hide()
+    $('.finish-screen').hide()
+    $('.gamecolumn').show()
   })
 
   // -------------------------- definition of global variables -------------------------- //
@@ -16,7 +14,6 @@ $(function () {
     { src: './assets/img/injured-cat.png', score: 2},
     { src: './assets/img/bike-thef.png', score: 1}
   ]
-  // console.log(badPeople)
 
   var $instructions = $('.instructions')
 
@@ -36,6 +33,11 @@ $(function () {
 
   var score = 0
 
+  var $level = $('.level')
+  var $mission = $('.mission')
+
+  var lives = 3
+
   // -------------------------- creation of bad people icons -------------------------- //
 
   function randomBadPeople () {
@@ -51,7 +53,6 @@ $(function () {
     var randomIndex = randomBadPeople()
     var randomIconSrc = randomIndex.src
     var randomIconScore = randomIndex.score
-    console.log(randomIconScore)
     // randomize position
     var maxWidth = $gameColumn.width() - 400
     var minWidth = 0
@@ -59,11 +60,7 @@ $(function () {
     var minHeight = 0
 
     var x = Math.floor(Math.random() * (maxWidth - minWidth + 1) + 170)
-    // console.log(x)
     var y = Math.floor(Math.random() * (maxHeight - minHeight + 1))
-    // console.log(y)
-
-    var totalIcon = 80
 
     // create icon
     var $newIcon = $('<img>')
@@ -72,8 +69,8 @@ $(function () {
     $newIcon.addClass('badPeople')
     $newIcon.attr('id', `bad${iconCounter}`)
     $newIcon.width(80)
-    $newIcon.css('left', x) // x)
-    $newIcon.css('top', y) // y)
+    $newIcon.css('left', x)
+    $newIcon.css('top', y)
     $gameColumn.append($newIcon)
 
     arrOfBad.push(`bad${iconCounter}`)
@@ -90,11 +87,9 @@ $(function () {
   $(document).keydown(function (e) {
     if (e.keyCode === 37 && leftArrow === false && Number(($paddle.css('left')).replace('px', ' ')) > 0) { // left
       $paddle.css('left', Number(($paddle.css('left')).replace('px', ' ')) - 45)
-      // console.log($paddle.css('left'))
       leftArrow = true
     } else if (e.keyCode === 39 && rightArrow === false && Number(($paddle.css('left')).replace('px', ' ')) < 900) { // right
       $paddle.css('left', Number(($paddle.css('left')).replace('px', ' ')) + 45)
-      // console.log($paddle.css('left'))
       rightArrow = true
     }
   })
@@ -108,6 +103,7 @@ $(function () {
   })
 
   // -------------------------- bouncing a heart -------------------------- //
+
   var $windowHeight = $(window).height()
 
   function moveHeart () {
@@ -127,15 +123,24 @@ $(function () {
     if (heartX > $width - heartRad || heartX < heartRad) {
       heartSpeedX = -heartSpeedX
     } else if (heartY > $height - heartRad) {
-      heartSpeedY = -heartSpeedY
-    } else if (heartY < heartRad + paddleHeight) {
+      heartSpeedY = -heartSpeedY// top wall
+    } else if (heartY < heartRad + paddleHeight) { // bottom wall
       if (heartX > paddleLeftEdge && heartX < paddleRightEdge && heartY < paddleHeight + heartRad) { // check whether the center of the heart is between the left and right edges of the paddle
         heartSpeedY = Math.abs(heartSpeedY)
       } else if (heartY = $paddle.height() - heartRad) {
-        heartSpeedX = 0
-        heartSpeedY = 0
-        checkLives()
-        deductLives()
+        // heartSpeedX = 0
+        heartSpeedY = Math.abs(heartSpeedY)
+        lives--
+        $('.lives').text(`Lives: ${lives}`)
+        console.log(lives)
+        heartSpeedXx = 20
+        heartSpeedY = 20
+        heartX = $heart.css('left', '505px')
+        heartY = $heart.css('bottom', '40px')
+        paddleX = ($gameColumn - paddleWidth) / 2
+        if (lives === 0) {
+          endGame()
+        }
       }
     }
     $heart.css('left', heartX + heartSpeedX)
@@ -151,24 +156,18 @@ $(function () {
         var $badPeopleHeight = $badPeople.height()
         var $badPeoplePos = $badPeople.position()
         var $badPeopleLeft = $badPeoplePos.left
-        // console.log($badPeopleLeft)
         var $badPeopleBottom = $height - $badPeopleHeight - $badPeoplePos.top
-        // console.log($badPeopleBottom)
         var collidedWithIcon = detect(heartX, heartY, heartRad, $badPeopleLeft, $badPeopleBottom, $badPeopleWidth, $badPeopleHeight)
 
         var arrOfBadRemoved = []
 
         if (collidedWithIcon) {
-          // console.log('$badPeople', $badPeople)
-          // console.log('$badPeople Data', $badPeople.data('value'))
           score += $badPeople.data('value')
-          // console.log('score', score)
           $score.text(`Score: ${score}`)
           $badPeople.remove()
           var removeBadIndex = arrOfBad.indexOf(id)
           arrOfBad.splice(removeBadIndex, 1)
           arrOfBadRemoved.push(removeBadIndex)
-          console.log(arrOfBadRemoved[arrOfBadRemoved.length - 1])
           nextlevel()
         }
       })
@@ -178,7 +177,6 @@ $(function () {
   // -------------------------- check for collision between heart and icons -------------------------- //
 
   function detect (heartX, heartY, heartRad, $badPeopleLeft, $badPeopleBottom, $badPeopleWidth, $badPeopleHeight) {
-    // console.log(heartX, heartY, heartRad, $badPeopleLeft, $badPeopleBottom, $badPeopleWidth, $badPeopleHeight)
     if (
       heartX > $badPeopleLeft &&
       heartX + (2 * heartRad) < $badPeopleLeft + $badPeopleWidth &&
@@ -197,71 +195,37 @@ $(function () {
 
   setInterval(moveHeart, 100) // call moveHeart every 0.1s
 
-  // -------------------------- check for lives -------------------------- //
-
-  function checkLives () {
-    var $halimahLives = $('.halimah-lives')
-
-    if($halimahLives.length === 3) {
-      return 3
-    } else if ($halimahLives.length === 2) {
-      return 2
-    } else if ($halimahLives.length === 1) {
-      return 1
-    // } else if ($halimahLives.length === 0) {
-    //   return endGame()
-    }
-  }
-
-  // -------------------------- deduct lives -------------------------- //
-
-  function deductLives () {
-    var $halimahLives1 = $('#halimah-lives-1')
-    var $halimahLives2 = $('#halimah-lives-2')
-    var $halimahLives3 = $('#halimah-lives-3')
-
-    if(checkLives () === 3) {
-      $halimahLives1.hide()
-    } else if (checkLives () === 2) {
-      $halimahLives2.hide()
-    } else if (checkLives () === 1) {
-      $halimahLives3.hide()
-      endGame()
-    }
-  }
-
   // -------------------------- advance to new level -------------------------- //
 
-  var $level = $('.level')
-  var $mission = $('.mission')
-
+  var hasHalimahLaughed = 0
   function nextlevel () {
+    var laughing = new Audio("./assets/img/laughing.mp3")
     var level = Math.floor(score / 100) + 1
-      $level.text(`Level: ${level}`)
-      // console.log("level", level);
+    $level.text(`Level: ${level}`)
 
-      if (level === 2) {
-        $mission.text("Mission: Obtain a score of 200")
-      } else if (level === 3) {
-        $mission.text("Mission: Obtain a score of 300")
-      }
+    if (level === 2) {
+      $mission.text('Mission: Obtain a score of 200')
+    } else if (level === 3) {
+      $mission.text('Mission: Obtain a score of 300')
+    }
+
+    if (score >= 100 && level === 2 && hasHalimahLaughed < 1) {
+      laughing.play()
+      alert('You won! Next Level')
+      hasHalimahLaughed++
+    } else if (score >= 200 && level === 3 && hasHalimahLaughed < 2) {
+      laughing.play()
+      alert('You won! Next Level')
+      hasHalimahLaughed++
+    }
   }
-
-  // -------------------------- restart level -------------------------- //
-
-  // var $level = $('.level')
-  //
-  // function restartLevel () {
-  //
-  //
-  // }
 
   // -------------------------- gaveover screen -------------------------- //
 
-  function endGame() {
-      $(".gameColumn").hide();
-      $("#score").text(score);
-      $(".finish-screen").show();
+  function endGame () {
+    $('.gameColumn').hide()
+    $('#score').text(score)
+    $('.finish-screen').show()
   }
 
   // -------------------------- END OF CODE YAYYYYYYYYY -------------------------- //
