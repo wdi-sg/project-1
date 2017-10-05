@@ -37,7 +37,7 @@ var isGameOver = false
 var direction = 'left'
 var pacManSpeed = 600
 var pacManMeetGhost = false
-var pacManLives = 3
+var pacManLives = 1
 // ghost variables
 var ghostSpeed = 400
 // var ghostMovementMode = 'scatter'
@@ -126,9 +126,12 @@ $(function () {
         }
       }, 300)
       // clearing game board
-      if (isGameOver) {
-        $tiles.remove()
-      }
+      var clear = setInterval(function () {
+        if (isGameOver) {
+          $tiles.remove()
+          clearInterval(clear)
+        }
+      }, 300)
     }
   })
 })
@@ -185,10 +188,8 @@ function countDown () {
   $time.text(time)
   $timer.append($time)
   $gameBoard.append($timer)
-  console.log('timer called')
 
   var countdown = setInterval(function () {
-    console.log(time)
     time--
     $time.text(time)
     if (time === 0) {
