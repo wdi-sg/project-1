@@ -62,9 +62,22 @@ Here I am making the fall effect, coming from the top of the game screen, then r
 var highScoreArr = JSON.parse(localStorage.getItem('HighScore'))
   highScoreArr.sort((a, b) => b - a)
 var storage = window.localStorage
-
-
 ```
+Creating a localstorage to hold highscores. scores in the array are taken out as a string, JSON.parse will change it to an object. Then only can the sorting from High to low scores be done.
+```
+if (!highScoreArr.includes(score)) {
+  highScoreArr.push(score)
+  localStorage.setItem('HighScore', JSON.stringify(highScoreArr))
+  ```
+If highScoreArr does !NOT is the same as in the array, it will be pushed into it.
+Using JSON.stringify to make highScoreArr a string so it can be stored in the local storage. local storage does not accept objects, just strings.
+
+  ```
+  $highscore.text(`HighScore: ${highScoreArr[0]}
+                   HighScore: ${highScoreArr[1]}
+                   HighScore: ${highScoreArr[2]}`)
+```
+Scores are updated each time the game is played, showing only index[0,1,2] means only the top 3 scores will be shown.
 ---
 
 ---
