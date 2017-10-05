@@ -10,11 +10,11 @@ var jumpLimit = true // switch for jump
 var start1 = [] // indicates ball1 starting position, index position increases with level
 var start2 = []
 var currentLevel
-var lose = new Audio('./assets/sounds/lose.wav')
+var lose = new Audio('assets/sounds/lose.wav')
 var loseCheck = false
-var jumpSound = new Audio('./assets/sounds/jump.wav')
-var muteSwitch = true //mute switch
-var muteBeep = new Audio("./assets/sounds/beep.wav")
+var jumpSound = new Audio('assets/sounds/jump.wav')
+var muteSwitch = true // mute switch
+var muteBeep = new Audio('assets/sounds/beep.wav')
 
 $(function () {
   $('body').on('keydown', startClick)
@@ -337,14 +337,13 @@ function skipLevel () {
   $ball2.css('left', $('.goal:last').position().left.toString() + 'px')
 }
 function toggleSound () {
-  if (muteSwitch === true){
+  if (muteSwitch === true) {
     muteBeep.play()
     muteSwitch = false
     $('.mute').html('I regret doing that (M)')
-  }
-  else if (muteSwitch === false){
+  } else if (muteSwitch === false) {
     muteSwitch = true
-    $('.mute').html("Lonely without sound (M)")
+    $('.mute').html('Lonely without sound (M)')
   }
 }
 function alert1 () {
