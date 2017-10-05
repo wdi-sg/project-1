@@ -46,6 +46,7 @@ _-==//==-.|| || _---_    .     -      .-==-.   .-._
 Here I created a constructor with the purpose to create flowers of different properties. Each time a flower is create, it will have a particular set of properties that is unique to one of the 5 classes created. In here I use (this) to bind the values needed to each flower created at the interval.
 
 * **fall**
+
 ```
 fall () {
   var position = this.element.position()
@@ -58,6 +59,7 @@ fall () {
 Here I am making the fall effect, coming from the top of the game screen, then removing them when they hit a certain height. This will stop them from falling all the way down the page.
 
 * **leaderBoard**
+
 ```
 var highScoreArr = JSON.parse(localStorage.getItem('HighScore'))
   highScoreArr.sort((a, b) => b - a)
@@ -78,15 +80,100 @@ Using JSON.stringify to make highScoreArr a string so it can be stored in the lo
                    HighScore: ${highScoreArr[2]}`)
 ```
 Scores are updated each time the game is played, showing only index[0,1,2] means only the top 3 scores will be shown.
+
+* **startGame() & gameOver()**
+
+```
+$startbtn.one('click', () => {
+  $clickme.css('display', 'none')
+  create = setInterval(createFlower, 50)
+  $timer = $('.timer')
+  timerInt = setInterval(() => {
+    timer = timer - 1
+    $timer.text('Time: ' + timer)
+    if (timer <= 0) {
+      gameOver()
+    }
+  }, 1000)
+})
+```
+Start button to start the game, when clicked, start screen is removed, timer begins at 30seconds, the interval for creating flowers begins. at each second interval, timer reduces by 1, and gameOver() is called.
+
+```
+$allFlowers.remove()
+clearInterval(create)
+clearInterval(find)
+clearInterval(timerInt)
+
+$gameStart.css('display', 'block')
+$highscore.css('display', 'block')
+$gameOverScreen.text(`Score: ${score}`)
+$highscore.text(`HighScore: ${highScoreArr[0]}
+                 HighScore: ${highScoreArr[1]}
+                 HighScore: ${highScoreArr[2]}`)
+
+$('.playerOne').css('backgroundImage', 'url(./assets/images/superPink2.gif)')
+```
+When gameOver() is called, game will clear all intervals, not allowing timer and flowers to fall. It will change background and show the top 3 highscores.
+
+* **detech()**
+
+```
+function detect () {
+  var $playerOne = $('.playerOne')
+  var $playerPos = $playerOne.position()
+  var $score = $('.score')
+
+  for (var key in flowerList) {
+    var $flower = flowerList[key].element
+    var $flowerPos = $flower.position()
+
+    if ($playerPos.left <= $flowerPos.left + $flower.width() &&
+    $playerPos.left + $playerOne.width() >= $flowerPos.left &&
+    $playerPos.top <= $flowerPos.top + $flower.height()) {
+      var indiFlower = flowerList.splice(key, 1)
+
+      score += indiFlower[0].points
+      timer += indiFlower[0].sec
+      $score.text(`Score: ${score}`)
+
+      indiFlower[0].element.remove()
+    }
+  }
+}
+```
+
+Getting the positions for both player and the flowers(stars).
+var $flower = flowerList[key].element, means the the exact star in the array of flowers on screen that touches the player. That flower is then spliced into a new array indiFlower[], score and time is taken from it, and is removed from the array. the removal of it makes sure that when the calculation of score happens, it does not key in multiple score & time.
+
 ---
 
 ---
-### Necessary Deliverables
+### TimeFlow
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+* Day 1
+
+1. Able to make it rain randomly all over the map.
+2. flowers are removed just before bottom line, does not go all the way down.
+3. Make create player at start of game
+4. Player move left and right.
+5. Player does not leave game screen area.
+
+* Day 2
+
+1. Did collision, player and flower able to detect each other.
+2. collision able to give the correct values, but multiple times.
+3. collision able to give correct values once, and removed from game.
+4. added "time" value, "speed" value, different images to the stars.
+5. made gameover functiom
+6. started on CSS for the game.
+
+* Day 3
+
+1. added restart function.
+2. added more aesthetics to game.
+3. added highscore function .
+4. added leaderboard function.
 ---
 
 ---
@@ -107,12 +194,17 @@ Scores are updated each time the game is played, showing only index[0,1,2] means
 ##### Player 2 option
 Create a Player 2 option for friends to join in the fun!
 
-Hit box collision for both players, able to push the other one away, a Jump ability.
+Hit box collision for both players, able to push or stun the other one away, a Jump ability.
 
 ##### Different level layouts & player avatar
 Create different levels with obstacles.
 
 Have different avatars for players to choose from.
+
+##### animations
+Create original sprites of game.
+
+Introduce hit animations, gaining star animations and sound.
 
 ---
 

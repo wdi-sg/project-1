@@ -103,7 +103,6 @@ $(function () {
       timerInt = setInterval(() => {
         timer = timer - 1
         $timer.text('Time: ' + timer)
-
         if (timer <= 0) {
           gameOver()
         }
