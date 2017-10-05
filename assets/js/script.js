@@ -28,9 +28,11 @@ var $winPanel = $('.win-panel')
 var $losePanel = $('.lose-panel')
 var $scoreBoard = $('.score-board')
 var $livesContainer = $('.lives-container')
+var $tiles = $('.tile')
 
 // game variables
 var score = 0
+var isGameOver = false
 // pacman variables
 var direction = 'left'
 var pacManSpeed = 600
@@ -51,22 +53,18 @@ var prevDirFour = []
 $(function () {
   $winPanel.hide()
   $losePanel.hide()
-  // write reset function
-
-  // write ifGameOver function
 
   // hit enter to start
   $body.on('keyup', (event) => {
     if (event.key === 'Enter') {
+      $body.off()
+      isGameOver = false
       // hide instructions
       $instructionPanel.hide()
-
       // show score-board
       $scoreBoard.css('visibility', 'visible')
       // load assets
       loadAssets(tileSet)
-      // write countdown function
-
       // moving pacman
       setInterval(function () { movePacMan() }, pacManSpeed)
       // switching directions
@@ -95,7 +93,6 @@ $(function () {
       setInterval(function () {
         // jQuery object variables
         var $pacMan = $('#pac-man')
-        var $score = $('.score')
         var $tile = $('.tile')
         // targeting pac-man starting tile
         var $pacManStart = $tile.filter(function () { return $(this).data('attr') === 9 })
@@ -114,6 +111,7 @@ $(function () {
           $scoreBoard.css('visibility', 'hidden')
           $winPanel.hide()
           $losePanel.show()
+          isGameOver = true
         }
       }, 100)
       // win condition
@@ -122,8 +120,13 @@ $(function () {
           $scoreBoard.css('visibility', 'hidden')
           $losePanel.hide()
           $winPanel.show()
+          isGameOver = true
         }
       }, 300)
+      // clearing game board
+      if (isGameOver) {
+        $tiles.remove()
+      }
     }
   })
 })
