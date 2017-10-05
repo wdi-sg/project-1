@@ -148,6 +148,8 @@ Currently working on making the initial base fighting area and the main player
 ![](/assets/images/old.gif)
 **4/10/17**
 ![](/assets/images/v2.png)
+**Final Product [5/10/17]**
+![](/assets/images/v3.png)
 
 ### **BUG REPORT**
   * Jump is still choppy, unable to remove 1 sec delay from continuous button pressing.
