@@ -111,7 +111,7 @@ function checkCollision () {
 
 To move Pac Man through the grid, the game first gets the tile which Pac-Man is inhabiting. Depending on which tile Pac Man is trying to move into, the game then gets the target tile and checks it's data attribute to determine if the tile selected is a valid tile. Event handlers are used to change Pac Man's direction depending on which ArrowKey is hit.
 
-Below are some code snippet:
+Below are some code snippets:
 
 ``` javascript
 setTimeout(function () {
