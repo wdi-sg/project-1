@@ -145,11 +145,12 @@ function loadAssets (tileSet) {
   for (var i = 0; i < tileSet.length; i++) {
     // create new <div> for tiles and dots
     var $tile = $('<div class="tile">')
-    var $dots = $('<div class="dots">')
 
     // setting tile properties and adding characters
     switch (tileSet[i]) {
-      case 0: $tile.css(blackTile).data('attr', 0).append($dots)
+      case 0:
+        var $dots = $('<div class="dots">') // only create dots if tile can contain one
+        $tile.css(blackTile).data('attr', 0).append($dots)
         break
       case 1: $tile.css(blueTile).data('attr', 1)
         break
