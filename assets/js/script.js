@@ -27,6 +27,14 @@ $(function () {
   var $reset = $('.reset')
   $reset.on('click', reset)
 
+  // creating Audio
+  var $soundButton = $('.sound')
+  $soundButton.on('click' , playAudio)
+
+  function playAudio () {
+    document.getElementsByClassName('audio')[0].play()
+  }
+
   function rollDice () {
     var randomDiceResult = 1 + Math.floor(Math.random() * 6)
 
@@ -38,19 +46,21 @@ $(function () {
     if (currentPlayer === $player1) {
       cellValueP1 += randomDiceResult
       $player1.detach().appendTo(`#${cellValueP1}`) // move player 1 + dice value
-      $circle.css("left", "17px")
+      $circle.css("left", "127px")
       painOrPleasureP1()
 
       if (randomDiceResult === 6) {
         currentPlayer = $player1 // if dice is 6 go again
+        $circle.css("left", "17px")
       } else {
         currentPlayer = $player2
+        $circle.css("left", "127px")
       }
     } else if (currentPlayer === $player2) {
       cellValueP2 += randomDiceResult
       $player2.detach().appendTo(`#${cellValueP2}`) // move player 1 + dice value
       painOrPleasureP2()
-      $circle.css("left", "127px")
+      $circle.css("left", "17px")
 
       if (randomDiceResult === 6) {
         currentPlayer = $player2
@@ -78,6 +88,7 @@ $(function () {
   function reset () {
     cellValueP1 = 1
     cellValueP2 = 1
+    currentPlayer = $player1
     $player1.detach().appendTo(`#${cellValueP1}`)
     $player2.detach().appendTo(`#${cellValueP2}`)
     clearInterval(clear)
@@ -124,7 +135,6 @@ $(function () {
   }
   createTable()
   startPosition()
-
 
   // Using Array to input Snakes & Ladders
   var painAndPleasureArray = [0,'ladder0',0,'ladder1',0,0,'snake0',0,'ladder2',0,

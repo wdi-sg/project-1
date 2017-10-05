@@ -1,6 +1,23 @@
 body, html {
     height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
+
+.wrapper-top {
+  /*border: 1px solid red;*/
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.gameHeaderName {
+  /*border: 1px solid black;*/
+}
+
+
 
 .bg {
   background-image: url("../images/bg4.jpg");
@@ -10,10 +27,6 @@ body, html {
   background-size: cover;*/
 }
 
-.gold {
-  width: 50px;
-  height: 50px;
-}
 
 .container {
   border: 1px solid red;
@@ -31,7 +44,6 @@ table {
   top: 10%;
   left: 15%;
 }
-
 
 .pig {
   width: 50px;
@@ -61,22 +73,29 @@ button {
 }
 
 
-h1 {
-  border: 1px solid red;
-  margin: 25px 0px;
-}
-
 td {
   max-width: 50px;
   max-height: 50px;
   position: relative;
-  transition: all 500ms ease-in-out 500ms;
+  transition-duration: 10s; 
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
 .wrapper {
   position: relative;
   display: inline-block;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
 }
 
 #overlay {
@@ -92,22 +111,24 @@ td {
 
 .wrapper2 {
   display: inline-block;
-  width: 280px;
+  width: 330px;
   height: 565px;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   margin-left: 30px;
+  border-radius: 10px;
 }
 
 .right-section {
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   min-width: 280px;
   min-height: 180px;
   background-image: url('../images/images.jpg')
 }
-/*.top-row {
-  display:flex;
-  justify-content: space-between;
-}*/
+.top-row {
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 .top-row button {
   height: 60px;
   width: 60px;
@@ -115,19 +136,43 @@ td {
   border: 2px solid black;
   background-color: #D2B48C;
 }
+
 .reset {
   padding: 0px;
 }
 
 .sound {
-margin-left: 50px;
+margin-left: 80px;
 padding: 0px;
 }
 
 .auto-play {
-margin-right: 50px;
+margin-right: 70px;
 padding: 0px;
 }
+
+.mission {
+  position: absolute;
+  font-family: KGOnlyHope;
+  font-size: 27px;
+  top: 50px;
+  width: 250px;
+  left: 75px;
+  word-spacing: 1px;
+}
+
+.gold {
+  position: absolute;
+  left: 10px;
+  top: 70px;
+}
+
+@font-face {
+  font-family: KGOnlyHope;
+  src: url(../fonts/KGOnlyHope.ttf);
+}
+
+
 .middle-row {
   position:relative;
 }
@@ -160,18 +205,20 @@ h3 {
 
 .bottom-row {
   position:relative;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 .dieFace {
   position: absolute;
   border-radius: 5px;
   width:52px;
   height: 42px;
-  padding:15px 10px 10px 10px;
-  font-size:24px;
+  padding:10px 10px 20px 10px;
+  font-size:44px;
   background:#F5F5F5;
   top: 50px;
   left: 95px;
-  border: 1px solid blue;
+  /*border: 1px solid blue;*/
   text-align:center;
 }
 
