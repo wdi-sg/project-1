@@ -7,7 +7,8 @@
 The n-back task is a continuous performance task that is commonly used as an assessment in cognitive neuroscience to measure a part of working memory and working memory capacity. The n-back was introduced by Wayne Kirchner in 1958. Credit wikipedia [https://en.wikipedia.org/wiki/N-back]
 
 ### Flow Chart of Game logic
-#![n Back Flow Chart](project-1/N-Back Flow Chart.png)
+#![n Back Flow Chart]
+<img src="/img/N-Back Flow Chart.png"/>
 
 ###Game logic
 

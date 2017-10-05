@@ -19,6 +19,12 @@ var scoreObj = {
   score: 0,
   scoreBoard: $('#scoreBoard')
 }
+var gameOverDiv = $('.gameOver')
+var $restartBtn = $('.restartBtn')
+
+$restartBtn.on('click', () => {
+  gameOverDiv.css('display', 'none')
+})
 
 $resetBtn.on('click', reset)
 $stopBtn.on('click', stop)
@@ -86,12 +92,12 @@ function compareResult () {
     audioCorrect();
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
+    // TODO: No Click? click = false
   } else if (recArr[count - 1] != recArr[count - n]) {
     audioWrong();
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   }
-  // TODO: No Click? click = false
 }
 
 function compareColor () {
@@ -121,6 +127,8 @@ function gameOver () {
   recCol = [];
   scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   clearInterval(refreshIntervalId);
+  // gameOverDiv.css('visibility', 'visible')
+  gameOverDiv.css('display', 'block')
 }
 
 function stop (){
