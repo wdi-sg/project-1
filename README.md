@@ -23,6 +23,55 @@ The player controls Pac-Man through a maze of various dots, as well as four mult
 
 A 19x18 array containing numbers between 0 - 9 is used to generate the game board. Each number denotes which assets to generate as well as mark out the location of the Pac-Dots, Pac Man and the four Ghosts. A loop is used to go through the array and generate the game assets.
 
+Below is a code snippet:
+
+``` javascript
+function loadAssets (tileSet) {
+  // creating pac-man and ghosts
+  var $pacMan = $('<div class="character" id="pac-man">')
+  var $ghostOne = $('<div class="character" id="ghost-one">')
+  var $ghostTwo = $('<div class="character" id="ghost-two">')
+  var $ghostThree = $('<div class="character" id="ghost-three">')
+  var $ghostFour = $('<div class="character" id="ghost-four">')
+
+  // objects to store css properties for tiles
+  var blackTile = { 'background-color': 'black', 'height': '28px', 'width': '28px', 'border': '1px solid #303030' }
+  var blueTile = { 'background-color': '#2D47DD', 'height': '28px', 'width': '28px', 'border': '1px solid #3366FF' }
+  var yellowTile = { 'background-color': '#FFCC00', 'height': '5px', 'width': '30px' }
+
+  // loop through tileSet array and generate map as well as load characters
+  for (var i = 0; i < tileSet.length; i++) {
+    // create new <div> for tiles and dots
+    var $tile = $('<div class="tile">')
+
+    // setting tile properties and adding characters
+    switch (tileSet[i]) {
+      case 0:
+        var $dots = $('<div class="dots">') // only create dots if tile can contain one
+        $tile.css(blackTile).data('attr', 0).append($dots)
+        break
+      case 1: $tile.css(blueTile).data('attr', 1)
+        break
+      case 2: $tile.css(blackTile).data('attr', 2)
+        break
+      case 3: $tile.css(blackTile).data('attr', 3)
+        break
+      case 5: $tile.css(blackTile).data('attr', 5).append($ghostFour)
+        break
+      case 6: $tile.css(blackTile).data('attr', 6).append($ghostThree)
+        break
+      case 7: $tile.css(blackTile).data('attr', 7).append($ghostTwo)
+        break
+      case 8: $tile.css(yellowTile).data('attr', 8).append($ghostOne)
+        break
+      case 9: $tile.css(blackTile).data('attr', 9).append($pacMan)
+        break
+    }
+    $gameBoard.append($tile)
+  }
+}
+```
+
 
 ## Collision Logic
 
