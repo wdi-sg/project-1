@@ -70,21 +70,23 @@ class Player {
 }
 
 $(function () {
-
   var $playerOne = $('.playerOne')
   var $container = $('.container')
   var $playerPos = $playerOne.position()
   var $flower = $('.flower')
   var $flowerPos = $flower.position()
   var score = 0
-  var highScoreArr = JSON.parse(localStorage.getItem('HighScore')) highScoreArr.sort((a, b) => b - a)
-  var storage = window.localStorage
+  var highScoreArr = JSON.parse(localStorage.getItem('HighScore'))
+  if(!highScoreArr) highScoreArr = [120, 100];
+  highScoreArr.sort((a, b) => b - a)
+
   var timer = 30
   var create
   var play = createPlayerOne()
   var find = setInterval(detect, 50)
   var flowerList = []
   var flowerIndex = 0
+  var storage = window.localStorage
   var timerInt
 
   leaderBoard()
