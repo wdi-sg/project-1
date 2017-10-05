@@ -49,8 +49,6 @@ function loadAssets (tileSet) {
         break
       case 2: $tile.css(blackTile).data('attr', 2)
         break
-      case 3: $tile.css(blackTile).data('attr', 3)
-        break
       case 5: $tile.css(blackTile).data('attr', 5).append($('<div class="character" id="ghost-four">'))
         break
       case 6: $tile.css(blackTile).data('attr', 6).append($('<div class="character" id="ghost-three">'))

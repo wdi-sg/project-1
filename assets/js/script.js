@@ -8,7 +8,7 @@ var tileSet = [
   1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
   1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1,
   1, 1, 1, 1, 1, 1, 2, 1, 1, 8, 1, 1, 2, 1, 1, 1, 1, 1, 1,
-  3, 2, 2, 2, 2, 2, 2, 1, 7, 6, 5, 1, 2, 2, 2, 2, 2, 2, 3,
+  2, 2, 2, 2, 2, 2, 2, 1, 7, 6, 5, 1, 2, 2, 2, 2, 2, 2, 2,
   1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1,
   1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 1,
   1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1,
@@ -113,8 +113,6 @@ function loadAssets (tileSet) {
       case 1: $tile.css(blueTile).data('attr', 1)
         break
       case 2: $tile.css(blackTile).data('attr', 2)
-        break
-      case 3: $tile.css(blackTile).data('attr', 3)
         break
       case 5: $tile.css(blackTile).data('attr', 5).append($('<div class="character" id="ghost-four">'))
         break
