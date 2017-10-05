@@ -141,7 +141,7 @@ $(function(){
     $totalScore.text(`Total Score: ${total}`)
     $characterFinal = $('<div class="characterFinal">')
     //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','')
-    characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','')
+    characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
     characterImage = characterImage.replace('")','')
 
     console.log(characterImage)
