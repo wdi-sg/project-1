@@ -43,7 +43,7 @@ Creating many different divs for different purposes.
 Keys chosen
 
 Player 1 | Player 2 | *keycode for Player 1* | *keycode for Player 2*
---- | --- | ---
+--- | --- | --- | ---
 `Number Keys` | `Arrow Keys` | `keycode` | `keycode`
 1,2,3,4 | left,up,right,down | 49,50,51,52 | 37,38,39,40
 
@@ -63,7 +63,7 @@ As for Player 1, I can subtract the given array of numbers to match with my numb
 
 ### Checking for match & iterating position
 
-``` javascript
+```javascript
 if(strOfKeys === randSequence[counter1]) {
   counter1++
   if(counter1 === 4 && rounds === 1) {
@@ -75,43 +75,46 @@ if(strOfKeys === randSequence[counter1]) {
     $playerOne.text(`Score: ${scoreP1}`)
     new Audio('./assets/audio/cheer.mp3').play()
     timerWithAddRounds()
-  } ```
+  }
+```
 
-``` javascript
+```javascript
 else if (strOfKeys !== randSequence[counter1] && whichPlayer === 1) {
    $(".playerOneAlert2").html("X").show().delay(400).fadeOut(400)
    $(".playerOneAlert2").css({"color" : "red", "font-size" : "50px"})
    new Audio('./assets/audio/boo.mp3').play()
    counter1 = 0
-} ```
-
+}
+```
 
 ### Randomising and adding new rounds
 Using a function with an argument of `arr` and a for loop inside the function to jumble up the position.
 
-``` javascript
+```javascript
 function shuffleArray(arr) {
   for (var i = arr.length - 1; i > 0; i--){
     var shuffle = Math.floor(Math.random() * (i + 1))
     ;[arr[i], arr[shuffle]] = [arr[shuffle], arr[i]]
   }
   return arr
-} ```
+}
+```
 
 Adding new rounds.
 
-``` javascript
+```javascript
 function addTurn(){
     instructorMoves = instructorMoves.concat(instructorMoves)
     randSequence = shuffleArray(instructorMoves)
     return randSequence;
-  } ```
+  }
+```
 
 ## Challenges
 ---
 
 * Making the music instructor move together with the number sequence.
- <img src="/assets/images/instructor_1.png" height ="50"><img src="/assets/images/instructor_2.png" height ="50"><img src="/assets/images/instructor_3.png" height ="50"> <img src="/assets/images/instructor_4.png" height ="50">    
+ <img src="/assets/images/instructor_1.png" height ="50"><img src="/assets/images/instructor_2.png" height ="50"><img src="/assets/images/instructor_3.png" height ="50"><img src="/assets/images/instructor_4.png" height ="50">    
 
 * Matching with the randomised array and comparing which player finishes the pattern first.
 
