@@ -11,7 +11,7 @@ Play the game at: https://soemn.github.io/project-1/
 ![Introduction](/assets/images/introScreen2.png)
 
 ##### Gameplay
-The main challenge of this game is for the player to shoot the enemies while avoiding hit or getting his house damaged. The enemies keep spawning so defeat them fast to avoid being overrun!
+Shoot the enemies while avoiding hit or getting your house damaged. The enemies keep spawning so defeat them fast and avoid being overrun! You will lose if the enemies destroy your house or kills you.
 
 
 ### Controls
@@ -75,6 +75,28 @@ class Character {
 ##### Levels
 
 3 Levels with varying enemy spawn rates base on a timer. Past a certain point, enemies stop spawning and once all enemies are dead, the game is won.
+
+
+##### Game Design Log
+
+###### First Idea:
+Create a resource management game, where the player has to plant crops and then defend his crops from the enemies. Earning gold at the end of each level which can be used to buy seeds or defence for the next level.
+
+###### Idea Testing:
+The fighting mechanic was tested first as it was more complicated than the resource management component. While testing the fighting mechanic, it was found to be quite fun and the game was then decided to be simplified to focus only on the fighting aspect.
+
+###### Detailed Design
+Originally functions were used to create ```objects``` without the use of ```Class```. After refactoring the code to use a ```Class``` to define all characters, new entities and mechanics could be created quickly.
+
+###### Juicing
+Pets and sounds were added. Improved sprites.
+
+###### To do:
+1. Dog enemy (does not shoot, chases player and attacks)
+2. Additional sounds for getting hit
+3. Improvement to level design and difficulty adjustment
+4. Reduce the use of `setInterval` and improve game performance
+
 
 ---
 

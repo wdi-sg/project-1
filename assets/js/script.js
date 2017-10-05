@@ -923,8 +923,8 @@ $(function() {
 })
 
 const loseScreen = () => {
-  let $deadText = $('<h1 class="deadText">')
-  let $deadScore = $('<h1 class="deadScore">')
+  let $deadText = $('<h2 class="deadText">')
+  let $deadScore = $('<h2 class="deadScore">')
   $deadText.text(`You died. Score: ${score}`)
 
   $deadText.css({
@@ -944,7 +944,6 @@ const loseScreen = () => {
   })
 
   $gameBoard.append($loseDiv)
-
   $gameBoard.css({
     filter: "grayscale(1)"
   })
