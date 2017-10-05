@@ -18,6 +18,8 @@ Updated the game logic from having two players to take turns to follow the seque
 
 ![](/assets/images/finishedproduct.png)
 
+#### Play it here! : https://cqdotcom.github.io/project-1/
+
 ### How to win / How to play?
 
 1. 5 seconds timer will start upon player clicking the start button
