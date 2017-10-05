@@ -62,3 +62,13 @@ Plan
 1. Monday: JS Logic
 2. Tuesday: JS Clean up (gonna be lots of repeats)
 3. Wed: CSS and Extra features
+
+
+###Progress
+1. Monday: Managed to make the skeleton of the game. Game can be played with 1 item
+2. Tuesday: Explored using JSON, but used JS instead to generate new products. Game is considered stable but had no Player Name, and no Scoreboard
+3. Wednesday: Remade the game in another repo. This time added features: Player Name and Shopping Cart("scoreboard")
+4. Thursday: Added multiple levels and stabilized functions and jquery.
+
+####Reference
+1. Did own code. But to see history/progress/commits of the new repo, please see - https://github.com/noobnur/project01-copy

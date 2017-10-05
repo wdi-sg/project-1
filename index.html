@@ -8,36 +8,62 @@
   </head>
   <body>
     <!-- <h1>The PRICE is RIGHT!</h1> -->
-
+<div class="container">
   <div class="logoAndItem">
-    <img src = "./assets/img/Tpir_40_logo.png" width=100px alt="thepriceisright" />
+    <h1>The Price is Right!</h1>
     </div>
     <div class="productSpace">
       <!-- img -->
-      <div class="overlay">
-    <div class="text">Hello World</div>
-  </div>
+
       </div>
+
+      <div class = "result">
+
+      </div>
+
+      <div class = "instructions">
+        <h3> Instructions:</h3>
+        <p>
+          Welcome to the game! Firstly, please share with us your name! <br />
+          This game is a 2 player game.
+          Each player will get a turn to guess the price of the product shown and the player that guesses the closest to the retail price, gets to bring home the items! <br />
+          <!-- But wait! There's MORE! <br />
+          Objective of the game: Win a CAR, CRUISE, or a VACATION at the BONUS ROUND! <br />
+          The total of the price difference will be calculated, and the player that has the lesser total difference will get to try the Bonus round! More info later.. -->
+        </p>
+      </div>
+
+    </div>
 
 
 <div class="playerInputs">
     <div class = "player1Div">
-      <h2>PLAYER 1</h2>
-      <input id="player-1" type="number">
-      <input id = "submit-1" type="submit" value="Submit">
+      <!-- <h2>PLAYER 1</h2> -->
+      <input id="player-1name" type="text" placeholder="Enter your name">
+      <!-- <input id="player-1" type="number">
+      <input id = "submit-1" type="submit" value="Submit"> -->
+
      </div>
 
-    <div class = "result">
-
-
-    </div>
-
       <div class = "player2Div">
-        <h2>PLAYER 2</h2>
-        <input id="player-2" type="number">
-        <input id = "submit-2" type="submit" value="Submit">
+        <!-- <h2>PLAYER 2</h2> -->
+        <input id="player-2name" type="text" placeholder="Enter your name">
+        <!-- <input id="player-2" type="number">
+        <input id = "submit-2" type="submit" value="Submit"> -->
+        <input id = "submit-name" type="submit" value="Let's Play!">
+
+
       </div>
+
 </div>
+<!-- <div class = "shoppingCart">
+<div class = "player1Cart">
+
+</div>
+<div class = "player2Cart">
+
+</div>
+</div> -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="./assets/js/products.js"></script>

@@ -1,68 +1,79 @@
-body, .logoAndItem, .playerInputs, .productSpace {
-  width: 760px;
-  margin: 0 auto;
-  padding: 10px;
+.productSpace {
+  width: 600px;
   height: auto;
+  padding: 5px;
+  border: 3px solid black;
+  text-align: center;
 }
 
-div {
-  width: 250px;
-  height: 200px;
-  /*border: 1px solid;*/
-  text-align: center;
-  /*float:left;*/
-  margin: 0 auto;
+#submit-name {
+  font-size: 18px;
+  margin: 10px;
 }
-.productSpace {
-  position: relative;
+
+li {
+  font-size: 10px;
+}
+
+.result {
+  width: 600px;
+  text-align: center;
+  height: auto;
+  padding: 5px;
+}
+
+.playerInputs {
+  position: absolute;
+  left: 650px;
+  top: 111px;
+  border: 1px solid black;
+  width: 500px;
+  text-align: center;
+}
+
+.container {
+  width: 1200px;
+  height: 600px;
+}
+
+body {
+  margin: 20px;
+}
+
+p {
+  margin: 0px 13px 13px 13px;
 }
 
 .player1Div, .player2Div {
+  width: 200px;
+  margin: 16px;
   float: left;
 }
 
-.overlay {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  /*overflow: hidden;*/
-  width: 760px;
-  margin: 0 auto;
-  height:0;
-  color: transparent;
-  transition: .5s ease;
+.instructions {
+  margin-top: 10px;
+  width: 600px;
+  height: auto;
+  border: 3px solid black;
+  text-align: center;
+  padding: 5px;
 }
 
-.productSpace:hover .overlay {
-  bottom: 0;
-  height: 100%;
-  color: white;
+#player-2name, #player-1name, #submit-name {
+  font-size: 20px;
 }
 
-#reveal {
+#reveal, #nextProduct {
+  margin-top: 20px;
   font-size: 20px;
   background-color: yellow;
   border-color: red;
   font-family: 'Share Tech Mono', monospace;
 }
 
-
-input[type="submit"] {
-  display: inline-block;
-  margin: 10px;
-
-}
-
-h2, h4 {
+h1, h2, h4, p {
   font-family: 'Share Tech Mono', monospace;
   font-size: 20px
-}
-
-.result {
-  height: 200px;
-  float: left
 }
 
 #player-1, #player-2 {
@@ -70,7 +81,20 @@ h2, h4 {
   font-size: 20px;
   margin: 10px;
 }
+#player-1 {
+  position: relative;
+  top:-19px;
+}
 
+#submit-1 {
+    position: relative;
+    top: -19px;
+}
+
+.print1Guess{
+    position: relative;
+    top: -38px;
+}
 
 .text {
   /*white-space: nowrap;*/
