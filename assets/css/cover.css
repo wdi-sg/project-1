@@ -8,19 +8,19 @@ button {
   margin: 0 420px;
   width: 201px;
   height: 124px;
-  background-color: gold;
+  background-color: blue;
   font-family: helvetica, sans-serif;
   font-size: 47px;
-  color: blue;
+  color: gold;
   border-radius: 10px;
   animation-name: blinker;
   animation-duration: 3s;
   animation-timing-function: linear;
-  animation-iteration-count: infinite; color: blue;
+  animation-iteration-count: infinite; color: gold;
 }
 
 @keyframes blinker {
   0% { opacity: 1.0; }
-  50% { opacity: 0.6; }
+  50% { opacity: 0.3; }
   100% { opacity: 1.0; }
 }
