@@ -90,7 +90,7 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 1. Adjust setInterval to adjust game difficulty
 1. Adjust spawn locations
 1. Game overlay to cover game screen before play
-1. Start button
+1. Start button, Retry button
 1. Add BGM, gunshot and grenade audio on click
 1. Add easy and hard levels, new BG BGM Events
 

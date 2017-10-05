@@ -9,11 +9,7 @@ $(function() {
     })
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
-      'z-index': '0'
-    })
-    $easyStartBtn = $('.start')
-    $easyStartBtn.css({
-      'z-index': '0'
+      'display': 'none'
     })
     document.getElementsByClassName('gogo')[0].volume = 0.6;
     document.getElementsByClassName('gogo')[0].play()
@@ -27,13 +23,13 @@ $(function() {
       setTimeout(() => spawnIntervalNormal(6000), time)
     }
     startNorm(28000)
+    event5(28000)
     function speedShooting(time) {
       setTimeout(() => spawnIntervalEasy(2000), time)
       setTimeout(() => spawnIntervalAmmo(10000), time)
     }
     speedShooting(62000)
     event6(62000)
-    event5(28000)
   })
 
   // Gamestage Deadpool HARD
@@ -41,11 +37,7 @@ $(function() {
   $hardStart.on('click', () => {
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
-      'z-index': '0'
-    })
-    $hardStartBtn = $('.hardStartBtn')
-    $hardStartBtn.css({
-      'z-index': '0'
+      'display': 'none'
     })
     document.getElementsByClassName('gogo')[0].volume = 0.6;
     document.getElementsByClassName('gogo')[0].play()
@@ -144,10 +136,19 @@ $(function() {
       $('.overlayText').text("VICTORY! TERRORISTS WIN!")
       $gameOverlay = $('.gameOverlay')
       $gameOverlay.css({
-        'z-index': '1'
+        'display': 'block'
       })
       $('.retryBtn').css({
-        'z-index': '2'
+        'display': 'block'
+      })
+      $('.overlayText').css({
+        'display': 'block'
+      })
+      $('.easyStartBtn').css({
+        'display': 'none'
+      })
+      $('.hardStartBtn').css({
+        'display': 'none'
       })
     }
   }
@@ -162,12 +163,22 @@ $(function() {
       // document.getElementsByClassName('deadpoolBGM')[0].pause()
       document.getElementsByClassName('death')[0].play()
       $('.overlayText').text("GAME OVER")
+      $('.hint').text("Hint: Manage your inventory")
       $gameOverlay = $('.gameOverlay')
       $gameOverlay.css({
-        'z-index': '1'
+        'display': 'block'
       })
       $('.retryBtn').css({
-        'z-index': '2'
+        'display': 'block'
+      })
+      $('.overlayText').css({
+        'display': 'block'
+      })
+      $('.easyStartBtn').css({
+        'display': 'none'
+      })
+      $('.hardStartBtn').css({
+        'display': 'none'
       })
     }
   }
@@ -188,14 +199,12 @@ $(function() {
     this.effectGrenade = effectGrenade;
     this.timeToExpire = timeToExpire;
     this.counterLink = counterLink;
-    // effect on score in the future
   }
 
   // Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
   function spawnEnemyEasy () {
-    var enemyEasy = new Spawn(1, 1, 0, 0, 0, 2.5, 's'+counter)
+    var enemyEasy = new Spawn(1, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemyEasy)
-
     var $spawn = $('<div>')
     $spawn.attr('id', "s"+counter)
     $spawn.addClass('spawn enemyEasy')
@@ -208,7 +217,7 @@ $(function() {
   }
 
   function spawnEnemyNormal () {
-    var enemyNormal = new Spawn(2, 1, 0, 0, 0, 2.5, 's'+counter)
+    var enemyNormal = new Spawn(2, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemyNormal)
     var $spawn = $('<div>')
     $spawn.attr('id', "s"+counter)
@@ -222,7 +231,7 @@ $(function() {
   }
 
   function spawnEnemyHard () {
-    var enemyHard = new Spawn(3, 1, 0, 0, 0, 2.5, 's'+counter)
+    var enemyHard = new Spawn(3, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemyHard)
     var $spawn = $('<div>')
     $spawn.attr('id', "s"+counter)
