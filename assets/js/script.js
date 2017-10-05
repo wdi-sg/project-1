@@ -39,7 +39,7 @@ var pacManSpeed = 600
 var pacManMeetGhost = false
 var pacManLives = 3
 // ghost variables
-var ghostSpeed = 400
+var ghostSpeed = 300
 // var ghostMovementMode = 'scatter'
 // ghost-one variables
 var prevDirOne = []
