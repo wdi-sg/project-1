@@ -23,3 +23,18 @@ button{
   font-size: 50px;
   opacity: 0.5;
 }
+
+.wrapperLeft{
+ display: inline-block;
+ width: 39%;
+ text-align: center;
+}
+.wrapperRight{
+  display: inline-block;
+  width: 50%;
+  /*text-align: center;*/
+}
+
+li{
+  font-family: "Arial Rounded MT Bold";
+}

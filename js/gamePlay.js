@@ -4,7 +4,7 @@ $(function(){
     var charPos = map[charY][charX]
     counter=0
     //playerMovement
-
+    console.log(mumX, mumY);
   if(!isExit() && clicker){
     switch(e.keyCode){
       case 37: //left
@@ -66,6 +66,7 @@ $(function(){
         }
     }
   })
+
 
   $('#restart').on('click', function(){
     restart()

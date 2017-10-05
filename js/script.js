@@ -7,6 +7,8 @@ var clicker=true
 
 function initGame() {
   // SET THE MAP
+  // var snd = new Audio("/audio/scary.mp3"); // buffers automatically when created
+  // snd.play();
   map.forEach(function(spotY,indexY) {
     spotY.forEach(function(spot, indexX){
     switch (spot) {
@@ -138,7 +140,7 @@ function meetMummy(){
   if(checkYPos(mumY, charY) && checkXPos(mumX, charX)){
     setTimeout(function(){
       alert('you lose')
-    },100)
+    },300)
     clicker = false
   }
 }
@@ -210,7 +212,9 @@ function checkYBlockBottom(x){
 function alertWin(){
   setTimeout(function(){
     alert('win')
-  },200)
+  },300)
+  $('#player').remove()
+  $('#nextLevel').show()
   clicker=false
 }
 

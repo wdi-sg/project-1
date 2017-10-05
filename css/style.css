@@ -30,17 +30,26 @@ h2{
   width: 50px;
   height: 50px;
   box-sizing: border-box;
+  position: relative;
 }
-.function{
 
-}
+/*.function {
+  text-align: center;
+}*/
+
+/*.function > button {
+  display: inline-block;
+}*/
+
 #player{
   position: absolute;
   width: 50px;
   height: 50px;
   background-image: url(/img/player_1.png);
   background-size: cover;
-
+  left: 0;
+  top: 0;
+  /*transition: left 0.5s, top 0.5s;*/
 }
 
 #mummy{
@@ -49,6 +58,11 @@ h2{
   height: 50px;
   background: url(/img/tinyMummySprite.png);
   background-size: cover;
+  left: 0;
+  top: 0;
+  /*transition: left 0.1s, top 0.1s;*/
+  /*animation: mymove 5s;
+  animation-delay: 2s;*/
 }
 .right{
   border-right: 2px solid brown;
@@ -83,5 +97,7 @@ button{
   margin: auto;
   height: 30px;
   margin-top: 5px;
-
+}
+#nextLevel{
+  display: none;
 }
