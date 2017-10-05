@@ -8,14 +8,6 @@
 
 
 $(function () {
-  spop()
-  $startBtn = $('.start')
-  $startBtn.on('click', () => {
-    document.getElementsByClassName('startpop')[0].pause()
-    playBgSound ()
-    speed = 20
-    $('.start_pop').hide()
-  })
 
     // saving dom objects to variables
   var $container = $('.container')
@@ -34,13 +26,15 @@ $(function () {
   var $birdHeight = parseInt($bird.height())
 
   var gameState = 2
-  var fallTime = 2000
+  var fallTime = 7000
   var speed = 0
   var scoreAdd = false
+  var stopKeyDown = false;
+  
+  spop()
 
   function start () {
     birdFlap()
-
   }
 
   function spop() {
@@ -64,8 +58,16 @@ $(function () {
   }
 
 
+  $startBtn = $('.start')
+  $startBtn.on('click', () => {
+    document.getElementsByClassName('startpop')[0].pause()
+    stopKeyDown = true;
+    playBgSound ()
+    speed = 20
+    $('.start_pop').hide()
+  })
 
-	$container.on('mousedown', function () {
+	$container.on('click', function () {
     start()
     birdFlap ()
     flapsound()
@@ -76,12 +78,14 @@ $(function () {
 	})
 
 	$(this).on('keydown', function (e) {
-    start()
-    birdFlap ()
-    flapsound()
-    if (e.keyCode === 32) {
-      if (gameState > 1) return
-      if (gameState === 2) gameState = 1
+    if (stopKeyDown) {
+      start()
+      birdFlap ()
+      flapsound()
+      if (e.keyCode === 32) {
+        if (gameState > 1) return
+        if (gameState === 2) gameState = 1
+      }
     }
   })
 

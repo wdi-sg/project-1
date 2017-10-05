@@ -76,7 +76,7 @@
 
   .pole {
     position: absolute;
-    height: 290px;
+    height: 300px;
     width: 90px;
     right: -89px;
     background: url('/images/flappy-block.png');
