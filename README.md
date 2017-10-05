@@ -103,9 +103,13 @@ To move Pac Man through the grid, the game first gets the tile which Pac-Man is 
 Below are some code snippet:
 
 ``` javascript
-// Moving Pac Man
 setTimeout(function () {
+  // Moving Pac Man
   setInterval(function () { movePacMan() }, pacManSpeed)
+  // switching directions
+  $body.on('keydown', (event) => { changeDirection(event) })
+  // moving ghost-one
+  setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
 }, 3000)
 
 // Moving Pac Man
@@ -132,9 +136,6 @@ function movePacLeft () {
   // check if pac-man can move into tile
   if ($pacManLeft.data('attr') !== 1 && $pacManLeft.data('attr') !== 8) $pacManLeft.append($pacMan)
 }
-
-// Switching Directions
-$body.on('keydown', (event) => { changeDirection(event) })
 
 // Switching Directions
 function changeDirection (event) {
@@ -164,8 +165,12 @@ Below are some code snippets:
 // Ghost Variables
 var ghostSpeed = 400
 
-// Moving Ghost One
 setTimeout(function () {
+  // Moving Pac Man
+  setInterval(function () { movePacMan() }, pacManSpeed)
+  // Switching Directions
+  $body.on('keydown', (event) => { changeDirection(event) })
+  // Moving Ghost One
   setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
 }, 3000)
 

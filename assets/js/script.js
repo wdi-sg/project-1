@@ -67,16 +67,12 @@ $(function () {
       loadAssets(tileSet)
       // countdown to game start
       countDown()
-      // moving pacman
       setTimeout(function () {
+        // moving pacman
         setInterval(function () { movePacMan() }, pacManSpeed)
-      }, 3000)
-      // switching directions
-      setTimeout(function () {
+        // switching directions
         $body.on('keydown', (event) => { changeDirection(event) })
-      }, 3000)
-      // moving ghost-one
-      setTimeout(function () {
+        // moving ghost-one
         setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
       }, 3000)
       // moving ghost-two
