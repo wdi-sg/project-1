@@ -21,31 +21,31 @@ class Flower {
                       points: -3,
                       speed: 50,
                       sec: -1,
-                      img: 'url(./assets/images/catGhost.gif)'
+                      img: 'url(/assets/images/catGhost.gif)'
                     },
                     {
                       points: 1,
                       speed: 55,
                       sec: 0,
-                      img: 'url(./assets/images/star6.gif)'
+                      img: 'url(/assets/images/star6.gif)'
                     },
                     {
                       points: 2,
                       speed:60,
                       sec: 0,
-                      img: 'url(./assets/images/star3.gif)'
+                      img: 'url(/assets/images/star3.gif)'
                     },
                     {
                       points: 3,
                       speed: 70,
                       sec: 0,
-                      img: 'url(./assets/images/star2.gif)'
+                      img: 'url(/assets/images/star2.gif)'
                     },
                     {
                       points: 4,
                       speed: 80,
                       sec: 1,
-                      img: 'url(./assets/images/bottleStar.gif)'
+                      img: 'url(/assets/images/bottleStar.gif)'
                     }
                    ]
 
@@ -201,7 +201,7 @@ function startGame () {
       $gameStart.css('display', 'block')
       $gameOverScreen.css('display', 'block')
       $gameOverScreen.text(`Score: ${score}`)
-      $('.playerOne').css('backgroundImage', 'url(./assets/images/superPink2.gif)')
+      $('.playerOne').css('backgroundImage', 'url(/assets/images/superPink2.gif)')
     }
   }
 })
