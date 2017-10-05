@@ -1,26 +1,26 @@
 $(function () {
   // global variables
   var cardRefArr = [
-    '../img/1.jpg',
-    '../img/1a.jpg',
-    '../img/2.jpg',
-    '../img/2a.jpg',
-    '../img/3.jpg',
-    '../img/3a.jpg',
-    '../img/4.jpg',
-    '../img/4a.jpg',
-    '../img/5.jpg',
-    '../img/5a.jpg',
-    '../img/6.jpg',
-    '../img/6a.jpg',
-    '../img/7.jpg',
-    '../img/7a.jpg',
-    '../img/8.jpg',
-    '../img/8a.jpg',
-    '../img/9.jpg',
-    '../img/9a.jpg',
-    '../img/10.jpg',
-    '../img/10a.jpg'
+    './assets/img/1.jpg',
+    './assets/img/1a.jpg',
+    './assets/img/2.jpg',
+    './assets/img/2a.jpg',
+    './assets/img/3.jpg',
+    './assets/img/3a.jpg',
+    './assets/img/4.jpg',
+    './assets/img/4a.jpg',
+    './assets/img/5.jpg',
+    './assets/img/5a.jpg',
+    './assets/img/6.jpg',
+    './assets/img/6a.jpg',
+    './assets/img/7.jpg',
+    './assets/img/7a.jpg',
+    './assets/img/8.jpg',
+    './assets/img/8a.jpg',
+    './assets/img/9.jpg',
+    './assets/img/9a.jpg',
+    './assets/img/10.jpg',
+    './assets/img/10a.jpg'
   ]
 
   // global game variables
