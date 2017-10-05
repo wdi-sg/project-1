@@ -1,0 +1,159 @@
+body {
+  background-color: black;
+}
+
+h1 {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.topRow {
+  margin: 30px 10px;
+  /*padding: 10px 470px;*/
+  text-align: center;
+}
+
+.wrapper {
+  width: 310px;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+}
+
+.box {
+  border: solid 1px #4E4A59;
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  border-radius: 9999px;
+}
+
+.gameOver {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 100px;
+}
+
+.eventButton {
+  display: flex;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.restartBtn {
+  width: 161px;
+  height: 100px;
+  border-radius: 6px;
+  position: absolute;
+  top: 500px;
+  left: 530px;
+  background-color: black;
+  font-size: 43px;
+  text-shadow: 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px silver, 0 0 2px;
+  font-family: helvetica, sans-serif;
+  animation-name: blinker;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; color: black;
+}
+
+@keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1.0; }
+}
+
+#HIT {
+  text-align: center;
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
+#scoreBoard {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  text-align: center;
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
+
+#textbox {
+  border: solid 1px #394053;
+  border-radius: 0px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: helvetica, sans-serif;
+  background-color: #CDCACC;
+}
+
+#loc {
+  width: 100px;
+  height: 62px;
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 23px;
+  color: #7CAE7A;
+  background-color: #4E4A59;
+  display: inline-block;
+}
+
+#colorBtn {
+  width: 100px;
+  height: 62px;
+  border-radius: 5px;
+  margin: 20px;
+  font-size: 23px;
+  color: #7CAE7A;
+  background-color: #4E4A59;
+  display: inline-block;
+}
+
+#startBtn {
+  border-radius: 5px;
+  width: 76px;
+  height: 47px;
+  font-size: 16px;
+  background-color: #4E4A59;
+  font-family: helvetica, sans-serif;
+  color: #7CAE7A;
+}
+
+#stopBtn {
+  border-radius: 5px;
+  width: 76px;
+  height: 47px;
+  font-size: 16px;
+  background-color: #4E4A59;
+  font-family: helvetica, sans-serif;
+  color: #7CAE7A;
+}
+
+#resetBtn {
+  border-radius: 5px;
+  width: 76px;
+  height: 47px;
+  font-size: 16px;
+  background-color: #4E4A59;
+  font-family: helvetica, sans-serif;
+  color: #7CAE7A;
+}
+
+#turn {
+  text-shadow: 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px lightgray, 0 0 1px;
+  font-family: helvetica, sans-serif;
+}
