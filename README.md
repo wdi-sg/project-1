@@ -227,7 +227,7 @@ function patrolTopLeft ($ghost) {
 
 ## Reflections
 
-+ Creating a character class which stores the position of the character's parent tile as well as a method to get and store the 4 adjacent tiles will reduce the amount of code repetition.
++ Creating a character class which stores the position of the character's parent tile, a method to get and store the four adjacent tiles and an array variable to store the ghosts' last two moves will reduce the amount of code repetition and global variables.
 + Refactor the function to change Pac Man's directions and move Pac Man into one function.
 + Instead of having four separate functions to move Pac Man (one for each direction), refactor into one function which takes a direction argument.
 + Instead of having four separate patrol functions for the ghosts (one for each ghost), refactor into one function (if possible).
