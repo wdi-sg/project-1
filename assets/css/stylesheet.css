@@ -107,6 +107,25 @@ body {
   z-index: 1;
 }
 
+.timer {
+  height: 60px;
+  width: 60px;
+  top: 300px;
+  left: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+}
+
+#time {
+  font-size: 60px;
+  color: #FFCC00;
+  position: absolute;
+  z-index: 3;
+}
+
 .tile {
   display: flex;
   justify-content: center;

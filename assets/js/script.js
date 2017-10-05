@@ -65,30 +65,36 @@ $(function () {
       $scoreBoard.css('visibility', 'visible')
       // load assets
       loadAssets(tileSet)
+      // countdown to game start
+      countDown()
       // moving pacman
-      setInterval(function () { movePacMan() }, pacManSpeed)
+      setTimeout(function () {
+        setInterval(function () { movePacMan() }, pacManSpeed)
+      }, 3000)
       // switching directions
-      $body.on('keydown', (event) => { changeDirection(event) })
+      setTimeout(function () {
+        $body.on('keydown', (event) => { changeDirection(event) })
+      }, 3000)
       // moving ghost-one
-      setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+      setTimeout(function () {
+        setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
+      }, 3000)
       // moving ghost-two
       setTimeout(function () {
-        setInterval(function () {
-          moveGhost($('#ghost-two'))
-        }, ghostSpeed)
-      }, 3000)
+        setInterval(function () { moveGhost($('#ghost-two')) }, ghostSpeed)
+      }, 6000)
       // moving ghost-three
       setTimeout(function () {
         setInterval(function () {
           moveGhost($('#ghost-three'))
         }, ghostSpeed)
-      }, 6000)
+      }, 9000)
       // moving ghost-four
       setTimeout(function () {
         setInterval(function () {
           moveGhost($('#ghost-four'))
         }, ghostSpeed)
-      }, 9000)
+      }, 12000)
       // lose condiition
       setInterval(function () {
         // jQuery object variables
@@ -174,6 +180,26 @@ function loadAssets (tileSet) {
     }
     $gameBoard.append($tile)
   }
+}
+
+function countDown () {
+  var $timer = $('<div class="timer">')
+  var $time = $('<h3 id="time">')
+  var time = 3
+  $time.text(time)
+  $timer.append($time)
+  $gameBoard.append($timer)
+  console.log('timer called')
+
+  var countdown = setInterval(function () {
+    console.log(time)
+    time--
+    $time.text(time)
+    if (time === 0) {
+      $timer.remove()
+      clearInterval(countdown)
+    }
+  }, 1000)
 }
 
 function movePacMan () {
