@@ -4,20 +4,9 @@ body, html {
     padding: 0px;
 }
 
-.wrapper-top {
-  /*border: 1px solid red;*/
-  width: 1000px;
-  height: 100px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
+table {
+  text-align:left;
 }
-
-.gameHeaderName {
-  /*border: 1px solid black;*/
-}
-
-
 
 .bg {
   background-image: url("../images/bg4.jpg");
@@ -27,7 +16,6 @@ body, html {
   background-size: cover;*/
 }
 
-
 .container {
   border: 1px solid red;
   max-width: 1500px;
@@ -35,8 +23,20 @@ body, html {
   text-align: center;
 }
 
-table {
-  text-align:left;
+.wrapper-top {
+  width: 1000px;
+  height: 100px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+td {
+  max-width: 50px;
+  max-height: 50px;
+  position: relative;
+  font-family: , Helvetica, sans-serif;
+  font-weight: bold;
 }
 
 .player1, .player2 {
@@ -69,33 +69,11 @@ table {
 
 button {
   float: right;
-  border: 1px solid black;
 }
 
-
-td {
-  max-width: 50px;
-  max-height: 50px;
-  position: relative;
-  transition-duration: 10s; 
-}
-
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 0%;
-    width: 100%;
-  }
-}
-
-.wrapper {
+.wrapper1 {
   position: relative;
   display: inline-block;
-  /*border: 1px solid red;*/
 }
 
 #overlay {
@@ -106,20 +84,18 @@ td {
   position: absolute;
   z-index: 3;
   background-image: url('../images/LaddersSnakes.png');
-  background-repeat: no-repeat;2
+  background-repeat: no-repeat;
 }
 
 .wrapper2 {
   display: inline-block;
   width: 330px;
   height: 565px;
-  /*border: 1px solid red;*/
   margin-left: 30px;
   border-radius: 10px;
 }
 
 .right-section {
-  /*border: 1px solid red;*/
   min-width: 280px;
   min-height: 180px;
   background-image: url('../images/images.jpg')
@@ -137,41 +113,40 @@ td {
   background-color: #D2B48C;
 }
 
-.reset {
+.reset , .sound , .auto-play {
   padding: 0px;
 }
 
 .sound {
 margin-left: 80px;
-padding: 0px;
 }
 
 .auto-play {
 margin-right: 70px;
-padding: 0px;
 }
 
 .mission {
   position: absolute;
-  font-family: KGOnlyHope;
+  font-family: KGOnlyHope, Helvetica, sans-serif;
   font-size: 27px;
   top: 50px;
   width: 250px;
-  left: 75px;
+  left: 45px;
   word-spacing: 1px;
 }
 
 .gold {
   position: absolute;
-  left: 10px;
-  top: 70px;
+  width: 52px;
+  height: 52px;
+  left: 5px;
+  top: 90px;
 }
 
 @font-face {
   font-family: KGOnlyHope;
   src: url(../fonts/KGOnlyHope.ttf);
 }
-
 
 .middle-row {
   position:relative;
@@ -182,25 +157,24 @@ padding: 0px;
 }
 
 h3 {
-  word-spacing: 4.5em;
-  left: 67px;
-  top: 30px;
+  word-spacing: 5em;
+  left: 77px;
+  top: 0px;
 }
 
 .p1Turn {
-  left: 50px;
-  top: 80px;
+  left: 60px;
+  top: 50px;
 }
 
 .p2Turn {
-  left: 140px;
-  top: 84px;
+  left: 160px;
+  top: 55px;
 }
 
 .circle {
-  left: 17px;
-  /*left: 127px;*/
-  top: 63px;
+  left: 25px;
+  top: 30px;
 }
 
 .bottom-row {
@@ -211,16 +185,16 @@ h3 {
 .dieFace {
   position: absolute;
   border-radius: 5px;
+  border: 3px solid #75CD65;
   width:52px;
   height: 42px;
   padding:10px 10px 20px 10px;
   font-size:44px;
   background:#F5F5F5;
-  top: 50px;
-  left: 95px;
-  /*border: 1px solid blue;*/
+  top: 60px;
+  left: 115px;
   text-align:center;
-}
+  }
 
 .dice {
   position: absolute;
@@ -229,8 +203,8 @@ h3 {
   padding:1px;
   font-size:14px;
   background:#F5F5F5;
-  top: 20px;
-  left: 105px;
+  top: 25px;
+  left: 127px;
   border: 1px solid blue;
   text-align:center;
 }

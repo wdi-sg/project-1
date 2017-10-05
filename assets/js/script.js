@@ -3,7 +3,7 @@ $(function () {
   var $player1 = $('<div class="player1 lupid">')
   var $player2 = $('<div class="player2 pig">')
 
-  var $circle = $('.circle') // to indicate which player's turn
+  var $circle = $('.circle') // circle image to indicate which player's turn
 
   var currentPlayer = $player1
 
@@ -40,27 +40,25 @@ $(function () {
 
     var $dieFace = $('.dieFace')
     $dieFace.text(`${randomDiceResult}`)
-    console.log(randomDiceResult)
-
 
     if (currentPlayer === $player1) {
       cellValueP1 += randomDiceResult
       $player1.detach().appendTo(`#${cellValueP1}`) // move player 1 + dice value
-      $circle.css("left", "127px")
+      $circle.css("left", "147px")
       painOrPleasureP1()
 
       if (randomDiceResult === 6) {
         currentPlayer = $player1 // if dice is 6 go again
-        $circle.css("left", "17px")
+        $circle.css("left", "25px")
       } else {
         currentPlayer = $player2
-        $circle.css("left", "127px")
+        $circle.css("left", "147px")
       }
     } else if (currentPlayer === $player2) {
       cellValueP2 += randomDiceResult
       $player2.detach().appendTo(`#${cellValueP2}`) // move player 1 + dice value
       painOrPleasureP2()
-      $circle.css("left", "17px")
+      $circle.css("left", "25px")
 
       if (randomDiceResult === 6) {
         currentPlayer = $player2
@@ -95,7 +93,7 @@ $(function () {
   }
 
   function autoPlay() {
-    clear = setInterval(rollDice, 1000)
+    clear = setInterval(rollDice, 1500)
   }
 
   function createTable () {
@@ -131,22 +129,21 @@ $(function () {
       }
       $tbl.append($row)
     }
-    // console.log(typeof Number(($('tr.9')).attr('class')))
   }
   createTable()
   startPosition()
 
   // Using Array to input Snakes & Ladders
-  var painAndPleasureArray = [0,'ladder0',0,'ladder1',0,0,'snake0',0,'ladder2',0,
-                            'snake1',0,'ladder3','ladder1',0,0,'snake0','ladder0','snake3','ladder4',
-                            0,0,0,'snake5',0,0,'ladder3','ladder5','snake1',0
-                            ,'ladder2',0,0,'snake2',0,0,0,'ladder4',0,'ladder6'
-                            ,0,0,'snake4',0,0,0,0,0,0,0
-                            ,'ladder7',0,0,'snake2',0,0,0,0,'ladder6',0
-                            ,0,'snake3','ladder8','snake4',0,0,'ladder7',0,0,0
-                            ,'ladder9',0,'snake6',0,'snake7',0,0,'snake8',0,0
-                            ,'ladder8',0,0,'ladder5',0,0,'snake5',0,0,0
-                            ,'ladder9',0,'snake6',0,'snake7',0,0,0,'snake8',0]
+  var painAndPleasureArray = [0,'ladder0',0,'ladder1',0,0,'snake0',0,'ladder2',0, //row 1
+                            'snake1',0,'ladder3','ladder1',0,0,'snake0','ladder0','snake3','ladder4', //row 2
+                            0,0,0,'snake5',0,0,'ladder3','ladder5','snake1',0 // row 3
+                            ,'ladder2',0,0,'snake2',0,0,0,'ladder4',0,'ladder6' // row 4
+                            ,0,0,'snake4',0,0,0,0,0,0,0  //row 5
+                            ,'ladder7',0,0,'snake2',0,0,0,0,'ladder6',0 //row 6
+                            ,0,'snake3','ladder8','snake4',0,0,'ladder7',0,0,0 // row 7
+                            ,'ladder9',0,'snake6',0,'snake7',0,0,'snake8',0,0 // row 8
+                            ,'ladder8',0,0,'ladder5',0,0,'snake5',0,0,0 //row 9
+                            ,'ladder9',0,'snake6',0,'snake7',0,0,0,'snake8',0] //row 10
 
 
 // Player 1 Snakes & Ladders
@@ -156,11 +153,9 @@ $(function () {
       if (painAndPleasureArray[currentP1Index] === element && element.length === 7) { // this method is bad because if they step on the strings it would activate too
         cellValueP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
         $player1.detach().appendTo(`#${cellValueP1}`)
-        console.log('player1 ladder', cellValueP1)
       } else if (painAndPleasureArray[currentP1Index] === element && element.length === 6) {
         cellValueP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
         $player1.detach().appendTo(`#${cellValueP1}`)
-        console.log('player1 snake', cellValueP1)
       } else { return cellValueP1 }
     })
   }
@@ -172,23 +167,10 @@ $(function () {
       if (painAndPleasureArray[currentP2Index] === element && element.length === 7) {
         cellValueP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
         $player2.detach().appendTo(`#${cellValueP2}`)
-        console.log('player2 ladder', cellValueP1)
       } else if (painAndPleasureArray[currentP2Index] === element && element.length === 6) {
         cellValueP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
         $player2.detach().appendTo(`#${cellValueP2}`)
-        console.log('player2 snake', cellValueP1)
       } else { return cellValueP2 }
     })
   }
 })
-
-// cellValue = 8.
-// ID. = 7 too.
-// if ID = index of danger + 1 = curIndex = 7
-// painAndPleasureArray.forEach(function(el, idx) {
-      // if ele === 0, skip(return)
-//   if (painAndPleasureArray[curIndex] === el && curIndex !== idx) {
-//      // do something
-//      // idx means the index of what we want to know
-//    }
-// })
