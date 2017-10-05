@@ -9,7 +9,9 @@ Read Me Contents
 
 The classic and ancient board game of **snakes and ladders** is now available a click away. Play with a friend or play with computer.
 
-### Link to the game (to be added later)
+### Link to the game
+[-->Access The game here<--](https://nikitas89.github.io/project-1/) OR
+https://nikitas89.github.io/project-1/
 
 ### How to play - user instructions
 Easy, just:
