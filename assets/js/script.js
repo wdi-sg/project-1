@@ -1,7 +1,7 @@
 $(function() {
 
 // SCREEN BUTTONS
-  // Gamestage Believer EASY
+  // Gamestage Unravel EASY
   $('.easyStartBtn').on('click', () => {
     $gameScreen.css({
       'background-image': 'url("./assets/img/bgAnime.jpg")'
@@ -14,6 +14,7 @@ $(function() {
     document.getElementsByClassName('gogo')[0].play()
     updatePlayerStats()
     countDown()
+    //stage specific settings
     document.getElementsByClassName('ghoulBGM')[0].volume = 1
     document.getElementsByClassName('ghoulBGM')[0].play()
     spawnIntervalEasy(4000)
@@ -31,24 +32,37 @@ $(function() {
     event6(62000)
   })
 
-//WORK IN PROGRESS
-  // $('.normalStartBtn').on('click', () => {
-  //   $gameScreen.css({
-  //     'background-image': 'url("./assets/img/nightBG.jpg")'
-  //   })
-  //   $gameOverlay = $('.gameOverlay')
-  //   $gameOverlay.css({
-  //     'display': 'none'
-  //   })
-  //   document.getElementsByClassName('gogo')[0].volume = 0.6;
-  //   document.getElementsByClassName('gogo')[0].play()
-  //   updatePlayerStats()
-  //   countDown()
-  //   document.getElementsByClassName('believerBGM')[0].volume = 1
-  //   document.getElementsByClassName('believerBGM')[0].play()
-  //   spawnIntervalEasy(4000)
-  //   spawnIntervalAlly(8000)
-  // })
+  // Gamestage Believer NORMAL
+  $('.normalStartBtn').on('click', () => {
+    $gameScreen.css({
+      'background-image': 'url("./assets/img/nightBG.jpg")'
+    })
+    $gameOverlay = $('.gameOverlay')
+    $gameOverlay.css({
+      'display': 'none'
+    })
+    document.getElementsByClassName('gogo')[0].volume = 0.6;
+    document.getElementsByClassName('gogo')[0].play()
+    updatePlayerStats()
+    countDown()
+    //stage specific settings
+    document.getElementsByClassName('believerBGM')[0].volume = 1
+    document.getElementsByClassName('believerBGM')[0].play()
+    spawnIntervalEasy(4000)
+    spawnIntervalNormal(6000)
+    spawnIntervalHard(11000)
+    spawnIntervalAlly(8000)
+    spawnIntervalAmmo(12000)
+    spawnIntervalHealth(39000)
+    event4(1000)
+    event6(15000)
+    event1(22000)
+    event1(32000)
+    event6(45000)
+    event7(54000)
+    event4(94000)
+    event3(100000)
+  })
 
   // Gamestage Deadpool HARD
   $('.hardStartBtn').on('click', () => {
@@ -60,6 +74,7 @@ $(function() {
     document.getElementsByClassName('gogo')[0].play()
     updatePlayerStats()
     countDown()
+    // stage specific settings
     document.getElementsByClassName('deadpoolBGM')[0].currentTime = 3
     document.getElementsByClassName('deadpoolBGM')[0].volume = 0.6
     document.getElementsByClassName('deadpoolBGM')[0].play()
@@ -111,19 +126,21 @@ $(function() {
       $timer.text('Timer: ' +timeCount+ ' seconds')
       checkEnemyExpire()
       checkVictory()
-      checkLoss()
+      // checkLoss()
     }
     , 1000)
   }
 
   function checkEnemyExpire() {
-    for(var i=0;i<spawnList.length;i++){
+    for(var i = spawnList.length -1; i > -1; i --){
       spawnList[i].timeToExpire = spawnList[i].timeToExpire -1
       if(spawnList[i].timeToExpire <0){
-        playerStats.health = playerStats.health - spawnList[i].damageWhenExpire
-        document.getElementsByClassName('playerDamage')[0].pause()
-        document.getElementsByClassName('playerDamage')[0].volume = 0.8
-        document.getElementsByClassName('playerDamage')[0].play()
+        if(spawnList[i].damageWhenExpire > 0){
+          playerStats.health = playerStats.health - spawnList[i].damageWhenExpire
+          document.getElementsByClassName('playerDamage')[0].volume = 0.8
+          document.getElementsByClassName('playerDamage')[0].pause()
+          document.getElementsByClassName('playerDamage')[0].play()
+        }
         $('div').remove('#'+spawnList[i].counterLink)
         spawnList.splice(i, 1)
       }
@@ -146,9 +163,6 @@ $(function() {
     if(timeCount <= 0 && playerStats.health > 0) {
       clearInterval(playerStatsInterval)
       clearInterval(countDownInterval)
-      // document.getElementsByClassName('deadpoolBGM')[0].pause()
-      // document.getElementsByClassName('ghoulBGM')[0].pause()
-      // document.getElementsByClassName('deadpoolBGM')[0].pause()
       document.getElementsByClassName('victory')[0].play()
       $('.overlayText').text("VICTORY! TERRORISTS WIN!")
       $('.retryBtn').text('TRY A DIFFERENT LEVEL')
@@ -357,7 +371,7 @@ $(function() {
 // END OF SPAWN FUNCTIONS -----------------------------
 // EVENTS ---------------------------------------------
 
-// 2 easy, ammo refill
+// 3 easy, ammo refill
   function event1(time) {
     setTimeout(() => {
       for(var i=0; i <2; i++){
@@ -385,11 +399,14 @@ $(function() {
     }, time)
   } // 46 secs after
 
-// full screen double grenade 300 hard
+// 5 easy 5 allies
   function event4(time) {
     setTimeout(() => {
-      for(var i=0; i <300; i++){
-        spawnEnemyHard()
+      for(var i=0; i <5; i++){
+        spawnEnemyEasy()
+      }
+      for(var i=0; i <5; i++){
+        spawnAlly()
       }
     }, time)
   }
