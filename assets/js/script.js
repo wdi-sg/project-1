@@ -5,7 +5,7 @@ $(function() {
   $easyStart = $('.easyStartBtn')
   $easyStart.on('click', () => {
     $gameScreen.css({
-      'background-image': 'url("/assets/img/bgAnime.jpg")'
+      'background-image': 'url("./assets/img/bgAnime.jpg")'
     })
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
@@ -35,7 +35,7 @@ $(function() {
     event6(62000)
     event5(28000)
   })
-  
+
   // Gamestage Deadpool HARD
   $hardStart = $('.hardStartBtn')
   $hardStart.on('click', () => {
