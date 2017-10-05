@@ -1,90 +1,43 @@
 $(function () {
 
-  var grid = [] //this is the game board
-
-  //var colorList = ['blue','yellow','red']  //for testing
+  var grid = [] //game board
   var colorList =['#3772FF','#FED766','#FE5F55']
-  var cellColor = ""
-  var matrix = 4
+  var matrix = 4 //length & breadth of board
   var $cell = $('.cell')
-  var score = 0
-  var time = 60
-
-
+  var score = 0 // starting score
+  var time = 60 // time limit of the game
+  var checker = [] //to store player matches
+  var gameChecker =[] //to store whole board matches
 
   function generateLevel () {
-    // create a 2D array
-    //creates a new array of height & width specified by 'matrix'
+    //creates a new 2Darray specified by 'matrix'
     //create rows then columns, grid can be accessed with grid[row][column]
-    // grid = new Array(matrix)
     for (i = 0; i < matrix; i++) {
       grid.push([])
-      // grid[i] = new Array(matrix)
       for (j = 0; j < matrix; j++) {
-
-        //populate cells in game logic
-        // grid[i][j] = generateColor()
         grid[i].push(generateColor())
-
 
         //populate cells in css
         var pos = i +","+ j
         $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[i][j])
-
       }
-
     }
-
-    //for testing
-    // grid[0][0] = "red"
-    // $('.cell[data-position= "0,0"]').css('backgroundColor', grid[0][0])
-    // grid[0][1] = "red"
-    // $('.cell[data-position= "0,1"]').css('backgroundColor', grid[0][1])
-    // grid[0][2] = "red"
-    // $('.cell[data-position= "0,2"]').css('backgroundColor', grid[0][2])
-    // grid[0][3] = "blue"
-    // $('.cell[data-position= "0,3"]').css('backgroundColor', grid[0][3])
-    // grid[1][0] = "blue"
-    // $('.cell[data-position= "1,0"]').css('backgroundColor', grid[1][0])
-    // grid[1][1] = "blue"
-    // $('.cell[data-position= "1,1"]').css('backgroundColor', grid[1][1])
-    // grid[1][2] = "blue"
-    // $('.cell[data-position= "1,2"]').css('backgroundColor', grid[1][2])
-    // grid[1][3] = "yellow"
-    // $('.cell[data-position= "1,3"]').css('backgroundColor', grid[1][3])
-    // grid[2][0] = "yellow"
-    // $('.cell[data-position= "2,0"]').css('backgroundColor', grid[2][0])
-    // grid[2][1] = "yellow"
-    // $('.cell[data-position= "2,1"]').css('backgroundColor', grid[2][1])
-    // grid[2][2] = "yellow"
-    // $('.cell[data-position= "2,2"]').css('backgroundColor', grid[2][2])
-    // grid[3][0] = "red"
-    // $('.cell[data-position= "3,0"]').css('backgroundColor', grid[3][0])
-    // grid[3][1] = "red"
-    // $('.cell[data-position= "3,1"]').css('backgroundColor', grid[3][1])
-    // grid[3][2] = "red"
-    // $('.cell[data-position= "3,2"]').css('backgroundColor', grid[3][2])
-    // grid[3][3] = "yellow"
-    // $('.cell[data-position= "3,3"]').css('backgroundColor', grid[3][3])
-    // grid[2][3] = "yellow"
-    // $('.cell[data-position= "2,3"]').css('backgroundColor', grid[2][3])
-
-    if (checkForMatches() < 3 ) restart()
+    if (checkForMatches() < 3 ) restart() //if less than 3 available moves, regenerate level
   }
 
-  $cell.on('click', playerMatchCells)
-
-
     function playerMatchCells() {
+      //for player to make matches
       var index = ($(this).data('position')) //index[0], index[2]
       var index1 = parseInt(index[0])
       var index2 = parseInt(index[2])
 
-
+      //check if cell and next 2 cells match, then push into checker array
+      //horizontal check
      if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
        checker.push([index1, index2,'h'])
        score +=3
      }
+     //vertical check
      if(grid[index1+2]) {
        if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2])  {
          checker.push([index1, index2,'v'])
@@ -92,6 +45,7 @@ $(function () {
        }
      }
 
+    //future functionality to check backwards
     //  if( grid[index1][index2]===grid[index1][index2-1] && grid[index1][index2]===grid[index1][index2-2]) {
     //    checker.push([index1, index2,'h'])
     //  }
@@ -101,6 +55,7 @@ $(function () {
     //    }
     //  }
 
+    //change cells to '0' when they match
      if (checker.length > 0) {
        for(var i = 0; i < checker.length; i++) {
          if (checker[i][2] === 'h') {
@@ -114,19 +69,15 @@ $(function () {
            grid[checker[i][0] + 2][checker[i][1]] = 0
          }
        }
+       //reset checker
        checker = []
      }
-
-
       replenishCells()
-
     }
 
-   var checker = []
-   var gameChecker =[]
 
    function checkForMatches() {
-
+     //checks if any matches exist on the whole board
     gameChecker = []
     for (var x = 0 ; x < matrix; x++) {
       for (var y = 0; y < matrix; y++) {
@@ -143,20 +94,15 @@ $(function () {
         }
       }
     }
-
     return gameChecker.length
     }
 
-
   function replenishCells() {
-    var pos;
+    //replenish the cells where matches were found by the player
+    var pos = x +","+ y
 
     for (var x = matrix - 1 ; x >= 0 ; x--) {
       for (var y = matrix - 1; y >= 0 ; y--) {
-    // for (var x = 0 ; x < matrix ; x++) {
-    //   for (var y = 0; y < matrix ; y++) {
-        pos = x +","+ y
-
         if (grid[x-1] && grid[x][y] === 0) {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
@@ -166,8 +112,6 @@ $(function () {
 
     for (var x = 0 ; x < matrix ; x++) {
       for (var y = 0; y < matrix ; y++) {
-        pos = x +","+ y
-
         if (grid[x-1] && grid[x][y] === 0) {
           ;[ grid[x][y],grid[x-1][y] ] = [grid[x-1][y], grid[x][y] ]
           $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
@@ -178,9 +122,7 @@ $(function () {
 
     for (var x = 0 ; x < matrix ; x++) {
       for (var y = 0; y < matrix ; y++) {
-
         if (grid[x][y] === 0) {
-          pos = x +","+ y
           grid[x][y] = generateColor()
          $('.cell[data-position= "'+ pos +'"]').css('backgroundColor', grid[x][y])
         }
@@ -207,13 +149,14 @@ $(function () {
   function resetAll() {
     clearInterval(timer)
     time = 60
+    score = 0
     scoreboard()
     timer = setInterval(timerFn, 1000)
     restart()
   }
 
   function scoreboard() {
-    score = 0
+
     $('h3').text('Score: ' + score)
 
 
@@ -243,17 +186,14 @@ $(function () {
     alert('Time is up! Click ok to start new game.')
     clearInterval(timer)
     resetAll()
-
     }
-
   }
 
   generateLevel()
+  $cell.on('click', playerMatchCells)
   $('body').on('click', scoreboard)
   $('button').on('click', resetAll)
   setInterval(bgChanger,4000)
   var timer = setInterval(timerFn, 1000)
-
-
 
 })

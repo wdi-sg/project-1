@@ -4,16 +4,12 @@ body {
   transition: background-color 10s ease;
 }
 
-
 .container {
   width: 330px;
-  /*height: 550px;*/
   margin: 0 auto;
-  /*border: 3px solid green;*/
   text-align: center;
   position: relative;
   font-family: 'Helvetica', sans-serif;
-  /*background-color: black;*/
   display: block;
 
 }
@@ -24,14 +20,12 @@ body {
   width: 324px;
   display: flex;
   flex-flow: row wrap;
-
 }
 
 h1 {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
   font-size: 60px;
-
   position: relative;
   top: 30px
 }
@@ -40,18 +34,15 @@ h3 {
   font-family: 'Orbitron', sans-serif;
   font-size: 30px;
   display: block;
-  /*background-color: #00AFC2 ;*/
-  margin: 10px;
-
+  margin: 15px;
+  height: 30px;
 }
 
 h2 {
   font-family: 'Orbitron', sans-serif;
-  /*background-color: #00AFC2 ;*/
-  margin:10px;
+  margin: 20px 15px;
   display: block;
-  /*padding: 10px 5px 8px 5px;*/
-  /*border: 2px solid grey;*/
+  height: 20px;
 }
 
 p {
@@ -61,9 +52,15 @@ p {
 button {
   font-family: 'Orbitron', sans-serif;
   font-weight: bold;
-  padding: 10px 5px 8px 5px;
+  border: none;
   background-color: white;
+  padding: 10px 5px 8px 5px;
+  font-size: 15px;
+}
 
+button:hover {
+    background-color: #00AFC2;
+    color: white;
 }
 
 .cell {
@@ -71,33 +68,4 @@ button {
   height: 80px;
   border: 0.5px solid beige;
   transition: background-color 0.1s linear;
-
 }
-
-
-
-
-
-
-
-
-
-/*.cubeA{
-  background-color:  #3772FF;
-}
-
-.cubeB{
-  background-color:  #FED766;
-}
-
-.cubeC{
-  background-color:  #FE5F55;
-}*/
-
-/*.cubeGreen{
-  background-color:  #00AFC2;
-}
-
-.cubePink{
-  background-color:  #F038FF;
-}*/

@@ -1,3 +1,5 @@
+//experimental file - not in use
+
 $(function () {
 
   var grid = [] //this is the game board
