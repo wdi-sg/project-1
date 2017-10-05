@@ -17,3 +17,6 @@ Play with a friend! Answer 3 true or false trivia questions correctly first to *
 
 
 ---
+
+
+![](/Images/flowchart.jpg)
