@@ -3,7 +3,7 @@
   width: 800px;
   height: 500px;
   margin: 0 auto;
-  background: url(./img/background_2.jpg) no-repeat;
+  background: url(/project-1/img/background_2.jpg) no-repeat;
   background-size: cover;
 }
 
