@@ -170,12 +170,25 @@ $('#reset').hide()
 
 ### Challenges
 
-- Adding the mole to the specific hole.
-  Previously, I generated a random number and use a for loop to loop through the div(mole) length. To add mole images to my using their ID. But when it comes to removing the mole I cannot identify which mole I added first.
+- Adding the mole into the specific hole.
+  Previously, I generate a random number and use a for loop to loop through the div(mole) length. To add mole images by using their #ID. But when it comes to removing the mole I cannot identify which mole I added initially.
 
-- To calculate the score correctly
-  I used 2 onclick function at first. One for adding score and one for deducting score. It end up getting the wrong score even I click on the mole.
+- Calculation of the score
+  I used 2 onclick function therefore there were two listener. Further improvising by combining two listeners with just 1 onclick. With that, it will either check on if there is mole added, score will be added accordingly or else, it will deduct the score.
 
 - A timer for my game to end
-  I used the setInterval but my game will not end as expected.
+  I used the setInterval but my game will be looping forever.
   As I am not sure how to use it. Went to google how to use the setInterval.
+
+  Would like to thanks to my peers Grabiel, Shu Min, JieYing, Alex, for guiding throughout the project.
+
+---
+### Potential Improvements
+
+- Animation for the moles
+- Add different difficulty levels Eg. Easy, Intermediate  and Hard
+- Add same character with a different color scheme, so if hit the wrong mole, points will be deducted
+- Add same character with an unique feature, it hit time will be extended.
+- Add a pause button
+- Save highscore
+- Last 10s left, will turn red and blink interval increases
