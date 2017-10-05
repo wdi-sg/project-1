@@ -12,7 +12,8 @@ function gameProduct () {
     {'id': 'product',
     'productName': theProduct.productName,
       'src': theProduct.image,
-      'data-price': theProduct.price})
+      'data-price': theProduct.price,
+    'productAdv':theProduct.productAdv})
   $('.productSpace').prepend($productImg)
   $('.productSpace').append($printProductName)
 
@@ -135,12 +136,14 @@ function submitGuess() {
     $shoppingList.append($('<li>').text(productName))
 
     if (p1Arr[0] > p2Arr[0]) {
-      alert("winner is "+$('.player2').text())
+      alert("YAY! "+$('.player2').text()+", you won!")
+      alert($('#product').attr("productAdv"))
       // console.log(shoppingList)
       $('.player2Div').append($shoppingList)
      }
     if (p2Arr[0] > p1Arr[0]) {
-      alert("winner is "+$('.player1').text())
+      alert("YAY! "+$('.player1').text()+", you won!")
+      alert($('#product').attr("productAdv"))
       $('.player1Div').append($shoppingList)
     }
     ($('.print1Guess')).remove();

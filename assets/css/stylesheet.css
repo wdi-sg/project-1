@@ -81,7 +81,7 @@ h1, h2, h4, p {
   font-size: 20px;
   margin: 10px;
 }
-#player-1 {
+/*#player-1 {
   position: relative;
   top:-19px;
 }
@@ -94,18 +94,18 @@ h1, h2, h4, p {
 .print1Guess{
     position: relative;
     top: -38px;
-}
+}*/
 
-.text {
+/*.text {
   /*white-space: nowrap;*/
-  font-size: 16px;
+  /*font-size: 16px;*/
   /*position: absolute;*/
-  text-align: center;
-  width: 90%;
+  /*text-align: center;
+  width: 90%;*/
   /*margin: 0 auto;*/
-  margin-top: 5px;
+  /*margin-top: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: 'Share Tech Mono', monospace;
 
-}
+}*/
