@@ -349,6 +349,7 @@ function toggleSound () {
     $('.mute').html("Life's lonely without sound (M)")
   }
 }
+
 function alert1 () {
   alert('Game over')
 }
