@@ -149,61 +149,34 @@ Below are some code snippets:
 // Ghost Variables
 var ghostSpeed = 400
 
-setTimeout(function () {
-  // Moving Pac Man
-  setInterval(function () { movePacMan() }, pacManSpeed)
-  // Switching Directions
-  $body.on('keydown', (event) => { changeDirection(event) })
-  // Moving Ghost One
-  setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
-}, 3000)
+// moving ghost-two after 6 seconds
+setTimeout(function () { setInterval(function () { patrolTopRight($('#ghost-two')) }, ghostSpeed) }, 6000)
 
-// Assigning Patrol Function
-function moveGhost ($ghost) {
-  // jQuery ghost objects
-  var $ghostOne = $('#ghost-one')
-  var $ghostTwo = $('#ghost-two')
-  var $ghostThree = $('#ghost-three')
-  var $ghostFour = $('#ghost-four')
+// ghost-two variables
+var prevDirTwo = []
 
-  switch (true) {
-    case ($ghost.is($ghostOne)): patrolTopLeft($ghost)
-      break
-    case ($ghost.is($ghostTwo)): patrolTopRight($ghost)
-      break
-    case ($ghost.is($ghostThree)): patrolBottomRight($ghost)
-      break
-    case ($ghost.is($ghostFour)): patrolBottomLeft($ghost)
-      break
-  }
-}
-
-// ghost-one variables
-var prevDirOne = []
-
-// Patrol Top Left Corner Function Assigned to Ghost One
-function patrolTopLeft ($ghost) {
+function patrolTopRight ($ghost) {
   var $ghostTile = $ghost.parent()
   var $ghostUp = $ghostTile.prevAll().eq(18)
   var $ghostLeft = $ghostTile.prev()
   var $ghostRight = $ghostTile.next()
   var $ghostDown = $ghostTile.nextAll().eq(18)
 
-  if ($ghostUp.data('attr') !== 1 && prevDirOne[0] !== 'down' && prevDirOne[1] !== 'down') {
-    prevDirOne.push('up')
+  if ($ghostUp.data('attr') !== 1 && prevDirTwo[0] !== 'down' && prevDirTwo[1] !== 'down') {
+    prevDirTwo.push('up')
     $ghostUp.append($ghost)
-  } else if ($ghostLeft.data('attr') !== 1 && prevDirOne[0] !== 'right' && prevDirOne[1] !== 'right') {
-    prevDirOne.push('left')
-    $ghostLeft.append($ghost)
-  } else if ($ghostRight.data('attr') !== 1 && prevDirOne[0] !== 'left' && prevDirOne[1] !== 'left') {
+  } else if ($ghostRight.data('attr') !== 1 && prevDirTwo[0] !== 'left' && prevDirTwo[1] !== 'left') {
     $ghostRight.append($ghost)
-    prevDirOne.push('right')
-  } else if ($ghostDown.data('attr') !== 1 && prevDirOne[0] !== 'up' && prevDirOne[1] !== 'up') {
-    prevDirOne.push('down')
+    prevDirTwo.push('right')
+  } else if ($ghostLeft.data('attr') !== 1 && prevDirTwo[0] !== 'right' && prevDirTwo[1] !== 'right') {
+    prevDirTwo.push('left')
+    $ghostLeft.append($ghost)
+  } else if ($ghostDown.data('attr') !== 1 && prevDirTwo[0] !== 'up' && prevDirTwo[1] !== 'up') {
+    prevDirTwo.push('down')
     $ghostDown.append($ghost)
   }
   // shift entire array left by one element (keeps array 2 elements long)
-  if (prevDirOne.length > 2) prevDirOne.shift()
+  if (prevDirTwo.length > 2) prevDirTwo.shift()
 }
 ```
 
