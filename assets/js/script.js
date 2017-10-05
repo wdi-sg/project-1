@@ -81,15 +81,11 @@ $(function () {
       }, 6000)
       // moving ghost-three
       setTimeout(function () {
-        setInterval(function () {
-          moveGhost($('#ghost-three'))
-        }, ghostSpeed)
+        setInterval(function () { moveGhost($('#ghost-three')) }, ghostSpeed)
       }, 9000)
       // moving ghost-four
       setTimeout(function () {
-        setInterval(function () {
-          moveGhost($('#ghost-four'))
-        }, ghostSpeed)
+        setInterval(function () { moveGhost($('#ghost-four')) }, ghostSpeed)
       }, 12000)
       // lose condiition
       setInterval(function () {
