@@ -77,14 +77,8 @@ function checkCollision () {
   var targetTile = pacTarget(direction)
   // return true if pacman's parent tile or pacman's target tile contains any of the ghosts
   switch (true) {
-    case ($pacManTile.has('#ghost-one').length > 0):
-    case ($pacManTile.has('#ghost-two').length > 0):
-    case ($pacManTile.has('#ghost-three').length > 0):
-    case ($pacManTile.has('#ghost-four').length > 0):
-    case ($(targetTile).has('#ghost-one').length > 0):
-    case ($(targetTile).has('#ghost-two').length > 0):
-    case ($(targetTile).has('#ghost-three').length > 0):
-    case ($(targetTile).has('#ghost-four').length > 0):
+    case ($pacManTile.has('#ghost-one, #ghost-two, #ghost-three, #ghost-four').length > 0):
+    case ($(targetTile).has('#ghost-one, #ghost-two, #ghost-three, #ghost-four').length > 0):
       return true
   }
 }
