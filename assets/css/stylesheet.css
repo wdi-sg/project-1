@@ -120,7 +120,7 @@ h1 {
   position: absolute;
   display: block;
   background-color: black;
-  background-image: url("./assets/img/buildingsEvening.jpg");
+  background-image: url("../img/buildingsEvening.jpg");
   background-size: cover;
 }
 
