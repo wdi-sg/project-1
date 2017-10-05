@@ -216,9 +216,9 @@ $(function () {
   var currentAns = allQuestions[randomQnIndex].ans
   var turnCounter = 0
   var currentExp = allQuestions[randomQnIndex].exp
-  var correctSound = new Audio("/sounds/correct.wav");
-  var incorrectSound = new Audio("/sounds/wrong.wav")
-  var winSound = new Audio("/sounds/win.wav")
+  var correctSound = new Audio("./sounds/correct.wav");
+  var incorrectSound = new Audio("./sounds/wrong.wav")
+  var winSound = new Audio("./sounds/win.wav")
 
   $h1.text(`${allQuestions[randomQnIndex].qn}`)
 
@@ -286,7 +286,7 @@ $(function () {
         alert(`Player ${currentPlayer} wins!`)}, 1000)
       //alert(`Player ${currentPlayer} wins!`)
       setTimeout(function() {window.location.reload(true)}, 1000)
-      
+
     }
   }
 

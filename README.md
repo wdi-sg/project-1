@@ -5,7 +5,7 @@
 
 ![alt text][ducky banner]
 
-[ducky banner]: /Images/d&D.jpg "The Ducky Trivia Challenge"
+[ducky banner]: ./Images/d&D.jpg "The Ducky Trivia Challenge"
 
 
 
@@ -19,4 +19,4 @@ Play with a friend! Answer 3 true or false trivia questions correctly first to *
 ---
 
 
-![](/Images/flowchart.jpg)
+![](./Images/flowchart.jpg)
