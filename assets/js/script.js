@@ -1,26 +1,26 @@
 $(function () {
   // global variables
   var cardRefArr = [
-    'assets/img/1.jpg',
-    'assets/img/1a.jpg',
-    'assets/img/2.jpg',
-    'assets/img/2a.jpg',
-    'assets/img/3.jpg',
-    'assets/img/3a.jpg',
-    'assets/img/4.jpg',
-    'assets/img/4a.jpg',
-    'assets/img/5.jpg',
-    'assets/img/5a.jpg',
-    'assets/img/6.jpg',
-    'assets/img/6a.jpg',
-    'assets/img/7.jpg',
-    'assets/img/7a.jpg',
-    'assets/img/8.jpg',
-    'assets/img/8a.jpg',
-    'assets/img/9.jpg',
-    'assets/img/9a.jpg',
-    'assets/img/10.jpg',
-    'assets/img/10a.jpg'
+    '.assets/img/1.jpg',
+    '.assets/img/1a.jpg',
+    '.assets/img/2.jpg',
+    '.assets/img/2a.jpg',
+    '.assets/img/3.jpg',
+    '.assets/img/3a.jpg',
+    '.assets/img/4.jpg',
+    '.assets/img/4a.jpg',
+    '.assets/img/5.jpg',
+    '.assets/img/5a.jpg',
+    '.assets/img/6.jpg',
+    '.assets/img/6a.jpg',
+    '.assets/img/7.jpg',
+    '.assets/img/7a.jpg',
+    '.assets/img/8.jpg',
+    '.assets/img/8a.jpg',
+    '.assets/img/9.jpg',
+    '.assets/img/9a.jpg',
+    '.assets/img/10.jpg',
+    '.assets/img/10a.jpg'
   ]
 
   // global game variables
@@ -90,9 +90,9 @@ $(function () {
 
           // Changing back non-matched card
           // set img src attribute of first clicked div
-          $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', '/assets/img/back.jpg')
+          $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', './assets/img/back.jpg')
           // set img src attribute of second clicked div
-          $(this).find('img').attr('src', '/assets/img/back.jpg')
+          $(this).find('img').attr('src', './assets/img/back.jpg')
           cardsSave.pop()
           cardsSave.pop()
           // remove class of stopping clicks
@@ -147,7 +147,7 @@ $(function () {
       $card.addClass('card')
 
       var $cardUnflipped = $('<img>')
-      $cardUnflipped.attr('src', '/assets/img/back.jpg')
+      $cardUnflipped.attr('src', './assets/img/back.jpg')
       $card.attr('data-id', indexArr[i])
 
       $card.append($cardUnflipped)
@@ -234,7 +234,7 @@ $(function () {
   }
 
   function flipBackAll () {
-    $('.card').find('img').attr('src', '/assets/img/back.jpg')
+    $('.card').find('img').attr('src', './assets/img/back.jpg')
   }
 
   function checkWinner () {
