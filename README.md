@@ -1,4 +1,5 @@
 # **Eat This**
+Play the game: https://liyuan23.github.io/project-1/
 
 ## **Table of Contents**
 1. Overview
