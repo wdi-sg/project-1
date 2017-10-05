@@ -38,7 +38,7 @@ var pacManSpeed = 600
 var pacManMeetGhost = false
 var pacManLives = 3
 // ghost variables
-var ghostSpeed = 350
+var ghostSpeed = 250
 // ghost-one variables
 var prevDirOne = []
 // ghost-two variables
@@ -49,22 +49,17 @@ var prevDirThree = []
 var prevDirFour = []
 
 $(function () {
-  $winPanel.hide()
-  $losePanel.hide()
-
+  togglePanels('hide')
   // hit enter to start
   $body.on('keyup', (event) => {
     if (event.key === 'Enter') {
       $body.off()
       isGameOver = false
-      // hide instructions
-      $instructionPanel.hide()
-      // show score-board
-      $scoreBoard.css('visibility', 'visible')
-      // load assets
+      togglePanels('starting')
       loadAssets(tileSet)
-      // countdown to game start
       countDown()
+
+      // start game after 3 seconds
       setTimeout(function () {
         // moving pacman
         setInterval(function () { movePacMan() }, pacManSpeed)
@@ -73,32 +68,24 @@ $(function () {
         // moving ghost-one
         setInterval(function () { moveGhost($('#ghost-one')) }, ghostSpeed)
       }, 3000)
-      // moving ghost-two
-      setTimeout(function () {
-        setInterval(function () { moveGhost($('#ghost-two')) }, ghostSpeed)
-      }, 6000)
-      // moving ghost-three
-      setTimeout(function () {
-        setInterval(function () { moveGhost($('#ghost-three')) }, ghostSpeed)
-      }, 9000)
-      // moving ghost-four
-      setTimeout(function () {
-        setInterval(function () { moveGhost($('#ghost-four')) }, ghostSpeed)
-      }, 12000)
-      // lose condiition
+      // moving ghost-two after 6 seconds
+      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-two')) }, ghostSpeed) }, 6000)
+      // moving ghost-three after 9 seconds
+      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-three')) }, ghostSpeed) }, 9000)
+      // moving ghost-four after 12 seconds
+      setTimeout(function () { setInterval(function () { moveGhost($('#ghost-four')) }, ghostSpeed) }, 12000)
+      // lose condition
       setInterval(function () {
-        // checking if pac-man and ghosts occupy the same tile
         pacManMeetGhost = checkCollision()
         if (pacManMeetGhost) {
           movePacToStart()
           updateLives()
           pacManMeetGhost = false
         }
-        // update loss
-        if (pacManLives <= 0) showWinLossPanel('loss')
+        if (pacManLives <= 0) togglePanels('loss')
       }, 100)
       // win condition
-      setInterval(function () { if (score === 119) showWinLossPanel('win') }, 300)
+      setInterval(function () { if (score === 119) togglePanels('win') }, 300)
       // clearing game board
       var clear = setInterval(function () {
         if (isGameOver) {
@@ -386,16 +373,22 @@ function updateLives () {
   $('.lives-container').children().last().remove()
 }
 
-function showWinLossPanel (winLoss) {
-  if (winLoss === 'win') {
+function togglePanels (panel) {
+  if (panel === 'win') {
     $scoreBoard.css('visibility', 'hidden')
     $losePanel.hide()
     $winPanel.show()
     isGameOver = true
-  } else {
+  } else if (panel === 'loss') {
     $scoreBoard.css('visibility', 'hidden')
     $winPanel.hide()
     $losePanel.show()
     isGameOver = true
+  } else if (panel === 'starting') {
+    $instructionPanel.hide()
+    $scoreBoard.css('visibility', 'visible')
+  } else {
+    $winPanel.hide()
+    $losePanel.hide()
   }
 }
