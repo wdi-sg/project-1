@@ -3,31 +3,29 @@ $(function () {
   var $player1 = $('<div class="player1 lupid">')
   var $player2 = $('<div class="player2 pig">')
 
-  var $circle = $('.circle') // circle image to indicate which player's turn
-
   var currentPlayer = $player1
 
-  var cellValueP1 = 1 // track where player is supposed to be at.
-  var cellValueP2 = 1
+  var totalStepsTakenByP1 = 1 // track where player is supposed to be at.
+  var totalStepsTakenByP2 = 1
 
-  function startPosition () {
-    $('#1').append($player1) // grid 1
-    $('#1').append($player2) // grid 1
-  }
+  var $circle = $('.circle') // circle img to indicate which player's turn
 
     // Create dice event
-  var $dice = $('.dice')
-  $dice.on('click', rollDice)
+  var $dieButton = $('.dieButton')
+  var $dieValue = $('.dieValue')
+  $dieButton.on('click', rollDice)
 
-  var $autoPlay = $('.auto-play')
-  $autoPlay.on('click', autoPlay)
+
+  // create autoPlay event
+  var $autoPlayButton = $('.auto-play')
+  $autoPlayButton.on('click', autoPlayButton)
   var clear;
 
   // Create reset event
   var $reset = $('.reset')
   $reset.on('click', reset)
 
-  // creating Audio
+  // Create audio event
   var $soundButton = $('.sound')
   $soundButton.on('click' , playAudio)
 
@@ -35,16 +33,20 @@ $(function () {
     document.getElementsByClassName('audio')[0].play()
   }
 
+  function startPosition () {
+    $('#1').append($player1) // grid 1
+    $('#1').append($player2) // grid 1
+  }
+
   function rollDice () {
     var randomDiceResult = 1 + Math.floor(Math.random() * 6)
 
-    var $dieFace = $('.dieFace')
-    $dieFace.text(`${randomDiceResult}`)
+    $dieValue.text(`${randomDiceResult}`)
 
     if (currentPlayer === $player1) {
-      cellValueP1 += randomDiceResult
-      $player1.detach().appendTo(`#${cellValueP1}`) // move player 1 + dice value
-      $circle.css("left", "147px")
+      totalStepsTakenByP1 += randomDiceResult
+      $player1.detach().appendTo(`#${totalStepsTakenByP1}`) // move player 1 + dice value
+      $circle.css("left", "147px") // indicate player1 turn
       painOrPleasureP1()
 
       if (randomDiceResult === 6) {
@@ -55,10 +57,10 @@ $(function () {
         $circle.css("left", "147px")
       }
     } else if (currentPlayer === $player2) {
-      cellValueP2 += randomDiceResult
-      $player2.detach().appendTo(`#${cellValueP2}`) // move player 1 + dice value
+      totalStepsTakenByP2 += randomDiceResult
+      $player2.detach().appendTo(`#${totalStepsTakenByP2}`) // move player 1 + dice value
       painOrPleasureP2()
-      $circle.css("left", "25px")
+      $circle.css("left", "25px") // indicate player2 turn
 
       if (randomDiceResult === 6) {
         currentPlayer = $player2
@@ -70,29 +72,30 @@ $(function () {
   }
 
   function gameOver () {
-    if (cellValueP1 >= 100 || cellValueP2 >= 100) { whoWon() }
+    if (totalStepsTakenByP1 >= 100 || totalStepsTakenByP2 >= 100) { whoWon() }
   }
 
   function whoWon () {
-    if ((cellValueP1 >= 100)) {
+    if ((totalStepsTakenByP1 >= 100)) {
       alert('Player 1 has won!')
       reset()
-    } else if ((cellValueP2 >= 100)) {
+    } else if ((totalStepsTakenByP2 >= 100)) {
       alert('Player 2 has won!')
       reset()
     }
   }
 
   function reset () {
-    cellValueP1 = 1
-    cellValueP2 = 1
+    totalStepsTakenByP1 = 1
+    totalStepsTakenByP2 = 1
     currentPlayer = $player1
-    $player1.detach().appendTo(`#${cellValueP1}`)
-    $player2.detach().appendTo(`#${cellValueP2}`)
+    $player1.detach().appendTo(`#${totalStepsTakenByP1}`)
+    $player2.detach().appendTo(`#${totalStepsTakenByP2}`)
+    $dieValue.text(0)
     clearInterval(clear)
   }
 
-  function autoPlay() {
+  function autoPlayButton() {
     clear = setInterval(rollDice, 1500)
   }
 
@@ -148,29 +151,31 @@ $(function () {
 
 // Player 1 Snakes & Ladders
   function painOrPleasureP1 () {
-    var currentP1Index = cellValueP1 - 1
+    var currentP1Index = totalStepsTakenByP1 - 1
     painAndPleasureArray.forEach(function (element) {
-      if (painAndPleasureArray[currentP1Index] === element && element.length === 7) { // this method is bad because if they step on the strings it would activate too
-        cellValueP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
-        $player1.detach().appendTo(`#${cellValueP1}`)
+      // if length equal to 7, search for the next similar ladder word to find index
+      if (painAndPleasureArray[currentP1Index] === element && element.length === 7) {
+        totalStepsTakenByP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
+        $player1.detach().appendTo(`#${totalStepsTakenByP1}`)
+        // if length equal to 6, search for the next similar snake word to find index
       } else if (painAndPleasureArray[currentP1Index] === element && element.length === 6) {
-        cellValueP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
-        $player1.detach().appendTo(`#${cellValueP1}`)
-      } else { return cellValueP1 }
+        totalStepsTakenByP1 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
+        $player1.detach().appendTo(`#${totalStepsTakenByP1}`)
+      } else { return totalStepsTakenByP1 }
     })
   }
 
 // Player 2 Snakes & Ladders
   function painOrPleasureP2 () {
-    var currentP2Index = cellValueP2 - 1
+    var currentP2Index = totalStepsTakenByP2 - 1
     painAndPleasureArray.forEach(function (element) {
       if (painAndPleasureArray[currentP2Index] === element && element.length === 7) {
-        cellValueP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
-        $player2.detach().appendTo(`#${cellValueP2}`)
+        totalStepsTakenByP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) + 1)) + 1
+        $player2.detach().appendTo(`#${totalStepsTakenByP2}`)
       } else if (painAndPleasureArray[currentP2Index] === element && element.length === 6) {
-        cellValueP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
-        $player2.detach().appendTo(`#${cellValueP2}`)
-      } else { return cellValueP2 }
+        totalStepsTakenByP2 = (painAndPleasureArray.indexOf(element, painAndPleasureArray.indexOf(element) - 1)) + 1
+        $player2.detach().appendTo(`#${totalStepsTakenByP2}`)
+      } else { return totalStepsTakenByP2 }
     })
   }
 })
