@@ -31,4 +31,4 @@ Each round will last for 20 turns.
 
 ### User Story
 
-The primary goal of the game is to stress fluid memory.
+The primary goal of the game is to stress and improve your fluid intelligence with regular practice. Whether or not improvements made in the game are transferable to other areas is debatable.
