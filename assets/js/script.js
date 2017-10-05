@@ -84,12 +84,12 @@ $(function () {
 
      if( grid[index1][index2]===grid[index1][index2+1] && grid[index1][index2]===grid[index1][index2+2]) {
        checker.push([index1, index2,'h'])
-       score ++
+       score +=3
      }
      if(grid[index1+2]) {
        if( grid[index1][index2]===grid[index1+1][index2] && grid[index1][index2]===grid[index1+2][index2])  {
          checker.push([index1, index2,'v'])
-         score ++
+         score +=3
        }
      }
 
@@ -248,7 +248,7 @@ $(function () {
   generateLevel()
   $('body').on('click', scoreboard)
   $('button').on('click', resetAll)
-  setInterval(bgChanger,5000)
+  setInterval(bgChanger,4000)
 
 
   //$cell.on('mouseover', highlight)
