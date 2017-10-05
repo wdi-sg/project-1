@@ -2,10 +2,44 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Space Invader</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+
+    <div id="container">
+
+          <h1>My Space Invader</h1>
+          <h3><span onclick="$('#hidden').toggle(); return false">Instructions</span></h3>
+          <p style="display:none;" id="hidden">My Space Invader Game
+            is designed for players who likes to play a never ending game where you
+            rack up points until the player dies.
+            The key to the game is to survive as long as possible by avoiding the enemies
+            while getting points by shooting enemies with the player's laser
+            the longer you survive the harder the game gets.
+            It's game over if one of the enemy collides with
+            the player. Try to get a higher score each time you play theres nothing better
+            than beating your own highscore and setting a new one.<br><br>
+
+            Player Controls : <br>  Move Player = Arrow Keys (←↑↓→) <br>
+            Fire Laser = Spacebar <br><br>
+          <img src="./assets/img/ship.png"> : Player</img>
+          <img src="./assets/img/bullet.png"> : Laser</img>
+          <img src="./assets/img/enemy1.png"> : Enemy</img></p>
+
+
+          <div id="background">
+            <div id="player"></div>
+            <div id="laser"></div>
+            <div id="start"><p><span onclick="start()">START</span></p></div>
+
+            <div id="score"></div>
+            <div id="highscore"></div>
+            <div id="gameover">GAME OVER<p><span onclick="reload()">Restart</span><p></div>
+          </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>

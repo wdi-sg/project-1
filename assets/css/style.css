@@ -1,0 +1,93 @@
+body {
+  background: url('../img/spacebg.jpg')
+}
+
+h1, h3 {
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  font-family: Desdemona;
+}
+
+p {
+  color: #ffffff;
+  font-family: Papyrus;
+
+}
+
+#container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+#background {
+  background: url('../img/bg2.png');
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  border: 5px solid orange;
+}
+
+#player {
+  background: url('../img/ship.png') no-repeat;
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  visibility: hidden;
+}
+
+#laser {
+  background: url('../img/bullet.png') no-repeat;
+  width: 12px;
+  height: 15px;
+  position: absolute;
+  visibility: hidden;
+}
+.enemy {
+  background: url('../img/enemy1.png');
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+#score {
+  color: #ffffff;
+  font-size: 18pt;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+#highscore {
+  color: #ffffff;
+  font-size: 18pt;
+  position: absolute;
+  left: 270px;
+  top: 20px;
+}
+
+#gameover {
+  color: purple;
+  font-size: 20px;
+  position: absolute;
+  left: 190px;
+  top: 190px;
+  visibility: hidden;
+}
+
+#start {
+  color: #ffffff;
+  font-size: 20px;
+  position: absolute;
+  left: 220px;
+  top: 200px;
+}
+
+span {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+span:hover {
+  color: pink;
+}

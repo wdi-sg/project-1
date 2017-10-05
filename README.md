@@ -1,96 +1,192 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+#  Yuki Tsuboniwa: "Project #1"
+![Space Invader Logo](https://nebula.wsimg.com/obj/QzRGNkYxNkJERTM0M0M0MDdCMzM6YWYxNzQ2ZGRmMmVkZWFiMmY2ZDVlZjQwMzgwNTY4ZTU6Ojo6OjA=)
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: My Space Invader
+
+https://yukitsuboniwa.github.io/project-1/
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+  My Space Invader Game is designed for players who likes to play a never ending game where you rack up points until the player dies. The key to the game is to survive as long as possible while getting points by shooting enemies. The longer you survive more enemies will spawn and the faster they will get. It's game over if one of the enemy sprite touches the player sprite. Player wins by beating the high score. It is a game that is inspired by the classic Space Invader game with a slight difference in gameplay.
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+### Game Instructions
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+Move Player = Arrow keys (← ↑ ↓ →)
+
+Fire Laser = Spacebar
+
+Click the "Instructions" to view the instructions of the game once your ready click Start to begin playing!
+
+### Game Flowchart
+
+![Space Invader Flowchart](/assets/img/spaceinvaderflowchartupdated.png)
 
 
----
+### Assets
 
-### Technical Requirements
+1. Game Layout
 
-Your app must:
+  ![My Background](/assets/img/gamemap.png)
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+2. Characters
 
----
+  ![My Player](/assets/img/ship.png) = PLAYER
 
-### Necessary Deliverables
+  ![My Laser](/assets/img/bullet.png) = LASER
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+  ![Enemy](/assets/img/enemy1.png) = ENEMY
 
----
 
-### Suggested Ways to Get Started
+### Code Snippets
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+* For the player's movement/control I used the keyCodes of the keyboard to move by pressing the arrow keys and fire lasers when pressing the Spacebar
 
----
+```
+var leftKey = 37
+var upKey = 38
+var rightKey = 39
+var downKey = 40
+var spaceKey = 32
 
-### Potential Project Ideas
+function pressKey(keyCode, isPressed) {
+  // console.log(keyCode)
+  if (keyCode == leftKey) {
+    controller.left = isPressed
+  }
+  if (keyCode == upKey) {
+    controller.up = isPressed
+  }
+  if (keyCode == rightKey) {
+    controller.right = isPressed
+  }
+  if (keyCode == downKey) {
+    controller.down = isPressed
+  }
+  if (keyCode == spaceKey) {
+    controller.space = isPressed
+  }
+}
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+document.onkeydown = function(event) {
+  pressKey(event.keyCode, true)
+}
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+document.onkeyup =  function(event) {
+  pressKey(event.keyCode, false)
+}
 
----
+var controller = new Object()
+var playerMovement = 10
 
-### Useful Resources
+function handleControls() {
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+  if (controller.left) {
+    player.x -= playerMovement
+  }
+  if (controller.up) {
+    player.y -= playerMovement
+  }
+  if (controller.right) {
+    player.x += playerMovement
+  }
+  if (controller.down) {
+    player.y += playerMovement
+  }
+  if (controller.space && laser.y <= 0) {
+    laser.x = player.x + 15
+    laser.y = player.y - laser.h
+    laserSound()
+  }
+}
+```
+* To create and spawn my enemies I created an array to place all my enemies and I also created a random number function to add some randomness to how the enemy will behave and spawn the iteration is where the difficulty of the game is changed over time
 
----
+```
+var enemies = new Array()
+var iterations = 0
+function addEnemy() {
+    var interval = 50
+    for (var i = 0; i < enemies.length; i++) {
+    if (iterations > 2000) {
+      interval = 5
+      enemies[i].y += getRandom(50)
+      enemies[i].x += getRandom(7) - 3
+    } else if (iterations > 1500) {
+      interval = 5
+      enemies[i].y += getRandom(25)
+      enemies[i].x += getRandom(7) - 3
+    } else if (iterations > 1000) {
+      interval = 15
+      enemies[i].y += getRandom(18)
+      enemies[i].x += getRandom(7) - 3
+    } else if (iterations > 500) {
+      interval = 35
+      enemies[i].y += getRandom(12)
+      enemies[i].x += getRandom(7) - 3
+    }
+    iterations++
+ }
+    if (getRandom(interval) == 0) {
+      var elementName = 'enemy' + getRandom(100000000)
+      var enemy = new Object()
+      enemy.element = elementName
+      enemy.x = getRandom(480)
+      enemy.y = 0
+      enemy.w = 40
+      enemy.h = 40
 
-### Project Feedback + Evaluation
+      var createEnemy = document.createElement('div')
+      createEnemy.id = enemy.element
+      createEnemy.className = 'enemy'
+      document.getElementById('background').appendChild(createEnemy)
+      enemies[enemies.length] = enemy
+    }
+}
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+function getRandom(max) {
+   return parseInt(Math.random() * max)
+}
+ ```
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+* My collision function is how my characters interacts with each other and other elements of the game I used an intersect function by using the dimension and axis of the objects that when a > b and b > a the collision happens.
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+```
+function intersect(a,b) {
+  return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y
+}
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+function checkCollision() {    
+    for (var i = 0; i < enemies.length; i++) {
+      if (intersect(laser, enemies[i])) {
+        var element = document.getElementById(enemies[i].element);
+        element.style.visibility = 'hidden';
+        element.parentNode.removeChild(element);
+        enemies.splice(i, 1);
+        i--;
+        laser.y = -laser.h
+        $('#laser').css('visibility', 'hidden')
+        collideSound()
+        score += 100
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+      } else if (intersect(player, enemies[i])) {
+        collideSound()
+        gameOver()
 
-* __Total__: Your instructors will give you a total score on your project between:
+      } else if (enemies[i].y + enemies[i].h >= 495) {
+        var element = document.getElementById(enemies[i].element);
+        element.style.visibility = 'hidden';
+        element.parentNode.removeChild(element);
+        enemies.splice(i, 1);
+        i--;
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+      } else if (laser.y + laser.h <= 5) {
+        $('#laser').css('visibility', 'hidden')
+      }    
+}
+```
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+### Reference
+
+1.[Space Invader Tutorial](https://sites.google.com/site/wecanprogramcom/html-and-javascript/web-development-level2/lesson-1-setting-up-the-first-sprite)
+
+2.[Additional Infos and Sources "Copyright (C) 2012 Steven Lambert"](https://github.com/straker/galaxian-canvas-game)
