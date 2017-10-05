@@ -26,24 +26,21 @@ $(function () {
   var $birdHeight = parseInt($bird.height())
 
   var gameState = 2
-  var fallTime = 7000
   var speed = 0
   var scoreAdd = false
   var stopKeyDown = false;
-  
-  spop()
 
   function start () {
     birdFlap()
   }
 
+  // audio
   function spop() {
     document.getElementsByClassName('startpop')[0].play()
   }
 
   function flapsound() {
     // document.getElementsByClassName('birdFlapping')[0].currentTime = 1.3
-    // document.getElementsByClassName('birdFlapping')[0].volume = 1
     document.getElementsByClassName('birdFlapping')[0].pause()
     document.getElementsByClassName('birdFlapping')[0].play()
   }
@@ -57,24 +54,22 @@ $(function () {
     document.getElementsByClassName('hit')[0].play()
   }
 
+  spop()
 
+  // start instruction popup
   $startBtn = $('.start')
   $startBtn.on('click', () => {
     document.getElementsByClassName('startpop')[0].pause()
     stopKeyDown = true;
+    $('.start_pop').hide()
     playBgSound ()
     speed = 20
-    $('.start_pop').hide()
   })
 
-	$container.on('click', function () {
+	$container.on('mousedown', function () {
     start()
     birdFlap ()
     flapsound()
-    if (gameState > 1) return
-    if (gameState === 2) {
-      gameState = 1
-    }
 	})
 
 	$(this).on('keydown', function (e) {
@@ -131,6 +126,7 @@ $(function () {
       // change the pole's height
       poleTop.css('height', pole_initial_height + newHeight)
       poleBottom.css('height', pole_initial_height - newHeight)
+      //speed increase +1 every time a new pole enter
       speed = speed + 1;
       scoreAdd = false
       // move pole back to right
@@ -149,7 +145,7 @@ $(function () {
         birdPos()
         $bird.css('transform', 'rotate(0deg)')
         $bird.stop().animate({
-          bottom: '-=50px'
+          bottom: '-=70px'
         }, 200, 'linear', function () {
           birdPos()
           gravity()
@@ -159,8 +155,6 @@ $(function () {
   }
 
   function gravity () {
-    var birdPercent = parseInt($bird.css('bottom')) / $container.height()
-    var totalFallTime = fallTime * birdPercent
     $bird.stop().animate({
       bottom: '0'
     })
@@ -168,13 +162,12 @@ $(function () {
   }
 
   function gameEnd () {
-    // $bird.stop().animate
-    hitOver()
+    gameState = 0
+    document.getElementsByClassName('play_bgsound')[0].pause()
     clearInterval(birdPosInterval)
     clearInterval(polePosInterval)
-    gameState = 0
     $('.gameover_pop').show()
-    document.getElementsByClassName('play_bgsound')[0].pause()
+    hitOver()
     // restartBtn.slideDown()
   }
 
