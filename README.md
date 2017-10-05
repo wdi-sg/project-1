@@ -29,7 +29,7 @@ Try to get a higher score each time!
 ---
 
 ### Flowchart
-![Temp Logo](/assets/flowchart.png)
+![flowchart](/assets/flowchart.png)
 
 ---
 
