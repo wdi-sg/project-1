@@ -1,18 +1,14 @@
 # **Basic Pac-Man**
 
-
 <img src="/assets/images/flowchart.png" alt="flowchart.png" title="Project Flowchart" width="900">
-
 
 ## Overview
 
 This is a simplified version of Pac Man.
 
 The player controls Pac-Man through a maze of various dots, as well as four multi-coloured ghosts. The goal of the game is to consume all the dots. The four ghosts roam the maze, trying to kill Pac-Man. If any of the ghosts touch Pac-Man, he loses a life; when all lives have been lost, the game ends.
-___
-## Instructions
 
-*To Change Directions*
+## Instructions
 
 + Arrow-Left '◀' : Move 'Left'
 + Arrow-Right '▶' : Move 'Right'
@@ -20,14 +16,14 @@ ___
 + Arrow-Down '▼' : Move 'Down'
 
 ## [▶ Click Here to Play Game ◀](https://koozy0.github.io/project-1/)
-___
+
 ## Considerations
 
 + Grid-style layout VS open game board while actively checking for collision at set intervals.
 + Since game board is reasonably small, a grid-style layout is used to reduce the amount of resources consumed by the game
 + Constantly checking for collision against all elements VS checking if the target tile is valid at the point of movement.
 + Also makes generating the game assets easier.
-___
+
 ## Loading Game Assets
 
 A 19x18 array containing numbers between 0 - 9 is used to generate the game board. Each number denotes which assets to generate as well as mark out the location of the Pac-Dots, Pac Man and the four Ghosts. A loop is used to go through the array and generate the game assets.
@@ -80,7 +76,7 @@ function loadAssets (tileSet) {
   }
 }
 ```
-___
+
 ## Collision Logic
 
 Basic Pac Man is created with a grid-style layout. No collision algorithms are used. Each individual tile has it's own data attribute, denoting whether it is a tile which the 5 characters can enter. Checking whether Pac Man touches any of the four Ghosts or the Pac-Dots is a simple check for whether any of other elements inhabit the same tile as Pac Man.
@@ -102,7 +98,7 @@ function checkCollision () {
   }
 }
 ```
-___
+
 ## Moving Pac-Man
 
 To move Pac Man through the grid, the game first gets the tile which Pac-Man is inhabiting. Depending on which tile Pac Man is trying to move into, the game then gets the target tile and checks it's data attribute to determine if the tile selected is a valid tile. Event handlers are used to change Pac Man's direction depending on which ArrowKey is hit.
@@ -158,7 +154,7 @@ function changeDirection (event) {
   }
 }
 ```
-___
+
 ## Ghosts Movement
 
 Ghosts movement use the same logic as Pac Man. Initial parent tile of the ghost is captured, then the target tile is evaluated if it is a viable tile.
@@ -228,7 +224,7 @@ function patrolTopLeft ($ghost) {
   if (prevDirOne.length > 2) prevDirOne.shift()
 }
 ```
-___
+
 ## Reflections
 
 + Creating a character class which stores the position of the character's parent tile as well as a method to get and store the 4 adjacent tiles will reduce the amount of code repetition.
@@ -237,7 +233,7 @@ ___
 + Instead of having four separate patrol functions for the ghosts (one for each ghost), refactor into one function (if possible).
 + Ghosts movement is overly simple. Two movement modes were originally planned: Scatter and Chase. Scatter is the current patrol mode, while chase will cause the ghosts to actively track and chase Pac Man. The Ghosts were to switch between the two modes at every fixed interval.
 + Plan further ahead. Some features were not implemented due to time constraints (Proper restart function, Ghosts Chase mode, Power Pellets).
-___
+
 ## Resources
 
 + [Get dynamically added element by data attribute using jQuery](https://stackoverflow.com/questions/31402103/how-to-find-dynamically-added-element-by-data-attribute-using-jquery)
