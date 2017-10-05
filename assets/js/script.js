@@ -134,27 +134,22 @@ $(function(){
     removeClassBox()
     //addClassBox()
     var characterImage = $character.css('background-image')
-    console.log(characterImage)
     $gameOverText = $('<h2 class ="overText">')
     $gameOverText.text("Time's Up")
     $totalScore = $('<h2 class="totalScore">')
     $totalScore.text(`Total Score: ${total}`)
     $characterFinal = $('<div class="characterFinal">')
-    //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','')
+    //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','') // to test locally
     characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
     characterImage = characterImage.replace('")','')
-
-    console.log(characterImage)
     $charImage = $(`<img src=${characterImage} />`)
     // $characterFinal.css("background-image",`"url=('${characterImage}')"`)
-
     $characterFinal.prepend($charImage)
     $('.gridbox').append($gameOverText)
     $('.gridbox').append($totalScore)
     $('.gridbox').append($characterFinal)
     total = 0
     turn = true
-
   }
 
   function setGrid(){
