@@ -23,6 +23,11 @@ h4 {
   padding-top: 0px;
 }
 
+h5 {
+  font-size: 40px;
+  text-align: center;
+}
+
 
 .flower {
   height: 65px;
@@ -79,6 +84,17 @@ h4 {
 
 }
 
+.startgame {
+  background: url("/assets/images/background4.gif");
+   height: 700px;
+   width: 1400px;
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
+   position: absolute;
+   display: block;
+   z-index: 1;
+}
+
 .gameover {
   background: url("/assets/images/PinkStarGirl.gif");
   font-size: 60px;
@@ -93,12 +109,57 @@ h4 {
   z-index: 0;
 }
 
+.bottom {
+  height: 230px;
+  width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gamestart {
+  background: url("/assets/images/trip2.gif");
+  font-family: "Press Start 2P";
+  font-size: 20px;
+  background-size: 100% 100%;
+  height: 230px;
+  width: 1400px;
+  margin: 0 auto;
+  position: absolute;
+  padding-top: 30px;
+  z-index: 1;
+  display: none;
+}
+
+.gamestart img {
+  height: 150px;
+  weight: 150px;
+}
+
+#startbtn {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+}
+
+#restartbtn {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+
+}
+
 .instructions {
+  position: absolute;
   font: 30px;
   height: 230px;
   width: 1400px;
   margin: 0 auto;
   padding-top: 0px;
+  z-index: 0;
 }
 
 .instructions img {

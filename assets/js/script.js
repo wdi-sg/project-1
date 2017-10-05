@@ -27,7 +27,7 @@ class Flower {
                       points: 1,
                       speed: 55,
                       sec: 0,
-                      img: 'url(/assets/images/star5.gif)'
+                      img: 'url(/assets/images/star6.gif)'
                     },
                     {
                       points: 2,
@@ -88,19 +88,34 @@ $(function () {
   var score = 0
   var timer = 30
 
-  var create = setInterval(createFlower, 50)
+  var create
   var play = createPlayerOne()
   var over = setInterval(gameOver, 50)
   var find = setInterval(detect, 50)
   var flowerList = []
   var flowerIndex = 0
 
-  $timer = $('.timer')
-  setInterval(() => {
-    timer = timer - 1
-    $timer.text('Time: ' + timer)
-  }, 1000)
 
+startGame()
+
+function startGame () {
+  var $startbtn = $('#startbtn')
+  var $startGame = $('.startgame')
+
+    $startbtn.one('click', ()=>{
+      $startGame.css('display', 'none')
+      create = setInterval(createFlower, 50)
+      $timer = $('.timer')
+      setInterval(() => {
+        timer = timer - 1
+        $timer.text('Time: ' + timer)
+      }, 1000)
+    })
+  }
+
+
+    var $restartbtn = $('#restartbtn')
+    $restartbtn.one('click', () => {this.location.reload()})
 
 
   function createFlower () {
@@ -177,11 +192,13 @@ $(function () {
   function gameOver () {
     var $allFlowers = $('.flower')
     var $gameOverScreen = $('.gameover')
+    var $gameStart = $('.gamestart')
     if (timer <= 0) {
       $allFlowers.remove()
       clearInterval(create)
       clearInterval(find)
       timer = 1
+      $gameStart.css('display', 'block')
       $gameOverScreen.css('display', 'block')
       $gameOverScreen.text(`Score: ${score}`)
       $('.playerOne').css('backgroundImage', 'url(/assets/images/superPink2.gif)')
