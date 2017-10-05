@@ -70,9 +70,9 @@ $(function () {
     },
 
     {
-      qn: 'It costs the U.S. Mint more to make pennies and nickels than the coins are actually worth',
-      ans: false,
-      exp: 'U.S. taxpayers lost over $100 million in 2013 just through the coins being made.'
+      qn: 'Pirates wore eye patches so they could see better in the dark',
+      ans: true,
+      exp: 'Pirates didn’t wear patches to cover a missing eye; they actually wore one to keep one eye adjusted to darkness when going below deck'
     },
 
     {
@@ -110,6 +110,95 @@ $(function () {
       ans: false,
       exp: 'Go ahead and crack away'
     },
+
+    {
+      qn: 'Lighters were invented before matches',
+      ans:true,
+      exp: 'German chemist Johann Wolfgang Dobereiner created the first lighter in 1823. The match was invented in 1826.'
+    },
+
+    {
+      qn: 'The Spanish national anthem has no words',
+      ans:true,
+      exp: 'Spain is one of four countries that have no lyrics'
+    },
+
+    {
+      qn: 'Orangutans sleep standing up',
+      ans:false,
+      exp: 'They usually sleep in nests they build in trees'
+    },
+
+    {
+      qn: 'In 1966 NASA sent a McDonalds hamburger to space',
+      ans:false,
+      exp: 'If NASA did, it would probably come back looking exactly the same.'
+    },
+
+    {
+      qn: 'A traffic jam in China lasted more than 10 days',
+      ans:true,
+      exp: 'The China National Highway 110 Traffic Jam began on August 14, 2010 and lasted more than 10 whole days'
+    },
+
+    {
+      qn: 'The human body has 163 bones',
+      ans:false,
+      exp: 'The human body has 206 bones by adulthood'
+    },
+
+    {
+      qn: 'We eat an average of 4 house flies (not spiders) in our sleep every year',
+      ans:false,
+      exp: 'It is a myth!'
+    },
+
+    {
+      qn: 'There are more moves in chess than there are atoms in the universe',
+      ans:true,
+      exp: 'Shannon Number measured the combinatorial game complexity of chess and found there are, in fact, more legal moves than there are atoms in the universe as we know it.'
+    },
+
+    {
+      qn: 'It takes 242 trees to make a 200-page book',
+      ans:false,
+      exp: 'There is no way it would even take one full tree to make a book'
+    },
+
+    {
+      qn: 'Bananas grow on trees',
+      ans:false,
+      exp: 'They grow from a root structure that produces an above ground stem'
+    },
+
+    {
+      qn: 'Shaving makes hair grow back faster',
+      ans:false,
+      exp: 'This is a myth'
+    },
+
+    {
+      qn: 'Mammoths still walked the Earth when the Great Pyramid was being built',
+      ans:true,
+      exp: 'A tiny population survived on the isolated Wrangel Island until 1650 BCE.'
+    },
+    {
+      qn:'Black holes are not black',
+      ans:true,
+      exp:'They are dark but not black'
+    },
+
+    {
+      qn:'There are more fake flamingos in the world than real ones',
+      ans:true,
+      exp: 'There are an estimated 950,000 flamingos in existence compared to millions of plastic ones'
+    },
+
+    {
+      qn: 'The top of the Eiffel Tower leans away from the sun',
+      ans:true,
+      exp: 'The metal of the tower expands in the heat of the sun, so the sun-facing side is always slightly bigger than the one facing away – making it lean as much as seven inches away from the sun'
+    }
 
   ]
   // var randomQnIndex = Math.floor(Math.random() * allQuestions.length)// random
@@ -160,7 +249,7 @@ $(function () {
       alert(`Incorrect! ${currentExp}`)
     }
 
-    // turnCounter++
+    turnCounter++
 
     topScore()
     // get the index of qns index to be removed
@@ -168,12 +257,16 @@ $(function () {
     allQuestions.splice(randomQnIndex,1)
     // console.log(allQuestions)
 
-
-    switchPlayers()
+    // if (topScore)
+    // ""
+    // else
+    setTimeout(switchPlayers, 1000)
     // console.log($(this).attr('id'))
+    // topScore?"":switchPlayers()
   }
 
   function switchPlayers () {
+
     randomQnIndex = Math.floor(Math.random() * allQuestions.length)
     $h1.text(`${allQuestions[randomQnIndex].qn}`)
     currentAns = allQuestions[randomQnIndex].ans
@@ -185,7 +278,7 @@ $(function () {
   }
 
   function topScore () {
-    if (scoreCounter1 === 2 || scoreCounter2 === 2) {
+      if (scoreCounter1 === 2 || scoreCounter2 === 2) {
       setTimeout(function() {
         winSound.play()}, 800)
 
@@ -193,8 +286,11 @@ $(function () {
         alert(`Player ${currentPlayer} wins!`)}, 1000)
       //alert(`Player ${currentPlayer} wins!`)
       setTimeout(function() {window.location.reload(true)}, 1000)
+      return true
     }
   }
+
+
 
   // console.log(randomQnIndex)
 })
