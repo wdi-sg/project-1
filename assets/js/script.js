@@ -271,16 +271,16 @@ $(function(){
         toBeDelete =[]
         toBeDeleteTwo =[]
         if(total>700){
-          $character.css("background-image","url('./../assets/css/img/toothfairy.png')")
+          $character.css("background-image","url('./assets/css/img/toothfairy.png')")
         }
         else if (total>500){
-          $character.css("background-image","url('./../assets/css/img/pinkteeth.png')")
+          $character.css("background-image","url('./assets/css/img/pinkteeth.png')")
 
         }
         else if(total>250){
-          $character.css('background-image','url("./../assets/css/img/whiteteeth.png")')
+          $character.css('background-image','url("./assets/css/img/whiteteeth.png")')
         }
-        else $character.css('background-image','url("./../assets/css/img/yellowteeth.png")')
+        else $character.css('background-image','url("./assets/css/img/yellowteeth.png")')
 
       }
     },300)
