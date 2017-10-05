@@ -2,6 +2,8 @@
 ### Overview
 
 Game is based on **Maplestory**, a Mass Multiplayer Online Role Playing Game (MMORPG)
+
+[Online Version](https://josephpung.github.io/project-1/)
 ## Controls
 - Left and Right arrow keys to move horizontally
 - Space to jump
