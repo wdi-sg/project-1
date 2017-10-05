@@ -122,19 +122,13 @@ button:hover {
   margin-top: 52px;
 }
 
-h5 {
-  text-align: center;
-}
 #memoryBoard {
-  /*border: white 5px solid;*/
   width: 764px;
   height: 619px;
   padding: 10px;
   margin-top: -25px;
   border-radius: 25px;
   box-sizing: border-box;
-
-
 }
 
 #memoryBoard > div {
