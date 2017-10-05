@@ -12,12 +12,12 @@ The n-back task is a continuous performance task that is commonly used as an ass
 
 ###Game logic
 
-Game board will consist of 8 square tiles.
+Game board will consist of 8 square tiles. A location & color button.
 
-A random tile will appear at a set interval. Task is to remember the location of the location of tile that appeared "1-n" one turn back "2-n" 2 turns back and so on.
-
-A location button for player to indicate correct location n turns back.  
+A random position and color will appear at 2.5 second intervals. The objective of the game is to remember the location and color of tile that appears one turn back "1-n back" and indicate it by triggering the location or color buttons.  
 
 If player remembers the correct location points will be added and deducted for incorrect.
 
 Each round will last for 20 turns.
+
+[Link to Game](https://subutai1175.github.io/project-1/)
