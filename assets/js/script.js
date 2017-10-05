@@ -52,7 +52,7 @@ $(function(){
       randomMoleAppear()
       randomMoleAppear()
       timeleft--
-      $('.timer').html("Timeleft: <span>"+ timeleft +"</span>")
+      $('.timer').html("Time left: <span>"+ timeleft +"</span>")
       if(timeleft <=0){
         clearInterval(timer);
         $('.holes').addClass("avoid-clicks")

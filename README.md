@@ -41,7 +41,8 @@ $('#start').on('click',function() {
       $('.holes').addClass("avoid-clicks")
     }
   },1000)
-})```
+})
+```
 
 ```JavaScript
 //mole appears at random spot
@@ -57,7 +58,8 @@ function randomMoleAppear(){
     $('.mole').eq(random).removeClass("image")
   }
   setTimeout(removeMole,900)
-}```
+}
+```
 
 ```JavaScript
 //if you hit the mole, it a sound will be played
@@ -72,7 +74,8 @@ $('.mole').on('click',function(){
     //it will deduct score
     deductScore()
   }
-})```
+})
+```
 
 ```JavaScript
 //play this sound if mole is being click
@@ -80,14 +83,16 @@ function sound(){
   var snd = document.createElement('audio')
   snd.src= "assets/sounds/hit.mp3"
   snd.play()
-}```
+}
+```
 
 ```JavaScript
 //each successful click on the mole can get 10 score
 function calScore(){
   score = score + 10
   $('.score').html("Score: <span>"+ score +"</span>")
-}```
+}
+```
 
 ```JavaScript
 //When click on the hole without a mole -5 from score
@@ -95,7 +100,8 @@ function deductScore() {
   score = score - 5
   $('.score').html("Score: <span>"+ score +"</span>")
     // "Total Score : " + "<span>score</span>")
-}```
+}
+```
 
 ```JavaScript
 //reset score to 0,clearInterval,hide reset button
@@ -107,7 +113,8 @@ $('#reset').on('click',function(){
   $('.score').html("")
   $('.timer').html("")
   $('.holes').addClass("avoid-clicks")
-})```
+})
+```
 
 ```JavaScript
 //reset score and clear interval
@@ -116,7 +123,8 @@ function reset(){
   score = 0
   $('.mole').removeClass("image")
   $('.score').html("Score: <span>"+ score +"</span>")
-}```
+}
+```
 
 ```JavaScript
 //add a hammer image to the mouse cursor
@@ -141,10 +149,14 @@ function midPoint(hammerX, hammerY, objWidth, objHeight) {
     left: `${hammerX +50 - (objWidth/2)}px`,
     // transform: (mouseX > bodyWidth/2) ? 'scaleX(-1)' : 'scaleX(1)'
   }
-}```
+}
+```
 
 ```JavaScript
 //once start it will hide reset button and
 //add avoid click until user press start
 $('.holes').addClass("avoid-clicks")
-$('#reset').hide()```
+$('#reset').hide()
+```
+
+---
