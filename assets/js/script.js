@@ -90,9 +90,9 @@ $(function () {
 
           // Changing back non-matched card
           // set img src attribute of first clicked div
-          $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', './assets/img/back.jpg')
+          $(`.card[data-id="${firstClicked}"]`).find('img').attr('src', '../img/back.jpg')
           // set img src attribute of second clicked div
-          $(this).find('img').attr('src', './assets/img/back.jpg')
+          $(this).find('img').attr('src', '../img/back.jpg')
           cardsSave.pop()
           cardsSave.pop()
           // remove class of stopping clicks
@@ -147,7 +147,7 @@ $(function () {
       $card.addClass('card')
 
       var $cardUnflipped = $('<img>')
-      $cardUnflipped.attr('src', './assets/img/back.jpg')
+      $cardUnflipped.attr('src', '../img/back.jpg')
       $card.attr('data-id', indexArr[i])
 
       $card.append($cardUnflipped)
@@ -234,7 +234,7 @@ $(function () {
   }
 
   function flipBackAll () {
-    $('.card').find('img').attr('src', './assets/img/back.jpg')
+    $('.card').find('img').attr('src', '../img/back.jpg')
   }
 
   function checkWinner () {
