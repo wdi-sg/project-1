@@ -1,7 +1,7 @@
 $(function () {
   // global variables
   var cardRefArr = [
-    '.assets/img/1.jpg',
+    '../img/1.jpg',
     '.assets/img/1a.jpg',
     '.assets/img/2.jpg',
     '.assets/img/2a.jpg',
