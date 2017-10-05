@@ -87,6 +87,7 @@ function compareResult () {
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recArr[count - 1] != recArr[count - n]) {
+    audioWrong();
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   }
@@ -95,10 +96,11 @@ function compareResult () {
 
 function compareColor () {
   if (recCol[count - 1] === recCol[count - n]) {
-    audioWrong()
+    audioCorrect();
     scoreObj.score += 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   } else if (recCol[count - 1] != recCol[count - n]) {
+    audioWrong();
     scoreObj.score -= 10;
     scoreObj.scoreBoard.text(`Score : ${scoreObj.score}`)
   }
@@ -137,11 +139,11 @@ function reset(){
 }
 
 function audioCorrect() {
-  document.getElementById("audioCorrect").play();
+  return document.getElementById("audioCorrect").play();
 }
 
 function audioWrong() {
-  document.getElementById("audioCorrect").play();
+  return document.getElementById("audioWrong").play();
 }
 
 

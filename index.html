@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
+    <audio id="audioCorrect" type="audio/mpeg" src="./audio/correctAnswer.mp3"></audio>
+    <audio id="audioWrong" type="audio/mpeg" src="./audio/wrongAnswer.mp3"></audio>
     <div class="container">
       <div class="topRow">
       <button id="startBtn">Start</button>
@@ -33,16 +35,7 @@
     </div>
   </div>
   </div>
-  <audio id="audioCorrect" src="./audio/'Correct Answer Sound Effect.mp3'"></audio>
-  <script charset="utf-8">
-  function audioCorrect(){
-    document.getElementById("audioCorrect").play();
-  }</script>
-  <audio id = "audioWrong" src="./audio/'Wrong Answer Sound Effect.mp3'"></audio>
-  <script charset="utf-8">
-    function audioWrong(){
-      document.getElementById("audioWrong").play();
-    }</script>
+
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
