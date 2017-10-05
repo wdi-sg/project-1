@@ -1,5 +1,5 @@
 # Project #1: Tempo Shot
-Created by: [Ming Yi Koh](https://github.com/mingyikoh)
+Created by: [__Ming Yi Koh__](https://github.com/mingyikoh)
 <br>
 
 [*Click here to play*!](https://mingyikoh.github.io/project-1/)
@@ -8,7 +8,9 @@ Created by: [Ming Yi Koh](https://github.com/mingyikoh)
 
 ---
 ## Overview
-*Tempo Shot* is a first-person-shooter game that tests your reflexes and judgement. Managing your inventory of ammo and grenades is key to winning.<br> Please turn on your volume while playing.
+*Tempo Shot* is a music based first-person-shooter game that tests your reflexes and judgement. Managing your inventory of ammo and grenades is key to winning.
+
+*Please turn on your volume while playing.*
 
 #### Objective
 Survive for *two* minutes. Lose all health and you lose.
@@ -27,9 +29,9 @@ Shoot *ammo boxes* or *med packs* to refill your supplies and health.
 ## Technical Documentation
 * Game Logic Flow-Chart
 * Coding Theory
-* Future Updates
-* Current Issues (To-Fix List)
-* Working On
+* Future Possible Updates
+* Coding Sequence
+* Acknowledgements
 
 #### Game Logic Flow-Chart
 <img src="assets/img/flowchart.jpeg">
@@ -62,7 +64,6 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 * Scoring function
 * Combo function
 * Pause button
-* <s>Set events i.e. spawn 5 hard enemies at the same time</s>
 * Text popups at game screen, 'Miss!' etc.
 * Enemies zoom to player (transition effect) when they expire, like a bullet path
 * Text notification on miss etc.
@@ -74,6 +75,7 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 * Using grenade on 5 allies and 1 healthpack will result in gameover.<br> Though 5 health - 5 + 1 = 1 health
 
 #### Coding Sequence
+
 1. Create basic html, game screen layout
 1. Create win and lose condition
 1. Create object constructor
@@ -97,8 +99,8 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 * **Alex Min** (TA)
 <br>For the precious help and guidance rendered through individual consultations
 
-* **Hazel Toh**
-<br>For the assistance given in editing images used in the game
+* **Hazel Toh** (WDI 12)
+<br>For the much needed assistance in editing images used in the game
 
 * **Songs**
   <br>[Escape the Fate - "One For The Money"](https://www.youtube.com/watch?v=szRDiLUduRA)
