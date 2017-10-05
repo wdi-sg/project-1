@@ -19,7 +19,7 @@ Easy, just:
   1. The player's token moves across the board over the squares based on the dice value
   2. Other player gets turn
 4. For snakes and ladders
-  1. If  player lands on a ladder bottom rung, whohoo! you get to climb up to the end of the ladder and fast forward many paces.
+  1. If  player lands on a ladder's bottom rung, whohoo! you get to climb up to the end of the ladder and fast forward many paces.
   2. If player lands on a snake head, rough luck. Move back down to the square in the snake tail.
 5. Keep playing between players
 
@@ -27,7 +27,7 @@ Easy, just:
 ---
 
 ### When to Win
-Whoever reaches 100 first wins! That simple
+Whoever reaches 100 first wins! That simple. :)
 
 ---
 
@@ -37,8 +37,7 @@ Whoever reaches 100 first wins! That simple
 
 ---
 
-### Expansion plan
-If time permits
+### Expansion plan in future
 * Add multi-player beyond 2
 * leaderboard across multiple games
 * points based on # of moves

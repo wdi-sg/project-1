@@ -1,6 +1,6 @@
 
 .container {
-  width: 1200px;
+  width: 1050px;
   margin: 0 auto;
 }
 
@@ -8,20 +8,29 @@
   /*border: 1px dashed blue;*/
   width: 802px;
   margin: 0 auto;
-
-  /*height: 500px;*/
   display: flex;
   flex-flow: row wrap;
+  /*height: 500px;*/
   position: relative;
   background-image: url(../images/gameboard-s.gif);
   background-size: 100%;
+  float: left;
+}
+.left{
+  float: right;
 
 }
-
 .box {
   border: 0px solid black;
   width: 80px;
   height: 80px;
+  transition: all .2s ease-in;
+  opacity: 0;
+}
+
+#test{
+  /*width:75px;*/
+
 }
 
 button {
@@ -43,18 +52,17 @@ button:hover{
 
 img.dice{
   width: 50px;
-  margin: 25px;
   /*padding: 15px 25px;*/
 }
 
 .player1{
     /*background: #356094;*/
+
     background-image: url(../images/grumpycat-m.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-
-
+    opacity: 1
 }
 .player2{
     /*background: #ffa400;*/
@@ -62,9 +70,10 @@ img.dice{
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
+    opacity: 1
 
 }
-
+/*
 #snake {
 position:absolute;
 z-index:1;
@@ -91,4 +100,4 @@ transform: rotate(-5deg);
 left:10px;
 top:330px;
 /*transform: rotate(-5deg);*/
-}
+}*/

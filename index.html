@@ -11,14 +11,8 @@
   <div class="container">
   <!-- Non box elements -->
   <h1>Snakes and ladders</h1>
-  <a href="README.md">Readme</a>
 
-  <button id="dice">Throw Dice</button>
-  <img class="dice" src="" alt="">
-  <h4 id="currPos"></h4>
-  <h4 id="newPos"></h4>
-  <h4 id="jump"></h4>
-  <h4 id="winner"></h4>
+
   <!-- grid elements -->
   <div class="wrapper">
 
@@ -125,6 +119,22 @@
     <div class="box" data-id="9">9</div>
     <div class="box" data-id="10">10</div>
   </div>
+  <div class="left">
+    <!-- <div><a href="README.md">Readme</a></div> -->
+
+
+    <button id="dice">Throw Dice</button>
+  <div><img class="dice" src="" alt=""></div>
+  <div id="gametext">
+    <h3 id="currPos"></h4>
+    <h3 id="newPos"></h4>
+    <h3 id="jump"></h4>
+    <h1 id="winner"></h4>
+</div>
+    <button id="reset" onclick="location.reload()">Reset</button>
+  </div>
+
+<!-- <img id="test" src="../assets/images/player1.png"> -->
 </div>
 
 <script  src="https://code.jquery.com/jquery-3.2.1.min.js"
