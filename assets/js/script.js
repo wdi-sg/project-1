@@ -15,6 +15,7 @@ var loseCheck = false
 var jumpSound = new Audio('assets/sounds/jump.wav')
 var muteSwitch = true // mute switch
 var muteBeep = new Audio('assets/sounds/beep.wav')
+var switchPress = new Audio('assets/sounds/switchpress.wav')
 
 $(function () {
   $('body').on('keydown', startClick)
@@ -138,7 +139,7 @@ function wallCheck2Right () {
     return true
   }
 }
-
+//ball jumping functions, independent.
 function ball1Jump () {
   gravityTimeout(100)
   if (muteSwitch === false) jumpSound.play()
@@ -212,7 +213,7 @@ function gravity2 () {
           $ball2.css('left', '40px')
           $('#game2').removeClass('play')
           $('#game2').addClass('fade')
-          return
+        return
         }
       }
     }
@@ -310,6 +311,7 @@ function ball1Goal () {
       ($ball1.position().left + $ball1.width() > $('.goal:first').position().left) &&
       ($ball1.position().top + $ball1.height() > $('.goal:first').position().top)) {
     $('.goal:first').css('backgroundColor', 'white')
+    if (muteSwitch === false) switchPress.play()
     return true
   } else return false
 }
@@ -320,11 +322,12 @@ function ball2Goal () {
       ($ball2.position().left + $ball2.width() > $('.goal:last').position().left) &&
       ($ball2.position().top + $ball2.height() > $('.goal:last').position().top)) {
     $('.goal:last').css('backgroundColor', 'white')
+    if (muteSwitch === false) switchPress.play()
     return true
   } else return false
 }
 
-// skip, alert, reset button functionality
+// skip, alert, reset, mute button functionality
 function skipLevel () {
     // switch(currentLevel) {
     //   case 1:
@@ -343,7 +346,7 @@ function toggleSound () {
     $('.mute').html('I regret doing that (M)')
   } else if (muteSwitch === false) {
     muteSwitch = true
-    $('.mute').html('Lonely without sound (M)')
+    $('.mute').html("Life's lonely without sound (M)")
   }
 }
 function alert1 () {

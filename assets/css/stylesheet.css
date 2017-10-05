@@ -26,8 +26,10 @@ p { text-align: center}
   display: inline-block;
 }
 
+ul{color: grey}
 li {display: inline}
-a {text-decoration: none }
+a {text-decoration: none;
+color:grey }
 .start, .skip {display: block;
   margin: 0 auto}
 
