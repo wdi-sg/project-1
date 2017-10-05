@@ -1,0 +1,218 @@
+.wrapper {
+width: 1260px;
+height: 700px;
+margin: 0 auto;
+background-color: black;
+background-image: url("../images/background1.jpg");
+background-size:cover;
+}
+.dancebg{
+width: 300px;
+height: 100px;
+margin-top: -70px;
+margin-left: -80px;
+}
+
+.instructions{
+  margin-right: 10px;
+  width: 100px;
+}
+.instructionsMoves{
+  margin-right: 800px;
+}
+.instructor{
+  margin-right: 30px;
+  width: 750px;
+  font-size: 30px;
+  display: block;
+  word-break: break-all;
+}
+.footer{
+  display: flex;
+  justify-content: center;
+}
+body{
+  background-color: black;
+  position: fixed;
+  font-family: 'Geo', sans-serif;
+}
+.banner {
+  width: 1230px;
+  height: 100px;
+}
+
+.menuTop {
+  width: 1230px;
+  height: 35px;
+}
+
+.columnLeft{
+  width: 240px;
+  height: 495px;
+  float: left;
+}
+
+.columnRight{
+  width: 270px;
+  height: 495px;
+  float: right;
+}
+
+.content{
+  width: 750px;
+  height: 495px;
+  margin-left: 240px;
+  text-align: center;
+  background-image: url("../images/stage.jpg");
+  background-size:cover;
+}
+
+h1{
+  text-align: center;
+  color: white;
+}
+
+.startBtn {
+  background: #300700;
+  border-radius: 28px;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 2px 2px 2px 2px;
+  float:left;
+}
+
+.resetBtn {
+  margin: 0 auto;
+  float:left;
+  background: #1a394d;
+  border-radius: 28px;
+  font-family: Courier New;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 2px 2px 2px 2px;
+  display: none;
+}
+
+div{
+  color: white;
+  text-align: center;
+}
+
+.onetwonumkeys{
+  max-width: 100px;
+  max-height: 100px;
+}
+.threefournumkeys{
+  max-width: 100px;
+  max-height: 100px;
+}
+.arrowkeys{
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.playerone{
+
+   margin-top: 910px;
+   margin-left: 150px;
+}
+.playertwo{
+  margin-top: 910px;
+  margin-left: 150px;
+
+}
+.playerOnePic{
+  width: 100px;
+  height: 76px;
+  margin-left: 230px;
+  margin-top: 60px;
+  /*border: 10px solid purple;*/
+}
+.playerOneDiv{
+  width: 40px;
+  height: 76px;
+}
+
+.playerTwoPic{
+  width: 100px;
+  height: 76px;
+  margin-left: 460px;
+  margin-top: -54px;
+}
+
+.playerTwoDiv{
+  width: 40px;
+  height: 76px;
+}
+
+.instructorImg{
+  width: 100px;
+  height: 76px;
+  margin-left: 350px;
+  margin-top: -95px;
+}
+.instructorDiv{
+  width: 40px;
+  height: 76px;
+}
+.instructionsMoves1{
+  float:left;
+  margin-top: 10px;
+}
+.instructionsMoves2{
+  float:left;
+  margin-top: 20px;
+}
+.instructionsMoves3{
+  float:left;
+  margin-top: 20px;
+}
+.instructionsMoves4{
+  float:left;
+  margin-top: 20px;
+}
+
+.player1{
+  background-image: url('../images/player1_default.png')
+}
+
+.instructorPic{
+  background-image: url('../images/instructor_default.png')
+
+}
+
+.player2{
+  background-image: url('../images/player1_default.png')
+}
+
+.move {
+  width: 55px;
+  height: 76px;
+  margin-left: 65px;
+  background-size: no-repeat;
+  transition: all 0.25s ease-in-out;
+}
+
+p{
+  width: 150px;
+  float: right;
+}
+
+.playerOneAlert{
+  width: 30px;
+  height: 50px;
+  margin-top: 260px;
+  margin-left: 250px;
+  opacity:1;
+  transition:opacity 500ms;
+
+}
+
+.playerTwoAlert{
+  width: 30px;
+  height: 50px;
+  text-align: right;
+  margin-top: -50px;
+  margin-left: 470px;
+}

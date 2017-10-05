@@ -2,10 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Follow the pattern</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="wrapper">
+      <div class="banner">
+        <h1>Follow the pattern</h1>
+      </div>
+      <div class="menuTop">
+        <button type="button" name="start" class="startBtn">start</button>
+        <button type="button" name="reset" class="resetBtn">reset</button>
+        <img src="./assets/images/dancebg.png" alt="instructions" class ="dancebg">
+      </div>
+      <div class="columnLeft">
+        <img src="./assets/images/instructions.png" alt="instructions" class ="instructions">
+        <p>Follow the sequence displayed on the screen while the instructor is dancing. <br><br>
+        Player 1 will be using the 1,2,3 and 4 keys to match the pattern <br><br> Player 2 will use left,up,right and down to represent the sequence 1,2,3 and 4. <br><br> Whoever that finishes the pattern first will score a point. There will be a total of 5 rounds with more seqences added to each round.
+        </p>
+        <img src="./assets/images/instructor_1.png" alt="players" class ="instructionsMoves1">
+        <img src="./assets/images/instructor_2.png" alt="players" class ="instructionsMoves2">
+        <img src="./assets/images/instructor_3.png" alt="players" class ="instructionsMoves3">
+        <img src="./assets/images/instructor_4.png" alt="players" class ="instructionsMoves4">
+      </div>
+      <div class="columnRight">
+        <h2>Player 1's control</h2>
+        <img src="./assets/images/12_key.png" alt="players" class ="onetwonumkeys">
+        <img src="./assets/images/34_key.png" alt="players" class ="threefournumkeys">
+        <h2>Player 2's control</h2>
+        <img src="./assets/images/Arrow_keys.png" alt="arrow keys" class="arrowkeys">
+      </div>
+    <div class="content">
+      <div class="playerOne" >P1 Score:0</div>
+      <div class="playerTwo">P2 Score:0</div>
+      <div class="playerOneAlert"><div class="playerOneAlert2"></div></div>
+      <div class="playerTwoAlert"><div class="playerTwoAlert2"></div></div>
+
+        <div class="playerOnePic">
+          <div class="playerOneDiv"></div>
+        </div>
+        <div class="instructorImg">
+          <div class="instructorDiv"></div>
+        </div>
+      <div class="playerTwoPic">
+        <div class="playerTwoDiv"></div>
+      </div>
+    </div>
+    <div class="footer">
+    <div class="instructor">Pattern will appear here</div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
