@@ -77,14 +77,13 @@ $(function(){
   }
 
 
- //shuffle image for next question
+  //shuffle image for next question
   function shuffleImg() {
     // console.log(usedIndex)
     randomIndex = Math.floor(Math.random()*5)
     if (usedIndex.length < 5){
     while (usedIndex.includes(randomIndex)) {
       randomIndex = Math.floor(Math.random()*5)
-      console.log('inside while loop', usedIndex)
     }
     usedIndex.push(randomIndex)
   }
@@ -106,7 +105,7 @@ $(function(){
     $input.val('')
   })
 
-    //does submitAnswer match answer
+  //does submitAnswer match answer
   function checkAnswer() {
     if(submitAnswer === answer && timerObj.seconds < 5) {
       score += 2
@@ -132,11 +131,11 @@ $(function(){
     }
   }
 
-// var end = setInterval(isGameOver,)
   function isGameOver() {
     if (usedIndex.length === 5 && score < 5) {
       alert('try again?')
       $('input').remove()
+      reset()
       start()
     } else if (score >= 5) {
       alert('proceed to level 2')
