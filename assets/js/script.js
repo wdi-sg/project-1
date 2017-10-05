@@ -841,6 +841,7 @@ $(function() {
         if (checkCollision(bulletList[key], house)) {
           bulletList[key].removeChar()
           bulletList.splice(key, 1)
+          house.hp -= 5
           $houseHpBar.css({
             background: "#00ff00",
             width: `${house.hp}px`,
@@ -849,7 +850,6 @@ $(function() {
           $houseHp.css({
             border: "2px solid black"
           })
-          house.hp -= 5
           checkDead()
         }
       }
@@ -867,12 +867,8 @@ $(function() {
 const loseScreen = () => {
   let $deadText = $('<h1 class="deadText">')
   let $deadScore = $('<h1 class="deadScore">')
-  $deadText.text(`You died. Score: ${score}`)
+  $deadText.text(`You died. Score: ${score / 0.1}`)
   // $deadScore.text(`Score: ${score}`)
-
-  // $houseDiv.remove()
-  // $houseHp.remove()
-  // $houseHpBar.remove()
 
   $deadText.css({
     position: "absolute"
@@ -895,6 +891,40 @@ const loseScreen = () => {
   })
 
   $gameBoard.append($loseDiv)
+
+  $gameBoard.css({
+    filter: "grayscale(1)"
+  })
+}
+
+const winScreen = () => {
+  const $winDiv = $('<div class="winDiv">')
+  let $winText = $('<h1 class="winText">')
+  let $winScore = $('<h1 class="winScore">')
+  $deadText.text(`You won! Score: ${score / 0.1}`)
+  // $deadScore.text(`Score: ${score}`)
+
+  $winText.css({
+    position: "absolute"
+  })
+
+  $winScore.css({
+    position: "absolute"
+  })
+
+  $winDiv.append($deadText)
+  $winDiv.append($deadScore)
+  $winDiv.css({
+    color: "white",
+    // display: "inline-block"
+    display: "flex",
+    "justify-content": "center"
+    // "align-items": "top",
+    // top: "200px"
+    // background: "rgba(255, 255, 255, 0.5)"
+  })
+
+  $gameBoard.append($winDiv)
 
   $gameBoard.css({
     filter: "grayscale(1)"

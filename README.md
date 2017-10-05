@@ -2,7 +2,7 @@
 
 ### Introduction
 
-**Bandits** are trying to steal your harvest. You and your cow are getting distressed. Luckily for you, milk isn't the only thing you deliver. Defend your crop and **deliver sweet justice**.
+**Bandits** are trying to steal your harvest. You and your cow are getting distressed. Luckily for you, milk isn't the only thing your farm deliver. Defend your farm and **deliver sweet justice**.
 
 1. Play as a farmer, Johnny Wicklebottom.
 2. Defend your farm against the OnionFace Bandit Gang.
@@ -36,12 +36,12 @@ The ```Character``` class is used to create all game elements on the gameBoard.
 class Character {
   constructor(
     type, //player, enemy, bullet, pet
-    id,
-    sizeX,
+    id, //element identifier
+    sizeX, //element size
     sizeY,
     spdX, //movement speed
     spdY,
-    hp,
+    hp, /character health
     x, //location on gameBoard
     y,
     atkSpd, //attack speed
@@ -65,7 +65,9 @@ class Character {
   //All characters can shoot. Even pets and bullets.
 ```
 
-The ```generateEnemy```, ```generateBullet```, ```generateUpgrade```, ```generateCat``` functions are used to create and call the ```Character```. class
+The ```generateEnemy```, ```generateBullet```, ```generateUpgrade```, ```generateCat``` functions are used to create elements using the ```Character```. class
+
+The ```update``` function is used to ```element.moveChar``` and ```checkCollision()```. Each element behave differently upon collision.
 
 ##### Levels
 
