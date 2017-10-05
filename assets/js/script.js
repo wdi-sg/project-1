@@ -10,11 +10,11 @@ $(function () {
   // -------------------------- definition of global variables -------------------------- //
 
   var badPeople = [
-    { src: '../img/murderer.png', score: 5},
-    { src: '../img/brothel.png', score: 4},
-    { src: '../img/drug-dealer.png', score: 3},
-    { src: '../img/injured-cat.png', score: 2},
-    { src: '../img/bike-thef.png', score: 1}
+    { src: './assets/img/murderer.png', score: 5},
+    { src: './assets/img/brothel.png', score: 4},
+    { src: './assets/img/drug-dealer.png', score: 3},
+    { src: './assets/img/injured-cat.png', score: 2},
+    { src: './assets/img/bike-thef.png', score: 1}
   ]
   // console.log(badPeople)
 
