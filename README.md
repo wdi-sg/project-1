@@ -35,15 +35,26 @@ Whoever reaches 100 first wins! That simple. :)
 
 
 ### FlowChart
-![](/assets/images/flow.png)  
+![](/assets/images/flow.jpg)  
 
 ---
 
 ### Expansion plan in future
-* Add multi-player beyond 2
+* add multi-player beyond 2
 * leaderboard across multiple games
 * points based on # of moves
 
+---
+
+### Project Progress by Days
+1. Created a game logic including snakes and ladders position jumps. Able to simulate gameplay
+2. Added grid display and buttons in HTML and CSS and  jQuery to handle dice throw to play various turns. Also refactored some codes.
+3. Tried to dynamically populate grid with snakes and ladders based on the jump values. E.g ladder of length 4 for jump from 4 to 14, and snake of length 8 for 84 to 27. It was difficult to find suitable snake and ladder graphics of various lengths. Also had to set up calculations to determine start positions in the grid and angle of rotation based on end position.
+
+  Finally decides to use a game board graphic instead. This board was the initial reference for the jump values, thus my jump values did not need to be updated.
+
+  Introduced basic graphics to act as player tokens. Also added CSS reset to remove extra formatting and padding on elements.   
+4. Started work on second game, battleship due to greater scope for logic and algorithm.
 
 ---
 ### Built With

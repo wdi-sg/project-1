@@ -5,12 +5,10 @@
 }
 
 .wrapper {
-  /*border: 1px dashed blue;*/
   width: 802px;
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
-  /*height: 500px;*/
   position: relative;
   background-image: url(../images/gameboard-s.gif);
   background-size: 100%;
@@ -26,11 +24,6 @@
   height: 80px;
   transition: all .2s ease-in;
   opacity: 0;
-}
-
-#test{
-  /*width:75px;*/
-
 }
 
 button {
@@ -73,31 +66,3 @@ img.dice{
     opacity: 1
 
 }
-/*
-#snake {
-position:absolute;
-z-index:1;
-left:125px;
-top:125px;
-}
-.ladder{
-  position:absolute;
-  z-index:1;
-}
-
-#l1 {
-left:405px;
-top:380px;
-transform: rotate(-15deg);
-}
-
-#l2 {
-left:175px;
-top:420px;
-transform: rotate(-5deg);
-}
-#l3 {
-left:10px;
-top:330px;
-/*transform: rotate(-5deg);*/
-}*/
