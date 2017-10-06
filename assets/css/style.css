@@ -1,0 +1,68 @@
+
+.container {
+  width: 1050px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  width: 802px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  background-image: url(../images/gameboard-s.gif);
+  background-size: 100%;
+  float: left;
+}
+.left{
+  float: right;
+
+}
+.box {
+  border: 0px solid black;
+  width: 80px;
+  height: 80px;
+  transition: all .2s ease-in;
+  opacity: 0;
+}
+
+button {
+  background: #4479BA;
+  color: #FFF;
+  font-family: Josefin Slab;
+  font-size: 20px;
+  text-align: center;
+  border: 1px solid black;
+  margin: 25px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 2px 2px black;
+}
+
+button:hover{
+    background: #356094;
+}
+
+img.dice{
+  width: 50px;
+  /*padding: 15px 25px;*/
+}
+
+.player1{
+    /*background: #356094;*/
+
+    background-image: url(../images/grumpycat-m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    opacity: 1
+}
+.player2{
+    /*background: #ffa400;*/
+    background-image: url(../images/ham-m.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    opacity: 1
+
+}
