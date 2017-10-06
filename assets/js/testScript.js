@@ -181,6 +181,7 @@ $(function () {
     $('.landingScreen').hide()
     playerHealth = 1000
     $hpBar.text(`${playerHealth}/1000`)
+    $bossSign.css('visibility', 'hidden')
     $hpBar.css('width', `200px`)
     mana = 202
     $mpBar.text(`${mana}/202`)
