@@ -35,7 +35,7 @@ Basic flow chart which outlines the game mechanics
 
 Tried to do another flow chart below, which was still quite basic, additional features were added subsequently.
 #
-![](/assets/img/Project-1 flowchart.jpg)
+![](/assets/img/flowchart.jpg)
 
 
 ---
