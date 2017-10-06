@@ -17,6 +17,9 @@ It's that time of the year again, special **Stars** are falling through the skie
 
 **TL;DR** Collect stars and avoid cat ghost.
 
+Play it here !!!
+https://sillyadventures.github.io/project-1/
+
 ---
 
 ---
