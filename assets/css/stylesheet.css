@@ -1,0 +1,138 @@
+body {
+  top: 50px;
+  left: 150px;
+  width: 800px;
+  height: 600px;
+
+  position: absolute;
+  text-align: center;
+
+  /*background-position: center;*/
+
+  background-color: black;
+
+}
+
+h1 {
+  font-family: 'Gentium Basic', serif;
+  text-align:  center;
+  color: black;
+  /*text-transform: uppercase;*/
+  background-color: rgba(255,255,255,0.6);
+  width: 450px;
+  font-size: 30px;
+  position: relative;
+  left: 110px;
+  top: 0px;
+}
+
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  text-align: center;
+
+  background-color: rgba(255,255,255,0.6);
+  color: black;
+  width: 400px;
+  position: relative;
+  left: 140px;
+  font-size: 20px;
+  top: 0px;
+}
+
+h3 {
+  font-family: 'Monoton', cursive;
+  text-align:  center;
+  color: white;
+  /*text-transform: uppercase;*/
+  /*background-color: rgba(255,255,255,0.4);*/
+  width: 450px;
+  font-size: 30px;
+  position: relative;
+  left: 110px;
+
+
+}
+div {
+  /*border: 1px solid black;*/
+
+}
+
+.ansBtn {
+  /*top: 50px;
+  border: 1px solid purple;
+  font-size: 30px;
+  font:*/
+  font-family: 'Gentium Basic', serif;
+  background:#47AAEB;
+  width:100px;
+  height:40px;
+  border:0px;
+  color:white;
+  border-bottom:4px solid #3C97D4;
+  border-radius:10px;
+  font-size:20px;
+  text-shadow:1px #3C97D4;
+  text-transform:uppercase;
+  position: relative;
+  top: 50px;
+  right: 20px;` `
+
+}
+
+.container {
+width: 700px;
+height: 500px;
+background-image: url("../../Images/background.jpeg");
+background-repeat: no-repeat;
+background-position: center;
+position: relative;
+top: 10px;
+}
+
+.scoreBoard {
+  font-family: 'Acme', sans-serif;
+  position: relative;
+
+  top:200px;
+}
+
+#scoreBoard1 {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+
+  float: left;
+  font-size: 20px;
+  position: relative;
+  left: 100px;
+  text-transform: uppercase;
+
+
+}
+
+#scoreBoard2{
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  float: right;
+  position: relative;
+  font-size: 20px;
+  right: 130px
+
+}
+
+.images {
+  position: relative;
+  top: 10px;
+}
+
+#daffy {
+  position: absolute;
+  float: right;
+  right: 130px;
+}
+
+#donald {
+  position: absolute;
+  float: left;
+  left: 100px;
+}

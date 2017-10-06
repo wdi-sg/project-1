@@ -2,10 +2,40 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>The Ducky Trivia Challenge</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Acme|Gentium+Basic:700|Monoton|Quicksand" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+
+    <h3>Ducky Trivia War</h3>
+    <h1>Question</h1>
+    <h2 id = instructions> Race to get 3 questions correct. <br> Player 1: You may begin!</h2>
+    <div class="scoreBoard">
+
+
+        <div id =scoreBoard1> Player 1 : 0 </div>
+        <div id =scoreBoard2> Player 2 : 0 </div>
+      <!-- <div>Score1</div>
+      <div>Score2</div> -->
+    </div>
+
+
+    <button type="button" class="ansBtn" data-choice="true">True</button>
+    <button type="button" class="ansBtn" data-choice="false">False</button>
+    <div class="images">
+
+      <img src="./Images/daffy2.png" width="100" height="150"id="donald" alt="Donald">
+      <img src="./Images/donald3.gif" width="100" height="150" id="daffy" alt="Daffy">
+    </div>
+
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="assets/js/script.js" charset="utf-8"></script>
+
   </body>
+  </div>
 </html>
