@@ -12,7 +12,6 @@ $(function() {
     countDown()
   }
 
-  // Gamestage Unravel EASY
   $('.easyStartBtn').on('click', () => {
     generalStartFunctions()
     //stage specific settings
@@ -36,7 +35,6 @@ $(function() {
     }
   })
 
-  // Gamestage Believer NORMAL
   $('.normalStartBtn').on('click', () => {
     generalStartFunctions()
     //stage specific settings
@@ -61,7 +59,6 @@ $(function() {
     event3(100000)
   })
 
-  // Gamestage Deadpool HARD
   $('.hardStartBtn').on('click', () => {
     generalStartFunctions()
     // stage specific settings
@@ -149,65 +146,49 @@ $(function() {
     }
   }
 
+  function generalGameEndFunctions() {
+    clearInterval(playerStatsInterval)
+    clearInterval(countDownInterval)
+    $gameOverlay = $('.gameOverlay')
+    $gameOverlay.css({
+      'display': 'block'
+    })
+    $('.retryBtn').css({
+      'display': 'block'
+    })
+    $('.overlayText').css({
+      'display': 'block'
+    })
+    $('.easyStartBtn').css({
+      'display': 'none'
+    })
+    $('.normalStartBtn').css({
+      'display': 'none'
+    })
+    $('.hardStartBtn').css({
+      'display': 'none'
+    })
+  }
+
   function checkVictory() {
     if(timeCount <= 0 && playerStats.health > 0) {
-      clearInterval(playerStatsInterval)
-      clearInterval(countDownInterval)
       document.getElementsByClassName('victory')[0].play()
       $('.overlayText').text("VICTORY! TERRORISTS WIN!")
       $('.retryBtn').text('TRY A DIFFERENT LEVEL')
-      $gameOverlay = $('.gameOverlay')
-      $gameOverlay.css({
-        'display': 'block'
-      })
-      $('.retryBtn').css({
-        'display': 'block'
-      })
-      $('.overlayText').css({
-        'display': 'block'
-      })
-      $('.easyStartBtn').css({
-        'display': 'none'
-      })
-      $('.normalStartBtn').css({
-        'display': 'none'
-      })
-      $('.hardStartBtn').css({
-        'display': 'none'
-      })
+      generalGameEndFunctions()
     }
   }
 
   function checkLoss() {
     if (playerStats.health <= 0) {
       $('.playerHealth').text('Health: 0')
-      clearInterval(playerStatsInterval)
-      clearInterval(countDownInterval)
+      $('.overlayText').text("GAME OVER")
+      $('.hint').text("Hint: Manage your inventory")
       document.getElementsByClassName('deadpoolBGM')[0].pause()
       document.getElementsByClassName('ghoulBGM')[0].pause()
       document.getElementsByClassName('believerBGM')[0].pause()
       document.getElementsByClassName('death')[0].play()
-      $('.overlayText').text("GAME OVER")
-      $('.hint').text("Hint: Manage your inventory")
-      $gameOverlay = $('.gameOverlay')
-      $gameOverlay.css({
-        'display': 'block'
-      })
-      $('.retryBtn').css({
-        'display': 'block'
-      })
-      $('.overlayText').css({
-        'display': 'block'
-      })
-      $('.easyStartBtn').css({
-        'display': 'none'
-      })
-      $('.normalStartBtn').css({
-        'display': 'none'
-      })
-      $('.hardStartBtn').css({
-        'display': 'none'
-      })
+      generalGameEndFunctions()
     }
   }
 
