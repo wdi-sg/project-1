@@ -15,7 +15,7 @@ h3{
 
 body{
   width: 90%;
-  background-image: url('./img/grey-polka-dot.jpg');
+  background-image: url('../img/grey-polka-dot.jpg');
   background-size:contain;
   background-repeat: repeat;
   align-content: center;
@@ -94,6 +94,15 @@ header{
   display: inline-block;
   border-radius: 25px;
 }
+.noMove{
+  text-align:center;
+  color: black;
+  vertical-align: middle;
+}
+.noMoveText {
+  color: black;
+  font-size: 50px;
+}
 button{
   width: 130px;
   height: 50px;
@@ -132,28 +141,45 @@ button{
   height:250px;
 
 }
+.noMove{
+  position:absolute;
+  top: 200px;
+  left: 200px;
+
+}
 
 .c1{
-  background: url("./img/ice-cream.png");
+  background: url("../img/ice-cream.png");
   background-size: cover;
 }
 
 .c2 {
-  background: url('./img/chocolatecake.png');
+  background: url('../img/chocolatecake.png');
   background-size: contain;
 }
 
 .c3 {
-  background: url("./img/greencupcake.png");
+  background: url("../img/greencupcake.png");
   background-size: contain;
 }
 
 .c4{
-  background: url("./img/rainbowcake.png");
+  background: url("../img/rainbowcake.png");
   background-size: contain;
 }
 
 .c5{
-  background: url("./img/strawberryparfait.png");
+  background: url("../img/strawberryparfait.png");
   background-size: cover;
+}
+.c6{
+  background: white;
+
+}
+.c7{
+  background: grey;
+
+}
+.c8{
+  background:pink;
 }
