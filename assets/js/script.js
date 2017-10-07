@@ -1,11 +1,7 @@
 $(function() {
 
 // SCREEN BUTTONS
-  // Gamestage Unravel EASY
-  $('.easyStartBtn').on('click', () => {
-    $gameScreen.css({
-      'background-image': 'url("./assets/img/bgAnime.jpg")'
-    })
+  function generalStartFunctions() {
     $gameOverlay = $('.gameOverlay')
     $gameOverlay.css({
       'display': 'none'
@@ -14,38 +10,39 @@ $(function() {
     document.getElementsByClassName('gogo')[0].play()
     updatePlayerStats()
     countDown()
+  }
+
+  // Gamestage Unravel EASY
+  $('.easyStartBtn').on('click', () => {
+    generalStartFunctions()
     //stage specific settings
+    $gameScreen.css({
+      'background-image': 'url("./assets/img/bgAnime.jpg")'
+    })
     document.getElementsByClassName('ghoulBGM')[0].volume = 1
     document.getElementsByClassName('ghoulBGM')[0].play()
     spawnIntervalEasy(4000)
     spawnIntervalAmmo(16000)
+    startNorm(28000)
+    event5(28000)
+    speedShooting(62000)
+    event6(62000)
     function startNorm(time) {
       setTimeout(() => spawnIntervalNormal(6000), time)
     }
-    startNorm(28000)
-    event5(28000)
     function speedShooting(time) {
       setTimeout(() => spawnIntervalEasy(2000), time)
       setTimeout(() => spawnIntervalAmmo(10000), time)
     }
-    speedShooting(62000)
-    event6(62000)
   })
 
   // Gamestage Believer NORMAL
   $('.normalStartBtn').on('click', () => {
+    generalStartFunctions()
+    //stage specific settings
     $gameScreen.css({
       'background-image': 'url("./assets/img/nightBG.jpg")'
     })
-    $gameOverlay = $('.gameOverlay')
-    $gameOverlay.css({
-      'display': 'none'
-    })
-    document.getElementsByClassName('gogo')[0].volume = 0.6;
-    document.getElementsByClassName('gogo')[0].play()
-    updatePlayerStats()
-    countDown()
-    //stage specific settings
     document.getElementsByClassName('believerBGM')[0].volume = 1
     document.getElementsByClassName('believerBGM')[0].play()
     spawnIntervalEasy(4000)
@@ -66,14 +63,7 @@ $(function() {
 
   // Gamestage Deadpool HARD
   $('.hardStartBtn').on('click', () => {
-    $gameOverlay = $('.gameOverlay')
-    $gameOverlay.css({
-      'display': 'none'
-    })
-    document.getElementsByClassName('gogo')[0].volume = 0.6;
-    document.getElementsByClassName('gogo')[0].play()
-    updatePlayerStats()
-    countDown()
+    generalStartFunctions()
     // stage specific settings
     document.getElementsByClassName('deadpoolBGM')[0].currentTime = 3
     document.getElementsByClassName('deadpoolBGM')[0].volume = 0.6
@@ -449,13 +439,13 @@ $(function() {
   function clickCheck (element) {
     for (i = 0; i < spawnList.length; i++) {
       if (spawnList[i].counterLink === element.id) {
-        if (element.className === 'spawn enemyEasy' || element.className === 'spawn enemyNormal' || element.className === 'spawn enemyHard') {
+        if (spawnList[i].damageWhenExpire > 0) { // referring to enemies
           spawnList[i].life = spawnList[i].life -1
           if(spawnList[i].life === 0) {
             $('div').remove('#'+ element.id)
             spawnList.splice(i, 1)
           }
-        } else {
+        } else { // referring to utilities
           $('div').remove('#'+ element.id)
           for(var key in spawnList[i]) {
             if (key === 'effectHealth') playerStats.health = playerStats.health + spawnList[i][key]
@@ -472,16 +462,12 @@ $(function() {
   $gameScreen = $('.gameScreen')
   $gameScreen.on('click', function(e) {
     if(playerStats.ammo > 0) {
-      var $bang = $('.bang')
       document.getElementsByClassName('bang')[0].currentTime = 1.3
       document.getElementsByClassName('bang')[0].volume = 0.6
       document.getElementsByClassName('bang')[0].pause()
       document.getElementsByClassName('bang')[0].play()
       playerStats.ammo = playerStats.ammo - 1
       clickCheck(e.target)
-      console.log('ammo left ' +playerStats.ammo)
-    } else {
-      console.log('Out of ammo!')
     }
   })
 
@@ -493,15 +479,11 @@ $(function() {
       document.getElementsByClassName('boom')[0].pause()
       document.getElementsByClassName('boom')[0].play()
       playerStats.grenade = playerStats.grenade - 1
-      console.log('grenades left: ' +playerStats.grenade)
       for (i=0; i<spawnList.length;i++) {
         spawnList[i].life = spawnList[i].life -2
       }
-    } else {
-      console.log('Out of grenades!')
     }
     checkEnemyHealth()
-    updatePlayerStats()
   })
 
 // END OF CONTROLS ------------------------------------
