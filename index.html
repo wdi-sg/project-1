@@ -3,9 +3,51 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lekton" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+      <div class="landingScreen">
+          <div class="maplestoryImage"></div>
+          <div class="instructions">
+            <h2>Use left and right arrow keys to move, space bar to jump and "C" to attack</h2>
+              Kill all mobs and avoid dying to reach the boss stage! Defeat the boss and the win is yours!<br>
+              <br>Skill Keys:<br>
+              D - Does small amount of damage to one mob<br>
+              X - Does moderate amount of damage to one mob<br>
+              Z - Does large amount of damage to one mob<br>
+
+
+            <button id="restart" type="button" name="button"></button>
+          </div>
+      </div>
+      <div class="levelOneGameEnd">
+      </div>
+      <div class="topContainer">
+        <div class="miniMap"></div>
+        <div class="skillTwo"></div>
+        <div class="skillThree"></div>
+        <div class="skillOne"></div>
+          <div class="player">
+          </div>
+          <!-- <div class="bossRight">
+
+          </div> -->
+          <div class="projectile">
+          </div>
+
+      </div>
+      <div class="bottomContainer">
+        <div class="hpBar">1000/1000</div>
+        <div class="mpBar">200/200</div>
+        <div class="xpBar"></div>
+
+      </div>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/testScript.js" charset="utf-8"></script>
   </body>
 </html>

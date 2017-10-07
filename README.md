@@ -1,96 +1,176 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
-
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
-
+# Project 1: Maplestory XII
 ### Overview
 
-Let's start out with something fun - **a game!**
+Game is based on **Maplestory**, a Mass Multiplayer Online Role Playing Game (MMORPG)
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+[Online Version](https://josephpung.github.io/project-1/)
+## Controls
+- Left and Right arrow keys to move horizontally
+- Space to jump
+- "C" to attack
+- "D" for skill 1
+- "X" for skill 2
+- "Z" for skill 3
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+### Instructions
 
+Control your character and avoid dying to the mobs spawned, your character has a mana pool as well as a hitpoint pool. If your mana pool is depleted, you will not be able to use any skills till it regenerates. Once your hitpoint pool reaches zero, you die and the game ends.
+
+Kill enough mobs and the boss awaits you!
+
+
+### Idea Path
+Drafting of idea and concept came about as I wanted to try and challenge myself to duplicate the play area and game code of Maplestory. I wanted to recreate a single map with all platforms as well as logical functions ( projectiles, knock-back, jump)
+
+###### Phase 1
+Drafted a playing field and added the necessary main elements of the game. Tested linking of movement to key presses and automation of Mob path.
+
+##### Phase 2
+Testing and added the projectile logic, idea starts to seem a bit far fetched due to the fact that it will be difficult to control so many mobs and bullets at the same time since the mobs are continuously moving and had individual hit points.
+
+###### Phase 3
+Reduced idea to just spawning mobs on a single map and using one bullet to minimize coding load. Decided to add hitpoints and mana tracking for the player to make things more interactive.
+
+Recoded the spawning function with help from soe min and solved the issue surrounding the different mob's with different and varying hit points.
+
+Added player skills as well.
+
+###### Final Phase
+Added CSS styling as well as boss functions and restart functions. Game is stable but still buggy.
+
+## Game Logic
+Mob and Boss spawns are controlled by classes pre set to contain the necessary information like their damage and hit points. Boss is spawned and linked to the DOM via a jquery target. That on its own allows me to control the object that is spawned to the smallest of changes.
+```
+class Boss {  // Class to spawn boss
+
+  constructor (id) {
+    this.id = id
+    this.hitPoints = 500
+    this.damage = 3
+    this.bosscheck = true
+    this.jTarget = $('body').find(`#${this.id}`)
+    this.width = this.jTarget.css('width')
+    this.height = this.jTarget.css('height')
+
+    setInterval(() => {
+      this.positionCheck()
+    }, 1000)
+  }
+
+  positionCheck () {
+    var speed = Math.floor(Math.random() * 30)
+    var mobPosition = this.jTarget.position()
+    if (mobPosition.left < 400) {
+      ***
+      })
+    }
+  }
+
+  addBoss () {
+    var location = Math.floor(Math.random() * 380)
+    var spawnMob = $('<div>')
+    spawnMob.attr('id', this.id)
+
+    $('.topContainer').append(spawnMob)
+    this.jTarget = $('body').find(`#${this.id}`)
+    ****
+    })
+  }
+
+}
+```
+
+- The bullet is set to travel across the screen and check for collisions along the way and reduce the mob's hitpoints if a collision is detected, any changes in the amount of mobs is also registered and the game is ended/ moved on to the next level as necessary.
+```
+
+  function bulletCollisionCheck (obj1, obj2) { //bullet collision check
+    if (blueX < redX + obj1.width() &&
+        blueX + obj2.jTarget.width() > redX &&
+        blueY < redX + obj1.height() &&
+        obj2.jTarget.height() + blueY > redY) {
+      obj2.hitPoints -= 1
+      $bullet.css('left', $playPos.left)
+      $bullet.css('top', '620px')
+      if (obj2.hitPoints === 0) {
+        obj2.jTarget.remove()
+        //////
+        }
+      }
+      if (mobsOnScreen === 0 && levelOneMobCount === 0) { //if mobs are dead, spawn boss
+        bossLevel = true
+      }
+      if (bossLevel === true && bossDead === true) {   //if boss is dead, end game
+        gameEnd = true
+      }
+      return true
+    } else { return false }
+  }
+```
+- Skills are also added to add variety to the playstyle as per the original game. Each skills has different damage results as well as mana costs. The mama required to cast each skill is set to regenerate automatically.
+```
+function skillOne () {    // small damage skill
+  if (mana >= 10) {
+    mana -= 10
+    $mpBar.text(`${mana}/200`)
+    $mpBar.css('width', `${$mpBar.width() - 10}px`)
+    $firstSkillDiv.css('visibility', 'visible') // show skill animation and hide after 800 ms
+    setTimeout(function () {
+      $firstSkillDiv.css('visibility', 'hidden')
+    }, 800)
+
+    for (key in mobArray) {     // test for mobs
+///////////////-
+      }
+    }
+    for (key in bossArray) {      // test for boss
+      bossArray[key].hitPoints -= 10
+      if (bossArray[key].hitPoints < 0) {
+      //////////
+      }
+    }
+//////////
+  }
+}
+```
+
+The game ends when either the player dies or all the mobs are killed as well as the boss.
+
+### Log
+Currently working on making the initial base fighting area and the main player
+* 1/10/17 - Added jump capability and changed mob movement to follow player instead of preset axis
+* 2/10/17 - Changed CSS styles and edit to fix axis differences
+* 3/10/17 - Added health bar and player hit points
+* 4/10/17 - Added mana regen and mana bar, replaced manual spawn with class based spawning and added various functions to check for game status.
+* 5/10/17 - Added boss and 2 more skills to character, edited main skill and attack functions to accomodate to boss feature
+
+### Image Log
+**29/10/17 (Initial Draft Frame)**
+![](/assets/images/old.gif)
+**4/10/17**
+![](/assets/images/v2.png)
+**Final Product [5/10/17]**
+![](/assets/images/v3.png)
+
+### **BUG REPORT**
+  * Jump is still choppy, unable to remove 1 sec delay from continuous button pressing.
+  * Collision detection for far left side of the map working properly (0-200px)
+  * Mobs occasionally not dying, pressing skill button kills them and ends bug
+
+
+### Flowchart
+
+![](/assets/images/flowchart.jpg)
+
+## Features To Be Added
+1) Proper Jump function
+2) More bosses with damage on impact, allowing them to jump to do the damage when they land
+3) Adding platforms and ladders for players to climb onto
+4) Multi level spawning once platform is available.
+5) Improve accuracy and recode collision detection
 
 ---
-
-### Technical Requirements
-
-Your app must:
-
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
-
----
-
-### Necessary Deliverables
-
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
-
----
-
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
-
----
-
-### Potential Project Ideas
-
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
-
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
-
----
-
-### Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
-
----
-
-### Project Feedback + Evaluation
-
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
-
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
-
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
-
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
-
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
-
-* __Total__: Your instructors will give you a total score on your project between:
-
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
-
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+## References
+* Stackoverflow
+* Logo and Text Images - https://textcraft.net/
+* Sprites - Google Images
+* Many thanks to the TA's for debugging and Soe Min for his explanation on linking the dom to my object
