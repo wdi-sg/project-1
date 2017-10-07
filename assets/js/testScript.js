@@ -15,24 +15,23 @@ class Mob { // class to spawn mobs
   }
 
   positionCheck () {
-    var speed = Math.floor(Math.random() * 20)
+    var speed = Math.floor(Math.random() * 30)
     var mobPosition = this.jTarget.position() // get position of current mob
     if (mobPosition.left < 500) {
       this.jTarget.css({
         width: '180px',
         height: '170px',
         position: 'absolute',
-        transition: '8s',
         top: '505px',
         left: '1460px',
-        transition: `ease-out ${speed}s`,
+        transition: `${speed}s`,
         background: 'url(./assets/images/stoneGolemRight.png)', // assign right facing image when mob turns
         animation: 'mobPlayRight 2s steps(4) infinite' // run animation
       })
     } else if (mobPosition.left > 1400) {
       this.jTarget.css({
         left: '1px',
-        transition: `ease-out ${speed}s`,
+        transition: `${speed}s`,
         background: 'url(./assets/images/stoneGolem.png)', // assign left facing image when mob turns
         animation: 'mobPlay 2s steps(4) infinite'
       })
@@ -52,7 +51,7 @@ class Mob { // class to spawn mobs
       position: 'absolute',
       top: '505px',
       left: `${location}px`,
-      transition: 'ease-out 20s',
+      transition: '20s',
       background: 'url(./assets/images/stoneGolemRight.png)',
       animation: 'mobPlayRight 2s steps(4) infinite'
     })
@@ -82,14 +81,14 @@ class Boss {  // Class to spawn boss
     if (mobPosition.left < 400) {
       this.jTarget.css({
         left: '1460px',
-        transition: `ease-out ${speed}s`,
+        transition: `${speed}s`,
         background: 'url(./assets/images/bossRight.png)',
         animation: ' bossRight 1s steps(8) infinite'
       })
     } else if (mobPosition.left > 1400) {
       this.jTarget.css({
         left: '1px',
-        transition: `ease-out ${speed}s`,
+        transition: `${speed}s`,
         background: 'url(./assets/images/boss.png)',
         animation: ' bossOne 1s steps(8) infinite'
       })
@@ -109,7 +108,7 @@ class Boss {  // Class to spawn boss
       position: 'absolute',
       top: '390px',
       left: `${location}px`,
-      transition: 'ease-out 20s',
+      transition: '16s',
       background: 'url(./assets/images/boss.png)',
       animation: ' bossOne 1s steps(8) infinite'
     })
@@ -145,7 +144,7 @@ $(function () {
   $startButton.on('click', restartGame)
 
   setInterval(function () {       // if game has ended show the landing screen
-    if (gameEnd ===  true && playerHealth >0) {
+    if (gameEnd ===  true && playerHealth > 0) {
       $('.landingScreen').show()
       $(".maplestoryImage").css({
         background: "url(./assets/images/congratulations.png)",
@@ -189,7 +188,7 @@ $(function () {
     mobsOnScreen = 0
     gameEnd = false
     bossLevel = false
-    levelOneMobCount = 20
+    levelOneMobCount = 10
     bossDead = false
     runSpawner()
     for (key in mobArray) {
@@ -251,27 +250,39 @@ $(function () {
     keys[e.keyCode] = true
     $player.css('webkitAnimationPlayState', 'running')
 
-    if (keys[32] && keys[39] && $playPos.top === 560 && $playPos.left < 1240) { // right and up
+    if (keys[32] && keys[39] && $playPos.top === 590 && $playPos.left < 1240) { // right and up
       $player.css('top', `${$playPos.top -= 200}px`)
       $player.css('left', `${$playPos.left += 200}px`)
-      $player.css('transform', 'scaleX(-1)')
+      $player.css({
+        background: "url(./assets/images/playerModelRight.png)",
+        animation: "playerPlayRight 1s steps(4) infinite"
+      })
       fireDirection = 'right'
     }
-    if (keys[37] && keys[32] && $playPos.top === 560 && $playPos.left > 201) {  // left and up
+    if (keys[37] && keys[32] && $playPos.top === 590 && $playPos.left > 201) {  // left and up
       $player.css('top', `${$playPos.top -= 200}px`)
       $player.css('left', `${$playPos.left -= 200}px`)
-      $player.css('transform', 'scaleX(1)')
+      $player.css({
+        background: "url(./assets/images/playerModel.png)",
+        animation: "playerPlay 1s steps(4) infinite"
+      })
       fireDirection = 'left'
     }
     if (keys[37] && $playPos.left > 151) {        // left
       $player.css('left', `${$playPos.left -= 150}px`)
-      $player.css('transform', 'scaleX(1)')
+      $player.css({
+        background: "url(./assets/images/playerModel.png)",
+        animation: "playerPlay 1s steps(4) infinite"
+      })
       fireDirection = 'left'
     }
-    if (keys[32] && $playPos.top === 560) { $player.css('top', `${$playPos.top -= 300}px`) }   // up
+    if (keys[32] && $playPos.top === 590) { $player.css('top', `${$playPos.top -= 300}px`) }   // up
     if (keys[39] && $playPos.left < 1480) {
       $player.css('left', `${$playPos.left += 150}px`)
-      $player.css('transform', 'scaleX(-1)')
+      $player.css({
+        background: "url(./assets/images/playerModelRight.png)",
+        animation: "playerPlayRight 1s steps(4) infinite"
+      })
       fireDirection = 'right'
     } // right
     if (keys[67]) { fireBullet() } //default attack
@@ -286,7 +297,7 @@ $(function () {
     var $playPos = $player.position()
     $player.css('webkitAnimationPlayState', 'paused')
     // console.log(` current position ${$playPos.top}`)
-    if ($playPos.top !== 560) { $player.css('top', `560px`) }
+    if ($playPos.top !== 590) { $player.css('top', `590px`) }
   })
 
   function bulletCollisionCheck (obj1, obj2) { //bullet collision check
@@ -363,11 +374,11 @@ $(function () {
     } else if (fireDirection === 'left') {
       $bullet.css('left', `${$bulletExact - (1600 - $bulletExact)}px`)
     }
-    if ($bulletExact <= 50 || $bulletExact >= 1400) {  //reset when it moves out of screen
+    if ($bulletExact <= 200 || $bulletExact >= 1600) {  //reset when it moves out of screen
       $bullet.css('left', $playPos.left)
-      $bullet.hide()
       console.log('bullet', $bulletExact)
     }
+    setTimeout(function(){$bullet.hide()},1000)
   }
   function skillOne () {    // small damage skill
     if (mana >= 10) {

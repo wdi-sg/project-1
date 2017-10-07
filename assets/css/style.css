@@ -3,10 +3,6 @@ body{
     color: white;
     max-width: 1700px;
     max-height: 840px;
-    width: 100%;
-    height: 100%;
-    min-width: 1000px;
-    min-height: 1000px;
 }
 .container{
   /*border: 3px solid red;*/
@@ -63,13 +59,6 @@ body{
   top: 50px;
   /*visibility: hidden;*/
 }
-/*.gameOver{
-  background-image: url(../images/gameOver.png);
-  width: 570px;
-  height: 80px;
-  visibility: hidden;
-
-}*/
 .bottomContainer{
   border: 0px;
   height: 12%;
@@ -139,15 +128,28 @@ body{
 }
 .player{
   z-index: 1;
-  height: 110px;
+  height: 80px;
   width: 60px;
+  /*border: 2px solid green;*/
+  position: absolute;
+  top: 590px;
+  left:50px;
+  transition: 0.8s;
+  background: url(../images/playerModel.png);
+  animation: playerPlay 1s steps(4) infinite;
+  animation-play-state: paused;
+}
+.playerRight{
+  z-index: 1;
+  height: 80px;
+  width: 57px;
   /*border: 2px solid green;*/
   position: absolute;
   top: 560px;
   left:50px;
   transition: 0.8s;
-  background: url(../images/playerModel.png);
-  animation: playerPlay 3s steps(4) infinite;
+  background: url(../images/playerModelRight.png);
+  animation: playerPlayRight 1s steps(4) infinite;
   animation-play-state: paused;
 }
 .mob{
@@ -156,7 +158,7 @@ body{
   top: 505px;
   width: 180px;
   height: 170px;
-  transition: 10s;
+  transition: 20s;
   background: url(../images/stoneGolem.png);
   animation: mobPlay 2s steps(4) infinite;
 
@@ -167,7 +169,7 @@ body{
   top: 505px;
   width: 180px;
   height: 170px;
-  transition: 10s;
+  transition: 20s;
   background: url(../images/stoneGolemRight.png);
   animation: mobPlayRight 4s steps(4) infinite;
 
@@ -203,7 +205,7 @@ body{
   position: absolute;
   top: 390px;
   left: 100px;
-  transition: ease-out 20s;
+  transition: 20s;
   background: url(../images/boss.png);
   animation: bossOne 1s steps(8) infinite;
 }
@@ -213,7 +215,7 @@ body{
   position: absolute;
   top: 390px;
   left: 100px;
-  transition: ease-out 20s;
+  transition: 20s;
   background: url(../images/bossRight.png);
   animation: bossRight 1s steps(8) infinite;
 }
@@ -251,9 +253,17 @@ body{
 
 @keyframes playerPlay {
   0% {
-   background-position: 55% 35%;
+   background-position: 55% 37%;
  }
  100% {
-   background-position: 85.1% 35%;
+   background-position: 85.1% 37%;
+ }
+}
+@keyframes playerPlayRight {
+  0% {
+   background-position: 22.5% 37%;
+ }
+ 100% {
+   background-position: 52% 37%;
  }
 }
