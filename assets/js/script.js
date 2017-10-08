@@ -66,7 +66,7 @@ $(function() {
           document.getElementsByClassName('playerDamage')[0].pause()
           document.getElementsByClassName('playerDamage')[0].play()
         }
-        $('div').remove('#'+spawnList[i].counterLink)
+        $('div').remove('#'+spawnList[i].spawnIdCountLink)
         spawnList.splice(i, 1)
       }
     }
@@ -75,7 +75,7 @@ $(function() {
   function checkEnemyHealth () {
     for (var i = spawnList.length -1; i > -1; i --) {
       if(spawnList[i].life <= 0) {
-        $('div').remove('#'+spawnList[i].counterLink)
+        $('div').remove('#'+spawnList[i].spawnIdCountLink)
         if (spawnList[i].effectHealth === -1) playerStats.health = playerStats.health -1
         if (spawnList[i].effectAmmo === +10) playerStats.ammo = playerStats.ammo +10
         if (spawnList[i].effectGrenade === +1) playerStats.grenade = playerStats.grenade +1
@@ -197,10 +197,23 @@ $('.retryBtn').on('click', () => {
 
 // END OF SCREEN BUTTONS
 // CONTROLS -------------------------------------------
+// left click shooting
+
+$gameScreen = $('.gameScreen')
+$gameScreen.on('click', function(e) {
+  if(playerStats.ammo > 0) {
+    $('.bang')[0].currentTime = 1.3
+    $('.bang')[0].volume = 0.6
+    $('.bang')[0].pause()
+    $('.bang')[0].play()
+    playerStats.ammo = playerStats.ammo - 1
+    clickCheck(e.target)
+  }
+})
 
 function clickCheck (element) {
   for (i = 0; i < spawnList.length; i++) {
-    if (spawnList[i].counterLink === element.id) {
+    if (spawnList[i].spawnIdCountLink === element.id) {
       if (spawnList[i].damageWhenExpire > 0) { // referring to enemies
         spawnList[i].life = spawnList[i].life -1
         if(spawnList[i].life === 0) {
@@ -219,19 +232,6 @@ function clickCheck (element) {
     }
   }
 }
-
-// left click shooting
-$gameScreen = $('.gameScreen')
-$gameScreen.on('click', function(e) {
-  if(playerStats.ammo > 0) {
-    document.getElementsByClassName('bang')[0].currentTime = 1.3
-    document.getElementsByClassName('bang')[0].volume = 0.6
-    document.getElementsByClassName('bang')[0].pause()
-    document.getElementsByClassName('bang')[0].play()
-    playerStats.ammo = playerStats.ammo - 1
-    clickCheck(e.target)
-  }
-})
 
 // right click grenades
 $gameScreen.on('contextmenu', function(ev) {
@@ -253,69 +253,69 @@ $gameScreen.on('contextmenu', function(ev) {
 
   $gameScreen = $('.gameScreen')
   var spawnList = []
-  var counter = 1
+  var spawnIdCount = 1
 
   // constructor for all spawns
-  function Spawn(life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink){
+  function Spawn(life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, spawnIdCountLink){
     this.life = life;
     this.damageWhenExpire = damageWhenExpire;
     this.effectHealth = effectHealth;
     this.effectAmmo = effectAmmo;
     this.effectGrenade = effectGrenade;
     this.timeToExpire = timeToExpire;
-    this.counterLink = counterLink;
+    this.spawnIdCountLink = spawnIdCountLink;
   }
 
   function spawnDivCreation(classAdded) {
     var $spawn = $('<div>')
     $gameScreen.append($spawn)
-    $spawn.attr('id', "s"+counter)
+    $spawn.attr('id', "s"+spawnIdCount)
     $spawn.addClass(classAdded)
     $spawn.css({
       "left": Math.floor(Math.random() * 1000),
       "top": Math.floor(Math.random() * (370 - 60)) + 60
     })
-    counter++
+    spawnIdCount++
   }
 
   function spawnEnemyEasy () {
-    var enemy = new Spawn(1, 1, 0, 0, 0, 3, 's'+counter)
+    var enemy = new Spawn(1, 1, 0, 0, 0, 3, 's'+spawnIdCount)
     spawnList.push(enemy)
     spawnDivCreation('spawn enemyEasy')
   }
 
   function spawnEnemyNormal () {
-    var enemy = new Spawn(2, 1, 0, 0, 0, 3, 's'+counter)
+    var enemy = new Spawn(2, 1, 0, 0, 0, 3, 's'+spawnIdCount)
     spawnList.push(enemy)
     spawnDivCreation('spawn enemyNormal')
   }
 
   function spawnEnemyHard () {
-    var enemy = new Spawn(3, 1, 0, 0, 0, 3, 's'+counter)
+    var enemy = new Spawn(3, 1, 0, 0, 0, 3, 's'+spawnIdCount)
     spawnList.push(enemy)
     spawnDivCreation('spawn enemyHard')
   }
 
   function spawnAlly () {
-    var ally = new Spawn(1, 0, -1, 0, 0, 3, 's'+counter)
+    var ally = new Spawn(1, 0, -1, 0, 0, 3, 's'+spawnIdCount)
     spawnList.push(ally)
     spawnDivCreation('spawn ally')
   }
 
   function spawnHealthPack () {
-    var health = new Spawn(1, 0, +1, 0, 0, 3, 's'+counter)
+    var health = new Spawn(1, 0, +1, 0, 0, 3, 's'+spawnIdCount)
     spawnList.push(health)
     spawnDivCreation('spawn healthPack')
   }
 
   function spawnAmmoBox () {
-    var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+counter)
+    var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+spawnIdCount)
     spawnList.push(ammoBox)
     spawnDivCreation('spawn ammoBox')
   }
 
   function spawnGrenadeRefill () {
-    var grenade = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
+    var grenade = new Spawn(1, 0, 0, 0, +1, 3, 's'+spawnIdCount)
     spawnList.push(grenade)
     spawnDivCreation('spawn grenadeRefill')
   }
