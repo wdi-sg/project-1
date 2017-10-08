@@ -30,6 +30,7 @@ Shoot *ammo boxes* or *med packs* to refill your supplies and health.
 * Coding Theory
 * Future Possible Updates
 * Coding Sequence
+* User experience
 * Acknowledgements
 
 #### Game Logic Flow-Chart
@@ -93,6 +94,12 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 1. Add BGM, gunshot and grenade audio on click
 1. Add easy and hard levels, new BG BGM Events
 
+#### User Experience
+Easy stage introduces a gradual learning curve. Enemies spawn according to the beats of the song which gradually becomes faster. This helps players improve their reflexes and get used to the general mechanics of shooting and grenades.
+
+After reflexes comes judgement. Normal stage introduces this element to the game, namely the spawning of allies in game. Players have to avoid shooting allies and using grenades when they are on screen. This forces players to survey the stage and judge the best course of action within a limited time frame.
+
+Hard stage adds yet another element to the game, inventory management. Players have limited ammo and grenade in this stage and need to juggle between all three elements. Reflexes. Judgement. Inventory management.
 
 #### Acknowledgements
 * **Alex Min** (TA)
