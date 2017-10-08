@@ -1,92 +1,6 @@
 $(function() {
 
-// SCREEN BUTTONS
-  function generalStartFunctions() {
-    $gameOverlay = $('.gameOverlay')
-    $gameOverlay.css({
-      'display': 'none'
-    })
-    $('.gogo')[0].volume = 0.6
-    $('.gogo')[0].play()
-    updatePlayerStats()
-    countDown()
-  }
-
-  $('.easyStartBtn').on('click', () => {
-    generalStartFunctions()
-    //stage specific settings
-    $gameScreen.css({
-      'background-image': 'url("./assets/img/bgAnime.jpg")'
-    })
-    $('.ghoulBGM')[0].volume = 1
-    $('.ghoulBGM')[0].play()
-    function startNorm(time) {
-      setTimeout(() => spawnIntervalNormal(6000), time)
-    }
-    function speedShooting(time) {
-      setTimeout(() => spawnIntervalEasy(2000), time)
-      setTimeout(() => spawnIntervalAmmo(10000), time)
-    }
-    spawnIntervalEasy(4000)
-    spawnIntervalAmmo(16000)
-    startNorm(28000)
-    ev10Easy(28000)
-    speedShooting(62000)
-    ev7Easy1Ammo1Grenade(62000)
-  })
-
-  $('.normalStartBtn').on('click', () => {
-    generalStartFunctions()
-    //stage specific settings
-    $gameScreen.css({
-      'background-image': 'url("./assets/img/nightBG.jpg")'
-    })
-    $('.believerBGM')[0].volume = 1
-    $('.believerBGM')[0].play()
-    spawnIntervalEasy(4000)
-    spawnIntervalNormal(6000)
-    spawnIntervalHard(11000)
-    spawnIntervalAlly(8000)
-    spawnIntervalAmmo(12000)
-    spawnIntervalHealth(39000)
-    ev5Easy5Ally(1000)
-    ev7Easy1Ammo1Grenade(15000)
-    ev3Easy1Ammo(22000)
-    ev3Easy1Ammo(32000)
-    ev7Easy1Ammo1Grenade(45000)
-    ev30Norm3Hard(54000)
-    ev5Easy5Ally(94000)
-    ev300Norm(100000)
-  })
-
-  $('.hardStartBtn').on('click', () => {
-    generalStartFunctions()
-    // stage specific settings
-    $('.deadpoolBGM')[0].currentTime = 3
-    $('.deadpoolBGM')[0].volume = 0.6
-    $('.deadpoolBGM')[0].play()
-    spawnIntervalEasy(3000)
-    spawnIntervalNormal(6000)
-    spawnIntervalHard(10000)
-    spawnIntervalAmmo(8000)
-    spawnIntervalHealth(50000)
-    spawnIntervalGrenade(50000)
-    ev3Easy1Ammo(14000)
-    ev3Hard(35000)
-    ev300Norm(46000)
-    ev3Hard(56000)
-    ev7Easy1Ammo1Grenade(84000)
-    ev300Hard(93000)
-    ev30Norm3Hard(105000)
-
-  })
-
-  $('.retryBtn').on('click', () => {
-    location.reload()
-  })
-
-// END OF SCREEN BUTTONS
-// GENERAL GAME FUNCTIONS ------------------------------
+// ---------------GENERAL GAME FUNCTIONS ---------------
 
   var playerStats = {
     health: 5,
@@ -97,15 +11,26 @@ $(function() {
   var playerStatsInterval
   var countDownInterval
 
-  function updatePlayerStats () {
-    var $playerHealth = $('.playerHealth')
-    var $playerAmmo = $('.playerAmmo')
-    var $playerGrenade = $('.playerGrenade')
-    playerStatsInterval = setInterval(() => {
-      $playerHealth.text('Health: ' +playerStats.health)
-      $playerAmmo.text('Ammo: ' +playerStats.ammo)
-      $playerGrenade.text('Grenade: ' +playerStats.grenade)
-    }, 200)
+  function checkVictory() {
+    if(timeCount <= 0 && playerStats.health > 0) {
+      document.getElementsByClassName('victory')[0].play()
+      $('.overlayText').text("VICTORY! TERRORISTS WIN!")
+      $('.retryBtn').text('TRY A DIFFERENT LEVEL')
+      generalGameEndFunctions()
+    }
+  }
+
+  function checkLoss() {
+    if (playerStats.health <= 0) {
+      $('.playerHealth').text('Health: 0')
+      $('.overlayText').text("GAME OVER")
+      $('.hint').text("Hint: Manage your inventory")
+      document.getElementsByClassName('deadpoolBGM')[0].pause()
+      document.getElementsByClassName('ghoulBGM')[0].pause()
+      document.getElementsByClassName('believerBGM')[0].pause()
+      document.getElementsByClassName('death')[0].play()
+      generalGameEndFunctions()
+    }
   }
 
   function countDown() {
@@ -118,6 +43,17 @@ $(function() {
       // checkLoss()
     }
     , 1000)
+  }
+
+  function updatePlayerStats () {
+    var $playerHealth = $('.playerHealth')
+    var $playerAmmo = $('.playerAmmo')
+    var $playerGrenade = $('.playerGrenade')
+    playerStatsInterval = setInterval(() => {
+      $playerHealth.text('Health: ' +playerStats.health)
+      $playerAmmo.text('Ammo: ' +playerStats.ammo)
+      $playerGrenade.text('Grenade: ' +playerStats.grenade)
+    }, 200)
   }
 
   function checkEnemyExpire() {
@@ -172,29 +108,147 @@ $(function() {
     })
   }
 
-  function checkVictory() {
-    if(timeCount <= 0 && playerStats.health > 0) {
-      document.getElementsByClassName('victory')[0].play()
-      $('.overlayText').text("VICTORY! TERRORISTS WIN!")
-      $('.retryBtn').text('TRY A DIFFERENT LEVEL')
-      generalGameEndFunctions()
-    }
-  }
-
-  function checkLoss() {
-    if (playerStats.health <= 0) {
-      $('.playerHealth').text('Health: 0')
-      $('.overlayText').text("GAME OVER")
-      $('.hint').text("Hint: Manage your inventory")
-      document.getElementsByClassName('deadpoolBGM')[0].pause()
-      document.getElementsByClassName('ghoulBGM')[0].pause()
-      document.getElementsByClassName('believerBGM')[0].pause()
-      document.getElementsByClassName('death')[0].play()
-      generalGameEndFunctions()
-    }
-  }
-
 // END OF GENERAL GAME FUNCTIONS -----------------------
+// SCREEN BUTTONS
+
+function generalStartFunctions() {
+  $gameOverlay = $('.gameOverlay')
+  $gameOverlay.css({
+    'display': 'none'
+  })
+  $('.gogo')[0].volume = 0.6
+  $('.gogo')[0].play()
+  updatePlayerStats()
+  countDown()
+}
+
+$('.easyStartBtn').on('click', () => {
+  generalStartFunctions()
+  //stage specific settings
+  $gameScreen.css({
+    'background-image': 'url("./assets/img/bgAnime.jpg")'
+  })
+  $('.ghoulBGM')[0].volume = 1
+  $('.ghoulBGM')[0].play()
+  function startNorm(time) {
+    setTimeout(() => spawnIntervalNormal(6000), time)
+  }
+  function speedShooting(time) {
+    setTimeout(() => spawnIntervalEasy(2000), time)
+    setTimeout(() => spawnIntervalAmmo(10000), time)
+  }
+  spawnIntervalEasy(4000)
+  spawnIntervalAmmo(16000)
+  startNorm(28000)
+  ev10Easy(28000)
+  speedShooting(62000)
+  ev7Easy1Ammo1Grenade(62000)
+})
+
+$('.normalStartBtn').on('click', () => {
+  generalStartFunctions()
+  //stage specific settings
+  $gameScreen.css({
+    'background-image': 'url("./assets/img/nightBG.jpg")'
+  })
+  $('.believerBGM')[0].volume = 1
+  $('.believerBGM')[0].play()
+  spawnIntervalEasy(4000)
+  spawnIntervalNormal(6000)
+  spawnIntervalHard(11000)
+  spawnIntervalAlly(8000)
+  spawnIntervalAmmo(12000)
+  spawnIntervalHealth(39000)
+  ev5Easy5Ally(1000)
+  ev7Easy1Ammo1Grenade(15000)
+  ev3Easy1Ammo(22000)
+  ev3Easy1Ammo(32000)
+  ev7Easy1Ammo1Grenade(45000)
+  ev30Norm3Hard(54000)
+  ev5Easy5Ally(94000)
+  ev300Norm(100000)
+})
+
+$('.hardStartBtn').on('click', () => {
+  generalStartFunctions()
+  // stage specific settings
+  $('.deadpoolBGM')[0].currentTime = 3
+  $('.deadpoolBGM')[0].volume = 0.6
+  $('.deadpoolBGM')[0].play()
+  spawnIntervalEasy(3000)
+  spawnIntervalNormal(6000)
+  spawnIntervalHard(10000)
+  spawnIntervalAmmo(8000)
+  spawnIntervalHealth(50000)
+  spawnIntervalGrenade(50000)
+  ev3Easy1Ammo(14000)
+  ev3Hard(35000)
+  ev300Norm(46000)
+  ev3Hard(56000)
+  ev7Easy1Ammo1Grenade(84000)
+  ev300Hard(93000)
+  ev30Norm3Hard(105000)
+
+})
+
+$('.retryBtn').on('click', () => {
+  location.reload()
+})
+
+// END OF SCREEN BUTTONS
+// CONTROLS -------------------------------------------
+
+function clickCheck (element) {
+  for (i = 0; i < spawnList.length; i++) {
+    if (spawnList[i].counterLink === element.id) {
+      if (spawnList[i].damageWhenExpire > 0) { // referring to enemies
+        spawnList[i].life = spawnList[i].life -1
+        if(spawnList[i].life === 0) {
+          $('div').remove('#'+ element.id)
+          spawnList.splice(i, 1)
+        }
+      } else { // referring to utilities
+        $('div').remove('#'+ element.id)
+        for(var key in spawnList[i]) {
+          if (key === 'effectHealth') playerStats.health = playerStats.health + spawnList[i][key]
+          if (key === 'effectAmmo') playerStats.ammo = playerStats.ammo + spawnList[i][key]
+          if (key === 'effectGrenade') playerStats.grenade = playerStats.grenade + spawnList[i][key]
+        }
+        spawnList.splice(i, 1)
+      }
+    }
+  }
+}
+
+// left click shooting
+$gameScreen = $('.gameScreen')
+$gameScreen.on('click', function(e) {
+  if(playerStats.ammo > 0) {
+    document.getElementsByClassName('bang')[0].currentTime = 1.3
+    document.getElementsByClassName('bang')[0].volume = 0.6
+    document.getElementsByClassName('bang')[0].pause()
+    document.getElementsByClassName('bang')[0].play()
+    playerStats.ammo = playerStats.ammo - 1
+    clickCheck(e.target)
+  }
+})
+
+// right click grenades
+$gameScreen.on('contextmenu', function(ev) {
+  ev.preventDefault();
+  if (playerStats.grenade > 0) {
+    document.getElementsByClassName('boom')[0].currentTime = 0;
+    document.getElementsByClassName('boom')[0].pause()
+    document.getElementsByClassName('boom')[0].play()
+    playerStats.grenade = playerStats.grenade - 1
+    for (i=0; i<spawnList.length;i++) {
+      spawnList[i].life = spawnList[i].life -2
+    }
+  }
+  checkEnemyHealth()
+})
+
+// END OF CONTROLS ------------------------------------
 // SPAWN FUNCTIONS -------------------------------------
 
   $gameScreen = $('.gameScreen')
@@ -212,8 +266,7 @@ $(function() {
     this.counterLink = counterLink;
   }
 
-  // Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
-  function spawnDivFunctions(classAdded) {
+  function spawnDivCreation(classAdded) {
     var $spawn = $('<div>')
     $gameScreen.append($spawn)
     $spawn.attr('id', "s"+counter)
@@ -228,43 +281,43 @@ $(function() {
   function spawnEnemyEasy () {
     var enemy = new Spawn(1, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemy)
-    spawnDivFunctions('spawn enemyEasy')
+    spawnDivCreation('spawn enemyEasy')
   }
 
   function spawnEnemyNormal () {
     var enemy = new Spawn(2, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemy)
-    spawnDivFunctions('spawn enemyNormal')
+    spawnDivCreation('spawn enemyNormal')
   }
 
   function spawnEnemyHard () {
     var enemy = new Spawn(3, 1, 0, 0, 0, 3, 's'+counter)
     spawnList.push(enemy)
-    spawnDivFunctions('spawn enemyHard')
+    spawnDivCreation('spawn enemyHard')
   }
 
   function spawnAlly () {
     var ally = new Spawn(1, 0, -1, 0, 0, 3, 's'+counter)
     spawnList.push(ally)
-    spawnDivFunctions('spawn ally')
+    spawnDivCreation('spawn ally')
   }
 
   function spawnHealthPack () {
     var health = new Spawn(1, 0, +1, 0, 0, 3, 's'+counter)
     spawnList.push(health)
-    spawnDivFunctions('spawn healthPack')
+    spawnDivCreation('spawn healthPack')
   }
 
   function spawnAmmoBox () {
     var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+counter)
     spawnList.push(ammoBox)
-    spawnDivFunctions('spawn ammoBox')
+    spawnDivCreation('spawn ammoBox')
   }
 
   function spawnGrenadeRefill () {
     var grenade = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
     spawnList.push(grenade)
-    spawnDivFunctions('spawn grenadeRefill')
+    spawnDivCreation('spawn grenadeRefill')
   }
 
 // SPAWN INTERVALS ------------------------------------
@@ -375,57 +428,4 @@ $(function() {
   }
 
 // END OF EVENTS --------------------------------------
-// CONTROLS -------------------------------------------
-
-  function clickCheck (element) {
-    for (i = 0; i < spawnList.length; i++) {
-      if (spawnList[i].counterLink === element.id) {
-        if (spawnList[i].damageWhenExpire > 0) { // referring to enemies
-          spawnList[i].life = spawnList[i].life -1
-          if(spawnList[i].life === 0) {
-            $('div').remove('#'+ element.id)
-            spawnList.splice(i, 1)
-          }
-        } else { // referring to utilities
-          $('div').remove('#'+ element.id)
-          for(var key in spawnList[i]) {
-            if (key === 'effectHealth') playerStats.health = playerStats.health + spawnList[i][key]
-            if (key === 'effectAmmo') playerStats.ammo = playerStats.ammo + spawnList[i][key]
-            if (key === 'effectGrenade') playerStats.grenade = playerStats.grenade + spawnList[i][key]
-          }
-          spawnList.splice(i, 1)
-        }
-      }
-    }
-  }
-
-  // left click shooting
-  $gameScreen = $('.gameScreen')
-  $gameScreen.on('click', function(e) {
-    if(playerStats.ammo > 0) {
-      document.getElementsByClassName('bang')[0].currentTime = 1.3
-      document.getElementsByClassName('bang')[0].volume = 0.6
-      document.getElementsByClassName('bang')[0].pause()
-      document.getElementsByClassName('bang')[0].play()
-      playerStats.ammo = playerStats.ammo - 1
-      clickCheck(e.target)
-    }
-  })
-
-  // right click grenades
-  $gameScreen.on('contextmenu', function(ev) {
-    ev.preventDefault();
-    if (playerStats.grenade > 0) {
-      document.getElementsByClassName('boom')[0].currentTime = 0;
-      document.getElementsByClassName('boom')[0].pause()
-      document.getElementsByClassName('boom')[0].play()
-      playerStats.grenade = playerStats.grenade - 1
-      for (i=0; i<spawnList.length;i++) {
-        spawnList[i].life = spawnList[i].life -2
-      }
-    }
-    checkEnemyHealth()
-  })
-
-// END OF CONTROLS ------------------------------------
 })
