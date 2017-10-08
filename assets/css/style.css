@@ -110,8 +110,8 @@ button{
 }
 
 .box{
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   display: inline-block;
   margin: 1px;
   box-sizing: border-box;

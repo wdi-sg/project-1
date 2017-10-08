@@ -25,7 +25,7 @@ $(function(){
   var gameOverCheck = 0
   $instruction.hide()
   createId()
-  $gridbox.css({"height":`${gridNo*105+20}px`,"width":`${gridNo*105+20}px`})
+  $gridbox.css({"height":`${gridNo*95+20}px`,"width":`${gridNo*95+20}px`})
   $instructionBtn.on('click',function(){
     $instruction.slideToggle(100,function(){
     })
