@@ -111,4 +111,4 @@ Hard stage adds yet another element to the game, inventory management. Players h
 * **Songs**
   <br>[Escape the Fate - "One For The Money"](https://www.youtube.com/watch?v=szRDiLUduRA)
   <br>[Tokyo Ghoul - "Unravel"](https://www.youtube.com/watch?v=Q0v3ajXh5S0)
-  <br>[Imagine Dragons - Believer](https://www.youtube.com/watch?v=7wtfhZwyrcc)
+  <br>[Imagine Dragons - "Believer"](https://www.youtube.com/watch?v=7wtfhZwyrcc)

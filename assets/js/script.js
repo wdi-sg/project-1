@@ -6,8 +6,8 @@ $(function() {
     $gameOverlay.css({
       'display': 'none'
     })
-    document.getElementsByClassName('gogo')[0].volume = 0.6;
-    document.getElementsByClassName('gogo')[0].play()
+    $('.gogo')[0].volume = 0.6
+    $('.gogo')[0].play()
     updatePlayerStats()
     countDown()
   }
@@ -18,14 +18,8 @@ $(function() {
     $gameScreen.css({
       'background-image': 'url("./assets/img/bgAnime.jpg")'
     })
-    document.getElementsByClassName('ghoulBGM')[0].volume = 1
-    document.getElementsByClassName('ghoulBGM')[0].play()
-    spawnIntervalEasy(4000)
-    spawnIntervalAmmo(16000)
-    startNorm(28000)
-    event5(28000)
-    speedShooting(62000)
-    event6(62000)
+    $('.ghoulBGM')[0].volume = 1
+    $('.ghoulBGM')[0].play()
     function startNorm(time) {
       setTimeout(() => spawnIntervalNormal(6000), time)
     }
@@ -33,6 +27,12 @@ $(function() {
       setTimeout(() => spawnIntervalEasy(2000), time)
       setTimeout(() => spawnIntervalAmmo(10000), time)
     }
+    spawnIntervalEasy(4000)
+    spawnIntervalAmmo(16000)
+    startNorm(28000)
+    ev10Easy(28000)
+    speedShooting(62000)
+    ev7Easy1Ammo1Grenade(62000)
   })
 
   $('.normalStartBtn').on('click', () => {
@@ -41,42 +41,44 @@ $(function() {
     $gameScreen.css({
       'background-image': 'url("./assets/img/nightBG.jpg")'
     })
-    document.getElementsByClassName('believerBGM')[0].volume = 1
-    document.getElementsByClassName('believerBGM')[0].play()
+    $('.believerBGM')[0].volume = 1
+    $('.believerBGM')[0].play()
     spawnIntervalEasy(4000)
     spawnIntervalNormal(6000)
     spawnIntervalHard(11000)
     spawnIntervalAlly(8000)
     spawnIntervalAmmo(12000)
     spawnIntervalHealth(39000)
-    event4(1000)
-    event6(15000)
-    event1(22000)
-    event1(32000)
-    event6(45000)
-    event7(54000)
-    event4(94000)
-    event3(100000)
+    ev5Easy5Ally(1000)
+    ev7Easy1Ammo1Grenade(15000)
+    ev3Easy1Ammo(22000)
+    ev3Easy1Ammo(32000)
+    ev7Easy1Ammo1Grenade(45000)
+    ev30Norm3Hard(54000)
+    ev5Easy5Ally(94000)
+    ev300Norm(100000)
   })
 
   $('.hardStartBtn').on('click', () => {
     generalStartFunctions()
     // stage specific settings
-    document.getElementsByClassName('deadpoolBGM')[0].currentTime = 3
-    document.getElementsByClassName('deadpoolBGM')[0].volume = 0.6
-    document.getElementsByClassName('deadpoolBGM')[0].play()
+    $('.deadpoolBGM')[0].currentTime = 3
+    $('.deadpoolBGM')[0].volume = 0.6
+    $('.deadpoolBGM')[0].play()
     spawnIntervalEasy(3000)
     spawnIntervalNormal(6000)
     spawnIntervalHard(10000)
     spawnIntervalAmmo(8000)
     spawnIntervalHealth(50000)
     spawnIntervalGrenade(50000)
-    event1(14000) //14
-    event2(35000) //35
-    event3(46000) //46
-    event2(56000) //56
-    event6(84000) //84
-    event7(116000) //116
+    ev3Easy1Ammo(14000)
+    ev3Hard(35000)
+    ev300Norm(46000)
+    ev3Hard(56000)
+    ev7Easy1Ammo1Grenade(84000)
+    ev300Hard(93000)
+    ev30Norm3Hard(105000)
+
   })
 
   $('.retryBtn').on('click', () => {
@@ -96,10 +98,10 @@ $(function() {
   var countDownInterval
 
   function updatePlayerStats () {
+    var $playerHealth = $('.playerHealth')
+    var $playerAmmo = $('.playerAmmo')
+    var $playerGrenade = $('.playerGrenade')
     playerStatsInterval = setInterval(() => {
-      var $playerHealth = $('.playerHealth')
-      var $playerAmmo = $('.playerAmmo')
-      var $playerGrenade = $('.playerGrenade')
       $playerHealth.text('Health: ' +playerStats.health)
       $playerAmmo.text('Ammo: ' +playerStats.ammo)
       $playerGrenade.text('Grenade: ' +playerStats.grenade)
@@ -113,7 +115,7 @@ $(function() {
       $timer.text('Timer: ' +timeCount+ ' seconds')
       checkEnemyExpire()
       checkVictory()
-      checkLoss()
+      // checkLoss()
     }
     , 1000)
   }
@@ -211,102 +213,58 @@ $(function() {
   }
 
   // Spawn stats (life, damageWhenExpire, effectHealth, effectAmmo, effectGrenade, timeToExpire, counterLink)
-  function spawnEnemyEasy () {
-    var enemyEasy = new Spawn(1, 1, 0, 0, 0, 3, 's'+counter)
-    spawnList.push(enemyEasy)
+  function spawnDivFunctions(classAdded) {
     var $spawn = $('<div>')
+    $gameScreen.append($spawn)
     $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn enemyEasy')
+    $spawn.addClass(classAdded)
     $spawn.css({
       "left": Math.floor(Math.random() * 1000),
       "top": Math.floor(Math.random() * (370 - 60)) + 60
     })
-    $gameScreen.append($spawn)
     counter++
+  }
+
+  function spawnEnemyEasy () {
+    var enemy = new Spawn(1, 1, 0, 0, 0, 3, 's'+counter)
+    spawnList.push(enemy)
+    spawnDivFunctions('spawn enemyEasy')
   }
 
   function spawnEnemyNormal () {
-    var enemyNormal = new Spawn(2, 1, 0, 0, 0, 3, 's'+counter)
-    spawnList.push(enemyNormal)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn enemyNormal')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    var enemy = new Spawn(2, 1, 0, 0, 0, 3, 's'+counter)
+    spawnList.push(enemy)
+    spawnDivFunctions('spawn enemyNormal')
   }
 
   function spawnEnemyHard () {
-    var enemyHard = new Spawn(3, 1, 0, 0, 0, 3, 's'+counter)
-    spawnList.push(enemyHard)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn enemyHard')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    var enemy = new Spawn(3, 1, 0, 0, 0, 3, 's'+counter)
+    spawnList.push(enemy)
+    spawnDivFunctions('spawn enemyHard')
   }
 
   function spawnAlly () {
     var ally = new Spawn(1, 0, -1, 0, 0, 3, 's'+counter)
     spawnList.push(ally)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn ally')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    spawnDivFunctions('spawn ally')
   }
 
   function spawnHealthPack () {
-    var healthPack = new Spawn(1, 0, +1, 0, 0, 3, 's'+counter)
-    spawnList.push(healthPack)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn healthPack')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    var health = new Spawn(1, 0, +1, 0, 0, 3, 's'+counter)
+    spawnList.push(health)
+    spawnDivFunctions('spawn healthPack')
   }
 
   function spawnAmmoBox () {
     var ammoBox = new Spawn(1, 0, 0, +10, 0, 3, 's'+counter)
     spawnList.push(ammoBox)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn ammoBox')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    spawnDivFunctions('spawn ammoBox')
   }
 
   function spawnGrenadeRefill () {
-    var grenadeRefill = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
-    spawnList.push(grenadeRefill)
-    var $spawn = $('<div>')
-    $spawn.attr('id', "s"+counter)
-    $spawn.addClass('spawn grenadeRefill')
-    $spawn.css({
-      "left": Math.floor(Math.random() * 1000),
-      "top": Math.floor(Math.random() * (370 - 60)) + 60
-    })
-    $gameScreen.append($spawn)
-    counter++
+    var grenade = new Spawn(1, 0, 0, 0, +1, 3, 's'+counter)
+    spawnList.push(grenade)
+    spawnDivFunctions('spawn grenadeRefill')
   }
 
 // SPAWN INTERVALS ------------------------------------
@@ -342,18 +300,16 @@ $(function() {
 // END OF SPAWN FUNCTIONS -----------------------------
 // EVENTS ---------------------------------------------
 
-// 3 easy, ammo refill
-  function event1(time) {
+  function ev3Easy1Ammo(time) {
     setTimeout(() => {
-      for(var i=0; i <2; i++){
+      for(var i=0; i <3; i++){
         spawnEnemyEasy()
       }
       spawnAmmoBox()
     }, time)
   }
 
-// 3 hard
-  function event2(time) {
+  function ev3Hard(time) {
     setTimeout(() => {
       for(var i=0; i <3; i++){
         spawnEnemyHard()
@@ -361,17 +317,7 @@ $(function() {
     }, time)
   }
 
-// full screen grenade 300 norm
-  function event3(time) {
-    setTimeout(() => {
-      for(var i=0; i <300; i++){
-        spawnEnemyNormal()
-      }
-    }, time)
-  } // 46 secs after
-
-// 5 easy 5 allies
-  function event4(time) {
+  function ev5Easy5Ally(time) {
     setTimeout(() => {
       for(var i=0; i <5; i++){
         spawnEnemyEasy()
@@ -382,17 +328,7 @@ $(function() {
     }, time)
   }
 
-// 10 easy
-  function event5(time) {
-    setTimeout(() => {
-      for(var i=0; i <10; i++){
-        spawnEnemyEasy()
-      }
-    }, time)
-  }
-
-// 7 easy, grenade and ammo refill
-  function event6(time) {
+  function ev7Easy1Ammo1Grenade(time) {
     setTimeout(() => {
       for(var i=0; i <7; i++){
         spawnEnemyEasy()
@@ -402,8 +338,15 @@ $(function() {
     }, time)
   }
 
-// full screen grenade + 3 hards
-  function event7(time) {
+  function ev10Easy(time) {
+    setTimeout(() => {
+      for(var i=0; i <10; i++){
+        spawnEnemyEasy()
+      }
+    }, time)
+  }
+
+  function ev30Norm3Hard(time) {
     setTimeout(() => {
       for(var i=0; i <30; i++){
         spawnEnemyNormal()
@@ -411,6 +354,23 @@ $(function() {
       spawnEnemyHard()
       spawnEnemyHard()
       spawnEnemyHard()
+    }, time)
+  }
+
+  function ev300Norm(time) {
+    setTimeout(() => {
+      for(var i=0; i <300; i++){
+        spawnEnemyNormal()
+      }
+    }, time)
+  }
+
+  function ev300Hard(time) {
+    setTimeout(() => {
+      for(var i=0; i<300; i++) {
+        spawnEnemyHard()
+      }
+      spawnGrenadeRefill()
     }, time)
   }
 
