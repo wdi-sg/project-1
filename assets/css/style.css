@@ -3,12 +3,12 @@ h2, h3 {
   font-family: 'Sunshiney', cursive;
 }
 h2{
-  font-size: 50px;
+  font-size: 45px;
   color: #7cb2cc;
   text-shadow: -1px 0 #FDFDFD, 0 1px #FDFDFD, 1px 0 #FDFDFD, 0 -1px #FDFDFD;
 }
 h3{
-  font-size: 45px;
+  font-size: 40px;
   color: #FDFDFD;
   text-shadow: -1px 0 #7cb2cc, 0 1px #7cb2cc, 1px 0 #7cb2cc, 0 -1px #7cb2cc;
 }
@@ -97,7 +97,7 @@ header{
 }
 .noMoveText {
   color: black;
-  font-size: 50px;
+  font-size: 45px;
 }
 button{
   width: 130px;
