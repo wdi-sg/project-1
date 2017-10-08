@@ -1,11 +1,7 @@
-var grid =[[undefined,undefined,undefined,undefined,undefined],
-[undefined,undefined,undefined,undefined,undefined],
-[undefined,undefined,undefined,undefined,undefined],
-[undefined,undefined,undefined,undefined,undefined],
-[undefined,undefined,undefined,undefined,undefined]]
+var grid =[]
 var total = 0
 var timer = 100
-var gridNo = 5
+var gridNo = 6
 var $box = $('.box')
 var $scoreBox = $('.scoreTotal')
 var $gridbox = $('.gridbox')
@@ -20,6 +16,7 @@ var iValueOne = 0
 var jValueOne = 0
 var iValueTwo = 0
 var jValueTwo = 0
+var $oneBox =$('#box')
 
 $(function(){
   var gameTimer = 0
@@ -27,17 +24,14 @@ $(function(){
   var gameOver=false
   var gameOverCheck = 0
   $instruction.hide()
-
-
-
+  createId()
+  $gridbox.css({"height":`${gridNo*105+20}px`,"width":`${gridNo*105+20}px`})
   $instructionBtn.on('click',function(){
     $instruction.slideToggle(100,function(){
-      // if (settingMode) settingMode = false
-      // else settingMode = true
     })
   })
-
   $start.on('click',()=>{
+
     if (settingMode){
       $('.overText').remove()
       $('.totalScore').remove()
@@ -62,12 +56,52 @@ $(function(){
       }
     },1000)
   })
-  // $gridbox.on('click',$('.box'), function{
-  //   console.log(thj)
-  // })
-
-  $box.on('click', function(){
-    // console.log(this)
+  function createId (){
+    for (var i = 0; i < gridNo; i++) {
+      for (var j = 0; j < gridNo; j++) {
+        $div = $(`<div id="box${i}${j}">`)
+        $gridbox.append($div)
+      }
+    }
+  }
+  function noAvailableMove  (){
+    $gridbox.css({"filter": "grayscale(1)"})
+    $noMove = $('<div class="noMove">')
+    $noMoveTextOne = $('<h2 class="noMoveText">No more moves.</h3>')
+    $noMoveTextTwo = $('<h2 class="noMoveText">Resetting the grid</h3>')
+    $noMove.append($noMoveTextOne)
+    $noMove.append($noMoveTextTwo)
+    $gridbox.append($noMove)
+    settingMode = true
+    setTimeout(function(){
+      $noMove.remove()
+      $gridbox.css({"filter": "none"})
+      removeSetting()
+      setGrid()
+    },1200)
+  }
+  function endGame(){
+    removeSetting()
+    var characterImage = $character.css('background-image')
+    $gameOverText = $('<h2 class ="overText">')
+    $gameOverText.text("Time's Up")
+    $totalScore = $('<h2 class="totalScore">')
+    $totalScore.text(`Total Score : ${total}`)
+    $characterFinal = $('<div class="characterFinal">')
+    //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','') // to test locally
+    characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
+    characterImage = characterImage.replace('")','')
+    var $endGameImage = $(`<img src=${characterImage} />`)
+    $characterFinal.prepend($endGameImage)
+    $('.gridbox').append($gameOverText)
+    $('.gridbox').append($totalScore)
+    $('.gridbox').append($characterFinal)
+    total = 0
+    settingMode = true
+  }
+  $gridbox.on('click', '.box' ,selectBox)
+  function selectBox (){
+    console.log(grid)
     $(this).css({'border':"2px solid red"})
     var idArr = this.id.split('')
     toSwitchTwo.push(idArr)
@@ -87,12 +121,44 @@ $(function(){
           switchingTwo()
         }
         else {
-           $(`#box${iValueOne}${jValueOne}`).effect("bounce", { times: 3 }, 150 )
-           $(`#box${iValueTwo}${jValueTwo}`).effect("bounce", { times: 3 }, 150 )
+          $(`#box${iValueOne}${jValueOne}`).effect("bounce", { times: 3 }, 150 )
+          $(`#box${iValueTwo}${jValueTwo}`).effect("bounce", { times: 3 }, 150 )
         }
       },100)
     }
-  })
+  }
+  function setGrid(){
+    totalBefore = total
+    grid =[[undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined],
+    [undefined,undefined,undefined,undefined,undefined,undefined]]
+    generateElements()
+    settingMode = false
+    setTimeout(function(){
+      total = totalBefore
+      $scoreBox.text(`${total}`)
+    },50)
+  }
+  function generateElements(){
+    if(!gameOver){
+      for (var i = 0; i< gridNo;i++){
+        for(var j = 0; j<gridNo;j++){
+          if (grid[i][j] === undefined){
+            var elementValue = Math.ceil(Math.random()*6)
+            $oneBox = $(`#box${i}${j}`)
+            $(`#box${i}${j}`).addClass('box')
+            $oneBox.addClass(`c${elementValue}`)
+            grid[i][j] = elementValue
+          }
+        }
+      }
+      if(settingMode) checkGrid()
+      else setTimeout(checkGrid,250)
+    }
+  }
   function switchingTwo(){
     var tempValue = grid[iValueOne][jValueOne]
     grid[iValueOne][jValueOne] = grid[iValueTwo][jValueTwo]
@@ -102,7 +168,7 @@ $(function(){
     $(`#box${iValueTwo}${jValueTwo}`).removeClass()
     $(`#box${iValueTwo}${jValueTwo}`).addClass(`box c${grid[iValueTwo][jValueTwo]}`)
     if (checkingMatch()){
-      setTimeout(checkGrid(),1000)
+      setTimeout(checkGrid(),300)
     }
     else{
       setTimeout(()=>{
@@ -116,85 +182,10 @@ $(function(){
       },250)
     }
   }
-  function noAvailableMove  (){
-    $gridbox.css({"filter": "grayscale(1)"})
-    $noMove = $('<div class="noMove">')
-    $noMoveTextOne = $('<h2 class="noMoveText">No more moves.</h3>')
-    $noMoveTextTwo = $('<h2 class="noMoveText">Resetting the grid</h3>')
-    // $noMoveText.text("No more moves. Resetting the grid")
-    $noMove.append($noMoveTextOne)
-    $noMove.append($noMoveTextTwo)
-    $gridbox.append($noMove)
-    settingMode = true
-    setTimeout(function(){
-      $noMove.remove()
-      $gridbox.css({"filter": "none"})
-      setGrid()
-    },1200)
-  }
-  function endGame(){
-    grid =[[undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined]]
-    removeClassBox()
-
-
-    var characterImage = $character.css('background-image')
-    $gameOverText = $('<h2 class ="overText">')
-    $gameOverText.text("Time's Up")
-    $totalScore = $('<h2 class="totalScore">')
-    $totalScore.text(`Total Score : ${total}`)
-    $characterFinal = $('<div class="characterFinal">')
-    //characterImage= characterImage.replace('url("http://127.0.0.1:3000/','') // to test locally
-    characterImage= characterImage.replace('url("https://siya-ng.github.io/project-1','.')
-    characterImage = characterImage.replace('")','')
-    var $endGameImage = $(`<img src=${characterImage} />`)
-    $characterFinal.prepend($endGameImage)
-    $('.gridbox').append($gameOverText)
-    $('.gridbox').append($totalScore)
-    $('.gridbox').append($characterFinal)
-    total = 0
-    settingMode = true
-  }
-
-  function setGrid(){
-    totalBefore = total
-    grid =[[undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined],
-    [undefined,undefined,undefined,undefined,undefined]]
-    removeClassBox()
-    addClassBox()
-    generateElements()
-    settingMode = false
-    setTimeout(function(){
-      total = totalBefore
-      $scoreBox.text(`${total}`)
-    },50)
-  }
-  function generateElements(){
-    if(!gameOver){
-      for (var i = 0; i< gridNo;i++){
-        for(var j = 0; j<gridNo;j++){
-          if (grid[i][j] === undefined){
-            var elementValue = Math.ceil(Math.random()*5)
-            var $oneBox = $(`#box${i}${j}`)
-            $oneBox.addClass(`c${elementValue}`)
-            grid[i][j] = elementValue
-          }
-        }
-      }
-      if(settingMode) checkGrid()
-      else setTimeout(checkGrid,300)
-    }
-  }
   function checkingMatch (){
-    /// checking data (row by row) visual column by column
+    /// (row by row)
     for (var i = 0; i<gridNo; i++){
-      for (var j = 0; j< (gridNo/2);j++){
+      for (var j = 0; j< ((gridNo+1)/2);j++){
         if(grid[i][j] && grid[i][j+1] && grid[i][j+2]
           && grid[i][j] === grid[i][j+1]&& grid[i][j]===grid[i][j+2]){
             toBeDelete.push(`${i}${j}`)
@@ -203,9 +194,9 @@ $(function(){
           }
         }
       }
-      // data column by column visual row by row
+      // column by column
       for (var j = 0;j<gridNo;j++){
-        for (var i = 0; i<(gridNo/2);i++){
+        for (var i = 0; i<((gridNo+1)/2);i++){
           if(grid[i][j] && grid[i+1][j] && grid[i+2][j] &&
             grid[i][j] === grid[i+1][j]&& grid[i][j] === grid[i+2][j]){
               toBeDelete.push(`${i}${j}`)
@@ -226,13 +217,11 @@ $(function(){
     else {
       if (!checkAvailableMove()){
         $gridbox.children().effect("bounce", {times:8}, 700)
-        // alert('No more moves. Resetting the grid')
         noAvailableMove()
       }
     }
   }
   function finaliseRemoveList(){
-    currentTotal=total
     toBeDelete.forEach(function(gridId) {
       if (!(toBeDeleteFinal.includes(gridId))){
         toBeDeleteFinal.push(gridId)
@@ -248,6 +237,7 @@ $(function(){
     else setTimeout(removeElements,300)
   }
   function removeElements(){
+    currentTotal=total
     for (var k = 0; k < toBeDeleteFinal.length; k++) {
       idValue = toBeDeleteFinal[k].split('')
       iValueHere = Number(idValue[0])
@@ -270,16 +260,16 @@ $(function(){
     }
   }
   function pushDown(){
-    for (var i = 0; i< gridNo; i++){
-      for(var j = gridNo-1; j > 0 ;j--){
+    for (var j = 0; j< gridNo; j++){
+      for(var i = gridNo-1; i > 0 ;i--){
         if (grid[i][j]=== undefined){
           $oneBox = $(`#box${i}${j}`)
-          for (var k = j-1; k >= 0 ;k--){
-            if(grid[i][k]!==undefined || grid[i][k]){
-              grid[i][j] = grid[i][k]
-              $oneBox.addClass(`c${grid[i][k]}`)
-              grid[i][k] = undefined
-              $(`#box${i}${k}`).removeClass().addClass('box')
+          for (var k = i-1; k >= 0 ;k--){
+            if(grid[k][j]!==undefined || grid[k][j]){
+              grid[i][j] = grid[k][j]
+              $oneBox.addClass(`c${grid[i][j]}`)
+              grid[k][j] = undefined
+              $(`#box${k}${j}`).removeClass().addClass('box')
               break
             }
           }
@@ -287,24 +277,15 @@ $(function(){
       }
     }
     if(settingMode) generateElements()
-    else setTimeout(generateElements,300)
+    else setTimeout(generateElements,250)
   }
-  function removeClassBox(){
+  function removeSetting(){
     for (var i = 0; i< gridNo; i++){
       for(var j=0; j<gridNo ;j++){
-        if (grid[i][j] === undefined){
+        if (grid[i][j] === undefined || grid[i][j]){
+          grid[i][j]= undefined
           $oneBox = $(`#box${i}${j}`)
           $(`#box${i}${j}`).removeClass()
-        }
-      }
-    }
-  }
-  function addClassBox (){
-    for (var i = 0; i< gridNo; i++){
-      for(var j=0; j<gridNo ;j++){
-        if (grid[i][j] === undefined){
-          $oneBox = $(`#box${i}${j}`)
-          $(`#box${i}${j}`).addClass('box')
         }
       }
     }
@@ -369,5 +350,4 @@ $(function(){
       }
     }
   }
-
 })

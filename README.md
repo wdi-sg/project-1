@@ -12,22 +12,22 @@ Read Me Contents
 
 Sweetly is a **Sweet Tooth** from the tooth kingdom. After a long duration of lack of sweets due to working, she found her health deteriorate that she has turned yellow. Help Sweetly regain her health and become stronger by feeding her more sweets.
 
-![](/assets/css/img/sweettoothcharacter.png)
+![](/assets/img/sweettoothcharacter.png)
 
 Swap sweets to make a match of three or more to feed her. Beware as she has only 100 seconds break time to eat.
 
-![](/assets/css/img/gameplay.png)
+![](/assets/img/gameplay.png)
 
 
 Different types of sweets available for Sweetly: rainbow cake, vanilla cupcake, ice cream, chocolate cake and strawberry parfait.
 
-![](/assets/css/img/sweetstype.png)
+![](/assets/img/sweetstypetwo.png)
 
 ---
 
 ### Flow Chart
 
-![](/flowchart.jpg)
+![](/assets/img/flowchart.jpg)
 
 * Once the game is started, the **countdown timer** will run. The game will end when the timer reach zero.
 * After the timer is set, the grid is set.  
@@ -136,9 +136,11 @@ version 0.9.0: (5/10/2017) added:
 * end game screen
 * check through the code and removing all the comments etc.
 
-Current timing: checkGrid to removeElements(0)
-removeElements(removing 300) to pushdown(250) to generateElements (300) to checkGrid (300)
-full cycle 1,150.
+Current timing:
+switching elements to checkGrid (250) to finaliseRemoveList to removeElements (300) to pushDown(200) to generateElements (250) to checkGrid(250)
+
+full cycle 1250
+
 
 ---
 
@@ -150,6 +152,5 @@ full cycle 1,150.
 
 * Adding sound effect to the game.
 
-* Adding instruction page.
 
 * Improve the animation or effect of the game.
