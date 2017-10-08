@@ -3,8 +3,7 @@ Created by: [__Ming Yi Koh__](https://github.com/mingyikoh)
 <br>
 
 [*Click here to play*!](https://mingyikoh.github.io/project-1/)
-
-![gaLogo](./assets/img/gaLogo.png)
+![gameScreen](./assets/img/gameScreen.png)
 
 ---
 ## Overview
@@ -105,3 +104,4 @@ To add variety in the game, events are created that spawn i.e. 300 enemies at th
 * **Songs**
   <br>[Escape the Fate - "One For The Money"](https://www.youtube.com/watch?v=szRDiLUduRA)
   <br>[Tokyo Ghoul - "Unravel"](https://www.youtube.com/watch?v=Q0v3ajXh5S0)
+  <br>[Imagine Dragons - Believer](https://www.youtube.com/watch?v=7wtfhZwyrcc)
