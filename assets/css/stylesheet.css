@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  justify-content: left;
+}
+
+body {
+  background: url("../images/background.png");
+  font-family: "Press Start 2P";
+}
+
+.gameWrapper {
+  width: 800px;
+  height: 730px;
+}
+
+.controls {
+  height: 400px;
+  width: 450px;
+  background: url("../images/controls.png");
+  background-size: 100%;
+}
+
+.startGame {
+  display: inline-block;
+  padding: 0;
+  height: 90px;
+  width: 250px;
+  background: green;
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  font-size: 20px;
+}
+
+#startGame {
+  margin: 7px auto;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.gameBoard {
+  width: 800px;
+  height: 630px;
+  border: 3px solid black;
+  position: absolute;
+  display: inline-block;
+  background: url("../images/introScreen2.png");
+  background-size: 103%;
+  background-repeat: no-repeat;
+}
+
+.info {
+  width: 800px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.aside {
+  display: inline-block;
+  padding: 0 50px;
+}
+
+.hitpointsDiv {
+  display: inline-block;
+}
+
+.scoreDiv {
+  display: inline-block;
+}
+
+.cow1 {
+  background: url("../images/cow1.png");
+  width: 80px;
+  height: 80px;
+  background-size: 100%;
+}
+
+.cow2 {
+  background: url("../images/cow2.png");
+  width: 80px;
+  height: 80px;
+  background-size: 100%;
+}

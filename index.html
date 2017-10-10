@@ -3,9 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+      <div class="gameWrapper">
+        <div class="info">
+          <div class="hitpointsDiv">
+            <h2 class="hitpoints">HP: 100</h2>
+          </div>
+          <div class="levelDiv">
+            <h2 class='levelText'></h2>
+          </div>
+          <div class="scoreDiv">
+            <h2 class="score">Score: 0</h2>
+          </div>
+        </div>
+        <div class="gameBoard">
+          <div class="startGame">
+            <h1 id='startGame'>Start Game</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="aside">
+        <h1>Crops and Robbers</h1>
+        <p>Avoid enemies and shoot them to reduce their number. Can you kill them before they destroy your farm?</p>
+        <h3>Instructions</h3>
+        <div class="controls"></div>
+        <button type="button" id="pauseBtn">Pause Game</button>
+        <button type="button" id='restartBtn'>Restart Game</button>
+      </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
