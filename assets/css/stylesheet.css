@@ -1,8 +1,6 @@
 .container {
   display: flex;
   justify-content: left;
-  /*height: 100%;*/
-  /*background: url("../images/background.png");*/
 }
 
 body {
@@ -63,7 +61,6 @@ button {
 }
 
 .aside {
-  /*width: 200px;*/
   display: inline-block;
   padding: 0 50px;
 }

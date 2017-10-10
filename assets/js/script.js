@@ -60,7 +60,7 @@ class Character {
     this.x = x //spawn position
     this.y = y
     this.timer = 0 //how long has this asset been in the game?
-    this.atkSpd = atkSpd //per ms. Lower faster
+    this.atkSpd = atkSpd //per ms. attack speed
     this.isShooting = false
     this.pressingDown = false
     this.pressingUp = false
@@ -72,6 +72,7 @@ class Character {
     this.bulletMod = 0
   }
 
+  //appends to game board
   addChar() {
     let $char = $("<div>")
     $char.addClass(`${this.id}`)
@@ -80,14 +81,12 @@ class Character {
       width: `${this.sizeX}px`,
       height: `${this.sizeY}px`
     })
-    //fix for bullet
 
     $gameBoard.append($char)
     this.jTarget = $gameBoard.find(`.${this.id}`)
 
     if (this.type === "player") {
       this.jTarget.css({
-        // border: "3px solid green" //update to actual sprite
         background: `url("./assets/images/playerRed1.png")`,
         backgroundPosition: "0 -190px",
         backgroundSize: `350%`
@@ -96,7 +95,6 @@ class Character {
 
     if (this.type === "enemy") {
       this.jTarget.css({
-        // border: "3px solid red", //update to actual sprite
         background: `url("./assets/images/onionFace2.png")`,
         backgroundPosition: `0px -200px`,
         backgroundSize: "350%"
@@ -105,7 +103,6 @@ class Character {
 
     if (this.type === "upgrade") {
       this.jTarget.css({
-        // border: "3px solid green" //update to actual sprite
         background: `url("./assets/images/health.png")`,
         backgroundSize: "100%"
       })
@@ -142,29 +139,26 @@ class Character {
     if (this.type === "bullet") {
       if (this.bulletOwner === "enemy") {
         this.jTarget.css({
-          // border: "3px solid black", //update to actual sprite
-          // borderRadius: "50%"
-
           background: `url("./assets/images/fireballBlue.png")`,
           backgroundPosition: `50px -45px`,
-          // border: "3px solid black", //update to actual sprite
           backgroundSize: "200%"
         })
       } else {
         this.jTarget.css({
           background: `url("./assets/images/fireball.png")`,
           backgroundPosition: `50px -45px`,
-          // border: "3px solid black", //update to actual sprite
           backgroundSize: "200%"
         })
       }
     }
   }
 
+  //removes from game board
   removeChar() {
     this.jTarget.remove()
   }
 
+  //moves select character on game board
   moveChar() {
     this.jTarget.css({
       left: `${this.x}px`,
@@ -243,8 +237,8 @@ class Character {
         })
       }
       this.aniFrame += 0.1
-      //enemy collision with border
 
+      //enemy collision with border
       if (this.x <= 0 || this.x >= gameWidth - this.sizeX) this.spdX *= -1 //border collision x
       if (this.y <= 0 || this.y >= gameHeight - this.sizeY) this.spdY *= -1 //border collision y
     }
@@ -331,6 +325,7 @@ class Character {
     }
   }
 
+  //allows object to shoot
   shoot() {
     if (pause === true) return
     if (this.type === "player") {
@@ -430,6 +425,7 @@ const generateCat = () => {
   petList[id].addChar()
 }
 
+//generate Enemies
 const generateEnemy = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
   let sizeX = 60
@@ -457,6 +453,7 @@ const generateEnemy = () => {
   enemyList[id].addChar()
 }
 
+//generate Bullets
 const generateBullet = entity => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
   let angle = entity.aimAngle
@@ -488,6 +485,7 @@ const generateBullet = entity => {
   bulletList[id].addChar()
 }
 
+//creates health packs
 const generateUpgrade = () => {
   let id = Math.floor(Math.random() * 100000) //To do: fix potential duplicate id
   let sizeX = 20
@@ -516,6 +514,7 @@ const generateUpgrade = () => {
   upgradeList[id].addChar()
 }
 
+//creates house borders and health bar
 const makeHouse = () => {
   $houseDiv.css({
     width: "100px",
@@ -530,22 +529,20 @@ const makeHouse = () => {
     position: "absolute",
     top: "170px",
     left: "260px"
-    // border: "3px solid black"
   })
   $houseHpBar.css({
-    // background: "green",
     width: "100px",
     height: "20px",
     position: "absolute",
     top: "170px",
     left: "260px"
-    // border: "3px solid black"
   })
   $gameBoard.append($houseHpBar)
   $gameBoard.append($houseHp)
   $gameBoard.append($houseDiv)
 }
 
+//house properties
 const house = {
   x: 260,
   y: 200,
@@ -585,36 +582,15 @@ const spawnEnemy = () => {
   }
 }
 
-const restartGame = () => {
-  for (key in enemyList) {
-    enemyList[key].removeChar()
-  }
-  for (key in bulletList) {
-    bulletList[key].removeChar()
-  }
-  for (key in upgradeList) {
-    upgradeList[key].removeChar()
-  }
-  for (key in petList) {
-    petList[key].removeChar()
-  }
-
-  player.hp = 100
-  enemyList = []
-  bulletList = []
-  upgradeList = []
-  petList = []
-  gameCounter = 0
-  pause = true
-  startGame()
-}
-
+//function start ------------------------------------------------------------
 $(function() {
   let gameStart = false
   $pauseBtn.on("click", togglePause)
 
+  //spawns the house
   makeHouse()
 
+  //displays intro screen
   if (!gameStart) {
     let currentFrame = 1
     introMusic.play()
@@ -640,6 +616,7 @@ $(function() {
     clearInterval(animatedStart)
   }
 
+  //toggle pause
   function togglePause() {
     if (player.hp <= 0) return
     if (pause === false) pause = true
@@ -649,6 +626,7 @@ $(function() {
     }
   }
 
+  //start game function. mapped to start button
   const startGame = () => {
     if (player.hp <= 0) return
 
@@ -670,6 +648,7 @@ $(function() {
     }
   }
 
+  //restart game button
   const restartGame = () => {
     if (pause === false) {
       return
@@ -709,6 +688,7 @@ $(function() {
   $startGame.on("click", startGame) //starts the game
   $restartBtn.on("click", restartGame) //restarts the game
 
+  //lets cat(s) meow
   for (cat in petList) {
     let catMeow = new Audio("./assets/audio/catMeow.mp3")
     if (petList[cat].type === "cat") {
@@ -742,6 +722,7 @@ $(function() {
   //   // console.log("test") //to do: kill interval
   // }, player.atkSpd)
 
+  //enemy shooting
   setInterval(() => {
     if (pause === false) {
       for (key in enemyList) {
@@ -751,7 +732,7 @@ $(function() {
     //to do: clear interval after enemy delete
   }, 2000)
 
-  //update --------------------------------------------------------------
+  //update loop --------------------------------------------------------------
   const update = () => {
     if (pause === true) return
     if (gameStatus === "won") {
@@ -922,6 +903,7 @@ $(function() {
   requestAnimationFrame(update)
 })
 
+//displays lose screen (to be updated)
 const loseScreen = () => {
   let $deadText = $('<h2 class="deadText">')
   let $deadScore = $('<h2 class="deadScore">')
@@ -949,6 +931,7 @@ const loseScreen = () => {
   })
 }
 
+//displays win screen
 const winScreen = () => {
   let $winText = $('<h1 class="winText">')
   let $winScore = $('<h1 class="winScore">')
@@ -973,6 +956,7 @@ const winScreen = () => {
   $gameBoard.append($winDiv)
 }
 
+//to be updated, shows different map background per level
 const drawMap = level => {
   if (level === 1) {
     //to do: update map base on level (spring -> summer -> autumn -> winter)
@@ -990,6 +974,7 @@ const drawMap = level => {
   $winDiv.remove()
 }
 
+//collision check between two objects
 const checkCollision = (obj1, obj2) =>
   obj1.x <= obj2.x + obj2.sizeX &&
   obj2.x <= obj1.x + obj1.sizeX &&
