@@ -2,10 +2,61 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Tempo Shot</title>
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <div class="container">
+        <h1>Tempo Shot</h1>
+
+        <div class="gameInstructions">
+          <img class="icons" src="./assets/img/mouseLeft.jpg"> Shoot: 1 hit on target
+          <img class="icons" src="./assets/img/mouseRight.png"> Grenade: 2 hits on all<br><br>
+          <img class="spawn enemyEasy"><br>
+          <p class="">Easy enemy: 1 hit</p>
+          <img class="spawn enemyNormal"><br>
+          <p class="">Normal enemy: 2 hits</p>
+          <img class="spawn enemyHard"><br>
+          <p class="">Hard enemy: 3 hits</p>
+          <img src="./assets/img/triangle.png" style="height:40px">
+          <p>Ally: 1 damage on hit</p>
+          <img class="spawn ammoBox"><br>
+          <br><br>
+          <p>Ammo: +10</p>
+          <img class="spawn grenadeRefill"><br><br>
+          <p>Grenade: +1</p>
+        </div>
+
+        <div class="gameOverlay">
+          <div class="hint">Hint: Enemies disappear after 3 seconds</div>
+          <div class="overlayText">VICTORY<br>TERRORISTS WIN!</div>
+          <button type="button" class="easyStartBtn">Easy Game</button>
+          <button type="button" class="normalStartBtn">Normal Game</button>
+          <button type="button" class="hardStartBtn">Hard Game</button>
+          <button type="button" class="retryBtn">RETRY</button>
+        </div>
+
+        <div class="gameScreen">
+          <img src="./assets/img/gun.png" class="gun">
+          <div class="timer">Timer: <strong>120</strong> seconds</div>
+          <div class="playerHealth">Health: 5</div>
+          <div class="playerAmmo">Ammo: 25</div>
+          <div class="playerGrenade">Grenade: 3</div>
+        </div>
+    </div>
+
+    <audio class="scream" src="./assets/audio/scream.mp3" ></audio>
+    <audio class="believerBGM" src="./assets/audio/bgmBeliever.mp3" ></audio>
+    <audio class="ghoulBGM" src="./assets/audio/bgmGhoul.mp3" ></audio>
+    <audio class="deadpoolBGM" src="./assets/audio/bgmDeadpool.mp3" ></audio>
+    <audio class="victory" src="./assets/audio/victory.mp3" ></audio>
+    <audio class="playerDamage" src="./assets/audio/playerDamage.mp3" ></audio>
+    <audio class="gogo" src="./assets/audio/gogoCS.mp3" ></audio>
+    <audio class="bang" src="./assets/audio/bang.mp3" ></audio>
+    <audio class="boom" src="./assets/audio/boom.mp3" ></audio>
+    <audio class="death" src="./assets/audio/death.mp3" ></audio>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
