@@ -1,24 +1,28 @@
-var grid =[]
-var total = 0
-var timer = 100
-var gridNo = 6
-var $box = $('.box')
-var $scoreBox = $('.scoreTotal')
-var $gridbox = $('.gridbox')
-var toBeDelete = []
-var toSwitchTwo = []
-var $character = $('.character')
-var $start = $('#start')
-var toBeDeleteFinal =[]
-var $instructionBtn = $('.instructionBtn')
-var $instruction = $('.instruction')
-var iValueOne = 0
-var jValueOne = 0
-var iValueTwo = 0
-var jValueTwo = 0
-var $oneBox =$('#box')
 
 $(function(){
+  // use i as the outer index and j for the inner index for the 2d  array used
+  // ie grid[i][j]
+  var grid =[]
+  var total = 0
+  var timer = 100
+  var gridNo = 6
+
+  var $box = $('.box')
+  var $scoreBox = $('.scoreTotal')
+  var $gridbox = $('.gridbox')
+  var toBeDelete = []
+  var toSwitchTwo = []
+  var $character = $('.character')
+  var $start = $('#start')
+  var toBeDeleteFinal =[]
+  var $instructionBtn = $('.instructionBtn')
+  var $instruction = $('.instruction')
+  
+  var iValueOne = 0
+  var jValueOne = 0
+  var iValueTwo = 0
+  var jValueTwo = 0
+  var $oneBox =$('#box')
   var gameTimer = 0
   var settingMode = true
   var gameOver=false
@@ -67,8 +71,8 @@ $(function(){
   function noAvailableMove  (){
     $gridbox.css({"filter": "grayscale(1)"})
     $noMove = $('<div class="noMove">')
-    $noMoveTextOne = $('<h2 class="noMoveText">No more moves.</h3>')
-    $noMoveTextTwo = $('<h2 class="noMoveText">Resetting the grid</h3>')
+    $noMoveTextOne = $('<h2 class="noMoveText">No more moves.</h2>')
+    $noMoveTextTwo = $('<h2 class="noMoveText">Resetting the grid</h2>')
     $noMove.append($noMoveTextOne)
     $noMove.append($noMoveTextTwo)
     $gridbox.append($noMove)
@@ -185,7 +189,7 @@ $(function(){
   function checkingMatch (){
     /// (row by row)
     for (var i = 0; i<gridNo; i++){
-      for (var j = 0; j< ((gridNo+1)/2);j++){
+      for (var j = 0; j< (gridNo-2);j++){
         if(grid[i][j] && grid[i][j+1] && grid[i][j+2]
           && grid[i][j] === grid[i][j+1]&& grid[i][j]===grid[i][j+2]){
             toBeDelete.push(`${i}${j}`)
@@ -196,7 +200,7 @@ $(function(){
       }
       // column by column
       for (var j = 0;j<gridNo;j++){
-        for (var i = 0; i<((gridNo+1)/2);i++){
+        for (var i = 0; i<(gridNo-2);i++){
           if(grid[i][j] && grid[i+1][j] && grid[i+2][j] &&
             grid[i][j] === grid[i+1][j]&& grid[i][j] === grid[i+2][j]){
               toBeDelete.push(`${i}${j}`)

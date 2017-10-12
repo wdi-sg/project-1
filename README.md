@@ -1,7 +1,5 @@
-#Project#1:  Sweet Tooth
-<!---
-Read Me Contents
--->
+# Project#1:  Sweet Tooth
+
 * https://siya-ng.github.io/project-1/
 
 # ![](/assets/css/img/whiteteeth.png)
