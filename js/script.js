@@ -21,48 +21,78 @@ var minutes, seconds, sequenceInPlay, playerSequence, interval;
 var timer = 30;
 var level = 1;
 var gameSource = {
-images: {
-  triRed: 'images/project1-triangle-red.png',
-  triGreen: 'images/project1-triangle-green.png',
-  triBlue: 'images/project1-triangle-blue.png'
-},
+  images: {
+    red: 'images/project1-triangle-red.png',
+    green: 'images/project1-triangle-green.png',
+    blue: 'images/project1-triangle-blue.png'
+  },
+  seqCombination: [
+  ['red', 'green', 'blue'],
+  ['red', 'blue', 'green'],
+  ['green', 'red', 'blue'],
+  ['green', 'blue', 'red'],
+  ['blue', 'red', 'green'],
+  ['blue', 'green', 'red'],
+  ],
   level1: {
     red: 1,
     green: 2,
     blue: 3,
     timing: 5
   },
-    level2: {
-      red: 1,
-      green: 2,
-      blue: 3,
-      timing: 5
+  level2: {
+    red: 1,
+    green: 2,
+    blue: 3,
+    timing: 5
   },
-    level3: {
-      red: 2,
-      green: 1,
-      blue: 3,
-      timing: 5
-    }
-  };
+  level3: {
+    red: 2,
+    green: 1,
+    blue: 3,
+    timing: 5
+  }
+};
+
+
+function switchPlaySequence() {
+var random = Math.floor(Math.random * 6);
+
+
+  }
+
 
 
 
 function randomInPlay() {
-sequenceInPlay= [];
-playerSequence = [];
+  sequenceInPlay = [];
+  playerSequence = [];
+  $('.btn').text('Open');
+  $('.triangle-seq').empty();
+  $('.btn').css('background-color', 'grey');
+var random = Math.floor(Math.random() * 6);
+console.log(random);
+var combination = gameSource.seqCombination[random];
+console.log(combination);
   var sequence = gameSource['level' + level];
-sequenceInPlay.push(sequence.red, sequence.green, sequence.blue);
-console.log('In play ' + sequenceInPlay);
-    $('.timer-countdown').text('00:00');
-$('img').attr('src', 'images/project1-' + level + '.jpg');
-$('.modal-content h1').text('Level ' + level);
-$('.triangle-seq').html(`
-<img class="triangle" src="${gameSource.images.triRed}">
-<img class="triangle" src="${gameSource.images.triGreen}">
-<img class="triangle" src="${gameSource.images.triBlue}">`)
-timer = gameSource['level' + level].timing;
-$('.modal').show();
+for (var i of combination) {
+  sequenceInPlay.push(sequence[i]);
+}
+
+
+  console.log('In play ' + sequenceInPlay);
+  $('.timer-countdown').text('00:00');
+  $('img').attr('src', 'images/project1-' + level + '.jpg');
+  $('.modal-content h1').text('Level ' + level);
+
+  for (var i of combination) {
+    var src = gameSource.images[i];
+    console.log(src);
+  $('.triangle-seq').append(`<img class="triangle" src="${src}">`);
+}
+
+  timer = gameSource['level' + level].timing;
+  $('.modal').show();
 }
 
 
@@ -92,11 +122,12 @@ $('.nextOrRetry').click(function() {
 
 // click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 $('.btn-new-game').click(function() {
-    $('.timer-countdown').text('00:00');
-    $('.buttons').empty();
-    for (var i = 1; i < 4; i++) {
-      $('.buttons').append(`<button class="btn" data-id="${i}">Button ${i}</button>`);
-    }
+  $('.timer-countdown').text('00:00');
+  $('.timer-countdown').css('font-size', '2rem');
+  $('.buttons').empty();
+  for (var i = 1; i < 4; i++) {
+    $('.buttons').append(`<button class="btn" data-id="${i}">Open</button>`);
+  }
   randomInPlay();
 });
 
@@ -113,7 +144,7 @@ $('.close').click(function() {
 
 // check to see if they are all matching
 function checkForWin(inPlay, player) {
-  for(var i = 0; i < 3; i++) {
+  for (var i = 0; i < 3; i++) {
     if (inPlay[i] != player[i]) {
       clearInterval(interval);
 
@@ -131,24 +162,25 @@ function checkForWin(inPlay, player) {
 // adding on click event to the newly created 3 button
 // check when all three button are press in sequence
 $('.buttons').on('click', '.btn', function() {
-
+$(this).css('background-color', '#5D6D7E');
   var dataId = $(this).attr('data-id');
+  $(this).text('Lock');
   console.log('dataId is ' + dataId);
   playerSequence.push(dataId);
   console.log('Player Seq ' + playerSequence);
   if (sequenceInPlay.length == playerSequence.length) {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
-if (winOrLose) {
-  $('.modal-content2 h1').text('Hooray!!');
-    $('.nextOrRetry').text('Next Level');
-    $('.nextOrRetry').attr('data-id', 1);
-  $('.modal2').show();
-} else {
-  $('.modal-content2 h1').text('Exploded!!');
-    $('.nextOrRetry').text('Retry?');
-  $('.modal2').show();
-}
+    if (winOrLose) {
+      $('.modal-content2 h1').text('Hooray!! Well Done!!');
+      $('.nextOrRetry').text('Next Level');
+      $('.nextOrRetry').attr('data-id', 1);
+      $('.modal2').show();
+    } else {
+      $('.modal-content2 h1').text('Oh No!!');
+      $('.nextOrRetry').text('Try Again??');
+      $('.modal2').show();
+    }
   }
 });
 
@@ -158,33 +190,33 @@ $('.timer').click(function() {
 
   interval = setInterval(function() {
     if (timer >= 60) {
-    minutes = Math.floor(timer / 60);
-    seconds = timer - minutes * 60;
-    if (minutes < 10) {
-      minutes = '0' + minutes;
-    }
-    if (seconds < 10 && seconds >= 0) {
-      seconds = '0' + seconds;
-    }
+      minutes = Math.floor(timer / 60);
+      seconds = timer - minutes * 60;
+      if (minutes < 10) {
+        minutes = '0' + minutes;
+      }
+      if (seconds < 10 && seconds >= 0) {
+        seconds = '0' + seconds;
+      }
 
-    $('.timer-countdown').text(`${minutes}:${seconds}`);
-    timer--;
+      $('.timer-countdown').text(`${minutes}:${seconds}`);
+      timer--;
 
-  } else if (timer < 60 && timer >= 0) {
-    seconds = timer;
+    } else if (timer < 60 && timer >= 0) {
+      seconds = timer;
 
-    if (seconds < 10 && seconds >= 0) {
-      seconds = '0' + seconds;
+      if (seconds < 10 && seconds >= 0) {
+        seconds = '0' + seconds;
+      }
+      $('.timer-countdown').text(`00:${seconds}`);
+      timer--;
+    } else {
+      // gameOver = true;
+      // alert('Time is up');
+      clearInterval(interval);
+      $('.modal-content2 h1').text('Oh No!!');
+      $('.nextOrRetry').text('Try Again??');
+      $('.modal2').show();
     }
-  $('.timer-countdown').text(`00:${seconds}`);
-  timer--;
-}  else {
-  // gameOver = true;
-    // alert('Time is up');
-    clearInterval(interval);
-    $('.modal-content2 h1').text('Exploded!!');
-      $('.nextOrRetry').text('Retry?');
-    $('.modal2').show();
-}
-}, 1000);
+  }, 1000);
 });
