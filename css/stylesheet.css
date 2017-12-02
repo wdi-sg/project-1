@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+  background-color: lightgrey;
+
+}
+img {
+display: block;
+  width: 55%;
+  margin: 0 auto;
+}
+h3 {
+  width: 500px;
+  margin: 0 auto;
+}
+
+
+ button {
+   display: block;
+   padding: 20px;
+   background-color: grey;
+ }
