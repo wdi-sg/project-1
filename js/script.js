@@ -17,59 +17,90 @@
 // if true popup well done, button to level 2
 // if false popup exploded, button to Retry
 // button to level 2 the loop
-
+var minutes, seconds, sequenceInPlay, playerSequence, interval;
 var timer = 30;
-var minutes, seconds;
-var sequenceInPlay = [];
-var playerSequence = [];
-var interval;
-var wireCoordinate = [
-  {
-    level1: {
-      red: 1,
-      green: 2,
-      blue: 3,
-      timing: 5
-    }
+var level = 1;
+var gameSource = {
+images: {
+  triRed: 'images/project1-triangle-red.png',
+  triGreen: 'images/project1-triangle-green.png',
+  triBlue: 'images/project1-triangle-blue.png'
+},
+  level1: {
+    red: 1,
+    green: 2,
+    blue: 3,
+    timing: 5
   },
-  {
     level2: {
       red: 1,
       green: 2,
       blue: 3,
       timing: 5
-    }
   },
-  {
     level3: {
       red: 2,
       green: 1,
       blue: 3,
       timing: 5
     }
-  }
-];
+  };
 
 
 
 function randomInPlay() {
-  var sequence = wireCoordinate[0].level1;
+sequenceInPlay= [];
+playerSequence = [];
+  var sequence = gameSource['level' + level];
 sequenceInPlay.push(sequence.red, sequence.green, sequence.blue);
 console.log('In play ' + sequenceInPlay);
+    $('.timer-countdown').text('00:00');
+$('img').attr('src', 'images/project1-' + level + '.jpg');
+$('.modal-content h1').text('Level ' + level);
+$('.triangle-seq').html(`
+<img class="triangle" src="${gameSource.images.triRed}">
+<img class="triangle" src="${gameSource.images.triGreen}">
+<img class="triangle" src="${gameSource.images.triBlue}">`)
+timer = gameSource['level' + level].timing;
+$('.modal').show();
 }
+
+
+
+
+$('.nextOrRetry').click(function() {
+  var checkStatus = $('.nextOrRetry').attr('data-id');
+  if (checkStatus == 1) {
+    // next level
+    console.log('Next Level');
+    level++;
+    $('.modal2').hide();
+    randomInPlay();
+  } else {
+    // retry
+    console.log('Retry');
+    $('.modal2').hide();
+    randomInPlay();
+  }
+  console.log('data 0??');
+  $('.nextOrRetry').attr('data-id', 0);
+});
+
+
+
 
 
 // click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 $('.btn-new-game').click(function() {
-  $('img').attr('src', 'images/project1-01.jpg');
-  $('.timer-countdown').text('00:00');
-  $('.buttons').empty();
-  for (var i = 1; i < 4; i++) {
-    $('.buttons').append(`<button class="btn" data-id="${i}">Button ${i}</button>`);
-  }
-$('.modal').show();
+    $('.timer-countdown').text('00:00');
+    $('.buttons').empty();
+    for (var i = 1; i < 4; i++) {
+      $('.buttons').append(`<button class="btn" data-id="${i}">Button ${i}</button>`);
+    }
   randomInPlay();
 });
+
+
 
 
 // hide for lets go
@@ -77,11 +108,15 @@ $('.close').click(function() {
   $('.modal').hide();
 });
 
+
+
+
 // check to see if they are all matching
 function checkForWin(inPlay, player) {
   for(var i = 0; i < 3; i++) {
     if (inPlay[i] != player[i]) {
       clearInterval(interval);
+
       console.log('Exploded');
       return false;
     }
@@ -90,6 +125,8 @@ function checkForWin(inPlay, player) {
   console.log('Win');
   return true;
 }
+
+
 
 // adding on click event to the newly created 3 button
 // check when all three button are press in sequence
@@ -101,11 +138,11 @@ $('.buttons').on('click', '.btn', function() {
   console.log('Player Seq ' + playerSequence);
   if (sequenceInPlay.length == playerSequence.length) {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
-    console.log(checkForWin(sequenceInPlay, playerSequence));
 
 if (winOrLose) {
   $('.modal-content2 h1').text('Hooray!!');
     $('.nextOrRetry').text('Next Level');
+    $('.nextOrRetry').attr('data-id', 1);
   $('.modal2').show();
 } else {
   $('.modal-content2 h1').text('Exploded!!');

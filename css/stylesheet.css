@@ -9,15 +9,18 @@ display: block;
   margin: 0 auto;
 }
 h3 {
-  width: 500px;
+  max-width: 700px;
   margin: 0 auto;
 }
+
 .timer-countdown {
 font-size: 2rem;
+margin-bottom: 20px;
 }
 
  button {
    display: block;
+   margin: 10px 30px;
    padding: 20px;
    background-color: grey;
  }
@@ -26,13 +29,21 @@ font-size: 2rem;
    display: flex;
    justify-content: center;
  }
+.close, .nextOrRetry {
+  margin: 0 auto;
+}
 
+.triangle {
+  width: 50px;
+  display: inline-block;
+  margin: 20px;
+}
 
  .modal, .modal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    /*z-index: 1; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
