@@ -17,6 +17,12 @@
 // if true popup well done, button to level 2
 // if false popup exploded, button to Retry
 // button to level 2 the loop
+
+var timer = 30;
+var minutes, seconds;
+var sequenceInPlay = [];
+var playerSequence = [];
+var interval;
 var wireCoordinate = [
   {
     level1: {
@@ -43,29 +49,39 @@ var wireCoordinate = [
     }
   }
 ];
-var sequenceInPlay = [];
-var playerSequence = [];
-var interval;
-// var gameOver = false;
 
 
-$('.btn-new-game').click(function() {
-  $('img').attr('src', 'images/project1-01.jpg');
-  $('.buttons').empty();
-  for (var i = 1; i < 4; i++) {
-    $('.buttons').append(`<button class="btn" data-id="${i}">Button ${i}</button>`);
 
-  }
-
+function randomInPlay() {
   var sequence = wireCoordinate[0].level1;
 sequenceInPlay.push(sequence.red, sequence.green, sequence.blue);
 console.log('In play ' + sequenceInPlay);
+}
+
+
+// click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
+$('.btn-new-game').click(function() {
+  $('img').attr('src', 'images/project1-01.jpg');
+  $('.timer-countdown').text('00:00');
+  $('.buttons').empty();
+  for (var i = 1; i < 4; i++) {
+    $('.buttons').append(`<button class="btn" data-id="${i}">Button ${i}</button>`);
+  }
+$('.modal').show();
+  randomInPlay();
 });
 
+
+// hide for lets go
+$('.close').click(function() {
+  $('.modal').hide();
+});
+
+// check to see if they are all matching
 function checkForWin(inPlay, player) {
   for(var i = 0; i < 3; i++) {
     if (inPlay[i] != player[i]) {
-        clearInterval(interval);
+      clearInterval(interval);
       console.log('Exploded');
       return false;
     }
@@ -75,21 +91,32 @@ function checkForWin(inPlay, player) {
   return true;
 }
 
-
+// adding on click event to the newly created 3 button
+// check when all three button are press in sequence
 $('.buttons').on('click', '.btn', function() {
+
   var dataId = $(this).attr('data-id');
   console.log('dataId is ' + dataId);
   playerSequence.push(dataId);
   console.log('Player Seq ' + playerSequence);
   if (sequenceInPlay.length == playerSequence.length) {
+    var winOrLose = checkForWin(sequenceInPlay, playerSequence);
     console.log(checkForWin(sequenceInPlay, playerSequence));
 
+if (winOrLose) {
+  $('.modal-content2 h1').text('Hooray!!');
+    $('.nextOrRetry').text('Next Level');
+  $('.modal2').show();
+} else {
+  $('.modal-content2 h1').text('Exploded!!');
+    $('.nextOrRetry').text('Retry?');
+  $('.modal2').show();
+}
   }
 });
 
 
-var timer = 30;
-var minutes, seconds;
+
 $('.timer').click(function() {
 
   interval = setInterval(function() {
@@ -116,60 +143,11 @@ $('.timer').click(function() {
   timer--;
 }  else {
   // gameOver = true;
-    alert('Time is up');
+    // alert('Time is up');
     clearInterval(interval);
+    $('.modal-content2 h1').text('Exploded!!');
+      $('.nextOrRetry').text('Retry?');
+    $('.modal2').show();
 }
 }, 1000);
 });
-
-// document.getElementById('timer').innerHTML =
-//   03 + ":" + 00;
-// startTimer();
-//
-// function startTimer() {
-//   var presentTime = document.getElementById('timer').innerHTML;
-//   var timeArray = presentTime.split(/[:]+/);
-//   var m = timeArray[0];
-//   var s = checkSecond((timeArray[1] - 1));
-//   if(s==59){m=m-1}
-//   //if(m<0){alert('timer completed')}
-//
-//   document.getElementById('timer').innerHTML =
-//     m + ":" + s;
-//   setTimeout(startTimer, 1000);
-// }
-//
-// function checkSecond(sec) {
-//   if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-//   if (sec < 0) {sec = "59"};
-//   return sec;
-// }
-//
-//
-//
-// var seconds=60;
-// var timer;
-// function myFunction() {
-//   if(seconds < 60) {
-//     document.getElementById("timer").innerHTML = seconds;
-//   }
-//      if (seconds >0 ) {
-//          seconds--;
-//      } else {
-//          clearInterval(timer);
-//          alert("You type X WPM");
-//      }
-// }
-// document.getElementById("textarea").onkeypress = function() {
-//   if(!timer) {
-//     timer = setInterval(function() {
-//       myFunction();
-//     }, 1000);
-//   }
-// }
-// //When a key is pressed in the text area, update the timer using myFunction
-//
-//  //If seconds are equal or greater than 0, countdown until 1 minute has passed
-// //Else, clear the timer and alert user of how many words they type per minute
-//
-// document.getElementById("timer").innerHTML="1:00";
