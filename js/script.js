@@ -17,8 +17,7 @@
 // if true popup well done, button to level 2
 // if false popup exploded, button to Retry
 // button to level 2 the loop
-var minutes, seconds, sequenceInPlay, playerSequence, interval;
-var timer;
+var minutes, seconds, sequenceInPlay, playerSequence, interval, timer;
 var level = 1;
 var gameSource = {
   images: {
@@ -187,17 +186,11 @@ var gameSource = {
 };
 
 
-function switchPlaySequence() {
-  var random = Math.floor(Math.random * 6);
-
-
-}
-
-
 function restart() {
   sequenceInPlay = [];
   playerSequence = [];
   level = 1;
+
   $('.timer-countdown').html('Instruction: Follow your way through the <em>sequence</em> of the <em>colour triangle</em>. Press the corresponding <em>button</em> below in order to clear the level.');
   $('.timer-countdown').css('font-size', '1.5rem');
   $('.buttons').empty();
@@ -206,18 +199,18 @@ function restart() {
 }
 
 
-
-
 function randomInPlay() {
+  var random, combination, sequence, src;
   sequenceInPlay = [];
   playerSequence = [];
   timer = gameSource['level' + level].timing;
-  var random = Math.floor(Math.random() * 6);
+
+  random = Math.floor(Math.random() * 6);
+  combination = gameSource.seqCombination[random];
+  sequence = gameSource['level' + level];
   console.log(random);
-  var combination = gameSource.seqCombination[random];
   console.log(combination);
-  var sequence = gameSource['level' + level];
-  var src;
+
 
   $('.btn').text('Open');
   $('.triangle-seq').empty();
@@ -252,6 +245,7 @@ $('.nextOrRetry').click(function() {
     $('.modal2').hide();
     randomInPlay();
   } else if (checkStatus == 2) {
+    // end game
     console.log('End Game');
     $('.modal2').hide();
     restart();
@@ -311,25 +305,28 @@ function checkForWin(inPlay, player) {
 // adding on click event to the newly created 3 button
 // check when all three button are press in sequence
 $('.buttons').on('click', '.btn', function() {
-  $(this).css('background-color', '#5D6D7E');
-  var dataId = $(this).attr('data-id');
+
+    var dataId = $(this).attr('data-id');
+    $(this).css('background-color', '#5D6D7E');
   $(this).text('Lock');
-  console.log('dataId is ' + dataId);
+
   playerSequence.push(dataId);
+
+    console.log('dataId is ' + dataId);
   console.log('Player Seq ' + playerSequence);
   if (sequenceInPlay.length == playerSequence.length) {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
-
-        $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
-      $('.nextOrRetry').text('Next Level');
-      $('.nextOrRetry').attr('data-id', 1);
-      if (level == 25){
-        $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
+      if (level == 25) {
+      $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
       $('.nextOrRetry').text('End Game');
       $('.nextOrRetry').attr('data-id', 2);
-      }
+    } else {
+      $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
+      $('.nextOrRetry').text('Next Level');
+      $('.nextOrRetry').attr('data-id', 1);
+    }
       $('.modal2').show();
     } else {
       $('.modal-content2 h1').text('Oh No!!');
@@ -343,6 +340,7 @@ $('.buttons').on('click', '.btn', function() {
 
 $('.timer').click(function() {
 $('.modal').hide();
+
   interval = setInterval(function() {
     if (timer >= 60) {
       minutes = Math.floor(timer / 60);
@@ -365,9 +363,8 @@ $('.modal').hide();
       }
       $('.timer-countdown').text(`00:${seconds}`);
       timer--;
+      
     } else {
-      // gameOver = true;
-      // alert('Time is up');
       clearInterval(interval);
       $('.modal-content2 h1').text('Oh No!!');
       $('.nextOrRetry').text('Try Again??');
