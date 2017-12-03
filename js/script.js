@@ -38,19 +38,19 @@ var gameSource = {
     red: 1,
     green: 2,
     blue: 3,
-    timing: 5
+    timing: 10
   },
   level2: {
     red: 1,
     green: 2,
     blue: 3,
-    timing: 5
+    timing: 10
   },
   level3: {
     red: 2,
     green: 1,
     blue: 3,
-    timing: 5
+    timing: 10
   },
   level4: {
     red: 3,
