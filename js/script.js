@@ -198,8 +198,8 @@ function restart() {
   sequenceInPlay = [];
   playerSequence = [];
   level = 1;
-  $('.timer-countdown').text('Focus your way through the lines and press the button according to the sequence');
-  $('.timer-countdown').css('font-size', '1rem');
+  $('.timer-countdown').html('Instruction: Follow your way through the <em>sequence</em> of the <em>colour triangle</em>. Press the corresponding <em>button</em> below in order to clear the level.');
+  $('.timer-countdown').css('font-size', '1.5rem');
   $('.buttons').empty();
   $('.buttons').append('<button class="btn-new-game">New Game</button>');
   $('img').attr('src', 'images/project1-26.jpg');
