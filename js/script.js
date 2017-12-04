@@ -1,23 +1,25 @@
-// objective of the game is to cut the wire according to the sequence shown
-// eg. cut blue first then red then green or cut red first then blue then green
+// objective of the game is to follow the sequence of the colour triangle and press the corresponding button according to the sequence
+// eg. sequence is blue triange, red triange and green triange. go through the line of the blue triange and press the corresponding button below the black arrow. do the same for the red triangle and lastly the green triangle
+
 // sequence will be randomize
-// player has to follow the wire of the color to know which button to press at the end in sequence to stop the timer
-// player only have one chance to press the correct buttons
-// you cut until the third wire to see if you get it wrong
-// if button press 3 times and combination fails, bomb will explode
-// if bomb explode, player will get to retry. the sequence will change so player cannot random the button from preivous
-// if player succeed, a popup will display moving on to next level, then player press ok and next round start
-//
-// starting page: game title, welcome page, description, created by who, new game Button
-// when new game button press, show level and sequence appear
+// player has to follow the line of the triangle to know which button to press at the end
+// if 3 buttons are pressed and combination fails, level fail
+// if level fail, player will get to retry the current level and the sequence will change
+// if player succeed, a popup will display telling player to move on to next level
+// game play 25 levels
+
+
+// starting page: game title, instructions, welcome page, created by who, new game button
+// when new game button press, popup appear show level and sequence of triangle
 // description change to timer, welcome page change to puzzle, new game button hide and 3 "open" button show
-// popup appear say ready then click lets go
-// timer will run
-// if player click 3 button finish - check if the sequence is correct
-// if true popup well done, button to next level
-// if false popup exploded, button to Retry
-// button to next level then game loop
-// game finish call for restart then play game again
+// once button press on popup, timer will run and popup disappear
+// player solve the puzzle and click on the corresponding button
+// once 3 button registered - check if the sequence is correct
+// if correct, popup appear with button to next level
+// button to next level will load the next game
+// if wrong, popup appear with button to retry
+// button to retry will reload the same level
+// after player finish game, game will restart
 
 var minutes, seconds, sequenceInPlay, playerSequence, interval, timer;
 var level = 1;
@@ -188,13 +190,15 @@ var gameSource = {
 };
 
 
+// when game finish, the restart button will be fired
+// reset variables and set back to game default
 function restart() {
   sequenceInPlay = [];
   playerSequence = [];
   level = 1;
 
-  $('.timer-countdown').show();
-  $('.instructions').hide();
+  $('.timer-countdown').hide();
+  $('.instructions').show();
   $('.btn-new-game').show();
   $('.created').show();
   $('.btn').hide();
@@ -202,8 +206,11 @@ function restart() {
 }
 
 
+// main for playing
+// get game timing, random number, get a random combination, set the sequence base on the combination and update the triangle image base on the combination, update the modal
 function randomInPlay() {
   var random, combination, sequence, src;
+  var triangleImg = '';
   sequenceInPlay = [];
   playerSequence = [];
   timer = gameSource['level' + level].timing;
@@ -230,20 +237,21 @@ function randomInPlay() {
   for (var i of combination) {
     src = gameSource.images[i];
     console.log(src);
-    $('.triangle-seq').append(`<img class="triangle" src="${src}">`);
+    triangleImg += `<img class="triangle" src="${src}">`;
   }
-
+  $('.triangle-seq').append(triangleImg);
+  triangleImg = '';
   $('.modal').show();
 }
 
 
-
-// check to see if they are all matching
+// check to see if they are all matching and also clear the set interval
+// base on condition return true or false
 function checkForWin(inPlay, player) {
   for (var i = 0; i < 3; i++) {
     if (inPlay[i] != player[i]) {
       clearInterval(interval);
-      console.log('Exploded');
+      console.log('Fail');
       return false;
     }
   }
@@ -253,107 +261,81 @@ function checkForWin(inPlay, player) {
 }
 
 
-
-//
-$('.nextOrRetry').on('click', function() {
-  var checkStatus = $('.nextOrRetry').attr('data-id');
+// either you move on to the next level, retry the current level or game end
+$('.next-or-retry').on('click', function() {
+  var checkStatus = $('.next-or-retry').attr('data-id');
   if (checkStatus == 1) {
-    // next level
     console.log('Next Level');
     level++;
     $('.modal2').hide();
     randomInPlay();
   } else if (checkStatus == 2) {
-    // end game
     console.log('End Game');
     $('.modal2').hide();
     restart();
   } else {
-    // retry
     console.log('Retry');
     $('.modal2').hide();
     randomInPlay();
   }
   console.log('reset data-id');
-  $('.nextOrRetry').attr('data-id', 0);
+  $('.next-or-retry').attr('data-id', 0);
 });
 
 
-
-
-
-// click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
-
+// click new game button - image change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 $('.btn-new-game').on('click', function() {
   $('.instructions').hide();
   $('.timer-countdown').show();
-  // newGameBtn = $('.btn-new-game').detach();
-$('.btn-new-game').hide();
-$('.created').hide();
-$('.btn').show();
+  $('.btn-new-game').hide();
+  $('.created-by').hide();
+  $('.btn').show();
   randomInPlay();
 });
 
 
-
-
-// hide for lets go
-// $('.close').click(function() {
-//   $('.modal').hide();
-// });
-
-
-
-
-
-
-
-
-// adding on click event to the newly created 3 button
+// adding click event to the 3 button to register the player input
 // check when all three button are press in sequence
+// base on checkForWin return set the attribute to fire which modal - to retry, to next level or end game
 $('.btn').on('click', function() {
 
-    var dataId = $(this).attr('data-id');
-    $(this).css('background-color', '#5D6D7E');
+  var dataId = $(this).attr('data-id');
+  $(this).css('background-color', '#5D6D7E');
   $(this).text('Lock');
-if (playerSequence.indexOf(dataId) == -1) {
-  console.log(dataId + ' not inside array');
-  playerSequence.push(dataId);
-}
+  if (playerSequence.indexOf(dataId) == -1) {
+    console.log(dataId + ' not inside array');
+    playerSequence.push(dataId);
+  }
 
-
-//     var fruits = ["Banana", "Orange", "Apple", "Mango"];
-// var a = fruits.indexOf("Apple");
-
-
-    console.log('dataId is ' + dataId);
+  console.log('dataId is ' + dataId);
   console.log('Player Seq ' + playerSequence);
   if (sequenceInPlay.length == playerSequence.length) {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
       if (level == 25) {
-      $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
-      $('.nextOrRetry').text('End Game');
-      $('.nextOrRetry').attr('data-id', 2);
-    } else {
-      $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
-      $('.nextOrRetry').text('Next Level');
-      $('.nextOrRetry').attr('data-id', 1);
-    }
+        $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
+        $('.next-or-retry').text('End Game');
+        $('.next-or-retry').attr('data-id', 2);
+      } else {
+        $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
+        $('.next-or-retry').text('Next Level');
+        $('.next-or-retry').attr('data-id', 1);
+      }
       $('.modal2').show();
     } else {
       $('.modal-content2 h1').text('Oh No!!');
-      $('.nextOrRetry').text('Try Again??');
+      $('.next-or-retry').text('Try Again??');
       $('.modal2').show();
     }
   }
 });
 
 
-// timer feature
-$('.timer').on('click', function() {
-$('.modal').hide();
+// timer feature bind to the Let's Go button
+// countdown timer start till the time runs out then call for modal
+$('.lets-go-btn').on('click', function() {
+  $('.modal').hide();
 
   interval = setInterval(function() {
     if (timer >= 60) {
@@ -381,7 +363,7 @@ $('.modal').hide();
     } else {
       clearInterval(interval);
       $('.modal-content2 h1').text('Oh No!!');
-      $('.nextOrRetry').text('Try Again??');
+      $('.next-or-retry').text('Try Again??');
       $('.modal2').show();
     }
   }, 1000);

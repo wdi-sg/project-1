@@ -1,60 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project 1</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <link rel="stylesheet" href="css/stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Stardos+Stencil" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylesheet.css">
 </head>
+
 <body>
-  <h1>Zeerowink</h1>
+  <h1 class="title">Zeerowink</h1>
 
-  <!-- the instructions will change to timer at the second screen -->
+
+  <!-- the instructions will disappear and timer will appear -->
   <h2 class="instructions">Instructions: Follow your way through the <em>sequence</em> of the <em>colour triangle</em>. Press the corresponding <em>button</em> below in order to clear the level.</h2>
-<h2 class="timer-countdown">00:00</h2>
+  <h2 class="timer-countdown">00:00</h2>
 
-<div class="img-new-btn">
-<img src="images/project1-26.jpg" alt="welcome page">
-<button class="btn-new-game">New Game</button>
-<!-- <img src="images/project1-01.jpg"> -->
-</div>
 
-<!-- place to input the 3 buttons -->
-<div class="buttons">
-  <h2 class="created">Created by Edmund Teo<br>
+  <!-- container for image and new button -->
+  <div class="img-new-btn">
+    <img src="images/project1-26.jpg" alt="welcome page">
+    <button class="btn-new-game">New Game</button>
+  </div>
+
+
+  <!-- container for created by and the 3 input buttons -->
+  <div class="buttons">
+    <h2 class="created-by">Created by Edmund Teo<br>
     from WDI-13</h2>
     <button class="btn" data-id="1">Open</button>
     <button class="btn" data-id="2">Open</button>
     <button class="btn" data-id="3">Open</button>
-</div>
+  </div>
 
-<div class="modal">
-<div class="modal-content">
-  <h1>Level 1</h1>
-  <hr>
-  <h2 class="follow">Follow <span class="important">this</span> sequence<br>
+
+  <!-- modal for level, instructions, sequence, and lets go button -->
+  <div class="modal">
+    <div class="modal-content">
+      <h1>Level 1</h1>
+      <hr>
+      <h2 class="modal-instructions">Follow <span class="important">this </span> sequence<br>
   starting from left to right</h2>
-  <div class="triangle-seq"></div>
-  <button class="timer">Let's Go!!</button>
-</div>
-
-</div>
-
-<div class="modal2">
-<div class="modal-content2">
-  <h1>Level 1</h1>
-  <button class="nextOrRetry" data-id="0">Let's Go!</button>
-</div>
-
-</div>
+      <div class="triangle-seq"></div>
+      <button class="lets-go-btn">Let's Go!!</button>
+    </div>
+  </div>
 
 
-<!-- <button class="timer">Timer Start</button> -->
+  <!-- modal for next, retry or end game -->
+  <div class="modal2">
+    <div class="modal-content2">
+      <h1>Level 1</h1>
+      <button class="next-or-retry" data-id="0">Let's Go!</button>
+    </div>
+  </div>
 
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/script.js"></script>
 </body>
+
 </html>
