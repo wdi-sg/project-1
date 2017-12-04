@@ -1,22 +1,23 @@
 // objective of the game is to cut the wire according to the sequence shown
 // eg. cut blue first then red then green or cut red first then blue then green
 // sequence will be randomize
-// player has to follow the wire of the color to know which button to press to stop the timer
-// player only have one chance to press the correct button
+// player has to follow the wire of the color to know which button to press at the end in sequence to stop the timer
+// player only have one chance to press the correct buttons
 // you cut until the third wire to see if you get it wrong
 // if button press 3 times and combination fails, bomb will explode
 // if bomb explode, player will get to retry. the sequence will change so player cannot random the button from preivous
 // if player succeed, a popup will display moving on to next level, then player press ok and next round start
 //
 // starting page: game title, welcome page, description, created by who, new game Button
-// when new game button press, aside of level and sequence appear
-// description change to timer, welcome page change to puzzle, new game button change to 3 press Button
+// when new game button press, show level and sequence appear
+// description change to timer, welcome page change to puzzle, new game button hide and 3 "open" button show
 // popup appear say ready then click lets go
 // timer will run
 // if player click 3 button finish - check if the sequence is correct
-// if true popup well done, button to level 2
+// if true popup well done, button to next level
 // if false popup exploded, button to Retry
-// button to level 2 the loop
+// button to next level then game loop
+// game finish call for restart then play game again
 
 var minutes, seconds, sequenceInPlay, playerSequence, interval, timer;
 var level = 1;
@@ -254,7 +255,7 @@ function checkForWin(inPlay, player) {
 
 
 
-
+//
 $('.nextOrRetry').on('click', function() {
   var checkStatus = $('.nextOrRetry').attr('data-id');
   if (checkStatus == 1) {
@@ -316,8 +317,15 @@ $('.btn').on('click', function() {
     var dataId = $(this).attr('data-id');
     $(this).css('background-color', '#5D6D7E');
   $(this).text('Lock');
-
+if (playerSequence.indexOf(dataId) == -1) {
+  console.log(dataId + ' not inside array');
   playerSequence.push(dataId);
+}
+
+
+//     var fruits = ["Banana", "Orange", "Apple", "Mango"];
+// var a = fruits.indexOf("Apple");
+
 
     console.log('dataId is ' + dataId);
   console.log('Player Seq ' + playerSequence);
@@ -325,7 +333,7 @@ $('.btn').on('click', function() {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
-      if (level == 1) {
+      if (level == 25) {
       $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
       $('.nextOrRetry').text('End Game');
       $('.nextOrRetry').attr('data-id', 2);
