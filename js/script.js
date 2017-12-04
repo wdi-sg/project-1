@@ -17,6 +17,7 @@
 // if true popup well done, button to level 2
 // if false popup exploded, button to Retry
 // button to level 2 the loop
+
 var minutes, seconds, sequenceInPlay, playerSequence, interval, timer;
 var level = 1;
 var gameSource = {
@@ -193,8 +194,10 @@ function restart() {
 
   $('.timer-countdown').html('Instruction: Follow your way through the <em>sequence</em> of the <em>colour triangle</em>. Press the corresponding <em>button</em> below in order to clear the level.');
   $('.timer-countdown').css('font-size', '1.5rem');
-  $('.buttons').empty();
-  $('.buttons').append('<button class="btn-new-game">New Game</button>');
+  // $('.buttons').empty();
+  $('.btn-new-game').show();
+  $('.created').show();
+  $('.btn').hide();
   $('img').attr('src', 'images/project1-26.jpg');
 }
 
@@ -211,8 +214,8 @@ function randomInPlay() {
   console.log(random);
   console.log(combination);
 
-
   $('.btn').text('Open');
+  $('.btn').removeClass('changeBg');
   $('.triangle-seq').empty();
   $('.btn').css('background-color', 'grey');
   $('.timer-countdown').text('00:00');
@@ -235,8 +238,24 @@ function randomInPlay() {
 
 
 
+// check to see if they are all matching
+function checkForWin(inPlay, player) {
+  for (var i = 0; i < 3; i++) {
+    if (inPlay[i] != player[i]) {
+      clearInterval(interval);
+      console.log('Exploded');
+      return false;
+    }
+  }
+  clearInterval(interval);
+  console.log('Win');
+  return true;
+}
 
-$('.nextOrRetry').click(function() {
+
+
+
+$('.nextOrRetry').on('click', function() {
   var checkStatus = $('.nextOrRetry').attr('data-id');
   if (checkStatus == 1) {
     // next level
@@ -265,13 +284,13 @@ $('.nextOrRetry').click(function() {
 
 // click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 
-$('.buttons').on('click', '.btn-new-game', function() {
+$('.btn-new-game').on('click', function() {
   $('.timer-countdown').text('00:00');
   $('.timer-countdown').css('font-size', '2rem');
-  $('.buttons').empty();
-  for (var i = 1; i < 4; i++) {
-    $('.buttons').append(`<button class="btn" data-id="${i}">Open</button>`);
-  }
+  // newGameBtn = $('.btn-new-game').detach();
+$('.btn-new-game').hide();
+$('.created').hide();
+$('.btn').show();
   randomInPlay();
 });
 
@@ -286,25 +305,13 @@ $('.buttons').on('click', '.btn-new-game', function() {
 
 
 
-// check to see if they are all matching
-function checkForWin(inPlay, player) {
-  for (var i = 0; i < 3; i++) {
-    if (inPlay[i] != player[i]) {
-      clearInterval(interval);
-      console.log('Exploded');
-      return false;
-    }
-  }
-  clearInterval(interval);
-  console.log('Win');
-  return true;
-}
+
 
 
 
 // adding on click event to the newly created 3 button
 // check when all three button are press in sequence
-$('.buttons').on('click', '.btn', function() {
+$('.btn').on('click', function() {
 
     var dataId = $(this).attr('data-id');
     $(this).css('background-color', '#5D6D7E');
@@ -318,7 +325,7 @@ $('.buttons').on('click', '.btn', function() {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
-      if (level == 25) {
+      if (level == 1) {
       $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
       $('.nextOrRetry').text('End Game');
       $('.nextOrRetry').attr('data-id', 2);
@@ -337,8 +344,8 @@ $('.buttons').on('click', '.btn', function() {
 });
 
 
-
-$('.timer').click(function() {
+// timer feature
+$('.timer').on('click', function() {
 $('.modal').hide();
 
   interval = setInterval(function() {
@@ -363,7 +370,7 @@ $('.modal').hide();
       }
       $('.timer-countdown').text(`00:${seconds}`);
       timer--;
-      
+
     } else {
       clearInterval(interval);
       $('.modal-content2 h1').text('Oh No!!');
