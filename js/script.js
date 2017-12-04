@@ -193,9 +193,8 @@ function restart() {
   playerSequence = [];
   level = 1;
 
-  $('.timer-countdown').html('Instruction: Follow your way through the <em>sequence</em> of the <em>colour triangle</em>. Press the corresponding <em>button</em> below in order to clear the level.');
-  $('.timer-countdown').css('font-size', '1.5rem');
-  // $('.buttons').empty();
+  $('.timer-countdown').show();
+  $('.instructions').hide();
   $('.btn-new-game').show();
   $('.created').show();
   $('.btn').hide();
@@ -286,8 +285,8 @@ $('.nextOrRetry').on('click', function() {
 // click new game - img change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 
 $('.btn-new-game').on('click', function() {
-  $('.timer-countdown').text('00:00');
-  $('.timer-countdown').css('font-size', '2rem');
+  $('.instructions').hide();
+  $('.timer-countdown').show();
   // newGameBtn = $('.btn-new-game').detach();
 $('.btn-new-game').hide();
 $('.created').hide();

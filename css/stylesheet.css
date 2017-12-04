@@ -22,9 +22,14 @@ img {
 .follow {
   margin-bottom: 5px;
 }
+.instruction {
+  max-width: 800px;
+  margin: 0 auto 10px;
+}
 
 .timer-countdown {
-margin-bottom: 20px;
+  display: none;
+  font-size: 2rem;
 max-width: 800px;
 margin: 0 auto 10px;
 }
