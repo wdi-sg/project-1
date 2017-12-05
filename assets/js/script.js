@@ -25,7 +25,7 @@ $(document).ready(function() {
       currentPosition = userMoves(currentPosition, event.which);
     }
     if (gameComplete()) {
-      $("#winBox").fadeIn(400).css("display", "block");
+      $("#winBox").fadeIn(800).css("display", "block");
       if (stage % 10 === 9) {
         var code = stage + 1;
         $(".modal-code").empty();
@@ -102,7 +102,7 @@ $(document).ready(function() {
   });
 
   // swipe event listener
-  var swipeArea = document.querySelector(".game-slide");
+  var swipeArea = document.querySelector(".container-player");
   var swipeConverted;
   swipeDetect(swipeArea, function(swipeDir) {
     switch (swipeDir) {
@@ -123,7 +123,7 @@ $(document).ready(function() {
       currentPosition = userMoves(currentPosition, swipeConverted);
     }
     if (gameComplete()) {
-      $("#winBox").fadeIn(400).css("display", "block");
+      $("#winBox").fadeIn(800).css("display", "block");
       if (stage % 10 === 9) {
         var code = stage + 1;
         $(".modal-code").empty();
@@ -318,8 +318,8 @@ var swipeDetect = function(screen, callback) {
   var touchSurface = screen;
   var swipeDir, dist, startX, startY, startTime, distX, distY, elapsedTime;
   var allowedTime = 300;
-  var threshold = 150;
-  var restraint = 100;
+  var threshold = 120;
+  var restraint = 80;
   handleSwipe = callback || function(swipeDir) {}
 
   touchSurface.addEventListener("touchstart", function(event) {
