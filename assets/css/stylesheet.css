@@ -9,7 +9,6 @@ body {
 	text-align: center;
 }
 
-
 #headerContainer {
 	display: flex;
 	flex-direction: row;
@@ -84,7 +83,6 @@ body {
 	height: 30px;
 	background-color: white;
 }
-
 
 .circle {
 	display: inline-block;
