@@ -1,9 +1,9 @@
-# Project Name (Start editing here)
+# Project 1: ColorSpill!
 <!---
 Read Me Contents
 -->
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: ColorSpill!
 
 ### Overview
 

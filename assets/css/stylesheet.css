@@ -1,0 +1,110 @@
+body {
+	background-color: black;
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 100%;
+	color: white;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+
+#headerContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#header {
+	display: block;
+}
+
+#title {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 72px;
+	margin: 0.1em 0;
+}
+
+#menuBar {
+	margin: 1em 0;
+}
+
+#moves {
+	display: inline-block;
+	font-weight: bolder;
+	font-size: 30px;
+	line-height: 1;
+}
+
+#restart {
+	display: inline-block;
+	float: right;
+	width: 28px;
+}
+
+#options {
+	display: inline-block;
+	float: left;
+	width: 28px;
+
+}
+
+#canvasContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+}
+
+.flicker {
+	animation: flickerAnimation 1s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+#canvas {
+	display: block;
+}
+
+.column {
+	display: flex;
+	flex-direction: row;
+}
+
+.box {
+	margin: 0;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	background-color: white;
+}
+
+
+.circle {
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	margin: 25px 8px;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 6px;
+	border-color: black;
+}
+
+.circle:hover {
+	border-style: solid;
+	border-width: 6px;
+	border-color: white;
+}
+
+#instruction {
+	margin: auto;
+	padding: 0;
+	max-width: 60%;
+}

@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>Color Spill!</title>
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+		<link rel="stylesheet" href="./assets/css/stylesheet.css">
+	</head>
+<body>
+	<div id="headerContainer">
+		<div id="header">
+			<div id="title" class="flicker">Color Spill!</div>
+			<div id="menuBar">
+				<span id="moves">30 / 30</span>
+				<img src="./assets/restart.svg" id="restart"/>
+				<img src="./assets/options.svg" id="options"/>
+			</div>
+		</div>
+	</div>
+
+	<div id="colorPickerZone">
+		<div id="canvasContainer"></div>
+		<div id="palette"></div>
+	</div>
+
+	<div id="instruction">Fill the canvas with the same color before your moves are up!</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	<script charset="utf-8" src="./assets/js/script.js"></script>
+</body>
 </html>
