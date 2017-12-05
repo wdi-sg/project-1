@@ -22,6 +22,24 @@ Task tracking, and/or ERDs
 
 ## Game Logic
 
+### createCanvas(length)
+
+### drawCanvas(canvas, length)
+
+### drawPalette(colorScheme)
+
+### expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate)
+
+### updateMoves()
+
+### anyMovesLeft()
+
+### checkIfWon(canvas)
+
+### endGameSequence(hasPlayerWon)
+
+### continueOrStopGame()
+
 ## Unresolved Issues
 
 ## Technologies Used
@@ -33,3 +51,4 @@ Task tracking, and/or ERDs
 
 ## Acknowledgements
 - [Code Comments Tutorial: Ink Spill - A "Flood It" Clone](http://inventwithpython.com/blog/2010/09/09/code-comments-tutorial-ink-spill-a-flood-it-clone/)
+- [Flood–It! on the App Store](https://itunes.apple.com/sg/app/flood-it/id476943146?mt=8)
