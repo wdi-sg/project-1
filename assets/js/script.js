@@ -318,7 +318,8 @@ var swipeDetect = function(screen, callback) {
   var touchSurface = screen;
   var swipeDir, dist, startX, startY, startTime, distX, distY, elapsedTime;
   var allowedTime = 300;
-  var threshold = 120;
+  var thresholdX = 80;
+  var thresholdY = 120;
   var restraint = 80;
   handleSwipe = callback || function(swipeDir) {}
 
@@ -338,13 +339,13 @@ var swipeDetect = function(screen, callback) {
     distY = touchObj.pageY - startY;
     elapsedTime = new Date().getTime() - startTime;
     if (elapsedTime <= allowedTime) {
-      if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+      if (Math.abs(distX) >= thresholdX && Math.abs(distY) <= restraint) {
         if (distX < 0) {
           swipeDir = "left";
         } else {
           swipeDir = "right";
         }
-      } else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) {
+      } else if (Math.abs(distY) >= thresholdY && Math.abs(distX) <= restraint) {
         if (distY < 0) {
           swipeDir = "up";
         } else {
