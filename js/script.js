@@ -200,7 +200,7 @@ function restart() {
   $('.timer-countdown').hide();
   $('.instructions').show();
   $('.btn-new-game').show();
-  $('.created').show();
+  $('.created-by').show();
   $('.btn').hide();
   $('img').attr('src', 'images/project1-26.jpg');
 }
@@ -313,8 +313,8 @@ $('.btn').on('click', function() {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
-      if (level == 25) {
-        $('.modal-content2 h1').html('Congratulations!!<br>Thank you for playing!!');
+      if (level == 2) {
+        $('.modal-content2 h1').html('Congratulations!!<br>Your focus has reached 100%!!');
         $('.next-or-retry').text('End Game');
         $('.next-or-retry').attr('data-id', 2);
       } else {
@@ -357,6 +357,7 @@ $('.lets-go-btn').on('click', function() {
       if (seconds < 10 && seconds >= 0) {
         seconds = '0' + seconds;
       }
+
       $('.timer-countdown').text(`00:${seconds}`);
       timer--;
 

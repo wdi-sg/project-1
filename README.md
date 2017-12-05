@@ -1,11 +1,34 @@
-# Project Name (Start editing here)
+# Zeerowink
 <!---
 Read Me Contents
 -->
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
 
-### Overview
+### The Game Play
+
+The objective of this game is to train your concentrating skill.
+1. Player has to remember a sequence of colours before starting the game. 2. Once game starts, there will be a countdown timer depending on the difficulty of the game level.
+3. Player has to follow the lines according to the sequence they remembered.
+4. Once going through the line, press the corresponding button to lock your input.
+5. Once all the button are pressed, the game will check if your input is the same as the pattern set by the game.
+6. If true, process to the next level.
+7. If false, retry the current level with a different sequence set by the game.
+8. Player will play through 25 levels.
+9. Once completed, game will restart to default page and restart at level 1.
+
+### Wireframes
+
+![](images/project1-wireframe/project1-wireframe-01.jpg)
+
+
+
+
+
+
+
+
+
 
 Let's start out with something fun - **a game!**
 
@@ -21,7 +44,7 @@ Everyone will get a chance to **be creative**, and work through some really **to
 Your app must:
 
 * **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
+* **Any number of players** will be okay, switch turns will be great
 * **Design logic for winning** & **visually display which player won**
 * **Include separate HTML / CSS / JavaScript files**
 * Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
@@ -67,7 +90,7 @@ Test your wits & knowledge with whatever-the-heck you know about (so you can act
 * **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
 * **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
 * **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
+* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_
 * **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
 
 ---

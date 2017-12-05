@@ -13,8 +13,13 @@ h1 {
 }
 
 .instructions {
-  max-width: 800px;
+  max-width: 770px;
   margin: 0 auto 10px;
+}
+.emphasize {
+  color: grey;
+  font-style: italic;
+  font-size: 1.8rem;
 }
 
 .timer-countdown {
@@ -81,7 +86,6 @@ triange, button to retry or next*/
 .modal, .modal2 {
   display: none;
   position: fixed;
-  /*padding-top: 150px;*/
   left: 0;
   top: 0;
   width: 100%;
@@ -97,6 +101,7 @@ triange, button to retry or next*/
   padding: 20px;
   border: 1px solid #888;
   width: 50%;
+  border-radius: 10px;
 }
 
 .modal-instructions {
