@@ -1,11 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+<head>
+	<title>BE QUICK!</title>
+	<link rel="shortcut icon" href="img/logo.png"/>
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans|Teko" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+<div id="flexContainer">
+
+	<div id="container1">
+		<div id="titleDiv">
+			<img id="logoImg" src="img/logo.png">
+			<div id="titleText">BE QUICK!</div>
+		</div>
+		<div id="gameButtonDiv">
+			<button id="newGameButton">New Game</button>
+		</div>
+	</div>
+
+
+
+	<div id="container2">
+			<div id="computerHalf">
+				<div id="timerDiv">
+					<p id="countDownTimer">#s remaining</p>
+				</div>
+				<div id="questionBox"><p id="questionBoxText">Click New Game to begin!</p></div>
+			</div>
+
+			<div id="playerHalf">
+				<div id="answerBox"><p id="answerBoxText">HELLO THIS IS A TEST</p></div>
+				<div id="curPlayerNScore">
+					<p id="displayCurrentPlayer">Player: 1</p>
+					<p id="displayCurrentScore">Current Score: 0</p>
+				</div>
+
+				<div id="playerInputArea">	
+					<form id="playerInputForm">	
+						<input type="text" name="playerInputBox" placeholder="Type here!" id="playerInputBox" autofocus>
+					</form>
+				</div>
+			</div>
+		</div> <!-- End #container-->
+
+
+	<div id="container3">
+		<div id="scoreToBeatDiv">
+			<p id="player1FinalScore">YOUR SCORE TO BEAT: 0</p>
+		</div>
+	</div>
+</div> <!-- End flexbox container -->
+    
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/main.js"></script>
+
 </html>
