@@ -1,0 +1,109 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #333333;
+	color: #ffeb3b;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+.header {
+	display: flex;
+	flex-wrap: nowrap;
+	background-color: #f44336;
+	justify-content: center;
+}
+
+.header > div {
+	background-color: #333333;
+	width: 100px;
+	margin: 10px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 30px;
+}
+
+/*Status Styling*/
+.status {
+	padding-top: 10px;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+}
+
+.blink {
+	animation: blink 1s linear infinite;
+	-webkit-animation : blink 1s linear infinite;
+	-moz-animation: blink 1s linear infinite;
+}
+
+@keyframes blink {  
+  50% { opacity: 0; }
+}
+
+/*Table Styling*/
+.board {
+	margin: 0 auto;
+	padding-bottom: 20px;
+}
+
+.indicator {
+	margin: 0 auto;
+	display: table;
+	padding-top: 20px;
+}
+
+.indicatorCol {
+	display: table-cell;
+	width: 60px;
+    height: 60px;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+	/*background-color: white;*/
+}
+
+.c4Table {
+	display: table;
+	margin: 0 auto;
+	/*padding-top: 60px;*/
+}
+
+.c4Tr {
+	display: table-row;
+}
+
+.c4Td {
+	display: table-cell;
+	width: 60px;
+    height: 60px;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+	background-color: white;
+}
+
+/*Button Styling*/
+.buttons {
+	text-align: center;
+}
+
+button {
+	background-color: #ffeb3b;
+	color: #f44336;
+    border: none;
+    font-family: Impact, Charcoal, sans-serif;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+}
+
+button:hover {
+	-webkit-transition-duration: 0.5s; 
+    transition-duration: 0.5s;
+    background-color: #f44336;
+	color: #ffeb3b;
+}
+
+/*Red - #f44336*/
+/*Yellow - #ffeb3b*/
+/*Grey - #333333*/
