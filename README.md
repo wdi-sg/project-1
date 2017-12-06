@@ -38,31 +38,43 @@ For example, at level 4, 4 moves are needed to complete the game while at level 
 ### Code Structure
 
 1. Computer and Player grids are drawn and appears when webpage is loaded.
+
 Function `drawGrid(container, side)` generates a 5 by 5 grid to display either the Computer or Player grid.
+
 Function `colourGrid(side)` applies a conditional formatting with different colour codes for different numbers contained within the grids.
 
 **Code to Generate Computer Grid**
+
 2. Generate a random direction.
+
 Function `directionCheck(current, input)` assigns numbers 0 to 3 to a specific direction. A formula is used to calculate the next grid's ID for a specific direction. The function takes the current grid's ID and random generated number as arguments for the function.
 
 3. Ensure that the moves made stay within the grid.
+
 Function `directionCheck(current, input)` validates that the moves made stay within the grid as well.
 
 4. Apply the random direction for a specified number of iterations.
+
 Function `comMoves(current, iterations)` takes the current grid's ID as an argument and iterates for a number of times as specified as an argument. A `for` loop is used to achieve this.
 
 **Code needed for Player Grid**
+
 5. Add event handler for Player Grid when a move is made.
+
 Function `userMoves(current, userKey)` takes the current grid's ID as an argument and based on the user key entered, make a move on the Player grid.
 
 6. Check for win.
+
 Function `gameComplete()` matches all 25 grids of the Player grid with the given Computer grid to check if the game is complete, before proceeding to the next level.
 
 **Additional Game Features**
+
 7. Next stage feature.
+
 Global variable `stage` is used to keep track of the stage which the Player is at and is used as an argument in the `comMoves(current, iterations)` function.
 
 8. Undo move feature.
+
 Global array `playerMove` is used to keep track of the moves which the Player has made to easily backtrack.
 
 ---
