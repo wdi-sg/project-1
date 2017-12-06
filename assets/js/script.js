@@ -113,12 +113,14 @@ $(document).ready(function() {
 		$("#title").text("Color Spill!");
 		$("#title").addClass("flicker");
 		$("#canvasContainer").css("opacity", "1");
+		$("#palette").fadeIn(400);
 
 		oldFillColor = null;
 		newFillColor = null;
 		colorScheme = colorSchemes[chosenColorScheme];
 		canvasLength = chosenCanvasLength;
 		difficultyLevel = chosenDifficulty;
+		
 		movesLeft = movesArray[chosenDifficulty][canvasLengthArray.indexOf(chosenCanvasLength)];
 		canvas = createCanvas(chosenCanvasLength);
 		drawCanvas(canvas, chosenCanvasLength);
@@ -171,7 +173,7 @@ $(document).ready(function() {
 		// Runs a loop to append the colors into CSS circles
 		for (color = 0; color < colorScheme.length; color++) {
 			// Creates the circle and tags it with `id` and `color` attributes
-			$("#palette").append("<div class=\"circle\" id=\"color-" + color + "\" color=\"" + colorScheme[color] + "\"></div>")
+			$("#palette").append("<div class=\"circle\" id=\"color-" + color + "\" color=\"" + colorScheme[color] + "\"></div>");
 			// Set the background of the circle to the iterated color in the color scheme array
 			$("#color-" + color).css("background-color", colorScheme[color]);
 		}
@@ -281,12 +283,11 @@ $(document).ready(function() {
 		}
 	}
 
-	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then starts the game and awaits player input
+	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then restarts the game
 	function restartSequence() {
 		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
 		var splashSequence = setInterval(function() { restartGame(); }, 150);
 		setTimeout(function() { clearInterval(splashSequence); }, 2400);
-		awaitingPlayerInput();
 	}
 
 	// This is the main game loop that will be triggered when the player clicks to select a color
@@ -345,4 +346,5 @@ $(document).ready(function() {
 
 
 	restartSequence();
+	awaitingPlayerInput();
 });
