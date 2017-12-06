@@ -4,7 +4,6 @@
 
 ### Overview
 
-<<<<<<< HEAD
 Connect4 is a game like tic tac toe. Simply just connect4 to win! However, unlike tic tac toe, the players coin fall straight down
 from the top. Played in a board of seven columns and six rows, the total number of game combinations is a staggering 4531985219092!
 
@@ -33,7 +32,3 @@ The 2 player game starts out with player 1 making the first move. Click on any c
 * https://en.wikipedia.org/wiki/Connect_Four
 
 * https://oeis.org/A212693
-
-=======
-[View the game here!](https://keed.github.io/project-1/)
->>>>>>> 68064df1b5329056a17e072083dfccb679bd4d0b
