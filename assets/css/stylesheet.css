@@ -20,33 +20,48 @@ body {
 }
 
 #title {
-	font-family: 'Permanent Marker', cursive;
+	font-family: "Permanent Marker", sans-serif;
 	font-size: 72px;
 	margin: 0.1em 0;
 }
 
 #menuBar {
 	margin: 1em 0;
+	vertical-align: middle;
 }
 
 #moves {
 	display: inline-block;
 	font-weight: bolder;
-	font-size: 30px;
+	font-size: 32px;
 	line-height: 1;
 }
 
 #restart {
 	display: inline-block;
-	float: right;
+	/*float: right;*/
+	margin-bottom: -0.15em;
+	margin-left: 8.5em;
 	width: 28px;
 }
 
 #options {
 	display: inline-block;
-	float: left;
+	/*float: left;*/
+	margin-bottom: -0.15em;
+	margin-right: 8.5em;
 	width: 28px;
+}
 
+.buttonFlicker {
+	animation: buttonFlicker 0.3s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes buttonFlicker {
+  0%   { opacity:1; }
+  50%  { opacity:0.5; }
+  100% { opacity:1; }
 }
 
 #canvasContainer {
@@ -66,6 +81,7 @@ body {
   50%  { opacity:0; }
   100% { opacity:1; }
 }
+
 
 #canvas {
 	display: block;
@@ -101,8 +117,148 @@ body {
 	border-color: white;
 }
 
+.optionCircle {
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+	margin: 0.1em;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: white;
+}
+
 #instruction {
 	margin: auto;
 	padding: 0;
 	max-width: 60%;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 168px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: rgba(33, 33, 33, 0.9);
+    margin: auto;
+    padding: 0;
+    width: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* Close Button */
+#close {
+	float: right;
+    color: white;
+    line-height: 1;
+    font-weight: bold;
+}
+
+#close:hover, s#close:focus {
+    color: darkgrey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: rgba(66, 66, 66, 0.7);
+    color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: rgba(66, 66, 66, 0.7);
+    color: white;
+}
+
+.modalTop {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.modalTopComponent {
+	margin: 0 1em;
+}
+
+.modalBottom {
+	margin-bottom: 0.2em;
+}
+
+
+form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+
+h2, h3 {
+	margin: 0.5em;
+	padding: 0;
+}
+
+.radioSpan {
+	display: grid;
+	grid-template-columns: 30px 80px;
+	grid-template-rows: 26px 26px 26px;
+	grid-column-gap: 0.2em;
+	grid-row-gap: 0.04em;
+}
+
+.radioText {
+	text-align: left;
+	padding-top: 0.24em;
+	line-height: 1;
+}
+
+#colorSchemes {
+	display: grid;
+	grid-template-columns: 30px 160px 100px; 
+	grid-template-rows: 30px 30px 30px 30px 30px 30px;
+	grid-column-gap: 0.2em;
+	grid-row-gap: 0.06em;
+}
+
+.colorSchemeContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.colorSchemeName {
+	text-align: left;
 }

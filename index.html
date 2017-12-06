@@ -11,9 +11,9 @@
 		<div id="header">
 			<div id="title" class="flicker">Color Spill!</div>
 			<div id="menuBar">
-				<span id="moves">30 / 30</span>
-				<img src="./assets/images/restart.svg" id="restart"/>
-				<img src="./assets/images/options.svg" id="options"/>
+				<img src="./assets/images/options.svg" id="options" class="buttons" />
+				<span id="moves"></span>
+				<img src="./assets/images/restart.svg" id="restart" class="buttons"/>
 			</div>
 		</div>
 	</div>
@@ -24,6 +24,59 @@
 	</div>
 
 	<div id="instruction">Fill the canvas with the same color before your moves are up!</div>
+
+	<div id="optionsModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h2><span id="close">&times;</span></h2>
+				<h2>Options</h2>
+			</div>
+
+			<div class="modal-body">
+				<div class="modalTop">
+					<div class="modalTopComponent">
+						<h3>Difficulty Level</h3>
+						<form>
+							<div class="radioSpan">
+								<div><input type="radio" name="difficultyLevel" value="easyLevel" class="radioButton" /></div>
+								<div class="radioText">Easy</div>
+								<div><input type="radio" name="difficultyLevel" value="mediumLevel" class="radioButton" checked/></div>
+								<div class="radioText">Medium</div>
+								<div><input type="radio" name="difficultyLevel" value="hardLevel" class="radioButton"/></div>
+								<div class="radioText">Hard</div>
+							</div>
+						</form>
+					</div>
+					<div class="modalTopComponent">
+						<h3>Canvas Size</h3>
+						<form>
+							<div class="radioSpan">
+								<div><input type="radio" name="canvasLength" value="10" class="radioButton"/></div>
+								<div class="radioText">10 &times; 10</div>
+								<div><input type="radio" name="canvasLength" value="15" class="radioButton" checked/></div>
+								<div class="radioText">15 &times; 15</div>
+								<div><input type="radio" name="canvasLength" value="20" class="radioButton"/></div>
+								<div class="radioText">20 &times; 20</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="modalBottom">
+					<h3>Color Scheme</h3>
+					<div class="colorSchemeContainer">
+						<div id="colorSchemes"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<h3><span id="confirm">Confirm</span></h3>
+			</div>
+
+		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 	<script charset="utf-8" src="./assets/js/script.js"></script>

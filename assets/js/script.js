@@ -4,28 +4,121 @@ Terms used:
 - Flood, fill color, old fill color, new fill color
 - Color Scheme, palette
 */
+
 $(document).ready(function() {
+
+	// Target the options modal
+	var optionsModal = document.getElementById('optionsModal');
+	// When the player clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == optionsModal) {
+	        optionsModal.style.display = "none";
+	    }
+	}
+
+
+	// When the player clicks the options button, open the options modal 
+	$("#options").on("click", function(){
+		optionsModal.style.display = "block";
+	});
+	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
+	$("#options").hover(
+		function() { $(this).addClass("buttonFlicker"); },
+		function() { $(this).removeClass("buttonFlicker"); }
+	);
+
+
+	// When the player clicks on `x`, close the options modal
+	$("#close").on("click", function(){
+		optionsModal.style.display = "none";
+	});
+	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
+	$("#close").hover(
+		function() {
+			$(this).addClass("buttonFlicker");
+		},
+		function() {
+			$(this).removeClass("buttonFlicker");
+		}
+	);
+
+	// When the player clicks on `Confirm`, apply the settings and close the options modal
+	$("#confirm").on("click", function() {
+		optionsModal.style.display = "none";
+	});
+	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
+	$("#confirm").hover(
+		function() {
+			$(this).addClass("buttonFlicker");
+		},
+		function() {
+			$(this).removeClass("buttonFlicker");
+		}
+	);
+
+
 	var colorSchemes = [
 		["#663399", "#ff3366", "#ff6600", "#ffff66", "#33cc00", "#3366ff"], // Kiddy
 		["#990066", "#cc66cc", "#66cccc", "#99ffff", "#99cc00", "#ffffcc"], // Ice-cream
 		["#663300","#663333","#996633","#cccc99","#999933","#336633"], // Camouflage
 		["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#003366"], // Retro 70s
 		["#66ffcc", "#ff3399", "#99cc33", "#ffff33", "#ff6600", "#6600cc"], // Tubular 80s
-		["#336699", "#cccccc", "#cc9933", "#333333", "#663300", "#99ccff"], // Colorblind
+		["#336699", "#cccccc", "#cc9933", "#333333", "#663300", "#99ccff"], // Color-blind
 	];
+	var colorSchemeNames = ["Kiddy", "Ice-cream", "Camouflage", "Retro 70s", "Tubular 80s", "Color-blind"];
+
+
+	// This populates the the color scheme options in the options menu
+	function populateColorSchemeOptions(colorSchemes, colorSchemeNames) {
+		// This checks that the node containing the color scheme options is empty before populating it
+		if ($("#colorSchemes").children().length == 0) {
+			for (var scheme = 0; scheme < colorSchemes.length; scheme++) {
+				if (scheme == 0) {
+					// The first option will be checked as the default
+					$("#colorSchemes").append("<div><input type=\"radio\" name=\"colorScheme\" value=\"colorScheme-" + scheme + "\" class=\"radioButton\"checked/></div>");	
+				} else {
+					$("#colorSchemes").append("<div><input type=\"radio\" name=\"colorScheme\" value=\"colorScheme-" + scheme + "\" class=\"radioButton\"/></div>");
+				}
+				$("#colorSchemes").append("<div class=\"schemePreview\" id=\"preview-" + scheme + "\"></div>");
+				// This creates six CSS circles and appends the six colors of every color scheme to them
+				for (var color = 0; color < colorSchemes[scheme].length; color++) {
+					$("#preview-" + scheme).append("<div class=\"optionCircle\" id=\"previewS" + scheme + "C" + color + "\" color=\"" + colorSchemes[scheme][color] + "\"></div>");
+					$("#previewS" + scheme + "C" + color).css("background-color", colorSchemes[scheme][color]);
+				}
+				// This appends the corresponding name of each color scheme beside the sample color palettes
+				$("#colorSchemes").append("<div class=\"colorSchemeName radioText\">" + colorSchemeNames[scheme] + "</div>");
+			}
+		// If the color scheme options have been populated, do nothing and return
+		} else {
+			return;
+		}
+	}
+
+
 	var colorScheme;
-	var canvasLength, canvas;
 	var oldFillColor, newFillColor;
+	var canvasLength, canvas;
 	var movesLeft;
+	const easyLevel = 20;
+	const mediumLevel = 30;
+	const hardLevel = 50;
+	var difficultyLevel; 
+
 
 	// Initializes or reinitializes the game
-	function restartGame() {
-		colorScheme = colorSchemes[0];
-		canvasLength = 15;
-		movesLeft = 30;
+	function restartGame(choosenColorScheme = 0, choosenCanvasLength = 15, choosenDifficultyLevel = mediumLevel) {
+		$("#title").text("Color Spill!");
+		$("#title").addClass("flicker");
+		$("#canvasContainer").css("opacity", "1");
+
+		colorScheme = colorSchemes[choosenColorScheme];
+		canvasLength = choosenCanvasLength;
+		difficultyLevel = choosenDifficultyLevel;
+		movesLeft = choosenDifficultyLevel;
 		canvas = createCanvas(canvasLength);
 		drawCanvas(canvas, canvasLength);
 		drawPalette(colorScheme);
+		updateMoves(choosenDifficultyLevel);
 	}
 
 
@@ -68,6 +161,8 @@ $(document).ready(function() {
 
 	// Appends the colors in the selected color scheme below the canvas
 	function drawPalette(colorScheme) {
+		// Empties the palette before appending the colors into it
+		$("#palette").empty();
 		// Runs a loop to append the colors into CSS circles
 		for (color = 0; color < colorScheme.length; color++) {
 			// Creates the circle and tags it with `id` and `color` attributes
@@ -116,9 +211,11 @@ $(document).ready(function() {
 	}
 
 	// Reduces the move by one after every valid color chosen
-	function updateMoves() {
+	function updateMoves(choosenDifficultyLevel) {
 		// If player accidentally clicks on the old fill color, no moves will be deducted. If a valid move (i.e., choosing a different fill color) is made, moves will reduce by 1
 		newFillColor != oldFillColor ? movesLeft-- : movesLeft = movesLeft;
+		$("#moves").empty();
+		$("#moves").text(movesLeft + " / " + difficultyLevel);
 	}
 
 	// Checks if there are moves left and returns true or false
@@ -179,47 +276,68 @@ $(document).ready(function() {
 		}
 	}
 
+	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then starts the game and awaits player input
+	function restartSequence() {
+		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
+		var splashSequence = setInterval(function() { restartGame(); }, 150);
+		setTimeout(function() { clearInterval(splashSequence); }, 2400);
+		awaitingPlayerInput();
+	}
 
-	// Event listener for color that the player clicks
-	$("#colorPickerZone").on("click", function(event) {
-		// Stops the flicker animation on game title once the game starts
-		$("#title").removeClass("flicker");
-		// Fades out and hides the game instruction once the game starts
-		$("#instruction").fadeOut(200);
+	// This is the main game loop that will be triggered when the player clicks to select a color
+	function awaitingPlayerInput() {
+		// Event listener for color that the player clicks
+		$("#colorPickerZone").on("click", function(event) {
+			// Stops the flicker animation on game title once the game starts
+			$("#title").removeClass("flicker");
+			// Fades out and hides the game instruction once the game starts
+			$("#instruction").fadeOut(200);
+	
+			// Grabs the `color` attribute whether the player clicks on the palette or a box within the canvas
+			colorClicked = $(event.target).attr("color");
+	
+			// If player does not click on a color in the palette or a box in the canvas, then do nothing.
+			if (colorClicked == undefined) {
+				console.log("No color clicked, execution stops here")
+				return;
+			}
+	
+			// Previous fill color can always be found in the top left box and thus assigned to old fill color
+			oldFillColor = canvas[0][0];
+			console.log("Old fill color is " + canvas[0][0]);
+	
+			// What the player clicks becomes the current fill color
+			newFillColor = colorClicked;
+			console.log("New fill color is " + newFillColor);
+	
+			console.log("Calling expandFlood(…)");
+			// Changes the flood to new fill color, thereby incorporating those already in new fill color
+			expandFlood(canvas, oldFillColor, newFillColor, 0, 0);
+			console.log("Returning from expandFlood(…)");
+	
+			// Draws canvas with new fill color and expanded flood to HTML for display
+			drawCanvas(canvas, canvasLength);
+	
+			// Updates moves left after a color has been clicked
+			updateMoves();
+			console.log("Moves left: " + movesLeft);
+	
+			// Continues or stops the game according to the moves left and whether player has completed the game
+			continueOrStopGame();
+		});
+	}
 
-		// Grabs the `color` attribute whether the player clicks on the palette or a box within the canvas
-		colorClicked = $(event.target).attr("color");
+	// This makes the restart button to flicker when the player's cursor hovers over it
+	$("#restart").hover(
+		function() { $(this).addClass("buttonFlicker"); },
+		function() { $(this).removeClass("buttonFlicker"); }
+	);
 
-		// If player does not click on a color in the palette or a box in the canvas, then do nothing.
-		if (colorClicked == undefined) {
-			console.log("No color clicked, execution stops here")
-			return;
-		}
-
-		// Previous fill color can always be found in the top left box and thus assigned to old fill color
-		oldFillColor = canvas[0][0];
-		console.log("Old fill color is " + canvas[0][0]);
-
-		// What the player clicks becomes the current fill color
-		newFillColor = colorClicked;
-		console.log("New fill color is " + newFillColor);
-
-		console.log("Calling expandFlood(…)");
-		// Changes the flood to new fill color, thereby incorporating those already in new fill color
-		expandFlood(canvas, oldFillColor, newFillColor, 0, 0);
-		console.log("Returning from expandFlood(…)");
-
-		// Draws canvas with new fill color and expanded flood to HTML for display
-		drawCanvas(canvas, canvasLength);
-
-		// Updates moves left after a color has been clicked
-		updateMoves();
-		console.log("Moves left: " + movesLeft);
-
-		// Continues or stops the game according to the moves left and whether player has completed the game
-		continueOrStopGame();
+	// When the player clicks the restart button, the restartSequence is called to restart the game with the splash sequence
+	$("#restart").on("click", function() {
+		restartSequence();
 	});
 
-	// This initializes the game for the first time upon page load
-	restartGame();
+
+	restartSequence();
 });
