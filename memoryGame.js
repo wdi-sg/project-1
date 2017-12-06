@@ -152,8 +152,7 @@ function playerSwitch(){
 
 	if(gameOver() == false){
 
-		seconds = 10;
-		document.querySelector(".playerDisplay").innerHTML = seconds + "s";
+		countDownTimer();
 
 		if(currentPlayer == 0){
 				currentPlayer = 1;
@@ -218,11 +217,21 @@ var timer;
 
 function countDownTimer(){
 
+	clearInterval(timer);
+
+	seconds = 10;
+
+	document.querySelector(".timerDisplay").innerHTML = seconds + "s";
+
+	setTimeout(function(){
+		document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";
+	}, 1000);
+
 	timer = setInterval(function(){
 
 		if(gameOver() == false){
 
-			document.querySelector(".playerDisplay").innerHTML = seconds-- + "s";
+			document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";
 
 		}
 
@@ -282,7 +291,7 @@ function gameOver(){
 
 	if(playerScores[0] + playerScores[1] == 8){
 
-		document.querySelector(".playerDisplay").innerHTML = "Game ended!";
+		document.querySelector(".timerDisplay").innerHTML = "Game ended!";
 		return true;
 	}
 

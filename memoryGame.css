@@ -54,7 +54,7 @@ body {
 	background-color: #8A8AEF;
 }
 
-.playerDisplay {
+.timerDisplay {
 	position: absolute;
 	height: 50px;
 	width: 400px;
