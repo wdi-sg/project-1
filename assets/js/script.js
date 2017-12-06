@@ -42,6 +42,7 @@ $(document).ready(function() {
 		}
 	);
 
+
 	// When the player clicks on `Confirm`, apply the settings and close the options modal
 	$("#confirm").on("click", function() {
 		optionsModal.style.display = "none";
