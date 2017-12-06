@@ -1,4 +1,4 @@
-![](https://en.wikipedia.org/wiki/Connect_Four#/media/File:Connect_4_Board_and_Box.jpg)
+![](/assets/images/Connect_4_Board_and_Box.jpg)
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Connect4!
 
@@ -13,7 +13,7 @@ from the top. Played in a board of seven columns and six rows, the total number 
 
 ### Instructions
 
-![](https://en.wikipedia.org/wiki/Connect_Four#/media/File:Connect_Four.gif)
+![](/assets/images/Connect_Four_Gameplay.gif)
 
 The 2 player game starts out with player 1 making the first move. Click on any column to place the coin. Once a player has connected 4 horizontally, vertically or diagonally, the player wins!
 
