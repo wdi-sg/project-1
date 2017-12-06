@@ -50,6 +50,7 @@ h2{
   width: 80px;
   height: 80px;
   border: 5px solid rgb(255, 255, 255);
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,6 +100,7 @@ h2{
   margin: 20px;
   background-color: rgb(32, 197, 181);
   color: white;
+  border-radius: 10px;
 }
 .button:hover{
   background-color: rgb(185, 17, 15);
@@ -118,12 +120,13 @@ h2{
 .modal-content{
   background-color: rgb(153, 204, 255);
   color: black;
-  margin: 15% auto;
+  margin: 20% auto;
   padding: 20px;
   width: 50%;
   font-family: "Handlee", sans-serif;
   font-size: 24px;
   text-align: center;
+  border-radius: 10px;
 }
 .game-slide{
   display: none;
@@ -210,10 +213,11 @@ form{
     height: 50px;
   }
   .cell{
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border: 1px solid rgb(255, 255, 255);
     font-size: 18px;
+    border-radius: 5px;
   }
   .buttons{
     margin-top: 10px;

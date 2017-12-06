@@ -1,10 +1,10 @@
 /*
 Pseudo code:
-1. AI and player grids are drawn and appears when webpage is loaded.
-2. Get AI to give a random direction.
+1. Computer and Player grids are drawn and appears when webpage is loaded.
+2. Generate a random direction.
 3. Ensure that this random direction still stays within the grid.
 4. Apply this correct random direction for a specified number of iterations.
-5. Add event handler for player grid when a move is made.
+5. Add event handler for Player grid when a move is made.
 6. Check for win.
 7. Next stage feature.
 8. Undo move feature.
@@ -56,7 +56,7 @@ $(document).ready(function() {
       $("#player" + currentPosition).removeClass("animate");
       var currentCount = parseInt(document.querySelector("#player" + currentPosition).textContent);
       document.querySelector("#player" + currentPosition).textContent = (currentCount - 1).toString();
-      colorGrid("player");
+      colourGrid("player");
       $("#player" + oldPosition).addClass("animate");
       currentPosition = oldPosition;
       playerMove.pop();
@@ -74,7 +74,7 @@ $(document).ready(function() {
     drawGrid(playerGrid, "player");
     playerMove = [0];
     $("#player0").text("1");
-    colorGrid("player");
+    colourGrid("player");
     $("#player0").addClass("animate");
     currentPosition = 0;
   });
@@ -137,9 +137,9 @@ var gameLoad = function() {
   drawGrid(playerGrid, "player");
   drawGrid(comGrid, "com");
   comMoves(0, stage);
-  colorGrid("com");
+  colourGrid("com");
   $("#player0").text("1");
-  colorGrid("player");
+  colourGrid("player");
   $("#player0").addClass("animate");
 };
 
@@ -166,7 +166,7 @@ var drawGrid = function(container, side) {
 };
 
 // applying background color for grids
-var colorGrid = function(side) {
+var colourGrid = function(side) {
   for (var i = 0; i < 25; i++) {
     var gridNumberLevel = parseInt(document.querySelector("#" + side + i).textContent);
     var gridNumberMultiples = gridNumberLevel % 5;
@@ -287,7 +287,7 @@ var userMoves = function(current, userKey) {
       $("#player" + current).removeClass("animate");
       var count = parseInt(document.querySelector("#player" + userMove[0]).textContent);
       document.querySelector("#player" + userMove[0]).textContent = (count + 1).toString();
-      colorGrid("player");
+      colourGrid("player");
       $("#player" + userMove[0]).addClass("animate");
       gameComplete();
       playerMove.push(userMove[0]);
@@ -319,8 +319,8 @@ var swipeDetect = function(screen, callback) {
   var swipeDir, dist, startX, startY, startTime, distX, distY, elapsedTime;
   var allowedTime = 300;
   var thresholdX = 80;
-  var thresholdY = 120;
-  var restraint = 80;
+  var thresholdY = 80;
+  var restraint = 60;
   handleSwipe = callback || function(swipeDir) {}
 
   touchSurface.addEventListener("touchstart", function(event) {
