@@ -1,0 +1,209 @@
+.container{
+	/*position: relative;*/
+}
+
+
+body{
+	background-color: black;
+}
+
+
+
+.backdrop{
+}
+.backgroundpic{
+	position: absolute;
+	
+	z-index: -1;
+	
+	margin-left: 320px;
+	margin-top: 75px;
+
+}
+
+#text{
+	/*position: absolute;*/
+	margin-left: 0px;
+	margin-top:0px;
+	font-family: arial;
+	font-weight: bold;
+	color: white;
+	font-size: 20px;
+	text-shadow: 2px 1px black ;
+
+
+}
+
+#decisions{
+	/*position: absolute;*/
+	margin-left: 70px;
+	margin-top: 200px;
+	width:100px;
+	height: 100px;
+
+}
+
+
+.newgametext{
+	margin-left: 300px;
+	margin-top: 10px;
+	width: 500px;
+	height: 200px;
+
+}
+
+.newgameoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+}
+
+#startscreen{
+	margin-top: 10px;
+	margin-left: 200px;
+	width: 400px;
+	height: 400px;
+}
+
+.cropcontent{
+	margin-left:100px;
+}
+
+.cropoption{
+
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+	
+}
+
+.storetext{
+	margin-left: 300px;
+	margin-top: 10px;
+	width: 500px;
+	height: 50px;
+}
+
+.equipmenttext{
+
+}
+
+.equipmentoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+}
+
+.fertilizertext{
+
+}
+
+.fertilizeroption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+}
+
+.pestcontroltext{
+
+}
+
+.pestcontroloption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+}
+
+.itemsboughttext{
+
+}
+
+.itemsboughtoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+
+.totalcoststext{
+
+}
+
+
+.totalcostsoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+
+.harvesttext{
+
+}
+
+
+.harvestoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+.cropsharvestedtext{
+
+}
+
+.cropsharvestedoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+.finalsaletext{
+
+}
+
+.finalsaleoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+.finalscoretext{
+
+}
+
+.finalscore{
+	width: 500px;
+	height: 40px;
+	margin-left: 300px;
+	margin-top: 10px;
+
+
+}
+
+
+
+
+/*@media only screen and (max-width: 500px;)*/
