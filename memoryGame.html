@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="../test site/js/jq.js"></script>
+	<script src="../test site/js/bootstrap.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Orbitron|Vollkorn+SC" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="memoryGame.css">
+	<title> Memory Game </title>
+</head>
+<body>
+	<div class="gameBoard">
+	<div class="gameTopSection">
+		<div class="gameTitle"> Memory Game Versus </div>
+		<div class="playerOne"> Player One 
+			<div class="playerScore" id="p1">0</div>
+		</div>
+		<div class="statusMenu">
+			<div class="currentPlayer"> Time Remaining: 
+				<div class="playerDisplay"> None </div>
+			</div>
+			<div class="newGame">
+				<button id="reset"> New Game </button>
+			</div>
+		</div>
+		<div class="playerTwo"> Player Two 
+			<div class="playerScore" id="p2">0</div>
+		</div>
+	</div>
+	<div id="mainBoard"></div>
+	</div>
+
+	<!-- Test for New Cards Functionality -->
+
+	<!-- <div class="testBoard"></div> -->
+
+	<script src="memoryGame.js"></script>
+</body>
+</html>
