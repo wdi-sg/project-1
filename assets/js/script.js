@@ -98,28 +98,32 @@ $(document).ready(function() {
 
 	var colorScheme;
 	var oldFillColor, newFillColor;
-	var canvasLength, canvas;
+	const canvasLengthArray = [10, 15, 20];
+	var canvasLength;
+	var canvas;
 	var movesLeft;
-	const easyLevel = 20;
-	const mediumLevel = 30;
-	const hardLevel = 50;
-	var difficultyLevel; 
+	const movesArray = [[26, 36, 46], [22 ,32, 42], [20, 30, 40]]
+	// Array at index 0 for easy, 1 for medium, 2 for difficult
+	var difficultyLevel;
+	// 0 for easy, 1 for medium, 2 for difficult
 
 
 	// Initializes or reinitializes the game
-	function restartGame(choosenColorScheme = 0, choosenCanvasLength = 15, choosenDifficultyLevel = mediumLevel) {
+	function restartGame(chosenColorScheme = 0, chosenCanvasLength = canvasLengthArray[1], chosenDifficulty = 1) {
 		$("#title").text("Color Spill!");
 		$("#title").addClass("flicker");
 		$("#canvasContainer").css("opacity", "1");
 
-		colorScheme = colorSchemes[choosenColorScheme];
-		canvasLength = choosenCanvasLength;
-		difficultyLevel = choosenDifficultyLevel;
-		movesLeft = choosenDifficultyLevel;
-		canvas = createCanvas(canvasLength);
-		drawCanvas(canvas, canvasLength);
+		oldFillColor = null;
+		newFillColor = null;
+		colorScheme = colorSchemes[chosenColorScheme];
+		canvasLength = chosenCanvasLength;
+		difficultyLevel = chosenDifficulty;
+		movesLeft = movesArray[chosenDifficulty][canvasLengthArray.indexOf(chosenCanvasLength)];
+		canvas = createCanvas(chosenCanvasLength);
+		drawCanvas(canvas, chosenCanvasLength);
 		drawPalette(colorScheme);
-		updateMoves(choosenDifficultyLevel);
+		updateMoves(chosenDifficulty, chosenCanvasLength);
 	}
 
 
@@ -174,7 +178,7 @@ $(document).ready(function() {
 	}
 
 
-	// Existing flood merges with boxes already in newly choosen fill color by changing to it, thus expanding the flood
+	// Existing flood merges with boxes already in newly chosen fill color by changing to it, thus expanding the flood
 	function expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate) {
 		/*
 		Before changing those already in the flood to the new fill color, stop and exit this function if
@@ -212,11 +216,11 @@ $(document).ready(function() {
 	}
 
 	// Reduces the move by one after every valid color chosen
-	function updateMoves(choosenDifficultyLevel) {
+	function updateMoves(chosenDifficulty, chosenCanvasLength) {
 		// If player accidentally clicks on the old fill color, no moves will be deducted. If a valid move (i.e., choosing a different fill color) is made, moves will reduce by 1
 		newFillColor != oldFillColor ? movesLeft-- : movesLeft = movesLeft;
 		$("#moves").empty();
-		$("#moves").text(movesLeft + " / " + difficultyLevel);
+		$("#moves").text(movesLeft + " / " + movesArray[chosenDifficulty][canvasLengthArray.indexOf(chosenCanvasLength)]);
 	}
 
 	// Checks if there are moves left and returns true or false
@@ -320,7 +324,7 @@ $(document).ready(function() {
 			drawCanvas(canvas, canvasLength);
 	
 			// Updates moves left after a color has been clicked
-			updateMoves();
+			updateMoves(difficultyLevel, canvasLength);
 			console.log("Moves left: " + movesLeft);
 	
 			// Continues or stops the game according to the moves left and whether player has completed the game
