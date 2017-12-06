@@ -313,7 +313,7 @@ $('.btn').on('click', function() {
     var winOrLose = checkForWin(sequenceInPlay, playerSequence);
 
     if (winOrLose) {
-      if (level == 2) {
+      if (level == 25) {
         $('.modal-content2 h1').html('Congratulations!!<br>Your focus has reached 100%!!');
         $('.next-or-retry').text('End Game');
         $('.next-or-retry').attr('data-id', 2);
