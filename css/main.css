@@ -1,0 +1,191 @@
+html{
+	height: 100%;
+}
+body{
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+    }
+
+
+
+#flexContainer{
+	display: flex;
+}
+
+#container1, #container3{
+	flex: 2;
+	background-color: #AFD3D1;
+	height: 100vh;
+}
+
+#container2{
+	flex: 5;
+	background-color: #D1D3D2;
+	text-align: center;
+	position: relative;
+	height: 100vh;
+}
+
+
+#titleDiv{
+	text-align: center;
+	width: 260px;
+	height: 75px;
+	/*border: solid 3px blue;*/
+	margin: 10px auto 0 auto;
+}
+
+#gameButtonDiv{
+	text-align: center;
+	width: 260px;
+	height: 75px;
+	margin: 410px auto 0 auto;
+}
+
+#scoreToBeatDiv{
+	text-align: center;
+	width: 260px;
+	height: 75px;
+	border: solid 5px #FFFFFF;
+	border-radius: 25px;
+	margin: 10px auto 0 auto;
+	background-color: #D2D2D3;
+	display: none;
+}
+
+#player1FinalScore{
+	margin-top: 23px;
+	font-size: 20px;
+	font-family: 'Fira Sans', sans-serif;
+	color: #F0787A;
+
+}
+
+#computerHalf{
+	width: 100%;
+	height: 33%;
+}
+
+#playerHalf{
+	position: absolute;
+	display: none;
+	top: 250px;
+	width: 100%;
+	height: 50%;
+}
+
+#timerDiv{
+	display: none;
+}
+
+#questionBox{
+	margin: 50px auto 0 auto;
+	height: 100px;
+	width: 550px;
+	background-color: #F2777A;
+	border: solid 5px #FFFFFF;
+	border-radius: 20px;
+}
+
+#questionBoxText{
+	font-size: 35px;
+	font-family: 'Fira Sans', sans-serif;
+	color: #FFFFFF;
+	margin-top: 25px;
+}
+
+#answerBox{
+	height: 100px;
+	width: 350px;
+	background-color: #AED4CE;
+	border: solid 5px #FFFFFF;
+	border-radius: 20px;
+	margin: 0 auto 20px auto;
+	display: none;
+
+}
+
+#answerBoxText{
+	margin-top: 30px;
+	font-size: 30px;
+	font-family: 'Fira Sans', sans-serif;
+	color: #FFFFFF;
+}
+
+
+#curPlayerNScore{
+	margin-top: 10px;
+	display: inline;
+}
+
+#displayCurrentPlayer{
+	display: inline;
+	margin: 10px 0 0 -200px;
+	width: 100px;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+#displayCurrentScore{
+	display: inline;
+	margin: 10px auto 0 30px;
+	width: 100px;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+#playerInputArea{
+	margin: 5px auto 0 auto;
+}
+
+#playerInputBox{
+	width: 500px;
+	height: 80px;
+	font-size: 50px;
+	font-family: 'Fira Sans', sans-serif;
+	text-align: center;
+	color: #D1D2D4;
+	border: solid 5px #E1E3E4;
+}
+
+#newGameButton{
+	border-radius: 20px;
+	background-color: #F0787A;
+	font-size: 35px;
+	font-family: 'Fira Sans', sans-serif;
+	color: #AFD3CF;
+	width: 250px;
+	height: 70px;
+	border: solid 5px #FFFFFF;
+}
+
+#newGameButton:active {
+	transform: translateY(4px);
+}
+
+#newGameButton:hover {
+	background-color: #ba595c;
+}
+
+#logoImg{
+	height: 75px;
+	width: auto;
+}
+
+#titleText{
+	height: 75px;
+	width: 260px;
+	margin: 0 auto 60px auto;
+	font-size: 60px;
+	font-family: 'Teko', sans-serif;
+	color: #F0787A;
+}
+
+#countDownTimer{
+	font-size: 24px;
+	font-family: 'Fira Sans', sans-serif;
+	color: #F0787A;
+}
