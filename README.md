@@ -1,4 +1,4 @@
-# Project 1: Memory Game
+# Project #1: Memory Game
 
 ### Table of Contents
 

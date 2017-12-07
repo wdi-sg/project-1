@@ -15,7 +15,8 @@
 $(document).ready(function(){
 
 // Core Functions
-
+var timer;
+var timerCorrector;
 var modal = document.getElementById("prompt");
 var cardsInPlay = [];
 var playerScores = [0, 0];
@@ -213,33 +214,25 @@ function revert(){
 
 // Count down timer
 
-var timer;
+
 
 function countDownTimer(){
 
 	clearInterval(timer);
 
+	clearTimeout(timerCorrector);
+
 	seconds = 10;
 
 	document.querySelector(".timerDisplay").innerHTML = seconds + "s";
 
-	setTimeout(function(){
-		document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";
-	}, 1000);
+	timerCorrector = setTimeout(function(){document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";}, 1000);
 
 	timer = setInterval(function(){
 
-		if(gameOver() == false){
+		if(gameOver() == false){document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";}
 
-			document.querySelector(".timerDisplay").innerHTML = seconds-- + "s";
-
-		}
-
-		if(seconds < -1){
-
-			playerSwitch();
-
-		}
+		if(seconds < -1){playerSwitch();}
 
 	}, 1000);
 }
@@ -340,7 +333,6 @@ function restart(){
  	$(".playerScore").empty().append("0");
  	$(".playerOne").css('color', 'red');
  	$(".playerTwo").css('color', 'black');
- 	clearInterval(timer);
  	countDownTimer();
 }
 
@@ -349,6 +341,7 @@ $(".reset").click(function(){
 	restart();
 });
 
+// Modal Button Reset Function
 
 $("#modalReset").click(function(){
 	$(".modalContent").removeClass("openModal");
