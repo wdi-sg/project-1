@@ -21,6 +21,10 @@ body {
 	text-align: center;
 	line-height: 50px;
 	font-size: 30px;
+	-moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*Status Styling*/
@@ -51,6 +55,7 @@ body {
 	margin: 0 auto;
 	display: table;
 	padding-top: 0px;
+	min-width: 490px;
 }
 
 .indicatorCol {
@@ -62,7 +67,6 @@ body {
     border-radius: 50%;
     float: left;
 	margin: 0px 5px;
-	/*background-color: white;*/
 }
 
 .c4Table {
@@ -71,6 +75,7 @@ body {
 	background-color: #015a8a; /* #093d95 */
 	border-radius: 25px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	min-width: 490px;
 }
 
 .c4Tr {
@@ -107,7 +112,8 @@ button {
 }
 
 button:hover {
-	-webkit-transition-duration: 0.5s; 
+	-webkit-transition-duration: 0.5s;
+	-moz-transition-duration: 0.5s;
     transition-duration: 0.5s;
     background-color: #f44336;
 	color: #ffeb3b;
@@ -126,6 +132,9 @@ button:hover {
 		width: 130px;
     	height: 130px;
 	}
+	.board {
+		padding: 100px 0px;
+	}
 	.c4Td {
 		width: 130px;
 	    height: 130px;
@@ -133,8 +142,19 @@ button:hover {
 	button {
 		font-size: 60px;
 	}
+	/*Remove hover on mobile*/
+	.indicator {
+		display: none;
+	}
+	button:hover {
+		background-color: #ffeb3b;
+		color: #f44336;
+	}
+	/*Active must come after hover*/
+	button:active {
+		-webkit-transition-duration: 0.5s; 
+	    transition-duration: 0.5s;
+	    background-color: #f44336;
+		color: #ffeb3b;
+	}
 }
-
-/*Red - #f44336*/
-/*Yellow - #ffeb3b*/
-/*Grey - #333333*/

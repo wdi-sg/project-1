@@ -24,7 +24,7 @@ $(document).ready(function (){
 	var currentPlayer = 1; //Player 1 = Red, Player 2 = Yellow
 	
 	//---------- Run on Load ----------
-	newGame();
+	begin();
 
 	//---------- Buttons ----------
 	//New Game Button
@@ -378,6 +378,8 @@ $(document).ready(function (){
 	}
 
 	function newGame() {
+		$(".board").hide();
+		$(".status").hide();
 		board = [];
 		currentPlayer = 1;
 		$(".c4Table").remove();
@@ -388,6 +390,15 @@ $(document).ready(function (){
 		addListener();
 		setIndicatorHover();
 		console.log("********** New Game **********");
+		$(".board").fadeIn(1000);
+		$(".status").fadeIn(1000);
+	}
+
+	function begin() {
+		setStatus("Click on New Game to Start!");
+		$(".status").addClass("blink");
+		drawBoard();
+		$("div[id*='-']").css("background-color","#015a8a");
 	}
 
 	//Debugging Function
@@ -401,5 +412,23 @@ $(document).ready(function (){
 			print+= ("\n");
 		});//End Row
 		console.log(print);
+	}
+
+	//---------- AI ----------
+
+	var Ai = class Ai {
+		constructor(difficulty) {
+			this.difficulty = difficulty;
+		}
+
+		//3 Levels of Difficulty
+		//1. Easy / Caveman
+		//2. Normal / Present
+		//3. Impossible / Year 3017
+
+		//Function to get the Ai to play move
+		playMove() {
+			
+		}
 	}
 });
