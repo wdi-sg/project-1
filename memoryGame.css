@@ -122,11 +122,11 @@ img {
 	-webkit-transform-style: preserve-3d;
  	transition: all 0.5s linear;
  	-webkit-transition: all 0.5s linear;
- 	/*perspective: 1000px;*/
+ 	perspective: 500px;
 }
 
 .flipped {
-	transform: perspective(1000px) rotateY(180deg);
+	transform: perspective(500px) rotateY(180deg);
 }
 
 .face {
@@ -139,7 +139,7 @@ img {
 
 .face.back {
 	display: block;
-	transform: perspective(1000px) rotateY(180deg);
+	transform: perspective(500px) rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
 }
 
