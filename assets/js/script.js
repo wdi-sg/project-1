@@ -25,30 +25,14 @@ $(document).ready(function() {
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, event.which);
     }
-    if (gameComplete()) {
-      $("#winBox").fadeIn(800).css("display", "block");
-      if (stage % 10 === 9) {
-        var code = stage + 1;
-        $(".modal-code").empty();
-        $(".modal-code").append("Code: grid" + code);
-      }
+    if (gameStart == true && gameComplete() === true) {
+      gameNext();
     }
+    // console.log("Com:");
+    // console.log(comMove);
     // console.log("Player:");
     // console.log(playerMove);
     // console.log(gameComplete());
-  });
-
-  $("#next").on("click", function() {
-    $("#winBox").css("display", "none");
-    $(".modal-code").empty();
-    $(".row").remove();
-    stage++;
-    gameLoad();
-    comMove = [0];
-    playerMove = [0];
-    currentPosition = 0;
-    $(".level").empty();
-    $(".level").text("Level " + stage);
   });
 
   $("#undo").on("click", function() {
@@ -122,28 +106,55 @@ $(document).ready(function() {
       default:
         swipeConverted = 0;
     }
+
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, swipeConverted);
     }
-    if (gameComplete()) {
-      $("#winBox").fadeIn(800).css("display", "block");
-      if (stage % 10 === 9) {
-        var code = stage + 1;
-        $(".modal-code").empty();
-        $(".modal-code").append("Code: grid" + code);
-      }
+    if (gameStart == true && gameComplete() === true) {
+      gameNext();
     }
   });
 });
 
+// functions to call when the game loads
 var gameLoad = function() {
-  drawGrid(playerGrid, "player");
-  drawGrid(comGrid, "com");
-  comMoves(0, stage);
-  colourGrid("com");
-  $("#player0").text("1");
-  colourGrid("player");
-  $("#player0").addClass("animate");
+    drawGrid(playerGrid, "player");
+    drawGrid(comGrid, "com");
+    comMoves(0, stage);
+    colourGrid("com");
+    $("#player0").text("1");
+    colourGrid("player");
+    $("#player0").addClass("animate");
+};
+
+// animations for text and grid when moving to the next level
+var gameNext = function() {
+  stage++;
+  comMove = [0];
+  playerMove = [0];
+  $(".game").fadeTo(200, 0, function() {
+    $(".row").remove();
+    gameLoad();
+    $(".game").fadeTo(500, 1);
+  });
+  currentPosition = 0;
+  $(".level").fadeTo(200, 0, function() {
+    $(".level").empty();
+    $(".level").text("Level " + stage);
+    $(".level").fadeTo(500, 1);
+  });
+  $(".complete").empty();
+  $(".complete").append("Level Complete!");
+  $(".complete").fadeTo(200, 1, function() {
+    setTimeout(function() {
+      $(".complete").fadeTo(800, 0);
+    }, 2000);
+  });
+  if (stage % 10 === 0) {
+    var code = stage;
+    $(".complete").empty();
+    $(".complete").append("Level Complete! Code: grid" + code);
+  }
 };
 
 // function to draw grid
@@ -263,8 +274,6 @@ var comMoves = function(current, iterations) {
     var count = parseInt(document.querySelector("#com" + nextId).textContent);
     document.querySelector("#com" + nextId).textContent = (count + 1).toString();
   }
-  // console.log("Com:");
-  // console.log(comMove);
 };
 
 // changing styles and grid numbers when player makes moves
@@ -309,7 +318,7 @@ var userMoves = function(current, userKey) {
 var gameComplete = function() {
   var gameStatus = true;
   for (var i = 0; i < 25; i++) {
-    if (document.querySelector("#player" + i).textContent !== document.querySelector("#com" + i).textContent) {
+    if ($("#player" + i).text() !== $("#com" + i).text()) {
       gameStatus = false;
     }
   }

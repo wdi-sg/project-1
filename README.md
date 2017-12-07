@@ -35,6 +35,22 @@ For example, at level 4, 4 moves are needed to complete the game while at level 
 
 ---
 
+### Game Functions Available
+
+1. Undo feature
+
+Last move will be canceled and the previous grid position will be reverted.
+
+2. Reset feature
+
+Entire grid will be reverted to its original state without any change in the game level.
+
+3. Fast forward to a level feature
+
+Player is allowed to fast forward to levels which are in the multiple of 10 to resume game progress. This code will be given after the completion of one level before the levels which are in the multiple of 10.
+
+---
+
 ### Code Structure
 
 1. Computer and Player grids are drawn and appears when webpage is loaded.
@@ -89,6 +105,7 @@ Global array `playerMove` is used to keep track of the moves which the Player ha
 ### Areas to Improve on
 
 * Mobile interface swiping feature
+* Game save feature
 
 ---
 
