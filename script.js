@@ -1,15 +1,16 @@
 $(document).ready(function(){
 
-var initialSum=1000;
+var initialSum=2000;
 var sumLeft;
 
 //crop type
-var c1={name:"Sugarcane",num:1,cost:300,seedCostModifier:0.3,premium:1.0,des:"You can never go wrong with sugarcanes -$300"}
-var c2={name:"Coffee",num:2,cost:500,seedCostModifier:0.5,premium:1.2,des:"There is no shortage of demand for coffee -$500"}
-var c3={name:"Cotton",num:3,cost:600,seedCostModifier:0.6,premium:1.4,des:"Cotton is always needed to make clothes. -$600"}
-var c4={name:"Tobacco",num:4,cost:800,seedCostModifier:0.8,premium:1.6, des:"Tobacco is an excellent investment -$800"}
+var c1={name:"Sugarcane",num:1,cost:300,seedCostModifier:0.3,premium:0.6,des:"You can never go wrong with sugarcanes -$300"}
+var c2={name:"Coffee",num:2,cost:500,seedCostModifier:0.5,premium:0.8,des:"There is no shortage of demand for coffee -$500"}
+var c3={name:"Cotton",num:3,cost:600,seedCostModifier:0.6,premium:1.0,des:"Cotton is always needed to make clothes. -$600"}
+var c4={name:"Tobacco",num:4,cost:800,seedCostModifier:0.8,premium:1.2, des:"Tobacco is an excellent investment -$800"}
+var c5={name:"Cannibis",num:5,cost:1100,seedCostModifier:1.1,premium:1.8, des:"Cannibis is a high-risk, high-reward venture -$1100"}
 
-var crops=[c1,c2,c3,c4];
+var crops=[c1,c2,c3,c4,c5];
 
 
 function findObjectByKey(array, key, value) {
@@ -41,7 +42,7 @@ $(".container").on("click", ".newgameoption" ,function(){
 
 $(".backdrop").append("<img src='http://capreform.eu/wp-content/uploads/2015/08/Arable-crops.jpg' class='backgroundpic'>")
 
-$("#text").append("<div class='cropcontent'>Select the type of crop you want to plant:</div>")
+$("#text").append("<div class='cropcontent'>You are a new farmer who has just inherited a small plot of farmland and a substantial sum of $"+initialSum+". Realizing the potentially greater profits that cash crops can bring over traditional crops, you decided to go all in and dedicate your entire fortune and farmland towards farming cash crops. <br><br> The first thing to do after deciding to be a cash crop farmer is to decide on the type of crop to farm. Usually, the higher the cost of the seeds, the higher the price the harvested crop would sell for. <br><br>Select the type of crop you want to plant:</div>")
 
 
 for (var i = 0; i < crops.length; i++) {
@@ -60,7 +61,7 @@ $(".container").on("click", ".cropoption" ,function(){
         $(".backgroundpic").remove();
 
         $(".backdrop").append("<img src='https://i.pinimg.com/736x/af/b5/1b/afb51be644760c0b6d3d5124b83f0384--pirate-sims-.jpg' class='backgroundpic'>")
-        $("#text").append("<div class='storetext'>Now to the store to buy stuff:</div>")
+        $("#text").append("<div class='storetext'>After choosing the type of crop you want to plant, you need to take necessary measures to maximize your harvest. To do that, you head to the store in the town to buy the necessary farming and pest control equipment as well as fertilizers.</div>")
         $("#decisions").append("<button class='storetext' id='choices' > TO THE STORE </button>")
         	var userClicked = $(this).attr("id");
         	chosenCrop = findObjectByKey(crops, "name", userClicked);
@@ -77,9 +78,9 @@ $(".container").on("click", ".cropoption" ,function(){
 
 
 //equipment and stuff
-var basicEquipment= {name:"basic",cost:100,des:"Only the bare necessities. -$100",res:""}
-var upgradedEquipment= {name:"upgraded",cost:200,des:"Better than average equipment to make life easier -$200",res:"As you invested more money in equipment you got better yields"}
-var bestEquipment= {name:"best",cost:300,des:"The best and latest equipment plus a few strong oxen -$300",res:"As you paid top dollar to procure the best equipment..."}
+var basicEquipment= {name:"basic",cost:100,des:"Only the bare necessities, like a few rakes and sickles. -$100",res:"as you only bought the basics, your yields did not see any improvement as a result of using better farming tools."}
+var upgradedEquipment= {name:"upgraded",cost:200,des:"More equipment to make life easier -$200",res:"as you invested more money in equipment you got better yields"}
+var bestEquipment= {name:"best",cost:300,des:"The best and latest equipment plus a few strong oxen -$300",res:"you paid top dollar to procure the best equipment and as a result of this crop output has increased significantly."}
 var equipments=[basicEquipment,upgradedEquipment,bestEquipment]
 
 $(".container").on("click", ".storetext", function(){
@@ -100,9 +101,9 @@ for (var i = 0; i < equipments.length; i++) {
 
 var chosenEquipment;
 // //fertilizer types
-var basicFertilizer= {name:"basic",cost:100,des:"Cheap cow dung. That is all -$100",res:"Cow dung poop good for crops yada yada"}
-var upgradedFertilizer= {name:"upgraded",cost:200,des:"Upgraded cow dung. That is all -$200",res:"upgraded smelly cow dung diarahea even better than normal cow dung"}
-var bestFertilizer= {name:"best",cost:300,des:"The best cow dung that will ever grace the surface of your fields. -$300", res:"wagyu cow dung diarahea with laxatives produce best harvests in the fields"}
+var basicFertilizer= {name:"basic",cost:100,des:"Fertilizer gotten mainly off excrement from questionable sources along the streets.Though their quality is questionable, it is probably better than no fertilizer at all.  -$100",res:"the basic level of fertilizer applied marginally improved the output of your crops "}
+var upgradedFertilizer= {name:"upgraded",cost:200,des:"High-grade fertilizer gotten from organic sources that will be extremely nutritous for your crops-$200",res:"the investment in high-grade fertilizer paid off quite handsomely and has greatly improved your harvest"}
+var bestFertilizer= {name:"best",cost:300,des:"Even more organic high-grade fertilizer. Of the same quality as the above option but with twice the quantity and with a big discount thrown in. There is never too much of a good thing. -$300", res:"the excessive amount of fertilizer applied to your crops resulted in over-fertilization and has severely diminished the output of your crops. Guess too much of a good thing may result in bad outcomes"}
 var fertilizers=[basicFertilizer,upgradedFertilizer,bestFertilizer]
 
 $(".container").on("click",".equipmentoption",function(){
@@ -130,9 +131,9 @@ for (var i = 0; i < fertilizers.length; i++) {
 var chosenFertilizer;
 
 // //pest-control measures
-var basicPestControl= {name:"basic",cost:100,des:"A couple of scarecrows -$100",res:"The scarecrows did job well. However, they were not very effective in keeping out the bugs and weeds and still some crops were lost."}
-var upgradedPestControl= {name:"upgraded",cost:200,des:"More scarecrows and pesticides -$200",res:"The a potent combination of scarecrows and pesticides that you invested in have successfully kept most of the pests at bay, though there are still some crops lost to the most hardy of bugs."}
-var bestPestControl= {name:"best",cost:300,des:"The most comprehensive pest control measures ever known to man -$300", res:"The comprehensive pest-control measures have paid off and losses of crop due to pests and weeds have been kept to a bare minimum."}
+var basicPestControl= {name:"basic",cost:100,des:"A simple fence to keep out unwanted animals -$100",res:"the fences did their job in keeping out larger animals. However, they were not very effective against birds and bugs, resulting in some crops being lost."}
+var upgradedPestControl= {name:"upgraded",cost:200,des:"More fences, plus a few scarecrows  -$200",res:"the scarecrows did job well. However, they were not very effective in keeping out the bugs and weeds and still some crops were lost."}
+var bestPestControl= {name:"best",cost:300,des:"A comprehensive pest control programme involving pesticides, fences, scarecrows and herbicides to counteract pests of all types  -$300", res:"the comprehensive pest-control measures have paid off and losses of crop due to pests and weeds have been kept to a bare minimum."}
 var pesticides=[basicPestControl,upgradedPestControl,bestPestControl]
 
 $(".container").on("click",".fertilizeroption",function(){
@@ -171,7 +172,7 @@ $(".container").on("click",".pestcontroloption",function(){
         	chosenPestControl = findObjectByKey(pesticides, "des", userClicked);
 
 	console.log(chosenPestControl);
-        $("#text").append("<div class='itemsboughttext' id='choices'>Bought all items time to farm:</div>")
+        $("#text").append("<div class='itemsboughttext' id='choices'>You leave the shop with a cart full of your purchases. As you arrive back at your farm after an exhausting day of travelling and shopping, you unearth a dusty record that keeps track of your personal finances.  </div>")
 
 
 
@@ -195,8 +196,8 @@ $(".container").on("click",".itemsboughtoption",function(){
 	totalCost= chosenCrop.cost+chosenEquipment.cost+chosenFertilizer.cost+chosenPestControl.cost;
 	sumLeft= initialSum-totalCost;
 console.log(totalCost);
-	$("#text").append("<div class='totalcoststext' id='choices'>You spent $"+totalCost+" You have $"+sumLeft+" left</div>")
-	$("#decisions").append("<button class='totalcostsoption' id='choices' >Click for harvest results</button>")
+	$("#text").append("<div class='totalcoststext' id='choices'>You spent $"+totalCost+" at the shop.You have $"+sumLeft+" left. Hopefully the upcoming harvest will be a good one.</div>")
+	$("#decisions").append("<button class='totalcostsoption' id='choices' >Now to sow the crops and wait for the harvest </button>")
 
 });
 
@@ -205,11 +206,11 @@ console.log(totalCost);
 
 
 //Harvest types:
-var awfulHarvest={type:"famine",modifier:0.2, des:"This season's harvest has been the worst in living memory"}
-var poorHarvest={type:"poor",modifier:0.4,des:"The amount of crops sown are far lower than expected, but hey, it could have been worse."}
-var normalHarvest={type:"normal",modifier:1.0,des:"Normal harvest. All is well and good. As per normal."}
-var goodHarvest={type:"good",modifier:1.5,des:"One of the better harvests"}
-var bountifulHarvest={type:"bountiful",modifier:2.0,des:"Amazing. Best harvest in years"}
+var awfulHarvest={premium:2,type:"a famine",modifier:0.01, des:"This season's harvest has been the worst in living memory. On the bright side, a shortage may also mean higher prices and a better deal in the marketplace."}
+var poorHarvest={premium:1.5,type:"a poor harvest",modifier:0.05,des:"The amount of crops sown are far lower than expected, but hey, it could have been worse."}
+var normalHarvest={premium:1,type:"a normal harvest",modifier:1.0,des:"Crop yields are average compared to previous years. It has been a normal year with a mediocre harvest."}
+var goodHarvest={premium:0.9,type:"a good harvest",modifier:1.5,des:"It has been one of the better harvests in the past few years. Farmers are expecting a tidy profit from their plentiful harvests!"}
+var bountifulHarvest={premium:0.8,type:"a bountiful harvest",modifier:2.0,des:"It is the best harvest in years. However, an abundance of crops in the market may also mean lower prices. "}
 var defaultYield=1000
 var sellingPrice
  
@@ -227,9 +228,9 @@ function equipmentType(){
 
 function fertilizerType(){
 
-	if (chosenFertilizer.name=="basic"){return 1;
-	}else if(chosenFertilizer.name=="upgraded"){return 1.05;
-	}else {return 1.15;
+	if (chosenFertilizer.name=="basic"){return 1.05;
+	}else if(chosenFertilizer.name=="upgraded"){return 1.3;
+	}else {return 0.8;
 	  
 	}
 
@@ -263,17 +264,17 @@ function typeOfHarvest(){
 
 }
 
-var harvestType= typeOfHarvest()
+var harvestType
 
 $(".container").on("click",".totalcostsoption",function(){
 	$(".totalcoststext").remove();
 	$(".totalcostsoption").remove();
 	$(".backgroundpic").remove();
 	$(".backdrop").append("<img src='https://i0.wp.com/www.lostkingdom.net/wp-content/uploads/2015/03/Harvest-Time-Lambourne-Berks.jpg?resize=660%2C425' class='backgroundpic'>")
-	
+	harvestType=typeOfHarvest();
 
-	$("#text").append("<div class='harvesttext' id='choices'>There has been a "+harvestType.type+" Thus,"+harvestType.des+" left</div>")
-	$("#decisions").append("<button class='harvestoption' id='choices' >Now to reap the crops..</button>")
+	$("#text").append("<div class='harvesttext' id='choices'>For the past year, there has been "+harvestType.type+" in the country. "+harvestType.des+" </div>")
+	$("#decisions").append("<button class='harvestoption' id='choices' >Now to reap the crops.</button>")
 
 });
 
@@ -290,13 +291,14 @@ $(".container").on("click",".harvestoption",function(){
 	 $(".backdrop").append("<img src='http://3.bp.blogspot.com/-6HzhSsNECG8/UcB-wrH_9XI/AAAAAAAAAFo/oijQl3fxQvs/s1600/seagulls+and+crickets.jpg' class='backgroundpic'>")
 	totalCropsHarvested=Math.round(defaultYield*harvestType.modifier*equipmentType()*fertilizerType()*pestControlType())
 
-	$("#text").append("<div class='cropsharvestedtext' id='choices'>There has been a "+chosenEquipment.res+" Fertilizer"+chosenFertilizer.res+" Pest control"+chosenPestControl.res+". Thus,the total harvest for the year is "+totalCropsHarvested+" bushels.</div>")
+	$("#text").append("<div class='cropsharvestedtext' id='choices'> Remember the stuff you bought at the store? They too will affect the outcome of your harvest!<br><br> Equipment-wise, "+chosenEquipment.res+" For fertilization, "+chosenFertilizer.res+". With respect to pest control, "+chosenPestControl.res+" <br> <br>After reaping the crops you find that your total harvest for the year is "+totalCropsHarvested+" bushels.</div>")
 	$("#decisions").append("<button class='cropsharvestedoption' id='choices' >Now that we have harvested the crops, time to go to the marketplace and sell them</button>")
 
 });
 
 var harvestRevenue;
-var finalSum
+var finalSum;
+var finalScore;
 
 $(".container").on("click",".cropsharvestedoption",function(){
 	$(".cropsharvestedtext").remove();
@@ -304,7 +306,7 @@ $(".container").on("click",".cropsharvestedoption",function(){
 	$(".backgroundpic").remove();
 	 $(".backdrop").append("<img src='http://www.medievalists.net/wp-content/uploads/2014/10/medieval-harvest-flyer2.jpg' class='backgroundpic'>")
 
-	harvestRevenue= Math.round((1/harvestType.modifier)*chosenCrop.premium*totalCropsHarvested)
+	harvestRevenue= Math.round(harvestType.premium*chosenCrop.premium*totalCropsHarvested)
 	finalSum=harvestRevenue+sumLeft
 
 	$("#text").append("<div class='finalsaletext' id='choices'>As you have planted "+chosenCrop.name+"You have made a total revenue of $"+harvestRevenue+". You now have $"+finalSum+" in total.</div>")
@@ -318,10 +320,11 @@ $(".container").on("click",".finalsaleoption",function(){
 	$(".finalsaleoption").remove();
 	$(".backgroundpic").remove();
 	$(".backdrop").append("<img src='https://www.lostkingdom.net/wp-content/uploads/2015/02/Reeve_and_Serfs.jpg' class='backgroundpic'>")
+	finalScore=finalSum-initialSum;
 
 	
 
-	$("#text").append("<div class='finalscoretext'>Your final score is "+finalSum+"</div>")
+	$("#text").append("<div class='finalscoretext'>Over the course of the year,you have managed to earn $ "+finalScore+".</div>")
 	$("#decisions").append("<button class='finalscore' id='choices' >New game</button>")
 
 });
@@ -334,7 +337,7 @@ $(".container").on("click",".finalscore",function(){
 
 	
 
-	$("#text").append("<div class='newgametext'>Select the type of crop you want to plant:</div>")
+	$("#text").append("<div class='newgametext'>Cash Crops</div>")
 	$("#decisions").append("<button class='newgameoption'>Start</button>")
 });
 
@@ -346,10 +349,7 @@ $(".container").on("click",".finalscore",function(){
 
 
 
-// function harvestRevenue(){
-// 	(1/yieldType())*harvestType();
-// }
-// var finalYield= harvestType()*
+
 
 
 });

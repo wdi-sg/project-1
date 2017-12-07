@@ -1,7 +1,10 @@
 .container{
-	/*position: relative;*/
+	position: relative;
 }
 
+img{
+
+}
 
 body{
 	background-color: black;
@@ -15,14 +18,16 @@ body{
 	position: absolute;
 	
 	z-index: -1;
+	height:300px;
+	width:500px;
 	
-	margin-left: 320px;
-	margin-top: 75px;
+	margin-left:500px;
+	margin-top: 200px;
 
 }
 
 #text{
-	/*position: absolute;*/
+	position: absolute;
 	margin-left: 0px;
 	margin-top:0px;
 	font-family: arial;
@@ -35,7 +40,7 @@ body{
 }
 
 #decisions{
-	/*position: absolute;*/
+	position: absolute;
 	margin-left: 70px;
 	margin-top: 200px;
 	width:100px;
@@ -45,10 +50,10 @@ body{
 
 
 .newgametext{
-	margin-left: 300px;
+	/*margin-left: 300px;
 	margin-top: 10px;
 	width: 500px;
-	height: 200px;
+	height: 200px;*/
 
 }
 
@@ -56,14 +61,14 @@ body{
 	width: 500px;
 	height: 40px;
 	margin-left: 300px;
-	margin-top: 10px;
+	margin-top: 100px;
 }
 
 #startscreen{
 	margin-top: 10px;
-	margin-left: 200px;
-	width: 400px;
-	height: 400px;
+	margin-left: 100px;
+	/*width: 400px;
+	height: 400px;*/
 }
 
 .cropcontent{
