@@ -8,7 +8,7 @@
 * **Future Updates**
 * **Acknowledgements**
 
-* **Click [here](https://strisen.github.io/project-1/) to try out the game!**
+**Click [here](https://strisen.github.io/project-1/) to try out the game!**
 
 ___
 
