@@ -36,7 +36,7 @@ Draw!
 
 ### Mobile Optimised
 
-<img src="/assets/images/c4-3.gif" height="700px">
+<img src="/assets/images/c4-mobile.png" height="700px">
 
 ---
 
