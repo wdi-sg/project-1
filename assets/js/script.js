@@ -32,9 +32,9 @@ $(document).ready(function() {
         $(".modal-code").append("Code: grid" + code);
       }
     }
-    console.log("Player:");
-    console.log(playerMove);
-    console.log(gameComplete());
+    // console.log("Player:");
+    // console.log(playerMove);
+    // console.log(gameComplete());
   });
 
   $("#next").on("click", function() {
@@ -118,6 +118,8 @@ $(document).ready(function() {
       case "down":
         swipeConverted = 40;
         break;
+      default:
+        swipeConverted = 0;
     }
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, swipeConverted);
@@ -260,8 +262,8 @@ var comMoves = function(current, iterations) {
     var count = parseInt(document.querySelector("#com" + nextId).textContent);
     document.querySelector("#com" + nextId).textContent = (count + 1).toString();
   }
-  console.log("Com:");
-  console.log(comMove);
+  // console.log("Com:");
+  // console.log(comMove);
 };
 
 // changing styles and grid numbers when player makes moves
@@ -318,9 +320,9 @@ var swipeDetect = function(screen, callback) {
   var touchSurface = screen;
   var swipeDir, dist, startX, startY, startTime, distX, distY, elapsedTime;
   var allowedTime = 300;
-  var thresholdX = 80;
-  var thresholdY = 80;
-  var restraint = 60;
+  var thresholdX = 70;
+  var thresholdY = 70;
+  var restraint = 50;
   handleSwipe = callback || function(swipeDir) {}
 
   touchSurface.addEventListener("touchstart", function(event) {
