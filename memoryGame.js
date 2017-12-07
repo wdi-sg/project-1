@@ -110,7 +110,6 @@ function flipCard(){
 			if(cardsInPlay.length == 2){
 				var cardOne = cardsInPlay[0];
 				var cardTwo = cardsInPlay[1];
-				console.log(cardOne);
 				if(cardOne == cardTwo){
 
 					playerScoreTracking();
@@ -356,13 +355,14 @@ $("#closeBtn").click(function(){
 });
 
 
-// Testing Grounds
+// Fall back for IE
 
 var checker = window.navigator.userAgent;
 
 console.log(checker);
 
-if (checker.includes("Internet Explorer")){
+// Trident for IE
+if (checker.includes("Trident")){
 	
 //Creating of the Game Board
 
@@ -371,15 +371,17 @@ function gameBoardSetup(){
 	shuffle(cards);
 	$("#mainBoard").empty();
 	$.each(cards, function(i, card){
-		$("#mainBoard").append("<img src='images/cardBack.png'>");
+		$("#mainBoard").append("<img src='images/cardBack.png' id='"+i+"'>");
 	});
-	$(".card").on("click", flipCard);
+	$("img").on("click", flipCard);
 
 };
 
 //End of Game Board Creation
 
-function flipCard(id){
+function flipCard(){
+
+	if(trackedCards.length < 2){
 
 	var flippedCardId = this.getAttribute("id");
 	if(flippedCardId != trackedCards[0]){
@@ -404,14 +406,21 @@ function flipCard(id){
 					}
 		}
 	}
-	// gameOver();
 	whoWon();
+	}
+}
+
+function revert(){
+	document.getElementById(trackedCards[0]).setAttribute('src', 'images/cardBack.png');
+	document.getElementById(trackedCards[1]).setAttribute('src', 'images/cardBack.png');
+	trackedCards = [];
+	cardsInPlay = [];
 }
 
 };
 
 
-// End of Testing Grounds
+// End of IE Fall Back
 
 // End of Game Initialise
 
