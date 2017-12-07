@@ -7,6 +7,7 @@ Terms used:
 
 $(document).ready(function() {
 
+
 	// Target the options modal
 	var optionsModal = document.getElementById('optionsModal');
 	// When the player clicks anywhere outside of the modal, close it
@@ -43,12 +44,12 @@ $(document).ready(function() {
 	);
 
 
-	// When the player clicks on `Confirm`, apply the settings and close the options modal
-	$("#confirm").on("click", function() {
+	// When the player clicks on `Apply`, apply the settings and close the options modal
+	$("#apply").on("click", function() {
 		optionsModal.style.display = "none";
 	});
 	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
-	$("#confirm").hover(
+	$("#apply").hover(
 		function() {
 			$(this).addClass("buttonFlicker");
 		},
@@ -58,15 +59,15 @@ $(document).ready(function() {
 	);
 
 
-	var colorSchemes = [
+	const colorSchemes = [
 		["#663399", "#ff3366", "#ff6600", "#ffff66", "#33cc00", "#3366ff"], // Kiddy
-		["#990066", "#cc66cc", "#66cccc", "#99ffff", "#99cc00", "#ffffcc"], // Ice-cream
-		["#663300","#663333","#996633","#cccc99","#999933","#336633"], // Camouflage
-		["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#003366"], // Retro 70s
+		["#cc0099", "#ff99cc", "#66cccc", "#99ffff", "#99cc00", "#ffffbb"], // Ice-cream
+		["#663300","#654a2d","#996633","#cccc99","#999933","#336633"], // Camouflage
+		["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#194775"], // Retro 70s
 		["#66ffcc", "#ff3399", "#99cc33", "#ffff33", "#ff6600", "#6600cc"], // Tubular 80s
-		["#336699", "#cccccc", "#cc9933", "#333333", "#663300", "#99ccff"], // Color-blind
+		["#336699", "#eeeeee", "#c1a750", "#333333", "#663300", "#99ccff"], // Color-blind
 	];
-	var colorSchemeNames = ["Kiddy", "Ice-cream", "Camouflage", "Retro 70s", "Tubular 80s", "Color-blind"];
+	const colorSchemeNames = ["Kiddy", "Ice-cream", "Camouflage", "Retro 70s", "Tubular 80s", "Color-blind"];
 
 
 	// This populates the the color scheme options in the options menu
@@ -96,36 +97,60 @@ $(document).ready(function() {
 	}
 
 
-	var colorScheme;
-	var oldFillColor, newFillColor;
+	var colorScheme, oldFillColor, newFillColor;
 	const canvasLengthArray = [10, 15, 20];
-	var canvasLength;
-	var canvas;
+	var canvasLength, canvas;
 	var movesLeft;
-	const movesArray = [[26, 36, 46], [22 ,32, 42], [20, 30, 40]]
+	const movesArray = [[30, 40, 60], [25, 35, 50], [20, 30, 40]];
 	// Array at index 0 for easy, 1 for medium, 2 for difficult
 	var difficultyLevel;
 	// 0 for easy, 1 for medium, 2 for difficult
 
+	// When the player clicks "Apply", the selected options are returned as an object and then parsed and applied to a new game
+	$("form").submit(function(event) {
+		event.preventDefault();
+		var chosenOptions = $(this).serializeArray();
+		var chosenDifficultyLevel = Number(chosenOptions[0].value);
+		console.log(typeof difficultyLevel);
+		console.log("Chosen difficulty: " + chosenOptions[0].value);
+		var chosenCanvasLengthIndex = chosenOptions[1].value;
+		console.log("Chosen canvas length: " + chosenOptions[1].value);
+		var chosenColorSchemeIndex = chosenOptions[2].value.split("").pop();
+		console.log("Chosen color scheme: " + chosenOptions[2].value.split("").pop());
+		
+		restartSequence(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficultyLevel);
+		awaitingPlayerInput();
+	});
+
 
 	// Initializes or reinitializes the game
-	function restartGame(chosenColorScheme = 0, chosenCanvasLength = canvasLengthArray[1], chosenDifficulty = 1) {
+	function restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty) {
 		$("#title").text("Color Spill!");
 		$("#title").addClass("flicker");
 		$("#canvasContainer").css("opacity", "1");
 		$("#palette").fadeIn(400);
 
+		// Empties the old and new fill color to prevent triggering the moves counter upon restart
 		oldFillColor = null;
 		newFillColor = null;
-		colorScheme = colorSchemes[chosenColorScheme];
-		canvasLength = chosenCanvasLength;
+
+		colorScheme = colorSchemes[chosenColorSchemeIndex];
+		canvasLength = canvasLengthArray[chosenCanvasLengthIndex];
 		difficultyLevel = chosenDifficulty;
 		
-		movesLeft = movesArray[chosenDifficulty][canvasLengthArray.indexOf(chosenCanvasLength)];
-		canvas = createCanvas(chosenCanvasLength);
-		drawCanvas(canvas, chosenCanvasLength);
+		movesLeft = movesArray[difficultyLevel][chosenCanvasLengthIndex];
+		canvas = createCanvas(canvasLength);
+		drawCanvas(canvas, canvasLength);
 		drawPalette(colorScheme);
-		updateMoves(chosenDifficulty, chosenCanvasLength);
+		updateMoves(difficultyLevel, canvasLength);
+	}
+
+
+	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then restarts the game
+	function restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1) {
+		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
+		var splashSequence = setInterval(function() { restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty); }, 150);
+		setTimeout(function() { clearInterval(splashSequence); }, 2000);
 	}
 
 
@@ -283,12 +308,6 @@ $(document).ready(function() {
 		}
 	}
 
-	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then restarts the game
-	function restartSequence() {
-		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
-		var splashSequence = setInterval(function() { restartGame(); }, 150);
-		setTimeout(function() { clearInterval(splashSequence); }, 2400);
-	}
 
 	// This is the main game loop that will be triggered when the player clicks to select a color
 	function awaitingPlayerInput() {
@@ -341,7 +360,8 @@ $(document).ready(function() {
 
 	// When the player clicks the restart button, the restartSequence is called to restart the game with the splash sequence
 	$("#restart").on("click", function() {
-		restartSequence();
+		restartSequence(colorSchemes.indexOf(colorScheme), canvasLengthArray.indexOf(canvasLength), difficultyLevel);
+		awaitingPlayerInput();
 	});
 
 
