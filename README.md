@@ -36,7 +36,7 @@ Draw!
 
 ### Mobile Optimised
 
-![](/assets/images/c4-mobile.png)
+![](/assets/images/c4-mobile.png | height=700)
 
 ---
 
