@@ -11,6 +11,7 @@ body {
 	flex-wrap: nowrap;
 	background-color: #f44336;
 	justify-content: center;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .header > div {
@@ -49,7 +50,7 @@ body {
 .indicator {
 	margin: 0 auto;
 	display: table;
-	padding-top: 20px;
+	padding-top: 0px;
 }
 
 .indicatorCol {
@@ -59,13 +60,17 @@ body {
 	-moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+    float: left;
+	margin: 0px 5px;
 	/*background-color: white;*/
 }
 
 .c4Table {
 	display: table;
 	margin: 0 auto;
-	/*padding-top: 60px;*/
+	background-color: #015a8a; /* #093d95 */
+	border-radius: 25px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .c4Tr {
@@ -80,6 +85,9 @@ body {
     -webkit-border-radius: 50%;
     border-radius: 50%;
 	background-color: white;
+	float: left;
+	margin: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*Button Styling*/
@@ -95,6 +103,7 @@ button {
     text-align: center;
     display: inline-block;
     font-size: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 button:hover {
@@ -102,6 +111,28 @@ button:hover {
     transition-duration: 0.5s;
     background-color: #f44336;
 	color: #ffeb3b;
+}
+
+/*Mobile Devices*/
+@media only screen and (max-device-width: 480px) {
+	.header > div {
+		font-size: 60px;
+		line-height: 100px;
+	}
+	.status {
+		font-size: 60px;
+	}
+	.indicatorCol {
+		width: 130px;
+    	height: 130px;
+	}
+	.c4Td {
+		width: 130px;
+	    height: 130px;
+	}
+	button {
+		font-size: 60px;
+	}
 }
 
 /*Red - #f44336*/
