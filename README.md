@@ -10,36 +10,47 @@ ___
 
 ### Introduction
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This is a simple memory game for 2 players. 
+The objective of this memory game is to match the pairs of cards together and get more points than your opponent.
 
 ___
 
 ### How To Play
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+* To start, click on the "New Game" button. Player 1 will start first.
+
+* Each player will have up to 10 seconds to get as many matching pairs as possible.
+
+* A player switch will occur whenever a non-matching pair is flipped.
+
+* The game will continue until either player gets 5 points, or if both players end with 4 points each.
+
+* Click the "Try again?" button to start over again.
 
 ___
 
-### Technical Requirements
+### Technical Limitations
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+* Latest versions of Chrome / Safari / Firefox will be able to run this game with full animations.
+
+* IE will load a fall back version that does not utilise 3D transforms.
 
 ___
+
+
+### Future Updates
+
+* Difficulty Settings
+
+* Single Player Mode
+
+and more!
+
+___
+
+### Acknowledgements
+
+[Fisher - Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
 
 <!---
 Read Me Contents
