@@ -396,7 +396,7 @@ function flipCard(){
 			var cardOne = cardsInPlay[0];
 			var cardTwo = cardsInPlay[1];
 
-			if(cardOne.includes(cardTwo)){
+			if(cardOne == cardTwo){
 
 					playerScoreTracking();
 
