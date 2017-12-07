@@ -110,8 +110,8 @@ function flipCard(){
 			if(cardsInPlay.length == 2){
 				var cardOne = cardsInPlay[0];
 				var cardTwo = cardsInPlay[1];
-
-				if(cardOne.includes(cardTwo)){
+				console.log(cardOne);
+				if(cardOne == cardTwo){
 
 					playerScoreTracking();
 
@@ -282,7 +282,7 @@ function gameBoardSetup(){
 
 function gameOver(){
 
-	if(playerScores[0] + playerScores[1] == 8){
+	if((playerScores[0] + playerScores[1] == 8) || (playerScores[0] == 5) || (playerScores[1] == 5)){
 
 		document.querySelector(".timerDisplay").innerHTML = "Game ended!";
 		return true;
@@ -349,8 +349,66 @@ $("#modalReset").click(function(){
 	setTimeout(function(){modal.style.display = "none";}, 1000);
 });
 
+$("#closeBtn").click(function(){
+	$(".modalContent").removeClass("openModal");
+	$(".modalContent").addClass("closeModal");
+	setTimeout(function(){modal.style.display = "none";}, 1000);
+});
+
+
 // Testing Grounds
 
+// var checker = window.navigator.userAgent;
+
+// console.log(checker);
+
+// if (checker.includes("Internet Explorer")){
+	
+// //Creating of the Game Board
+
+// function gameBoardSetup(){
+
+// 	shuffle(cards);
+// 	$("#mainBoard").empty();
+// 	$.each(cards, function(i, card){
+// 		$("#mainBoard").append("<img src='images/cardBack.png'>");
+// 	});
+// 	$(".card").on("click", flipCard);
+
+// };
+
+// //End of Game Board Creation
+
+// function flipCard(id){
+
+// 	var flippedCardId = this.getAttribute("id");
+// 	if(flippedCardId != trackedCards[0]){
+// 		trackedCards.push(flippedCardId);
+// 		cardsInPlay.push(cards[flippedCardId].value);
+// 		var cardId = this.setAttribute('src', cards[flippedCardId].cardImage)
+
+// 		if(cardsInPlay.length == 2){
+// 			var cardOne = cardsInPlay[0];
+// 			var cardTwo = cardsInPlay[1];
+
+// 			if(cardOne.includes(cardTwo)){
+
+// 					playerScoreTracking();
+
+// 					outOfPlay();
+
+// 				} 	else { 
+
+// 						playerSwitch();	
+
+// 					}
+// 		}
+// 	}
+// 	// gameOver();
+// 	whoWon();
+// }
+
+// };
 
 
 // End of Testing Grounds

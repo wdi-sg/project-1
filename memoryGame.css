@@ -109,15 +109,15 @@ body {
 }
 
 img {
-	padding: 20px;
+	padding: 10px;
 	height: 100px;
 	width: 100px;
 }
 
 .card {
 	display: inline-block;
-	height: 140px;
-	width: 140px;
+	height: 120px;
+	width: 120px;
 	transform-style: preserve-3d;
 	-webkit-transform-style: preserve-3d;
  	transition: all 0.5s linear;
@@ -132,15 +132,12 @@ img {
 .face {
 	height: 100%;
 	width: 100%;
-	/*display: none;*/
 	position: absolute;
 	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 }
 
 .face.back {
-/*	height: 100px;
-	width: 100px;*/
 	display: block;
 	transform: rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
@@ -202,9 +199,16 @@ p {
 .closeModal {
 	animation-name: animateout;
 	animation-duration: 1s;
+	-webkit-animation-name: animateout;
+	-webkit-animation-duration: 1s;
 }
 
 @keyframes animateout {
+	from { top: -2px: opacity: 1}
+	to { top: -100px; opacity: 0}
+}
+
+@-webkit-keyframes animateout {
 	from { top: -2px: opacity: 1}
 	to { top: -100px; opacity: 0}
 }
