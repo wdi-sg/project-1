@@ -272,11 +272,6 @@ h2, h3 {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 1000px) {
-	#mobile {
-		width: 640px;
-		margin: auto;
-	}
-
 	.box {
 		height: 40px;
 		width: 40px;
