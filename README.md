@@ -36,7 +36,7 @@ Draw!
 
 ### Mobile Optimised
 
-
+![](/assets/images/c4-mobile.png)
 
 ---
 
@@ -65,7 +65,7 @@ Draw!
 The user can click on any column but the coin will always fill to the bottom, as per Connect 4 rules.
 For each move, _playMove(position)_ is called.
 
-playMove function loops through each row and column to update the coin position from the bottom of the board. It also checks if there are any 4 coins that suit the winning condition.
+   playMove function loops through each row and column to update the coin position from the bottom of the board. It also checks if there are any 4 coins that suit the winning condition.
 
 The winning condition check is _checkWinner(row, col)_.
 ```javascript
@@ -147,6 +147,7 @@ function leftDiagonalCheck(row, col) {
 // Row:3 --- 0 0 0 X 0 0 0
 // Row:4 --- 0 0 X 0 0 0 0
 // Row:5 --- 0 X 0 0 0 0 0
+
 function rightDiagonalCheck(row, col) {
 	let resultArr = [];
 	resultArr.push(row+"-"+col);
