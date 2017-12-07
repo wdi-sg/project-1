@@ -358,57 +358,57 @@ $("#closeBtn").click(function(){
 
 // Testing Grounds
 
-// var checker = window.navigator.userAgent;
+var checker = window.navigator.userAgent;
 
-// console.log(checker);
+console.log(checker);
 
-// if (checker.includes("Internet Explorer")){
+if (checker.includes("Internet Explorer")){
 	
-// //Creating of the Game Board
+//Creating of the Game Board
 
-// function gameBoardSetup(){
+function gameBoardSetup(){
 
-// 	shuffle(cards);
-// 	$("#mainBoard").empty();
-// 	$.each(cards, function(i, card){
-// 		$("#mainBoard").append("<img src='images/cardBack.png'>");
-// 	});
-// 	$(".card").on("click", flipCard);
+	shuffle(cards);
+	$("#mainBoard").empty();
+	$.each(cards, function(i, card){
+		$("#mainBoard").append("<img src='images/cardBack.png'>");
+	});
+	$(".card").on("click", flipCard);
 
-// };
+};
 
-// //End of Game Board Creation
+//End of Game Board Creation
 
-// function flipCard(id){
+function flipCard(id){
 
-// 	var flippedCardId = this.getAttribute("id");
-// 	if(flippedCardId != trackedCards[0]){
-// 		trackedCards.push(flippedCardId);
-// 		cardsInPlay.push(cards[flippedCardId].value);
-// 		var cardId = this.setAttribute('src', cards[flippedCardId].cardImage)
+	var flippedCardId = this.getAttribute("id");
+	if(flippedCardId != trackedCards[0]){
+		trackedCards.push(flippedCardId);
+		cardsInPlay.push(cards[flippedCardId].value);
+		var cardId = this.setAttribute('src', cards[flippedCardId].cardImage)
 
-// 		if(cardsInPlay.length == 2){
-// 			var cardOne = cardsInPlay[0];
-// 			var cardTwo = cardsInPlay[1];
+		if(cardsInPlay.length == 2){
+			var cardOne = cardsInPlay[0];
+			var cardTwo = cardsInPlay[1];
 
-// 			if(cardOne.includes(cardTwo)){
+			if(cardOne.includes(cardTwo)){
 
-// 					playerScoreTracking();
+					playerScoreTracking();
 
-// 					outOfPlay();
+					outOfPlay();
 
-// 				} 	else { 
+				} 	else { 
 
-// 						playerSwitch();	
+						playerSwitch();	
 
-// 					}
-// 		}
-// 	}
-// 	// gameOver();
-// 	whoWon();
-// }
+					}
+		}
+	}
+	// gameOver();
+	whoWon();
+}
 
-// };
+};
 
 
 // End of Testing Grounds
