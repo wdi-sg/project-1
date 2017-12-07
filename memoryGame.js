@@ -15,7 +15,8 @@
 $(document).ready(function(){
 
 // Core Functions
-var modal = document.getElementById("testModal");
+
+var modal = document.getElementById("prompt");
 var cardsInPlay = [];
 var playerScores = [0, 0];
 var trackedCards = [];
@@ -354,6 +355,12 @@ $("#modalReset").click(function(){
 	$(".modalContent").addClass("closeModal");
 	setTimeout(function(){modal.style.display = "none";}, 1000);
 });
+
+// Testing Grounds
+
+
+
+// End of Testing Grounds
 
 // End of Game Initialise
 
