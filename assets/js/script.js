@@ -73,7 +73,7 @@ $(document).ready(function (){
 	}//End of drawBoard
 
 	function addListener() {
-		$("div[class='c4Td'").click(function (){
+		$("div[class='c4Td']").click(function (){
 			playMove($(this).attr("id"));
 		});
 	}
@@ -340,11 +340,11 @@ $(document).ready(function (){
 			color = "yellow";
 		}
 		for (let i=0; i<totalCols; i++) { //Cant use var, need to use let
-			$("div[id$='-"+i+"'").hover(function() {
-				$("div[id='ind"+i+"'").css("background-color",color);
+			$("div[id$='-"+i+"']").hover(function() {
+				$("div[id='ind"+i+"']").css("background-color",color);
 			},
 			function(){
-				$("div[id='ind"+i+"'").css("background-color","");
+				$("div[id='ind"+i+"']").css("background-color","");
 			});
 		}
 	}
@@ -371,9 +371,9 @@ $(document).ready(function (){
 
 	function gameOver(){
 		$(".status").addClass("blink"); //Set blink for status
-		$("div[id*='-'").off('click'); //Off Click from Grids;
-		$("div[id*='-'").off('mouseenter'); //Off Mouseenter from Grids;
-		$("div[id*='-'").off('mouseleave'); //Off Mouseleave from Grids;
+		$("div[id*='-']").off('click'); //Off Click from Grids;
+		$("div[id*='-']").off('mouseenter'); //Off Mouseenter from Grids;
+		$("div[id*='-']").off('mouseleave'); //Off Mouseleave from Grids;
 		$(".indicatorCol").css("background-color",""); //Remove the hovering tokens
 	}
 
