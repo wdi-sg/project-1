@@ -3,7 +3,7 @@ body {
   background-color: #ffffe0;
 }
 
-h1 {
+.Canmour {
   font-family: "Lilita One", cursive;
   font-size: 120px;
   color: red;
@@ -12,19 +12,48 @@ h1 {
 }
 
 p {
+  margin: 5px;
+  padding-top: 3px;
   font-family: "Calibri" , sans-serif;
   font-size: 23px;
-  font-weight: 10px;
   color: #6e7b8b;
 }
 
-.questions, .answers{
+h1 {
+ font-family: "Lilita One", cursive;
+  font-size: 80px;
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+h2 {
+  font-family: "Lilita One", cursive;
+  font-size: 80px;
+  color: red;
+  margin-left: auto;
+  text-align: left;
+}
+/*
+.div.score {
+  text-align: center;
+
+}
+
+.timer {
+    text-align: center;
+
+}*/
+
+
+.questions, .answers {
   list-style-type: none;
   }
 
-.questions li, .answers li{
+.questions li, .answers li {
   margin:10px 0px;
 }
+
 #solo, #players {
   display: inline-block;
   font-family: "Titan One", cursive;
@@ -35,26 +64,35 @@ p {
   width: 150px;
   height: 50px;
   margin: 10px;
-  padding-top: 18px;
+  padding-top: 8px;
   color: #6e7b8b;
 }
+
+.answers, .questions {
+  margin: 5px;
+  padding-top: 3px;
+  font-family: "Calibri" , sans-serif;
+  font-size: 23px;
+  color: #6e7b8b;
+}
+
 
 .endgame {
   display: none;
 }
 
-.game-over {
+/*.game-over {
   font-family: "Calibri" , sans-serif;
   font-size: 23px;
   font-weight: 10px;
   margin: 40px;
   border: 20px;
   colour: red;
-}
+}*/
 
 .endword {
   display: none;
-  border: 20px solid black;
+  background-color: black;
   font-family: "Titan One", cursive;
   font-size: 20px;
   text-align:center;
@@ -76,14 +114,12 @@ p {
 }
 
 .copyright {
-  border: 10px #6e7b8b;
+  display: block;
   font-family: Calibri; sans-serif;
   font-size: 16px;
-  font-weight: 100px;
-  margin: 200px;
+  margin-bottom: 250px;
   text-align: center;
-  background-color: #eeeed1;
   padding: 12px;
   width: auto;
-
+  color: #6e7b8b;
 }

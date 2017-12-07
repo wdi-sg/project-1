@@ -14,12 +14,6 @@ $(document).ready(function() {
 // Score
   var score = 0;
 
-  // Exit Game
-    var exitGame = 0;
-
-    // Restart game
-      var restartGame = 0;
-
   $("#solo").on("click", function() {
       startGame = true;
     for(var i = 0; i < questions.length; i++){
@@ -42,50 +36,53 @@ $(document).ready(function() {
 // check which questions user clicks on
   $(".questions").on("click", "li", function() {
     current_question = $(this).attr("id")
-      // $(this).remove();
       $(this).css("border", "1px solid red")
   });
 
   $(".answers").on("click", "li", function(){
     // alert(questions[current_question])
 
-    if(startGame){
-      var userAnswers = $(this).attr("id")
-      console.log(questions[current_question])
+if(startGame){
+  var userAnswers = $(this).attr("id")
+    console.log(questions[current_question])
       console.log(answers[userAnswers])
-        if(answers[current_question] == answers[userAnswers]){
-            // alert("you got it right");
-            $("#"+current_question).remove();
-            $(this).remove();
-            score++;
-            console.log(score)
-            $(".score").empty();
+
+if(answers[current_question] == answers[userAnswers]){
+  // alert("you got it right");
+    $("#"+current_question).remove();
+      $(this).remove();
+      score++;
+        console.log(score)
+          $(".score").empty();
             $(".score").append(score);
-        }else{
-            // alert("aw, try again")
-        }
-      }else{
-        // alert("game over mehn")
-        endgame()
-      }
-  });
+    }else{
+        // alert("aw, try again")
+    }
+  }else{
+    // alert("game over mehn")
+  endgame()
+  }
+});
 
 // Endgame
 function endgame (){
     startGame = false
     score = 0
     $(".endgame").css("display", "block")
+    $(".win").css("display", "block")
+    $(".lost").css("display", "block")
+    $(".footer").css("display", "block")
 }
 
-// Endword
-function endword (){
-    startGame = false
-    score = 0
-    $(".endword").css("display", "block")
-}
+// // Endword
+// function endword (){
+//     startGame = false
+//     score = 0
+//
+// }
 
 // Timer
-  var timeLeft = 5;
+  var timeLeft = 10;
 
   function gameTimer () {
     // target timer node
@@ -95,7 +92,7 @@ function endword (){
     function countdown () {
       if (timeLeft < 0) {
         clearTimeout(timerId)
-        timer.text("Jialat Lost");
+        // timer.text("Jialat Lost");
         // alert("Jialat Lost")
         endgame()
         endword()
