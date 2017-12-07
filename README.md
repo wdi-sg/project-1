@@ -23,35 +23,34 @@ The objective of this game is to train your concentrating skill.
 
 ### Wireframes
 
-<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" style="width: 100px;"/>
-![](images/project1-wireframe/project1-wireframe-01.jpg =250x)
+![](images/project1-wireframe/project1-wireframe-01.jpg)
 1. The starting page.
 
-![](images/project1-wireframe/project1-wireframe-02.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-02.jpg)
 2. Press new game button will show a popup modal to show player the colour sequence to follow.
 
-![](images/project1-wireframe/project1-wireframe-03.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-03.jpg)
 3. Press Let's Go button to start the game. Timer will start as well. Solve the puzzle and press the corresponding button below.
 
-![](images/project1-wireframe/project1-wireframe-04.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-04.jpg)
 4. If player is unable to press the correct sequence or time is up, modal will popup telling player that they fail and prompt to retry.
 
-![](images/project1-wireframe/project1-wireframe-05.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-05.jpg)
 5. If player managed to get the sequence correct, modal popup telling them they succeed. prompt player to the next level.
 
-![](images/project1-wireframe/project1-wireframe-06.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-06.jpg)
 6. Level increase then play the game with increase difficulty.
 
-![](images/project1-wireframe/project1-wireframe-07.jpg | width=200)
+![](images/project1-wireframe/project1-wireframe-07.jpg)
 7. Finish all 25 levels then modal will popup telling player they completed the game. Modal will contain code to Bonus Game.
 
 ---
 
 ### Puzzle Design
 
-![](images/project1-9.jpg | width=200)
+![](images/project1-9.jpg)
 
-![](images/project1-17.jpg | width=200)
+![](images/project1-17.jpg)
 
 The game level difficulty increases every 3 level. From solid lines to dotted lines. From lines that are wide apart to lines that are close to each other.
 
