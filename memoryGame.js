@@ -15,6 +15,7 @@
 $(document).ready(function(){
 
 // Core Functions
+var modal = document.getElementById("testModal");
 var cardsInPlay = [];
 var playerScores = [0, 0];
 var trackedCards = [];
@@ -302,16 +303,23 @@ function gameOver(){
 
 function whoWon(){
 	if(gameOver() == true){
+		modal.style.display = "block";
+		$(".modalContent").removeClass("closeModal");
+		$(".modalContent").addClass("openModal");
+
 		if(playerScores[0] > playerScores[1]){
-			alert("Player One wins!");
+			$(".modalBody").empty();
+			$(".modalBody").append("Player 1 has won!");
 		} 
 
 		else if(playerScores[1] > playerScores[0]){
-			alert("Player Two wins!");
+			$(".modalBody").empty();
+			$(".modalBody").append("Player 2 has won!");
 		} 
 
 		else{
-			alert("It's a draw!");
+			$(".modalBody").empty();
+			$(".modalBody").append("It's a draw...");
 		}
 	}
 }
@@ -335,11 +343,17 @@ function restart(){
  	countDownTimer();
 }
 
-$("#reset").click(function(){
+
+$(".reset").click(function(){
 	restart();
 });
 
 
+$("#modalReset").click(function(){
+	$(".modalContent").removeClass("openModal");
+	$(".modalContent").addClass("closeModal");
+	setTimeout(function(){modal.style.display = "none";}, 1000);
+});
 
 // End of Game Initialise
 
