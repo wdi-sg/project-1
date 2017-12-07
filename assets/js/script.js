@@ -17,6 +17,8 @@ var comMove = [0];
 var playerMove = [0];
 var gameStart = false;
 
+var gh-test
+
 $(document).ready(function() {
   gameLoad();
 
