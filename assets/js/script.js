@@ -8,7 +8,6 @@ Pseudo code:
 6. Check for win.
 7. Next stage feature.
 8. Undo move feature.
-9. test.
 */
 var playerGrid = document.querySelector(".container-player");
 var comGrid = document.querySelector(".container-com");
