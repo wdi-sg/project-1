@@ -19,7 +19,7 @@ ___
 
 * To start, click on the "New Game" button. Player 1 will start first.
 
-![](https://github.com/strisen/project-1/blob/updates/images/ace.png)
+![](https://github.com/strisen/project-1/blob/updates/images/newGameButton.png)
 
 * Each player will have up to 10 seconds to get as many matching pairs as possible.
 
@@ -28,6 +28,8 @@ ___
 * The game will continue until either player gets 5 points, or if both players end with 4 points each.
 
 * Click the "Try again?" button to start over again.
+
+![](https://github.com/strisen/project-1/blob/updates/images/gameRestart.png)
 
 ___
 
