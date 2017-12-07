@@ -308,31 +308,56 @@ h2, h3 {
 	}
 
 	#instruction {
-		font-size: 24px;
+		font-size: 36px;
+		max-width: 100%;
 	}
 
 	.modal-content {
-		width: 550px;
+		width: 600px;
 	}
 
 	h2 {
-		font-size: 2em;
+		font-size: 2.4em;
 	}
 
 	h3 {
-		font-size: 1.5em;
+		font-size: 1.8em;
+		margin: 0.8em;
+	}
+
+	.radioSpan {
+		display: grid;
+		grid-template-columns: 30px 120px;
+		grid-template-rows: 36px 36px 36px;
+		grid-column-gap: 0.2em;
+		grid-row-gap: 0.04em;
 	}
 
 	.radioText {
 		padding-top: 0;
-		font-size: 1.3em;
+		font-size: 2em;
 	}
 
 	#colorSchemes {
 		display: grid;
-		grid-template-columns: 30px 170px 160px; 
-		grid-template-rows: 32px 32px 32px 32px 32px 32px;
+		grid-template-columns: 30px 220px 200px; 
+		grid-template-rows: 36px 36px 36px 36px 36px 36px;
+		grid-row-gap: 0.8em;
+		margin-bottom: 1em;
 	}
 
+	.optionCircle {
+		width: 27px;
+		height: 27px;
+	}
+
+	#apply {
+		margin: 0.5em 0;
+		font-size: 36px;
+	}
+
+	.modalTopComponent {
+		margin: 0 2em;
+	}
 
 }
