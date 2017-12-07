@@ -126,7 +126,7 @@ img {
 }
 
 .flipped {
-	transform: rotateY(180deg);
+	transform: perspective(1000px) rotateY(180deg);
 }
 
 .face {
@@ -139,7 +139,7 @@ img {
 
 .face.back {
 	display: block;
-	transform: rotateY(180deg);
+	transform: perspective(1000px) rotateY(180deg);
 	-webkit-transform: rotateY(180deg);
 }
 
