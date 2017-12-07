@@ -276,19 +276,6 @@ function checkForWin(inPlay, player) {
 
 // ==================== event listener ====================
 
-// add on game, on submit code, check if same as code defined. if same, form disappear and link to bonus game appear
-$('#form').on('submit', function(e) {
-  e.preventDefault();
-  var enterCode = $('[name="bonus-code"]').val();
-  if (enterCode == 'underlimit') {
-    $('#form').hide();
-    $('.link-maze').show();
-  } else {
-    $('[name="bonus-code"]').val('Wrong Code');
-  }
-});
-
-
 // click new game button - image change, random sequence, show modal, remove new game button, show timer, show level and sequence to play
 $('.btn-new-game').on('click', function() {
   $('.instructions').hide();
@@ -394,6 +381,19 @@ $('.btn').on('click', function() {
       $('.next-or-retry').text('Try Again??');
       $('.modal2').show();
     }
+  }
+});
+
+
+// add on game, on submit code, check if same as code defined. if same, form disappear and link to bonus game appear
+$('#form').on('submit', function(e) {
+  e.preventDefault();
+  var enterCode = $('[name="bonus-code"]').val();
+  if (enterCode == 'underlimit') {
+    $('#form').hide();
+    $('.link-maze').show();
+  } else {
+    $('[name="bonus-code"]').val('Wrong Code');
   }
 });
 
