@@ -52,6 +52,10 @@ ___
 
 [Fisher - Yates Shuffle](https://bost.ocks.org/mike/shuffle/)
 
+[CSS3 3D Flipping](http://css3.bradshawenterprises.com/flip/)
+
+___
+
 <!---
 Read Me Contents
 -->

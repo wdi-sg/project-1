@@ -108,6 +108,7 @@ function flipCard(){
 			cardsInPlay.push(cards[flippedCardId].value);
 
 			if(cardsInPlay.length == 2){
+
 				var cardOne = cardsInPlay[0];
 				var cardTwo = cardsInPlay[1];
 				if(cardOne == cardTwo){
@@ -357,15 +358,13 @@ $("#closeBtn").click(function(){
 
 // Fall back for IE
 
+// Trident for IE
 
-var ieCheck = "Trident";
+var iECheck = "Trident";
 
 var checker = window.navigator.userAgent;
 
-
-// Trident for IE
-
-if (checker.search(ieCheck) > 0){
+if (checker.search(iECheck) > 0){
 	
 //Creating of the Game Board
 
@@ -387,12 +386,15 @@ function flipCard(){
 	if(trackedCards.length < 2){
 
 	var flippedCardId = this.getAttribute("id");
+
 	if(flippedCardId != trackedCards[0]){
+
 		trackedCards.push(flippedCardId);
 		cardsInPlay.push(cards[flippedCardId].value);
 		var cardId = this.setAttribute('src', cards[flippedCardId].cardImage)
 
 		if(cardsInPlay.length == 2){
+
 			var cardOne = cardsInPlay[0];
 			var cardTwo = cardsInPlay[1];
 
