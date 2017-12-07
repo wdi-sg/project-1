@@ -18,17 +18,17 @@ That's four trillion, five hundred thirty one billion, nine hundred eighty five 
 
 The 2 player game starts out with player 1 making the first move. Click on any column to place the coin. Once a player has connected 4 horizontally, vertically or diagonally, the player wins!
 
-![](/assets/images/c4-1.gif)
+<img src="/assets/images/c4-1.gif" width="500px">
 
 ---
 
 ### Outcomes
 
-![](/assets/images/c4-2.gif)
+<img src="/assets/images/c4-2.gif" width="500px">
 
 Either Player 1 or 2 Wins or...
 
-![](/assets/images/c4-3.gif)
+<img src="/assets/images/c4-3.gif" width="500px">
 
 Draw!
 
@@ -36,7 +36,7 @@ Draw!
 
 ### Mobile Optimised
 
-![](/assets/images/c4-mobile.png | height=700)
+<img src="/assets/images/c4-3.gif" height="700px">
 
 ---
 
