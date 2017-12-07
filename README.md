@@ -4,7 +4,9 @@
 
 * **Introduction**
 * **How To Play**
-* **Technical Requirements**
+* **Technical Limitations**
+* **Future Updates**
+* **Acknowledgements**
 
 ___
 
