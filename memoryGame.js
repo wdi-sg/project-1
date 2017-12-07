@@ -357,12 +357,15 @@ $("#closeBtn").click(function(){
 
 // Fall back for IE
 
+
+var ieCheck = "Trident";
+
 var checker = window.navigator.userAgent;
 
-console.log(checker);
 
 // Trident for IE
-if (checker.includes("Trident")){
+
+if (checker.search(ieCheck) > 0){
 	
 //Creating of the Game Board
 
