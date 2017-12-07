@@ -19,6 +19,8 @@ ___
 
 * To start, click on the "New Game" button. Player 1 will start first.
 
+![](https://github.com/strisen/project-1/blob/updates/images/ace.png)
+
 * Each player will have up to 10 seconds to get as many matching pairs as possible.
 
 * A player switch will occur whenever a non-matching pair is flipped.
