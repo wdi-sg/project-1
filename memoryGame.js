@@ -1,12 +1,10 @@
 // TO DO LIST
 /*
-	Do Up CSS By Tonight preferably
-
+	Further refine CSS
+	
 	Find a way to shrink the cards array for 24 tiles
 
 	DRY My Code 
-
-	Re-adjust the card populator
 
 	To add in additional modal functions/animations after Base Game is ready
 

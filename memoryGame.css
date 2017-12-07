@@ -111,8 +111,6 @@ img {
 	padding: 20px;
 	height: 100px;
 	width: 100px;
-	/*transition: width 0.5s;*/
-
 }
 
 /*@keyframes roll {
@@ -139,7 +137,10 @@ img:hover {
 	height: 140px;
 	width: 140px;
 	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
  	transition: all 0.5s linear;
+ 	-webkit-transition: all 0.5s linear;
+ 	perspective: 1000px;
 }
 
 .flipped {
@@ -152,6 +153,7 @@ img:hover {
 	/*display: none;*/
 	position: absolute;
 	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 .face.back {
@@ -159,7 +161,12 @@ img:hover {
 	width: 100px;*/
 	display: block;
 	transform: rotateY(180deg);
+	-webkit-transform: rotateY(180deg);
 }
 
+.front {
+/* Fix for Firefox backface compatibility */
+	transform: rotateX(0deg);
+}
 
 
