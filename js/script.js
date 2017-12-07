@@ -21,6 +21,8 @@
 // button to retry will reload the same level
 // after player finish game, game will restart
 
+// ==================== global variable ====================
+
 var minutes, seconds, sequenceInPlay, playerSequence, interval, timer;
 var level = 1;
 var gameSource = {
@@ -189,6 +191,12 @@ var gameSource = {
   },
 };
 
+// ==================== global variable ====================
+
+
+
+
+// ==================== functions ====================
 
 // when game finish, the restart button will be fired
 // reset variables and set back to game default
@@ -202,6 +210,7 @@ function restart() {
   $('.btn-new-game').show();
   $('.created-by').show();
   $('.btn').hide();
+  $('.bonus').show();
   $('img').attr('src', 'images/project1-26.jpg');
 }
 
@@ -260,26 +269,23 @@ function checkForWin(inPlay, player) {
   return true;
 }
 
+// ==================== functions ====================
 
-// either you move on to the next level, retry the current level or game end
-$('.next-or-retry').on('click', function() {
-  var checkStatus = $('.next-or-retry').attr('data-id');
-  if (checkStatus == 1) {
-    console.log('Next Level');
-    level++;
-    $('.modal2').hide();
-    randomInPlay();
-  } else if (checkStatus == 2) {
-    console.log('End Game');
-    $('.modal2').hide();
-    restart();
+
+
+
+// ==================== event listener ====================
+
+// add on game, on submit code, check if same as code defined. if same, form disappear and link to bonus game appear
+$('#form').on('submit', function(e) {
+  e.preventDefault();
+  var enterCode = $('[name="bonus-code"]').val();
+  if (enterCode == 'underlimit') {
+    $('#form').hide();
+    $('.link-maze').show();
   } else {
-    console.log('Retry');
-    $('.modal2').hide();
-    randomInPlay();
+    $('[name="bonus-code"]').val('Wrong Code');
   }
-  console.log('reset data-id');
-  $('.next-or-retry').attr('data-id', 0);
 });
 
 
@@ -290,50 +296,13 @@ $('.btn-new-game').on('click', function() {
   $('.btn-new-game').hide();
   $('.created-by').hide();
   $('.btn').show();
+  $('.bonus').hide();
   randomInPlay();
 });
 
 
-// adding click event to the 3 button to register the player input
-// check when all three button are press in sequence
-// base on checkForWin return set the attribute to fire which modal - to retry, to next level or end game
-$('.btn').on('click', function() {
-
-  var dataId = $(this).attr('data-id');
-  $(this).css('background-color', '#5D6D7E');
-  $(this).text('Lock');
-  if (playerSequence.indexOf(dataId) == -1) {
-    console.log(dataId + ' not inside array');
-    playerSequence.push(dataId);
-  }
-
-  console.log('dataId is ' + dataId);
-  console.log('Player Seq ' + playerSequence);
-  if (sequenceInPlay.length == playerSequence.length) {
-    var winOrLose = checkForWin(sequenceInPlay, playerSequence);
-
-    if (winOrLose) {
-      if (level == 25) {
-        $('.modal-content2 h1').html('Congratulations!!<br>Your focus has reached 100%!!');
-        $('.next-or-retry').text('End Game');
-        $('.next-or-retry').attr('data-id', 2);
-      } else {
-        $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
-        $('.next-or-retry').text('Next Level');
-        $('.next-or-retry').attr('data-id', 1);
-      }
-      $('.modal2').show();
-    } else {
-      $('.modal-content2 h1').text('Oh No!!');
-      $('.next-or-retry').text('Try Again??');
-      $('.modal2').show();
-    }
-  }
-});
-
-
 // timer feature bind to the Let's Go button
-// countdown timer start till the time runs out then call for modal
+// countdown timer start till the time runs out then call for modal retry
 $('.lets-go-btn').on('click', function() {
   $('.modal').hide();
 
@@ -369,3 +338,63 @@ $('.lets-go-btn').on('click', function() {
     }
   }, 1000);
 });
+
+
+// either you move on to the next level, retry the current level or game end
+$('.next-or-retry').on('click', function() {
+  var checkStatus = $('.next-or-retry').attr('data-id');
+  if (checkStatus == 1) {
+    console.log('Next Level');
+    level++;
+    $('.modal2').hide();
+    randomInPlay();
+  } else if (checkStatus == 2) {
+    console.log('End Game');
+    $('.modal2').hide();
+    restart();
+  } else {
+    console.log('Retry');
+    $('.modal2').hide();
+    randomInPlay();
+  }
+  console.log('reset data-id');
+  $('.next-or-retry').attr('data-id', 0);
+});
+
+
+// adding click event to the 3 button to register the player input
+// check when all three button are press in sequence
+// base on checkForWin return set the attribute to fire which modal - to retry, to next level or end game
+$('.btn').on('click', function() {
+  var dataId = $(this).attr('data-id');
+  $(this).css('background-color', '#5D6D7E');
+  $(this).text('Lock');
+  if (playerSequence.indexOf(dataId) == -1) {
+    console.log(dataId + ' not inside array');
+    playerSequence.push(dataId);
+  }
+  console.log('dataId is ' + dataId);
+  console.log('Player Seq ' + playerSequence);
+  if (sequenceInPlay.length == playerSequence.length) {
+    var winOrLose = checkForWin(sequenceInPlay, playerSequence);
+
+    if (winOrLose) {
+      if (level == 25) {
+        $('.modal-content2 h1').html('Congratulations!!<br>Code to Bonus Game<br>" underlimit "');
+        $('.next-or-retry').text('End Game');
+        $('.next-or-retry').attr('data-id', 2);
+      } else {
+        $('.modal-content2 h1').html('Hooray!!<br>Well Done!!');
+        $('.next-or-retry').text('Next Level');
+        $('.next-or-retry').attr('data-id', 1);
+      }
+      $('.modal2').show();
+    } else {
+      $('.modal-content2 h1').text('Oh No!!');
+      $('.next-or-retry').text('Try Again??');
+      $('.modal2').show();
+    }
+  }
+});
+
+// ==================== event listener ====================

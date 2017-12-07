@@ -1,0 +1,173 @@
+body {
+  text-align: center;
+  background-color: lightgrey;
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: grey;
+  font-size: 2rem;
+  font-family: 'Stardos Stencil', cursive;
+}
+
+.instructions {
+width: 800px;
+margin: 0 auto;
+font-size: 1.8rem;
+}
+
+button:hover {
+  color: white;
+}
+
+h1 {
+  font-family: 'Stardos Stencil', cursive;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.emphasize {
+  color: grey;
+  font-style: italic;
+  font-size: 1.8rem;
+  text-decoration: underline;
+}
+
+img {
+  width: 30%;
+}
+
+.title {
+  margin-bottom: 0;
+}
+
+.timer-countdown {
+  display: none;
+  margin: 0;
+  font-size: 3rem;
+}
+
+.road, .block {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid lightgrey;
+  padding: 10px;
+  color: transparent;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.previous {
+  color: transparent;
+}
+
+.active {
+  color: black;
+}
+
+.btnRed {
+  background-color: red;
+}
+
+.btnBlue {
+  background-color: blue;
+}
+
+.btnGreen {
+  background-color: green;
+}
+
+.btnYellow {
+  background-color: yellow;
+}
+
+.btnOrange {
+  background-color: orange;
+}
+
+.btnIndigo {
+  background-color: indigo;
+}
+
+.btnViolet {
+  background-color: violet;
+}
+
+.btnCyan {
+  background-color: cyan;
+}
+
+.colorSeq {
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 5px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.collected-colors {
+  margin-top: 5px;
+}
+
+.collected {
+  display: inline-block;
+  padding: 15px;
+  margin: 5px;
+  color: transparent;
+}
+
+.modal-instructions {
+  margin-bottom: 10px;
+}
+
+.block {
+  background: grey;
+}
+
+.important {
+  color: red;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.maze-board {
+  width: 481px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.modal, .modal2 {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content, .modal-content2 {
+  text-align: center;
+  background-color: #fefefe;
+  margin: 150px auto 0;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.modal-content2 h1 {
+  margin: 5px;
+}
+
+.quickRetry {
+  color: lightgrey;
+}
+
+.currentSequence {
+  display: none;
+  margin-bottom: 0;
+}

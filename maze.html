@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>UnderLimit</title>
+  <script src="https://use.fontawesome.com/c6cd0349e3.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Stardos+Stencil" rel="stylesheet">
+<link rel="stylesheet" href="css/maze.css">
+</head>
+<body>
+
+<h1 class="title">UnderLimit</h1>
+
+<h3 class="instructions">Instructions:<br>Collect the colours according to <span class="emphasize">sequence</span>. Navigate your way through the maze with the keyboard <span class="emphasize">arrow buttons</span>. The <i class="fa fa-circle-o" aria-hidden="true"></i> at the sides of the game board is use to <span class="emphasize">restart level</span>.</h3>
+
+<h2 class="timer-countdown">00:00</h2>
+<div class="maze-board">
+</div>
+<div class="img"><img src="images/underlimit.png"></div>
+<button class="new-game">New Game</button>
+<h2 class="currentSequence">Current Sequence</h2>
+<div class="collected-colors">
+</div>
+
+<div class="modal">
+  <div class="modal-content">
+    <h1>Level 1</h1>
+    <hr>
+    <h2 class="modal-instructions">Follow <span class="important">this </span> sequence<br>
+starting from left to right</h2>
+    <div class="sequence"></div>
+    <button class="lets-go-btn">Let's Go!!</button>
+  </div>
+</div>
+
+
+<div class="modal2">
+  <div class="modal-content2">
+    <h1>Level 1</h1>
+    <button class="next-or-retry" data-id="0">Let's Go!</button>
+  </div>
+</div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/maze.js"></script>
+</body>
+</html>
+
+<!-- objective of the game is to collect the treasue in sequence
+starting page got title, instruction, game art, new game button
+when press new game, modal appear show level 1,
+the treasure to collect first and lets go
+press lets go and game start timer start and game art change to puzzle,
+below show the color collected and correct || wrong at the inside
+once collected finish treasure, check if in sequence
+if yes then modal appear say well done, next level
+modal2 appear -->
+
+
+
+
+
+
+
+
+
+<!-- row 0 all will be the road from 0 - 6
+row 1 0, 3, 6 will be the road
+row 2 0, 3, 6 will be the road
+row 3 all will be the road from 0 - 6
+row 4 0, 3, 6 will be the road
+row 5 0, 3, 6 will be the road
+row 6 all will be the road from 0 - 6
+
+3, 3 will be the starting point
+
+if player move up
+row - 1
+
+if player move down
+row + 1
+
+if player move left
+col - 1
+
+if player move right
+col + 1
+
+check if class is road or block
+
+if road add class current then remove the one before to road -->
