@@ -239,59 +239,44 @@ upKey()
 * check if player go to restart area
 
 
-rightKey() {
+rightKey()
 * if move can go right
 * not into block or out of border
 * check if player go to restart area
 
 
-downKey() {
+downKey()
 * check if move can go down
 * not into block or out of border
 * check if player go to restart area
- ===================== keys function ======================
 
 
 ### clear and restart
 
-================ restart and clear stage ================
 * clearStage()
   repare game for retry or next level
 
 
-
-* restart() {
+* restart()
    restart to starting page
 
-}
 
-// ================ restart and clear stage ================
-
-
-
-
-// =============== interval for obstacles ===============
-
-* randomObs()
+randomObs()
 * generate obstacles block on random coordinate
 
-// =============== interval for obstacles ===============
 
 
 
 
-// ================ winning condition ==================
 
 
 
 winOrLose(winOrLose)
 * depend on checkForWin(), game retry, game next level or end game for modal
-// ================ winning condition ==================
 
 
 
 
-// ============== on click buttons ==================
 
 $('.new-game').on('click', function() {
 
