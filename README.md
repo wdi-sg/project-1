@@ -134,9 +134,11 @@ This is the main game loop that will be triggered whenever the player clicks to 
 
 ## Unresolved Issues
 
+![](https://github.com/limjiechao/project-1/blob/master/documentation/grid_lines.png)
+
+- Eliminate the grid lines that are visible on the canvas on smartphones.
 - Fine-tune the number of moves allowed for every level of difficulty and canvas size.
 - Make it even more responsive to smartphones, tablets screen sizes.
-- Eliminate the grid lines that are visible on the canvas on smartphones.
 - Further UI refinements, such as: 
   - Instead of white, use a different color for clickable/tappable elements such as *Apply*, *Restart* and *Options*; and
   - Better alignment of the radio buttons in the *Options* menu.
