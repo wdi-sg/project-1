@@ -177,7 +177,7 @@ generateSequence()
 * create random numbers base on the length and push to sequence array
 
 
-function generateSpots() {
+generateSpots() {
 * generate random spot for the colours around the 8 sections
 
 
