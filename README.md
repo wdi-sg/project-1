@@ -159,7 +159,7 @@ I would like to thank:
 - Ebere, who wisely advised me to stop fixating on figuring out an algorithm to find the shortest path to fill out the canvas and just get on with building the game.
 - Shaun, for showing us the ins and outs for this project and checking in regularly during project week
 - Edmund, who knows jQuery so much better and saved me hours by pointing me to `.hover(…)`, `.fadeIn(…)`, `.off()` and many more.
-- Chin Tong, who navigated me through the labyrinth of Github. 
+- Ching Tong, who navigated me through the labyrinth of Github. 
 - Speed, who rightly pointed out that the game title was not truly centered due to my poor use of CSS letter-spacing.
 - Jie Hao, my in-house Python guide, who sat with me as I read through the code of Ink Spill, a Python implementation of this game.
 - Christabel, for identifying a glaring bug on mobile phone and proofreading this `README.md`, but most importantly, for her understanding, patience and support.
