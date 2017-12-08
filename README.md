@@ -1,7 +1,6 @@
-# Project Name (Cash Crops)
--
+### Project Name (Cash Crops)
 
-# Overview
+## Overview
 You are a cash crop farmer. Your objective is to farm a crop, hope for a good harvest and make a nice profit. The higher the profit the better. 
 
 Throughout the game, you will pick the 
@@ -12,8 +11,6 @@ Throughout the game, you will pick the
 * level of pest control to buy
 
 Usually, the higher the cost you pay, the greater the corresponding returns (you get better harvest yields).
-
-
 
 
 After making the above 4 decisions, the game will generate a type of harvest based on probability. The types of harvests are:
@@ -37,3 +34,15 @@ Your total revenue will be the price per bushel of your chosen crop multiplied b
 Your objective is to maximize profit, AND END THE GAME WITH MORE CASH THEN YOU STARTED OUT WITH. 
 
 
+## Game Logic
+#typeOfHarvest()
+Determines the type of harvest (Famine,Poor, Normal ,Good, Bountiful)
+
+#equipmentType()
+Calculates the effect that the chosen equipment has on harvest yield
+
+#fertilizerType()
+Calculates the effect that the chosen fertilizer has on harvest yield
+
+#pestControlType()
+Calculates the effect that the chosen pest control has on harvest yield
