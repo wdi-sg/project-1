@@ -12,13 +12,15 @@ This game is inspired by the simple but yet addictive smartphone game **Flood-It
 
 The objective of this is to turn a canvas full of squares in multiple colors into one single color in a limited number of moves. The player chooses which adjacent squares to merge with by picking their color. By looking beyond the adjacent squares, the player can take over more squares every move and fill out the canvas with the same color before running out of moves.
 
-## Game User Interface
+## Game UI
 
 ![](https://github.com/limjiechao/project-1/blob/master/documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square")
 
+Pick the next fill color either by clicking or tapping on any square in the canvas with the next color.
+
 ![](https://github.com/limjiechao/project-1/blob/master/documentation/click_palette.gif "Pick the next color by clicking or tapping any color in the palette")
 
-Pick the next fill color either by clicking or tapping on any square in the canvas or any color in the palette below.
+Alternatively, click or tap on the next color in the palette below the canvas.
 
 ![](https://github.com/limjiechao/project-1/blob/master/documentation/restart.gif "Click or tap Restart button to start a new game")
 
