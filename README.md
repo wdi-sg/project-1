@@ -1,20 +1,20 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Color Spill!
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/header-hd.gif)
+![](./documentation/header-hd.gif)
 
-This game is inspired by the simple but yet addictive smartphone game **Flood-It!**. Along with Tetris and Minesweeper, Flood-It! is among one of the hardest mathematical problems to solve, being demonstrated to be “NP-hard”, i.e., *non-deterministic polynomial-time hard*. Anyone who, rather than by brute-force, finds a direct procedure to solve this game stands to win a million-dollar Millennium Prize from the Clay Mathematics Institute.
+This game is inspired by the simple but yet addictive smartphone game **Flood-It!**. Along with Tetris and Minesweeper, Flood-It! is among the hardest mathematical problems to solve, being demonstrated to be “NP-hard”, i.e., *non-deterministic polynomial-time hard*. Anyone who, rather than by brute-force, finds a direct procedure to solve this game stands to win a million-dollar Millennium Prize from the Clay Mathematics Institute.
 
-## Where to Play Color Spill!
+## Where to Play
 
 [Color Spill!](https://limjiechao.github.io/project-1/)
 
-## How to Play Color Spill!
+## How to Play
 
 The objective of this is to turn a canvas full of squares in multiple colors into one single color in a limited number of moves. The player chooses which adjacent squares to merge with by picking their color. By looking beyond the adjacent squares, the player can take over more squares every move and fill out the canvas with the same color before running out of moves.
 
 ## Game UI
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square")
+![](./documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square")
 
 Pick the next fill color either by clicking or tapping on any square in the canvas with the next color.
 
@@ -22,7 +22,7 @@ Pick the next fill color either by clicking or tapping on any square in the canv
 
 Alternatively, click or tap on the next color in the palette below the canvas.
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/restart.gif "Click or tap Restart button to start a new game")
+![](./documentation/restart.gif "Click or tap Restart button to start a new game")
 
 A new round can be started any time in the game by clicking or tapping on the *Restart* button at the top right corner.
 
@@ -40,23 +40,6 @@ Upon tapping *Apply*, a new game will be generated with the selected options.
 
 Before writing any code, I spent two days mapping out the main game processes and understanding the key algorithm well enough to lay it out in a flow chart. From a rudimentary outline, I was able to build upon it and flesh out the sequence and procedures from which I could code the Color Spill! more methodically and with greater clarity.
 
-### Flow Charts
-
-![](https://github.com/limjiechao/project-1/blob/master/documentation/game_overview.jpg "Game overview")
-
-#### Legend
-
-- Sky blue: functions that were implemented.
-- Orange: player's input is required
-- Pink: check the game's progress.
-- Darker yellow: possible final outcomes.
-- Lighter yellow: key steps or procedures
-- Green: ideas to improve the game.
-
-![](https://github.com/limjiechao/project-1/blob/master/documentation/expandFlood.jpg "Flow chart of the expandFlood(…) algorithm")
-
-`expandFlood(…)` is the key algorithm without which this game would be impossible.
-
 ## User Stories
 
 As a *casual gamer*: 
@@ -72,6 +55,18 @@ As a *casual gamer*:
 
 As much as possible, I implemented my game with these expectations in mind. 
 
+## Game Overview
+
+![](./documentation/game_overview.jpg "Game overview")
+
+### Legend
+
+- Sky blue: functions that were implemented.
+- Orange: player's input is required
+- Pink: check the game's progress.
+- Darker yellow: possible final outcomes.
+- Lighter yellow: key steps or procedures
+- Green: ideas to improve the game.
 
 ## Game Logic
 
@@ -93,6 +88,8 @@ This appends the colors in the selected color scheme to the palette the canvas.
 
 
 ### `expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate)`
+
+![](./documentation/expandFlood.jpg "Flow chart of the expandFlood(…) algorithm")
 
 Existing filled area merges with squares already in newly chosen fill color by changing into the new fill color, thus expanding the flood.
 
@@ -138,7 +135,7 @@ This is the main game loop that will be triggered whenever the player clicks to 
 
 ## Unresolved Issues
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/grid_lines.png)
+![](./documentation/grid_lines.png "Visible grid lines on smartphones")
 
 - Eliminate the grid lines that are visible on the canvas on smartphones.
 - Fine-tune the number of moves allowed for every level of difficulty and canvas size.
@@ -168,7 +165,7 @@ I would like to thank:
 - Jie Hao, my in-house Python guide, who sat with me as I read through the code of Ink Spill, a Python implementation of this game.
 - Christabel, for identifying a glaring bug on mobile phone and proofreading this `README.md`, but most importantly, for her understanding, patience and support.
 
-I also have benefited tremendously from the following online resources in the course of making this game:
+I have also drawn from the following resources:
 
 - [Flood-It: a game with a million dollars - University of Bristol](http://www.bris.ac.uk/news/2010/6945.html)
 - [P vs NP Problem | Clay Mathematics Institute](http://www.claymath.org/millennium-problems/p-vs-np-problem)
