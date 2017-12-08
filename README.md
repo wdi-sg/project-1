@@ -9,15 +9,15 @@ Read Me Contents
 
 The objective of this game is to train your concentrating skill.
 
-1. Player has to remember a sequence of colors before starting the game.
+1. Player has to remember a sequence of colours before starting the game.
 2. Once game starts, there will be a countdown timer depending on the difficulty of the game level.
 3. Player has to follow the lines according to the sequence they remembered.
-4. Once going through the line, press the corresponding button to lock your input.
+4. After going through the line, press the corresponding button to lock the input.
 5. Once all the button are pressed, the game will check if your input is the same as the pattern set by the game.
 6. If true, process to the next level.
 7. If false, retry the current level with a different sequence set by the game.
 8. Player will play through 25 levels.
-9. Once completed, game will restart to default page and restart at level 1.
+9. Once completed, game will restart to default page and reset to level 1.
 
 ![](images/project1-wireframe/how-to-play1.jpg)
 
@@ -27,23 +27,31 @@ The objective of this game is to train your concentrating skill.
 
 ### Wireframes
 
+
+<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="400">
 ![](images/project1-wireframe/project1-wireframe-01.jpg)
 1. The starting page.
 
+
 ![](images/project1-wireframe/project1-wireframe-02.jpg)
-2. Press new game button will show a popup modal to show player the color sequence to follow.
+2. Press new game button will show a popup modal to show player the colour sequence to follow.
+
 
 ![](images/project1-wireframe/project1-wireframe-03.jpg)
 3. Press Let's Go button to start the game. Timer will start as well. Solve the puzzle and press the corresponding button below.
 
+
 ![](images/project1-wireframe/project1-wireframe-04.jpg)
 4. If player is unable to press the correct sequence or time is up, modal will popup telling player that they fail and prompt to retry.
+
 
 ![](images/project1-wireframe/project1-wireframe-05.jpg)
 5. If player managed to get the sequence correct, modal popup telling them they succeed. prompt player to the next level.
 
+
 ![](images/project1-wireframe/project1-wireframe-06.jpg)
 6. Level increase then play the game with increase difficulty.
+
 
 ![](images/project1-wireframe/project1-wireframe-07.jpg)
 7. Finish all 25 levels then modal will popup telling player they completed the game. Modal will contain code to Bonus Game.
@@ -110,13 +118,13 @@ $('#form').on('submit', function(e) {});
 
 ### The Game Play
 
-The objective of the game is to collect the colors in sequence within the time limit.
+The objective of the game is to collect the colours in sequence within the time limit.
 
-1. Player has to remember a sequence of colors before starting the game.
+1. Player has to remember a sequence of colours before starting the game.
 2. Once game starts, there will be a countdown timer depending on the difficulty of the game level.
 3. Player has use the keyboard arrow button the navigate the maze.
-4. Collecting the colors in sequence.
-5. Once all the colors are collected, the game will check if your input is the same as the pattern set by the game.
+4. Collecting the colours in sequence.
+5. Once all the colours are collected, the game will check if your input is the same as the pattern set by the game.
 6. If true, process to the next level.
 7. If false, retry the current level with a different sequence set by the game.
 8. Player will play through 15 levels.
@@ -149,11 +157,11 @@ generateSequence()
 
 
 function generateSpots() {
-* generate random spot for the colors around the 8 grids
+* generate random spot for the colours around the 8 grids
 
 
 generateSequenceColor()
-* base on generateSequence(), get the number to point to the color
+* base on generateSequence(), get the number to point to the colour
 
 ---
 
@@ -163,7 +171,7 @@ settingOfCoordinate(newX, newY, oldX, oldY) {
 * set coordinate for old and new (x,y).
 * old path becomes previous
 * new path becomes active
-* check if on color spot
+* check if on colour spot
 
 
 leftKey()
@@ -235,3 +243,4 @@ $('.lets-go-btn').on('click', function(e) {
 $(document).on('keydown', function(e) {
 * sense the keydown of the arrow button
 * if player and game array same length, call winOrLose()
+colour
