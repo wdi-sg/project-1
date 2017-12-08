@@ -256,9 +256,9 @@ function randomInPlay() {
 
 // check to see if they are all matching and also clear the set interval
 // base on condition return true or false
-function checkForWin(inPlay, player) {
+function checkForWin() {
   for (var i = 0; i < 3; i++) {
-    if (inPlay[i] != player[i]) {
+    if (sequenceInPlay[i] != playerSequence[i]) {
       clearInterval(interval);
       console.log('Fail');
       return false;

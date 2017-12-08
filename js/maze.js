@@ -554,8 +554,8 @@ function checkForWin() {
 
 
 // depend on checkForWin(), game retry, game next level or end game for modal
-function winOrLose(winOrLose) {
-  if (winOrLose) {
+function winOrLose(checkForWin) {
+  if (checkForWin) {
     if (level == 15) {
       $('.modal-content2 h1').html('Congratulations!!<br>Your focus has reached 100%!!');
       $('.next-or-retry').text('End Game');

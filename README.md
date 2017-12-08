@@ -28,7 +28,7 @@ The objective of this game is to train your concentrating skill.
 ### Wireframes
 
 
-<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="400">
+<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="600">
 ![](images/project1-wireframe/project1-wireframe-01.jpg)
 1. The starting page.
 
