@@ -118,15 +118,15 @@ This checks if whole canvas has same color and returns `true`, otherwise game co
 
 ### `endGameSequence(hasPlayerWon)`
 
-This loads victory sequence if player has won or the defeat sequence if player has lost
+This loads victory sequence if player has won or the defeat sequence if player has lost.
 
 ### `restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1)`
 
-This creates a splash sequence which "animates" the canvas upon page load or game restart and then restarts the game.
+This creates a splash sequence which "animates" the canvas upon page load or restart. Then it proceeds to restart the game. When the game is loaded for the first time, default values stipulated in the parameters will be used.
 
 ### `restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty)`
 
-This initializes or reinitializes the game according to the passed in arguments.
+This initializes or reinitializes the game according to the arguments passed.
 
 ### `awaitingPlayerInput()`
 
