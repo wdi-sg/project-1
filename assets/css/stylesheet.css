@@ -1,0 +1,89 @@
+body {
+  text-align: center;
+  background-color: #ffffe0;
+}
+
+h1 {
+  font-family: "Lilita One", cursive;
+  font-size: 120px;
+  color: red;
+  margin-top: 200px;
+  text-align: center;
+}
+
+p {
+  font-family: "Calibri" , sans-serif;
+  font-size: 23px;
+  font-weight: 10px;
+  color: #6e7b8b;
+}
+
+.questions, .answers{
+  list-style-type: none;
+  }
+
+.questions li, .answers li{
+  margin:10px 0px;
+}
+#solo, #players {
+  display: inline-block;
+  font-family: "Titan One", cursive;
+  font-size: 20px;
+  text-align:center;
+  border-radius: 20px 10px;
+  border-style: double;
+  width: 150px;
+  height: 50px;
+  margin: 10px;
+  padding-top: 18px;
+  color: #6e7b8b;
+}
+
+.endgame {
+  display: none;
+}
+
+.game-over {
+  font-family: "Calibri" , sans-serif;
+  font-size: 23px;
+  font-weight: 10px;
+  margin: 40px;
+  border: 20px;
+  colour: red;
+}
+
+.endword {
+  display: none;
+  border: 20px solid black;
+  font-family: "Titan One", cursive;
+  font-size: 20px;
+  text-align:center;
+  color: white;
+}
+
+.container-solo {
+  display: none;
+  height: 600px;
+}
+
+.container-players {
+  display: none;
+}
+
+.timer-one, .timer-two {
+  font-size: 15px;
+  font-family: Calibri; sans-serif;
+}
+
+.copyright {
+  border: 10px #6e7b8b;
+  font-family: Calibri; sans-serif;
+  font-size: 16px;
+  font-weight: 100px;
+  margin: 200px;
+  text-align: center;
+  background-color: #eeeed1;
+  padding: 12px;
+  width: auto;
+
+}
