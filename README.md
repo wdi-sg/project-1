@@ -222,7 +222,7 @@ downKey()
 
 ---
 
-### functions for clear and restart
+### Functions for clear and restart
 
 clearStage()
 * prepare game for retry or next level
