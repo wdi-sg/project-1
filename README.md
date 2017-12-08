@@ -1,5 +1,7 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Color Spill!
 
+![](https://github.com/limjiechao/project-1/blob/master/documentation/header-hd.gif)
+
 This game is inspired by the simple but yet addictive smartphone game **Flood-It!**. Along with Tetris and Minesweeper, Flood-It! is among one of the hardest mathematical problems to solve, being demonstrated to be “NP-hard”, i.e., *non-deterministic polynomial-time hard*. Anyone who, rather than by brute-force, finds a direct procedure to solve this game stands to win a million-dollar Millennium Prize from the Clay Mathematics Institute.
 
 ## Where to Play Color Spill!
