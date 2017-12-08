@@ -19,9 +19,10 @@ The objective of this game is to train your concentrating skill.
 8. Player will play through 25 levels.
 9. Once completed, game will restart to default page and reset to level 1.
 
-![](images/project1-wireframe/how-to-play1.jpg)
+<img src="images/project1-wireframe/how-to-play1.jpg" alt="how to play" width="600">
 
-![](images/project1-wireframe/how-to-play2.jpg)
+<img src="images/project1-wireframe/how-to-play2.jpg" alt="how to play" width="600">
+
 
 ---
 
@@ -29,40 +30,39 @@ The objective of this game is to train your concentrating skill.
 
 
 <img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="600">
-![](images/project1-wireframe/project1-wireframe-01.jpg)
 1. The starting page.
 
 
-![](images/project1-wireframe/project1-wireframe-02.jpg)
+<img src="images/project1-wireframe/project1-wireframe-02.jpg" alt="wireframe" width="600">
 2. Press new game button will show a popup modal to show player the colour sequence to follow.
 
 
-![](images/project1-wireframe/project1-wireframe-03.jpg)
+<img src="images/project1-wireframe/project1-wireframe-03.jpg" alt="wireframe" width="600">
 3. Press Let's Go button to start the game. Timer will start as well. Solve the puzzle and press the corresponding button below.
 
 
-![](images/project1-wireframe/project1-wireframe-04.jpg)
+<img src="images/project1-wireframe/project1-wireframe-04.jpg" alt="wireframe" width="600">
 4. If player is unable to press the correct sequence or time is up, modal will popup telling player that they fail and prompt to retry.
 
 
-![](images/project1-wireframe/project1-wireframe-05.jpg)
+<img src="images/project1-wireframe/project1-wireframe-05.jpg" alt="wireframe" width="600">
 5. If player managed to get the sequence correct, modal popup telling them they succeed. prompt player to the next level.
 
 
-![](images/project1-wireframe/project1-wireframe-06.jpg)
+<img src="images/project1-wireframe/project1-wireframe-06.jpg" alt="wireframe" width="600">
 6. Level increase then play the game with increase difficulty.
 
 
-![](images/project1-wireframe/project1-wireframe-07.jpg)
+<img src="images/project1-wireframe/project1-wireframe-07.jpg" alt="wireframe" width="600">
 7. Finish all 25 levels then modal will popup telling player they completed the game. Modal will contain code to Bonus Game.
 
 ---
 
 ### Puzzle Design
 
-![](images/project1-9.jpg)
+<img src="images/project1-9.jpg" alt="wireframe" width="600">
 
-![](images/project1-17.jpg)
+<img src="images/project1-17.jpg" alt="wireframe" width="600">
 
 The game level difficulty increases every 3 level. From solid lines to dotted lines. From lines that are wide apart to lines that are close to each other.
 
@@ -80,7 +80,7 @@ randomInPlay()
 * get game timing, random number, get a random combination, set the sequence base on the combination and update the triangle image base on the combination, update the modal.
 
 
-checkForWin(inPlay, player) {
+checkForWin(inPlay, player)
 * check to see if they are all matching and also clear the set interval.
 * base on condition return true or false.
 
@@ -88,26 +88,26 @@ checkForWin(inPlay, player) {
 
 ### Event Listeners
 
-$('.btn-new-game').on('click', function() {});
+$('.btn-new-game').on('click', function() {...});
 * click new game button - image change, random sequence, show modal, remove new game button, show timer, show level and sequence to play.
 
 
-$('.lets-go-btn').on('click', function() {});
+$('.lets-go-btn').on('click', function() {...});
 * timer feature bind to the Let's Go button.
 * countdown timer start till the time runs out then call for modal retry.
 
 
-$('.btn').on('click', function() {});
+$('.btn').on('click', function() {...});
 * adding click event to the 3 button to register the player input.
 * check when all three button are press in sequence.
 * base on checkForWin return set the attribute to fire which modal - to retry, to next level or end game.
 
 
-$('.next-or-retry').on('click', function() {});
+$('.next-or-retry').on('click', function() {...});
 * either you move on to the next level, retry the current level or game end.
 
 
-$('#form').on('submit', function(e) {});
+$('#form').on('submit', function(e) {...});
 * add on game, on submit code, check if same as code defined. if same, form disappear and link to bonus game appear.
 
 ---
@@ -130,15 +130,15 @@ The objective of the game is to collect the colours in sequence within the time 
 8. Player will play through 15 levels.
 9. Once completed, game will restart to default page and restart at level 1.
 
-![](images/project1-wireframe/how-to-play3.jpg)
+<img src="images/project1-wireframe/how-to-play3.jpg" alt="wireframe" width="600">
 
-![](images/project1-wireframe/how-to-play4.jpg)
+<img src="images/project1-wireframe/how-to-play4.jpg" alt="wireframe" width="600">
 
 ---
 
 ### Maze Design
 
-![](images/project1-wireframe/game-design.jpg)
+<img src="images/project1-wireframe/game-design.jpg" alt="wireframe" width="600">
 
 Constructed base of div. Its a 13 x 13 grid. A portion of the (x, y) axis will be block wall while the other will be paths for player to travel.
 
@@ -227,20 +227,19 @@ winOrLose(winOrLose)
 
 ### Event Listeners
 
-$('.new-game').on('click', function() {
+$('.new-game').on('click', function() {...});
 * create the game maze, show or hide certain things
 
 
-$('.next-or-retry').on('click', function() {
+$('.next-or-retry').on('click', function() {...});
 * base on winOrLose(), player will be clicking on next level, retry or game end
 
 
-$('.lets-go-btn').on('click', function(e) {
+$('.lets-go-btn').on('click', function(e) {...});
 *  get timer from gameSource and set countdown timer
 *  base on level set the interval for obstacles
 
 
-$(document).on('keydown', function(e) {
+$(document).on('keydown', function(e) {...});
 * sense the keydown of the arrow button
 * if player and game array same length, call winOrLose()
-colour
