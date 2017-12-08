@@ -66,7 +66,7 @@ As a *casual gamer*:
 - I want to be able to adjust essential game settings quickly and easily so that I can quickly return to playing the game.
 - I want to be able to start a new game any time so that I do not have to be forced to finish a losing round of game.
 
-As much as possible, I implemeneted my game with these expectations in mind. 
+As much as possible, I implemented my game with these expectations in mind. 
 
 
 ## Game Logic
@@ -160,7 +160,7 @@ I would like to thank:
 - Chin Tong, who navigated me through the labyrinth of Github. 
 - Speed, who rightly pointed out that the game title was not truly centered due to my poor use of CSS letter-spacing.
 - Jie Hao, my in-house Python guide, who sat with me as I read through the code of Ink Spill, a Python implementation of this game.
-- Christabel, for identifying a glaring bug on mobile phone but most importantly, for her understanding, patience and support.
+- Christabel, for identifying a glaring bug on mobile phone and proofreading this `README.md`, but most importantly, for her understanding, patience and support.
 
 I also have benefited tremendously from the following online resources in the course of making this game:
 
