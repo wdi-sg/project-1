@@ -28,33 +28,33 @@ The objective of this game is to train your concentrating skill.
 
 ### Wireframes
 
-
-<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="600">
 1. The starting page.
+<img src="images/project1-wireframe/project1-wireframe-01.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-02.jpg" alt="wireframe" width="600">
 2. Press new game button will show a popup modal to show player the colour sequence to follow.
+<img src="images/project1-wireframe/project1-wireframe-02.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-03.jpg" alt="wireframe" width="600">
 3. Press Let's Go button to start the game. Timer will start as well. Solve the puzzle and press the corresponding button below.
+<img src="images/project1-wireframe/project1-wireframe-03.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-04.jpg" alt="wireframe" width="600">
 4. If player is unable to press the correct sequence or time is up, modal will popup telling player that they fail and prompt to retry.
+<img src="images/project1-wireframe/project1-wireframe-04.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-05.jpg" alt="wireframe" width="600">
 5. If player managed to get the sequence correct, modal popup telling them they succeed. prompt player to the next level.
+<img src="images/project1-wireframe/project1-wireframe-05.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-06.jpg" alt="wireframe" width="600">
 6. Level increase then play the game with increase difficulty.
+<img src="images/project1-wireframe/project1-wireframe-06.jpg" alt="wireframe" width="600">
 
 
-<img src="images/project1-wireframe/project1-wireframe-07.jpg" alt="wireframe" width="600">
 7. Finish all 25 levels then modal will popup telling player they completed the game. Modal will contain code to Bonus Game.
+<img src="images/project1-wireframe/project1-wireframe-07.jpg" alt="wireframe" width="600">
+
 
 ---
 
@@ -66,6 +66,7 @@ The objective of this game is to train your concentrating skill.
 
 The game level difficulty increases every 3 level. From solid lines to dotted lines. From lines that are wide apart to lines that are close to each other.
 
+
 ---
 
 ### Functions
@@ -75,14 +76,17 @@ restart()
 * reset variables and set back to game default.
 
 
+
 randomInPlay()
 * main for playing.
 * get game timing, random number, get a random combination, set the sequence base on the combination and update the triangle image base on the combination, update the modal.
 
 
+
 checkForWin(inPlay, player)
 * check to see if they are all matching and also clear the set interval.
 * base on condition return true or false.
+
 
 ---
 
@@ -92,9 +96,11 @@ $('.btn-new-game').on('click', function() {...});
 * click new game button - image change, random sequence, show modal, remove new game button, show timer, show level and sequence to play.
 
 
+
 $('.lets-go-btn').on('click', function() {...});
 * timer feature bind to the Let's Go button.
 * countdown timer start till the time runs out then call for modal retry.
+
 
 
 $('.btn').on('click', function() {...});
