@@ -46,3 +46,6 @@ Calculates the effect that the chosen fertilizer has on harvest yield
 
 #pestControlType()
 Calculates the effect that the chosen pest control has on harvest yield
+
+## Future upgrades
+Play for additional seasons, so you can use your newly accquired wealth to grow it further
