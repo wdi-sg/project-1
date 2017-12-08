@@ -21,7 +21,6 @@ var modal = document.getElementById("prompt");
 var cardsInPlay = [];
 var playerScores = [0, 0];
 var trackedCards = [];
-var log = [];
 var currentPlayer = 0;
 var flippedCardId;
 var seconds = 10;
@@ -180,8 +179,6 @@ function playerSwitch(){
 function playerScoreTracking(){
 
 	playerScores[currentPlayer]++;
-	log.push(parseInt(trackedCards[0]));
-	log.push(parseInt(trackedCards[1]));
 
 	if(currentPlayer == 0){
 		document.getElementById("p1").innerHTML = playerScores[currentPlayer];
@@ -283,7 +280,7 @@ function gameBoardSetup(){
 function gameOver(){
 
 	if((playerScores[0] + playerScores[1] == 8) || (playerScores[0] == 5) || (playerScores[1] == 5)){
-
+		$(".card").off("click", flipCard);
 		document.querySelector(".timerDisplay").innerHTML = "Game ended!";
 		return true;
 	}
@@ -302,18 +299,18 @@ function whoWon(){
 		$(".modalContent").addClass("openModal");
 
 		if(playerScores[0] > playerScores[1]){
-			$(".modalBody").empty();
-			$(".modalBody").append("Player 1 has won!");
+			$(".modalBody").empty().append("Player 1 has won!");
+			// $(".modalBody").append("Player 1 has won!");
 		} 
 
 		else if(playerScores[1] > playerScores[0]){
-			$(".modalBody").empty();
-			$(".modalBody").append("Player 2 has won!");
+			$(".modalBody").empty().append("Player 2 has won!");
+			// $(".modalBody").append("Player 2 has won!");
 		} 
 
 		else{
-			$(".modalBody").empty();
-			$(".modalBody").append("It's a draw...");
+			$(".modalBody").empty().append("It's a draw...");
+			// $(".modalBody").append("It's a draw...");
 		}
 	}
 }

@@ -21,7 +21,7 @@ ___
 
 ### How To Play
 
-* To start, click on the "New Game" button. Player 1 will start first.
+* To start, click on the "New Game" button. Player 1 will start first, and will be highlighted in red as the active player.
 
 ![](https://github.com/strisen/project-1/blob/updates/images/newGameButton.png)
 
