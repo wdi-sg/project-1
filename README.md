@@ -66,7 +66,7 @@ As a *casual gamer*:
 - I want to be able to adjust essential game settings quickly and easily so that I can quickly return to playing the game.
 - I want to be able to start a new game any time so that I do not have to be forced to finish a losing round of game.
 
-As much as possible, I implemeneted my game with these expectations in mind. 
+As much as possible, I implemented my game with these expectations in mind. 
 
 
 ## Game Logic
@@ -118,15 +118,15 @@ This checks if whole canvas has same color and returns `true`, otherwise game co
 
 ### `endGameSequence(hasPlayerWon)`
 
-This loads victory sequence if player has won or the defeat sequence if player has lost
+This loads victory sequence if player has won or the defeat sequence if player has lost.
 
 ### `restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1)`
 
-This creates a splash sequence which "animates" the canvas upon page load or game restart and then restarts the game.
+This creates a splash sequence which "animates" the canvas upon page load or restart. Then it proceeds to restart the game. When the game is loaded for the first time, default values stipulated in the parameters will be used.
 
 ### `restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty)`
 
-This initializes or reinitializes the game according to the passed in arguments.
+This initializes or reinitializes the game according to the arguments passed.
 
 ### `awaitingPlayerInput()`
 
@@ -160,7 +160,7 @@ I would like to thank:
 - Chin Tong, who navigated me through the labyrinth of Github. 
 - Speed, who rightly pointed out that the game title was not truly centered due to my poor use of CSS letter-spacing.
 - Jie Hao, my in-house Python guide, who sat with me as I read through the code of Ink Spill, a Python implementation of this game.
-- Christabel, for identifying a glaring bug on mobile phone but most importantly, for her understanding, patience and support.
+- Christabel, for identifying a glaring bug on mobile phone and proofreading this `README.md`, but most importantly, for her understanding, patience and support.
 
 I also have benefited tremendously from the following online resources in the course of making this game:
 
