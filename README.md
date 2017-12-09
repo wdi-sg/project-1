@@ -1,12 +1,13 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Color Spill!
 
-![](./documentation/header-hd.gif)
+<!--![](./documentation/header-hd.gif)--> 
+<p align="center"><img src="./documentation/header-hd.gif"/></p>
 
 This game is inspired by the simple but yet addictive smartphone game **Flood-It!**. Along with Tetris and Minesweeper, Flood-It! is among the hardest mathematical problems to solve, being demonstrated to be “NP-hard”, i.e., *non-deterministic polynomial-time hard*. Anyone who, rather than by brute-force, finds a direct procedure to solve this game stands to win a million-dollar Millennium Prize from the Clay Mathematics Institute.
 
 ## Where to Play
 
-[Color Spill!](https://limjiechao.github.io/project-1/)
+Play [Color Spill!](https://limjiechao.github.io/project-1/)
 
 ## How to Play
 
@@ -14,19 +15,23 @@ The objective of this is to turn a canvas full of squares in multiple colors int
 
 ## Game UI
 
-![](./documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square")
+<!--![](./documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square") -->
+<p align="center"><img src="./documentation/click_boxes.gif"/></p>
 
 Pick the next fill color either by clicking or tapping on any square in the canvas with the next color.
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/click_palette.gif "Pick the next color by clicking or tapping any color in the palette")
+<!--![](./documentation/click_palette.gif "Pick the next color by clicking or tapping any color in the palette")-->
+<p align="center"><img src="./documentation/click_palette.gif"/></p>
 
 Alternatively, click or tap on the next color in the palette below the canvas.
 
-![](./documentation/restart.gif "Click or tap Restart button to start a new game")
+<!--![](./documentation/restart.gif "Click or tap Restart button to start a new game")-->
+<p align="center"><img src="./documentation/restart.gif"/></p>
 
 A new round can be started any time in the game by clicking or tapping on the *Restart* button at the top right corner.
 
-![](https://github.com/limjiechao/project-1/blob/master/documentation/options.gif "Click or tap Options to adjust the game")
+<!--![](https://github.com/limjiechao/project-1/blob/master/documentation/options.gif "Click or tap Options to adjust the game")-->
+<p align="center"><img src="./documentation/options.gif"/></p>
 
 The player can also adjust the following by tapping the *Options* button at the top right corner:
 
@@ -57,7 +62,8 @@ As much as possible, I implemented my game with these expectations in mind.
 
 ## Game Overview
 
-![](./documentation/game_overview.jpg "Game overview")
+<!--![](./documentation/game_overview.jpg "Game overview")-->
+<p align="center"><img src="./documentation/game_overview.jpg"/></p>
 
 ### Legend
 
@@ -135,7 +141,8 @@ This is the main game loop that will be triggered whenever the player clicks to 
 
 ## Unresolved Issues
 
-![](./documentation/grid_lines.png "Visible grid lines on smartphones")
+<!--![](./documentation/grid_lines.png "Visible grid lines on smartphones")-->
+<p align="center"><img src="./documentation/grid_lines.png"/></p>
 
 - Eliminate the grid lines that are visible on the canvas on smartphones.
 - Fine-tune the number of moves allowed for every level of difficulty and canvas size.
