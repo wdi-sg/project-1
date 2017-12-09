@@ -49,6 +49,10 @@ Entire grid will be reverted to its original state without any change in the gam
 
 Player is allowed to fast forward to levels which are in the multiple of 10 to resume game progress. This code will be given after the completion of one level before the levels which are in the multiple of 10.
 
+4. New game feature
+
+All game progress will be reset to level 1.
+
 ---
 
 ### Code Structure

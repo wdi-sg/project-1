@@ -10,17 +10,66 @@ Pseudo code:
 8. Undo move feature.
 */
 
-var playerGrid = document.querySelector(".container-player");
-var comGrid = document.querySelector(".container-com");
-var currentPosition = 0;
-var stage = 1;
-var comMove = [0];
-var playerMove = [0];
-var gameStart = false;
+var stage;
+var comMove = [];
+var playerMove = [];
 
 $(document).ready(function() {
-  gameLoad();
+  // declaring of variables
+  var playerGrid = document.querySelector(".container-player");
+  var comGrid = document.querySelector(".container-com");
+  var currentPosition = 0;
+  var gameStart = false;
+  if (localStorage.getItem("level") === null) {
+    stage = 1;
+    comMove = [0];
+    playerMove =[0];
+  } else {
+    stage = parseInt(localStorage.getItem("level"));
+    localStorage.getItem("com").split(",").forEach(function(element) {
+      comMove.push(parseInt(element));
+    });
+    localStorage.getItem("player").split(",").forEach(function(element) {
+      playerMove.push(parseInt(element));
+    });
+  }
 
+  // play button
+  $("#play").on("click", function() {
+    $(".instructions-slide").fadeOut(400).css("display", "none");
+    $(".game-slide").fadeIn(400).css("display", "block");
+    gameStart = true;
+
+    drawGrid(playerGrid, "player");
+    drawGrid(comGrid, "com");
+    $(".level").empty();
+    $(".level").text("Level " + stage);
+    var comValue;
+    if (comMove.length > 1) {
+      for (var comIndex = 1; comIndex < comMove.length; comIndex++) {
+        comValue = parseInt($("#com" + comMove[comIndex]).text());
+        comValue++;
+        $("#com" + comMove[comIndex]).text(comValue);
+      }
+    } else {
+      comMoves(0, stage);
+    }
+    colourGrid("com");
+
+    var playerValue;
+    if (playerMove.length > 1) {
+      for (var playerIndex = 1; playerIndex < playerMove.length; playerIndex++) {
+        playerValue = parseInt($("#player" + playerMove[playerIndex]).text());
+        playerValue++;
+        $("#player" + playerMove[playerIndex]).text(playerValue);
+      }
+      currentPosition = parseInt(playerMove[playerMove.length - 1]);
+    }
+    colourGrid("player");
+    $("#player" + currentPosition).addClass("animate");
+  });
+
+  // event listener for keyboard input
   $(document).on("keyup", function(event) {
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, event.which);
@@ -28,13 +77,18 @@ $(document).ready(function() {
     if (gameStart == true && gameComplete() === true) {
       gameNext();
     }
-    // console.log("Com:");
-    // console.log(comMove);
-    // console.log("Player:");
-    // console.log(playerMove);
-    // console.log(gameComplete());
+    // save game data, needs to be last on the call stack
+    setTimeout(function() {
+      saveData();
+      // console.log("Com1:");
+      // console.log(comMove);
+      // console.log("Player:");
+      // console.log(playerMove);
+      // console.log(gameComplete());
+    }, 500);
   });
 
+  // undo button
   $("#undo").on("click", function() {
     if (playerMove.length > 1) {
       var oldPosition = playerMove[playerMove.length - 2];
@@ -48,12 +102,7 @@ $(document).ready(function() {
     }
   });
 
-  $("#play").on("click", function() {
-    $(".instructions-slide").fadeOut(400).css("display", "none");
-    $(".game-slide").fadeIn(400).css("display", "block");
-    gameStart = true;
-  });
-
+  // reset button
   $("#reset").on("click", function() {
     $(".container-player .row").remove();
     drawGrid(playerGrid, "player");
@@ -62,6 +111,25 @@ $(document).ready(function() {
     colourGrid("player");
     $("#player0").addClass("animate");
     currentPosition = 0;
+  });
+
+  // new game button
+  $("#new-game").on("click", function() {
+    localStorage.removeItem("level");
+    localStorage.removeItem("com");
+    localStorage.removeItem("player");
+    $(".game-slide").fadeTo(200, 0, function() {
+      $(".container-player .row").remove();
+      $(".container-com .row").remove();
+      stage = 1;
+      comMove = [0];
+      playerMove =[0];
+      currentPosition = 0;
+      $(".level").empty();
+      $(".level").text("Level " + stage);
+      gameLoad();
+      $(".game-slide").fadeTo(500,1);
+    });
   });
 
   $("#code-btn").on("click", function(event) {
@@ -114,216 +182,216 @@ $(document).ready(function() {
       gameNext();
     }
   });
-});
 
-// functions to call when the game loads
-var gameLoad = function() {
-    drawGrid(playerGrid, "player");
-    drawGrid(comGrid, "com");
-    comMoves(0, stage);
-    colourGrid("com");
-    $("#player0").text("1");
-    colourGrid("player");
-    $("#player0").addClass("animate");
-};
+  // functions to call when the game loads
+  var gameLoad = function() {
+      drawGrid(playerGrid, "player");
+      drawGrid(comGrid, "com");
+      comMoves(0, stage);
+      colourGrid("com");
+      $("#player0").text("1");
+      colourGrid("player");
+      $("#player0").addClass("animate");
+  };
 
-// animations for text and grid when moving to the next level
-var gameNext = function() {
-  stage++;
-  comMove = [0];
-  playerMove = [0];
-  $(".game").fadeTo(200, 0, function() {
-    $(".row").remove();
-    gameLoad();
-    $(".game").fadeTo(500, 1);
-  });
-  currentPosition = 0;
-  $(".level").fadeTo(200, 0, function() {
-    $(".level").empty();
-    $(".level").text("Level " + stage);
-    $(".level").fadeTo(500, 1);
-  });
-  $(".complete").empty();
-  $(".complete").append("Level Complete!");
-  $(".complete").fadeTo(200, 1, function() {
-    setTimeout(function() {
-      $(".complete").fadeTo(800, 0);
-    }, 2000);
-  });
-  if (stage % 10 === 0) {
-    var code = stage;
+  // animations for text and grid when moving to the next level
+  var gameNext = function() {
+    stage++;
+    comMove = [0];
+    playerMove = [0];
+    $(".game").fadeTo(200, 0, function() {
+      $(".row").remove();
+      gameLoad();
+      $(".game").fadeTo(500, 1);
+    });
+    currentPosition = 0;
+    $(".level").fadeTo(200, 0, function() {
+      $(".level").empty();
+      $(".level").text("Level " + stage);
+      $(".level").fadeTo(500, 1);
+    });
     $(".complete").empty();
-    $(".complete").append("Level Complete! Code: grid" + code);
-  }
-};
-
-// function to draw grid
-var drawGrid = function(container, side) {
-  var gameCellCount = 0;
-  for (var i = 0; i < 5; i++) {
-    var gameRow = document.createElement("div");
-    gameRow.setAttribute("class", "row");
-    container.appendChild(gameRow);
-    for (var j = 0; j < 5; j++) {
-      var gameCell = document.createElement("div");
-      gameCell.setAttribute("class", "cell");
-      gameCell.setAttribute("id", side + gameCellCount);
-      gameRow.appendChild(gameCell);
-      if (gameCellCount === 0) {
-        document.querySelector("#" + side + gameCellCount).textContent = "1";
-      } else {
-        document.querySelector("#" + side + gameCellCount).textContent = "0";
-      }
-      gameCellCount++;
+    $(".complete").append("Level Complete!");
+    $(".complete").fadeTo(200, 1, function() {
+      setTimeout(function() {
+        $(".complete").fadeTo(800, 0);
+      }, 2000);
+    });
+    if (stage % 10 === 0) {
+      var code = stage;
+      $(".complete").empty();
+      $(".complete").append("Level Complete! Code: grid" + code);
     }
-  }
-};
+  };
 
-// applying background color for grids
-var colourGrid = function(side) {
-  for (var i = 0; i < 25; i++) {
-    var gridNumberLevel = parseInt(document.querySelector("#" + side + i).textContent);
-    var gridNumberMultiples = gridNumberLevel % 5;
-    switch (gridNumberMultiples) {
+  // function to draw grid
+  var drawGrid = function(container, side) {
+    var gameCellCount = 0;
+    for (var i = 0; i < 5; i++) {
+      var gameRow = document.createElement("div");
+      gameRow.setAttribute("class", "row");
+      container.appendChild(gameRow);
+      for (var j = 0; j < 5; j++) {
+        var gameCell = document.createElement("div");
+        gameCell.setAttribute("class", "cell");
+        gameCell.setAttribute("id", side + gameCellCount);
+        gameRow.appendChild(gameCell);
+        if (gameCellCount === 0) {
+          document.querySelector("#" + side + gameCellCount).textContent = "1";
+        } else {
+          document.querySelector("#" + side + gameCellCount).textContent = "0";
+        }
+        gameCellCount++;
+      }
+    }
+  };
+
+  // applying background color for grids
+  var colourGrid = function(side) {
+    for (var i = 0; i < 25; i++) {
+      var gridNumberLevel = parseInt(document.querySelector("#" + side + i).textContent);
+      var gridNumberMultiples = gridNumberLevel % 5;
+      switch (gridNumberMultiples) {
+        case 0:
+          document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-5");
+          break;
+        case 1:
+          document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-1");
+          break;
+        case 2:
+          document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-2");
+          break;
+        case 3:
+          document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-3");
+          break;
+        case 4:
+          document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-4");
+          break;
+      }
+      if (gridNumberLevel === 0) {
+        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-0");
+      }
+    }
+  };
+
+  var directionCheck = function(current, input) {
+    var nextMove;
+    var repeat = false;
+    var leftEdge = [5, 10, 15, 20];
+    var rightEdge = [4, 9, 14, 19, 24];
+    var result = [];
+
+    switch (input) {
       case 0:
-        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-5");
+        nextMove = current - 1; // move left
         break;
       case 1:
-        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-1");
+        nextMove = current - 5; // move up
         break;
       case 2:
-        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-2");
+        nextMove = current + 1; // move right
         break;
       case 3:
-        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-3");
-        break;
-      case 4:
-        document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-4");
+        nextMove = current + 5; // move down
         break;
     }
-    if (gridNumberLevel === 0) {
-      document.querySelector("#" + side + i).setAttribute("class", "cell grid-range-0");
-    }
-  }
-};
 
-var directionCheck = function(current, input) {
-  var nextMove;
-  var repeat = false;
-  var leftEdge = [5, 10, 15, 20];
-  var rightEdge = [4, 9, 14, 19, 24];
-  var result = [];
-
-  switch (input) {
-    case 0:
-      nextMove = current - 1; // move left
-      break;
-    case 1:
-      nextMove = current - 5; // move up
-      break;
-    case 2:
-      nextMove = current + 1; // move right
-      break;
-    case 3:
-      nextMove = current + 5; // move down
-      break;
-  }
-
-  // make sure move lies within the grid
-  if (nextMove < 0 || nextMove > 24) {
-    repeat = true;
-  }
-  for (var i = 0; i < leftEdge.length; i++) {
-    if (current === leftEdge[i] && nextMove - current === -1) {
+    // make sure move lies within the grid
+    if (nextMove < 0 || nextMove > 24) {
       repeat = true;
     }
-  }
-  for (var j = 0; j < rightEdge.length; j++) {
-    if (current === rightEdge[j] && nextMove - current === 1) {
-      repeat = true;
+    for (var i = 0; i < leftEdge.length; i++) {
+      if (current === leftEdge[i] && nextMove - current === -1) {
+        repeat = true;
+      }
     }
-  }
-
-  result.push(nextMove);
-  result.push(repeat);
-  return result;
-};
-
-// iterate till correct direction is given
-var direction = function(current) {
-  var random = Math.floor(Math.random() * 4);
-  var move = directionCheck(current, random);
-  var nextMove = move[0];
-  var repeat = move[1];
-
-  while (repeat) {
-    random = Math.floor(Math.random() * 4);
-    move = directionCheck(current, random);
-    nextMove = move[0];
-    repeat = move[1];
-  }
-  return nextMove;
-};
-
-var comMoves = function(current, iterations) {
-  var location = current;
-  for (var i = 0; i < iterations; i++) {
-    var nextId = direction(location);
-    location = nextId;
-    comMove.push(nextId);
-    var count = parseInt(document.querySelector("#com" + nextId).textContent);
-    document.querySelector("#com" + nextId).textContent = (count + 1).toString();
-  }
-};
-
-// changing styles and grid numbers when player makes moves
-var userMoves = function(current, userKey) {
-  var convertedDirection;
-  if (userKey === 37 || userKey === 38 || userKey === 39 || userKey === 40) {
-    switch (userKey) {
-      case 37:
-        convertedDirection = 0;
-        break;
-      case 38:
-        convertedDirection = 1;
-        break;
-      case 39:
-        convertedDirection = 2;
-        break;
-      case 40:
-        convertedDirection = 3;
-        break;
+    for (var j = 0; j < rightEdge.length; j++) {
+      if (current === rightEdge[j] && nextMove - current === 1) {
+        repeat = true;
+      }
     }
-    var userMove = directionCheck(current, convertedDirection);
-    if (userMove[1] === false) {
-      $("#player" + current).removeClass("animate");
-      var count = parseInt(document.querySelector("#player" + userMove[0]).textContent);
-      document.querySelector("#player" + userMove[0]).textContent = (count + 1).toString();
-      colourGrid("player");
-      $("#player" + userMove[0]).addClass("animate");
-      gameComplete();
-      playerMove.push(userMove[0]);
-      return userMove[0];
+
+    result.push(nextMove);
+    result.push(repeat);
+    return result;
+  };
+
+  // iterate till correct direction is given
+  var direction = function(current) {
+    var random = Math.floor(Math.random() * 4);
+    var move = directionCheck(current, random);
+    var nextMove = move[0];
+    var repeat = move[1];
+
+    while (repeat) {
+      random = Math.floor(Math.random() * 4);
+      move = directionCheck(current, random);
+      nextMove = move[0];
+      repeat = move[1];
+    }
+    return nextMove;
+  };
+
+  var comMoves = function(current, iterations) {
+    var location = current;
+    for (var i = 0; i < iterations; i++) {
+      var nextId = direction(location);
+      location = nextId;
+      comMove.push(nextId);
+      var count = parseInt(document.querySelector("#com" + nextId).textContent);
+      document.querySelector("#com" + nextId).textContent = (count + 1).toString();
+    }
+  };
+
+  // changing styles and grid numbers when player makes moves
+  var userMoves = function(current, userKey) {
+    var convertedDirection;
+    if (userKey === 37 || userKey === 38 || userKey === 39 || userKey === 40) {
+      switch (userKey) {
+        case 37:
+          convertedDirection = 0;
+          break;
+        case 38:
+          convertedDirection = 1;
+          break;
+        case 39:
+          convertedDirection = 2;
+          break;
+        case 40:
+          convertedDirection = 3;
+          break;
+      }
+      var userMove = directionCheck(current, convertedDirection);
+      if (userMove[1] === false) {
+        $("#player" + current).removeClass("animate");
+        var count = parseInt(document.querySelector("#player" + userMove[0]).textContent);
+        document.querySelector("#player" + userMove[0]).textContent = (count + 1).toString();
+        colourGrid("player");
+        $("#player" + userMove[0]).addClass("animate");
+        gameComplete();
+        playerMove.push(userMove[0]);
+        return userMove[0];
+      } else {
+        $("#player" + current).addClass("animate");
+        return current;
+      }
     } else {
       $("#player" + current).addClass("animate");
       return current;
     }
-  } else {
-    $("#player" + current).addClass("animate");
-    return current;
-  }
-};
+  };
 
-// check for win
-var gameComplete = function() {
-  var gameStatus = true;
-  for (var i = 0; i < 25; i++) {
-    if ($("#player" + i).text() !== $("#com" + i).text()) {
-      gameStatus = false;
+  // check for win
+  var gameComplete = function() {
+    var gameStatus = true;
+    for (var i = 0; i < 25; i++) {
+      if ($("#player" + i).text() !== $("#com" + i).text()) {
+        gameStatus = false;
+      }
     }
-  }
-  return gameStatus;
-};
+    return gameStatus;
+  };
+});
 
 // swiping feature on mobile devices
 var swipeDetect = function(screen, callback) {
@@ -368,4 +436,11 @@ var swipeDetect = function(screen, callback) {
     handleSwipe(swipeDir);
     event.preventDefault();
   });
+};
+
+// save game data
+var saveData = function() {
+  localStorage.setItem("level", stage);
+  localStorage.setItem("player", playerMove);
+  localStorage.setItem("com", comMove);
 };
