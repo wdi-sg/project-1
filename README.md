@@ -97,6 +97,10 @@ Global variable `stage` is used to keep track of the stage which the Player is a
 
 Global array `playerMove` is used to keep track of the moves which the Player has made to easily backtrack.
 
+9. Modal box to display instructions again
+
+A modal box will appear to display the instructions again when the player has made too many wrong moves.
+
 ---
 
 ### Built With

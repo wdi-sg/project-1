@@ -8,6 +8,7 @@ Pseudo code:
 6. Check for win.
 7. Next stage feature.
 8. Undo move feature.
+9. Modal box to display instructions again when too many wrong moves are made.
 */
 
 var stage;
@@ -73,8 +74,11 @@ $(document).ready(function() {
   $(document).on("keyup", function(event) {
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, event.which);
+      if (playerMove.length >= 4 * stage) {
+        $(".modal").css("display", "block");
+      }
     }
-    if (gameStart == true && gameComplete() === true) {
+    if (gameStart === true && gameComplete() === true) {
       gameNext();
     }
     // save game data, needs to be last on the call stack
@@ -177,10 +181,22 @@ $(document).ready(function() {
 
     if (gameStart === true && gameComplete() === false) {
       currentPosition = userMoves(currentPosition, swipeConverted);
+      if (playerMove.length >= 4 * stage) {
+        $(".modal").css("display", "block");
+      }
     }
-    if (gameStart == true && gameComplete() === true) {
+    if (gameStart === true && gameComplete() === true) {
       gameNext();
     }
+    // save game data, needs to be last on the call stack
+    setTimeout(function() {
+      saveData();
+    }, 500);
+  });
+
+  // close modal box
+  $(".close").on("click", function() {
+    $(".modal").css("display", "none");
   });
 
   // functions to call when the game loads
@@ -398,9 +414,9 @@ var swipeDetect = function(screen, callback) {
   var touchSurface = screen;
   var swipeDir, dist, startX, startY, startTime, distX, distY, elapsedTime;
   var allowedTime = 300;
-  var thresholdX = 70;
-  var thresholdY = 70;
-  var restraint = 50;
+  var thresholdX = 60;
+  var thresholdY = 60;
+  var restraint = 40;
   handleSwipe = callback || function(swipeDir) {}
 
   touchSurface.addEventListener("touchstart", function(event) {
