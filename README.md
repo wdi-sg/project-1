@@ -1,96 +1,223 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+![](/assets/images/Connect_4_Board_and_Box.jpg)
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: Connect4!
 
 ### Overview
 
-Let's start out with something fun - **a game!**
+Connect4 is a game like tic tac toe. Simply just connect4 to win! However, unlike tic tac toe, the players coin fall straight down
+from the top. Played in a board of seven columns and six rows, the total number of game combinations is a staggering 4,531,985,219,092!
+That's four trillion, five hundred thirty one billion, nine hundred eighty five million, two hundred nineteen thousand, ninety two.
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
-
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
-
-
----
-
-### Technical Requirements
-
-Your app must:
-
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+[View the game here!](https://keed.github.io/project-1/)
 
 ---
 
-### Necessary Deliverables
+### Gameplay
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+![](/assets/images/Connect_Four_Gameplay.gif)
 
----
+The 2 player game starts out with player 1 making the first move. Click on any column to place the coin. Once a player has connected 4 horizontally, vertically or diagonally, the player wins!
 
-### Suggested Ways to Get Started
-
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+<img src="/assets/images/c4-1.gif" width="500px">
 
 ---
 
-### Potential Project Ideas
+### Outcomes
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+<img src="/assets/images/c4-2.gif" width="500px">
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+Either Player 1 or 2 Wins or...
 
----
+<img src="/assets/images/c4-3.gif" width="500px">
 
-### Useful Resources
-
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+Draw!
 
 ---
 
-### Project Feedback + Evaluation
+### Mobile Optimised
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+<img src="/assets/images/c4-mobile.png" height="700px">
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+---
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+### Possible Future Updates
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+* Improve styling of game board and coins
+* Implement AI (Minimax & Alpha–beta pruning Algorithms)
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+---
 
-* __Total__: Your instructors will give you a total score on your project between:
+### References
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+* https://en.wikipedia.org/wiki/Connect_Four
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+* https://oeis.org/A212693
+
+---
+
+### Program Flow
+
+1. The program initialises _begin()_. Within _begin()_, the status is set to inform the user to click on "New Game". The board is drawn with a dark background.
+
+2. Once the user clicks on the "New Game" button, _newGame()_ is called and action listeners are added to allow the user to start the game. As the user hovers over the coin grids, a coin of their colour appears so as to represent the coin dropping from the top of the board.
+
+3. As the user decides and clicks on the column to place the coin, a coin fills to the bottom of the board.
+The user can click on any column but the coin will always fill to the bottom, as per Connect 4 rules.
+For each move, _playMove(position)_ is called.
+
+   playMove function loops through each row and column to update the coin position from the bottom of the board. It also checks if there are any 4 coins that suit the winning condition.
+
+The winning condition check is _checkWinner(row, col)_.
+```javascript
+function checkWinner(row, col) {
+	console.log("Row = "+row+" - Col = "+col);
+	if (verticalCheck(row, col) || horizontalCheck(row, col) || 
+		leftDiagonalCheck(row, col) || rightDiagonalCheck(row, col)) {
+		console.log("********** Game Over **********");
+		setStatus("Player "+currentPlayer+" wins!");
+		gameOver();
+		return true;
+	}
+	else if (checkDraw()) {
+		console.log("********** Draw **********");
+		setStatus("Draw!");
+		gameOver();
+		return true;
+	}
+	return false;
+}
+```
+
+It does vertical, horizontal and diagonal checks for the 4 coins.
+```javascript
+//Left Diagonal Check
+// Col:  --- 0 1 2 3 4 5 6
+// Row:0 --- 0 0 0 0 0 0 0
+// Row:1 --- 0 0 0 0 0 0 0
+// Row:2 --- 0 0 X 0 0 0 0
+// Row:3 --- 0 0 0 X 0 0 0
+// Row:4 --- 0 0 0 0 X 0 0
+// Row:5 --- 0 0 0 0 0 X 0
+
+function leftDiagonalCheck(row, col) {
+	let resultArr = [];
+	resultArr.push(row+"-"+col);
+	var count = 1; //Includes the entered position
+	//Start counting towards 0, left up
+	var tempRow = row - 1;
+	var tempCol = col - 1;
+	while (tempRow >= 0 && tempCol >= 0) {
+		if (board[tempRow][tempCol] == currentPlayer) {
+			count++;
+			resultArr.push(tempRow+"-"+tempCol);
+			//Shift to next position
+			tempRow--;
+			tempCol--;
+		}
+		else { break; }
+	}
+	//Count downwards
+	tempRow = row + 1;
+	tempCol = col + 1;
+	while (tempRow < totalRows && tempCol < totalCols) {
+		if (board[tempRow][tempCol] == currentPlayer) {
+			count++;
+			resultArr.push(tempRow+"-"+tempCol);
+			//Shift to next position
+			tempRow++;
+			tempCol++;
+		}
+		else { break; }
+	}
+	if (count > 3) {
+		console.log("********** LeftDiagonalCheck Found **********");
+		setWinnerBlink(resultArr);
+		return true
+	}
+	else {
+		return false;
+	}
+}
+
+//Right Diagonal Check
+// Col:  --- 0 1 2 3 4 5 6
+// Row:0 --- 0 0 0 0 0 0 0
+// Row:1 --- 0 0 0 0 0 0 0
+// Row:2 --- 0 0 0 0 X 0 0
+// Row:3 --- 0 0 0 X 0 0 0
+// Row:4 --- 0 0 X 0 0 0 0
+// Row:5 --- 0 X 0 0 0 0 0
+
+function rightDiagonalCheck(row, col) {
+	let resultArr = [];
+	resultArr.push(row+"-"+col);
+	var count = 1; //Includes the entered position
+
+	//Start counting towards 0, right up
+	var tempRow = row - 1;
+	var tempCol = col + 1;
+
+	while (tempRow >= 0 && tempCol < totalCols) {
+		if (board[tempRow][tempCol] == currentPlayer) {
+			count++;
+			resultArr.push(tempRow+"-"+tempCol);
+			//Shift to next position
+			tempRow--;
+			tempCol++;
+		}
+		else { break; }
+	}
+	//Start counting towards 0, right down
+	tempRow = row + 1;
+	tempCol = col - 1;
+
+	while (tempRow < totalRows && tempCol >= 0) {
+		if (board[tempRow][tempCol] == currentPlayer) {
+			count++;
+			resultArr.push(tempRow+"-"+tempCol);
+			//Shift to next position
+			tempRow++;
+			tempCol--;
+		}
+		else { break; }
+	}
+	if (count > 3) {
+		console.log("********** RightDiagonalCheck Found **********");
+		setWinnerBlink(resultArr);
+		return true
+	}
+	else {
+		return false;
+	}
+}
+```
+
+4. If a winner is found, _gameOver()_ is called. The function turns off action listeners from the board and activates the animation for the winning combination of coins as well as displaying to the user who has won. However, if no winner is found and the game ends in a draw, _gameOver()_ will be called too and an appropriate message will be displayed.
+
+## Interesting Observations
+
+I figured a way to set the indicator coin (the coin at the top of the board to indicate which column it will drop from)
+
+```javascript
+function setIndicatorHover() {
+	var color = "";
+	if (currentPlayer == 1) {
+		color = "red";
+	}
+	else {
+		color = "yellow";
+	}
+	for (let i=0; i<totalCols; i++) { //Cant use var, need to use let
+		$("div[id$='-"+i+"']").hover(function() {
+			$("div[id='ind"+i+"']").css("background-color",color);
+		},
+		function(){
+			$("div[id='ind"+i+"']").css("background-color","");
+		});
+	}
+}
+```
+
+The point of interest is not how I figured to assign the hover function in a loop but that the _let_ variable is important. The issue was that the variable _i_ was bound to the same variable outside of this function! That function is _togglePlayer()_ which is called by _playMove(position)_.
+
+It's good to learn something every day :)
