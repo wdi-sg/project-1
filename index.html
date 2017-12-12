@@ -7,20 +7,9 @@
   </head>
   <body>
     <div class="container">
-      <!-- <div class="start-screen">
-        <h1>Help Halimah Make Yishun Great Again</h1>
-        <button class="start-btn" type="button" onClick="window.location.reload()">Start</button>
-      </div> -->
-
       <h1>Help Halimah Make Yishun Great Again</h1>
 
       <div class="instruction">
-        <p><b>How to play?</b></p>
-        <img src="./assets/img/arrow-keys.png" class="arrow-keys" alt="Arrow Keys">
-        <p id="p2">Control the paddle using the <b>left</b> and <b>right arrow keys</b></p>
-        <p id="p2"><b>A life</b> will be <b>lost</b> when you fail to deflect the heart with the paddle</p>
-        <p id="p2"><b>Complete the level's mission</b> (on the right column) to advance to the next level</p>
-
         <p><b>Scoring</b></p>
         <p id="p3"><img src="./assets/img/murderer.png" class="icon" alt="Murderer" width="33%">  Murder: + 5 pts</p>
         <p id="p3"><img src="./assets/img/brothel.png" class="icon" alt="Brothel" width="37%">  Brothel: + 4 pts</p>
@@ -29,23 +18,32 @@
         <p id="p3"><img src="./assets/img/bike-thef.png" class="icon" alt="Bike Theft" width="23%">  Bike Theft: + 1 pt</p>
       </div>
 
-      <div class="game-column">
+      <div class="start-screen" style="display:show">
+        <ul><b>How to play?</b></ul>
+        <img src="./assets/img/arrow-keys.png" class="arrow-keys" alt="Arrow Keys"><br>
+        <li>Control the paddle using the <b>left</b> and <b>right arrow keys</b></li>
+        <li><b>A life</b> will be <b>lost</b> when you fail to deflect the heart with the paddle</li>
+        <li><b>Complete the level's mission</b> (on the right column) to advance to the next level</li><br><br>
+        <img class="start-btn" src="./assets/img/start.png">
+      </div>
+
+      <div class="gameColumn" style="display:none">
         <span class="heart"></span>
         <div class="paddle"></div>
       </div>
 
-      <div class="results">
+      <div class="finish-screen" style="display:none">
+        <br><h1>Game Over</h1>
+        <p>Your score was: <span id="score"></span></p>
+        <img class="end-btn" src="./assets/img/restart.png">
+      </div>
+
+      <div class="results" style="display:show">
         <b><p class="level">Level: 1</p></b>
         <b><p class="mission">Mission: Obtain a score of 100</p></b>
         <b><p class="lives">Lives: 3<br></p></b>
         <b><p class="score">Score: 0</p></b>
         <img src="./assets/img/lives.png" class="halimah-lives" width="80%">
-      </div>
-
-      <div class="finish-screen" style="display:none">
-        <h1>Game Over</h1>
-        <p>Your score was: <span id="score"></span></p>
-        <button class="start-btn" type="button" onClick="window.location.reload()">Restart</button>
       </div>
 
     </div>

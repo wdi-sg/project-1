@@ -1,8 +1,18 @@
 $(function () {
-  $('.start-Button').click(function () {
+  $('.start-btn').click(function () {
     $('.start-screen').hide()
     $('.finish-screen').hide()
-    $('.gamecolumn').show()
+    $('.gameColumn').show()
+    var score = 0
+    var hasHalimahLaughedlives = 3
+    // heartX = $heart.css('left', '505px')
+    // heartY = $heart.css('bottom', '40px')
+    // paddleX = ($gameColumn - paddleWidth) / 2
+    var arrOfBad = []
+  })
+
+  $('.end-btn').click(function () {
+    window.location.reload()
   })
 
   // -------------------------- definition of global variables -------------------------- //
@@ -21,7 +31,7 @@ $(function () {
   var leftArrow = false
   var rightArrow = false
 
-  var $gameColumn = $('.game-column')
+  var $gameColumn = $('.gameColumn')
   var $heart = $('.heart')
   var heartRad = 10
   // current position of heart
@@ -110,8 +120,8 @@ $(function () {
     var heartX = Number($heart.css('left').replace('px', ' '))
     var heartY = Number($heart.css('bottom').replace('px', ' '))
 
-    var $width = $('.game-column').width()
-    var $height = $('.game-column').height()
+    var $width = $('.gameColumn').width()
+    var $height = $('.gameColumn').height()
 
     var paddleWidth = $paddle.width()
     var paddleHeight = $paddle.height()
@@ -123,7 +133,7 @@ $(function () {
     if (heartX > $width - heartRad || heartX < heartRad) {
       heartSpeedX = -heartSpeedX
     } else if (heartY > $height - heartRad) {
-      heartSpeedY = -heartSpeedY// top wall
+      heartSpeedY = -heartSpeedY // top wall
     } else if (heartY < heartRad + paddleHeight) { // bottom wall
       if (heartX > paddleLeftEdge && heartX < paddleRightEdge && heartY < paddleHeight + heartRad) { // check whether the center of the heart is between the left and right edges of the paddle
         heartSpeedY = Math.abs(heartSpeedY)
@@ -197,7 +207,7 @@ $(function () {
 
   // -------------------------- advance to new level -------------------------- //
 
-  var hasHalimahLaughed = 0
+  var hasHalimahLaughedlives = 0
   function nextlevel () {
     var laughing = new Audio("./assets/img/laughing.mp3")
     var level = Math.floor(score / 100) + 1
@@ -226,6 +236,7 @@ $(function () {
     $('.gameColumn').hide()
     $('#score').text(score)
     $('.finish-screen').show()
+    var hasHalimahLaughedlives = 0
   }
 
   // -------------------------- END OF CODE YAYYYYYYYYY -------------------------- //
