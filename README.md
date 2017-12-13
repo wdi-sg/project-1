@@ -180,7 +180,7 @@ $('#reset').hide()
   I used the setInterval but my game will be looping forever.
   As I am not sure how to use it. Went to google how to use the setInterval.
 
-  Would like to thanks to my peers Grabiel, Shu Min, JieYing, Alex, for guiding throughout the project.
+  Would like to thanks to my peers Gabriel, Shu Min, JieYing, Alex, for guiding throughout the project.
 
 ---
 ### Potential Improvements
