@@ -140,7 +140,7 @@ function checkYPos(mumY, charY){
 function meetMummy(){
   if(checkYPos(mumY, charY) && checkXPos(mumX, charX)){
     setTimeout(function(){
-      alert('you lose')
+      alert('Killed by Mummy, Please Press restart.')
     },300)
     clicker = false
   }
@@ -212,7 +212,7 @@ function checkYBlockBottom(x){
 
 function alertWin(){
   setTimeout(function(){
-    alert('win')
+    alert('You Won! Please Procced to the Next Level.')
   },300)
   $('#player').remove()
   $('#nextLevel').show()

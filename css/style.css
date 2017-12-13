@@ -1,11 +1,16 @@
-.container{
+body{
   width: 100%;
   height: 100vh;
-  margin: 0 auto;
-  /*border: 1px solid red;*/
   background: url(../img/pyramidsetting.jpg) no-repeat;
   background-size: cover;
   position: absolute;
+}
+
+
+.container{
+  width: 80%
+  margin: 0 auto;
+  /*border: 1px solid red;*/
 }
 
 h2{
@@ -92,7 +97,7 @@ button{
   margin-top: 5px;
   font-size: 30px;
   font-family: 'Creepster', cursive;
-  transform: translateX(250%);
+  transform: translateX(210%);
 }
 #nextLevel{
   display: none;
