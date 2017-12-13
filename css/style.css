@@ -1,25 +1,22 @@
 .container{
-  width: 800px;
-  height: 500px;
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
   /*border: 1px solid red;*/
-  background: url(../img/background_3.jpg) no-repeat;
+  background: url(../img/pyramidsetting.jpg) no-repeat;
   background-size: cover;
-}
-h1,h2{
-  text-align: center;
-  font-family: 'Creepster', cursive;
-  font-size: 50px;
-  color: brown;
-  margin: 0;
+  position: absolute;
 }
 
 h2{
-  font-size: 30px;
+  text-align: center;
+  font-family: 'Creepster', cursive;
+  font-size: 100px;
+  color: brown;
+  margin: 0;
 }
-
 .wrapper{
-  width: 300px;
+  width: 600px;
   display: flex;
   flex-flow: row wrap;
   margin: 0 auto;
@@ -27,24 +24,16 @@ h2{
 }
 .box{
   border: 1px solid rgba(245,245,245,0.5);
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   box-sizing: border-box;
   position: relative;
 }
 
-/*.function {
-  text-align: center;
-}*/
-
-/*.function > button {
-  display: inline-block;
-}*/
-
 #player{
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background-image: url(../img/player_1.png);
   background-size: cover;
   left: 0;
@@ -54,8 +43,8 @@ h2{
 
 #mummy{
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   background: url(../img/tinyMummySprite.png);
   background-size: cover;
   left: 0;
@@ -92,11 +81,18 @@ h2{
 .exitBottom{
   border-bottom: 5px solid blue;
 }
+.function{
+  position: absolute;
+}
 button{
-  display: block;
+  display: inline-block;
   margin: auto;
-  height: 30px;
+  height: 80px;
+  width: 200px;
   margin-top: 5px;
+  font-size: 30px;
+  font-family: 'Creepster', cursive;
+  transform: translateX(250%);
 }
 #nextLevel{
   display: none;

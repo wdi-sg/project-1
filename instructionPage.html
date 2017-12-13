@@ -8,21 +8,24 @@
   </head>
   <body>
     <div class="container">
-      <h1>Instructions</h1>
-      <div class="wrapperLeft">
-        <img src="./img/legend.png" alt="legend" width="200px">
+      <div class="instructions">
+
+        <h1>Instructions</h1>
+        <div class="wrapperLeft">
+          <img src="./img/legend.png" alt="legend" width="200px">
+        </div>
+        <div class="wrapperRight">
+          <!-- <img src='/img/playerMoves.png' alt="player's Movement" width="100px"> -->
+          <ol>
+            <li>Player Moves by one grid by any direction. </li>
+              <li> Each move the player makes, the mummy moves towards the player by 2 moves towards the player. </li>
+            <li>The Mummy will always try to make a horizontal move before attempting a vertical Move</li>
+            <li>Try to trick the Mummy into moving to a blocked spot, so that you can make your move towards the exit. </li>
+            <li>Once the player gets to the exit, the play is completed, Player proceeds to the next level.</li>
+          </ol>
+        </div>
+        <button id="menu" onclick="location.href='index.html'">Main Menu</button>
       </div>
-      <div class="wrapperRight">
-        <!-- <img src='/img/playerMoves.png' alt="player's Movement" width="100px"> -->
-        <ol>
-          <li>Player Moves by one grid by any direction. </li>
-          <li> Each move the player makes, the mummy moves towards the player by 2 moves towards the player. </li>
-          <li>The Mummy will always try to make a horizontal move before attempting a vertical Move</li>
-          <li>Try to trick the Mummy into moving to a blocked spot, so that you can make your move towards the exit. </li>
-          <li>Once the player gets to the exit, the play is completed, Player proceeds to the next level.</li>
-        </ol>
-      </div>
-      <button id="menu" onclick="location.href='index.html'">Main Menu</button>
     </div>
 
 
