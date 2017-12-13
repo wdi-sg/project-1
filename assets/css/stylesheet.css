@@ -2,20 +2,21 @@
   margin: 0 auto;
   text-align: center;
 }
+
 body {
-  background: #F4D35E;
+  background: #ffcdd2;
   background-size: cover;
 }
 h1,h2 {text-align: center}
 h1,h2 {font-family: 'Libre Baskerville', serif;}
-h1 {background-color: #083D77;
+/*h1 {background-color: #083D77;
   padding: 10px;
   width: 100%;
   height: 50px;
   margin: 0;
   color: #EBEBD3;
   text-align: center;
-}
+}*/
 p { text-align: center}
 .half {
   width: 300px;
