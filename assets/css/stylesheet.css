@@ -1,0 +1,86 @@
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+body {
+  background: #ffcdd2;
+  background-size: cover;
+}
+h1,h2 {text-align: center}
+h1,h2 {font-family: 'Libre Baskerville', serif;}
+/*h1 {background-color: #083D77;
+  padding: 10px;
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  color: #EBEBD3;
+  text-align: center;
+}*/
+p { text-align: center}
+.half {
+  width: 300px;
+  height: 200px;
+  border: 1px solid black;
+  background-color: white;
+  position: relative;
+  display: inline-block;
+}
+
+ul{color: grey}
+li {display: inline}
+a {text-decoration: none;
+color:grey }
+.start, .skip {display: block;
+  margin: 0 auto}
+
+.start {background-color: #e55b77}
+.start:hover {background-color: #eb3d72}
+
+#ball1 {
+  background-image: radial-gradient(ellipse farthest-corner at 30px 45px , #00FFFF 0%, rgba(0, 0, 255, 0) 50%, #0000FF 95%);
+  top: 30px;
+  left: 255px;
+}
+
+#ball2 {
+  background-image: radial-gradient(ellipse farthest-corner at -30px 45px , #ffb6c1 0%, rgba(0, 255, 0, 0) 50%, #ff0000 95%);
+  top: 30px;
+  left: 30px;
+}
+
+#clear {
+  clear: both;
+}
+
+.balls {
+  border-radius: 99px;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  display: inline-block;
+  float: left;
+  margin: 0;
+  transition: all 0.5s ease-out;
+}
+
+.nextLevel {background-color: #4CAF50}
+.nextLevel:hover {background-color: #46a049}
+
+.fade {background-color: #BEBEBE}
+.play {background-color: #E0E0E0}
+.reset {background-color: #2196F3;
+margin: 0 auto;
+display: block}
+.mute {display: block;}
+.reset:hover {background: #0b7dda}
+
+.goalBorder {
+    border: 2px solid #9ecaed;
+    border-radius: 7px;
+}
+
+.platformBorder {
+  border-top: medium thick green;
+  border-radius: 3px;
+}

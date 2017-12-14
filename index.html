@@ -2,10 +2,50 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/stylesheet.css">
+    <link rel="icon" href="./favicon.ico">
+    <title>On The Other Side</title>
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <nav>
+      <div class="nav-wrapper valign-wrapper">
+        <h3 class="center-align">On The Other Side</h3>
+      </div>
+    </nav>
+
+    <h3> <br> </h3>
+    <div class = "container">
+      <div class = "half fade" id = "game1">
+
+        <div id = "ball1" class = "balls"></div>
+
+
+      </div>
+      <div class = "half fade" id = "game2">
+
+        <div id = "ball2" class = "balls"></div>
+
+      </div>
+
+        <div id = "clear"></div>
+
+      </div>
+      <button type="button" id = "mute" class="mute waves-effect waves-light btn"> I like sounds (M)</button>
+      <button type="button" id = "reset" class="reset waves-effect waves-light btn"> Reset (R)</button>
+      <button type="button" class="skip waves-effect waves-light btn"> Skip </button>
+      <h2> Click start to begin </h2>
+      <button type="button" class="start waves-effect waves-light btn"> Start (Spacebar) </button>
+      <p> Help steer Blue and Red into the grey boxes to win. <br>
+        <strong>You can only move Blue directly</strong> with W,A,D or &uarr;,&larr;,&rarr;. <br>
+        Red will go opposite in the horizontal plane.<br></p>
+        <br><br>
+    </div>
+    <footer>
+      Thank you for stopping by! Gabriel Lu, 5th September 2017
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
