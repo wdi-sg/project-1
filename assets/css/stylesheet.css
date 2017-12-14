@@ -12,20 +12,22 @@
 }
 
 #restartbtn {
-  margin: 0 auto;
+  font-family: "Press Start 2P";
+  font-size: 20px;
+  margin: 20px auto;
   display: flex;
   align-items: center;
-  background-color: inherit;
-  border: none;
+  background-color: white;
+  border: 2px solid black;
+  height: 150px;
+  width: 220px;
 }
 
 body {
   font-family: "Press Start 2P";
-  background-image: url("../images/sailormoonTile.png");
   background-repeat: repeat;
   margin: 0 auto;
 }
-
 
 h1 {
   font-size: 35px;
@@ -62,26 +64,23 @@ h6 {
 
 .clickme {
   background: url("../images/background4.gif");
-  height: 700px;
-  width: 1200px;
+  height: 100%;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: absolute;
   display: block;
   z-index: 1;
-  border-top-left-radius:10%;
-  border-top-right-radius:10%;
 }
 
 .leaderBoard {
   text-align: center;
-  font-size: 40px;
+  font-size: 22px;
   height: 400px;
-  width: 300px;
+  width: 200px;
   position: absolute;
   display: block;
   line-height: 70px;
-
 }
 
 .flower {
@@ -113,8 +112,6 @@ h6 {
   height: 700px;
   margin: 0 auto;
   position: relative;
-  border-top-left-radius:10%;
-  border-top-right-radius:10%;
 }
 
 .timer {
@@ -136,7 +133,6 @@ h6 {
   float: right;
   line-height: 120px;
 }
-
 
 .highscore {
   height: 90%;
@@ -163,12 +159,10 @@ h6 {
   position: absolute;
   display: none;
   z-index: 0;
-  border-top-left-radius:10%;
-  border-top-right-radius:10%;
 }
 
 .bottom {
-  height: 240px;
+  height: 180px;
   width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -177,14 +171,12 @@ h6 {
 .gamestart {
   background: url("../images/trip2.gif");
   background-size: 100% 100%;
-  height: 260px;
+  height: 180px;
   width: 1200px;
   margin: 0 auto;
   position: absolute;
   z-index: 1;
   display: none;
-  border-bottom-left-radius:10%;
-  border-bottom-right-radius:10%;
 }
 
 .gamestart img {
@@ -197,16 +189,33 @@ h6 {
   position: absolute;
   background-color: white;
   font: 30px;
-  height: 260px;
-  width: 1200px;
+  height: 100%;
+  width: 100%;
   margin: 0 auto;
-  padding-top: 0px;
   z-index: 0;
-  border-bottom-left-radius:10%;
-  border-bottom-right-radius:10%;
 }
 
 .instructions img {
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
+}
+
+.sideinstructions {
+  text-align: center;
+  font-size: 30px;
+  height: 400px;
+  width: 200px;
+  position: absolute;
+  display: block;
+  line-height: 70px;
+  right: 0px;
+}
+
+/*scoring*/
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  text-align: center;
 }

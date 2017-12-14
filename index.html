@@ -10,6 +10,9 @@
     <!-- <h1> Star Power !</h1> -->
     <aside class ="leaderBoard">
     </aside>
+    <aside class ="sideinstructions">
+      <h3> ArrowKeys to move Left & Right. Avoid Ghost! Collect Stars! 30seconds! Go! </h3>
+    </aside>
 
       <div class = "container">
         <div class = "clickme">
@@ -21,11 +24,9 @@
         <audio src="./assets/sound/flicker.mp3"autoplay>
         </audio>
 
-
         <div class = "timer">
           Time: 30
         </div>
-
         <div class = "score">
           Score: 0
         </div>
@@ -39,24 +40,25 @@
 
   <div class = "bottom">
     <div class = "instructions">
-       <h3> ArrowKeys to move Left & Right. Avoid Ghost! Collect Stars! 30seconds! Go! </h3>
        <h2> <img src="./assets/images/catGhost.gif">
             <img src="./assets/images/star2.gif">
             <img src="./assets/images/star3.gif">
             <img src="./assets/images/star6.gif">
             <img src="./assets/images/bottleStar.gif">
        </h2>
-          <h4> Score:-3 Score:+1 Score:+2 Score:+3 Score:+4 </h4>
-          <h4> Time:-1.5s Time:+0s Time:+0s Time:+0s Time:+1s </h4>
-          <h4> Speed:55 Score:60 Score:65 Score:75 Score:85 </h4>
+       <div class="wrapper">
+        <div class="one">Score:-3 Time:-1.5s</div>
+        <div class="two">Score:+1 Time:+0</div>
+        <div class="three">Score:+2 Time:+0 </div>
+        <div class="four">Score:+3 Time:+0s</div>
+        <div class="five">Score:+4 Time:+1s</div>
+      </div>
        </div>
 
         <div class = "gamestart">
-          <button id="restartbtn"><img src="./assets/images/PinkCatGirl.gif"></button>
-          <h1>click me!  to set new high score!</h1>
+          <button id="restartbtn">Play Again</button>
         </div>
   </div>
-
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="./assets/js/script.js" charset="utf-8"></script>

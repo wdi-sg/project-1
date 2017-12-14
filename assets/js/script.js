@@ -199,8 +199,8 @@ $(function () {
   }
   function leaderBoard () {
     var $leaderBoard = $('.leaderBoard')
-    $leaderBoard.text(`HighScore: ${highScoreArr[0]}
-                   HighScore: ${highScoreArr[1]}
-                   HighScore: ${highScoreArr[2]}`)
+    $leaderBoard.text(`First: ${highScoreArr[0]}
+                   Second: ${highScoreArr[1]}
+                   Third: ${highScoreArr[2]}`)
   }
 })
