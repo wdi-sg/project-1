@@ -39,7 +39,7 @@ $(function () {
     $('.gameColumn').show()
     randomBadPeople()
     createIcon()
-    setInterval(createIcon, 3000)
+    setInterval(createIcon, 2000)
     moveHeart()
     setInterval(moveHeart, 100)
   })
@@ -198,8 +198,6 @@ $(function () {
       return false
     }
   }
-
-  // setInterval(moveHeart, 100) // call moveHeart every 0.1s
 
   // -------------------------- advance to new level -------------------------- //
 
