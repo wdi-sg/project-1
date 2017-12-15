@@ -1,19 +1,4 @@
 $(function () {
-  $('.start-btn').click(function () {
-    $('.start-screen').hide()
-    $('.finish-screen').hide()
-    $('.gameColumn').show()
-    var score = 0
-    var hasHalimahLaughedlives = 3
-    // heartX = $heart.css('left', '505px')
-    // heartY = $heart.css('bottom', '40px')
-    // paddleX = ($gameColumn - paddleWidth) / 2
-    var arrOfBad = []
-  })
-
-  $('.end-btn').click(function () {
-    window.location.reload()
-  })
 
   // -------------------------- definition of global variables -------------------------- //
 
@@ -47,6 +32,21 @@ $(function () {
   var $mission = $('.mission')
 
   var lives = 3
+
+  $('.start-btn').click(function () {
+    $('.start-screen').hide()
+    $('.finish-screen').hide()
+    $('.gameColumn').show()
+    randomBadPeople()
+    createIcon()
+    setInterval(createIcon, 3000)
+    moveHeart()
+    setInterval(moveHeart, 100)
+  })
+
+  $('.end-btn').click(function () {
+    window.location.reload()
+  })
 
   // -------------------------- creation of bad people icons -------------------------- //
 
@@ -85,12 +85,8 @@ $(function () {
 
     arrOfBad.push(`bad${iconCounter}`)
     iconCounter++
-    console.log(arrOfBad)
-    console.log('newIcon', $newIcon)
   }
 
-  // createIcon()
-  setInterval(createIcon, 2000)
 
   // -------------------------- move the paddle left and right -------------------------- //
 
@@ -203,7 +199,7 @@ $(function () {
     }
   }
 
-  setInterval(moveHeart, 100) // call moveHeart every 0.1s
+  // setInterval(moveHeart, 100) // call moveHeart every 0.1s
 
   // -------------------------- advance to new level -------------------------- //
 
