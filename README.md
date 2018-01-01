@@ -112,12 +112,13 @@ A modal box will appear to display the instructions again when the player has ma
 
 ### Areas to Improve on
 
-* Mobile interface swiping feature
-* Game save feature
+* Mobile interface swiping feature (completed)
+* Game save feature (completed)
+* Feature in which computer is able to solve a grid created by the Player
 
 ---
 
 ### Acknowledgments
 
-* JavaScript Kit
+* JavaScript Kit for the code to implement swiping on mobile <http://www.javascriptkit.com/javatutors/touchevents2.shtml>
 * Family and friends for the inspirations and game testing
