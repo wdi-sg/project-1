@@ -289,6 +289,7 @@ h3 {
 }
 
 @media only screen and (min-width: 536px) and (max-width: 650px) {
+	/* https://stackoverflow.com/questions/6211959/html5-div-flashes-on-tap */
 	div {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
