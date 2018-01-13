@@ -452,8 +452,8 @@ h3 {
 }
 
 @media only screen and (min-width: 321px) and (max-width: 414px) {
-	* {
-		-webkit-tap-highlight-color: none;
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 	.box {
 		height: 15px;
