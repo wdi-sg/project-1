@@ -112,7 +112,6 @@ body {
 	border-style: solid;
 	border-width: 6px;
 	border-color: black;
-	-webkit-tap-highlight-color: none;
 }
 
 .circle:hover {
@@ -453,6 +452,9 @@ h3 {
 }
 
 @media only screen and (min-width: 321px) and (max-width: 414px) {
+	* {
+		-webkit-tap-highlight-color: none;
+	}
 	.box {
 		height: 15px;
 		width: 15px;
