@@ -22,41 +22,18 @@ $(document).ready(function() {
 	$("#options").on("click", function(){
 		optionsModal.style.display = "block";
 	});
-	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
-	$("#options").hover(
-		function() { $(this).addClass("buttonFlicker"); },
-		function() { $(this).removeClass("buttonFlicker"); }
-	);
 
 
 	// When the player clicks on `x`, close the options modal
 	$("#close").on("click", function(){
 		optionsModal.style.display = "none";
 	});
-	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
-	$("#close").hover(
-		function() {
-			$(this).addClass("buttonFlicker");
-		},
-		function() {
-			$(this).removeClass("buttonFlicker");
-		}
-	);
 
 
 	// When the player clicks on `Apply`, apply the settings and close the options modal
 	$("#apply").on("click", function() {
 		optionsModal.style.display = "none";
 	});
-	// When the cursor hovers into this element, add flicker animation to it. When the cursor hovers out, stop the animation 
-	$("#apply").hover(
-		function() {
-			$(this).addClass("buttonFlicker");
-		},
-		function() {
-			$(this).removeClass("buttonFlicker");
-		}
-	);
 
 
 	const colorSchemes = [
@@ -111,12 +88,12 @@ $(document).ready(function() {
 		event.preventDefault();
 		var chosenOptions = $(this).serializeArray();
 		var chosenDifficultyLevel = Number(chosenOptions[0].value);
-		console.log(typeof difficultyLevel);
-		console.log("Chosen difficulty: " + chosenOptions[0].value);
+		// console.log(typeof difficultyLevel);
+		// console.log("Chosen difficulty: " + chosenOptions[0].value);
 		var chosenCanvasLengthIndex = chosenOptions[1].value;
-		console.log("Chosen canvas length: " + chosenOptions[1].value);
+		// console.log("Chosen canvas length: " + chosenOptions[1].value);
 		var chosenColorSchemeIndex = chosenOptions[2].value.split("").pop();
-		console.log("Chosen color scheme: " + chosenOptions[2].value.split("").pop());
+		// console.log("Chosen color scheme: " + chosenOptions[2].value.split("").pop());
 		
 		restartSequence(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficultyLevel);
 		awaitingPlayerInput();
@@ -213,30 +190,30 @@ $(document).ready(function() {
 			2. current box is not already in the old fill color, which means it is not part of the flood. This means the check has reached the boundaries of the flood
 		*/
 		if (oldFillColor == newFillColor || canvas[xCoordinate][yCoordinate] != oldFillColor) {
-			console.log("Box at [x: " + xCoordinate + "][y: " + yCoordinate + "] is either already in new fill color or just beyond the flooded area")
+			// console.log("Box at [x: " + xCoordinate + "][y: " + yCoordinate + "] is either already in new fill color or just beyond the flooded area")
 			return;
 		} else {
 			// The current box has been verified to be part of the flood and not already in the new flood color. Here, it is assigned to the new fill color.
 			canvas[xCoordinate][yCoordinate] = newFillColor;
-			console.log("Changing box at [x: " + xCoordinate + "][y: " + yCoordinate + "] to new fill color " + canvas[xCoordinate][yCoordinate]);
+			// console.log("Changing box at [x: " + xCoordinate + "][y: " + yCoordinate + "] to new fill color " + canvas[xCoordinate][yCoordinate]);
 			// If current box is not at the left edge, then pass the box on its left as an argument into `expandFlood(…)` to locate boxes in the flood until all have been changed to new fill color
 			if (xCoordinate > 0) {
-				console.log("Now checking box on the left at [x: " + (xCoordinate - 1) + "][y: " + yCoordinate + "]");
+				// console.log("Now checking box on the left at [x: " + (xCoordinate - 1) + "][y: " + yCoordinate + "]");
 				expandFlood(canvas, oldFillColor, newFillColor, xCoordinate - 1, yCoordinate);
 			}
 			// If current box is not at the right edge, then pass the box on its right as an argument into `expandFlood(…)` to locate boxes in the flood until all have been changed to new fill color
 			if (xCoordinate < canvas.length - 1) {
-				console.log("Now checking box on the right at [x: " + (xCoordinate + 1) + "][y: " + yCoordinate + "]");
+				// console.log("Now checking box on the right at [x: " + (xCoordinate + 1) + "][y: " + yCoordinate + "]");
 				expandFlood(canvas, oldFillColor, newFillColor, xCoordinate + 1, yCoordinate);
 			}
 			// If current box is not at the top edge, then pass the box above it as an argument into `expandFlood(…)` to locate boxes in the flood until all have been changed to new fill color
 			if (yCoordinate > 0) {
-				console.log("Now checking box on top at [x: " + xCoordinate + "][y: " + (yCoordinate - 1) + "]");
+				// console.log("Now checking box on top at [x: " + xCoordinate + "][y: " + (yCoordinate - 1) + "]");
 				expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate - 1);
 			}
 			// If current box is not at the bottom edge, then pass the box below it as an argument into `expandFlood(…)` to locate boxes in the flood until all have been changed to new fill color
 			if (yCoordinate < canvas.length - 1) {
-				console.log("Now checking box below at [x: " + xCoordinate + "][y: " + (yCoordinate + 1) + "]");
+				// console.log("Now checking box below at [x: " + xCoordinate + "][y: " + (yCoordinate + 1) + "]");
 				expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate + 1);
 			}
 		}
@@ -267,13 +244,13 @@ $(document).ready(function() {
 			for (var row = 0; row < canvas.length; row++) {
 				// If color of current box is not the same to the current fill color, then the canvas still has more than one color, therefore terminate the loop and return `false`.
 				if (canvas[column][row] != canvas[0][0]) {
-					console.log("Canvas has more than one color, game continues…");
+					// console.log("Canvas has more than one color, game continues…");
 					return false;
 				}
 			}
 		}
 		// After fully iterating through every column and every box without finding any box different from the current fill color, canvas is verfied to be filled with the same color. Therefore, return `true`.
-		console.log("Canvas is filled with the same color, player has won!");
+		// console.log("Canvas is filled with the same color, player has won!");
 		return true;
 	}
 
@@ -323,40 +300,34 @@ $(document).ready(function() {
 	
 			// If player does not click on a color in the palette or a box in the canvas, then do nothing.
 			if (colorClicked == undefined) {
-				console.log("No color clicked, execution stops here")
+				// console.log("No color clicked, execution stops here")
 				return;
 			}
 	
 			// Previous fill color can always be found in the top left box and thus assigned to old fill color
 			oldFillColor = canvas[0][0];
-			console.log("Old fill color is " + canvas[0][0]);
+			// console.log("Old fill color is " + canvas[0][0]);
 	
 			// What the player clicks becomes the current fill color
 			newFillColor = colorClicked;
-			console.log("New fill color is " + newFillColor);
+			// console.log("New fill color is " + newFillColor);
 	
-			console.log("Calling expandFlood(…)");
+			// console.log("Calling expandFlood(…)");
 			// Changes the flood to new fill color, thereby incorporating those already in new fill color
 			expandFlood(canvas, oldFillColor, newFillColor, 0, 0);
-			console.log("Returning from expandFlood(…)");
+			// console.log("Returning from expandFlood(…)");
 	
 			// Draws canvas with new fill color and expanded flood to HTML for display
 			drawCanvas(canvas, canvasLength);
 	
 			// Updates moves left after a color has been clicked
 			updateMoves(difficultyLevel, canvasLength);
-			console.log("Moves left: " + movesLeft);
+			// console.log("Moves left: " + movesLeft);
 	
 			// Continues or stops the game according to the moves left and whether player has completed the game
 			continueOrStopGame();
 		});
 	}
-
-	// This makes the restart button to flicker when the player's cursor hovers over it
-	$("#restart").hover(
-		function() { $(this).addClass("buttonFlicker"); },
-		function() { $(this).removeClass("buttonFlicker"); }
-	);
 
 	// When the player clicks the restart button, the restartSequence is called to restart the game with the splash sequence
 	$("#restart").on("click", function() {

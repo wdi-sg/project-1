@@ -2,8 +2,13 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 		<title>Color Spill!</title>
+
 		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+		<link rel="stylesheet" href="./assets/css/reset.css">
 		<link rel="stylesheet" href="./assets/css/stylesheet.css">
 	</head>
 <body>
@@ -12,9 +17,9 @@
 		<div id="header">
 			<div id="title" class="flicker">Color Spill!</div>
 			<div id="menuBar">
-				<img src="./assets/images/options.svg" id="options" class="buttons" />
+				<img src="./assets/images/options.svg" id="options" class="buttonFlicker"/>
 				<span id="moves"></span>
-				<img src="./assets/images/restart.svg" id="restart" class="buttons"/>
+				<img src="./assets/images/restart.svg" id="restart" class="buttonFlicker"/>
 			</div>
 		</div>
 	</div>
@@ -31,7 +36,7 @@
 		<div class="modal-content">
 
 			<div class="modal-header">
-				<h2><span id="close">&times;</span></h2>
+				<h2><span id="close" class="buttonFlicker">&times;</span></h2>
 				<h2>Options</h2>
 			</div>
 
@@ -43,11 +48,11 @@
 						<div class="formModule">
 							<div class="radioSpan">
 								<div><input type="radio" name="difficultyLevel" value="0" class="radioButton"/></div>
-								<div class="radioText">Easy</div>
+								<div class="radioText">More moves</div>
 								<div><input type="radio" name="difficultyLevel" value="1" class="radioButton" checked/></div>
-								<div class="radioText">Medium</div>
+								<div class="radioText">Just right</div>
 								<div><input type="radio" name="difficultyLevel" value="2" class="radioButton"/></div>
-								<div class="radioText">Hard</div>
+								<div class="radioText">Less moves</div>
 							</div>
 						</div>
 					</div>
@@ -74,7 +79,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<input type="submit" name="apply" id="apply" value="Apply"/>
+				<input type="submit" id="apply" class="buttonFlicker" name="apply" value="Apply"/>
 			</div>
 			</form>
 		</div>
