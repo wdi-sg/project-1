@@ -1,4 +1,4 @@
-# ![](./documentation/ga.svg) Project #1: Color Spill!
+# ![](./documentation/ga_logo.png) Project #1: Color Spill!
 
 <!--![](./documentation/header-hd.gif)--> 
 <p align="center"><img src="./documentation/header-hd.gif"/></p>
