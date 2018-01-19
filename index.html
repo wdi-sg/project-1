@@ -2,10 +2,52 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Help Halimah Make Yishun Great Again</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+    <div class="container">
+      <h1>Help Halimah Make Yishun Great Again</h1>
+
+      <div class="instruction">
+        <br>
+        <b><h1>Scoring</h1></b>
+        <p id="p3"><img src="./assets/img/murderer.png" class="icon" alt="Murderer" width="33%"><b>  Murder:</b> + 5 pts</p>
+        <p id="p3"><img src="./assets/img/brothel.png" class="icon" alt="Brothel" width="37%"><b>  Brothel:</b> + 4 pts</p>
+        <p id="p3"><img src="./assets/img/drug-dealer.png" class="icon" alt="Drug Dealer" width="20%"><b>  Drug Syndicate:</b> + 3 pts</p>
+        <p id="p3"><img src="./assets/img/injured-cat.png" class="icon" alt="Injured Cat" width="20%"><b>  Cat Abuse: + 2 pts</p>
+        <p id="p3"><img src="./assets/img/bike-thef.png" class="icon" alt="Bike Theft" width="23%"><b>  Bike Theft: + 1 pt</p>
+      </div>
+
+      <div class="start-screen" style="display:show">
+        <ul><b>How to play?</b></ul>
+        <img src="./assets/img/arrow-keys.png" class="arrow-keys" alt="Arrow Keys"><br>
+        <li>Control the paddle using the <b>left</b> and <b>right arrow keys</b></li>
+        <li><b>A life</b> will be <b>lost</b> when you fail to deflect the heart with the paddle</li>
+        <li><b>Complete the level's mission</b> (on the right column) to advance to the next level</li><br><br>
+        <img class="start-btn" src="./assets/img/start.png">
+      </div>
+
+      <div class="gameColumn" style="display:none">
+        <span class="heart"></span>
+        <div class="paddle"></div>
+      </div>
+
+      <div class="finish-screen" style="display:none">
+        <br><h1>Game Over</h1>
+        <p>Your score was: <span id="score"></span></p>
+        <img class="end-btn" src="./assets/img/restart.png">
+      </div>
+
+      <div class="results" style="display:show">
+        <b><p class="level">Level: 1</p></b>
+        <b><p class="mission">Mission: Obtain a score of 100</p></b>
+        <b><p class="lives">Lives: 3<br></p></b>
+        <b><p class="score">Score: 0</p></b>
+        <img src="./assets/img/lives.png" class="halimah-lives" width="80%">
+      </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
 </html>
