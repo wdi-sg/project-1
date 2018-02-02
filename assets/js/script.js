@@ -126,7 +126,7 @@ $(document).ready(function() {
 	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then restarts the game
 	function restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1) {
 		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
-		var splashSequence = setInterval(function() { restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty); }, 75);
+		var splashSequence = setInterval(function() { restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty); }, 80);
 		setTimeout(function() { clearInterval(splashSequence); }, 1280);
 	}
 
