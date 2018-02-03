@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 	var squareLength;
 
-	function determineLengthOfSquare() {
+	function determineLengthOfSquare(canvasLength) {
 		let viewportWidth = $(window).width();
 		let viewportHeight = $(window).height();
 
@@ -29,11 +29,11 @@ $(document).ready(function() {
 			// length = viewportWidth * 0.9 / 15;
 		} else if ((viewportWidth <= viewportHeight) && (viewportWidth > viewportHeight - nonCanvasHeight)) {
 			// Edge-to-edge canvas
-			length = (viewportHeight - nonCanvasHeight) / 15;
+			length = (viewportHeight - nonCanvasHeight) / canvasLength;
 
 		} else {
 			// Edge-to-edge canvas
-			length = (viewportHeight - nonCanvasHeight) / 15;
+			length = (viewportHeight - nonCanvasHeight) / canvasLength;
 
 			// // Black border on left and right side each 5% of viewport width
 			// length = viewportWidth * 0.9 / 15;
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
 	// Event listener to detect whenever browser is sized
 	$(window).resize(function(){
-		determineLengthOfSquare();
+		determineLengthOfSquare(canvasLength);
 	});
 
 	// Target the options modal
@@ -149,7 +149,7 @@ $(document).ready(function() {
 
 	// Initializes or reinitializes the game
 	function restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty) {
-		determineLengthOfSquare();
+		determineLengthOfSquare(canvasLength);
 		
 		$("#title").text("Color Spill!");
 		$("#title").addClass("flicker");
