@@ -458,7 +458,7 @@ h3 {
 	}
 
 	.modal {
-	    padding-top: 100px; /* Location of the box */
+	    padding-top: 10%; /* Location of the box */
 	}
 
 	/* Modal Content */
@@ -575,7 +575,7 @@ h3 {
 	}
 
 	.modal {
-	    padding-top: 100px; /* Location of the box */
+	    padding-top: 10%; /* Location of the box */
 	}
 
 	/* Modal Content */
@@ -695,7 +695,7 @@ h3 {
 	}
 
 	.modal {
-	    padding-top: 100px; /* Location of the box */
+		padding-top: 10%; /* Location of the box */
 	}
 
 	/* Modal Content */
