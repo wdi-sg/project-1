@@ -27,7 +27,7 @@ body {
 }
 
 #menuBar {
-	margin: 1em 0;
+	margin: 1.4rem 0;
 	vertical-align: middle;
 }
 
@@ -78,9 +78,9 @@ body {
 }
 
 @keyframes flickerAnimation {
-  0%   { opacity:1; }
-  50%  { opacity:0; }
-  100% { opacity:1; }
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 
@@ -107,7 +107,7 @@ body {
 	display: inline-block;
 	height: 50px;
 	width: 50px;
-	margin: 25px 8px;
+	margin: 1.4rem 0.75rem;
 	border-radius: 50%;
 	border-style: solid;
 	border-width: 6px;
@@ -137,7 +137,6 @@ body {
 
 #instruction {
 	margin: auto;
-	padding: 0;
 	max-width: 60%;
 }
 
@@ -294,6 +293,10 @@ h3 {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
+	#menuBar {
+		margin: 1.25rem 0;
+	}
+
 	.box {
 		height: 22px;
 		width: 22px;
@@ -320,7 +323,7 @@ h3 {
 	.circle {
 		height: 40px;
 		width: 40px;
-		margin: 20px 4px;
+		margin: 1.25rem 0.5rem;
 		border-radius: 50%;
 		border-width: 4px;
 	}
@@ -345,6 +348,10 @@ h3 {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
+	#menuBar {
+		margin: 1.25rem 0;
+	}
+
 	.box {
 		height: 18px;
 		width: 18px;
@@ -352,7 +359,7 @@ h3 {
 	.circle {
 		height: 40px;
 		width: 40px;
-		margin: 20px 4px;
+		margin: 1.4rem 4px;
 		border-radius: 50%;
 		border-width: 4px;
 	}
@@ -360,7 +367,7 @@ h3 {
 	.circle {
 		height: 32px;
 		width: 32px;
-		margin: 20px 4px;
+		margin: 1.25rem 0.5rem;
 		border-radius: 50%;
 		border-width: 4px;
 	}
@@ -465,6 +472,10 @@ h3 {
 		-webkit-tap-highlight-color: rgba(0,0,0,0);
 	}
 
+	#menuBar {
+		margin: 1.25rem 0;
+	}
+
 	.box {
 		height: 15px;
 		width: 15px;
@@ -473,7 +484,7 @@ h3 {
 	.circle {
 		height: 32px;
 		width: 32px;
-		margin: 20px 4px;
+		margin: 1.25rem 0.3rem;
 		border-radius: 50%;
 		border-width: 4px;
 	}
@@ -587,7 +598,7 @@ h3 {
 	.circle {
 		height: 30px;
 		width: 30px;
-		margin: 20px 4px;
+		margin: 1rem 4px;
 		border-radius: 50%;
 		border-width: 3px;
 	}
@@ -605,6 +616,10 @@ h3 {
 
 	#title {
 		font-size: 42px;
+	}
+
+	#menuBar {
+		margin: 1rem 0;
 	}
 
 	#options {

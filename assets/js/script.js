@@ -7,9 +7,56 @@ Terms used:
 
 $(document).ready(function() {
 
+	var squareLength;
+
+	function determineLengthOfSquare() {
+		let viewportWidth = $(window).width();
+		let viewportHeight = $(window).height();
+
+		let nonCanvasHeight = $("#headerContainer").height() + $("#palette").height() + $("#instruction").height() + 8;
+
+		// console.log("Viewport width: " + viewportWidth);
+		// console.log("Viewport height: " + viewportHeight);
+		// console.log("Height of non-canvas elements: " + nonCanvasHeight);
+
+		let length;
+
+		if ((viewportWidth <= viewportHeight) && (viewportWidth <= viewportHeight - nonCanvasHeight)) {
+			// Edge-to-edge canvas
+			length = viewportWidth / 15;
+
+			// // Black border on left and right side each 5% of viewport width
+			// length = viewportWidth * 0.9 / 15;
+		} else if ((viewportWidth <= viewportHeight) && (viewportWidth > viewportHeight - nonCanvasHeight)) {
+			// Edge-to-edge canvas
+			length = (viewportHeight - nonCanvasHeight) / 15;
+
+		} else {
+			// Edge-to-edge canvas
+			length = (viewportHeight - nonCanvasHeight) / 15;
+
+			// // Black border on left and right side each 5% of viewport width
+			// length = viewportWidth * 0.9 / 15;
+		}
+
+		setBoxLength(length);
+
+		squareLength = length;
+	}
+
+
+	function setBoxLength(length) {
+		$(".box").height(length);
+		$(".box").width(length);
+	}
+
+	// Event listener to detect whenever browser is sized
+	$(window).resize(function(){
+		determineLengthOfSquare();
+	});
 
 	// Target the options modal
-	var optionsModal = document.getElementById('optionsModal');
+	var optionsModal = document.getElementById("optionsModal");
 	// When the player clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 	    if (event.target == optionsModal) {
@@ -102,6 +149,8 @@ $(document).ready(function() {
 
 	// Initializes or reinitializes the game
 	function restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty) {
+		determineLengthOfSquare();
+		
 		$("#title").text("Color Spill!");
 		$("#title").addClass("flicker");
 		$("#canvasContainer").css("opacity", "1");
@@ -165,6 +214,8 @@ $(document).ready(function() {
 				$("#R" + row + "-B" + box).css("background-color", canvas[row][box]);
 			}
 		}
+		// Set the length of each square upon drawing or redrawing the canvas
+		setBoxLength(squareLength);
 	}
 
 
@@ -334,7 +385,6 @@ $(document).ready(function() {
 		restartSequence(colorSchemes.indexOf(colorScheme), canvasLengthArray.indexOf(canvasLength), difficultyLevel);
 		awaitingPlayerInput();
 	});
-
 
 	restartSequence();
 	awaitingPlayerInput();
