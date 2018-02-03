@@ -1,6 +1,6 @@
 /*
 Terms used:
-- Canvas, canvas length, colomn, row, 
+- Canvas, canvas length, row, column, 
 - Flood, fill color, old fill color, new fill color
 - Color Scheme, palette
 */
@@ -24,7 +24,7 @@ $(document).ready(function() {
 	});
 
 
-	// When the player clicks on `x`, close the options modal
+	// When the player clicks on `×`, close the options modal
 	$("#close").on("click", function(){
 		optionsModal.style.display = "none";
 	});
@@ -51,21 +51,21 @@ $(document).ready(function() {
 	function populateColorSchemeOptions(colorSchemes, colorSchemeNames) {
 		// This checks that the node containing the color scheme options is empty before populating it
 		if ($("#colorSchemes").children().length == 0) {
-			for (var scheme = 0; scheme < colorSchemes.length; scheme++) {
+			for (let scheme = 0; scheme < colorSchemes.length; scheme++) {
 				if (scheme == 0) {
 					// The first option will be checked as the default
-					$("#colorSchemes").append("<div><input type=\"radio\" name=\"colorScheme\" value=\"colorScheme-" + scheme + "\" class=\"radioButton\"checked/></div>");	
+					$("#colorSchemes").append("<div><input type='radio' name='colorScheme' value='colorScheme-" + scheme + "' class='radioButton'checked/></div>");	
 				} else {
-					$("#colorSchemes").append("<div><input type=\"radio\" name=\"colorScheme\" value=\"colorScheme-" + scheme + "\" class=\"radioButton\"/></div>");
+					$("#colorSchemes").append("<div><input type='radio' name='colorScheme' value='colorScheme-" + scheme + "' class='radioButton'/></div>");
 				}
-				$("#colorSchemes").append("<div class=\"schemePreview\" id=\"preview-" + scheme + "\"></div>");
+				$("#colorSchemes").append("<div class='schemePreview' id='preview-" + scheme + "'></div>");
 				// This creates six CSS circles and appends the six colors of every color scheme to them
-				for (var color = 0; color < colorSchemes[scheme].length; color++) {
-					$("#preview-" + scheme).append("<div class=\"optionCircle\" id=\"previewS" + scheme + "C" + color + "\" color=\"" + colorSchemes[scheme][color] + "\"></div>");
+				for (let color = 0; color < colorSchemes[scheme].length; color++) {
+					$("#preview-" + scheme).append("<div class='optionCircle' id='previewS" + scheme + "C" + color + "' color='" + colorSchemes[scheme][color] + "'></div>");
 					$("#previewS" + scheme + "C" + color).css("background-color", colorSchemes[scheme][color]);
 				}
 				// This appends the corresponding name of each color scheme beside the sample color palettes
-				$("#colorSchemes").append("<div class=\"colorSchemeName radioText\">" + colorSchemeNames[scheme] + "</div>");
+				$("#colorSchemes").append("<div class='colorSchemeName radioText'>" + colorSchemeNames[scheme] + "</div>");
 			}
 		// If the color scheme options have been populated, do nothing and return
 		} else {
@@ -86,13 +86,13 @@ $(document).ready(function() {
 	// When the player clicks "Apply", the selected options are returned as an object and then parsed and applied to a new game
 	$("form").submit(function(event) {
 		event.preventDefault();
-		var chosenOptions = $(this).serializeArray();
-		var chosenDifficultyLevel = Number(chosenOptions[0].value);
+		let chosenOptions = $(this).serializeArray();
+		let chosenDifficultyLevel = Number(chosenOptions[0].value);
 		// console.log(typeof difficultyLevel);
 		// console.log("Chosen difficulty: " + chosenOptions[0].value);
-		var chosenCanvasLengthIndex = chosenOptions[1].value;
+		let chosenCanvasLengthIndex = chosenOptions[1].value;
 		// console.log("Chosen canvas length: " + chosenOptions[1].value);
-		var chosenColorSchemeIndex = chosenOptions[2].value.split("").pop();
+		let chosenColorSchemeIndex = chosenOptions[2].value.split("").pop();
 		// console.log("Chosen color scheme: " + chosenOptions[2].value.split("").pop());
 		
 		restartSequence(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficultyLevel);
@@ -133,17 +133,17 @@ $(document).ready(function() {
 
 	// Creates the entire canvas according to length of canvas specified with each box given a randomly selected color from the chosen color scheme and stores it in a two-dimensional array
 	function createCanvas(length) {
-		// Creates an array to store arrays of columns in the canvas
-		var canvasArray = [];
-		for (var column = 0; column < length; column++) {
-			// Creates an array to store the boxes in each column
-			var columnArray = [];
-			// Chooses a random color for each box and append to the column array
-			for (var box = 0; box < length; box++) {
-				columnArray.push(colorScheme[Math.floor(Math.random() * 6)]);
+		// Creates an array to store arrays of rows in the canvas
+		let canvasArray = [];
+		for (let row = 0; row < length; row++) {
+			// Creates an array to store the boxes in each row
+			let rowArray = [];
+			// Chooses a random color for each box and append to the row array
+			for (let box = 0; box < length; box++) {
+				rowArray.push(colorScheme[Math.floor(Math.random() * 6)]);
 			}
-			// Appends the fully iterated column array into canvas array
-			canvasArray.push(columnArray);
+			// Appends the fully iterated row array into canvas array
+			canvasArray.push(rowArray);
 		}
 		// Returns fully generated canvas array for use
 		return canvasArray;
@@ -155,14 +155,14 @@ $(document).ready(function() {
 		// Removes old canvas before drawing new canvas
 		$("#canvas").remove();
 		// Creates canvas and appends in container
-		$("#canvasContainer").append("<div id=\"canvas\"></div>");
-		// Appends columns in canvas
-		for (var column = 0; column < length; column++) {
-			$("#canvas").append("<div class=\"column\" id=\"C" + column + "\"></div>");
-			// Appends boxes in every column
-			for (var box = 0; box < length; box++) {
-				$("#C" + column).append("<div class=\"box\" id=\"C" + column + "-B" + box + "\" color=\"" + canvas[column][box] + "\"></div>");
-				$("#C" + column + "-B" + box).css("background-color", canvas[column][box]);
+		$("#canvasContainer").append("<div id='canvas'></div>");
+		// Appends rows in canvas
+		for (let row = 0; row < length; row++) {
+			$("#canvas").append("<div class='row' id='R" + row + "'></div>");
+			// Appends boxes in every row
+			for (let box = 0; box < length; box++) {
+				$("#R" + row).append("<div class='box' id='R" + row + "-B" + box + "' color='" + canvas[row][box] + "'></div>");
+				$("#R" + row + "-B" + box).css("background-color", canvas[row][box]);
 			}
 		}
 	}
@@ -175,7 +175,7 @@ $(document).ready(function() {
 		// Runs a loop to append the colors into CSS circles
 		for (color = 0; color < colorScheme.length; color++) {
 			// Creates the circle and tags it with `id` and `color` attributes
-			$("#palette").append("<div class=\"circle\" id=\"color-" + color + "\" color=\"" + colorScheme[color] + "\"></div>");
+			$("#palette").append("<div class='circle' id='color-" + color + "' color='" + colorScheme[color] + "'></div>");
 			// Set the background of the circle to the iterated color in the color scheme array
 			$("#color-" + color).css("background-color", colorScheme[color]);
 		}
@@ -238,18 +238,18 @@ $(document).ready(function() {
 
 	// Checks if whole canvas has same color, otherwise game continues.
 	function checkIfWon(canvas) {
-		// Iterates through every column in the canvas array
-		for (var column = 0; column < canvas.length; column++) {
-			// Interates through every box in each column
-			for (var row = 0; row < canvas.length; row++) {
+		// Iterates through every row in the canvas array
+		for (let row = 0; row < canvas.length; row++) {
+			// Interates through every box in each row
+			for (let column = 0; column < canvas.length; column++) {
 				// If color of current box is not the same to the current fill color, then the canvas still has more than one color, therefore terminate the loop and return `false`.
-				if (canvas[column][row] != canvas[0][0]) {
+				if (canvas[row][column] != canvas[0][0]) {
 					// console.log("Canvas has more than one color, game continues…");
 					return false;
 				}
 			}
 		}
-		// After fully iterating through every column and every box without finding any box different from the current fill color, canvas is verfied to be filled with the same color. Therefore, return `true`.
+		// After fully iterating through every row and every box without finding any box different from the current fill color, canvas is verfied to be filled with the same color. Therefore, return `true`.
 		// console.log("Canvas is filled with the same color, player has won!");
 		return true;
 	}
