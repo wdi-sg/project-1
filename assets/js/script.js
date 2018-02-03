@@ -13,7 +13,8 @@ $(document).ready(function() {
 		let viewportWidth = $(window).width();
 		let viewportHeight = $(window).height();
 
-		let nonCanvasHeight = $("#headerContainer").height() + $("#palette").height() + $("#instruction").height() + 8;
+		// let nonCanvasHeight = $("#headerContainer").height() + $("#palette").height() + $("#instruction").height() + 8;
+		let nonCanvasHeight = $("#headerContainer").height() + $("#palette").height();
 
 		// console.log("Viewport width: " + viewportWidth);
 		// console.log("Viewport height: " + viewportHeight);
@@ -39,6 +40,9 @@ $(document).ready(function() {
 			// let proposedLength = viewportWidth * 0.9 / canvasLength;
 
 			proposedLength < 30 ? length = 30 : length = proposedLength;
+
+			// // Future responsive landscape orientation
+			// proposedLength < viewportHeight / canvasLength ? length = viewportHeight / canvasLength : length = proposedLength;
 		}
 
 		setBoxLength(length);
