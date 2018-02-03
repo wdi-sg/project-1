@@ -23,20 +23,22 @@ $(document).ready(function() {
 
 		if ((viewportWidth <= viewportHeight) && (viewportWidth <= viewportHeight - nonCanvasHeight)) {
 			// Edge-to-edge canvas
-			length = viewportWidth / 15;
+			length = viewportWidth / canvasLength;
 
 			// // Black border on left and right side each 5% of viewport width
-			// length = viewportWidth * 0.9 / 15;
+			// length = viewportWidth * 0.9 / canvasLength;
 		} else if ((viewportWidth <= viewportHeight) && (viewportWidth > viewportHeight - nonCanvasHeight)) {
 			// Edge-to-edge canvas
 			length = (viewportHeight - nonCanvasHeight) / canvasLength;
 
 		} else {
 			// Edge-to-edge canvas
-			length = (viewportHeight - nonCanvasHeight) / canvasLength;
+			let proposedLength = (viewportHeight - nonCanvasHeight) / canvasLength;
 
 			// // Black border on left and right side each 5% of viewport width
-			// length = viewportWidth * 0.9 / 15;
+			// let proposedLength = viewportWidth * 0.9 / canvasLength;
+
+			proposedLength < 30 ? length = 30 : length = proposedLength;
 		}
 
 		setBoxLength(length);
