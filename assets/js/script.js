@@ -315,7 +315,7 @@ $(document).ready(function() {
 	// Loads victory sequence if player has won or the defeat sequence if player has lost
 	function endGameSequence(hasPlayerWon) {
 		if (hasPlayerWon == true) {
-			setTimeout(function(){ $("#title").text("You did it!!!"); }, 500);
+			setTimeout(function(){ $("#title").text("You did it!"); }, 500);
 		} else {
 			setTimeout(function() { $("#title").text("Out of moves!"); }, 500);	
 			$("#canvasContainer").css("opacity", "0.3");
