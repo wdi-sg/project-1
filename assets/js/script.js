@@ -90,7 +90,8 @@ $(document).ready(function() {
 
 
 	const colorSchemes = [
-		["#663399", "#ff3366", "#ff6600", "#ffff66", "#33cc00", "#3366ff"], // Kiddy
+		// ["#663399", "#ff3366", "#ff6600", "#ffff66", "#33cc00", "#3366ff"], // Kiddy Original
+		["#663399", "#ff2255", "#ff7700", "#ffff66", "#33cc00", "#3366ff"], // Kiddy New
 		["#cc0099", "#ff99cc", "#66cccc", "#99ffff", "#99cc00", "#ffffbb"], // Ice-cream
 		["#663300","#654a2d","#996633","#cccc99","#999933","#336633"], // Camouflage
 		["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#194775"], // Retro 70s
