@@ -8,6 +8,7 @@ body {
 	margin: 0;
 	text-align: center;
 	user-select: none;
+	min-width: 320px;
 }
 
 /* https://stackoverflow.com/questions/6211959/html5-div-flashes-on-tap */
@@ -45,17 +46,17 @@ div {
 
 #restart {
 	display: inline-block;
-	/*float: right;*/
+	float: right;
 	margin-bottom: -0.15em;
-	margin-left: 8.5em;
+	/*margin-left: 8.5em;*/
 	width: 28px;
 }
 
 #options {
 	display: inline-block;
-	/*float: left;*/
+	float: left;
 	margin-bottom: -0.15em;
-	margin-right: 8.5em;
+	/*margin-right: 8.5em;*/
 	width: 28px;
 }
 
@@ -163,7 +164,7 @@ div {
 /* Modal Content */
 .modal-content {
     position: relative;
-    background-color: rgba(33, 33, 33, 0.9);
+    background-color: rgba(33, 33, 33, 0.7);
     margin: auto;
     padding: 0;
     width: 450px;
@@ -302,6 +303,8 @@ h3 {
 	}
 
 	.box {
+		min-height: 20px;
+		min-width: 20px;
 		/*height: 22px;*/
 		/*width: 22px;*/
 	}
@@ -385,12 +388,12 @@ h3 {
 
 	#options {
 		width: 20px;
-		margin-right: 4em;
+		/*margin-right: 4em;*/
 	}
 
 	#restart {
 		width: 20px;
-		margin-left: 4em;
+		/*margin-left: 4em;*/
 	}
 
 	#moves {
@@ -502,12 +505,12 @@ h3 {
 
 	#options {
 		width: 20px;
-		margin-right: 4em;
+		/*margin-right: 4em;*/
 	}
 
 	#restart {
 		width: 20px;
-		margin-left: 4em;
+		/*margin-left: 4em;*/
 	}
 
 	#moves {
@@ -621,13 +624,13 @@ h3 {
 
 	#options {
 		width: 20px;
-		margin-right: 4em;
+		/*margin-right: 4em;*/
 	}
 	
 	
 	#restart {
 		width: 20px;
-		margin-left: 4em;
+		/*margin-left: 4em;*/
 	}
 
 	#moves {
