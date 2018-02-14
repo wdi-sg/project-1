@@ -1,0 +1,63 @@
+
+.container{
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  background: url(../img/background.jpg) no-repeat;
+  background-size: cover;
+  font-family: 'Creepster', cursive;
+  position: absolute;
+}
+.meun{
+  position: relative;
+  transform: translateY(50%);
+}
+h1{
+  text-align: center;
+  font-family: 'Creepster', cursive;
+  font-size: 150px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+button{
+  display: block;
+  margin: auto;
+  height: 100px;
+  margin-top: 5px;
+  font-family: 'Creepster', cursive;
+  font-size: 50px;
+  color: #eee;
+  background-color: rgba(244,244,244,0.5);
+}
+.instructions{
+  width: 50%;
+  margin: 0 auto;
+}
+.wrapperLeft{
+ display: inline-block;
+ width: 39%;
+ transform: translateY(-80%);
+}
+.wrapperRight{
+  display: inline-block;
+  width: 50%;
+  /*text-align: center;*/
+}
+img{
+  transform: translateX(50%);
+}
+li{
+  font-family: "Arial Rounded MT Bold";
+  color: white;
+  padding: 10px 0;
+}
+#menu{
+  font-family: 'Creepster', cursive;
+  font-size: 70px;
+  padding; 10px;
+  height: 100px;
+  width: 400px;
+  opacity: 1;
+}
