@@ -94,8 +94,10 @@ $(document).ready(function() {
 		["#663399", "#ff2255", "#ff7700", "#ffff66", "#33cc00", "#3366ff"], // Kiddy New
 		["#cc0099", "#ff99cc", "#66cccc", "#99ffff", "#99cc00", "#ffffbb"], // Ice-cream
 		["#663300","#654a2d","#996633","#cccc99","#999933","#336633"], // Camouflage
-		["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#194775"], // Retro 70s
-		["#66ffcc", "#ff3399", "#99cc33", "#ffff33", "#ff6600", "#6600cc"], // Tubular 80s
+		// ["#99ffcc", "#ff3333", "#ff6600", "#ffff66", "#663300", "#194775"], // Retro 70s Original
+		["#99ffcc", "#ff3333", "#ff7700", "#ffff66", "#663300", "#194775"], // Retro 70s
+		// ["#66ffcc", "#ff3399", "#99cc33", "#ffff33", "#ff6600", "#6600cc"], // Tubular 80s Original
+		["#66ffcc", "#ff3399", "#99cc33", "#ffff33", "#ff7700", "#6600cc"], // Tubular 80s
 		["#336699", "#eeeeee", "#c1a750", "#333333", "#663300", "#99ccff"], // Color-blind
 	];
 	const colorSchemeNames = ["Kiddy", "Ice-cream", "Camouflage", "Retro 70s", "Tubular 80s", "Color-blind"];
@@ -182,8 +184,54 @@ $(document).ready(function() {
 	// This creates a splash sequence which "animates" the canvas upon page load or game restart, then restarts the game
 	function restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1) {
 		populateColorSchemeOptions(colorSchemes, colorSchemeNames);
-		var splashSequence = setInterval(function() { restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty); }, 80);
-		setTimeout(function() { clearInterval(splashSequence); }, 1280);
+
+		// ======== START: Original restart sequence ========
+		// var splashSequence = setInterval(function() { restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty); }, 80);
+		// setTimeout(function() { clearInterval(splashSequence); }, 1280);
+		// ======== END: Original restart resequence ========
+
+		let splashInterval = null;
+
+		function startSplashSequence() {
+			restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty);
+			splashInterval = setTimeout(startSplashSequence, 75);
+		}
+
+		function stopSplashSequence() {
+			clearTimeout(splashInterval);
+		}
+
+		function splashSequence() {
+			stopSplashSequence();
+			startSplashSequence();
+			setTimeout(function() {
+				stopSplashSequence();
+			}, 1200);
+		}
+
+		splashSequence();
+		// setInterval(function(){
+		// 	splashSequence();
+		// }, 3600);
+
+		// $("body").on("click", function() {
+		// 	stopSplashSequence();
+		// });
+
+		// // Stop the endless splash seqence loop upon the first click
+		// $("#colorPickerZone").on("click", function() {
+		// 	stopSplashSequence();
+		// });
+
+		// // Stop the previous endless splash seqence loop upon applying new settings
+		// $("#apply").on("click", function() {
+		// 	stopSplashSequence();
+		// });
+
+		// // Stop the previous endless splash seqence loop upon restart
+		// $("#restart").on("click", function() {
+		// 	stopSplashSequence();
+		// });
 	}
 
 
