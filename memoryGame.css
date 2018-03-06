@@ -243,20 +243,35 @@ p {
 @media(max-width: 800px) {
 
 	#mainBoard {
-		height: 750px;
-		width: 750px;
+		height: 850px;
+		width: 850px;
 	}
 
 	.card {
-		height: 160px;
-		width: 160px;
-		padding: 10px;
+		height: 210px;
+		width: 210px;
 	}
 
   img {
-		height: 150px;
-		width: 150px;
+		height: 190px;
+		width: 190px;
 		padding: 10px;
   }
+
+
+	.timerDisplay {
+		margin-top: 10px;
+		font-size: 40px;
+	}
+
+	#p1 {
+		margin-top: 20px;
+		font-size: 50px;
+	}
+
+	#p2 {
+		margin-top: 20px;
+		font-size: 50px;
+	}
 
 }
