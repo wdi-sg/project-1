@@ -151,7 +151,7 @@ img {
 .footerBar {
 	background-color: #091534;
 	height: 30px;
-	width: 100vw;
+	width: 100%;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -181,9 +181,9 @@ p {
 
 .openModal {
 	animation-name: animatetop;
-	animation-duration: 1s; 
+	animation-duration: 1s;
 	-webkit-animation-name: animatetop;
-	-webkit-animation-duration: 1s; 
+	-webkit-animation-duration: 1s;
 }
 
 @keyframes animatetop {
@@ -240,4 +240,23 @@ p {
 	display: none;
 }
 
+@media(max-width: 600px) {
 
+	#mainBoard {
+		height: 750px;
+		width: 750px;
+	}
+
+	.card {
+		height: 160px;
+		width: 160px;
+		padding: 10px;
+	}
+
+  img {
+		height: 150px;
+		width: 150px;
+		padding: 10px;
+  }
+
+}
