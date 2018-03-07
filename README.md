@@ -1,9 +1,9 @@
 ### Project Name (Cash Crops)
 
 ## Overview
-You are a cash crop farmer. Your objective is to farm a crop, hope for a good harvest and make a nice profit. The higher the profit the better. 
+You are a cash crop farmer. Your objective is to farm a crop, hope for a good harvest and make a nice profit. The higher the profit the better.
 
-Throughout the game, you will pick the 
+Throughout the game, you will pick the
 
 * type of crop to farm
 * level of farming equipment to buy
@@ -31,7 +31,7 @@ Also, the worse the type of harvest, the higher the price you can sell per bushe
 
 Your total revenue will be the price per bushel of your chosen crop multiplied by the total harvest yield. Your profit will be the revenue less the cost you spend buying stuff.
 
-Your objective is to maximize profit, AND END THE GAME WITH MORE CASH THEN YOU STARTED OUT WITH. 
+Your objective is to maximize profit, AND END THE GAME WITH MORE CASH THEN YOU STARTED OUT WITH.
 
 
 ## Game Logic
