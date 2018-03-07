@@ -1,5 +1,5 @@
 ### Project Name (Cash Crops)
-link: https://empludo.github.io/project-1/
+link : https://empludo.github.io/project-1/
 ## Overview
 You are a cash crop farmer. Your objective is to farm a crop, hope for a good harvest and make a nice profit. The higher the profit the better.
 
