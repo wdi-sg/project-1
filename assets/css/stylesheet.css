@@ -1,0 +1,709 @@
+body {
+	background-color: black;
+	font-family: sans-serif;
+	font-weight: 300;
+	font-size: 100%;
+	color: white;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	user-select: none;
+	min-width: 320px;
+}
+
+/* https://stackoverflow.com/questions/6211959/html5-div-flashes-on-tap */
+div {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+#headerContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#header {
+	display: block;
+}
+
+#title {
+	font-family: "Permanent Marker", sans-serif;
+	font-size: 64px;
+	margin: 0.2em 0 0 0;
+}
+
+#menuBar {
+	margin: 1.3rem 0;
+	vertical-align: middle;
+}
+
+#moves {
+	display: inline-block;
+	font-weight: bolder;
+	font-size: 32px;
+	line-height: 1;
+}
+
+#restart {
+	display: inline-block;
+	float: right;
+	margin-bottom: -0.15em;
+	/*margin-left: 8.5em;*/
+	width: 28px;
+}
+
+#options {
+	display: inline-block;
+	float: left;
+	margin-bottom: -0.15em;
+	/*margin-right: 8.5em;*/
+	width: 28px;
+}
+
+.buttonFlicker:hover {
+	animation: buttonFlicker 0.3s 6;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes buttonFlicker {
+  0%   { opacity:1; }
+  50%  { opacity:0.5; }
+  100% { opacity:1; }
+}
+
+#canvasContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+}
+
+.flicker {
+	animation: flickerAnimation 1s infinite;
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes flickerAnimation {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+#canvas {
+	display: block;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.box {
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	padding: 0;
+	/*width: 30px;*/
+	/*height: 30px;*/
+	background-color: white;
+}
+
+.circle {
+	display: inline-block;
+	height: 48px;
+	width: 48px;
+	margin: 1.3rem 0.75rem;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 6px;
+	border-color: black;
+}
+
+.circle:focus {
+	border-style: solid;
+	border-width: 6px;
+	border-color: black;
+}
+
+.circle:active {
+	border-color: white;
+}
+
+.optionCircle {
+	display: inline-block;
+	height: 18px;
+	width: 18px;
+	margin: 0.1em;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: white;
+}
+
+#instruction {
+	margin: auto;
+	max-width: 60%;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 10%; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: rgba(33, 33, 33, 0.8);
+    margin: auto;
+    padding: 0;
+    width: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* Close Button */
+#close {
+	float: right;
+    color: white;
+    line-height: 1;
+    font-weight: bold;
+}
+
+#close:hover, #close:focus {
+    color: darkgrey;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: rgba(66, 66, 66, 0.7);
+    color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: rgba(66, 66, 66, 0.7);
+    color: white;
+}
+
+.modalTop {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.modalTopComponent {
+	margin: 0 1em;
+}
+
+.modalBottom {
+	margin-bottom: 0.2em;
+}
+
+
+.formModule {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+
+h2, h3 {
+	margin: 0.6em;
+	padding: 0;
+}
+
+h2 {
+	font-size: 1.6em;
+	font-weight: bolder;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+.radioSpan {
+	display: grid;
+	grid-template-columns: 30px 110px;
+	grid-template-rows: 26px 26px 26px;
+	grid-column-gap: 0.2em;
+	grid-row-gap: 0.04em;
+}
+
+.radioText {
+	text-align: left;
+	padding-top: 0.24em;
+	line-height: 1;
+}
+
+#colorSchemes {
+	display: grid;
+	grid-template-columns: 30px 160px 100px; 
+	grid-template-rows: 30px 30px 30px 30px 30px 30px;
+	grid-column-gap: 0.2em;
+	grid-row-gap: 0.06em;
+}
+
+.colorSchemeContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding-bottom: 0.8rem;
+}
+
+.colorSchemeName {
+	text-align: left;
+}
+
+#apply {
+	border: none;
+	background: none;
+	color: white;
+	margin: 0.3em 0;
+	font-size: 24px;
+}
+
+@media only screen and (min-width: 536px) and (max-width: 650px) {
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	#menuBar {
+		margin: 1.2rem 0;
+	}
+
+	.box {
+		min-height: 20px;
+		min-width: 20px;
+		/*height: 22px;*/
+		/*width: 22px;*/
+	}
+
+	h2 {
+		font-size: 1.5em;
+		margin: 0.6em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin: 0.5em;
+	}
+
+	.radioSpan {
+		display: grid;
+		grid-template-columns: 30px 120px;
+		grid-template-rows: 20px 20px 20px;
+		grid-column-gap: 0.1em;
+		grid-row-gap: 0.2em;
+	}
+
+	.circle {
+		height: 40px;
+		width: 40px;
+		margin: 1.2rem 0.5rem;
+		border-radius: 50%;
+		border-width: 4px;
+	}
+
+	.circle:focus {
+		border-style: solid;
+		border-width: 4px;
+		border-color: black;
+	}
+
+	.circle:active {
+		border-color: white;
+	}
+
+	.colorSchemeContainer {
+		padding-bottom: 0.6rem;
+	}
+
+	.modal {
+		padding-top: 15%; /* Location of the box */
+	}
+}
+
+@media only screen and (min-width: 414px) and (max-width: 535px) {
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	#menuBar {
+		margin: 1.2rem 0;
+	}
+
+	.box {
+		/*height: 18px;*/
+		/*width: 18px;*/
+	}
+
+	.circle {
+		height: 36px;
+		width: 36px;
+		margin: 1.2rem 0.4rem;
+		border-radius: 50%;
+		border-width: 4px;
+	}
+
+	.circle:focus {
+		border-style: solid;
+		border-width: 4px;
+		border-color: black;
+	}
+	
+	.circle:active {
+		border-color: white;
+	}
+
+	#title {
+		font-size: 42px;
+	}
+
+	#options {
+		width: 20px;
+		/*margin-right: 4em;*/
+	}
+
+	#restart {
+		width: 20px;
+		/*margin-left: 4em;*/
+	}
+
+	#moves {
+		font-size: 20px;
+		padding-bottom: 0.1em;
+
+	}
+
+	#instruction {
+		font-size: 16px;
+		max-width: 80%;
+	}
+
+	h2 {
+		font-size: 1.3em;
+		margin: 0.6em;
+	}
+
+	h3 {
+		font-size: 1.1em;
+		margin: 0.5em;
+	}
+
+	.radioSpan {
+		display: grid;
+		grid-template-columns: 30px 110px;
+		grid-template-rows: 16px 16px 16px;
+		grid-column-gap: 0.1em;
+		grid-row-gap: 0.1em;
+	}
+
+	.radioText {
+		padding-top: 0.3em;
+		font-size: 0.8em;
+	}
+
+	#colorSchemes {
+		display: grid;
+		grid-template-columns: 16px 140px 90px; 
+		grid-template-rows: 16px 16px 16px 16px 16px 16px;
+		grid-row-gap: 0.4em;
+		margin-bottom: 1em;
+	}
+
+	.colorSchemeContainer {
+		padding-bottom: 0.4rem;
+	}
+
+	.optionCircle {
+		width: 14px;
+		height: 14px;
+		border-width: 0.09em;
+	}
+
+	#apply {
+		margin: 0.4em 0;
+		font-size: 18px;
+	}
+
+	.modalTopComponent {
+		margin: 0 0.4em;
+	}
+
+	.modal {
+		padding-top: 10%; /* Location of the box */
+	}
+
+	/* Modal Content */
+	.modal-content {
+	    width: 350px;
+	}
+}
+
+@media only screen and (min-width: 321px) and (max-width: 413px) {
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	#menuBar {
+		margin: 1.2rem 0;
+	}
+
+	.box {
+		/*height: 15px;*/
+		/*width: 15px;*/
+	}
+
+	.circle {
+		height: 32px;
+		width: 32px;
+		margin: 1.2rem 0.3rem;
+		border-radius: 50%;
+		border-width: 4px;
+	}
+
+	.circle:focus {
+		border-style: solid;
+		border-width: 4px;
+		border-color: black;
+	}
+
+	.circle:active {
+		border-color: white;
+	}
+
+	#title {
+		font-size: 42px;
+	}
+
+	#options {
+		width: 20px;
+		/*margin-right: 4em;*/
+	}
+
+	#restart {
+		width: 20px;
+		/*margin-left: 4em;*/
+	}
+
+	#moves {
+		font-size: 20px;
+		padding-bottom: 0.1em;
+
+	}
+
+	#instruction {
+		font-size: 16px;
+		max-width: 80%;
+	}
+
+	h2 {
+		font-size: 1.4em;
+		margin: 0.6em;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin: 0.5em;
+	}
+
+	.radioSpan {
+		display: grid;
+		grid-template-columns: 30px 100px;
+		grid-template-rows: 16px 16px 16px;
+		grid-column-gap: 0.1em;
+		grid-row-gap: 0.08em;
+	}
+
+	.radioText {
+		padding-top: 0.3em;
+		font-size: 0.8em;
+	}
+
+	#colorSchemes {
+		display: grid;
+		grid-template-columns: 16px 140px 90px; 
+		grid-template-rows: 16px 16px 16px 16px 16px 16px;
+		grid-row-gap: 0.4em;
+		margin-bottom: 1em;
+	}
+
+	.colorSchemeContainer {
+		padding-bottom: 0.4rem;
+	}
+
+	.optionCircle {
+		width: 14px;
+		height: 14px;
+		border-width: 0.09em;
+	}
+
+	#apply {
+		margin: 0.4em 0;
+		font-size: 16px;
+	}
+
+	.modalTopComponent {
+		margin: 0 0.3em;
+	}
+
+	.modal {
+		padding-top: 10%; /* Location of the box */
+	}
+
+	/* Modal Content */
+	.modal-content {
+	    width: 100%;
+	}
+
+}
+
+@media only screen and (max-width: 320px) {
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+
+	#menuBar {
+		margin: 1rem 0;
+	}
+
+	.box {
+		/*height: 14px;*/
+		/*width: 14px;*/
+	}
+
+	.circle {
+		height: 30px;
+		width: 30px;
+		margin: 1rem 4px;
+		border-radius: 50%;
+		border-width: 3px;
+	}
+
+	.circle:focus {
+		border-style: solid;
+		border-width: 3px;
+		border-color: black;
+	}
+
+	.circle:active {
+		border-color: white;
+	}
+
+
+	#title {
+		font-size: 42px;
+	}
+
+	#options {
+		width: 20px;
+		/*margin-right: 4em;*/
+	}
+	
+	
+	#restart {
+		width: 20px;
+		/*margin-left: 4em;*/
+	}
+
+	#moves {
+		font-size: 20px;
+		padding-bottom: 0.1em;
+
+	}
+
+	#instruction {
+		font-size: 16px;
+		max-width: 80%;
+	}
+
+	h2 {
+		font-size: 1.2em;
+		margin: 0.5em;
+	}
+
+	h3 {
+		font-size: 1.1em;
+		margin: 0.6em;
+	}
+
+	.radioSpan {
+		display: grid;
+		grid-template-columns: 24px 100px;
+		grid-template-rows: 18px 18px 18px;
+		grid-column-gap: 0.1em;
+		grid-row-gap: 0.06em;
+	}
+
+	.radioText {
+		padding-top: 0.3em;
+		font-size: 0.8em;
+	}
+
+	#colorSchemes {
+		display: grid;
+		grid-template-columns: 16px 140px 90px; 
+		grid-template-rows: 18px 18px 18px 18px 18px 18px;
+		grid-row-gap: 0.3em;
+		margin-bottom: 1em;
+	}
+
+	.colorSchemeContainer {
+		padding-bottom: 0.4rem;
+	}
+
+	.optionCircle {
+		width: 14px;
+		height: 14px;
+		border-width: 0.085em;
+	}
+
+	#apply {
+		margin: 0.4em 0;
+		font-size: 16px;
+	}
+
+	.modalTopComponent {
+		margin: 0 0.4em;
+	}
+
+	.modal {
+		padding-top: 10%; /* Location of the box */
+	}
+
+	/* Modal Content */
+	.modal-content {
+	    width: 100%;
+	}
+}

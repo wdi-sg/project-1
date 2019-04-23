@@ -1,96 +1,185 @@
-# Project Name (Start editing here)
-<!---
-Read Me Contents
--->
+# ![](./documentation/ga_logo.svg) Project #1: Color Spill!
 
-# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #1: The Game
+<!--![](./documentation/header-hd.gif)--> 
+<p align="center"><img src="./documentation/header-hd.gif"/></p>
 
-### Overview
+This game is inspired by the simple but yet addictive smartphone game **Flood-It!**. Along with Tetris and Minesweeper, Flood-It! is among the hardest mathematical problems to solve, being demonstrated to be “NP-hard”, i.e., *non-deterministic polynomial-time hard*. Anyone who, rather than by brute-force, finds a direct procedure to solve this game stands to win a million-dollar Millennium Prize from the Clay Mathematics Institute.
 
-Let's start out with something fun - **a game!**
+## Where to Play
 
-Everyone will get a chance to **be creative**, and work through some really **tough programming challenges** – since you've already gotten your feet wet with Tic Tac Toe, it's up to you to come up with a fun and interesting game to build.
+Play [Color Spill!](https://limjiechao.github.io/project-1/)
 
-**You will be working individually for this project**, but we'll be guiding you along the process and helping as you go. Show us what you've got!
+## How to Play
+
+The objective of this is to turn a canvas full of squares in multiple colors into one single color in a limited number of moves. The player chooses which adjacent squares to merge with by picking their color. By looking beyond the adjacent squares, the player can take over more squares every move and fill out the canvas with the same color before running out of moves.
+
+## Game UI
+
+<!--![](./documentation/click_boxes.gif "Pick the next color by clicking or tapping on a square") -->
+<p align="center"><img src="./documentation/click_boxes.gif"/></p>
+
+Pick the next fill color either by clicking or tapping on any square in the canvas with the next color.
+
+<!--![](./documentation/click_palette.gif "Pick the next color by clicking or tapping any color in the palette")-->
+<p align="center"><img src="./documentation/click_palette.gif"/></p>
+
+Alternatively, click or tap on the next color in the palette below the canvas.
+
+<!--![](./documentation/restart.gif "Click or tap Restart button to start a new game")-->
+<p align="center"><img src="./documentation/restart.gif"/></p>
+
+A new round can be started any time in the game by clicking or tapping on the *Restart* button at the top right corner.
+
+<!--![](https://github.com/limjiechao/project-1/blob/master/documentation/options.gif "Click or tap Options to adjust the game")-->
+<p align="center"><img src="./documentation/options.gif"/></p>
+
+The player can also adjust the following by tapping the *Options* button at the top right corner:
+
+- level of difficulty,
+- size of the canvas, and
+- the color scheme.
+
+Upon tapping *Apply*, a new game will be generated with the selected options.
+
+## Approach Taken
+
+Before writing any code, I spent two days mapping out the main game processes and understanding the key algorithm well enough to lay it out in a flow chart. From a rudimentary outline, I was able to build upon it and flesh out the sequence and procedures from which I could code the Color Spill! more methodically and with greater clarity.
+
+## User Stories
+
+As a *casual gamer*: 
+
+- I want to play short and simple games on my smartphone, tablet and laptop so that I can entertain myself whenever and wherever I have small pockets of free time.
+- I want to be enticed into playing this game so that I do not have to make a decision whether to play this game or not.
+- I want to play a game that is visually lively and appealing so that I would enjoy looking at it while playing and not feel like I am playing a web page.
+- I want to start playing the game immediately after launching it so that I do not have to go through the start screen over and over again. 
+- I want concise and understandable instructions on how to play and win the game so that I can start the game without cognitive overload. 
+- I want to grasp the game UI immediately so that I can focus on the gameplay and not have to search high and low for things.
+- I want to be able to adjust essential game settings quickly and easily so that I can quickly return to playing the game.
+- I want to be able to start a new game any time so that I do not have to be forced to finish a losing round of game.
+
+As much as possible, I implemented my game with these expectations in mind. 
+
+## Game Overview
+
+<!--![](./documentation/game_overview.jpg "Game overview")-->
+<p align="center"><img src="./documentation/game_overview.jpg"/></p>
+
+### Legend
+
+- Sky blue: functions that were implemented.
+- Orange: player's input is required
+- Pink: check the game's progress.
+- Darker yellow: possible final outcomes.
+- Lighter yellow: key steps or procedures
+- Green: ideas to improve the game.
+
+## Game Logic
+
+### `populateColorSchemeOptions(colorSchemes, colorSchemeNames)`
+
+This populates the the color scheme options in the options menu.
+
+### `createCanvas(length)`
+
+This creates the entire canvas according to length of canvas passed in. A two-dimensional array consisting of an array of columns where each column is in turn an array of boxes is created. Each box given a randomly selected color from the chosen color scheme and stores.
+
+### `drawCanvas(canvas, length)`
+
+This draws the canvas from the two-dimensional array and outputs to HTML for display.
+
+### `drawPalette(colorScheme)`
+
+This appends the colors in the selected color scheme to the palette the canvas.
 
 
----
+### `expandFlood(canvas, oldFillColor, newFillColor, xCoordinate, yCoordinate)`
 
-### Technical Requirements
+![](./documentation/expandFlood.jpg "Flow chart of the expandFlood(…) algorithm")
 
-Your app must:
+Existing filled area merges with squares already in newly chosen fill color by changing into the new fill color, thus expanding the flood.
 
-* **Render a game in the browser**
-* **Any number of players** will be okay, switch turns will be great 
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**, jQuery is not compulsory
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
-* **No canvas** project will be accepted, only HTML5 + CSS3 + JS please
+Starting from the square at top right corner `canvas[0][0]`, the function then performs a recursive check on all possible sides of the current square that is passed.
 
----
+If the current square is situated at the side, for example, at the top left corner, the function will only check the square on the right and below.
 
-### Necessary Deliverables
+The function will check through all the squares in the old fill color until it reaches the squares that are not in the old fill color, i.e., to the boundaries of the filled area. 
 
-* A **working game, built by you**, hosted somewhere on the internet
-* A **link to your hosted working game** in the URL section of your GitHub repo
-* A **git repository hosted on GitHub**, with a link to your hosted game, and frequent commits dating back to the very beginning of the project
-* **A ``readme.md`` file** with explanations of the technologies used, the approach taken, installation instructions, unsolved problems, etc.
+If the user accidentally clicks on the old fill color, this function will immediately exit. 
 
----
+### `continueOrStopGame()`
 
-### Suggested Ways to Get Started
+This determines whether to stop or continue the game according to whether there are moves left and whether player has won the game
 
-* **Break the project down into different components** (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use whiteboards!
-* **Use your Development Tools** (console.log, inspector, alert statements, etc) to debug and solve problems
-* Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know... _procrastinating_.
-* **Commit early, commit often.** Don’t be afraid to break something because you can always go back in time to a previous version.
-* **Consult documentation resources** (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-* **Don’t be afraid to write code that you know you will have to remove later.** Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then.
+### `updateMoves(chosenDifficulty, chosenCanvasLength)`
 
----
+This reduces the move by one after every valid color chosen and outputs to HTML for display.
 
-### Potential Project Ideas
+### `anyMovesLeft()`
 
-##### Blackjack
-Make a one player game where people down on their luck can lose all their money by guessing which card the computer will deal next!
+This checks if there are moves left and returns `true` or `false` accordingly.
 
-##### Self-scoring Trivia
-Test your wits & knowledge with whatever-the-heck you know about (so you can actually win). Guess answers, have the computer tell you how right you are!
+### `checkIfWon(canvas)`
 
----
+This checks if whole canvas has same color and returns `true`, otherwise game continues and returns `false`.
 
-### Useful Resources
+### `endGameSequence(hasPlayerWon)`
 
-* **[MDN Javascript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript)** _(a great reference for all things Vanilla Javascript)_
-* **[jQuery Docs](http://api.jquery.com)** _(if you're using jQuery)_
-* **[GitHub Pages](https://pages.github.com)** _(for hosting your game)_
-* **[How to write readme - Markdown CheatSheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)** _(for editing this readme)_ 
-* **[How to write a good readme for github repo!](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)** _(to make it better)_
+This loads victory sequence if player has won or the defeat sequence if player has lost.
 
----
+### `restartSequence(chosenColorSchemeIndex = 0, chosenCanvasLengthIndex = 1, chosenDifficulty = 1)`
 
-### Project Feedback + Evaluation
+This creates a splash sequence which "animates" the canvas upon page load or restart. Then it proceeds to restart the game. When the game is loaded for the first time, default values stipulated in the parameters will be used.
 
-* __Project Workflow__: Did you complete the user stories, wireframes, task tracking, and/or ERDs, as specified above? Did you use source control as expected for the phase of the program you’re in (detailed above)?
+### `restartGame(chosenColorSchemeIndex, chosenCanvasLengthIndex, chosenDifficulty)`
 
-* __Technical Requirements__: Did you deliver a project that met all the technical requirements? Given what the class has covered so far, did you build something that was reasonably complex?
+This initializes or reinitializes the game according to the arguments passed.
 
-* __Creativity__: Did you add a personal spin or creative element into your project submission? Did you deliver something of value to the end user (not just a login button and an index page)?
+### `awaitingPlayerInput()`
 
-* __Code Quality__: Did you follow code style guidance and best practices covered in class, such as spacing, modularity, and semantic naming? Did you comment your code as your instructors have in class?
+This is the main game loop that will be triggered whenever the player clicks to select a color.
 
-* __Deployment__: Did you deploy your application to a public url using GitHub Pages?
+## Unresolved Issues
 
-* __Total__: Your instructors will give you a total score on your project between:
+- Fine-tune the number of moves allowed for every level of difficulty and canvas size.
+- Make it more responsive to tablets screen sizes.
+- Further UI refinements, such as: 
+  - Instead of white, use a different color for clickable/tappable elements such as *Apply*, *Restart* and *Options*; and
+  - Better alignment of the radio buttons in the *Options* menu.
+- Add sound effects(?).
+- Implement an option where color scheme rotates after every move.
 
-    Score | Expectations
-    ----- | ------------
-    **0** | _Incomplete._
-    **1** | _Does not meet expectations._
-    **2** | _Meets expectations, good job!_
-    **3** | _Exceeds expectations, you wonderful creature, you!_
+## Built Using
 
- This will serve as a helpful overall gauge of whether you met the project goals, but __the more important scores are the individual ones__ above, which can help you identify where to focus your efforts for the next project!
+- HTML
+- CSS
+- JavaScript
+- jQuery
+
+## Acknowledgements
+
+I would like to thank: 
+
+- Ebere, who wisely advised me to stop fixating on figuring out an algorithm to find the shortest path to fill out the canvas and just get on with building the game.
+- Shaun, for showing us the ins and outs for this project and checking in regularly during project week
+- Edmund, who knows jQuery so much better and saved me hours by pointing me to `.hover(…)`, `.fadeIn(…)`, `.off()` and many more.
+- Ching Tong, who navigated me through the labyrinth of Github. 
+- Speed, who rightly pointed out that the game title was not truly centered due to my poor use of CSS letter-spacing.
+- Darren, who suggested adding `:active`, `:hover` CSS pseudo-classes for the color palette in `media query` to fix the issue `:hover` does not work properly on touchscreen devices
+- Yanjie, who suggested clarifying the description for each difficulty level in the options modal
+- Jie Hao, my in-house Python guide, who sat with me as I read through the code of Ink Spill, a Python implementation of this game.
+- Christabel, for identifying a glaring bug on mobile phone and proofreading this `README.md`, but most importantly, for her understanding, patience and support.
+
+I have also drawn from the following resources:
+
+- [Flood-It: a game with a million dollars - University of Bristol](http://www.bris.ac.uk/news/2010/6945.html)
+- [P vs NP Problem | Clay Mathematics Institute](http://www.claymath.org/millennium-problems/p-vs-np-problem)
+- [NP-hardness - Wikipedia](https://en.m.wikipedia.org/wiki/NP-hardness)
+- [Code Comments Tutorial: Ink Spill - A "Flood It" Clone](http://inventwithpython.com/blog/2010/09/09/code-comments-tutorial-ink-spill-a-flood-it-clone/)
+- [Flood–It! on the App Store](https://itunes.apple.com/sg/app/flood-it/id476943146?mt=8)
+- [JavaScript: Difference between UNDEFINED and NULL](http://www.ajaymatharu.com/javascript-difference-between-undefined-and-null/)
+- [How To Make a Modal Box With CSS and JavaScript](https://www.w3schools.com/howto/howto_css_modals.asp)
+- [User story - Wikipedia](https://en.wikipedia.org/wiki/User_story)
+- [CSS3 - Simple CSS Animation Loop – Fading In & Out "Loading" Text - Stack Overflow](https://stackoverflow.com/questions/23985018/simple-css-animation-loop-fading-in-out-loading-text)
+- [A Complete Guide to Grid | CSS-Tricks](https://css-tricks.com/snippets/css/complete-guide-grid/)
+- [Permanent Marker - Google Fonts](https://fonts.google.com/specimen/Permanent+Marker)

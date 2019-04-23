@@ -1,11 +1,92 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+		<title>Color Spill!</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" href="./assets/css/reset.css">
+		<link rel="stylesheet" href="./assets/css/stylesheet.css">
+	</head>
+<!-- https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
+<body ontouchstart="">
+	<div id="headerContainer">
+		<div id="header">
+			<div id="title" class="flicker">Color Spill!</div>
+			<div id="menuBar">
+				<img src="./assets/images/options.svg" id="options" class="buttonFlicker"/>
+				<span id="moves"></span>
+				<img src="./assets/images/restart.svg" id="restart" class="buttonFlicker"/>
+			</div>
+		</div>
+	</div>
+
+	<div id="colorPickerZone">
+		<div id="canvasContainer"></div>
+		<div id="palette"></div>
+	</div>
+
+	<div id="instruction">Fill the canvas with the same color before your moves are up!</div>
+
+	<div id="optionsModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h2><span id="close" class="buttonFlicker">&times;</span></h2>
+				<h2>Options</h2>
+			</div>
+
+			<form>
+			<div class="modal-body">
+				<div class="modalTop">
+					<div class="modalTopComponent">
+						<h3>Difficulty</h3>
+						<div class="formModule">
+							<div class="radioSpan">
+								<div><input type="radio" name="difficultyLevel" value="0" class="radioButton"/></div>
+								<div class="radioText">More moves</div>
+								<div><input type="radio" name="difficultyLevel" value="1" class="radioButton" checked/></div>
+								<div class="radioText">Just right</div>
+								<div><input type="radio" name="difficultyLevel" value="2" class="radioButton"/></div>
+								<div class="radioText">Less moves</div>
+							</div>
+						</div>
+					</div>
+					<div class="modalTopComponent">
+						<h3>Canvas</h3>
+						<div class="formModule">
+							<div class="radioSpan">
+								<div><input type="radio" name="canvasLength" value="0" class="radioButton"/></div>
+								<div class="radioText">10 &times; 10</div>
+								<div><input type="radio" name="canvasLength" value="1" class="radioButton" checked/></div>
+								<div class="radioText">15 &times; 15</div>
+								<div><input type="radio" name="canvasLength" value="2" class="radioButton"/></div>
+								<div class="radioText">20 &times; 20</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modalBottom">
+					<h3>Color Scheme</h3>
+					<div class="colorSchemeContainer">
+						<div id="colorSchemes"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<input type="submit" id="apply" class="buttonFlicker" name="apply" value="Apply"/>
+			</div>
+			</form>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script> -->
+	<script charset="utf-8" src="./assets/js/script.js"></script>
+</body>
 </html>
