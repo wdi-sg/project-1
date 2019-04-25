@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Orbitron|Vollkorn+SC" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="memoryGame.css">
+	<title> Memory Game </title>
+</head>
+<body>
+
+		<!-- Game Interface -->
+
+		<div class="gameBoard">
+		<div class="gameTopSection">
+			<div class="gameTitle"> Memory Game Versus </div>
+			<div class="playerOne"> Player One <div class="playerScore" id="p1">0</div></div>
+			<div class="statusMenu">
+
+				<div class="currentPlayer"> Time Remaining: <div class="timerDisplay"> None </div></div>
+
+				<div class="newGame">
+
+					<button class="reset"> New Game </button>
+
+					<!-- Modal Functionality -->
+
+					<div class="modal" id="prompt">
+
+						<div class="modalContent">
+
+							<div class="modalHeader"> &nbsp; </div><span id="closeBtn"> X </span>
+							<div class="modalBody"></div>
+							<div class="modalFooter"><button class="reset" id="modalReset"> Try again? </button></div>
+
+						</div>
+
+					</div>
+
+					<!-- End of Modal Functionality -->
+
+				</div>
+			</div>
+			<div class="playerTwo"> Player Two <div class="playerScore" id="p2">0</div></div>
+		</div>
+
+		<!-- End of Game Interface -->
+
+		<!-- Card Board -->
+
+		<div id="mainBoard"></div>
+
+		<!-- End of Card Board -->
+
+		</div>
+<div class="container-fluid">
+	<footer class="footerBar">
+		<p id="viewed"> Best  Viewed  in  Chrome / Firefox / Safari </p>
+	</footer>
+
+</div>
+
+	<script src="memoryGame.js"></script>
+</body>
 </html>
