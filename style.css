@@ -1,0 +1,262 @@
+
+
+
+
+img{
+
+}
+
+
+
+body{
+	background-color: #000;
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	background-size: cover;
+	background-image:url("./images/oldpaper.jpg"); 
+	background-attachment: fixed;
+	background-position: top;
+}
+
+.container{
+	height: 100%;
+	/*width: 100%;*/
+}
+
+
+
+.backdrop{
+	width: 500px;
+	margin: 10px auto 0 auto;
+
+
+}
+.backgroundpic{
+	z-index: -1;
+	height:300px;
+	width:500px;
+
+}
+
+#text{
+	color: white;
+	margin: 10px auto 0 auto;
+	height:150px;
+	color: white;
+	text-align: center;
+	font-family:  'Aclonica', sans-serif;
+	color: rgb(75,0,0)
+
+/*	position: absolute;
+	left: 0px;
+	top:0px;
+	font-family: arial;
+	font-weight: bold;
+	
+	font-size: 20px;
+	text-shadow: 2px 1px black ;*/
+
+
+}
+
+#decisions{
+	margin: 10px auto;
+	width:500px;
+
+/*	height: 100px;*/
+
+}
+
+
+.newgametext{
+	font-size: 84px;
+	font-weight: bold;
+
+}
+
+.newgameoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 24px;
+}
+
+#startscreen{
+	margin: 0 auto;
+	/*margin-top: 10px;*/
+	/*margin-left: 100px;*/
+	/*width: 400px;
+	height: 400px;*/
+}
+
+.cropcontent{
+	margin-left:00px;
+}
+
+.cropoption{
+
+	width: 500px;
+	height: 40px;
+	margin: 0 auto;
+	font-size: 16px;
+	
+}
+
+.storetext{
+	margin-left: 00px;
+	margin-top: 10px;
+	height: 50px;
+	font-size: 28px;
+
+}
+
+.storeoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 20px;
+
+}
+
+.equipmenttext{
+	font-size: 42px;
+
+}
+
+.equipmentoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.fertilizertext{
+	font-size: 42px;
+
+
+}
+
+.fertilizeroption{
+	width: 500px;
+	height: 50px;
+	margin-left: 00px;
+	margin-top: 0px;
+	
+
+}
+
+.pestcontroltext{
+	font-size: 42px;
+
+}
+
+.pestcontroloption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 12px;
+
+}
+
+.itemsboughttext{
+	font-size: 28px;
+
+}
+
+.itemsboughtoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 16px;
+
+
+}
+
+
+.totalcoststext{
+	font-size: 36px;
+
+}
+
+
+.totalcostsoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 20px;
+
+
+}
+
+
+.harvesttext{
+	font-size: 28px;
+
+}
+
+
+.harvestoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 20px;
+
+
+}
+
+.cropsharvestedtext{
+
+}
+
+.cropsharvestedoption{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 16px;
+
+
+}
+
+.finalsaletext{
+	font-size: 36px;
+
+}
+
+.finalsaleoption{
+	width: 500px;
+	height: 40px;
+	left: 00px;
+	top: 100px;
+	font-size: 20px;
+
+
+}
+
+.finalscoretext{
+	font-size: 28px;
+
+}
+
+.finalscore{
+	width: 500px;
+	height: 40px;
+	margin-left: 00px;
+	margin-top: 10px;
+	font-size: 24px;
+
+
+}
+
+
+
+
+/*@media only screen and (max-width: 500px;)*/
