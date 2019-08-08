@@ -1,0 +1,221 @@
+#startbtn {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  border: none;
+}
+
+#startbtn img {
+  height: 350px;
+  width: 350px;
+}
+
+#restartbtn {
+  font-family: "Press Start 2P";
+  font-size: 20px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 2px solid black;
+  height: 150px;
+  width: 220px;
+}
+
+body {
+  font-family: "Press Start 2P";
+  background-repeat: repeat;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+
+h2 {
+
+  display:flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+h3 {
+  font-size: 17px;
+  text-align: center;
+}
+
+h4 {
+  font-size: 12px;
+  word-spacing: 140px;
+  text-align: center;
+}
+
+h5 {
+  font-size: 32px;
+  text-align: center;
+}
+
+h6 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.clickme {
+  background: url("../images/background4.gif");
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  display: block;
+  z-index: 1;
+}
+
+.leaderBoard {
+  text-align: center;
+  font-size: 22px;
+  height: 400px;
+  width: 200px;
+  position: absolute;
+  display: block;
+  line-height: 70px;
+}
+
+.flower {
+  height: 55px;
+  width: 55px;
+  left: 0px;
+  display: inline-block;
+  position: absolute;
+  transition: all 0.5s ease-out;
+  background-size: cover;
+}
+
+.playerOne {
+  height: 125px;
+  width: 125px;
+  background-image: url("../images/superPink1.gif");
+  background-size: cover;
+  top: 540px;
+  left: 550px;
+  position: absolute;
+  transition: all 0.05s ease-out;
+}
+
+.container {
+  background: url("../images/background2.gif");
+  background-size: 100% 100%;
+  background-position: center;
+  width: 1200px;
+  height: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timer {
+  color: #a5ffcc;
+  font-size: 70px;
+  text-align: center;
+  width: 500px;
+  padding-top: 30px;
+  float: left;
+  line-height: 120px;
+}
+
+.score {
+  color: 	#a5ffcc;
+  font-size: 70px;
+  text-align: center;
+  padding-top: 30px;
+  width: 500px;
+  float: right;
+  line-height: 120px;
+}
+
+.highscore {
+  height: 90%;
+  width: 70%;
+  position: absolute;
+  display: none;
+  z-index: 1;
+  font-size: 50px;
+  text-align: center;
+  top: 35%;
+  left: 16%;
+  line-height: 90px;
+}
+
+.gameover {
+  background: url("../images/trip1.gif");
+  font-size: 60px;
+  text-align: center;
+  line-height: 150px;
+  height: 700px;
+  width: 1200px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  display: none;
+  z-index: 0;
+}
+
+.bottom {
+  height: 180px;
+  width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.gamestart {
+  background: url("../images/trip2.gif");
+  background-size: 100% 100%;
+  height: 180px;
+  width: 1200px;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.gamestart img {
+  height: 140px;
+  weight: 140px;
+}
+
+
+.instructions {
+  position: absolute;
+  background-color: white;
+  font: 30px;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 0;
+}
+
+.instructions img {
+  height: 50px;
+  width: 50px;
+}
+
+.sideinstructions {
+  text-align: center;
+  font-size: 30px;
+  height: 400px;
+  width: 200px;
+  position: absolute;
+  display: block;
+  line-height: 70px;
+  right: 0px;
+}
+
+/*scoring*/
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  text-align: center;
+}

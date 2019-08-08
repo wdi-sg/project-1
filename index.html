@@ -2,10 +2,65 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Star Power !</title>
+    <link rel="stylesheet" type= "text/css" href="./assets/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   </head>
   <body>
-    <script src="js/script.js" charset="utf-8"></script>
+    <!-- <h1> Star Power !</h1> -->
+    <aside class ="leaderBoard">
+    </aside>
+    <aside class ="sideinstructions">
+      <h3> ArrowKeys to move Left & Right. Avoid Ghost! Collect Stars! 30seconds! Go! </h3>
+    </aside>
+
+      <div class = "container">
+        <div class = "clickme">
+          <h5> Star Power! </h5>
+          <button id="startbtn" type="button "><img src="./assets/images/PinkCatGirl.gif"></button>
+          <h5> Click Me! </h5>
+
+        </div>
+        <audio src="./assets/sound/flicker.mp3"autoplay>
+        </audio>
+
+        <div class = "timer">
+          Time: 30
+        </div>
+        <div class = "score">
+          Score: 0
+        </div>
+        <div class = "gameover">
+          <h6>Score: 0</h6>
+        </div>
+        <div class = "highscore">
+        </div>
+      </div>
+
+
+  <div class = "bottom">
+    <div class = "instructions">
+       <h2> <img src="./assets/images/catGhost.gif">
+            <img src="./assets/images/star2.gif">
+            <img src="./assets/images/star3.gif">
+            <img src="./assets/images/star6.gif">
+            <img src="./assets/images/bottleStar.gif">
+       </h2>
+       <div class="wrapper">
+        <div class="one">Score:-3 Time:-1.5s</div>
+        <div class="two">Score:+1 Time:+0</div>
+        <div class="three">Score:+2 Time:+0 </div>
+        <div class="four">Score:+3 Time:+0s</div>
+        <div class="five">Score:+4 Time:+1s</div>
+      </div>
+       </div>
+
+        <div class = "gamestart">
+          <button id="restartbtn">Play Again</button>
+        </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
   </body>
 </html>
