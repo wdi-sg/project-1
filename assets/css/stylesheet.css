@@ -1,0 +1,162 @@
+body{
+  background-color: #92B6B1;
+
+}
+
+#hammer{
+  position: absolute;
+}
+
+h1{
+  font-family:'Finger Paint', cursive;
+  color:white;
+  font-size: 65px;
+  margin: 0;
+  padding: 0;
+
+}
+
+button{
+  font-family:'Finger Paint', cursive;
+  background: #92B6B1;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  outline: 0;
+  border: 0;
+}
+
+button:hover {
+  font-family:'Finger Paint', cursive;
+  background: #788AA3;
+  text-decoration: none;
+
+}
+#start{
+  font-family:'Finger Paint', cursive;
+}
+#reset{
+  font-family:'Finger Paint', cursive;
+}
+#close{
+  font-family:'Finger Paint', cursive;
+}
+
+.avoid-clicks{
+  pointer-events: none;
+}
+
+.mole{
+  width: 230px;
+  height: 130px;
+  display: inline-block;
+  margin-top: -36px;
+  margin-left: -25px;
+
+}
+audio {
+   display:none;
+   autoplay: none;
+}
+
+.holes{
+  background-color: #788AA3;
+  border-radius: 100px / 50px;
+  border-color: grey;
+  width: 200px;
+  height: 95px;
+  display: inline-block;
+  margin-top: 35px;
+  margin-left: 38px;
+}
+
+.holesOdd{
+  margin-left: 15px;
+}
+
+.holesEven{
+  margin-left: 25px;
+}
+
+.container{
+  text-align:center;
+  position: relative;
+
+}
+
+.image {
+  background-image: url("whackthatmole.png");
+  background-size: 100px 120px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+}
+.buttonwrap{
+  margin-left: 30px;
+}
+
+.score{
+  margin-right: -250px;
+  padding-left:250px;
+  display: inline-block;
+  color: white;
+  font-family:'Finger Paint', cursive;
+  font-size: 40px;
+  color: #E8DDB5;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+span{
+  animation: bounceIn 2s;
+}
+
+.wrap{
+  text-align: center;
+  margin-left:-450px;
+
+}
+.timer{
+  margin-right: -250px;
+  margin-right: -250px;
+  padding-left: 250px;
+  display: inline-block;
+  color: white;
+  font-family:'Finger Paint', cursive;
+  font-size: 40px;
+  color: #E8DDB5;
+}
+
+.instruction{
+  font-family:'Finger Paint', cursive;
+  font-size: 28px;
+  position: absolute;
+  width: 1000px;
+  height: 700px;
+  margin-top: -10px;
+  background-color:#92B6B1;
+  margin-left: 200px;
+  color: white;
+}
+
+p{
+  opacity: 1;
+}

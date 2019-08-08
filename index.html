@@ -1,11 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Whack A Mole</title>
+  <link rel="stylesheet" href="./assets/css/stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Finger+Paint" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="instruction">
+      <h1><img src="./assets/css/whackthatmole.png" height="100">  Whack A Mole</h1>
+      <h2>Instructions</h2>
+      <p>Click on the mole before it returns to the ground!</p>
+      <p>Every whack gives you 10 points while every wrong hit to an empty hole reduces 5 points.</p>
+      <p>There's a time limit of 30s so start whacking!</p>
+      <button type="button" id="close">Let's Go!</button>
+    </div>
+
+    <h1><img src="./assets/css/whackthatmole.png" height="100">  Whack A Mole</h1>
+
+    <img src="./assets/images/hammerBig.png" id="hammer" width="80">
+
+    <div class="wrap">
+      <div class="timer"></div>
+      <div>
+        <div class="score"></div>
+      </div>
+    </div>
+
+    <div class="buttonwrap">
+
+      <button type="button" id="start">Start</button>
+      <button type="button" id="reset">Reset</button>
+
+    </div>
+
+
+    <div class="holesOdd">
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+    </div>
+    <div class="holesEven">
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+    </div>
+
+    <div class="holesOdd">
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+      <div class="holes">
+        <div class="mole"></div>
+      </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="./assets/js/script.js" charset="utf-8"></script>
+</body>
+
 </html>
