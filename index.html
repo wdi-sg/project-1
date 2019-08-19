@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <script src="js/script.js" charset="utf-8"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Follow the Trail!</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
+  <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Covered+By+Your+Grace" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+      <h1>Follow the Trail !  👣</h1>
+    </div>
+
+    <div class="instructions-slide">
+      <h2>Instructions:</h2>
+      <h2>A move on a grid will increase its value by 1.</h2>
+      <h2>Move ↑ ↓ ← → onto neighbouring grids to match the given Computer Grid.</h2>
+      <div class="buttons">
+        <button class="button" id="play">Play</button>
+      </div>
+      <form>
+        <input type="text" name="code" placeholder="Enter code to fast forward to a level" class="code">
+        <button class="button" id="code-btn">Submit</button>
+        <p class="incorrect"></p>
+      </form>
+    </div>
+
+    <div class="game-slide">
+      <h2 class="level">Level 1</h2>
+      <h2 class="complete">Level Complete!</h2>
+
+      <div class="game">
+        <div class="container-player">
+          <h2>Your Grid</h2>
+        </div>
+        <div class="container-com">
+          <h2>Computer Grid</h2>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button class="button" id="undo">Undo</button>
+        <button class="button" id="reset">Reset</button>
+        <button class="button" id="new-game">New Game</button>
+      </div>
+
+      <div id="alert-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Instructions</h2>
+          <h2>A move on a grid will increase its value by 1.</h2>
+          <h2>Move ↑ ↓ ← → onto neighbouring grids to match the given Computer Grid.</h2>
+          <h2>For example:</h2>
+          <img src="images/instructions-animate.gif" alt="instructions demo" class="instructions-animate">
+        </div>
+      </div>
+    </div>
+
+  <script src="assets/js/jquery-3.2.1.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
 </html>
