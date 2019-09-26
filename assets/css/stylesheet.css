@@ -1,0 +1,71 @@
+body {
+  color: white;
+  background-color: #00AFC2;
+  transition: background-color 10s ease;
+}
+
+.container {
+  width: 330px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  font-family: 'Helvetica', sans-serif;
+  display: block;
+
+}
+
+.wrapper {
+  margin: 0 auto;
+  border: 3px solid white;
+  width: 324px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  font-size: 60px;
+  position: relative;
+  top: 30px
+}
+
+h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 30px;
+  display: block;
+  margin: 15px;
+  height: 30px;
+}
+
+h2 {
+  font-family: 'Orbitron', sans-serif;
+  margin: 20px 15px;
+  display: block;
+  height: 20px;
+}
+
+p {
+  font-size: 16px;
+}
+
+button {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  padding: 10px 5px 8px 5px;
+  font-size: 15px;
+}
+
+button:hover {
+    background-color: #00AFC2;
+    color: white;
+}
+
+.cell {
+  width: 80px;
+  height: 80px;
+  border: 0.5px solid beige;
+  transition: background-color 0.1s linear;
+}
